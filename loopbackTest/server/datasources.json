@@ -1,0 +1,16 @@
+{
+  "db": {
+    "name": "db",
+    "connector": "memory"
+  },
+  "autonomous": {
+    "host": "localhost",
+    "port": 27017,
+    "url": "",
+    "database": "autonomous",
+    "password": "",
+    "name": "autonomous",
+    "user": "",
+    "connector": "mongodb"
+  }
+}

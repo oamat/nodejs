@@ -1,0 +1,15 @@
+{
+  "name": "mapvsiftest",
+  "version": "1.0.0",
+  "description": "Map performance vs If performance in NodeJS",
+  "main": "map.js",
+  "dependencies": {
+    "nodejs": "^0.0.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Oriol Amat",
+  "license": "ISC"
+}

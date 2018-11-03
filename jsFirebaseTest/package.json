@@ -1,0 +1,19 @@
+{
+  "name": "firebasetest",
+  "version": "1.0.0",
+  "description": "firebase first test",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/oamat/firebasetest.git"
+  },
+  "author": "Oriol Amat",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/oamat/firebasetest/issues"
+  },
+  "homepage": "https://github.com/oamat/firebasetest#readme"
+}

@@ -1,0 +1,17 @@
+{
+  "name": "testjs",
+  "version": "1.0.0",
+  "description": "test in nodejs",
+  "main": "index.js",
+  "dependencies": {
+    "chai": "^4.1.0"
+  },
+  "devDependencies": {
+    "mocha": "^3.5.0"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "author": "Oriol Amat",
+  "license": "ISC"
+}

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Agregar Platillo</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+	<!-- Optional theme -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+
+</head>
+<body>
+<div class="container" >
+
+	<div class="jumbotron">
+		<h2>Agregar Platillo</h2>
+	</div>
+	<ul class="nav nav-pills" >
+		<li role="presentation" class="active">
+			<a href="platillos.html">Platillos</a>
+		</li>
+		<li role="presentation" class="active">
+			<a href="agregarBebida.html">Agregar Bebida</a>
+		</li>
+	</ul>
+	<br/><br/>
+	<button class="btn btn-danger" onclick="salir()">Salir</button><br/>
+
+
+	<!--Subir una imagen de cada platillo -->
+
+	<div>
+		<input type="file" name="imagen" onchange="visualizarArchivo()" /><br/><br/><br/>
+		<img src="" height="300" alt="Imagen de Platillo" id="imgPlatillo">
+	</div>
+
+	<!--Forma que nos permita ingresar el nombre, descripción y precio -->
+
+	<div>
+		<form onsubmit="return funcionDeLaForma(event)">
+			Nombre: <input class="form-control" type="text" name="nombre" id="nombre" required><br/><br/>
+			Descripción: <textarea class="form-control" id="descripcion" required></textarea><br/><br/>
+			Precio: <input class="form-control" type="text" name="precio" id="precio" required><br/><br/>
+			Dirección Imagen: <input class="form-control" type="text" name="direccion" id="imgDir" required><br/><br/>
+			<input class="btn btn-success" type="submit" value="Subir">
+		</form>
+	</div>
+
+</div>
+</body>
+
+
+<script src="https://www.gstatic.com/firebasejs/3.5.0/firebase.js"></script>
+<script type="text/javascript" src="index.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap.native/1.0.5/bootstrap-native.min.js"></script>
+</html>

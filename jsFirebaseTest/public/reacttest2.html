@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Hello World</title>
+    <script src="https://unpkg.com/react@latest/dist/react.js"></script>
+    <script src="https://unpkg.com/react-dom@latest/dist/react-dom.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+  </head>
+  <body>
+    <h2>firstReact</h2>
+    <div id="marco">Hola!!</div>
+    <div id="marco2">Hola!!</div>
+    <div id="marco3">Hola!!</div>
+
+
+    <script type="text/babel">
+  ReactDOM.render(
+        <h1>Hello, world!</h1>,
+        document.getElementById('marco')
+      );
+
+    class Principal extends React.Component {
+       render(){
+            return(
+                <h1>Hola mundo, des de componente react</h1>                
+            );
+       }
+    }
+
+
+ ReactDOM.render(
+        <Principal/>,
+        document.getElementById('marco2')
+      );
+
+ 
+  class IntroducirTexto extends React.Component{
+      constructor(){
+          super();
+          this.state={
+              nombre:"Aquí va tu nombre"
+          }
+      }
+
+     cambiarNombre(evento){
+        console.log("paso por cambiarNombre:" + evento.target.value);
+        this.setState({ nombre: evento.target.value });
+        }
+
+      render(){
+          return (
+              <div>
+              <h2>Otro componente, añado State y Principal: </h2>
+              <h2> {this.state.nombre}</h2>
+              <input onChange={this.cambiarNombre.bind(this)}/>
+              <Principal/>
+              </div>
+          )
+      }
+  } 
+
+
+ ReactDOM.render(
+        <IntroducirTexto/>,
+        document.getElementById('marco3')
+      );
+
+    </script>
+  </body>
+</html>
