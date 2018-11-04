@@ -9,9 +9,9 @@
   "author": "Oriol Amat",
   "license": "ISC",
   "dependencies": {
-    "cron": "^1.2.1",
-    "mongodb": "^2.2.30",
-    "queue": "^4.2.1",
-    "request": "^2.81.0"
+    "cron": "*",
+    "mongodb": "*",
+    "queue": "*",
+    "request": "*"
   }
 }
