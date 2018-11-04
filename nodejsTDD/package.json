@@ -4,10 +4,10 @@
   "description": "test in nodejs",
   "main": "index.js",
   "dependencies": {
-    "chai": "^4.1.0"
+    "chai": "*"
   },
   "devDependencies": {
-    "mocha": "^3.5.0"
+    "mocha": "*"
   },
   "scripts": {
     "test": "mocha"
