@@ -6,8 +6,11 @@ var stringObj = JSON.stringify(obj);
 console.log(typeof stringObj);
 console.log(stringObj);
 
+var personJSON = {"name": "Andrew","age": 25};
+var {name}=personJSON
+console.log("name of JSON var is " + name);
 
-var personString = '{"name": "Andrew","age": 25}';
+var personString = {name: 'Andrew', age: 25};
 var person = JSON.parse(personString);
 console.log(typeof person);
 console.log(person);
