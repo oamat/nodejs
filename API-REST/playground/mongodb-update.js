@@ -1,4 +1,3 @@
-
 //const MongoClient = require('mongodb').MongoClient;   
 //const ObjectID = require('mongodb').ObjectID;  
 // Is exactly the same of :
@@ -16,33 +15,50 @@ MongoClient.connect(url, optionsMongo, function (err, client) {
     return console.log('Unable to connect to MongoDB server');
   }
   console.log('Connected to MongoDB server');
-
   const col = client.db(dbName).collection(collection);  // Create a collection
 
-  //Here we can do something
-  // deleteOne is used to delete a single document
-  col.deleteOne({ text: 'Something to do' }).then((result) => {
-    console.log("deleteOne : " + result);
-    //console.log(result);
-  });
-
-  // findOneAndDelete returns the deleted document after having deleted it (in case you need its contents after the delete operation);
-  col.findOneAndDelete({
-    _id: new ObjectID("5be36a50a0ba6f5696bda1ad")
+  col.findOneAndUpdate({
+    _id: new ObjectID('5beb372c941ed127b032d98c')
+  }, {
+    $set: {
+      completed: true,
+      text : "Something to findOneAndUpdate"
+    }
+  }, {
+    returnOriginal: false //When false, returns the updated document rather than the original. The default is true.
   }).then((result) => {
-    console.log("findOneAndDelete : " + result);
+    console.log("findOneAndUpdate returned the updated record:" + result);
   });
 
-  //deleteMany
-  col.deleteMany({ text: 'Something to do' }).then((result) => {
-    console.log("deleteMany : " + result);
+  col.updateOne({
+    _id: new ObjectID('5beb37310410520af04576a4')
+  }, {
+    $set: {
+      completed: true,
+      text : "Something to UPDATEONE"
+    }
+  }).then((result) => {
+    console.log("updateOne Collection~updateWriteOpCallback " + result);
   });
 
+
+  // db.collection('Users').findOneAndUpdate({
+  //   _id: new ObjectID('57abbcf4fd13a094e481cf2c')
+  // }, {
+  //   $set: {
+  //     name: 'Andrew'
+  //   },
+  //   $inc: {
+  //     age: 1
+  //   }
+  // }, {
+  //   returnOriginal: false
+  // }).then((result) => {
+  //   console.log(result);
+  // });
 
   //END Here we can do something
   client.close(function (err) {
     console.log('Close connection to MongoDB server...');
   });
 });
-
-

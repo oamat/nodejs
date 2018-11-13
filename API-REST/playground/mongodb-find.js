@@ -3,8 +3,6 @@
 // Is exactly the same of :
 const { MongoClient, ObjectID } = require('mongodb');
 
-var obj = new ObjectID();
-console.log(obj);  // if I need to insert some objects manualy
 
 
 const url = 'mongodb://localhost:27017';  // Connection url
@@ -20,10 +18,10 @@ MongoClient.connect(url, optionsMongo, function (err, client) {
   console.log('Connected to MongoDB server');
 
   const col = client.db(dbName).collection(collection);  // Create a collection
+
   //Here we can do something
- 
+
   // Create a collection we want to drop later
-  
   col.find({ _id: new ObjectID("5be369d7a0ba6f5696bda1ab") })
     .toArray().then((docs) => {
       console.log('col.find({ _id: new ObjectID("5be369d7a0ba6f5696bda1ab") }) RESULTS:');
@@ -53,7 +51,6 @@ MongoClient.connect(url, optionsMongo, function (err, client) {
   // });
 
   //END Here we can do something
-
   client.close(function (err) {
     console.log('Close connection to MongoDB server...');
   });
