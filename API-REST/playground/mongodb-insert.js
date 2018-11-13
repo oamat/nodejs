@@ -18,11 +18,9 @@ MongoClient.connect(url, optionsMongo , function (err, client) {
   if (err) {  //manage error
     return console.log('Unable to connect to MongoDB server' + err);
   }
-
   console.log('Connected to MongoDB server...');
-  
-  // Create a collection
-  const col = client.db(dbName).collection(collection);
+  const col = client.db(dbName).collection(collection);  // Create a collection
+  //Here we can do something
   
   //console.log("col.stats : " + col.stats);
 
@@ -35,7 +33,8 @@ MongoClient.connect(url, optionsMongo , function (err, client) {
     }
     console.log(JSON.stringify(result.ops, undefined, 2));
   });
-  
+  //END Here we can do something
+
   client.close(function(err){
      console.log('Close connection to MongoDB server...');
   });

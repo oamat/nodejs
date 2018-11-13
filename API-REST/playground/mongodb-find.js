@@ -18,8 +18,12 @@ MongoClient.connect(url, optionsMongo, function (err, client) {
     return console.log('Unable to connect to MongoDB server');
   }
   console.log('Connected to MongoDB server');
+
+  const col = client.db(dbName).collection(collection);  // Create a collection
+  //Here we can do something
+ 
   // Create a collection we want to drop later
-  const col = client.db(dbName).collection(collection);
+  
   col.find({ _id: new ObjectID("5be369d7a0ba6f5696bda1ab") })
     .toArray().then((docs) => {
       console.log('col.find({ _id: new ObjectID("5be369d7a0ba6f5696bda1ab") }) RESULTS:');
@@ -47,6 +51,8 @@ MongoClient.connect(url, optionsMongo, function (err, client) {
   // db.collection('Users').find({ name: 'Andrew' }).toArray().then((docs) => {
   //   console.log(JSON.stringify(docs, undefined, 2));
   // });
+
+  //END Here we can do something
 
   client.close(function (err) {
     console.log('Close connection to MongoDB server...');
