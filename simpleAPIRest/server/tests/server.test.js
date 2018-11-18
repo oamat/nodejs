@@ -1,9 +1,9 @@
 const expect = require('expect');
 const request = require('supertest');
-const {ObjectID} = require('mongodb');
+const { ObjectID } = require('mongodb');
 
-const {app} = require('./../server');
-const {Todo} = require('./../models/todo');
+const { app } = require('./../server');
+const { Todo } = require('./../models/todo');
 
 const todos = [{
   _id: new ObjectID(),
@@ -27,7 +27,7 @@ describe('POST /todos', () => {
 
     request(app)
       .post('/todos')
-      .send({text})
+      .send({ text })
       .expect(200)
       .expect((res) => {
         expect(res.body.text).toBe(text);
@@ -37,7 +37,7 @@ describe('POST /todos', () => {
           return done(err);
         }
 
-        Todo.find({text}).then((todos) => {
+        Todo.find({ text }).then((todos) => {
           expect(todos.length).toBe(1);
           expect(todos[0].text).toBe(text);
           done();
@@ -105,8 +105,7 @@ describe('GET /todos/:id', () => {
 
 describe('DELETE /todos/:id', () => {
   it('should remove a todo', (done) => {
-    var hexId = todos[1]._id.toHexString();
-
+    var hexId = todos[0]._id.toHexString();
     request(app)
       .delete(`/todos/${hexId}`)
       .expect(200)
@@ -119,17 +118,15 @@ describe('DELETE /todos/:id', () => {
         }
 
         Todo.findById(hexId).then((todo) => {
-          expect(todo).toNotExist();
+          expect(todo).toBeFalsy();
           done();
         }).catch((e) => done(e));
       });
   });
 
   it('should return 404 if todo not found', (done) => {
-    var hexId = new ObjectID().toHexString();
-
     request(app)
-      .delete(`/todos/${hexId}`)
+      .delete(`/todos/5bf0ce876523011dd07d5ss16d`)
       .expect(404)
       .end(done);
   });
@@ -157,7 +154,8 @@ describe('PATCH /todos/:id', () => {
       .expect((res) => {
         expect(res.body.todo.text).toBe(text);
         expect(res.body.todo.completed).toBe(true);
-        expect(res.body.todo.completedAt).toBeA('number');
+        expect(typeof res.body.todo.completedAt).toBe('number');
+
       })
       .end(done);
   });
@@ -176,7 +174,7 @@ describe('PATCH /todos/:id', () => {
       .expect((res) => {
         expect(res.body.todo.text).toBe(text);
         expect(res.body.todo.completed).toBe(false);
-        expect(res.body.todo.completedAt).toNotExist();
+        expect(res.body.todo.completedAt).toBeFalsy();
       })
       .end(done);
   });
