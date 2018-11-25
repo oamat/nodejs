@@ -1,0 +1,11 @@
+{
+  "name": "jwt-example",
+  "version": "1.0.0",
+  "description": "jwt-example",
+  "author": "OAF",
+  "license": "ISC",
+  "dependencies": {
+    "crypto-js": "*",
+    "jsonwebtoken": "*"
+  }
+}
