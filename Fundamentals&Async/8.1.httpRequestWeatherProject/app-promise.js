@@ -15,7 +15,9 @@ const argv = yargs
   .argv;
 
 var encodedAddress = encodeURIComponent(argv.address);
-var geocodeUrl = `https://maps.googleapis.com/maps/api/geocode/json?address=${encodedAddress}`;
+var geocodeUrl = `https://maps.googleapis.com/maps/api/geocode/json?address=${encodedAddress}&key=AIzaSyALObxNcYlKhXYxru5ViBt9-2FD6lDFBJk`;
+//example: https://maps.googleapis.com/maps/api/geocode/json?address=1600+Amphitheatre+Parkway,+Mountain+View,+CA&key=AIzaSyALObxNcYlKhXYxru5ViBt9-2FD6lDFBJk
+// you need to enable the API_KEY in Google cloud Platform. Google Maps Geocoding API
 
 axios.get(geocodeUrl).then((response) => {
   if (response.data.status === 'ZERO_RESULTS') {
@@ -24,7 +26,7 @@ axios.get(geocodeUrl).then((response) => {
 
   var lat = response.data.results[0].geometry.location.lat;
   var lng = response.data.results[0].geometry.location.lng;
-  var weatherUrl = `https://api.forecast.io/forecast/4a04d1c42fd9d32c97a2c291a32d5e2d/${lat},${lng}`;
+  var weatherUrl = `https://api.darksky.net/forecast/f667b7ac5316cf9aab18456c928400c6/${lat},${lng}`;
   console.log(response.data.results[0].formatted_address);
   return axios.get(weatherUrl);
 }).then((response) => {

@@ -1,0 +1,172 @@
+{
+	"info": {
+		"_postman_id": "f5d21970-c9f9-425b-a0dd-9cb78ae40fd4",
+		"name": "test API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "/todos",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:3000/todos",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"todos"
+					]
+				},
+				"description": "All todos"
+			},
+			"response": []
+		},
+		{
+			"name": "/todos",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"text\" : \"Something to do from postman\",\n\t\"completed\" : true\n}"
+				},
+				"url": {
+					"raw": "http://localhost:3000/todos",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"todos"
+					]
+				},
+				"description": "Create todo"
+			},
+			"response": []
+		},
+		{
+			"name": "todos/5c0c3ac1c234ec1198387219",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:3000/todos/5c0c3ac1c234ec1198387219",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"todos",
+						"5c0c3ac1c234ec1198387219"
+					]
+				},
+				"description": "select by id"
+			},
+			"response": []
+		},
+		{
+			"name": "todos/5c0c3ac1c234ec1198387219",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:3000/todos/5c0c3ac1c234ec1198387219",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"todos",
+						"5c0c3ac1c234ec1198387219"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/todos/5c0c3ac1c234ec1198387219",
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"text\": \"Something to update from postman UPDATE\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:3000/todos/5c0c3ac1c234ec1198387219",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"todos",
+						"5c0c3ac1c234ec1198387219"
+					]
+				},
+				"description": "Update "
+			},
+			"response": []
+		}
+	]
+}
