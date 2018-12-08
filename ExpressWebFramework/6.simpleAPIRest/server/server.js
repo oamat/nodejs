@@ -60,7 +60,7 @@ app.delete('/todos/:id', (req, res) => {
     return res.status(404).send();
   }
 
-  Todo.findOneAndDelete(id).then((todo) => {
+  Todo.findOneAndDelete( { _id: id } ).then((todo) => {
     if (!todo) {
       return res.status(404).send();
     }
@@ -86,7 +86,7 @@ app.patch('/todos/:id', (req, res) => {
     body.completedAt = null;
   }
 
-  Todo.findOneAndUpdate(id, { $set: body }, { new: true }, (err, todo) => {
+  Todo.findOneAndUpdate({ _id: id }, { $set: body }, { new: true }, (err, todo) => {
     if (err) {
       console.log(err);
       res.status(400).send();
