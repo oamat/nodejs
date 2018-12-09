@@ -172,7 +172,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t \"email\" : \"andrew@example.com\",\n\t \"password\" : \"kireta\"\n}"
+					"raw": "{\n\t \"email\" : \"andrewabc@example.com\",\n\t \"password\" : \"thePassword\"\n}"
 				},
 				"url": {
 					"raw": "{{url}}/users",
@@ -184,6 +184,82 @@
 					]
 				},
 				"description": "Create User"
+			},
+			"response": []
+		},
+		{
+			"name": "{{url}}/users/me UnAuth KO",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{url}}/users/me",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"users",
+						"me"
+					]
+				},
+				"description": "users me Auth"
+			},
+			"response": []
+		},
+		{
+			"name": "{{url}}/users/me AuthOK",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "x-api-key",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1YzBkOGNhN2NiMmJhMTI2Y2NmZThhZGEiLCJhY2Nlc3MiOiJhdXRoIiwiaWF0IjoxNTQ0MzkxODQ3fQ.fYh3vvLrEhrwBsMjtkTKdQYJ6kgVBN9SHKHYBjwnYMg",
+						"type": "text"
+					},
+					{
+						"key": "x-auth",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1YzBkOGNhN2NiMmJhMTI2Y2NmZThhZGEiLCJhY2Nlc3MiOiJhdXRoIiwiaWF0IjoxNTQ0MzkxODQ3fQ.fYh3vvLrEhrwBsMjtkTKdQYJ6kgVBN9SHKHYBjwnYMg",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{url}}/users/me",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"users",
+						"me"
+					]
+				},
+				"description": "user/me auth"
 			},
 			"response": []
 		}

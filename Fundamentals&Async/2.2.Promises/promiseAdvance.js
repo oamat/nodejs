@@ -8,21 +8,21 @@ var asyncAdd = (a, b) => {
 
 
 console.log("First Call");
-asyncAdd(5, '7').then((object) => {
-  console.log('First.1 Call Resolve: ', object);
-  return asyncAdd(object, 33);
-}).then((object) => {
-  console.log('First.2 Call Resolve: ', object);
+asyncAdd(5, '7').then((succedMessage) => {
+  console.log('First.1 Call Resolve: ', succedMessage);
+  return asyncAdd(succedMessage, 33);
+}).then((succedMessage) => {
+  console.log('First.2 Call Resolve: ', succedMessage);
 }).catch((errorMessage) => {
   console.log('First Call Reject:' + errorMessage);
 });
 
 console.log("Second Call");
-asyncAdd(5, 7).then((object) => {
-  console.log('Second.1 Call Resolve: ', object);
-  return asyncAdd(object, 33);
-}).then((object) => {
-  console.log('Second.2 Call Resolve: ', object);
+asyncAdd(5, 7).then((succedMessage) => {
+  console.log('Second.1 Call Resolve: ', succedMessage);
+  return asyncAdd(succedMessage, 33);
+}).then((succedMessage) => {
+  console.log('Second.2 Call Resolve: ', succedMessage);
 }).catch((errorMessage) => {
   console.log('Second Call Reject:' +errorMessage);
 });

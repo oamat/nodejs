@@ -13,15 +13,15 @@ var somePromiseErr = new Promise((resolve, reject) => {
 });
 
 console.log("First Promise call");
-somePromise.then((object) => {
-  console.log('Success: ', object);
-}, (error) => {
-  console.log('Error: ', error);
+somePromise.then((succedMessage) => {
+  console.log('Success: ', succedMessage);
+}, (errorMessage) => {
+  console.log('errorMessage: ', errorMessage);
 });
 
 console.log("Second Promise call");
-somePromiseErr.then( (object) => {
-  console.log('First Success: ', object);
-}, (error) => {
-  console.log('Second Error: ', error);
+somePromiseErr.then( (succedMessage) => {
+  console.log('First Success: ', succedMessage);
+}, (errorMessage) => {
+  console.log('Second errorMessage: ', errorMessage);
 });
