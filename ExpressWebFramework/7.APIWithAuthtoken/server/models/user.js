@@ -32,7 +32,7 @@ var UserSchema = new mongoose.Schema({
   }]
 });
 
-UserSchema.methods.toJSON = function () {
+UserSchema.methods.toJSON = function () {  // This function limited the "send back" info in the response (Override toJSON)
   var user = this;
   var userObject = user.toObject();
 
@@ -42,9 +42,18 @@ UserSchema.methods.toJSON = function () {
 UserSchema.methods.generateAuthToken = function () {
   var user = this;
   var access = 'auth';
-  var token = jwt.sign({_id: user._id.toHexString(), access}, 'abc123').toString();
+  var psw = 'abc123'
+  var data = {_id: user._id.toHexString(), access}
+  
+  console.log("Data Auth Token :");
+  console.log(data);
+  
+  var token = jwt.sign( data, psw ).toString();
 
   user.tokens.push({access, token});
+ 
+  console.log("user.tokens.push({access, token})");
+  console.log(user.tokens);
 
   return user.save().then(() => {
     return token;

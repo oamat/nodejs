@@ -25,12 +25,10 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "http://localhost:3000/todos",
-					"protocol": "http",
+					"raw": "{{url}}/todos",
 					"host": [
-						"localhost"
+						"{{url}}"
 					],
-					"port": "3000",
 					"path": [
 						"todos"
 					]
@@ -56,12 +54,10 @@
 					"raw": "{\n\t\"text\" : \"Something to do from postman\",\n\t\"completed\" : true\n}"
 				},
 				"url": {
-					"raw": "http://localhost:3000/todos",
-					"protocol": "http",
+					"raw": "{{url}}/todos",
 					"host": [
-						"localhost"
+						"{{url}}"
 					],
-					"port": "3000",
 					"path": [
 						"todos"
 					]
@@ -90,15 +86,13 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "http://localhost:3000/todos/5c0c3ac1c234ec1198387219",
-					"protocol": "http",
+					"raw": "{{url}}/todos/5c0c4b48d5664622b84a00a6",
 					"host": [
-						"localhost"
+						"{{url}}"
 					],
-					"port": "3000",
 					"path": [
 						"todos",
-						"5c0c3ac1c234ec1198387219"
+						"5c0c4b48d5664622b84a00a6"
 					]
 				},
 				"description": "select by id"
@@ -122,15 +116,13 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "http://localhost:3000/todos/5c0c3ac1c234ec1198387219",
-					"protocol": "http",
+					"raw": "{{url}}/todos/5c0c49437d3cf9276073846a",
 					"host": [
-						"localhost"
+						"{{url}}"
 					],
-					"port": "3000",
 					"path": [
 						"todos",
-						"5c0c3ac1c234ec1198387219"
+						"5c0c49437d3cf9276073846a"
 					]
 				}
 			},
@@ -153,18 +145,45 @@
 					"raw": "{\n\t\"text\": \"Something to update from postman UPDATE\"\n}"
 				},
 				"url": {
-					"raw": "http://localhost:3000/todos/5c0c3ac1c234ec1198387219",
-					"protocol": "http",
+					"raw": "{{url}}/todos/5c0c4b48d5664622b84a00a6",
 					"host": [
-						"localhost"
+						"{{url}}"
 					],
-					"port": "3000",
 					"path": [
 						"todos",
-						"5c0c3ac1c234ec1198387219"
+						"5c0c4b48d5664622b84a00a6"
 					]
 				},
 				"description": "Update "
+			},
+			"response": []
+		},
+		{
+			"name": "{{url}}/users",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t \"email\" : \"andrew@example.com\",\n\t \"password\" : \"kireta\"\n}"
+				},
+				"url": {
+					"raw": "{{url}}/users",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"users"
+					]
+				},
+				"description": "Create User"
 			},
 			"response": []
 		}

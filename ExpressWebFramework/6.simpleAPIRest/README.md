@@ -8,4 +8,4 @@ Remember starting mongoDB :
 .\mongo.exe (for command line)
 
 You can use /mongodb/native/mongodb-insert.js if you need some documents for test. 
-You can use postman for valid requests to the API (test API.postman_collection.json is the config collection postman file)
+You can use postman for valid requests to the API (test API.postman_collection.json is the config collection postman file),'url' is a variable and it needs initialize in enviroments

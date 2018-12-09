@@ -1,9 +1,8 @@
-const {SHA256} = require('crypto-js');
 const jwt = require('jsonwebtoken');
 
 var data = {
-  id: 10,
-  name: 'Oriol Ona Aina Núria Sònia Oriol Ona Aina Núria Sònia Oriol Ona Aina Núria Sònia Oriol Ona Aina Núria Sònia Oriol Ona Aina Núria Sònia Oriol Ona Aina Núria Sònia Oriol Ona Aina Núria Sònia',
+  id: 11,
+  name: 'Oriol Sònia Ona Aina Núria',
   age: 40
 };
 
