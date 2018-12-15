@@ -1,25 +1,55 @@
-version: "3.6"
+version: "3.1"
 services:
-  mongo:
-    container_name: mongo
+#MongoDB for APIrest
+  mongo: 
     image: mongo
+    container_name: "mongo"
     restart: always
-    volumes:
-      - ./data:/data/db
+    #volumes:
+    #  - ./data:/data/db
     ports:
-      - "27017:27017"
+      - 27017:27017
     environment:
-      MONGO_INITDB_ROOT_USERNAME: username
-      MONGO_INITDB_ROOT_PASSWORD: password    
-  app:
-    container_name: nodeAPIrest    
+      MONGO_INITDB_ROOT_USERNAME: "root"
+      MONGO_INITDB_ROOT_PASSWORD: "example"
+      MONGO_INITDB_DATABASE: "test"
+
+
+#Mongo-express for managed mongo
+  mongo-express: 
+    image: mongo-express
+    container_name: "mongo-express"
     restart: always
-    build: .  # Uses an image that’s built from the Dockerfile in the current directory.    
-    # image: nodeAPIrest
     ports:
-      - "3000:3000"
+      - 8081:8081
     environment:
-      ROOT_URL: "http://localhost:3000"
-      MONGO_URL: "mongodb://username:password@mongo:27017/test;"
+      ME_CONFIG_MONGODB_ADMINUSERNAME: "root"
+      ME_CONFIG_MONGODB_ADMINPASSWORD: "example"
     links:
       - mongo
+    depends_on:
+      - mongo
+    labels:
+      kompose.service.type: LoadBalancer
+
+#APIRest in nodejs 
+   #First you need to create the node apirest image
+   # docker build -t nodeapirest .
+  nodeapirest: 
+    image: nodeapirest    # or build: . Uses an image that’s built from the Dockerfile in the current directory.  
+    container_name: "nodeapirest"      
+    restart: always
+    ports:
+      - 3000:3000
+    
+    environment:
+      MONGO_URL: "mongodb://root:example@192.168.99.100:27017/admin?authMechanism=SCRAM-SHA-1"
+      MONGO_INITDB_ROOT_USERNAME: "root"
+      MONGO_INITDB_ROOT_PASSWORD: "example"
+      MONGO_INITDB_DATABASE: "test"
+    links:
+      - mongo
+    depends_on:
+      - mongo
+    labels:
+      kompose.service.type: LoadBalancer

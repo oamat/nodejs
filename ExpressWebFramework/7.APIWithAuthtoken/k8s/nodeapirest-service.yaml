@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    kompose.cmd: C:\Minikube\kompose.exe convert
+    kompose.service.type: LoadBalancer
+    kompose.version: 1.17.0 (a74acad)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: nodeapirest
+  name: nodeapirest
+spec:
+  ports:
+  - name: "3000"
+    port: 3000
+    targetPort: 3000
+  selector:
+    io.kompose.service: nodeapirest
+  type: LoadBalancer
+status:
+  loadBalancer: {}

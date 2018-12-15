@@ -11,6 +11,11 @@ COPY package*.json ./
 # Bundle app source
 COPY . . 
 
+ENV MONGO_URL: mongodb://root:example@192.168.99.100:27017/admin?authMechanism=SCRAM-SHA-1
+ENV MONGO_INITDB_ROOT_USERNAME root
+ENV MONGO_INITDB_ROOT_PASSWORD example
+ENV MONGO_INITDB_DATABASE test
+
 RUN chmod -R 755 /usr/src/app
 
 RUN npm install
@@ -19,6 +24,6 @@ RUN npm install
 
 
 
-EXPOSE 8080
+EXPOSE 3000
 
 CMD [ "npm", "start" ]

@@ -4,5 +4,8 @@ LABEL maintainer="oriol.amat@gmail.com"
 LABEL version="1.0"
 LABEL description="mongo image test"
 
+ENV MONGO_INITDB_ROOT_USERNAME root
+ENV MONGO_INITDB_ROOT_PASSWORD example
+#ENV MONGO_INITDB_DATABASE test
 
 EXPOSE 27017

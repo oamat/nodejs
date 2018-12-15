@@ -1,0 +1,39 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: C:\Minikube\kompose.exe convert
+    kompose.service.type: LoadBalancer
+    kompose.version: 1.17.0 (a74acad)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: nodeapirest
+  name: nodeapirest
+spec:
+  replicas: 1
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        io.kompose.service: nodeapirest
+    spec:
+      containers:
+      - env:
+        - name: MONGO_INITDB_DATABASE
+          value: test
+        - name: MONGO_INITDB_ROOT_PASSWORD
+          value: password
+        - name: MONGO_INITDB_ROOT_USERNAME
+          value: username
+        - name: MONGO_URL
+          value: mongodb://username:password@mongo:27017/test;
+        - name: ROOT_URL
+          value: http://localhost:3000
+        image: nodeapirest
+        name: nodeapirest
+        ports:
+        - containerPort: 3000
+        resources: {}
+      restartPolicy: Always
+status: {}
