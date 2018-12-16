@@ -33,10 +33,10 @@ services:
       kompose.service.type: LoadBalancer
 
 #APIRest in nodejs 
-   #Optional you can create the node apirest image  (# docker build -t nodeapirest) .
+   #First you need to create the node apirest image
+   # docker build -t nodeapirest .
   nodeapirest: 
-    #build: Dockerfile #Optional : "build: ." Uses an image that’s built from the Dockerfile in the current directory.  
-    image: nodeapirest
+    build: . #image: nodeapirest OR build: . Uses an image that’s built from the Dockerfile in the current directory.  
     container_name: "nodeapirest"      
     restart: always
     ports:

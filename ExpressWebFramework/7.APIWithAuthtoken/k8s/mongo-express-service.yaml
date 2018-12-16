@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    kompose.cmd: C:\Minikube\kompose.exe convert
+    kompose.service.type: LoadBalancer
+    kompose.version: 1.17.0 (a74acad)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: mongo-express
+  name: mongo-express
+spec:
+  ports:
+  - name: "8081"
+    port: 8081
+    targetPort: 8081
+  selector:
+    io.kompose.service: mongo-express
+  type: LoadBalancer
+status:
+  loadBalancer: {}
