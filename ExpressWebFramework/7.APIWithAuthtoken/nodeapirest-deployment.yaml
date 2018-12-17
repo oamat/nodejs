@@ -2,9 +2,9 @@ apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
   annotations:
-    kompose.cmd: C:\Minikube\kompose.exe convert
+    kompose.cmd: C:\Users\Oriol\Downloads\Kubernetes\kompose.exe convert
     kompose.service.type: LoadBalancer
-    kompose.version: 1.17.0 (a74acad)
+    kompose.version: 1.16.0 (0c01309)
   creationTimestamp: null
   labels:
     io.kompose.service: nodeapirest
@@ -27,7 +27,7 @@ spec:
         - name: MONGO_INITDB_ROOT_USERNAME
           value: root
         - name: MONGO_URL
-          value: mongodb://root:example@192.168.99.100:27017/admin?authMechanism=SCRAM-SHA-1
+          value: mongodb://root:example@mongo:27017/admin?authMechanism=SCRAM-SHA-1
         image: nodeapirest
         name: nodeapirest
         ports:

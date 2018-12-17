@@ -13,7 +13,8 @@ services:
       MONGO_INITDB_ROOT_USERNAME: "root"
       MONGO_INITDB_ROOT_PASSWORD: "example"
       MONGO_INITDB_DATABASE: "test"
-
+    labels:
+      kompose.service.type: LoadBalancer
 
 #Mongo-express for managed mongo
   mongo-express: 
@@ -35,7 +36,7 @@ services:
 #APIRest in nodejs 
    #Optional you can create the node apirest image  (# docker build -t nodeapirest) .
   nodeapirest: 
-    #build: Dockerfile #Optional : "build: ." Uses an image that’s built from the Dockerfile in the current directory.  
+    build: . #build: Dockerfile #Optional : "build: ." Uses an image that’s built from the Dockerfile in the current directory.  
     image: nodeapirest
     container_name: "nodeapirest"      
     restart: always
@@ -43,7 +44,7 @@ services:
       - 3000:3000
     
     environment:
-      MONGO_URL: "mongodb://root:example@192.168.99.100:27017/admin?authMechanism=SCRAM-SHA-1"
+      MONGO_URL: "mongodb://root:example@mongo:27017/admin?authMechanism=SCRAM-SHA-1"
       MONGO_INITDB_ROOT_USERNAME: "root"
       MONGO_INITDB_ROOT_PASSWORD: "example"
       MONGO_INITDB_DATABASE: "test"
