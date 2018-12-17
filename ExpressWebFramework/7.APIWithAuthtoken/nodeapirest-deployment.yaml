@@ -2,9 +2,9 @@ apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
   annotations:
-    kompose.cmd: C:\Users\Oriol\Downloads\Kubernetes\kompose.exe convert
+    kompose.cmd: C:\Minikube\kompose.exe convert
     kompose.service.type: LoadBalancer
-    kompose.version: 1.16.0 (0c01309)
+    kompose.version: 1.17.0 (a74acad)
   creationTimestamp: null
   labels:
     io.kompose.service: nodeapirest

@@ -5,7 +5,7 @@ if (process.env != null) {
     process.env.MONGODB_URI = process.env.MONGO_URL;
     process.env.PORT = 3000;
   } else {
-    process.env.MONGODB_URI = 'mongodb://my-mongo:27017/test';
+    process.env.MONGODB_URI = 'mongodb://root:example@mongo:27017/admin?authMechanism=SCRAM-SHA-1';
     process.env.PORT = 3000;
   }
   
