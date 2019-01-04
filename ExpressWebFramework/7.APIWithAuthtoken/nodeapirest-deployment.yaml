@@ -1,25 +1,35 @@
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
+  name: nodeapi-tst-oasiss-deployment
+  labels:
+    k8s-app: oasiss-api-tst
+    io.kompose.service: oasiss-api-tst
   annotations:
     kompose.cmd: C:\Minikube\kompose.exe convert
-    kompose.service.type: LoadBalancer
+    kompose.service.type: NodePort
     kompose.version: 1.17.0 (a74acad)
-  creationTimestamp: null
-  labels:
-    io.kompose.service: nodeapirest
-  name: nodeapirest
 spec:
   replicas: 1
-  strategy: {}
+  selector:
+    matchLabels:
+      k8s-app: oasiss-api-tst
+  strategy: 
+    type: Recreate
   template:
     metadata:
-      creationTimestamp: null
       labels:
-        io.kompose.service: nodeapirest
+        k8s-app: oasiss-api-tst
+        io.kompose.service: oasiss-api-tst
     spec:
       containers:
-      - env:
+      - name: oasiss-api-tst
+        image: nodeapirest:latest  #image: pro-registry.pro.caas.caixabank.com/containers/oasiss/oasiss-src:1.1.0 CXB
+        imagePullPolicy: Never  # Sacar en CXB
+        ports:
+        - containerPort: 8080
+          name: apiport
+        env:
         - name: MONGO_INITDB_DATABASE
           value: test
         - name: MONGO_INITDB_ROOT_PASSWORD
@@ -27,11 +37,7 @@ spec:
         - name: MONGO_INITDB_ROOT_USERNAME
           value: root
         - name: MONGO_URL
-          value: mongodb://root:example@mongo:27017/admin?authMechanism=SCRAM-SHA-1
-        image: nodeapirest
-        name: nodeapirest
-        ports:
-        - containerPort: 3000
-        resources: {}
-      restartPolicy: Always
-status: {}
+          value: mongodb://root:example@mongo-tst-oasiss-oasiss:27017/admin?authMechanism=SCRAM-SHA-1
+      imagePullSecrets:
+      - name: registry
+

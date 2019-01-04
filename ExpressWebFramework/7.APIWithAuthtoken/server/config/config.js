@@ -1,6 +1,6 @@
 // see config.json for all configurations X enviroment
 
-var env = process.env.NODE_ENV || 'development';
+var env = process.env.NODE_ENV || 'docker';
 var config = require('./config.json');
 var configXenviroment;
 if (env === 'development') {  // For dev enviroment, see config.json  
