@@ -4,7 +4,6 @@ metadata:
   name: mongoexpress-tst-oasiss-oasiss #SERVICE_NAME-${env}-${repoName}-${groupName}
   labels:
     k8s-app: oasiss-mongoexpress-tst
-    io.kompose.service: oasiss-mongoexpress-tst
   annotations:
     d-engine.ip6n.net/backupBlock: "{{ blockId }}"
     d-engine.ip6n.net/ipv4: "auto"
@@ -12,13 +11,9 @@ metadata:
     d-engine.ip6n.net/vs-http-vsPort: "8080"
     d-engine.ip6n.net/vs-http-template: "vs-tcp"
     d-engine.ip6n.net/vs-http-fwPermit: "0.0.0.0/0"
-    kompose.cmd: C:\Minikube\kompose.exe convert
-    kompose.service.type: NodePort
-    kompose.version: 1.17.0 (a74acad)
 spec:
   selector:
     k8s-app: oasiss-mongoexpress-tst
-    io.kompose.service: oasiss-mongoexpress-tst
   ports:
   - name: "8081"
     port: 8081 #8080 CXB

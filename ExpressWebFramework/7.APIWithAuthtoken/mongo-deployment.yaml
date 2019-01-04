@@ -4,12 +4,6 @@ metadata:
   name: mongo-tst-oasiss-deployment  
   labels:
     k8s-app: oasiss-mongo-tst
-    io.kompose.service: oasiss-mongo-tst
-  annotations:
-    kompose.cmd: C:\Minikube\kompose.exe convert
-    kompose.service.type: NodePort
-    kompose.version: 1.17.0 (a74acad)
-  creationTimestamp: null
 spec:
   replicas: 1
   selector:
@@ -21,7 +15,6 @@ spec:
     metadata:
       labels:
         k8s-app: oasiss-mongo-tst
-        io.kompose.service: oasiss-mongo-tst
     spec:
       containers:
       - name: oasiss-mongo-tst
