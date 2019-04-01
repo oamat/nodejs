@@ -1,0 +1,15 @@
+{
+  "name": "redis",
+  "version": "1.0.0",
+  "description": "redis test",
+  "main": "index.js",
+  "dependencies": {
+    "redis": "^2.8.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "test"
+  },
+  "author": "OAF",
+  "license": "ISC"
+}
