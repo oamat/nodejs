@@ -8,5 +8,6 @@ you can test with redis-cli:
        # incr foo
 
 execute node tst:
-    # node redis.js
+
+# node redis.js
 
