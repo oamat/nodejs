@@ -1,11 +1,6 @@
-/* we want save this hash:
- {
-    "webserver" : "expressjs",
-        "database" : "mongoDB",
-            "devops" : "jenkins"
-} */
 
-//see https://redis.io/commands/hmset
+
+//see https://redis.io/commands/multi
 
 var redis = require('redis');
 var redisClient = redis.createClient({ host: '192.168.99.100', port: '6379' });

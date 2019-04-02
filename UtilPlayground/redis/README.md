@@ -20,7 +20,8 @@ execute node PoC's:
 # node redis-set.js 
     you can test with rdcli:  SDIFF myset
 
-
+# node redis-multi-hash-list.js 
+    you can test with rdcli:  LINDEX mylist 0, hgetall key
 
 # node redis-pubsub.js (pubsub test, all in 1 *.js)
 In pubsub folder you can see 'complete' pub/sub application, there are 4 node aplications:  1 publicator / 3 subscribers
