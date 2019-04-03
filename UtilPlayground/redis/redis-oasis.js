@@ -43,8 +43,6 @@ redisClient.lpop("list_channel", function (err, reply) {
 
     if (err) console.log(err); else
         console.log("lpop reply :" + reply);
-
-
 });
 
 
