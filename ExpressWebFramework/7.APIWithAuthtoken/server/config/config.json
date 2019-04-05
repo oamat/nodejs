@@ -10,6 +10,11 @@
     "JWT_SECRET": "pojiaj234oi234oij234oij4"
   },
   "docker": {
+    "PORT": 3000,
+    "MONGODB_URI": "mongodb://root:example@mongo:27017/admin?authMechanism=SCRAM-SHA-1",
+    "JWT_SECRET": "pojiaj234oi234oij234oij4"
+  },
+  "Kubernetes": {
     "PORT": 8080,
     "MONGODB_URI": "mongodb://root:example@mongo-tst-oasiss-oasiss:27017/admin?authMechanism=SCRAM-SHA-1",
     "JWT_SECRET": "pojiaj234oi234oij234oij4"

@@ -32,6 +32,8 @@ spec:
           value: root
         - name: MONGO_URL
           value: mongodb://root:example@mongo-tst-oasiss-oasiss:27017/admin?authMechanism=SCRAM-SHA-1
+        - name: NODE_ENV
+          value: Kubernetes
       imagePullSecrets:
       - name: registry
 

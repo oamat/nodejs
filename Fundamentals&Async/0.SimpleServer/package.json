@@ -1,0 +1,11 @@
+{
+  "name": "0.simpleserver",
+  "version": "1.0.0",
+  "description": "simple server without express",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "author": "OAF",
+  "license": "ISC"
+}
