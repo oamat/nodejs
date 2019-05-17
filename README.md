@@ -1,5 +1,8 @@
-# nodejs
+# Nodejs Projects
 Several nodejs projects developed with different frameworks like loopback or cloud like firebase.
+
+
+*You can find other readme with instructions and descriptions in any folder (project).*
 
 -----------------------------------------------
 # How can I download a folder of this git repo
