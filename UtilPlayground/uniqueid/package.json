@@ -1,0 +1,16 @@
+{
+  "name": "uuid",
+  "version": "1.0.0",
+  "description": "uuid generator",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "author": "OAF",
+  "license": "ISC",
+  "dependencies": {
+    "biguint-format": "^1.0.1",
+    "flake-idgen": "^1.1.2",
+    "uuid": "^3.3.2"
+  }
+}
