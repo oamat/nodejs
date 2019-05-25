@@ -1,0 +1,11 @@
+{
+  "name": "9.manualcron",
+  "version": "1.0.0",
+  "description": "cron manual",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "author": "OAF",
+  "license": "ISC"
+}
