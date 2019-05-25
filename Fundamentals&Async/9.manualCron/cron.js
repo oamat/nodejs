@@ -1,6 +1,7 @@
 
+'use strict'; // Whole-script strict mode syntax
 var counter = 0;
-var rate = 100; //rate in num msg/second
+var rate = 120; //rate in num msg/second
 const millisXSecond = 1000;
 var processnum = 0;
 var time = Math.floor(Date.now() / millisXSecond); // total seconds; Math.floor returns greatest integer; The Date.now() returns number of millis elapsed since January 1, 1970 00:00:00 UTC.   
