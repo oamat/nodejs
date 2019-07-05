@@ -1,0 +1,11 @@
+{
+  "name": "redisconf",
+  "version": "1.0.0",
+  "description": "redisconf",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "author": "OAF",
+  "license": "ISC"
+}

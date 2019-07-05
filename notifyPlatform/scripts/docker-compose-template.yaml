@@ -1,0 +1,116 @@
+version: "3.1"
+
+services:
+
+:_apple_:
+    links:
+      - redisconf
+      - redispns
+    depends_on:
+      - redisconf
+      - redispns
+:_google_:
+    links:
+      - redisconf
+      - redispns
+    depends_on:
+      - redisconf
+      - redispns
+:_microsoft_:
+    links:
+      - redisconf
+      - redispns
+    depends_on:
+      - redisconf
+      - redispns
+:_movistar_:
+    links:
+      - redisconf
+      - redissms
+    depends_on:
+      - redisconf
+      - redissms
+:_movistarvip_:
+    links:
+      - redisconf
+      - redissms
+    depends_on:
+      - redisconf
+      - redissms
+:_vodafone_:
+    links:
+      - redisconf
+      - redissms
+    depends_on:
+      - redisconf
+      - redissms
+:_orange_:
+    links:
+      - redisconf
+      - redissms
+    depends_on:
+      - redisconf
+      - redissms
+:_console_:
+    links:
+      - redisconf
+      - redispns
+      - redissms
+    depends_on:
+      - redisconf
+      - redispns
+      - redissms
+:_mqsms_:
+    links:
+      - redisconf
+      - redissms
+    depends_on:
+      - redisconf
+      - redissms
+:_mqpns_:
+    links:
+      - redisconf
+      - redispns
+    depends_on:
+      - redisconf
+      - redispns
+:_apisms_:
+    links:
+      - redisconf
+      - redissms
+    depends_on:
+      - redisconf
+      - redissms
+:_apipns_:
+    links:
+      - redisconf
+      - redispns
+    depends_on:
+      - redisconf
+      - redispns
+:_status_:
+    links:
+      - redisconf
+    depends_on:
+      - redisconf
+
+:_retriessms_:
+    links:
+      - redisconf
+      - redissms
+    depends_on:
+      - redisconf
+      - redissms
+:_retriespns_:
+    links:
+      - redisconf
+      - redispns
+    depends_on:
+      - redisconf
+      - redispns
+
+:_redispns_:
+
+:_redissms_:
+
+:_redisconf_:

@@ -1,0 +1,14 @@
+  #microsoft
+   #Optional you can create the docker image  (# docker build -t name).
+  microsoft: 
+    #build: . #build: Dockerfile #Optional : "build: ." Uses an image that’s built from the Dockerfile in the current directory.  
+    image: microsoft
+    container_name: "microsoft"      
+    restart: always
+    ports:
+      - 3013:3000
+    
+    environment:
+      NODE_ENV: "docker"
+    labels:
+      kompose.service.type: LoadBalancer

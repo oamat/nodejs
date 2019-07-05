@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    kompose.cmd: kompose convert
+    kompose.service.type: LoadBalancer
+    kompose.version: 1.17.0 (a74acad)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: microsoft
+  name: microsoft
+spec:
+  ports:
+  - name: "3013"
+    port: 3013
+    targetPort: 3000
+  selector:
+    io.kompose.service: microsoft
+  type: LoadBalancer
+status:
+  loadBalancer: {}

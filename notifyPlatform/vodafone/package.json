@@ -1,0 +1,11 @@
+{
+  "name": "vodafone",
+  "version": "1.0.0",
+  "description": "vodafone",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "author": "OAF",
+  "license": "ISC"
+}

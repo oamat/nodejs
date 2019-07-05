@@ -1,0 +1,14 @@
+  #console
+   #Optional you can create the docker image  (# docker build -t name) .
+  console: 
+    #build: . #build: Dockerfile #Optional : "build: ." Uses an image that’s built from the Dockerfile in the current directory.  
+    image: console
+    container_name: "console"      
+    restart: always
+    ports:
+      - 3003:3000
+    
+    environment:
+      NODE_ENV: "docker"
+    labels:
+      kompose.service.type: LoadBalancer

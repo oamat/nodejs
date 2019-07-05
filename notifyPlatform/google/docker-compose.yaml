@@ -1,0 +1,14 @@
+  #google
+   #Optional you can create the docker image  (# docker build -t name).
+  google: 
+    #build: . #build: Dockerfile #Optional : "build: ." Uses an image that’s built from the Dockerfile in the current directory.  
+    image: google
+    container_name: "google"      
+    restart: always
+    ports:
+      - 3000:3000
+    
+    environment:
+      NODE_ENV: "docker"
+    labels:
+      kompose.service.type: LoadBalancer

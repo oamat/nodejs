@@ -1,0 +1,14 @@
+  #apisms
+   #Optional you can create the docker image  (# docker build -t name) .
+  apisms: 
+    #build: . #build: Dockerfile #Optional : "build: ." Uses an image that’s built from the Dockerfile in the current directory.  
+    image: apisms
+    container_name: "apisms"      
+    restart: always
+    ports:
+      - 3005:3000
+    
+    environment:
+      NODE_ENV: "docker"
+    labels:
+      kompose.service.type: LoadBalancer

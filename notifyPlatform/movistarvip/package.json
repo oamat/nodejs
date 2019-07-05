@@ -1,0 +1,11 @@
+{
+  "name": "movistarvip",
+  "version": "1.0.0",
+  "description": "movistarvip",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "author": "OAF",
+  "license": "ISC"
+}

@@ -1,0 +1,14 @@
+  #apple
+   #Optional you can create the docker image  (# docker build -t name).
+  apple: 
+    #build: . #build: Dockerfile #Optional : "build: ." Uses an image that’s built from the Dockerfile in the current directory.  
+    image: apple
+    container_name: "apple"      
+    restart: always
+    ports:
+      - 3001:3000
+    
+    environment:
+      NODE_ENV: "docker"
+    labels:
+      kompose.service.type: LoadBalancer
