@@ -1,5 +1,8 @@
 console.log('Starting app.');
 
+var sumatorioPC = 0;
+var sumatorioAwait = 0;
+var sumatoriofinal = 0;
 const add = (a, b) => {  // declaración función add para sumar dos params
     return new Promise((resolve, reject) => {  // creamos una promesa para hacer la suma
         //logic code , BBDD acces or request, etc
@@ -15,8 +18,7 @@ const add = (a, b) => {  // declaración función add para sumar dos params
 }
 
 // Promise Chaining, se enlazan promises con los return, además la exception (p.e reject) es para todos.
-var sumatorioPC = 0;
-var sumatorioAwait = 0;
+
 add(1, 1).then((sum1) => {
     console.log("resultado1 PChain: " + sum1);
     sumatorioPC = sumatorioPC + sum1;
@@ -34,7 +36,7 @@ add(1, 1).then((sum1) => {
 });
 
 
-// Promise Chaining, con await dentro de un método async  auqnue si se abusa de await se convierte en código síncrono
+// Con Async/await dentro de un método async  auqnue si se abusa de await se convierte en código síncrono
 const doWork = async () => {
     const sum1 = await add(1, 1);
     console.log("resultado1 await: " + sum1);
@@ -48,3 +50,13 @@ const doWork = async () => {
 
 doWork();
 
+
+// último caso la resolución en dos segundos y no cuatro, ya que los temporizadores se ejecutaron de manera simultánea. 
+const doWorkSimultaneous = async () => {
+const sum1 = add(1, 1);
+const sum2 = add(5, 1);
+const sum3 = await (10, 1);
+sumatoriofinal= await sum1 + await sum2 + await sum3;
+console.log ( "sumatorio simultaneo: " + sumatoriofinal );
+}
+doWorkSimultaneous();
