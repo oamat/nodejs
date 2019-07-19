@@ -1,7 +1,7 @@
-# Mongodb with Mongoose library
+# RESTAPI with Mongoose library
 
 
-node .\server\server.js (for server starting)
+npm start or node .\index.js (for server starting)  
 
 npm test (for test)
 nodemon .\server\server.js (for server auto starting with changes)
