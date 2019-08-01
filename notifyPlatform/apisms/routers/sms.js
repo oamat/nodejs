@@ -6,7 +6,7 @@
 "use strict";
 
 const express = require('express');
-//const sms= require('../models/sms');
+const sms= require('../models/sms');
 const auth = require('../auth/auth');
 const router = new express.Router();
 
