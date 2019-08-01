@@ -10,7 +10,10 @@
 var configs = require('./config.json');
 var env = process.env.NODE_ENV || 'test';
 var config = configs[env];  
-
+if (config == null){ 
+  env = 'test'; 
+  config = configs[env]
+}
 //Fill all configs, see config.json
 Object.keys(config).forEach((key) => {
   process.env[key] = config[key];
@@ -28,4 +31,4 @@ Object.keys(config).forEach((key) => {
   process.env['WHITE_COLOR'] = '\x1b[37m%s\x1b[0m';
 
 //logs
-console.log(process.env.GREEN_COLOR, "The enviroment loaded is " + process.env.NODE_ENV);
+console.log(process.env.GREEN_COLOR, "The enviroment loaded is " + env);
