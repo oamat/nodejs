@@ -1,0 +1,6 @@
+/*
+ * model SMS
+ *
+ */
+
+"use strict";

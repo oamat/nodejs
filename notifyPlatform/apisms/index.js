@@ -1,9 +1,18 @@
-console.log("starting process ");
-for (i = 0; i < 100; i++) {
-    setTimeout(myfunction, 30000);
-}
+/*
+ * Primary file for API
+ *
+ */
 
+"use strict";
 
-function myfunction() {
-    console.log('Welcome to My function');
-}
+// Dependencies
+require('./config/config');
+var port = process.env.PORT;
+
+// Declare the app
+const app = require('./server/app');
+
+// Init api server
+app.listen(port, () => {
+     console.log(process.env.CYAN_COLOR,'The HTTPS server is running on port '+ port);
+});

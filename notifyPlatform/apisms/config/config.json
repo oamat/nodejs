@@ -1,0 +1,22 @@
+ {
+    "test": {
+      "PORT": 3000,
+      "MONGODB_URI": "mongodb://localhost:27017/test",
+      "JWT_SECRET": "pojiaj234oi234oij234oij4jgstwsnaKSDADWWssswwwwssQRT"
+    },
+    "development": {
+      "PORT": 3000,
+      "MONGODB_URI": "mongodb://localhost:27017/test",
+      "JWT_SECRET": "pojiaj234oi234oij234oij4jgstwsnaKSDADWWssswwwwssQRT"
+    },
+    "docker": {
+      "PORT": 3000,
+      "MONGODB_URI": "mongodb://root:example@mongo:27017/admin?authMechanism=SCRAM-SHA-1",
+      "JWT_SECRET": "pojiaj234oi234oij234oij4jgstwsnaKSDADWWssswwwwssQRT"
+    },
+    "Kubernetes": {
+      "PORT": 8080,
+      "MONGODB_URI": "mongodb://root:example@mongo-tst-oasiss-oasiss:27017/admin?authMechanism=SCRAM-SHA-1",
+      "JWT_SECRET": "pojiaj234oi234oij234oij4jgstwsnaKSDADWWssswwwwssQRT"
+    }
+  }
