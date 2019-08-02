@@ -32,4 +32,4 @@ Object.keys(config).forEach((key) => {
 
 //logs
 console.log(process.env.GREEN_COLOR, "The enviroment loaded is " + env);
-//console.log(process.env);
+

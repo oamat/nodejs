@@ -10,11 +10,16 @@ var personJSON = {"name": "Andrew","age": 25};
 var {name}=personJSON
 console.log("name of JSON var is " + name);
 
-var personString = {name: 'Andrew', age: 25};
+var personString = '{ "name":"John", "age":30, "city":"New York"}';
 var person = JSON.parse(personString);
 console.log(typeof person);
 console.log(person);
 
+//change content: 
+person.name="Oriol";
+//Add attribute: 
+person.surname="Amat";
+console.log(person);
 
 const fs = require('fs');
 var originalNote = {

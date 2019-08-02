@@ -6,7 +6,7 @@
 	},
 	"item": [
 		{
-			"name": "{{url}}/sms",
+			"name": "/smsSend",
 			"request": {
 				"method": "POST",
 				"header": [
@@ -27,19 +27,19 @@
 					"raw": "{\n\t \"contract\" : \"OTPLOWEB\",\n\t \"telf\" : \"+34699272809\",\n\t \"message\" : \"you have won a gift\"\n}"
 				},
 				"url": {
-					"raw": "{{url}}/sms",
+					"raw": "{{url}}/smsSend",
 					"host": [
 						"{{url}}"
 					],
 					"path": [
-						"sms"
+						"smsSend"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "{{url}}/sms/:telf",
+			"name": "/smsStatus",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},
@@ -60,23 +60,22 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t \"contract\" : \"OTPLOWEB\",\n\t \"telf\" : \"+34699272809\",\n\t \"message\" : \"you have won a gift\"\n}"
+					"raw": "{\n\t \"contract\" : \"OTPLOWEB\",\n\t \"uuid\" : \"ewrefsfsdfsdfsdf\"\n}"
 				},
 				"url": {
-					"raw": "{{url}}/sms/5c104158cca26735c432f9f0",
+					"raw": "{{url}}/smsStatus",
 					"host": [
 						"{{url}}"
 					],
 					"path": [
-						"sms",
-						"5c104158cca26735c432f9f0"
+						"smsStatus"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "{{url}}/sms/:uuid",
+			"name": "/smsByTelf",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},
@@ -97,16 +96,87 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t \"contract\" : \"OTPLOWEB\",\n\t \"telf\" : \"+34699272809\",\n\t \"message\" : \"you have won a gift\"\n}"
+					"raw": "{\n\t \"contract\" : \"OTPLOWEB\",\n\t \"telf\" : \"69932312312\",\n\t \"date\" : \"12/05/1977\",\n\t \"dateEnd\" : \"13/05/1977\"\n}"
 				},
 				"url": {
-					"raw": "{{url}}/sms/5c104158cca26735c432f9f0",
+					"raw": "{{url}}/smsByTelf",
 					"host": [
 						"{{url}}"
 					],
 					"path": [
-						"sms",
-						"5c104158cca26735c432f9f0"
+						"smsByTelf"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/smsByContract",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "x-api-key",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiY29udHJhY3QiOiJPVFBMT1dFQiIsImlhdCI6MjAxNjIzOTAyMn0.RSLawzTU4yX-XwnEZtvWipIBOTOji9LKbkuM391zjss",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t \"contract\" : \"OTPLOWEB\",\n\t \"date\" : \"12/05/1977\",\n\t \"dateEnd\" : \"13/05/1977\"\n}"
+				},
+				"url": {
+					"raw": "{{url}}/smsByContract",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"smsByContract"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/smsInMem",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "x-api-key",
+						"type": "text",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiY29udHJhY3QiOiJPVFBMT1dFQiIsImlhdCI6MjAxNjIzOTAyMn0.RSLawzTU4yX-XwnEZtvWipIBOTOji9LKbkuM391zjss"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t \"contract\" : \"OTPLOWEB\"\n}"
+				},
+				"url": {
+					"raw": "{{url}}/smsInMem",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"smsInMem"
 					]
 				}
 			},
