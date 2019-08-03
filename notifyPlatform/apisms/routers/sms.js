@@ -8,7 +8,9 @@
 const express = require('express');
 const Sms = require('../models/sms');
 const auth = require('../auth/auth');
-const { dateFormat } = require('../util/formats')
+const { dateFormat } = require('../util/formats');
+
+
 const router = new express.Router();
 
 router.post('/smsSend', auth, async (req, res) => {
@@ -18,11 +20,15 @@ router.post('/smsSend', auth, async (req, res) => {
 
         //TODO create JSON sms object with unique UUID 
         const sms = new Sms(req.body);  //await it's unnecessary because is the first creation of object. Model Validations are check when save in Mongodb, not here. 
+        await sms.validate(); //we need await because is a promise and we need to manage the throw exceptions, particularly validating errors.
+       
+        //TODO put message in Redis
+        
         
         //TODO save sms to DB
-        await sms.save();  //we need await because is a promise and we need to manage the throw exceptions, particularly validating errors.
+        await sms.save();  //If you didn't execute "sms.validate()" we would need await because is a promise and we need to manage the throw exceptions, particularly validating errors.
 
-        //TODO put message in Redis
+       
 
         //TODO return sms._id
         res.send({ Status : "200 OK", _id : sms._id });
@@ -32,6 +38,7 @@ router.post('/smsSend', auth, async (req, res) => {
     } catch (error) {
         const errorJson = { Status : "400 Bad Request", error : error.message, contract : req.body.contract, telf : req.body.telf, receiveAt : dateFormat(new Date()) };   // replace T with a space && delete the dot and everything after
         console.log(process.env.RED_COLOR, JSON.stringify(errorJson));
+        //TODO: save error in db.
         res.status(400).send( errorJson );        
     }
 
