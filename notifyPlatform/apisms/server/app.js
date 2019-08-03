@@ -7,6 +7,8 @@
 "use strict";
 const express = require('express');
 const mongoose = require('../config/mongoose');
+const redis = require('../config/redis');
+
 const smsRouter = require('../routers/sms');
 
 const app = express();

@@ -17,7 +17,7 @@ const smsSchema = new mongoose.Schema({
     receivedAt: {  //we use createdAt of Mongoose.
         type: Date,
         required: true,
-        default: Date.now()
+        default: () => { return new Date() }
     },
     dispatched: {
         type: Boolean,

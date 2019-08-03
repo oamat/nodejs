@@ -1,3 +1,15 @@
-var redis = require('redis');
+const redis = require('redis');
 // Create Client
-var client = redis.createClient({host: '192.168.99.100', port: '6379'});
+const client = redis.createClient({ host: process.env.REDIS_IP, port: process.env.REDIS_PORT });
+
+client.on('connect', function(){
+	console.log(process.env.GREEN_COLOR, 'Connected to Redis Server: ' + process.env.REDIS_IP+":"+process.env.REDIS_PORT );
+});
+
+client.on("error", function (error) {    
+    console.log(process.env.RED_COLOR, "FATAL ERROR : failed to connect to Redis server : " + process.env.REDIS_IP+":"+process.env.REDIS_PORT);
+    console.log(process.env.RED_COLOR, error);   
+    process.exit(1);  //because platform doesn't works without Redis, we prefer to stop server
+});
+
+module.exports = { client };

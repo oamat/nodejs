@@ -14,5 +14,5 @@ const app = require('./server/app');
 
 // Init api server
 app.listen(port, () => {
-     console.log(process.env.CYAN_COLOR,'The HTTPS server is running on port '+ port);
+     console.log(process.env.GREEN_COLOR,'The HTTPS server is running on port '+ port);
 });
