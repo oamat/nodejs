@@ -1,0 +1,5 @@
+HSET contract:OTPLOWEB jwt "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiY29udHJhY3QiOiJPVFBMT1dFQiIsImlhdCI6MjAxNjIzOTAyMn0.RSLawzTU4yX-XwnEZtvWipIBOTOji9LKbkuM391zjss"
+HGET contract:OTPLOWEB jwt
+
+HSET contract:OTPLOWEB channel "SMS_MOVISTAR_ALTA"
+HGET contract:OTPLOWEB channel

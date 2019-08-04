@@ -15,7 +15,7 @@ mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useFindAndMod
 // mongoose.set('useCreateIndex', true);  // see https://mongoosejs.com/docs/deprecations.html
 
 
-mongoose.connection.once('open', () => {
+mongoose.connection.once('open', () => { //we check the mongodb connection
     console.log(process.env.GREEN_COLOR, "Connected to DB Server : " + process.env.MONGODB_URI);
 });
 
