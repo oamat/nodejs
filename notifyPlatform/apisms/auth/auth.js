@@ -13,27 +13,22 @@
 
 const jwt = require('jsonwebtoken');
 const redis = require('../config/redis');
-const EventEmitter = require('events');
+const events = require('events');
 const { dateFormat } = require('../util/formats');
-
+var myEvent = new events.EventEmitter();
 const auth = async (req, res, next) => {
     try {
-        var myEvent = new EventEmitter();
+
         const token = req.header('x-api-key').replace('Bearer ', '');
-        if (token !== null && token.length > 100) {
+        
+        if (token == null) { //check that client sends the token JWT
+            throw new Error("You didn't send the JWT Token, you need to authenticate on the platform. Please authenticate before proceeding.");
+        } else {
             const decoded = jwt.verify(token, process.env.JWT_SECRET);
             if (decoded.contract != req.body.contract) { //check that contract in request is the same than contract in jwt
                 throw new Error('Your contract does not match with JWT, you need to authenticate on the platform. Please authenticate before proceeding.');
             } else {
-                myEvent = redis.client.hget("contract:" + decoded.contract, "jwt", (error, result) => { //check that contract exist in redis Conf                    
-                    console.log("redis.client.hget : " + result + error);
-                    if (error != null) {
-                        return new EventEmitter().emit('error', new Error(error.message));;
-                    }
-                    if (result + "1" != token) { //check that jwt was created from this server and exist in redis Conf              
-                        return (new EventEmitter().emit('error', new Error('Your JWT is invalid, you need to authenticate on the platform with corrrect JWT. Please authenticate before proceeding.')));
-                    }
-                });
+                myEvent = validateContract(decoded.contract+"11", token);
             }
         }
 
@@ -43,6 +38,7 @@ const auth = async (req, res, next) => {
         });
 
         next();
+
     } catch (error) {
         const errorJson = { StatusCode: "401 Unauthoritzed", error: error.message, contract: req.body.contract, telf: req.body.telf, receiveAt: dateFormat(new Date()) };   // dateFormal: replace T with a space && delete the dot and everything after
         console.log(process.env.YELLOW_COLOR, "ERROR: " + JSON.stringify(errorJson));
@@ -50,4 +46,14 @@ const auth = async (req, res, next) => {
     }
 }
 
+function validateContract(contract, token) {
+    redis.client.hget("contract:" + contract, "jwt", (error, result) => { //check that contract exist in redis Conf                    
+        console.log("redis.client.hget : " + result + error);
+        if (error != null) myEvent.emit('error', new Error(error.message));
+        if (result!= token) { //check that jwt was created from this server and exist in redis Conf              
+            myEvent.emit('error', new Error('Your JWT is invalid, you need to authenticate on the platform with corrrect JWT. Please authenticate before proceeding.'));
+        }
+    });
+    return myEvent;
+}
 module.exports = auth
