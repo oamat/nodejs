@@ -12,6 +12,7 @@ var somePromiseErr = new Promise((resolve, reject) => {
   }, 300);
 });
 
+try { 
 console.log("First Promise call");
 somePromise.then((succedMessage) => {
   console.log('Success: ', succedMessage);
@@ -24,4 +25,12 @@ somePromiseErr.then( (succedMessage) => {
   console.log('First Success: ', succedMessage);
 }, (errorMessage) => {
   console.log('Second errorMessage: ', errorMessage);
-});
+  console.error('Second errorMessage: ', errorMessage);
+  //throw new Error(errorMessage);
+}
+);
+
+} catch (error) {
+  console.log("Catch error" + error.message);
+}
+console.log('COMPLETED ?');
