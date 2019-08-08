@@ -1,36 +1,35 @@
-var somePromise = new Promise((resolve, reject) => {
-  setTimeout(() => {
-    //logic code, BBDD acces for example
-    resolve('Hey. It worked!');    
-  }, 500);
-});
-
-var somePromiseErr = new Promise((resolve, reject) => {
-  setTimeout(() => {
-    //logic code, BBDD acces for example
-    reject('Unable to connect to BBDD');
-  }, 300);
-});
-
-try { 
-console.log("First Promise call");
-somePromise.then((succedMessage) => {
-  console.log('Success: ', succedMessage);
-}, (errorMessage) => {
-  console.log('errorMessage: ', errorMessage);
-});
-
-console.log("Second Promise call");
-somePromiseErr.then( (succedMessage) => {
-  console.log('First Success: ', succedMessage);
-}, (errorMessage) => {
-  console.log('Second errorMessage: ', errorMessage);
-  console.error('Second errorMessage: ', errorMessage);
-  //throw new Error(errorMessage);
+async function promise(entry) {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {  //añadimos asincronia
+      //logic code, BBDD acces for example
+      if (entry) resolve(' promise resolved ');
+      else reject(' promise Error ');
+    }, 500);
+  });
 }
-);
 
-} catch (error) {
-  console.log("Catch error" + error.message);
+
+const start = async function () {
+  console.log("call await promise with true");
+  await promise(true)
+    .then((result) => {
+      console.log('Success: ', result);
+    })
+    .catch((error) => {
+      console.log('error: ', error);
+    });
+  console.log("call await promise with false");
+  await promise(false)
+    .then((result) => {
+      console.log('Success: ', result);
+    })
+    .catch((error) => {
+      console.log('Error: ', error);
+    });
+
+
+  console.log('COMPLETED ?');
 }
-console.log('COMPLETED ?');
+
+//start process
+start();
