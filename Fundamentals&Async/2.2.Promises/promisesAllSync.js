@@ -42,11 +42,11 @@ const getSyncConcurrentlyPromises = async function () {
     await Promise.all([promise1(false), promise2(false), promise3(false)]).then(values => {
       console.log(values);
     }, error => {
-      console.log(error);
+      //console.log(error);
       throw new Error(error);
     });
   } catch (error) {
-    console.log("catch error : " + error)
+    console.log("catch error : " + error.message);
   }
 }
 
