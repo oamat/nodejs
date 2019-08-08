@@ -26,8 +26,8 @@ router.post('/smsSend', auth, async (req, res) => {
         const sms = new Sms(req.body);  //await it's unnecessary because is the first creation of object. Model Validations are check when save in Mongodb, not here. 
         await sms.validate(); //we need await because is a promise and we need to manage the throw exceptions, particularly validating errors.
 
-        //TODO put message in Redis in the appropiate list: SMS_MOVISTAR_ALTA, SMS_MOVISTARVIP_ALTA, SMS_ORANGE_ALTA, SMS_VODAFONE_ALTA
-        redis.client.rpush("SMS_MOVISTAR_ALTA", JSON.stringify(sms)); //Insert sms at the tail of the list
+        //TODO put message in Redis in the appropiate list: SMS.MOV.1, SMS.VIP.1, SMS.ORA.1, SMS.VOD.1 (1,2,3)
+        redis.client.rpush("SMS.MOV.1", JSON.stringify(sms)); //Insert sms at the tail of the list
         
         //TODO save sms to DB
         sms.save();  //If you didn't execute "sms.validate()" we would need await because is a promise and we need to manage the throw exceptions, particularly validating errors.

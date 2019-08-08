@@ -15,18 +15,21 @@ const jwt = require('jsonwebtoken');
 const redis = require('../config/redis');
 const { dateFormat } = require('../util/formats');
 
+
 const auth = async (req, res, next) => {
     try {
-        const token = req.header('x-api-key').replace('Bearer ', '');
-        if (token == null) { //check that client sends the token JWT
+        if (req.body == null || req.body.contract == null || req.body.telf == null) {
+            throw new Error("You didn't send the necessary params in the body of the request. You need to send the correct params before proceeding.");
+        } else if (req.header('x-api-key') == null) { //check that client sends the token JWT
             throw new Error("You didn't send the JWT Token, you need to authenticate on the platform with corrrect JWT. Please authenticate before proceeding.");
         } else {
+            const token = req.header('x-api-key').replace('Bearer ', '');
             const decoded = jwt.verify(token, process.env.JWT_SECRET);
             if (decoded.contract != req.body.contract) { //check that contract in request is the same than contract in jwt
                 throw new Error('Your contract does not match with JWT, you need to authenticate on the platform. Please authenticate before proceeding.');
             } else {
                 redis.client.hget("contract:" + decoded.contract, "jwt", (error, result) => { //check that contract exist in redis Conf                    
-                    try {
+                    try {  //I need to use try/catch in async callback or we can use EventEmitter
                         if (error != null) { //if redis give me an error.                           
                             throw new Error(error.message);
                         } else if (result == null) { //If we don't find the contract:key.                       
@@ -49,8 +52,10 @@ const auth = async (req, res, next) => {
     }
 }
 
-const unauthoritzedError = (error, req, res) => {
-    const errorJson = { StatusCode: "401 Unauthoritzed", error: error.message, contract: req.body.contract, telf: req.body.telf, receiveAt: dateFormat(new Date()) };   // dateFormal: replace T with a space && delete the dot and everything after
+const unauthoritzedError = (error, req, res) => {   
+    let contract = req.body.contract || 'undefined';
+    let telf = req.body.telf || 'undefined';    
+    const errorJson = { StatusCode: "401 Unauthoritzed", error: error.message, contract, telf, receiveAt: dateFormat(new Date()) };   // dateFormal: replace T with a space && delete the dot and everything after
     console.log(process.env.YELLOW_COLOR, "ERROR: " + JSON.stringify(errorJson));
     res.status(401).send(errorJson);
 }
