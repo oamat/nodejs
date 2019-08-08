@@ -29,7 +29,7 @@ const auth = async (req, res, next) => {
                 throw new Error('Your contract does not match with JWT, you need to authenticate on the platform. Please authenticate before proceeding.');
             } else {
                 redis.client.hget("contract:" + decoded.contract, "jwt", (error, result) => { //check that contract exist in redis Conf                    
-                    try {  //I need to use try/catch in async callback or we can use EventEmitter
+                    try {  //I need to use try/catch in async callback or we can use EventEmitter or Promise.all
                         if (error != null) { //if redis give me an error.                           
                             throw new Error(error.message);
                         } else if (result == null) { //If we don't find the contract:key.                       
@@ -55,7 +55,7 @@ const auth = async (req, res, next) => {
 const unauthoritzedError = (error, req, res) => {   
     let contract = req.body.contract || 'undefined';
     let telf = req.body.telf || 'undefined';    
-    const errorJson = { StatusCode: "401 Unauthoritzed", error: error.message, contract, telf, receiveAt: dateFormat(new Date()) };   // dateFormal: replace T with a space && delete the dot and everything after
+    const errorJson = { StatusCode: "401 Unauthoritzed", error: error.message, contract, telf, receivedAt: dateFormat(new Date()) };   // dateFormal: replace T with a space && delete the dot and everything after
     console.log(process.env.YELLOW_COLOR, "ERROR: " + JSON.stringify(errorJson));
     res.status(401).send(errorJson);
 }

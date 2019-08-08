@@ -25,16 +25,16 @@ router.post('/smsSend', auth, async (req, res) => {
         const sms = new Sms(req.body);  //await it's unnecessary because is the first creation of object. Model Validations are check when save in Mongodb, not here. 
         await sms.validate(); //we need await because is a promise and we need to manage the throw exceptions, particularly validating errors.
 
-        redis.client.hget("contract:" + sms.contract, "channel", (error, channel) => { //check that contract exist in redis Conf                    
-            try {  //I need to use try/catch in async callback or we can use EventEmitter
+        redis.client.hget("contract:" + sms.contract, "channel", (error, channel) => { //check the channel to put notification                   
+            try {  //I need to use try/catch in async callback or we can use EventEmitter or Promise.all
                 if (error != null) { //if redis give me an error.                           
                     throw new Error(error.message);
                 } else if (channel == null) { //If we don't find the contract:key.                       
-                    throw new Error('Your contract is invalid, you need to authenticate on the platform with corrrect contract. Please authenticate before proceeding.');
+                    throw new Error('Your contract does not have channel, you need to reconfigure it before proceding.');
                 } else {
-                    //TODO put message in Redis in the appropiate list: SMS.MOV.1, SMS.VIP.1, SMS.ORA.1, SMS.VOD.1 (1,2,3) 
+                    //put message in Redis in the appropiate list: SMS.MOV.1, SMS.VIP.1, SMS.ORA.1, SMS.VOD.1 (1,2,3) 
                     redis.client.rpush(channel, JSON.stringify(sms));
-                    //TODO save sms to DB
+                    //save sms to DB
                     sms.save();  //If you didn't execute "sms.validate()" we would need await because is a promise and we need to manage the throw exceptions, particularly validating errors.
 
                     //TODO return sms._id
