@@ -5,9 +5,10 @@
 
 "use strict";
 
+// Dependencies
 const mongoose = require('mongoose');
 
-
+// Init mongoose
 mongoose.Promise = global.Promise;
 mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useFindAndModify: false, useCreateIndex: true });
 // mongoose.set('useNewUrlParser', true); // see https://mongoosejs.com/docs/deprecations.html
@@ -15,6 +16,7 @@ mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useFindAndMod
 // mongoose.set('useCreateIndex', true);  // see https://mongoosejs.com/docs/deprecations.html
 
 
+// EventEmitter in case of Errors, stop all process
 mongoose.connection.once('open', () => { //we check the mongodb connection
     console.log(process.env.GREEN_COLOR, "Connected to DB Server : " + process.env.MONGODB_URI);
 });

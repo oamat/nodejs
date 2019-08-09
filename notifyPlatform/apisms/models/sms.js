@@ -4,15 +4,18 @@
  */
 
 "use strict";
+
+//Dependencies
 const uuidv4 = require('uuid/v4');
 const mongoose = require('mongoose');
 
-//IMPORTANT: Model Validations are check when save in Mongodb, not in the creation. 
-const smsSchema = new mongoose.Schema({   
+//IMPORTANT: by default Model Validations are check when save in Mongodb, not in the creation. 
+// but you can check with validate() method
+const smsSchema = new mongoose.Schema({
     _id: {
         type: String,
-        required: true, 
-        default: () => { return uuidv4(); }        
+        required: true,
+        default: () => { return uuidv4(); }
     },
     receivedAt: {  //we use createdAt of Mongoose.
         type: Date,
@@ -38,7 +41,7 @@ const smsSchema = new mongoose.Schema({
         trim: true
     },
     alias: {
-        type: String,        
+        type: String,
         required: false,
         trim: true
     },
@@ -69,16 +72,20 @@ const smsSchema = new mongoose.Schema({
         default: false
     },
     deferredAt: {
-        type: Date,        
+        type: Date,
         required: false
     },
     status: {
-        type: number,        
+        type: Number,
         required: true,
         default: 0  //0:notSent, 1:Sent, 2:confirmed 3:Error
+    },
+    channel: {
+        type: String,
+        required: true
     }
 }, {
-        timestamps: true  //If set timestamps, mongoose assigns createdAt and updatedAt fields to your schema, the type assigned is Date.
+        timestamps: true //If set timestamps, mongoose assigns createdAt and updatedAt fields to your schema, the type assigned is Date.
     });
 
 const Sms = mongoose.model('Sms', smsSchema);
