@@ -8,8 +8,8 @@
 
 //Dependencies
 const express = require('express');
-const mongoose = require('../config/mongoose'); //we need to initialize mongoose
-const redis = require('../config/redis'); //we need to initialize redis
+require('../config/mongoose'); //we need to initialize mongoose
+require('../config/redis'); //we need to initialize redis
 
 //Routers Dependencies
 const smsRouter = require('../routers/sms'); 
