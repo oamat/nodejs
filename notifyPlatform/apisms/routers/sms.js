@@ -49,8 +49,10 @@ router.post('/smsSend', auth, async (req, res) => {
 });
 
 const requestError = (error, req, res) => {
-    //TODO personalize errors 400 or 500.         
-    const errorJson = { StatusCode: "400 Bad Request", error: error.message, contract: req.body.contract, telf: req.body.telf, receiveAt: dateFormat(new Date()) };   // dateFornat: replace T with a space && delete the dot and everything after
+    //TODO personalize errors 400 or 500. 
+    let contract = req.body.contract || 'undefined';
+    let telf = req.body.telf || 'undefined';        
+    const errorJson = { StatusCode: "400 Bad Request", error: error.message, contract: contract, telf: telf, receiveAt: dateFormat(new Date()) };   // dateFornat: replace T with a space && delete the dot and everything after
     console.log(process.env.YELLOW_COLOR, "ERROR: " + JSON.stringify(errorJson));
     res.status(400).send(errorJson);
     //TODO: save error in db  or mem.

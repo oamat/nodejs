@@ -13,7 +13,7 @@
 
 // Dependencies
 const jwt = require('jsonwebtoken');
-const redis = require('../config/redis');
+const redisUtil = require('../util/redis');
 const { dateFormat } = require('../util/formats');
 
 // method auth async, and it's necessary call function next in the end if all is correct.
@@ -29,33 +29,18 @@ const auth = async (req, res, next) => {
             if (decoded.contract != req.body.contract) { //check that contract in request is the same than contract in jwt
                 throw new Error('Your contract does not match with JWT, you need to authenticate on the platform. Please authenticate before proceeding.');
             } else {
-                redis.client.hget("contract:" + decoded.contract, "jwt", (error, result) => { //check that contract exist in redis Conf                    
-                    try {  //I need to use try/catch in async callback or we can use EventEmitter or Promise.all
-                        if (error != null) { //if redis give me an error.                           
-                            throw new Error(error.message);
-                        } else if (result == null) { //If we don't find the contract:key.                       
-                            throw new Error('Your contract is invalid, you need to authenticate on the platform with corrrect contract. Please authenticate before proceeding.');
-                        } else if (result != token) { //check that jwt was created from this server and exist in redis Conf                         
-                            throw new Error('Your JWT is invalid, you need to authenticate on the platform with corrrect JWT. Please authenticate before proceeding.');
-                        } else {
-                            next();
-                        }
-                    } catch (error) {
-                        unauthoritzedError(error, req, res);
-                    }
-                });
+                await redisUtil.hgetForAuth(decoded.contract, "jwt", token); //check that contract exist in redis Conf                    
+                next();
             }
         }
-
-
     } catch (error) {
         unauthoritzedError(error, req, res);
     }
 }
 
-const unauthoritzedError = (error, req, res) => {   
+const unauthoritzedError = (error, req, res) => {
     let contract = req.body.contract || 'undefined';
-    let telf = req.body.telf || 'undefined';    
+    let telf = req.body.telf || 'undefined';
     const errorJson = { StatusCode: "401 Unauthoritzed", error: error.message, contract, telf, receivedAt: dateFormat(new Date()) };   // dateFormal: replace T with a space && delete the dot and everything after
     console.log(process.env.YELLOW_COLOR, "ERROR: " + JSON.stringify(errorJson));
     res.status(401).send(errorJson);
