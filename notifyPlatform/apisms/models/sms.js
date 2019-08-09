@@ -71,6 +71,11 @@ const smsSchema = new mongoose.Schema({
     deferredAt: {
         type: Date,        
         required: false
+    },
+    status: {
+        type: number,        
+        required: true,
+        default: 0  //0:notSent, 1:Sent, 2:confirmed 3:Error
     }
 }, {
         timestamps: true  //If set timestamps, mongoose assigns createdAt and updatedAt fields to your schema, the type assigned is Date.

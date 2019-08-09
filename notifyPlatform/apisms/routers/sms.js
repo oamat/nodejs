@@ -34,7 +34,8 @@ router.post('/smsSend', auth, async (req, res) => {
                 } else {
                     //put message in Redis in the appropiate list: SMS.MOV.1, SMS.VIP.1, SMS.ORA.1, SMS.VOD.1 (1,2,3) 
                     redis.client.rpush(channel, JSON.stringify(sms));
-                    //save sms to DB
+                    
+                    //save sms to DB, maybe we can save even the Redis errors
                     sms.save();  //If you didn't execute "sms.validate()" we would need await because is a promise and we need to manage the throw exceptions, particularly validating errors.
 
                     //TODO return sms._id
