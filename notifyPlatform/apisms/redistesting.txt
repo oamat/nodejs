@@ -5,6 +5,11 @@ HSET contract:OTPLOWEB channel "SMS.MOV.1"
 HGET contract:OTPLOWEB channel
 
 
-RPUSH SMS.MOV.1 '{"dispatched":false,"priority":1,"interface":"REST","retries":0,"deferred":false,"contract":"OTPLOWEB","telf":"+34699272809","message":"you have won a gift","_id":"0b378fb9-0035-4bc1-95b3-ac32d2ba7ad1","receivedAt":"2019-08-08T15:44:19.000Z"}'
+RPUSH SMS.MOV.1 '{"dispatched":false,"priority":1,"interface":"REST","retries":0,"deferred":false,"status":0,"contract":"OTPLOWEB","telf":"+34699272809","message":"you have won a gift","alias":"L.O.","_id":"953aa677-35db-448b-8136-059fbb66e684","receivedAt":"2019-08-10T21:58:00.695Z","channel":"SMS.MOV.1"}'
+RPUSH SMS.MOV.1 '{"dispatched":false,"priority":1,"interface":"REST","retries":0,"deferred":false,"status":0,"contract":"OTPLOWEB","telf":"+34699272809","message":"you have won a gift","alias":"L.O.","_id":"953aa677-35db-448b-8136-059fbb66e680","receivedAt":"2019-08-10T21:58:00.695Z","channel":"SMS.MOV.1"}'
 LLEN SMS.MOV.1
 LRANGE SMS.MOV.1 0 -1
+
+SADD smsids "953aa677-35db-448b-8136-059fbb66e684"
+SADD smsids "953aa677-35db-448b-8136-059fbb66e683"
+SCARD smsids

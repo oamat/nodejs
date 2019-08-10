@@ -1,10 +1,9 @@
 
 /*
- * API Server, between index and routers... 
+ * Cron initializer for notify Platform 
  *
  */
 
-//require('./config/mongoose')
 "use strict";
 
 // Dependencies

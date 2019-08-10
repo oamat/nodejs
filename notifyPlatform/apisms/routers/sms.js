@@ -31,9 +31,9 @@ router.post('/smsSend', auth, async (req, res) => {
 
         await sms.validate(); //we need await because is a promise and we need to manage the throw exceptions, particularly validating errors.
         
-        //Async: put message in Redis in the appropiate list, return the index list.
+        //Async: put message in Redis in the appropiate list (like qeues MQ), return the index list but it's unnecessary.
         redisUtil.rpush(sms.channel, JSON.stringify(sms));   // the lists channels: SMS.MOV.1, SMS.VIP.1, SMS.ORA.1, SMS.VOD.1 (1,2,3) 
-       
+        redisUtil.sadd("smsids", sms._id); // we save the _id in a SET, for checking the retries, errors, etc.  
     
         //Async: save sms to DB, 
         sms.save();  //If you didn't execute "sms.validate()" we would need await because is a promise and we need to manage the throw exceptions, particularly validating errors.

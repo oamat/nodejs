@@ -1,4 +1,12 @@
 
+
+/*
+ * Cron for notify Platform 
+ *
+ */
+
+"use strict";
+
 const initCron = (interval) => {
     console.log("init cron at " + new Date());  
     var cron = setInterval(function () {
