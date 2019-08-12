@@ -13,7 +13,7 @@
 
 // Dependencies
 const jwt = require('jsonwebtoken');
-const redisUtil = require('../util/redis');
+const { hget } = require('../util/redis');
 const { dateFormat } = require('../util/formats');
 
 // method auth async, and it's necessary call function next in the end if all is correct.
@@ -29,7 +29,9 @@ const auth = async (req, res, next) => {
             if (decoded.contract != req.body.contract) { //check that contract in request is the same than contract in jwt
                 throw new Error('Your contract does not match with JWT, you need to authenticate on the platform. Please authenticate before proceeding.');
             } else {
-                await redisUtil.hgetForAuth(decoded.contract, "jwt", token); //check that contract exist in redis Conf                    
+                if (token != await hget("contract:"+decoded.contract, "jwt")) { //check that jwt was created from this server and exist in redis Conf                         
+                    throw new Error('Your JWT is invalid, you need to authenticate on the platform with correct JWT. Please authenticate before proceeding.');
+                }
                 next();
             }
         }

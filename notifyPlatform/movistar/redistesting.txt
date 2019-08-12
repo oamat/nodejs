@@ -1,17 +1,31 @@
-HSET contract:OTPLOWEB jwt "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiY29udHJhY3QiOiJPVFBMT1dFQiIsImlhdCI6MjAxNjIzOTAyMn0.RSLawzTU4yX-XwnEZtvWipIBOTOji9LKbkuM391zjss"
-HGET contract:OTPLOWEB jwt
+HSET collector:MOV works "0"
+HGET collector:MOV works
 
-HSET contract:OTPLOWEB operator "MOV"
-HGET contract:OTPLOWEB operator
+HSET collector:MOV interval "200"
+HGET collector:MOV interval
 
-HSET collector:MOV bypassOperator "MOV"
-HGET collector:MOV bypassOperator
+HSET collector:MOV intervalControl "30000"
+HGET collector:MOV intervalControl
+
+HSET collector:MOV change "VOD"
+HGET collector:MOV change
+
+HSET collector:MOV state "0"
+HGET collector:MOV state
+
 
 LPUSH SMS.MOV.1 '{"dispatched":false,"priority":1,"interface":"REST","retries":0,"deferred":false,"status":0,"contract":"OTPLOWEB","telf":"+34699272809","message":"you have won a gift","alias":"L.O.","_id":"953aa677-35db-448b-8136-059fbb66e684","receivedAt":"2019-08-10T21:58:00.695Z","channel":"SMS.MOV.1"}'
 LPUSH SMS.MOV.1 '{"dispatched":false,"priority":1,"interface":"REST","retries":0,"deferred":false,"status":0,"contract":"OTPLOWEB","telf":"+34699272809","message":"you have won a gift","alias":"L.O.","_id":"953aa677-35db-448b-8136-059fbb66e680","receivedAt":"2019-08-10T21:58:00.695Z","channel":"SMS.MOV.1"}'
 LLEN SMS.MOV.1
 LRANGE SMS.MOV.1 0 -1
+RPOP SMS.MOV.1
+LLEN SMS.MOV.1
 
-SADD SMS.IDS.PENDING "953aa677-35db-448b-8136-059fbb66e684"
-SADD SMS.IDS.PENDING "953aa677-35db-448b-8136-059fbb66e683"
-SCARD SMS.IDS.PENDING
+RPOPLPUSH SMS.MOV.1 SMS.VOD.1
+RPOPLPUSH SMS.MOV.1 SMS.VOD.1
+LLEN SMS.MOV.1
+LLEN SMS.VOD.1
+
+SADD smsids "953aa677-35db-448b-8136-059fbb66e684"
+SADD smsids "953aa677-35db-448b-8136-059fbb66e683"
+SCARD smsids

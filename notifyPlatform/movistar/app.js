@@ -12,11 +12,11 @@ require('./config/mongoose'); //we need to initialize mongoose
 require('./config/redis'); //we need to initialize redis
 
 //cron Dependency
-const cron = require('./cron/cron'); //we need to initialize redis
+const cron = require('./cron/cron'); //the main cron
 
-// Init cron
+// Init cron's
 //TODO: get interval from redis
-cron.initCron( 100 );
+cron.initCron();
 
 
 

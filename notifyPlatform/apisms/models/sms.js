@@ -48,12 +48,18 @@ const smsSchema = new mongoose.Schema({
     message: {
         type: String,
         required: true,
-        trim: true
+        trim: true,
+        validate(value) {
+            if (value.length > 160 ) throw new Error('message is invalid, it must be less than 160 characters.');
+        }
     },
     priority: {
         type: Number,
         required: true,
-        default: 1
+        default: 1,  //0 VIP, 1 online, 2 MQ, 3 batch
+        validate(value) {
+            if (value<0 || value>3) throw new Error('priority is invalid. Correct values 0,1,2,3.');
+        }
     },
     interface: {
         type: String,
@@ -80,8 +86,12 @@ const smsSchema = new mongoose.Schema({
         required: true,
         default: 0  //0:notSent, 1:Sent, 2:confirmed 3:Error
     },
+    operator: {
+        type: String, //MOV, ORA, VOD, NOS,...
+        required: true        
+    },
     channel: {
-        type: String,
+        type: String, //SMS.MOV.1, 0,2,3
         required: true
     }
 }, {

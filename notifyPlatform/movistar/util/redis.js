@@ -8,6 +8,7 @@ const redis = require('../config/redis');
 
 //methods 
 
+
 // this method gets hash name and its property, in a generic way
 const hget = async function (name, key) {
     return new Promise((resolve, reject) => {
@@ -16,25 +17,25 @@ const hget = async function (name, key) {
                 if (error != null) { //if redis give me an error.                           
                     console.error(error);
                     throw error;
-                } else if (result == null) { //If we don't find the name:key.                       
-                    throw new Error('Your hash:'+name+' does not have property:' + key + ', you need to reconfigure it before proceding.');
+                } else if (result == null) { //If we don't find the hash name:key.                       
+                    throw new Error('Your hash:' + name + ' does not have property:' + key + ', you need to reconfigure it before proceding.');
                 } else resolve(result);
             } catch (error) { reject(error); } // In Callback we need to reject if we have Error.
         });
     })
-        .then((result) => { return result; })  //return the result value of property hash contract
+        .then((result) => { return result; })  //return the result value of property hash name:key
         .catch((error) => { throw error; }); //throw Error exception to the main code
 }
 
-// this method save smsJson in a list (like qeues MQ)
-const lpush = async function (name, value) {
+// this method put 1 message to other list
+const rpoplpush = async function (source, destination) {
     return new Promise((resolve, reject) => {
-        redis.client.lpush(name, value, (error, result) => { //save the value in list                   
+        redis.client.rpoplpush(source, destination, (error, result) => { //save the value in list                   
             try {  //I use Promises but I need to use try/catch in async callback or I could use EventEmitter 
                 if (error != null) { //if redis give me an error.                           
                     console.error(error);
                     throw error;
-                } else if (result == null || result == 0) { //If we cannot save the value, maybe we don't have enough memory or something like that                      
+                } else if (result == null) { //If we cannot save the value, maybe we don't have enough memory or something like that                      
                     throw new Error('we didn\'t save value in redis list because a undefined problem, it\'s necessary check the problem before proceding.');
                 } else resolve(result);
             } catch (error) { reject(error); } // In Callback we need to reject if we have Error.
@@ -44,18 +45,16 @@ const lpush = async function (name, value) {
         .catch((error) => { throw error; }); //throw Error exception to the main code
 }
 
-// this method save id's in a SET for checking retries or errors.
-const sadd = async function (name, value) {
+// this method delete a message list.
+const rpop = async function (name) {
     return new Promise((resolve, reject) => {
-        redis.client.sadd(name, value, (error, result) => { //save the value in set                  
+        redis.client.rpop(name, (error, result) => { //save the value in set                  
             try {  //I use Promises but I need to use try/catch in async callback or I could use EventEmitter 
                 if (error != null) { //if redis give me an error.                           
                     console.error(error);
                     throw error;
-                } else if (result == null) { //If we cannot save the value, maybe we don't have enough memory or something like that                      
-                    throw new Error('we didn\'t save value in redis SET because a undefined problem, it\'s necessary check the problem before proceding.');
-                } else if (result == 0) { //If we cannot save the value, maybe we don't have enough memory or something like that                      
-                    console.log(process.env.YELLOW_COLOR, 'we didn\'t save value in redis SET because exists.');
+                } else if (result == null) { //it doesn't exist values in the list.                      
+                    console.log(process.env.YELLOW_COLOR, "we didn't delete value because doesn't exist values in the list");
                 } else resolve(result);
             } catch (error) { reject(error); } // In Callback we need to reject if we have Error.
         });
@@ -63,4 +62,4 @@ const sadd = async function (name, value) {
         .then((result) => { return result; })  //return the result number
         .catch((error) => { throw error; });  //throw Error exception to the main code
 }
-module.exports = { hget, lpush, sadd }
+module.exports = { hget, rpop, rpoplpush }
