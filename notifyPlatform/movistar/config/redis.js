@@ -20,4 +20,7 @@ client.on("error", function (error) {  //we check the redis connection is fine
     process.exit(1);  //because platform doesn't works without Redis, we prefer to stop server
 });
 
-module.exports = { client };
+const testRedisConection = async () => {
+    await client.set("initializeRedisConection:test", "test");
+}
+module.exports = { testRedisConection, client };

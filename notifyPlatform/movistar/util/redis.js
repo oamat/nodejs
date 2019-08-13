@@ -35,8 +35,6 @@ const rpoplpush = async function (source, destination) {
                 if (error != null) { //if redis give me an error.                           
                     console.error(error);
                     throw error;
-                } else if (result == null) { //If we cannot save the value, maybe we don't have enough memory or something like that                      
-                    throw new Error('we didn\'t save value in redis list because a undefined problem, it\'s necessary check the problem before proceding.');
                 } else resolve(result);
             } catch (error) { reject(error); } // In Callback we need to reject if we have Error.
         });

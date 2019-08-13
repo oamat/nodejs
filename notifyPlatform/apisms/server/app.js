@@ -14,18 +14,15 @@ require('../config/redis'); //we need to initialize redis
 //Routers Dependencies
 const smsRouter = require('../routers/sms');
 
-
-
-const initializeMongoose = async () => {
-    // Init Mongoose 
+const initializeMongoose = async () => { // Init Mongoose with await    
     await initializeMongooseConection();
 }
 
-initializeMongoose();
-// Init Express web framework 
-const app = express();
-//load config & routers
-app.use(express.json());
-app.use(smsRouter);
+//Starting SERVER 
+
+initializeMongoose(); //Init Mongoose
+const app = express(); // Init Express web framework 
+app.use(express.json()); //load express config 
+app.use(smsRouter); //load express routers
 
 module.exports = app

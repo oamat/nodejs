@@ -3,7 +3,7 @@
 HSET collector:MOV status "0"
 HGET collector:MOV status
 
-HSET collector:MOV interval "200"
+HSET collector:MOV interval "2000"
 HGET collector:MOV interval
 
 HSET collector:MOV intervalControl "30000"
