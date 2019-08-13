@@ -10,25 +10,29 @@
 //Dependencies
 const { hget, rpop, rpoplpush } = require('../util/redis'); //we need to initialize redis
 const { dateFormat, buildChannel } = require('../util/formats'); // utils for formats
+const Sms = require('../models/sms');
+
+
 //Variables
 var cron; //the main cron that send message to the operator.
-var interval = 100; //define the rate/s notifications, interval in cron (100/s by default)
-var cronState = 1; //State of cron. 0: cron stopped, 1 : cron working, 
+var interval = 10; //define the rate/s notifications, interval in cron (100/s by default)
+var cronStatus = 1; //status of cron. 0: cron stopped, 1 : cron working, 
 var intervalControl = 60000; //define interval in controller cron (check by min. by default)
 const defaultOperator = "MOV"; //default operator for this collector: "MOV"
+const defaultCollector = "collector:" + defaultOperator;
 var operator = defaultOperator; //default operator for this collector: "MOV"
+var channel0 = buildChannel(operator, 0);
 var channel1 = buildChannel(operator, 1);
-var channel1 = buildChannel(operator, 2);
-var channel1 = buildChannel(operator, 3);
+var channel2 = buildChannel(operator, 2);
+var channel3 = buildChannel(operator, 3);
 
 const startCron = async (interval) => {
     try {
         console.log(process.env.GREEN_COLOR, "initializing cron at " + dateFormat(new Date()) + " with interval : " + interval);
+        var counter = 0;
         cron = setInterval(function () {
-            console.log(" cron executing");
-            //TODO: get message with lpop command from SMS.MOV.1, 2, 3 
-            //TODO: send message to operator or change collector
-            //TODO: update message to mongodb
+            console.log(" cron executing num:" + counter++);
+            sendSMS();
         }, interval);
     } catch (error) {
         console.log(process.env.YELLOW_COLOR, "ERROR: we cannot start cron . Process continuing... " + error.message);
@@ -51,8 +55,8 @@ const startController = async (intervalControl) => {
     try {
         console.log(process.env.GREEN_COLOR, "initializing cronController at " + dateFormat(new Date()) + " with intervalControl : " + intervalControl);
         var cronController = setInterval(function () {
-            console.log("cronController executing");
-            checkState();
+            console.log(process.env.GREEN_COLOR, "cronController executing");
+            checkstatus();
             checkInterval();
             checkOperator();
         }, intervalControl);
@@ -64,32 +68,33 @@ const startController = async (intervalControl) => {
 
 
 
-const checkState = async () => { //Check state, if it's necessary finish cron because redis say it.
+const checkstatus = async () => { //Check status, if it's necessary finish cron because redis say it.
     try {
-        let newCronState = parseInt(await hget("collector:MOV", "state"));  //0 stop, 1 OK.  //finish because redis say it 
-        if (newCronState != cronState) {
-            cronState = newCronState;
-            if (cronState == 0) {
+
+        let newcronStatus = parseInt(await hget(defaultCollector, "status"));  //0 stop, 1 OK.  //finish because redis say it 
+        if (newcronStatus != cronStatus) {
+            cronStatus = newcronStatus;
+            if (cronStatus == 0) {
                 console.log(process.env.YELLOW_COLOR, "Stoping Movistar cron...");
                 await stopCron();
-            } else if (cronState == 1) {
+            } else if (cronStatus == 1) {
                 console.log(process.env.GREEN_COLOR, "Re-starting Movistar cron...");
-                await startCron();
+                await startCron(interval);
             }
         }
     } catch (error) {
-        console.log(process.env.YELLOW_COLOR, "ERROR: we cannot change state (run/stop cron). current cron state = " + cronState + " . . Process continuing... " + error.message);
+        console.log(process.env.YELLOW_COLOR, "ERROR: we cannot change status (run/stop cron). current cron status = " + cronStatus + " . . Process continuing... " + error.message);
         console.error(error); //continue the execution cron
     }
 }
 
 const checkInterval = async () => { //check rate/s, and change cron rate
     try {
-        let newInterval = parseInt(await hget("operator:MOV", "interval"));  //rate/s //change cron rate    
+        let newInterval = parseInt(await hget(defaultCollector, "interval"));  //rate/s //change cron rate    
         if (newInterval != interval) { //if we change the interval -> rate/s
             console.log(process.env.YELLOW_COLOR, "Re-starting Movistar cron and changing rate/interval: old rate " + interval + " , new rate : " + newInterval);
             interval = newInterval;
-            if (cronState == 1) {
+            if (cronStatus == 1) {
                 await stopCron();
                 await startCron(interval);
             }
@@ -99,11 +104,13 @@ const checkInterval = async () => { //check rate/s, and change cron rate
         console.error(error); //continue the execution cron
     }
 }
+
 const checkOperator = async () => { //change operator for HA
     try {
-        let newOperator = await hget(defaultOperator, "operator");  //"MOV", "VOD", "ORA",... //change operator for HA
+        let newOperator = await hget(defaultCollector, "operator");  //"MOV", "VOD", "ORA",... //change operator for HA
         if (newOperator.toString().trim() != operator) {
             console.log(process.env.YELLOW_COLOR, "Change operator " + operator + " for " + newOperator);
+            channel0 = buildChannel(newOperator, 0);
             channel1 = buildChannel(newOperator, 1);
             channel2 = buildChannel(newOperator, 2);
             channel3 = buildChannel(newOperator, 3);
@@ -118,22 +125,79 @@ const checkOperator = async () => { //change operator for HA
 
 const initCron = async () => {
     try {
-        interval = parseInt(await hget("collector:MOV", "interval"));
-        intervalControl = parseInt(await hget("MOV", "intervalControl"));
-        cronState = parseInt(await hget("MOV", "state"));
+        interval = parseInt(await hget(defaultCollector, "interval")); //The rate/interval of main cron
+        intervalControl = parseInt(await hget(defaultCollector, "intervalControl")); //the interval of controller
+        cronStatus = parseInt(await hget(defaultCollector, "status")); //maybe somebody stops collector
         console.log(process.env.GREEN_COLOR, "initializing all crons processes at " + dateFormat(new Date()) + " with cron interval [" + interval + "ms] and cron Controller interval : [" + intervalControl + "ms]...");
-        if (cronState == 1) await startCron(interval);
-        else console.log(process.env.YELLOW_COLOR, " State in redis indicates we don't start cron process. we only start cron Controller.");
+        if (cronStatus == 1) await startCron(interval);
+        else console.log(process.env.YELLOW_COLOR, " status in redis indicates we don't start cron process. we only start cron Controller.");
 
         await startController(intervalControl);
     } catch (error) {
         console.log(process.env.YELLOW_COLOR, "ERROR: we cannot initialize cron with personalized params, we will initialize cron with default params (100message/s & 60s to reconfig) . . Process continuing... " + error.message);
         console.error(error); //continue the execution cron
-        await startCron(100); // 100 message/s
+        await startCron(10); // 100 message/s
         await startController(60000); // 60 seconds
-        cronState = 1;
+        cronStatus = 1;
     }
 }
 
+const sendSMS = async () => {
+    try {
+        const smsJSON = await nextSMS(); //get message with rpop command from SMS.MOV.1, 2, 3 
+        if (smsJSON != null) {
+            console.log(" update SMS : ");
+            const sms = new Sms(JSON.parse(smsJSON));
+            //sms.validate(); It's unnecessary. 
+            sms.status = 1 //0:notSent, 1:Sent, 2:confirmed 3:Error
+            sms.dispatched = true;
+            sms.dispatchedAt = new Date();
+            Sms.findOneAndUpdate(sms._id, {
+                $set: {
+                    status: 1,
+                    dispatched: true,
+                    dispatchedAt: new Date()
+                }
+            }, { new: true }, (error, result) => {
+                if (error) console.log(error.message);
+                else console.log(" update SMS : " + JSON.stringify(result));
+            });
+
+            // sms.update(
+            //     { _id: sms._id },  //update message to mongodb
+            //     {
+            //         status: 1,
+            //         dispatched: true,
+            //         dispatchedAt: new Date()
+            //     });
+
+        }
+    } catch (error) {
+        console.log(process.env.YELLOW_COLOR, "ERROR: we have a problem with mongoose update : " + error.message);
+        console.error(error); //continue the execution cron
+    }
+}
+
+
+const nextSMS = async () => {
+    try {
+        let sms = await rpop(channel0);
+        if (sms == null) {
+            sms = await rpop(channel1);
+            if (sms == null) {
+                sms = await rpop(channel2);
+                if (sms == null) {
+                    sms = await rpop(channel3);
+                    if (sms == null) {
+                        return null;
+                    } else { return sms; }
+                } else return sms;
+            } else return sms;
+        } else return sms;
+    } catch (error) {
+        console.log(process.env.YELLOW_COLOR, "ERROR: we have a problem with redis rpop : " + error.message);
+        console.error(error); //continue the execution cron
+    }
+}
 
 module.exports = { initCron }

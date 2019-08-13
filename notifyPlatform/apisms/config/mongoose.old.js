@@ -10,6 +10,10 @@ const mongoose = require('mongoose');
 
 // Init mongoose
 mongoose.Promise = global.Promise;
+mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useFindAndModify: false, useCreateIndex: true });
+// mongoose.set('useNewUrlParser', true); // see https://mongoosejs.com/docs/deprecations.html
+// mongoose.set('useFindAndModify', false);   // see https://github.com/Automattic/mongoose/pull/6165
+// mongoose.set('useCreateIndex', true);  // see https://mongoosejs.com/docs/deprecations.html
 
 
 // EventEmitter in case of Errors, stop all process
@@ -23,12 +27,5 @@ mongoose.connection.on('error', (error) => {  //we need to know if connection wo
     process.exit(1);  //because platform doesn't works without Mongodb, we prefer to stop server
 });
 
-const initializeMongooseConection = async () => {
-    // await connection to DB
-    await mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useFindAndModify: false, useCreateIndex: true });
-    // mongoose.set('useNewUrlParser', true); // see https://mongoosejs.com/docs/deprecations.html
-    // mongoose.set('useFindAndModify', false);   // see https://github.com/Automattic/mongoose/pull/6165
-    // mongoose.set('useCreateIndex', true);  // see https://mongoosejs.com/docs/deprecations.html
-}
 
-module.exports = { initializeMongooseConection, mongoose };
+module.exports = { mongoose };

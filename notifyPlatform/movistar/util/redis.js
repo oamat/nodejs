@@ -53,13 +53,12 @@ const rpop = async function (name) {
                 if (error != null) { //if redis give me an error.                           
                     console.error(error);
                     throw error;
-                } else if (result == null) { //it doesn't exist values in the list.                      
-                    console.log(process.env.YELLOW_COLOR, "we didn't delete value because doesn't exist values in the list");
-                } else resolve(result);
+                } else resolve(result); // even if result = null we return it.
             } catch (error) { reject(error); } // In Callback we need to reject if we have Error.
         });
     })
-        .then((result) => { return result; })  //return the result number
+        .then((result) => { return result; })  //return the result 
         .catch((error) => { throw error; });  //throw Error exception to the main code
 }
+
 module.exports = { hget, rpop, rpoplpush }

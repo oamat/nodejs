@@ -8,15 +8,21 @@
 
 // Dependencies
 require('./config/config'); //we need configurations
-require('./config/mongoose'); //we need to initialize mongoose
+const { initializeMongooseConection } = require('./config/mongoose'); //we need to initialize mongoose
 require('./config/redis'); //we need to initialize redis
 
 //cron Dependency
 const cron = require('./cron/cron'); //the main cron
 
-// Init cron's
-//TODO: get interval from redis
-cron.initCron();
+const initializeAll = async () => {   
+    // Init mongoose
+    await initializeMongooseConection();
+    // Init cron's
+    cron.initCron();
+}
+
+initializeAll();
+
 
 
 
