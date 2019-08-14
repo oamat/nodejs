@@ -14,7 +14,7 @@ const hget = async function (name, key) {
     return new Promise((resolve, reject) => {
         redis.client.hget(name, key, (error, result) => { //get the value of hash                   
             try {  //I use Promises but I need to use try/catch in async callback or I could use EventEmitter 
-                if (error != null) { //if redis give me an error.                           
+                if (error) { //if redis give me an error.                           
                     console.error(error);
                     throw error;
                 } else if (result == null) { //If we don't find the hash name:key.                       
@@ -32,7 +32,7 @@ const rpoplpush = async function (source, destination) {
     return new Promise((resolve, reject) => {
         redis.client.rpoplpush(source, destination, (error, result) => { //save the value in list                   
             try {  //I use Promises but I need to use try/catch in async callback or I could use EventEmitter 
-                if (error != null) { //if redis give me an error.                           
+                if (error) { //if redis give me an error.                           
                     console.error(error);
                     throw error;
                 } else resolve(result);
@@ -48,7 +48,7 @@ const rpop = async function (name) {
     return new Promise((resolve, reject) => {
         redis.client.rpop(name, (error, result) => { //save the value in set                  
             try {  //I use Promises but I need to use try/catch in async callback or I could use EventEmitter 
-                if (error != null) { //if redis give me an error.                           
+                if (error) { //if redis give me an error.                           
                     console.error(error);
                     throw error;
                 } else resolve(result); // even if result = null we return it.

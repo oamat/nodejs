@@ -13,7 +13,7 @@ const hget = async function (name, key) {
     return new Promise((resolve, reject) => {
         redis.client.hget(name, key, (error, result) => { //get the value of hash                   
             try {  //I use Promises but I need to use try/catch in async callback or I could use EventEmitter 
-                if (error != null) { //if redis give me an error.                           
+                if (error) { //if redis give me an error.                           
                     console.error(error);
                     throw error;
                 } else if (result == null) { //If we don't find the name:key.                       
@@ -31,7 +31,7 @@ const lpush = async function (name, value) {
     return new Promise((resolve, reject) => {
         redis.client.lpush(name, value, (error, result) => { //save the value in list                   
             try {  //I use Promises but I need to use try/catch in async callback or I could use EventEmitter 
-                if (error != null) { //if redis give me an error.                           
+                if (error) { //if redis give me an error.                           
                     console.error(error);
                     throw error;
                 } else if (result == null || result == 0) { //If we cannot save the value, maybe we don't have enough memory or something like that                      
@@ -49,7 +49,7 @@ const sadd = async function (name, value) {
     return new Promise((resolve, reject) => {
         redis.client.sadd(name, value, (error, result) => { //save the value in set                  
             try {  //I use Promises but I need to use try/catch in async callback or I could use EventEmitter 
-                if (error != null) { //if redis give me an error.                           
+                if (error) { //if redis give me an error.                           
                     console.error(error);
                     throw error;
                 } else if (result == null) { //If we cannot save the value, maybe we don't have enough memory or something like that                      
@@ -70,7 +70,7 @@ const set = async function (name, value) {
     return new Promise((resolve, reject) => {
         redis.client.set(name, value, (error, result) => { //save the value in set                  
             try {  //I use Promises but I need to use try/catch in async callback or I could use EventEmitter               
-                if (error != null) { //if redis give me an error.                           
+                if (error) { //if redis give me an error.                           
                     console.error(error);
                     throw error;
                 } else if (result == null) { //If we cannot save the value, maybe we don't have enough memory or something like that                      

@@ -56,12 +56,12 @@ const sendNextSMS = async () => {
 
     try {
         const smsJSON = await nextSMS(); //get message with rpop command from SMS.MOV.1, 2, 3 
-        if (smsJSON != null) {
+        if (smsJSON) {
             const sms = new Sms(JSON.parse(smsJSON)); // convert json to object
             //sms.validate(); It's unnecessary.
             if (operator != defaultOperator) { //If we change operator for contingency we change sms to other list
-                await rpoplpush(buildChannel(defaultOperator,sms.priority), buildChannel(operator,sms.priority));
-                console.log(process.env.YELLOW_COLOR,"change SMS " + sms._id +" from "+defaultOperator+" to "+operator);
+                await rpoplpush(buildChannel(defaultOperator, sms.priority), buildChannel(operator, sms.priority));
+                console.log(process.env.YELLOW_COLOR, "change SMS " + sms._id + " from " + defaultOperator + " to " + operator);
             } else {
                 await sendSMS(sms); // send SMS to operator
                 updateSMS(sms._id); // update SMS in MongoDB
@@ -75,19 +75,7 @@ const sendNextSMS = async () => {
 
 const nextSMS = async () => {
     try {
-        let sms = await rpop(channel0);
-        if (sms == null) {
-            sms = await rpop(channel1);
-            if (sms == null) {
-                sms = await rpop(channel2);
-                if (sms == null) {
-                    sms = await rpop(channel3);
-                    if (sms == null) {
-                        return null;
-                    } else { return sms; }
-                } else return sms;
-            } else return sms;
-        } else return sms;
+        return await rpop(channel0) || await rpop(channel1) || await rpop(channel2) || await rpop(channel3); //return the next sms by priority order.     
     } catch (error) {
         console.log(process.env.YELLOW_COLOR, "ERROR: we have a problem with redis rpop : " + error.message);
         console.error(error); //continue the execution cron
@@ -159,7 +147,7 @@ const checkOperator = async () => { //change operator for HA
             channel1 = buildChannel(newOperator, 1);
             channel2 = buildChannel(newOperator, 2);
             channel3 = buildChannel(newOperator, 3);
-            operator = newOperator;            
+            operator = newOperator;
         }
     } catch (error) {
         console.log(process.env.YELLOW_COLOR, "ERROR: we cannot change operator because a problem, actual operator : " + operator + " . . Process continuing... " + error.message);
