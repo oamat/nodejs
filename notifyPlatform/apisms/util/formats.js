@@ -8,4 +8,8 @@ const dateFormat =  ( date ) =>{
    return date.toISOString().replace(/T/, ' ').replace(/\..+/, '');
 }
 
- module.exports = {dateFormat}
+const buildChannel = (operator, priority) => {
+   return "SMS." + operator + "." + priority;
+}
+
+ module.exports = {dateFormat, buildChannel}

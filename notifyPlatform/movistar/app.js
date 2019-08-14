@@ -15,9 +15,15 @@ const { testRedisConection } = require('./config/redis'); //we need to initializ
 const cron = require('./cron/cron'); //the main cron
 
 //Initialize all conections and cron
-const initializeAll = async () => {      
-    await initializeMongooseConection();  // Init mongoose
-    await testRedisConection();  // test redis  
+const initializeAll = async () => {
+    //START PARALLEL excution with await Promise.all.
+    await Promise.all([ //Async Promises: all tasks start immediately 
+        initializeMongooseConection(),  // Init mongoose
+        testRedisConection() // little test redis
+    ]);
+    //END PARALLEL excution with await Promise.all.
+
+    // then we can Init Cron
     cron.initCron();   // Init Cron
 }
 

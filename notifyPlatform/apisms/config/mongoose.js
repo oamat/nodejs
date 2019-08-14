@@ -20,7 +20,7 @@ mongoose.connection.once('open', () => { //we check the mongodb connection
 mongoose.connection.on('error', (error) => {  //we need to know if connection works, particularly at the start if we didn't connect with it.
     console.log(process.env.RED_COLOR, error);
     console.log(process.env.RED_COLOR, "FATAL ERROR : failed to connect to db server : " + process.env.MONGODB_URI);
-    process.exit(1);  //because platform doesn't works without Mongodb, we prefer to stop server
+    //process.exit(1);  //because platform doesn't works without Mongodb, we prefer to stop server
 });
 
 const initializeMongooseConection = async () => {

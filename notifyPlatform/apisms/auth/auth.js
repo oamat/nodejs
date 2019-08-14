@@ -25,14 +25,13 @@ const auth = async (req, res, next) => {
             throw new Error("You didn't send the JWT Token, you need to authenticate on the platform with corrrect JWT. Please authenticate before proceeding.");
         } else {
             const token = req.header('x-api-key').replace('Bearer ', '');
-            const decoded = jwt.verify(token, process.env.JWT_SECRET);
+            const decoded = jwt.verify(token, process.env.JWT_SECRET); //this method is Synchronous, so i don't need await.
             if (decoded.contract != req.body.contract) { //check that contract in request is the same than contract in jwt
                 throw new Error('Your contract does not match with JWT, you need to authenticate on the platform. Please authenticate before proceeding.');
             } else {
-                if (token != await hget("contract:"+decoded.contract, "jwt")) { //check that jwt was created from this server and exist in redis Conf                         
+                if (token != await hget("contract:" + decoded.contract, "jwt")) { //check that jwt was created from this server and exist in redis Conf, we need to wait the result.                         
                     throw new Error('Your JWT is invalid, you need to authenticate on the platform with correct JWT. Please authenticate before proceeding.');
-                }
-                next();
+                } else next();
             }
         }
     } catch (error) {
