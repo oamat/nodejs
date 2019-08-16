@@ -11,6 +11,8 @@ async function promise(entry) {
 
 const start = async function () {
   console.log("call await promise with true");
+  var res = await promise(true);
+  await console.log ("res = " + res);
   await promise(true)
     .then((result) => {
       console.log('Success: ', result);

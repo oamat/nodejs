@@ -24,6 +24,7 @@ const smsSchema = new mongoose.Schema({
     },
     dispatched: {
         type: Boolean,
+        required: true,
         default: false
     },
     dispatchedAt: {
@@ -58,7 +59,7 @@ const smsSchema = new mongoose.Schema({
         required: true,
         default: 1,  //0 VIP, 1 online, 2 MQ, 3 batch
         validate(value) {
-            if (value<0 || value>3) throw new Error('priority is invalid. Correct values 0,1,2,3.');
+            if (value<0 || value>3) throw new Error('priority is invalid. The accepted values are 0,1,2 or 3.');
         }
     },
     interface: {
@@ -91,7 +92,7 @@ const smsSchema = new mongoose.Schema({
         required: true        
     },
     channel: {
-        type: String, //SMS.MOV.1, 0,2,3
+        type: String, //SMS.MOV.1, [MOV, ORA, VOD, NOS] [0,1,2,3]
         required: true
     }
 }, {
