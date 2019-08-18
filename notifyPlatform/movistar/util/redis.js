@@ -30,7 +30,7 @@ const rpoplpush = async function (source, destination) {
         rclient.rpoplpush(source, destination, (error, result) => { //save the value in list                   
             try {  //I use Promises but I need to use try/catch in async callback or I could use EventEmitter 
                 if (error) throw error;  //if redis give me an error. 
-                else if (result) resolve(result); // everything is OK, return result, // even if result = null we return it.
+                else resolve(result); // everything is OK, return result, // even if result = null we return it.
             } catch (error) { reject(error); } // In Callback we need to reject if we have Error.  A reject will not pass through here
         });
     })
@@ -44,7 +44,7 @@ const rpop = async function (name) {
         rclient.rpop(name, (error, result) => { //save the value in set                  
             try {  //I use Promises but I need to use try/catch in async callback or I could use EventEmitter 
                 if (error) throw error;  //if redis give me an error. 
-                else if (result) resolve(result); // everything is OK, return result, // even if result = null we return it.
+                else resolve(result); // everything is OK, return result, // even if result = null we return it.
             } catch (error) { reject(error); } // In Callback we need to reject if we have Error.  A reject will not pass through here
         });
     })

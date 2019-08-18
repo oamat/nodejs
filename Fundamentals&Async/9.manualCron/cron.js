@@ -19,9 +19,12 @@ function cron() {
     processnum--;
 }
 
-setInterval(cron, Math.floor(millisXSecond/rate));
 
 
 function getRandomInt() {
     return Math.floor(Math.random() * Math.floor(rate*2));
   }
+
+  
+  
+setInterval(cron, Math.floor(millisXSecond/rate));
