@@ -44,7 +44,7 @@ router.post('/smsSend', auth, async (req, res) => {  //we execute auth before th
         await saveSMS(sms) //save sms to DB, in this phase we need save SMS to MongoDB.
             .catch(error => {
                 error.message = "ERROR :  We cannot save notify in MongoBD. " + error.message;
-                return error;
+                throw error;
             });
 
         // START 2 "tasks" in parallel. Even when we recollect the errors we continue the execution and return OK.    

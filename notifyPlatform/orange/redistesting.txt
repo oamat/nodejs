@@ -1,0 +1,32 @@
+
+
+HSET collector:ORA status "1"
+HGET collector:ORA status
+
+HSET collector:ORA interval "2000"
+HGET collector:ORA interval
+
+HSET collector:ORA intervalControl "30000"
+HGET collector:ORA intervalControl
+
+HSET collector:ORA operator "ORA"
+HGET collector:ORA operator
+
+
+LPUSH SMS.ORA.1 '{"dispatched":false,"priority":1,"interface":"REST","retries":0,"deferred":false,"status":0,"contract":"OTPLOWEB","telf":"+34699272809","message":"you have won a gift","alias":"L.O.","_id":"6d30f444-815d-48d4-ac24-09a1ae6c0e24","receivedAt":"2019-08-12T15:25:19.642Z","operator":"ORA","channel":"SMS.ORA.1"}'
+LPUSH SMS.ORA.1 '{"dispatched":false,"priority":1,"interface":"REST","retries":0,"deferred":false,"status":0,"contract":"OTPLOWEB","telf":"+34699272809","message":"you have won a gift","alias":"L.O.","_id":"6d30f444-815d-48d4-ac24-09a1ae6c0e23","receivedAt":"2019-08-12T15:25:19.642Z","operator":"ORA","channel":"SMS.ORA.1"}'
+LLEN SMS.ORA.1
+LRANGE SMS.ORA.1 0 -1
+
+SADD SMS.IDS.PENDING "6d30f444-815d-48d4-ac24-09a1ae6c0e24"
+SADD SMS.IDS.PENDING "6d30f444-815d-48d4-ac24-09a1ae6c0e23"
+SCARD SMS.IDS.PENDING 
+
+RPOP SMS.ORA.1
+SREM SMS.IDS.PENDING "6d30f444-815d-48d4-ac24-09a1ae6c0e23"
+
+RPOPLPUSH SMS.ORA.1 SMS.VOD.1
+RPOPLPUSH SMS.ORA.1 SMS.VOD.1
+LLEN SMS.ORA.1
+LLEN SMS.VOD.1
+
