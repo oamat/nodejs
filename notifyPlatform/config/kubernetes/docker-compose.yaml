@@ -1,0 +1,365 @@
+version: "3.1"
+
+services:
+
+  #apple
+   #Optional you can create the docker image  (# docker build -t name).
+  apple: 
+    #build: . #build: Dockerfile #Optional : "build: ." Uses an image that’s built from the Dockerfile in the current directory.  
+    image: apple
+    container_name: "apple"      
+    restart: always
+    ports:
+      - 3001:3000
+    
+    environment:
+      NODE_ENV: "docker"
+    labels:
+      kompose.service.type: LoadBalancer
+    links:
+      - redisconf
+      - redispns
+    depends_on:
+      - redisconf
+      - redispns
+  #google
+   #Optional you can create the docker image  (# docker build -t name).
+  google: 
+    #build: . #build: Dockerfile #Optional : "build: ." Uses an image that’s built from the Dockerfile in the current directory.  
+    image: google
+    container_name: "google"      
+    restart: always
+    ports:
+      - 3000:3000
+    
+    environment:
+      NODE_ENV: "docker"
+    labels:
+      kompose.service.type: LoadBalancer
+    links:
+      - redisconf
+      - redispns
+    depends_on:
+      - redisconf
+      - redispns
+  #microsoft
+   #Optional you can create the docker image  (# docker build -t name).
+  microsoft: 
+    #build: . #build: Dockerfile #Optional : "build: ." Uses an image that’s built from the Dockerfile in the current directory.  
+    image: microsoft
+    container_name: "microsoft"      
+    restart: always
+    ports:
+      - 3013:3000
+    
+    environment:
+      NODE_ENV: "docker"
+    labels:
+      kompose.service.type: LoadBalancer
+    links:
+      - redisconf
+      - redispns
+    depends_on:
+      - redisconf
+      - redispns
+  #movistar
+   #Optional you can create the docker image  (# docker build -t name) .
+  movistar: 
+    #build: . #build: Dockerfile #Optional : "build: ." Uses an image that’s built from the Dockerfile in the current directory.  
+    image: movistar
+    container_name: "movistar"      
+    restart: always
+    ports:
+      - 3002:3000
+    
+    environment:
+      NODE_ENV: "docker"
+    labels:
+      kompose.service.type: LoadBalancer
+
+    links:
+      - redisconf
+      - redissms
+    depends_on:
+      - redisconf
+      - redissms
+  #movistarvip
+   #Optional you can create the docker image  (# docker build -t name) .
+  movistarvip: 
+    #build: . #build: Dockerfile #Optional : "build: ." Uses an image that’s built from the Dockerfile in the current directory.  
+    image: movistarvip
+    container_name: "movistarvip"      
+    restart: always
+    ports:
+      - 3018:3000
+    
+    environment:
+      NODE_ENV: "docker"
+    labels:
+      kompose.service.type: LoadBalancer
+
+    links:
+      - redisconf
+      - redissms
+    depends_on:
+      - redisconf
+      - redissms
+  #vodafone
+   #Optional you can create the docker image  (# docker build -t name) .
+  vodafone: 
+    #build: . #build: Dockerfile #Optional : "build: ." Uses an image that’s built from the Dockerfile in the current directory.  
+    image: vodafone
+    container_name: "vodafone"      
+    restart: always
+    ports:
+      - 3016:3000
+    
+    environment:
+      NODE_ENV: "docker"
+    labels:
+      kompose.service.type: LoadBalancer
+
+    links:
+      - redisconf
+      - redissms
+    depends_on:
+      - redisconf
+      - redissms
+  #orange
+   #Optional you can create the docker image  (# docker build -t name) .
+  orange: 
+    #build: . #build: Dockerfile #Optional : "build: ." Uses an image that’s built from the Dockerfile in the current directory.  
+    image: orange
+    container_name: "orange"      
+    restart: always
+    ports:
+      - 3015:3000
+    
+    environment:
+      NODE_ENV: "docker"
+    labels:
+      kompose.service.type: LoadBalancer
+
+    links:
+      - redisconf
+      - redissms
+    depends_on:
+      - redisconf
+      - redissms
+  #console
+   #Optional you can create the docker image  (# docker build -t name) .
+  console: 
+    #build: . #build: Dockerfile #Optional : "build: ." Uses an image that’s built from the Dockerfile in the current directory.  
+    image: console
+    container_name: "console"      
+    restart: always
+    ports:
+      - 3003:3000
+    
+    environment:
+      NODE_ENV: "docker"
+    labels:
+      kompose.service.type: LoadBalancer
+
+    links:
+      - redisconf
+      - redispns
+      - redissms
+    depends_on:
+      - redisconf
+      - redispns
+      - redissms
+  #mqsms
+   #Optional you can create the docker image  (# docker build -t name) .
+  mqsms: 
+    #build: . #build: Dockerfile #Optional : "build: ." Uses an image that’s built from the Dockerfile in the current directory.  
+    image: mqsms
+    container_name: "mqsms"      
+    restart: always
+    ports:
+      - 3014:3000
+    
+    environment:
+      NODE_ENV: "docker"
+    labels:
+      kompose.service.type: LoadBalancer
+
+    links:
+      - redisconf
+      - redissms
+    depends_on:
+      - redisconf
+      - redissms
+  #mqpns
+   #Optional you can create the docker image  (# docker build -t name) .
+  mqpns: 
+    #build: . #build: Dockerfile #Optional : "build: ." Uses an image that’s built from the Dockerfile in the current directory.  
+    image: mqpns
+    container_name: "mqpns"      
+    restart: always
+    ports:
+      - 3004:3000
+    
+    environment:
+      NODE_ENV: "docker"
+    labels:
+      kompose.service.type: LoadBalancer
+
+    links:
+      - redisconf
+      - redispns
+    depends_on:
+      - redisconf
+      - redispns
+  #apisms
+   #Optional you can create the docker image  (# docker build -t name) .
+  apisms: 
+    #build: . #build: Dockerfile #Optional : "build: ." Uses an image that’s built from the Dockerfile in the current directory.  
+    image: apisms
+    container_name: "apisms"      
+    restart: always
+    ports:
+      - 3005:3000
+    
+    environment:
+      NODE_ENV: "docker"
+    labels:
+      kompose.service.type: LoadBalancer
+
+    links:
+      - redisconf
+      - redissms
+    depends_on:
+      - redisconf
+      - redissms
+  #apipns
+   #Optional you can create the docker image  (# docker build -t name) .
+  apipns: 
+    #build: . #build: Dockerfile #Optional : "build: ." Uses an image that’s built from the Dockerfile in the current directory.  
+    image: apipns
+    container_name: "apipns"      
+    restart: always
+    ports:
+      - 3011:3000
+    
+    environment:
+      NODE_ENV: "docker"
+    labels:
+      kompose.service.type: LoadBalancer
+
+    links:
+      - redisconf
+      - redispns
+    depends_on:
+      - redisconf
+      - redispns
+  #status
+   #Optional you can create the docker image  (# docker build -t name) .
+  status: 
+    #build: . #build: Dockerfile #Optional : "build: ." Uses an image that’s built from the Dockerfile in the current directory.  
+    image: status
+    container_name: "status"      
+    restart: always
+    ports:
+      - 3006:3000
+    
+    environment:
+      NODE_ENV: "docker"
+    labels:
+      kompose.service.type: LoadBalancer
+
+    links:
+      - redisconf
+    depends_on:
+      - redisconf
+
+  #retriessms
+   #Optional you can create the docker image  (# docker build -t name) .
+  retriessms: 
+    #build: . #build: Dockerfile #Optional : "build: ." Uses an image that’s built from the Dockerfile in the current directory.  
+    image: retriessms
+    container_name: "retriessms"      
+    restart: always
+    ports:
+      - 3012:3000
+    
+    environment:
+      NODE_ENV: "docker"
+    labels:
+      kompose.service.type: LoadBalancer
+
+    links:
+      - redisconf
+      - redissms
+    depends_on:
+      - redisconf
+      - redissms
+  #retriespns
+   #Optional you can create the docker image  (# docker build -t name) .
+  retriespns: 
+    #build: . #build: Dockerfile #Optional : "build: ." Uses an image that’s built from the Dockerfile in the current directory.  
+    image: retriespns
+    container_name: "retriespns"      
+    restart: always
+    ports:
+      - 3010:3000
+    
+    environment:
+      NODE_ENV: "docker"
+    labels:
+      kompose.service.type: LoadBalancer
+
+    links:
+      - redisconf
+      - redispns
+    depends_on:
+      - redisconf
+      - redispns
+
+  #redispns
+   #Optional you can create the docker image  (# docker build -t name) .
+  redispns: 
+    #build: . #build: Dockerfile #Optional : "build: ." Uses an image that’s built from the Dockerfile in the current directory.  
+    image: redispns
+    container_name: "redispns"      
+    restart: always
+    ports:
+      - 3008:3000
+    
+    environment:
+      NODE_ENV: "docker"
+    labels:
+      kompose.service.type: LoadBalancer
+
+
+  #redissms
+   #Optional you can create the docker image  (# docker build -t name) .
+  redissms: 
+    #build: . #build: Dockerfile #Optional : "build: ." Uses an image that’s built from the Dockerfile in the current directory.  
+    image: redissms
+    container_name: "redissms"      
+    restart: always
+    ports:
+      - 3009:3000
+    
+    environment:
+      NODE_ENV: "docker"
+    labels:
+      kompose.service.type: LoadBalancer
+
+
+  #redisconf
+   #Optional you can create the docker image  (# docker build -t name) .
+  redisconf: 
+    #build: . #build: Dockerfile #Optional : "build: ." Uses an image that’s built from the Dockerfile in the current directory.  
+    image: redisconf
+    container_name: "redisconf"      
+    restart: always
+    ports:
+      - 3007:3000
+    
+    environment:
+      NODE_ENV: "docker"
+    labels:
+      kompose.service.type: LoadBalancer
+

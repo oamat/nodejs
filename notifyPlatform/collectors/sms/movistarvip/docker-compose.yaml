@@ -1,0 +1,14 @@
+  #movistarvip
+   #Optional you can create the docker image  (# docker build -t name) .
+  movistarvip: 
+    #build: . #build: Dockerfile #Optional : "build: ." Uses an image that’s built from the Dockerfile in the current directory.  
+    image: movistarvip
+    container_name: "movistarvip"      
+    restart: always
+    ports:
+      - 3018:3000
+    
+    environment:
+      NODE_ENV: "docker"
+    labels:
+      kompose.service.type: LoadBalancer

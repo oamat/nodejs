@@ -1,0 +1,14 @@
+  #orange
+   #Optional you can create the docker image  (# docker build -t name) .
+  orange: 
+    #build: . #build: Dockerfile #Optional : "build: ." Uses an image that’s built from the Dockerfile in the current directory.  
+    image: orange
+    container_name: "orange"      
+    restart: always
+    ports:
+      - 3015:3000
+    
+    environment:
+      NODE_ENV: "docker"
+    labels:
+      kompose.service.type: LoadBalancer
