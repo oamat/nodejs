@@ -1,0 +1,27 @@
+
+
+HSET collectorpns:MIC status "1"
+HGET collectorpns:MIC status
+
+HSET collectorpns:MIC interval "2000"
+HGET collectorpns:MIC interval
+
+HSET collectorpns:MIC intervalControl "30000"
+HGET collectorpns:MIC intervalControl
+
+HSET collectorpns:MIC operator "MIC"
+HGET collectorpns:MIC operator
+
+
+LPUSH PNS.MIC.1 '{"dispatched":false,"priority":1,"interface":"REST","retries":0,"deferred":false,"status":0,"contract":"PUSHLOWEB","application":"CaixaMIC","user":"userTst","uuiddevice":"kk34699272809","action":"show","content":"content push notification","params":[{"param":"icono1","value":"new1","type":"String"},{"param":"icono2","value":"new2","type":"String"}],"_id":"848ba1b0-3ec1-442e-ad67-39d575d45f2e","receivedAt":"2019-08-19T22:05:28.162Z","operator":"MIC","channel":"PNS.MIC.1","createdAt":"2019-08-19T22:05:28.168Z","updatedAt":"2019-08-19T22:05:28.168Z","__v":0}'
+LPUSH PNS.MIC.1 '{"dispatched":false,"priority":1,"interface":"REST","retries":0,"deferred":false,"status":0,"contract":"PUSHLOWEB","application":"CaixaMIC","user":"userTst","uuiddevice":"kk34699272809","action":"show","content":"content push notification","params":[{"param":"icono1","value":"new1","type":"String"},{"param":"icono2","value":"new2","type":"String"}],"_id":"848ba1b0-3ec1-442e-ad67-39d575d45f3e","receivedAt":"2019-08-19T22:05:28.162Z","operator":"MIC","channel":"PNS.MIC.1","createdAt":"2019-08-19T22:05:28.168Z","updatedAt":"2019-08-19T22:05:28.168Z","__v":0}'
+LLEN PNS.MIC.1
+LRANGE PNS.MIC.1 0 -1
+
+SADD PNS.IDS.PENDING "848ba1b0-3ec1-442e-ad67-39d575d45f2e"
+SADD PNS.IDS.PENDING "848ba1b0-3ec1-442e-ad67-39d575d45f3e"
+SCARD PNS.IDS.PENDING
+
+RPOP PNS.MIC.1
+SREM PNS.IDS.PENDING "6d30f444-815d-48d4-ac24-09a1ae6c0e23"
+

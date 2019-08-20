@@ -1,11 +1,16 @@
 {
   "name": "apple",
   "version": "1.0.0",
-  "description": "apple",
+  "description": "movistar",
   "main": "index.js",
   "scripts": {
     "test": "test"
   },
   "author": "OAF",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "mongoose": "^5.6.9",
+    "redis": "^2.8.0",
+    "uuid": "^3.3.2"
+  }
 }
