@@ -1,6 +1,4 @@
-# NotifyPlatform to send SMS & PNS
-
-Each folder contains a platform module.
+# APIStatus, a module of NotifyPlatform for SMS&PNS return states from operator, etc 
 
 #Mongodb: Remember starting mongoDB :
 .\mongod.exe -dbpath E:\dev\mongodb\mongo-data\
