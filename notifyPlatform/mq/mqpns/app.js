@@ -125,6 +125,7 @@ async function getCB(err, hObj, gmo, md, buf, hConn) {
                 try {
                     const pns = new Pns(JSON.parse(smsJSON)); // convert json to object,  await it's unnecessary because is the first creation of object. Model Validations are check when save in Mongodb, not here. 
                     await auth(pns);
+                    if (pns.priority < 1) pns.priority = 2; //only accept priorities 2 or 3 in MQ Service. 
                     pns.operator = await hget("contractpns:" + pns.contract, "operator"); //Operator by default by contract. we checked the param before (in auth)
                     const collectorOperator = hget("collectorpns:" + pns.operator, "operator"); //this method is Async, but we can get in parallel until need it (with await). 
                     if (pns.operator == "ALL") { //If operator is ALL means that we need to find the better operator for the telf. 

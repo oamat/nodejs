@@ -17,10 +17,8 @@ services:
     labels:
       kompose.service.type: LoadBalancer
     links:
-      - redisconf
       - redispns
     depends_on:
-      - redisconf
       - redispns
   #google
    #Optional you can create the docker image  (# docker build -t name).
@@ -37,10 +35,8 @@ services:
     labels:
       kompose.service.type: LoadBalancer
     links:
-      - redisconf
       - redispns
     depends_on:
-      - redisconf
       - redispns
   #microsoft
    #Optional you can create the docker image  (# docker build -t name).
@@ -57,10 +53,8 @@ services:
     labels:
       kompose.service.type: LoadBalancer
     links:
-      - redisconf
       - redispns
     depends_on:
-      - redisconf
       - redispns
   #movistar
    #Optional you can create the docker image  (# docker build -t name) .
@@ -78,11 +72,9 @@ services:
       kompose.service.type: LoadBalancer
 
     links:
-      - redisconf
       - redissms
     depends_on:
-      - redisconf
-      - redissms
+       - redissms
   #movistarvip
    #Optional you can create the docker image  (# docker build -t name) .
   movistarvip: 
@@ -99,10 +91,8 @@ services:
       kompose.service.type: LoadBalancer
 
     links:
-      - redisconf
       - redissms
     depends_on:
-      - redisconf
       - redissms
   #vodafone
    #Optional you can create the docker image  (# docker build -t name) .
@@ -120,10 +110,8 @@ services:
       kompose.service.type: LoadBalancer
 
     links:
-      - redisconf
       - redissms
     depends_on:
-      - redisconf
       - redissms
   #orange
    #Optional you can create the docker image  (# docker build -t name) .
@@ -141,33 +129,8 @@ services:
       kompose.service.type: LoadBalancer
 
     links:
-      - redisconf
       - redissms
     depends_on:
-      - redisconf
-      - redissms
-  #console
-   #Optional you can create the docker image  (# docker build -t name) .
-  console: 
-    #build: . #build: Dockerfile #Optional : "build: ." Uses an image that’s built from the Dockerfile in the current directory.  
-    image: console
-    container_name: "console"      
-    restart: always
-    ports:
-      - 3003:3000
-    
-    environment:
-      NODE_ENV: "docker"
-    labels:
-      kompose.service.type: LoadBalancer
-
-    links:
-      - redisconf
-      - redispns
-      - redissms
-    depends_on:
-      - redisconf
-      - redispns
       - redissms
   #mqsms
    #Optional you can create the docker image  (# docker build -t name) .
@@ -185,10 +148,8 @@ services:
       kompose.service.type: LoadBalancer
 
     links:
-      - redisconf
       - redissms
     depends_on:
-      - redisconf
       - redissms
   #mqpns
    #Optional you can create the docker image  (# docker build -t name) .
@@ -206,10 +167,8 @@ services:
       kompose.service.type: LoadBalancer
 
     links:
-      - redisconf
       - redispns
     depends_on:
-      - redisconf
       - redispns
   #apisms
    #Optional you can create the docker image  (# docker build -t name) .
@@ -227,10 +186,29 @@ services:
       kompose.service.type: LoadBalancer
 
     links:
-      - redisconf
+      - redispns
       - redissms
     depends_on:
-      - redisconf
+      - redispns
+      - redissms
+  #apisms
+   #Optional you can create the docker image  (# docker build -t name) .
+  apisms: 
+    #build: . #build: Dockerfile #Optional : "build: ." Uses an image that’s built from the Dockerfile in the current directory.  
+    image: apisms
+    container_name: "apisms"      
+    restart: always
+    ports:
+      - 3005:3000
+    
+    environment:
+      NODE_ENV: "docker"
+    labels:
+      kompose.service.type: LoadBalancer
+
+    links:
+      - redissms
+    depends_on:
       - redissms
   #apipns
    #Optional you can create the docker image  (# docker build -t name) .
@@ -248,10 +226,8 @@ services:
       kompose.service.type: LoadBalancer
 
     links:
-      - redisconf
       - redispns
     depends_on:
-      - redisconf
       - redispns
   #status
    #Optional you can create the docker image  (# docker build -t name) .
@@ -269,10 +245,11 @@ services:
       kompose.service.type: LoadBalancer
 
     links:
-      - redisconf
+      - redispns
+      - redissms
     depends_on:
-      - redisconf
-
+      - redispns
+      - redissms
   #retriessms
    #Optional you can create the docker image  (# docker build -t name) .
   retriessms: 
@@ -289,10 +266,8 @@ services:
       kompose.service.type: LoadBalancer
 
     links:
-      - redisconf
       - redissms
     depends_on:
-      - redisconf
       - redissms
   #retriespns
    #Optional you can create the docker image  (# docker build -t name) .
@@ -310,10 +285,8 @@ services:
       kompose.service.type: LoadBalancer
 
     links:
-      - redisconf
       - redispns
     depends_on:
-      - redisconf
       - redispns
 
   #redispns
@@ -341,22 +314,6 @@ services:
     restart: always
     ports:
       - 3009:3000
-    
-    environment:
-      NODE_ENV: "docker"
-    labels:
-      kompose.service.type: LoadBalancer
-
-
-  #redisconf
-   #Optional you can create the docker image  (# docker build -t name) .
-  redisconf: 
-    #build: . #build: Dockerfile #Optional : "build: ." Uses an image that’s built from the Dockerfile in the current directory.  
-    image: redisconf
-    container_name: "redisconf"      
-    restart: always
-    ports:
-      - 3007:3000
     
     environment:
       NODE_ENV: "docker"

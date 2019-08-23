@@ -1,7 +1,7 @@
 #!/bin/bash
 # script that install all dependencies for dev local 
 # In root mode : # sudo -i
-#For Minikube Open the sources.list file:  sudo vi /etc/apt/sources.list  
+# For Minikube Open the sources.list file:  sudo vi /etc/apt/sources.list  
 # & Place the following command in the sources.list file: 
                 #    deb http://download.virtualbox.org/virtualbox/debian xenial contrib
                 #    OR echo "deb http://download.virtualbox.org/virtualbox/debian xenial contrib" >> /etc/apt/sources.list
