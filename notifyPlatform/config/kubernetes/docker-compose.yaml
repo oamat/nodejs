@@ -170,15 +170,15 @@ services:
       - redispns
     depends_on:
       - redispns
-  #apisms
+  #apiadmin
    #Optional you can create the docker image  (# docker build -t name) .
-  apisms: 
+  apiadmin: 
     #build: . #build: Dockerfile #Optional : "build: ." Uses an image that’s built from the Dockerfile in the current directory.  
-    image: apisms
-    container_name: "apisms"      
+    image: apiadmin
+    container_name: "apiadmin"      
     restart: always
     ports:
-      - 3005:3000
+      - 3020:3000
     
     environment:
       NODE_ENV: "docker"
@@ -229,12 +229,12 @@ services:
       - redispns
     depends_on:
       - redispns
-  #status
+  #apistatus
    #Optional you can create the docker image  (# docker build -t name) .
-  status: 
+  apistatus: 
     #build: . #build: Dockerfile #Optional : "build: ." Uses an image that’s built from the Dockerfile in the current directory.  
-    image: status
-    container_name: "status"      
+    image: apistatus
+    container_name: "apistatus"      
     restart: always
     ports:
       - 3006:3000

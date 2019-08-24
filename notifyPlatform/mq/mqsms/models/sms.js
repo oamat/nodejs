@@ -51,15 +51,16 @@ const smsSchema = new mongoose.Schema({
         required: true,
         trim: true,
         validate(value) {
-            if (value.length > 160 ) throw new Error('message is invalid, it must be less than 160 characters.');
+            if (value.length > 160) throw new Error('message is invalid, it must be less than 160 characters.');
         }
     },
     priority: {
         type: Number,
         required: true,
-        default: 1,  //0 VIP, 1 online, 2 MQ, 3 batch
+        default: 3,  //0 VIP, 1 online, 2 MQ alta, 3 MQ normal, 4 MQ baja-batch alta, 5 batch baja
         validate(value) {
-            if (value<0 || value>3) throw new Error('priority is invalid. The accepted values are 0,1,2 or 3.');
+            if (value < 2) return 2;  // MQ priority needs to be >1. 0,1 are reserve for API online 
+            else if (value > 5) return 5;  // MQ priority needs to be <66
         }
     },
     interface: {
@@ -89,7 +90,7 @@ const smsSchema = new mongoose.Schema({
     },
     operator: {
         type: String, //MOV, ORA, VOD, NOS,...
-        required: true        
+        required: true
     },
     channel: {
         type: String, //SMS.MOV.1, [MOV, ORA, VOD, NOS] [0,1,2,3]

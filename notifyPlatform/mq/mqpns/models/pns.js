@@ -75,9 +75,10 @@ const pnsSchema = new mongoose.Schema({
     priority: {
         type: Number,
         required: true,
-        default: 1,  //0 VIP, 1 online, 2 MQ, 3 batch
+        default: 3,  //0 VIP, 1 online, 2 MQ alta, 3 MQ normal, 4 MQ baja-batch alta, 5 batch baja
         validate(value) {
-            if (value < 0 || value > 3) throw new Error('priority is invalid. The accepted values are 0,1,2 or 3.');
+            if (value < 2) return 2;  // MQ priority needs to be >1. 0,1 are reserve for API online 
+            else if (value > 5) return 5;  // MQ priority needs to be <6
         }
     },
     interface: {
@@ -114,7 +115,7 @@ const pnsSchema = new mongoose.Schema({
         required: true
     },
     params: [{
-        _id : false,
+        _id: false,
         param: {
             type: String,
             required: false
@@ -126,7 +127,7 @@ const pnsSchema = new mongoose.Schema({
         type: {
             type: String,
             required: false
-        }        
+        }
     }]
 }, {
         timestamps: true //If set timestamps, mongoose assigns createdAt and updatedAt fields to your schema, the type assigned is Date.

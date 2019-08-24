@@ -1,9 +1,9 @@
-  #status
+  #apistatus
    #Optional you can create the docker image  (# docker build -t name) .
-  status: 
+  apistatus: 
     #build: . #build: Dockerfile #Optional : "build: ." Uses an image that’s built from the Dockerfile in the current directory.  
-    image: status
-    container_name: "status"      
+    image: apistatus
+    container_name: "apistatus"      
     restart: always
     ports:
       - 3006:3000

@@ -75,9 +75,9 @@ const pnsSchema = new mongoose.Schema({
     priority: {
         type: Number,
         required: true,
-        default: 1,  //0 VIP, 1 online, 2 MQ, 3 batch
+        default: 1,  //0 VIP, 1 online, 2 MQ alta, 3 MQ normal, 4 MQ baja-batch alta, 5 batch baja
         validate(value) {
-            if (value < 0 || value > 3) throw new Error('priority is invalid. The accepted values are 0,1,2 or 3.');
+            if (value<0 || value>5) throw new Error('priority is invalid. The accepted values are 0,1,2,3,4 or 5.');
         }
     },
     interface: {

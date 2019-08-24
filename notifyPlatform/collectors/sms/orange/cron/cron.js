@@ -83,7 +83,7 @@ const sendNextSMS = async () => {
 
 const nextSMS = async () => {
     try {
-        return await rpop(channels.channel0) || await rpop(channels.channel1) || await rpop(channels.channel2) || await rpop(channels.channel3); //return the next sms by priority order.  
+        return await rpop(channels.channel0) || await rpop(channels.channel1) || await rpop(channels.channel2) || await rpop(channels.channel3) || await rpop(channels.channel4) || await rpop(channels.channel5); //return the next sms by priority order.  
     } catch (error) {
         console.log(process.env.YELLOW_COLOR, "ERROR: we have a problem with redis rpop : " + error.message);
         console.error(error); //continue the execution cron

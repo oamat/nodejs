@@ -13,7 +13,14 @@ const buildChannel = (operator, priority) => {
 }
 
 const buildChannels = (operator) => {
-   return { channel0: buildChannel(operator, 0), channel1: buildChannel(operator, 1), channel2: buildChannel(operator, 2), channel3: buildChannel(operator, 3) };
+   return { 
+      channel0: buildChannel(operator, 0), 
+      channel1: buildChannel(operator, 1), 
+      channel2: buildChannel(operator, 2), 
+      channel3: buildChannel(operator, 3),
+      channel4: buildChannel(operator, 4),
+      channel5: buildChannel(operator, 5)
+    };
 }
 
 
