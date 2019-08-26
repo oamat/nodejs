@@ -1,0 +1,31 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert
+    kompose.service.type: LoadBalancer
+    kompose.version: 1.18.0 (06a2e56)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: mqsms
+  name: mqsms
+spec:
+  replicas: 1
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        io.kompose.service: mqsms
+    spec:
+      containers:
+      - env:
+        - name: NODE_ENV
+          value: docker
+        image: mqsms
+        name: mqsms
+        ports:
+        - containerPort: 3000
+        resources: {}
+      restartPolicy: Always
+status: {}

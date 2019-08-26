@@ -1,0 +1,31 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert
+    kompose.service.type: LoadBalancer
+    kompose.version: 1.18.0 (06a2e56)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: retriessms
+  name: retriessms
+spec:
+  replicas: 1
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        io.kompose.service: retriessms
+    spec:
+      containers:
+      - env:
+        - name: NODE_ENV
+          value: docker
+        image: retriessms
+        name: retriessms
+        ports:
+        - containerPort: 3000
+        resources: {}
+      restartPolicy: Always
+status: {}

@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    kompose.cmd: kompose convert
+    kompose.service.type: LoadBalancer
+    kompose.version: 1.18.0 (06a2e56)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: apisms
+  name: apisms
+spec:
+  ports:
+  - name: "3005"
+    port: 3005
+    targetPort: 3000
+  selector:
+    io.kompose.service: apisms
+  type: LoadBalancer
+status:
+  loadBalancer: {}

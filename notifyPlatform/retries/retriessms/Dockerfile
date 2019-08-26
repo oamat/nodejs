@@ -2,7 +2,7 @@ FROM node:8
 
 LABEL maintainer="oriol.amat@gmail.com"
 LABEL version="1.0"
-LABEL description="oasis module test"
+LABEL description="notifyPlatform module test"
 
 # Create app directory
 WORKDIR /usr/src/app

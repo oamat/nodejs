@@ -1,0 +1,14 @@
+  #redispns
+   #Optional you can create the docker image  (# docker build -t name) .
+  redispns: 
+    #build: . #build: Dockerfile #Optional : "build: ." Uses an image that’s built from the Dockerfile in the current directory.  
+    image: redispns
+    container_name: "redispns"      
+    restart: always
+    ports:
+      - 6380:6380
+    
+    environment:
+      NODE_ENV: "docker"
+    labels:
+      kompose.service.type: LoadBalancer

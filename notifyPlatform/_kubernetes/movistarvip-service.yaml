@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    kompose.cmd: kompose convert
+    kompose.service.type: LoadBalancer
+    kompose.version: 1.18.0 (06a2e56)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: movistarvip
+  name: movistarvip
+spec:
+  ports:
+  - name: "3018"
+    port: 3018
+    targetPort: 3000
+  selector:
+    io.kompose.service: movistarvip
+  type: LoadBalancer
+status:
+  loadBalancer: {}

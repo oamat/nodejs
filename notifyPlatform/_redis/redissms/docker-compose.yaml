@@ -1,0 +1,14 @@
+  #redissms
+   #Optional you can create the docker image  (# docker build -t name) .
+  redissms: 
+    #build: . #build: Dockerfile #Optional : "build: ." Uses an image that’s built from the Dockerfile in the current directory.  
+    image: redissms
+    container_name: "redissms"      
+    restart: always
+    ports:
+      - 6381:6381
+    
+    environment:
+      NODE_ENV: "docker"
+    labels:
+      kompose.service.type: LoadBalancer

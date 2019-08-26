@@ -1,0 +1,19 @@
+  #mongosms
+   #Optional you can create the docker image  (# docker build -t name) .
+  mongosms: 
+    #build: . #build: Dockerfile #Optional : "build: ." Uses an image that’s built from the Dockerfile in the current directory.
+    image: mongosms
+    container_name: "mongosms"
+    restart: always
+    #volumes:
+    #  - ./data:/data/db
+    ports:
+      - 27019:27019
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: "root"
+      MONGO_INITDB_ROOT_PASSWORD: "example"
+      MONGO_INITDB_DATABASE: "test"
+    labels:
+      kompose.service.type: LoadBalancer
+  
+  

@@ -1,0 +1,396 @@
+version: "3.1"
+
+services:
+
+  #apple
+   #Optional you can create the docker image  (# docker build -t name).
+  apple: 
+    #build: . #build: Dockerfile #Optional : "build: ." Uses an image that’s built from the Dockerfile in the current directory.  
+    image: apple
+    container_name: "apple"      
+    restart: always
+    ports:
+      - 3001:3000
+    
+    environment:
+      NODE_ENV: "docker"
+    labels:
+      kompose.service.type: LoadBalancer
+    links:
+      - redispns
+      - mongopns
+    depends_on:
+      - redispns
+      - mongopns
+  #google
+   #Optional you can create the docker image  (# docker build -t name).
+  google: 
+    #build: . #build: Dockerfile #Optional : "build: ." Uses an image that’s built from the Dockerfile in the current directory.  
+    image: google
+    container_name: "google"      
+    restart: always
+    ports:
+      - 3000:3000
+    
+    environment:
+      NODE_ENV: "docker"
+    labels:
+      kompose.service.type: LoadBalancer
+    links:
+      - redispns
+      - mongopns
+    depends_on:
+      - redispns
+      - mongopns
+  #microsoft
+   #Optional you can create the docker image  (# docker build -t name).
+  microsoft: 
+    #build: . #build: Dockerfile #Optional : "build: ." Uses an image that’s built from the Dockerfile in the current directory.  
+    image: microsoft
+    container_name: "microsoft"      
+    restart: always
+    ports:
+      - 3013:3000
+    
+    environment:
+      NODE_ENV: "docker"
+    labels:
+      kompose.service.type: LoadBalancer
+    links:
+      - redispns
+      - mongopns
+    depends_on:
+      - redispns
+      - mongopns
+  #movistar
+   #Optional you can create the docker image  (# docker build -t name) .
+  movistar: 
+    #build: . #build: Dockerfile #Optional : "build: ." Uses an image that’s built from the Dockerfile in the current directory.  
+    image: movistar
+    container_name: "movistar"      
+    restart: always
+    ports:
+      - 3002:3000
+    
+    environment:
+      NODE_ENV: "docker"
+    labels:
+      kompose.service.type: LoadBalancer
+
+    links:
+      - redissms
+      - mongosms
+    depends_on:
+      - redissms
+      - mongosms
+  #movistarvip
+   #Optional you can create the docker image  (# docker build -t name) .
+  movistarvip: 
+    #build: . #build: Dockerfile #Optional : "build: ." Uses an image that’s built from the Dockerfile in the current directory.  
+    image: movistarvip
+    container_name: "movistarvip"      
+    restart: always
+    ports:
+      - 3018:3000
+    
+    environment:
+      NODE_ENV: "docker"
+    labels:
+      kompose.service.type: LoadBalancer
+
+    links:
+      - redissms
+      - mongosms
+    depends_on:
+      - redissms
+      - mongosms
+  #vodafone
+   #Optional you can create the docker image  (# docker build -t name) .
+  vodafone: 
+    #build: . #build: Dockerfile #Optional : "build: ." Uses an image that’s built from the Dockerfile in the current directory.  
+    image: vodafone
+    container_name: "vodafone"      
+    restart: always
+    ports:
+      - 3016:3000
+    
+    environment:
+      NODE_ENV: "docker"
+    labels:
+      kompose.service.type: LoadBalancer
+
+    links:
+      - redissms
+      - mongosms
+    depends_on:
+      - redissms
+      - mongosms
+  #orange
+   #Optional you can create the docker image  (# docker build -t name) .
+  orange: 
+    #build: . #build: Dockerfile #Optional : "build: ." Uses an image that’s built from the Dockerfile in the current directory.  
+    image: orange
+    container_name: "orange"      
+    restart: always
+    ports:
+      - 3015:3000
+    
+    environment:
+      NODE_ENV: "docker"
+    labels:
+      kompose.service.type: LoadBalancer
+
+    links:
+      - redissms
+      - mongosms
+    depends_on:
+      - redissms
+      - mongosms
+  #mqsms
+   #Optional you can create the docker image  (# docker build -t name) .
+  mqsms: 
+    #build: . #build: Dockerfile #Optional : "build: ." Uses an image that’s built from the Dockerfile in the current directory.  
+    image: mqsms
+    container_name: "mqsms"      
+    restart: always
+    ports:
+      - 3014:3000
+    
+    environment:
+      NODE_ENV: "docker"
+    labels:
+      kompose.service.type: LoadBalancer
+
+    links:
+      - redissms
+      - mongosms
+    depends_on:
+      - redissms
+      - mongosms
+  #mqpns
+   #Optional you can create the docker image  (# docker build -t name) .
+  mqpns: 
+    #build: . #build: Dockerfile #Optional : "build: ." Uses an image that’s built from the Dockerfile in the current directory.  
+    image: mqpns
+    container_name: "mqpns"      
+    restart: always
+    ports:
+      - 3004:3000
+    
+    environment:
+      NODE_ENV: "docker"
+    labels:
+      kompose.service.type: LoadBalancer
+
+    links:
+      - redispns
+      - mongopns
+    depends_on:
+      - redispns
+      - mongopns
+  #apiadmin
+   #Optional you can create the docker image  (# docker build -t name) .
+  apiadmin: 
+    #build: . #build: Dockerfile #Optional : "build: ." Uses an image that’s built from the Dockerfile in the current directory.  
+    image: apiadmin
+    container_name: "apiadmin"      
+    restart: always
+    ports:
+      - 3020:3000
+    
+    environment:
+      NODE_ENV: "docker"
+    labels:
+      kompose.service.type: LoadBalancer
+
+    links:
+      - redispns
+      - redissms
+      - mongopns
+      - mongosms
+    depends_on:
+      - redispns
+      - redissms
+      - mongopns
+      - mongosms
+  #apisms
+   #Optional you can create the docker image  (# docker build -t name) .
+  apisms: 
+    #build: . #build: Dockerfile #Optional : "build: ." Uses an image that’s built from the Dockerfile in the current directory.  
+    image: apisms
+    container_name: "apisms"      
+    restart: always
+    ports:
+      - 3005:3000
+    
+    environment:
+      NODE_ENV: "docker"
+    labels:
+      kompose.service.type: LoadBalancer
+
+    links:
+      - redissms
+      - mongosms
+    depends_on:
+      - redissms
+      - mongosms
+  #apipns
+   #Optional you can create the docker image  (# docker build -t name) .
+  apipns: 
+    #build: . #build: Dockerfile #Optional : "build: ." Uses an image that’s built from the Dockerfile in the current directory.  
+    image: apipns
+    container_name: "apipns"      
+    restart: always
+    ports:
+      - 3011:3000
+    
+    environment:
+      NODE_ENV: "docker"
+    labels:
+      kompose.service.type: LoadBalancer
+
+    links:
+      - redispns
+      - mongopns
+    depends_on:
+      - redispns
+      - mongopns
+  #apistatus
+   #Optional you can create the docker image  (# docker build -t name) .
+  apistatus: 
+    #build: . #build: Dockerfile #Optional : "build: ." Uses an image that’s built from the Dockerfile in the current directory.  
+    image: apistatus
+    container_name: "apistatus"      
+    restart: always
+    ports:
+      - 3006:3000
+    
+    environment:
+      NODE_ENV: "docker"
+    labels:
+      kompose.service.type: LoadBalancer
+
+    links:
+      - redispns
+      - redissms
+      - mongopns
+      - mongosms
+    depends_on:
+      - redispns
+      - redissms
+      - mongopns
+      - mongosms
+  #retriessms
+   #Optional you can create the docker image  (# docker build -t name) .
+  retriessms: 
+    #build: . #build: Dockerfile #Optional : "build: ." Uses an image that’s built from the Dockerfile in the current directory.  
+    image: retriessms
+    container_name: "retriessms"      
+    restart: always
+    ports:
+      - 3012:3000
+    
+    environment:
+      NODE_ENV: "docker"
+    labels:
+      kompose.service.type: LoadBalancer
+
+    links:
+      - redissms
+      - mongosms
+    depends_on:
+      - redissms
+      - mongosms
+  #retriespns
+   #Optional you can create the docker image  (# docker build -t name) .
+  retriespns: 
+    #build: . #build: Dockerfile #Optional : "build: ." Uses an image that’s built from the Dockerfile in the current directory.  
+    image: retriespns
+    container_name: "retriespns"      
+    restart: always
+    ports:
+      - 3010:3000
+    
+    environment:
+      NODE_ENV: "docker"
+    labels:
+      kompose.service.type: LoadBalancer
+
+    links:
+      - redispns
+      - mongopns
+    depends_on:
+      - redispns
+      - mongopns
+
+  #redispns
+   #Optional you can create the docker image  (# docker build -t name) .
+  redispns: 
+    #build: . #build: Dockerfile #Optional : "build: ." Uses an image that’s built from the Dockerfile in the current directory.  
+    image: redispns
+    container_name: "redispns"      
+    restart: always
+    ports:
+      - 6380:6380
+    
+    environment:
+      NODE_ENV: "docker"
+    labels:
+      kompose.service.type: LoadBalancer
+
+
+  #redissms
+   #Optional you can create the docker image  (# docker build -t name) .
+  redissms: 
+    #build: . #build: Dockerfile #Optional : "build: ." Uses an image that’s built from the Dockerfile in the current directory.  
+    image: redissms
+    container_name: "redissms"      
+    restart: always
+    ports:
+      - 6381:6381
+    
+    environment:
+      NODE_ENV: "docker"
+    labels:
+      kompose.service.type: LoadBalancer
+
+
+  #mongopns
+   #Optional you can create the docker image  (# docker build -t name) .
+  mongopns: 
+    #build: . #build: Dockerfile #Optional : "build: ." Uses an image that’s built from the Dockerfile in the current directory.
+    image: mongopns
+    container_name: "mongopns"
+    restart: always
+    #volumes:
+    #  - ./data:/data/db
+    ports:
+      - 27018:27018
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: "root"
+      MONGO_INITDB_ROOT_PASSWORD: "example"
+      MONGO_INITDB_DATABASE: "test"
+    labels:
+      kompose.service.type: LoadBalancer
+  
+  
+
+  #mongosms
+   #Optional you can create the docker image  (# docker build -t name) .
+  mongosms: 
+    #build: . #build: Dockerfile #Optional : "build: ." Uses an image that’s built from the Dockerfile in the current directory.
+    image: mongosms
+    container_name: "mongosms"
+    restart: always
+    #volumes:
+    #  - ./data:/data/db
+    ports:
+      - 27019:27019
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: "root"
+      MONGO_INITDB_ROOT_PASSWORD: "example"
+      MONGO_INITDB_DATABASE: "test"
+    labels:
+      kompose.service.type: LoadBalancer
+  
+  

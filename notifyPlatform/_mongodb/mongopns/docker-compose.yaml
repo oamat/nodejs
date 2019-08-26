@@ -1,0 +1,19 @@
+  #mongopns
+   #Optional you can create the docker image  (# docker build -t name) .
+  mongopns: 
+    #build: . #build: Dockerfile #Optional : "build: ." Uses an image that’s built from the Dockerfile in the current directory.
+    image: mongopns
+    container_name: "mongopns"
+    restart: always
+    #volumes:
+    #  - ./data:/data/db
+    ports:
+      - 27018:27018
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: "root"
+      MONGO_INITDB_ROOT_PASSWORD: "example"
+      MONGO_INITDB_DATABASE: "test"
+    labels:
+      kompose.service.type: LoadBalancer
+  
+  
