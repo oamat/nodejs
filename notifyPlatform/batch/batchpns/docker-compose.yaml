@@ -1,9 +1,9 @@
-  #batchsms
+  #batchpns
    #Optional you can create the docker image  (# docker build -t name) .
-  batchsms: 
+  batchpns: 
     #build: . #build: Dockerfile #Optional : "build: ." Uses an image that’s built from the Dockerfile in the current directory.  
-    image: batchsms
-    container_name: "batchsms"      
+    image: batchpns
+    container_name: "batchpns"      
     restart: always
     
     environment:
