@@ -10,7 +10,7 @@ LABEL description="notifyPlatform redis for PNS"
 # If you are building your code for production
 # RUN npm install --only=production
 
-EXPOSE 6380
+EXPOSE 30081
 
-CMD [ "redis-server", "--port", "6380"]
+CMD [ "redis-server", "--port", "30081"]
 #CMD [ "redis-server", "/usr/local/etc/redis/redis.conf" ]

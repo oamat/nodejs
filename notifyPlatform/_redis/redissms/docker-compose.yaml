@@ -6,9 +6,10 @@
     container_name: "redissms"      
     restart: always
     ports:
-      - 6381:6381
+      - 30080:30080
     
     environment:
       NODE_ENV: "docker"
     labels:
       kompose.service.type: LoadBalancer
+      kompose.image-pull-policy: Never

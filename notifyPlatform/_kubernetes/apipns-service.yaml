@@ -3,7 +3,9 @@ kind: Service
 metadata:
   annotations:
     kompose.cmd: kompose convert
-    kompose.service.type: LoadBalancer
+    kompose.image-pull-policy: Never
+    kompose.service.nodePort: "30080"
+    kompose.service.type: NodePort
     kompose.version: 1.18.0 (06a2e56)
   creationTimestamp: null
   labels:
@@ -16,6 +18,6 @@ spec:
     targetPort: 3000
   selector:
     io.kompose.service: apipns
-  type: LoadBalancer
+  type: NodePort
 status:
   loadBalancer: {}

@@ -13,8 +13,8 @@
 // Dependencies
 
 require('./config/config'); //we need configurations
-const { initializeMongooseConection } = require('./config/mongoose'); //we need to initialize mongoose
-const { rclient } = require('./config/redis'); //we need to initialize redis
+const { initializeMongooseConnection } = require('./config/mongoosepns'); //we need to initialize mongoose
+const { rclient } = require('./config/redispns'); //we need to initialize redis
 const Pns = require('./models/pns');
 const { savePNS } = require('./util/mongodb');
 const { hget, lpush, sadd, set } = require('./util/redis');
@@ -43,8 +43,8 @@ var exitCode = 0;
 const initializeAllSources = async () => { // Init Mongoose with await    
     //START PARALLEL excution with await Promise.all.
     await Promise.all([ //Async Promises: all tasks start immediately 
-        initializeMongooseConection(),  // Init mongoose
-        rclient.set("initializeRedisConection:test", "test") // little test redis
+        initializeMongooseConnection(),  // Init mongoose
+        rclient.set("initializeRedisConnection:test", "test") // little test redis
     ]);
     //END PARALLEL excution with await Promise.all.
 

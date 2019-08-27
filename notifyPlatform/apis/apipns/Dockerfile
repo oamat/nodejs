@@ -23,6 +23,6 @@ RUN npm install
 # If you are building your code for production
 # RUN npm install --only=production
 
-EXPOSE 3000
+EXPOSE 30002
 
 CMD [ "node", "index.js" ]

@@ -12,3 +12,4 @@
       NODE_ENV: "docker"
     labels:
       kompose.service.type: LoadBalancer
+      kompose.image-pull-policy: Never

@@ -2,9 +2,10 @@
 
 Each folder contains a platform module.
 
-# Enviroment: use   $env:NODE_ENV="developer" for change
+# Enviroment: use NODE_ENV env variable  : 
+       $env:NODE_ENV="development" 
 
-#Mongodb: Remember starting mongoDB :
+#Mongodb: Remember starting mongoDB  :
 $ cd /notifyPlatform/_mongodb/mongosms/
 $ . runDocker.sh
 $ cd /notifyPlatform/_mongodb/mongopns/
@@ -18,8 +19,8 @@ $ cd /notifyPlatform/_redis/redispns
 $ . runDocker.sh
 
 # Redis client :
-  $ rdcli -h 192.168.99.100 -p 6380  (for redispns) (redis-cli for testing: npm install redis )
-  $ rdcli -h 192.168.99.100 -p 6381  (for redissms) (redis-cli for testing: npm install redis )
+  $ rdcli -h 192.168.99.100 / localhost -p 30080  (for redissms) (redis-cli for testing: npm install redis )
+  $ rdcli -h 192.168.99.100 / localhost -p 30081  (for redispns) (redis-cli for testing: npm install redis ) 
        # ping      
 
 You can use postman for valid requests to the API (test API.postman_collection.json is the config collection postman file),'url' is a variable and it needs initialize in enviroments

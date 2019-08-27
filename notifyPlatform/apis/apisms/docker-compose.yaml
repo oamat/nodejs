@@ -6,9 +6,10 @@
     container_name: "apisms"      
     restart: always
     ports:
-      - 3005:3000
+      - 30001:30001
     
     environment:
       NODE_ENV: "docker"
     labels:
       kompose.service.type: LoadBalancer
+      kompose.image-pull-policy: Never

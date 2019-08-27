@@ -3,7 +3,8 @@ kind: Deployment
 metadata:
   annotations:
     kompose.cmd: kompose convert
-    kompose.service.type: LoadBalancer
+    kompose.image-pull-policy: Never
+    kompose.service.type: NodePort
     kompose.version: 1.18.0 (06a2e56)
   creationTimestamp: null
   labels:
@@ -23,6 +24,7 @@ spec:
         - name: NODE_ENV
           value: docker
         image: orange
+        imagePullPolicy: Never
         name: orange
         ports:
         - containerPort: 3000

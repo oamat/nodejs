@@ -8,12 +8,13 @@
     #volumes:
     #  - ./data:/data/db
     ports:
-      - 27019:27019
+      - 30090:30090
     environment:
       MONGO_INITDB_ROOT_USERNAME: "root"
       MONGO_INITDB_ROOT_PASSWORD: "example"
       MONGO_INITDB_DATABASE: "test"
     labels:
       kompose.service.type: LoadBalancer
+      kompose.image-pull-policy: Never
   
   

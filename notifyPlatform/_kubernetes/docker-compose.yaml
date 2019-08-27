@@ -15,7 +15,8 @@ services:
     environment:
       NODE_ENV: "docker"
     labels:
-      kompose.service.type: LoadBalancer
+      kompose.service.type: NodePort
+      kompose.image-pull-policy: Never
     links:
       - redispns
       - mongopns
@@ -35,7 +36,8 @@ services:
     environment:
       NODE_ENV: "docker"
     labels:
-      kompose.service.type: LoadBalancer
+      kompose.service.type: NodePort
+      kompose.image-pull-policy: Never
     links:
       - redispns
       - mongopns
@@ -55,7 +57,8 @@ services:
     environment:
       NODE_ENV: "docker"
     labels:
-      kompose.service.type: LoadBalancer
+      kompose.service.type: NodePort
+      kompose.image-pull-policy: Never
     links:
       - redispns
       - mongopns
@@ -75,7 +78,8 @@ services:
     environment:
       NODE_ENV: "docker"
     labels:
-      kompose.service.type: LoadBalancer
+      kompose.service.type: NodePort
+      kompose.image-pull-policy: Never
 
     links:
       - redissms
@@ -96,7 +100,8 @@ services:
     environment:
       NODE_ENV: "docker"
     labels:
-      kompose.service.type: LoadBalancer
+      kompose.service.type: NodePort
+      kompose.image-pull-policy: Never
 
     links:
       - redissms
@@ -117,7 +122,8 @@ services:
     environment:
       NODE_ENV: "docker"
     labels:
-      kompose.service.type: LoadBalancer
+      kompose.service.type: NodePort
+      kompose.image-pull-policy: Never
 
     links:
       - redissms
@@ -138,7 +144,8 @@ services:
     environment:
       NODE_ENV: "docker"
     labels:
-      kompose.service.type: LoadBalancer
+      kompose.service.type: NodePort
+      kompose.image-pull-policy: Never
 
     links:
       - redissms
@@ -159,7 +166,8 @@ services:
     environment:
       NODE_ENV: "docker"
     labels:
-      kompose.service.type: LoadBalancer
+      kompose.service.type: NodePort
+      kompose.image-pull-policy: Never
 
     links:
       - redissms
@@ -180,7 +188,8 @@ services:
     environment:
       NODE_ENV: "docker"
     labels:
-      kompose.service.type: LoadBalancer
+      kompose.service.type: NodePort
+      kompose.image-pull-policy: Never
 
     links:
       - redispns
@@ -201,7 +210,8 @@ services:
     environment:
       NODE_ENV: "docker"
     labels:
-      kompose.service.type: LoadBalancer
+      kompose.service.type: NodePort
+      kompose.image-pull-policy: Never
 
     links:
       - redispns
@@ -221,12 +231,13 @@ services:
     container_name: "apisms"      
     restart: always
     ports:
-      - 3005:3000
+      - 30080:3000
     
     environment:
       NODE_ENV: "docker"
     labels:
-      kompose.service.type: LoadBalancer
+      kompose.service.type: NodePort
+      kompose.image-pull-policy: Never
 
     links:
       - redissms
@@ -247,7 +258,9 @@ services:
     environment:
       NODE_ENV: "docker"
     labels:
-      kompose.service.type: LoadBalancer
+      kompose.service.type: NodePort
+      
+      kompose.image-pull-policy: Never
 
     links:
       - redispns
@@ -268,7 +281,8 @@ services:
     environment:
       NODE_ENV: "docker"
     labels:
-      kompose.service.type: LoadBalancer
+      kompose.service.type: NodePort
+      kompose.image-pull-policy: Never
 
     links:
       - redispns
@@ -293,7 +307,8 @@ services:
     environment:
       NODE_ENV: "docker"
     labels:
-      kompose.service.type: LoadBalancer
+      kompose.service.type: NodePort
+      kompose.image-pull-policy: Never
 
     links:
       - redissms
@@ -314,8 +329,8 @@ services:
     environment:
       NODE_ENV: "docker"
     labels:
-      kompose.service.type: LoadBalancer
-
+      kompose.service.type: NodePort
+      kompose.image-pull-policy: Never
     links:
       - redispns
       - mongopns
@@ -336,7 +351,8 @@ services:
     environment:
       NODE_ENV: "docker"
     labels:
-      kompose.service.type: LoadBalancer
+      kompose.service.type: NodePort
+      kompose.image-pull-policy: Never
 
 
   #redissms
@@ -352,7 +368,8 @@ services:
     environment:
       NODE_ENV: "docker"
     labels:
-      kompose.service.type: LoadBalancer
+      kompose.service.type: NodePort
+      kompose.image-pull-policy: Never
 
 
   #mongopns
@@ -371,7 +388,8 @@ services:
       MONGO_INITDB_ROOT_PASSWORD: "example"
       MONGO_INITDB_DATABASE: "test"
     labels:
-      kompose.service.type: LoadBalancer
+      kompose.service.type: NodePort
+      kompose.image-pull-policy: Never
   
   
 
@@ -391,6 +409,7 @@ services:
       MONGO_INITDB_ROOT_PASSWORD: "example"
       MONGO_INITDB_DATABASE: "test"
     labels:
-      kompose.service.type: LoadBalancer
+      kompose.service.type: NodePort
+      kompose.image-pull-policy: Never
   
   

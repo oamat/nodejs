@@ -8,7 +8,7 @@
 
 // Dependencies
 var configs = require('./config.json');
-var env = process.env.NODE_ENV || 'test';
+var env = process.env.NODE_ENV || 'development';
 var config = configs[env];  
 if (config == null){ 
   env = 'test'; 

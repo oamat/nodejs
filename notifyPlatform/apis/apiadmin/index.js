@@ -7,21 +7,21 @@
 
 // Dependencies
 require('./config/config'); //we need configurations
-const { initializeMongooseConection } = require('./config/mongoose'); //we need to initialize mongoose
-const {  rclient } = require('./config/redis'); //we need to initialize redis
+const { initializeMongooseConnection } = require('./config/mongoosesms'); //we need to initialize mongoose
+const {  rclient } = require('./config/redissms'); //we need to initialize redis
 const app = require('./server/app');  // Declare the app
 
 const initializeAllSources = async () => { // Init Mongoose with await    
      //START PARALLEL excution with await Promise.all.
      await Promise.all([ //Async Promises: all tasks start immediately 
-          initializeMongooseConection(),  // Init mongoose
-          rclient.set("initializeRedisConection:test", "test") // little test redis
+          initializeMongooseConnection(),  // Init mongoose
+          rclient.set("initializeRedisConnection:test", "test") // little test redis
       ]);
       //END PARALLEL excution with await Promise.all.
 
      // then we can Init api server
-     app.listen(process.env.PORT, () => {
-          console.log(process.env.GREEN_COLOR, 'The HTTPS server is running on port ' + process.env.PORT);
+     app.listen(process.env.APIADMIN_PORT, () => {
+          console.log(process.env.GREEN_COLOR, 'The HTTPS server is running on port ' + process.env.APIADMIN_PORT);
      });
 }
 

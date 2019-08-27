@@ -3,7 +3,8 @@ kind: Service
 metadata:
   annotations:
     kompose.cmd: kompose convert
-    kompose.service.type: LoadBalancer
+    kompose.image-pull-policy: Never
+    kompose.service.type: NodePort
     kompose.version: 1.18.0 (06a2e56)
   creationTimestamp: null
   labels:
@@ -15,7 +16,7 @@ spec:
     port: 27019
     targetPort: 27019
   selector:
-    io.kompose.service: mongosms
-  type: LoadBalancer
+    app: mongosms
+  type: NodePort
 status:
   loadBalancer: {}

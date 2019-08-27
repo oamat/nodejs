@@ -6,9 +6,10 @@
     container_name: "apiadmin"      
     restart: always
     ports:
-      - 3020:3000
+      - 30003:30003
     
     environment:
       NODE_ENV: "docker"
     labels:
       kompose.service.type: LoadBalancer
+      kompose.image-pull-policy: Never

@@ -4,7 +4,7 @@
  */
 
 //Dependencies
-const { rclient } = require('../config/redis');
+const { rclient } = require('../config/redispns');
 
 //methods 
 

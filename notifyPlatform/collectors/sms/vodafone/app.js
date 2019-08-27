@@ -8,8 +8,8 @@
 
 // Dependencies
 require('./config/config'); //we need configurations
-const { initializeMongooseConection } = require('./config/mongoose'); //we need to initialize mongoose
-const { rclient } = require('./config/redis'); //we need to initialize redis
+const { initializeMongooseConnection } = require('./config/mongoosesms'); //we need to initialize mongoose
+const { rclient } = require('./config/redissms'); //we need to initialize redis
 
 //cron Dependency
 const cron = require('./cron/cron'); //the main cron
@@ -18,8 +18,8 @@ const cron = require('./cron/cron'); //the main cron
 const initializeAll = async () => {
     //START PARALLEL excution with await Promise.all.
     await Promise.all([ //Async Promises: all tasks start immediately 
-        initializeMongooseConection(),  // Init mongoose
-        await rclient.set("initializeRedisConection:test", "test") // little test redis
+        initializeMongooseConnection(),  // Init mongoose
+        await rclient.set("initializeRedisConnection:test", "test") // little test redis
     ]);
     //END PARALLEL excution with await Promise.all.
 
