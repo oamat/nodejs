@@ -4,19 +4,22 @@ metadata:
   annotations:
     kompose.cmd: kompose convert
     kompose.image-pull-policy: Never
-    kompose.service.type: ClusterIP
+    kompose.service.type: NodePort
     kompose.version: 1.18.0 (06a2e56)
   creationTimestamp: null
   labels:
-    io.kompose.service: mongosms
+    run: mongosms
   name: mongosms
+  namespace: default
 spec:
   ports:
   - name: "30090"
     port: 30090
+    nodePort: 30090
     targetPort: 30090
   selector:
-    io.kompose.service: mongosms
-  type: ClusterIP
+    run: mongosms
+    app: mongosms   
+  type: NodePort
 status:
   loadBalancer: {}

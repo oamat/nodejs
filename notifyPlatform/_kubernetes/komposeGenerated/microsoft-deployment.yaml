@@ -1,0 +1,31 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert
+    kompose.image-pull-policy: Never
+    kompose.service.type: NodePort
+    kompose.version: 1.18.0 (06a2e56)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: microsoft
+  name: microsoft
+spec:
+  replicas: 1
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        io.kompose.service: microsoft
+    spec:
+      containers:
+      - env:
+        - name: NODE_ENV
+          value: docker
+        image: microsoft
+        imagePullPolicy: Never
+        name: microsoft
+        resources: {}
+      restartPolicy: Always
+status: {}

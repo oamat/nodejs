@@ -4,19 +4,22 @@ metadata:
   annotations:
     kompose.cmd: kompose convert
     kompose.image-pull-policy: Never
-    kompose.service.type: LoadBalancer
+    kompose.service.type: NodePort
     kompose.version: 1.18.0 (06a2e56)
   creationTimestamp: null
   labels:
-    io.kompose.service: apistatus
+    run: apistatus
   name: apistatus
+  namespace: default
 spec:
   ports:
   - name: "30004"
     port: 30004
+    nodePort: 30004
     targetPort: 30004
   selector:
-    io.kompose.service: apistatus
-  type: LoadBalancer
+    run: apistatus
+    app: apistatus
+  type: NodePort
 status:
   loadBalancer: {}

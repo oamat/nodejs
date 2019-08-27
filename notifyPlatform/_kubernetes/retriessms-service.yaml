@@ -4,19 +4,22 @@ metadata:
   annotations:
     kompose.cmd: kompose convert
     kompose.image-pull-policy: Never
-    kompose.service.type: LoadBalancer
+    kompose.service.type: NodePort
     kompose.version: 1.18.0 (06a2e56)
   creationTimestamp: null
   labels:
-    io.kompose.service: retriessms
+    run: retriessms
   name: retriessms
+  namespace: default
 spec:
   ports:
   - name: "30005"
     port: 30005
+    nodePort: 30005
     targetPort: 30005
   selector:
-    io.kompose.service: retriessms
-  type: LoadBalancer
+    run: retriessms
+    app: retriessms
+  type: NodePort
 status:
   loadBalancer: {}

@@ -4,11 +4,11 @@ metadata:
   annotations:
     kompose.cmd: kompose convert
     kompose.image-pull-policy: Never
-    kompose.service.type: LoadBalancer
+    kompose.service.type: NodePort
     kompose.version: 1.18.0 (06a2e56)
   creationTimestamp: null
   labels:
-    io.kompose.service: mqsms
+    run: mqsms
   name: mqsms
 spec:
   replicas: 1
@@ -17,12 +17,12 @@ spec:
     metadata:
       creationTimestamp: null
       labels:
-        io.kompose.service: mqsms
+        run: mqsms
     spec:
       containers:
       - env:
         - name: NODE_ENV
-          value: docker
+          value: kubernetes
         image: mqsms
         imagePullPolicy: Never
         name: mqsms

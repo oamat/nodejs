@@ -1,0 +1,33 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert
+    kompose.image-pull-policy: Never
+    kompose.service.type: NodePort
+    kompose.version: 1.18.0 (06a2e56)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: redissms
+  name: redissms
+spec:
+  replicas: 1
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        io.kompose.service: redissms
+    spec:
+      containers:
+      - env:
+        - name: NODE_ENV
+          value: docker
+        image: redissms
+        imagePullPolicy: Never
+        name: redissms
+        ports:
+        - containerPort: 30080
+        resources: {}
+      restartPolicy: Always
+status: {}

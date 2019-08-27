@@ -4,11 +4,11 @@ metadata:
   annotations:
     kompose.cmd: kompose convert
     kompose.image-pull-policy: Never
-    kompose.service.type: ClusterIP
+    kompose.service.type: NodePort
     kompose.version: 1.18.0 (06a2e56)
   creationTimestamp: null
   labels:
-    io.kompose.service: mongosms
+    run: mongosms
   name: mongosms
 spec:
   replicas: 1
@@ -17,7 +17,7 @@ spec:
     metadata:
       creationTimestamp: null
       labels:
-        io.kompose.service: mongosms
+        run: mongosms
     spec:
       containers:
       - env:

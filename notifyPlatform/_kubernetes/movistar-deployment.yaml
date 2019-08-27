@@ -4,11 +4,11 @@ metadata:
   annotations:
     kompose.cmd: kompose convert
     kompose.image-pull-policy: Never
-    kompose.service.type: LoadBalancer
+    kompose.service.type: NodePort
     kompose.version: 1.18.0 (06a2e56)
   creationTimestamp: null
   labels:
-    io.kompose.service: movistar
+    run: movistar
   name: movistar
 spec:
   replicas: 1
@@ -17,12 +17,12 @@ spec:
     metadata:
       creationTimestamp: null
       labels:
-        io.kompose.service: movistar
+        run: movistar
     spec:
       containers:
       - env:
         - name: NODE_ENV
-          value: docker
+          value: kubernetes
         image: movistar
         imagePullPolicy: Never
         name: movistar

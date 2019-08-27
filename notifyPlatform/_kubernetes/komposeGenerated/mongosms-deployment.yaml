@@ -1,0 +1,37 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert
+    kompose.image-pull-policy: Never
+    kompose.service.type: NodePort
+    kompose.version: 1.18.0 (06a2e56)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: mongosms
+  name: mongosms
+spec:
+  replicas: 1
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        io.kompose.service: mongosms
+    spec:
+      containers:
+      - env:
+        - name: MONGO_INITDB_DATABASE
+          value: test
+        - name: MONGO_INITDB_ROOT_PASSWORD
+          value: example
+        - name: MONGO_INITDB_ROOT_USERNAME
+          value: root
+        image: mongosms
+        imagePullPolicy: Never
+        name: mongosms
+        ports:
+        - containerPort: 30090
+        resources: {}
+      restartPolicy: Always
+status: {}
