@@ -1,25 +1,13 @@
 apiVersion: v1
 kind: Service
 metadata:
-  annotations:
-    kompose.cmd: kompose convert
-    kompose.image-pull-policy: Never
-    kompose.service.type: NodePort
-    kompose.version: 1.18.0 (06a2e56)
-  creationTimestamp: null
-  labels:
-    run: apiadmin
   name: apiadmin
   namespace: default
 spec:
+  type: NodePort
   ports:
-  - name: "30003"
+  - name: http
     port: 30003
     nodePort: 30003
-    targetPort: 30003
   selector:
-    run: apiadmin
-    app: apiadmin   
-  type: NodePort
-status:
-  loadBalancer: {}
+    app: apiadmin

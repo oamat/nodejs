@@ -1,33 +1,26 @@
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
-  annotations:
-    kompose.cmd: kompose convert
-    kompose.image-pull-policy: Never
-    kompose.service.type: NodePort
-    kompose.version: 1.18.0 (06a2e56)
-  creationTimestamp: null
-  labels:
-    run: apiadmin
   name: apiadmin
+  labels:
+    app: apiadmin
 spec:
   replicas: 1
-  strategy: {}
+  selector:
+    matchLabels:
+      app: apiadmin
   template:
     metadata:
-      creationTimestamp: null
       labels:
-        run: apiadmin
+        app: apiadmin
     spec:
       containers:
-      - env:
-        - name: NODE_ENV
-          value: kubernetes
+      - name: apiadmin
         image: apiadmin
         imagePullPolicy: Never
-        name: apiadmin
         ports:
         - containerPort: 30003
-        resources: {}
-      restartPolicy: Always
-status: {}
+        env:
+        - name: NODE_ENV
+          value: kubernetes
+      restartPolicy: Always        

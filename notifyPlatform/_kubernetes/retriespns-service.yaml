@@ -1,25 +1,13 @@
 apiVersion: v1
 kind: Service
 metadata:
-  annotations:
-    kompose.cmd: kompose convert
-    kompose.image-pull-policy: Never
-    kompose.service.type: NodePort
-    kompose.version: 1.18.0 (06a2e56)
-  creationTimestamp: null
-  labels:
-    run: retriespns
   name: retriespns
   namespace: default
 spec:
+  type: NodePort
   ports:
-  - name: "30006"
+  - name: http
     port: 30006
     nodePort: 30006
-    targetPort: 30006
   selector:
-    run: retriespns
-    app: retriespns 
-  type: NodePort
-status:
-  loadBalancer: {}
+    app: retriespns

@@ -69,7 +69,7 @@
   }, 
 
   "kubernetes": {
-    "comment" : "this is for Kubernetes or docker-composer with mongo and redis as a service name. And the api, collectors, cron... codes as containers",
+    "comment" : "this is for Kubernetes with IP_MASTER_KUBERNETES. And the api, collectors, cron... codes as containers",
 
     "APISMS_PORT": 30001,
     "APIPNS_PORT": 30002,

@@ -1,37 +1,32 @@
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
-  annotations:
-    kompose.cmd: kompose convert
-    kompose.image-pull-policy: Never
-    kompose.service.type: NodePort
-    kompose.version: 1.18.0 (06a2e56)
-  creationTimestamp: null
-  labels:
-    run: mongopns
   name: mongopns
+  labels:
+    app: mongopns
 spec:
   replicas: 1
-  strategy: {}
+  selector:
+    matchLabels:
+      app: mongopns
   template:
     metadata:
-      creationTimestamp: null
       labels:
-        run: mongopns
+        app: mongopns
     spec:
       containers:
-      - env:
+      - name: mongopns
+        image: mongopns
+        imagePullPolicy: Never
+        ports:
+        - containerPort: 30091
+        env:
         - name: MONGO_INITDB_DATABASE
           value: test
         - name: MONGO_INITDB_ROOT_PASSWORD
           value: example
         - name: MONGO_INITDB_ROOT_USERNAME
           value: root
-        image: mongopns
-        imagePullPolicy: Never
-        name: mongopns
-        ports:
-        - containerPort: 30091
-        resources: {}
-      restartPolicy: Always
-status: {}
+        - name: NODE_ENV
+          value: kubernetes
+      restartPolicy: Always      

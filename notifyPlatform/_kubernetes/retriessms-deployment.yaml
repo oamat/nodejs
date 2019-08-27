@@ -1,33 +1,26 @@
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
-  annotations:
-    kompose.cmd: kompose convert
-    kompose.image-pull-policy: Never
-    kompose.service.type: NodePort
-    kompose.version: 1.18.0 (06a2e56)
-  creationTimestamp: null
-  labels:
-    run: retriessms
   name: retriessms
+  labels:
+    app: retriessms
 spec:
   replicas: 1
-  strategy: {}
+  selector:
+    matchLabels:
+      app: retriessms
   template:
     metadata:
-      creationTimestamp: null
       labels:
-        run: retriessms
+        app: retriessms
     spec:
       containers:
-      - env:
-        - name: NODE_ENV
-          value: kubernetes
+      - name: retriessms
         image: retriessms
         imagePullPolicy: Never
-        name: retriessms
         ports:
         - containerPort: 30005
-        resources: {}
+        env:
+        - name: NODE_ENV
+          value: kubernetes
       restartPolicy: Always
-status: {}

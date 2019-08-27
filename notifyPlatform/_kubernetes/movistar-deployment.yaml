@@ -1,31 +1,24 @@
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
-  annotations:
-    kompose.cmd: kompose convert
-    kompose.image-pull-policy: Never
-    kompose.service.type: NodePort
-    kompose.version: 1.18.0 (06a2e56)
-  creationTimestamp: null
-  labels:
-    run: movistar
   name: movistar
+  labels:
+    app: movistar
 spec:
   replicas: 1
-  strategy: {}
+  selector:
+    matchLabels:
+      app: movistar
   template:
     metadata:
-      creationTimestamp: null
       labels:
-        run: movistar
+        app: movistar
     spec:
       containers:
-      - env:
-        - name: NODE_ENV
-          value: kubernetes
+      - name: movistar
         image: movistar
         imagePullPolicy: Never
-        name: movistar
-        resources: {}
+        env:
+        - name: NODE_ENV
+          value: kubernetes
       restartPolicy: Always
-status: {}

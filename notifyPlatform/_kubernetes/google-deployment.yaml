@@ -1,31 +1,24 @@
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
-  annotations:
-    kompose.cmd: kompose convert
-    kompose.image-pull-policy: Never
-    kompose.service.type: NodePort
-    kompose.version: 1.18.0 (06a2e56)
-  creationTimestamp: null
-  labels:
-    run: google
   name: google
+  labels:
+    app: google
 spec:
   replicas: 1
-  strategy: {}
+  selector:
+    matchLabels:
+      app: google
   template:
     metadata:
-      creationTimestamp: null
       labels:
-        run: google
+        app: google
     spec:
       containers:
-      - env:
-        - name: NODE_ENV
-          value: kubernetes
+      - name: google
         image: google
         imagePullPolicy: Never
-        name: google
-        resources: {}
+        env:
+        - name: NODE_ENV
+          value: kubernetes
       restartPolicy: Always
-status: {}
