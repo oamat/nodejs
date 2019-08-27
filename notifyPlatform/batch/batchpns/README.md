@@ -1,4 +1,4 @@
-# SMS Movistar Collector, a module of NotifyPlatform to send SMS
+# PNS Batch, a module of NotifyPlatform to send SMS
 
 # Enviroment: use   $env:NODE_ENV="developer" for change
 
