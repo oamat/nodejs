@@ -5,8 +5,6 @@
     image: movistarvip
     container_name: "movistarvip"      
     restart: always
-    ports:
-      - 3018:3000
     
     environment:
       NODE_ENV: "docker"

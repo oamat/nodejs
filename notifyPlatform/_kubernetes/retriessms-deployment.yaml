@@ -4,7 +4,7 @@ metadata:
   annotations:
     kompose.cmd: kompose convert
     kompose.image-pull-policy: Never
-    kompose.service.type: NodePort
+    kompose.service.type: LoadBalancer
     kompose.version: 1.18.0 (06a2e56)
   creationTimestamp: null
   labels:
@@ -27,7 +27,7 @@ spec:
         imagePullPolicy: Never
         name: retriessms
         ports:
-        - containerPort: 3000
+        - containerPort: 30005
         resources: {}
       restartPolicy: Always
 status: {}

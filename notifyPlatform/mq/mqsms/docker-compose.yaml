@@ -5,8 +5,6 @@
     image: mqsms
     container_name: "mqsms"      
     restart: always
-    ports:
-      - 3014:3000
     
     environment:
       NODE_ENV: "docker"

@@ -6,7 +6,7 @@
     container_name: "apistatus"      
     restart: always
     ports:
-      - 3006:3000
+      - 30004:30004
     
     environment:
       NODE_ENV: "docker"

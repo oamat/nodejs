@@ -6,7 +6,7 @@
     container_name: "retriessms"      
     restart: always
     ports:
-      - 3012:3000
+      - 30005:30005
     
     environment:
       NODE_ENV: "docker"

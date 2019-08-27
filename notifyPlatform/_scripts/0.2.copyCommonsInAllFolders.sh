@@ -15,6 +15,8 @@ yes | cp -rf /notifyPlatform/_commons/config/config.json /notifyPlatform/collect
 yes | cp -rf /notifyPlatform/_commons/config/config.json /notifyPlatform/collectors/sms/vodafone/config/config.json
 yes | cp -rf /notifyPlatform/_commons/config/config.json /notifyPlatform/retries/retriespns/config/config.json
 yes | cp -rf /notifyPlatform/_commons/config/config.json /notifyPlatform/retries/retriessms/config/config.json
+yes | cp -rf /notifyPlatform/_commons/config/config.json /notifyPlatform/mq/mqpns/config/config.json
+yes | cp -rf /notifyPlatform/_commons/config/config.json /notifyPlatform/mq/mqsms/config/config.json
 
 echo "copying config.js"
 yes | cp -rf /notifyPlatform/_commons/config/config.js /notifyPlatform/apis/apisms/config/config.js
@@ -32,6 +34,8 @@ yes | cp -rf /notifyPlatform/_commons/config/config.js /notifyPlatform/collector
 yes | cp -rf /notifyPlatform/_commons/config/config.js /notifyPlatform/collectors/sms/vodafone/config/config.js
 yes | cp -rf /notifyPlatform/_commons/config/config.js /notifyPlatform/retries/retriespns/config/config.js
 yes | cp -rf /notifyPlatform/_commons/config/config.js /notifyPlatform/retries/retriessms/config/config.js
+yes | cp -rf /notifyPlatform/_commons/config/config.json /notifyPlatform/mq/mqpns/config/config.js
+yes | cp -rf /notifyPlatform/_commons/config/config.json /notifyPlatform/mq/mqsms/config/config.js
 
 echo "copying mongoosesms.js"
 yes | cp -rf /notifyPlatform/_commons/config/mongoosesms.js /notifyPlatform/apis/apisms/config/mongoosesms.js
@@ -49,6 +53,8 @@ yes | cp -rf /notifyPlatform/_commons/config/mongoosesms.js /notifyPlatform/coll
 yes | cp -rf /notifyPlatform/_commons/config/mongoosesms.js /notifyPlatform/collectors/sms/vodafone/config/mongoosesms.js
 yes | cp -rf /notifyPlatform/_commons/config/mongoosesms.js /notifyPlatform/retries/retriespns/config/mongoosesms.js
 yes | cp -rf /notifyPlatform/_commons/config/mongoosesms.js /notifyPlatform/retries/retriessms/config/mongoosesms.js
+yes | cp -rf /notifyPlatform/_commons/config/config.json /notifyPlatform/mq/mqpns/config/mongoosesms.js
+yes | cp -rf /notifyPlatform/_commons/config/config.json /notifyPlatform/mq/mqsms/config/mongoosesms.js
 
 echo "copying mongoosepns.js"
 yes | cp -rf /notifyPlatform/_commons/config/mongoosepns.js /notifyPlatform/apis/apisms/config/mongoosepns.js
@@ -66,6 +72,8 @@ yes | cp -rf /notifyPlatform/_commons/config/mongoosepns.js /notifyPlatform/coll
 yes | cp -rf /notifyPlatform/_commons/config/mongoosepns.js /notifyPlatform/collectors/sms/vodafone/config/mongoosepns.js
 yes | cp -rf /notifyPlatform/_commons/config/mongoosepns.js /notifyPlatform/retries/retriespns/config/mongoosepns.js
 yes | cp -rf /notifyPlatform/_commons/config/mongoosepns.js /notifyPlatform/retries/retriessms/config/mongoosepns.js
+yes | cp -rf /notifyPlatform/_commons/config/config.json /notifyPlatform/mq/mqpns/config/mongoosepns.js
+yes | cp -rf /notifyPlatform/_commons/config/config.json /notifyPlatform/mq/mqsms/config/mongoosepns.js
 
 echo "copying redissms.js"
 yes | cp -rf /notifyPlatform/_commons/config/redissms.js /notifyPlatform/apis/apisms/config/redissms.js
@@ -83,6 +91,8 @@ yes | cp -rf /notifyPlatform/_commons/config/redissms.js /notifyPlatform/collect
 yes | cp -rf /notifyPlatform/_commons/config/redissms.js /notifyPlatform/collectors/sms/vodafone/config/redissms.js
 yes | cp -rf /notifyPlatform/_commons/config/redissms.js /notifyPlatform/retries/retriespns/config/redissms.js
 yes | cp -rf /notifyPlatform/_commons/config/redissms.js /notifyPlatform/retries/retriessms/config/redissms.js
+yes | cp -rf /notifyPlatform/_commons/config/config.json /notifyPlatform/mq/mqpns/config/redissms.js
+yes | cp -rf /notifyPlatform/_commons/config/config.json /notifyPlatform/mq/mqsms/config/redissms.js
 
 echo "copying redispns.js"
 yes | cp -rf /notifyPlatform/_commons/config/redispns.js /notifyPlatform/apis/apisms/config/redispns.js
@@ -100,3 +110,5 @@ yes | cp -rf /notifyPlatform/_commons/config/redispns.js /notifyPlatform/collect
 yes | cp -rf /notifyPlatform/_commons/config/redispns.js /notifyPlatform/collectors/sms/vodafone/config/redispns.js
 yes | cp -rf /notifyPlatform/_commons/config/redispns.js /notifyPlatform/retries/retriespns/config/redispns.js
 yes | cp -rf /notifyPlatform/_commons/config/redispns.js /notifyPlatform/retries/retriessms/config/redispns.js
+yes | cp -rf /notifyPlatform/_commons/config/config.json /notifyPlatform/mq/mqpns/config/redispns.js
+yes | cp -rf /notifyPlatform/_commons/config/config.json /notifyPlatform/mq/mqsms/config/redispns.js

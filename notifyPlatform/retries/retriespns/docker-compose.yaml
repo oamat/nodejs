@@ -6,7 +6,7 @@
     container_name: "retriespns"      
     restart: always
     ports:
-      - 3010:3000
+      - 30006:30006
     
     environment:
       NODE_ENV: "docker"

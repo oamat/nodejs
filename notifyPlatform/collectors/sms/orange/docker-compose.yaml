@@ -5,9 +5,7 @@
     image: orange
     container_name: "orange"      
     restart: always
-    ports:
-      - 3015:3000
-    
+     
     environment:
       NODE_ENV: "docker"
     labels:

@@ -5,8 +5,6 @@
     image: mqpns
     container_name: "mqpns"      
     restart: always
-    ports:
-      - 3004:3000
     
     environment:
       NODE_ENV: "docker"

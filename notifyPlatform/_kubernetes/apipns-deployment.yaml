@@ -4,8 +4,7 @@ metadata:
   annotations:
     kompose.cmd: kompose convert
     kompose.image-pull-policy: Never
-    kompose.service.nodePort: "30080"
-    kompose.service.type: NodePort
+    kompose.service.type: LoadBalancer
     kompose.version: 1.18.0 (06a2e56)
   creationTimestamp: null
   labels:
@@ -28,7 +27,7 @@ spec:
         imagePullPolicy: Never
         name: apipns
         ports:
-        - containerPort: 3000
+        - containerPort: 30002
         resources: {}
       restartPolicy: Always
 status: {}

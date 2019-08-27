@@ -4,7 +4,7 @@ metadata:
   annotations:
     kompose.cmd: kompose convert
     kompose.image-pull-policy: Never
-    kompose.service.type: NodePort
+    kompose.service.type: ClusterIP
     kompose.version: 1.18.0 (06a2e56)
   creationTimestamp: null
   labels:
@@ -12,11 +12,11 @@ metadata:
   name: redissms
 spec:
   ports:
-  - name: "6381"
-    port: 6381
-    targetPort: 6381
+  - name: "30080"
+    port: 30080
+    targetPort: 30080
   selector:
-    app: redissms
-  type: NodePort
+    io.kompose.service: redissms
+  type: ClusterIP
 status:
   loadBalancer: {}

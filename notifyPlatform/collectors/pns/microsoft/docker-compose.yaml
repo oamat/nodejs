@@ -5,8 +5,6 @@
     image: microsoft
     container_name: "microsoft"      
     restart: always
-    ports:
-      - 3013:3000
     
     environment:
       NODE_ENV: "docker"

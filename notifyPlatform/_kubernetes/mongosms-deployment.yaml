@@ -4,7 +4,7 @@ metadata:
   annotations:
     kompose.cmd: kompose convert
     kompose.image-pull-policy: Never
-    kompose.service.type: NodePort
+    kompose.service.type: ClusterIP
     kompose.version: 1.18.0 (06a2e56)
   creationTimestamp: null
   labels:
@@ -31,7 +31,7 @@ spec:
         imagePullPolicy: Never
         name: mongosms
         ports:
-        - containerPort: 27019
+        - containerPort: 30090
         resources: {}
       restartPolicy: Always
 status: {}
