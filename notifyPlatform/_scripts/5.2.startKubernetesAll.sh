@@ -2,14 +2,6 @@
 echo "Start All Kubernetes files from Notify Platform "
 cd /notifyPlatform/_kubernetes/
 
-kubectl create -f mongosms-deployment.yaml -f mongosms-service.yaml
-kubectl create -f mongopns-deployment.yaml -f mongopns-service.yaml
-kubectl create -f redissms-deployment.yaml -f redissms-service.yaml
-kubectl create -f redispns-deployment.yaml -f redispns-service.yaml
-
-echo " *** INFO : wait 20s... "
-sleep 20
-
 kubectl create -f apisms-deployment.yaml -f apisms-service.yaml
 kubectl create -f apipns-deployment.yaml -f apipns-service.yaml
 kubectl create -f apistatus-deployment.yaml -f apistatus-service.yaml
