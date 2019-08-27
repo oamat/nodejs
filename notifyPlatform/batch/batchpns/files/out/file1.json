@@ -1,0 +1,271 @@
+{
+    "fileBatch": {
+        "id": "file201908231208",
+        "contract": "PUSHLOWEB",
+        "jwt": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiY29udHJhY3QiOiJQVVNITE9XRUIiLCJpYXQiOjIwMTYyMzkwMjJ9.2HM9zm5cqGF0KBEqlYamatnZzi4vMUTdhHhhH4S2ySo",
+        "deferred": "09:00",
+        "priority": 5,
+        "notifications": [
+            {
+                "contract": "PUSHLOWEB",
+                "application": "CaixaAPP",
+                "user": "userTst",
+                "uuiddevice": "kk34699272809",
+                "action": "show",
+                "content": "content push notification",
+                "params": [
+                    {
+                        "param": "icono1",
+                        "value": "new1",
+                        "type": "String"
+                    },
+                    {
+                        "param": "icono2",
+                        "value": "new2",
+                        "type": "String"
+                    }
+                ]
+            },
+            {
+                "contract": "PUSHLOWEB",
+                "application": "CaixaAPP",
+                "user": "userTst",
+                "uuiddevice": "kk34699272809",
+                "action": "show",
+                "content": "content push notification",
+                "params": [
+                    {
+                        "param": "icono1",
+                        "value": "new1",
+                        "type": "String"
+                    },
+                    {
+                        "param": "icono2",
+                        "value": "new2",
+                        "type": "String"
+                    }
+                ]
+            },
+            {
+                "contract": "PUSHLOWEB",
+                "application": "CaixaAPP",
+                "user": "userTst",
+                "uuiddevice": "kk34699272809",
+                "action": "show",
+                "content": "content push notification",
+                "params": [
+                    {
+                        "param": "icono1",
+                        "value": "new1",
+                        "type": "String"
+                    },
+                    {
+                        "param": "icono2",
+                        "value": "new2",
+                        "type": "String"
+                    }
+                ]
+            },
+            {
+                "contract": "PUSHLOWEB",
+                "application": "CaixaAPP",
+                "user": "userTst",
+                "uuiddevice": "kk34699272809",
+                "action": "show",
+                "content": "content push notification",
+                "params": [
+                    {
+                        "param": "icono1",
+                        "value": "new1",
+                        "type": "String"
+                    },
+                    {
+                        "param": "icono2",
+                        "value": "new2",
+                        "type": "String"
+                    }
+                ]
+            },
+            {
+                "contract": "PUSHLOWEB",
+                "application": "CaixaAPP",
+                "user": "userTst",
+                "uuiddevice": "kk34699272809",
+                "action": "show",
+                "content": "content push notification",
+                "params": [
+                    {
+                        "param": "icono1",
+                        "value": "new1",
+                        "type": "String"
+                    },
+                    {
+                        "param": "icono2",
+                        "value": "new2",
+                        "type": "String"
+                    }
+                ]
+            },
+            {
+                "contract": "PUSHLOWEB",
+                "application": "CaixaAPP",
+                "user": "userTst",
+                "uuiddevice": "kk34699272809",
+                "action": "show",
+                "content": "content push notification",
+                "params": [
+                    {
+                        "param": "icono1",
+                        "value": "new1",
+                        "type": "String"
+                    },
+                    {
+                        "param": "icono2",
+                        "value": "new2",
+                        "type": "String"
+                    }
+                ]
+            },
+            {
+                "contract": "PUSHLOWEB",
+                "application": "CaixaAPP",
+                "user": "userTst",
+                "uuiddevice": "kk34699272809",
+                "action": "show",
+                "content": "content push notification",
+                "params": [
+                    {
+                        "param": "icono1",
+                        "value": "new1",
+                        "type": "String"
+                    },
+                    {
+                        "param": "icono2",
+                        "value": "new2",
+                        "type": "String"
+                    }
+                ]
+            },
+            {
+                "contract": "PUSHLOWEB",
+                "application": "CaixaAPP",
+                "user": "userTst",
+                "uuiddevice": "kk34699272809",
+                "action": "show",
+                "content": "content push notification",
+                "params": [
+                    {
+                        "param": "icono1",
+                        "value": "new1",
+                        "type": "String"
+                    },
+                    {
+                        "param": "icono2",
+                        "value": "new2",
+                        "type": "String"
+                    }
+                ]
+            },
+            {
+                "contract": "PUSHLOWEB",
+                "application": "CaixaAPP",
+                "user": "userTst",
+                "uuiddevice": "kk34699272809",
+                "action": "show",
+                "content": "content push notification",
+                "params": [
+                    {
+                        "param": "icono1",
+                        "value": "new1",
+                        "type": "String"
+                    },
+                    {
+                        "param": "icono2",
+                        "value": "new2",
+                        "type": "String"
+                    }
+                ]
+            },
+            {
+                "contract": "PUSHLOWEB",
+                "application": "CaixaAPP",
+                "user": "userTst",
+                "uuiddevice": "kk34699272809",
+                "action": "show",
+                "content": "content push notification",
+                "params": [
+                    {
+                        "param": "icono1",
+                        "value": "new1",
+                        "type": "String"
+                    },
+                    {
+                        "param": "icono2",
+                        "value": "new2",
+                        "type": "String"
+                    }
+                ]
+            },
+            {
+                "contract": "PUSHLOWEB",
+                "application": "CaixaAPP",
+                "user": "userTst",
+                "uuiddevice": "kk34699272809",
+                "action": "show",
+                "content": "content push notification",
+                "params": [
+                    {
+                        "param": "icono1",
+                        "value": "new1",
+                        "type": "String"
+                    },
+                    {
+                        "param": "icono2",
+                        "value": "new2",
+                        "type": "String"
+                    }
+                ]
+            },
+            {
+                "contract": "PUSHLOWEB",
+                "application": "CaixaAPP",
+                "user": "userTst",
+                "uuiddevice": "kk34699272809",
+                "action": "show",
+                "content": "content push notification",
+                "params": [
+                    {
+                        "param": "icono1",
+                        "value": "new1",
+                        "type": "String"
+                    },
+                    {
+                        "param": "icono2",
+                        "value": "new2",
+                        "type": "String"
+                    }
+                ]
+            },
+            {
+                "contract": "PUSHLOWEB",
+                "application": "CaixaAPP",
+                "user": "userTst",
+                "uuiddevice": "kk34699272809",
+                "action": "show",
+                "content": "content push notification",
+                "params": [
+                    {
+                        "param": "icono1",
+                        "value": "new1",
+                        "type": "String"
+                    },
+                    {
+                        "param": "icono2",
+                        "value": "new2",
+                        "type": "String"
+                    }
+                ]
+            }
+        ]
+    }
+}

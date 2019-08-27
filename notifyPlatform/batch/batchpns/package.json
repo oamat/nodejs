@@ -1,0 +1,17 @@
+{
+  "name": "batchsms",
+  "version": "1.0.0",
+  "description": "batchsms",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "author": "OAF",
+  "license": "ISC",
+  "dependencies": {
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.6.9",
+    "redis": "^2.8.0",
+    "uuid": "^3.3.2"
+  }
+}

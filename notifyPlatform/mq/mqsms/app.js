@@ -132,7 +132,7 @@ async function getCB(err, hObj, gmo, md, buf, hConn) {
                     const collectorOperator = hget("collector:" + sms.operator, "operator"); //this method is Async, but we can get in parallel until need it (with await). 
                     if (sms.operator == "ALL") { //If operator is ALL means that we need to find the better operator for the telf. 
                         //TODO: find the best operator for this tef. Not implemented yet
-                        sms.operator = "AND";
+                        sms.operator = "MOV";
                     }
 
                     if (await collectorOperator != sms.operator) sms.operator = collectorOperator;  //check if the operator have some problems

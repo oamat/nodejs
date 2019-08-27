@@ -1,0 +1,29 @@
+HSET contractpns:PUSHLOWEB jwt "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiY29udHJhY3QiOiJQVVNITE9XRUIiLCJpYXQiOjIwMTYyMzkwMjJ9.2HM9zm5cqGF0KBEqlYamatnZzi4vMUTdhHhhH4S2ySo"
+HGET contractpns:PUSHLOWEB jwt
+
+HSET contractpns:PUSHLOWEB operator "AND"
+HGET contractpns:PUSHLOWEB operator
+
+HSET collectorpns:AND operator "AND"
+HGET collectorpns:AND operator
+
+HSET batch:PNS status "1"
+HGET batch:PNS status
+
+HSET batch:PNS interval "2000"
+HGET batch:PNS interval
+
+HSET batch:PNS intervalControl "30000"
+HGET batch:PNS intervalControl
+
+HSET collectorpns:AND operator "AND"
+HGET collectorpns:AND operator
+
+LPUSH PNS.AND.5 '{"dispatched":false,"priority":1,"interface":"REST","retries":0,"deferred":false,"status":0,"contract":"PUSHLOWEB","application":"CaixaAPP","user":"userTst","uuiddevice":"kk34699272809","action":"show","content":"content push notification","params":[{"param":"icono1","value":"new1","type":"String"},{"param":"icono2","value":"new2","type":"String"}],"_id":"848ba1b0-3ec1-442e-ad67-39d575d45f2e","receivedAt":"2019-08-19T22:05:28.162Z","operator":"AND","channel":"PNS.AND.1","createdAt":"2019-08-19T22:05:28.168Z","updatedAt":"2019-08-19T22:05:28.168Z","__v":0}'
+LPUSH PNS.AND.5 '{"dispatched":false,"priority":1,"interface":"REST","retries":0,"deferred":false,"status":0,"contract":"PUSHLOWEB","application":"CaixaAPP","user":"userTst","uuiddevice":"kk34699272809","action":"show","content":"content push notification","params":[{"param":"icono1","value":"new1","type":"String"},{"param":"icono2","value":"new2","type":"String"}],"_id":"848ba1b0-3ec1-442e-ad67-39d575d45f3e","receivedAt":"2019-08-19T22:05:28.162Z","operator":"AND","channel":"PNS.AND.1","createdAt":"2019-08-19T22:05:28.168Z","updatedAt":"2019-08-19T22:05:28.168Z","__v":0}'
+LLEN PNS.AND.5
+LRANGE PNS.AND.5 0 -1
+
+SADD PNS.IDS.PENDING "848ba1b0-3ec1-442e-ad67-39d575d45f2e"
+SADD PNS.IDS.PENDING "848ba1b0-3ec1-442e-ad67-39d575d45f3e"
+SCARD PNS.IDS.PENDING

@@ -1,0 +1,12 @@
+{"fileBatch": {
+    "id": "file1",
+    "contract": "OTPLOWEB",
+    "deferred" : "NO",
+    "priority"  : 5,
+    "notifications": [
+        {   "contract" : "OTPLOWEB",  "telf" : "+34699272800",  "message" : "you have won a gift", "alias" : "L.O." },
+        {   "contract" : "OTPLOWEB",  "telf" : "+34699272800",  "message" : "you have won a gift", "alias" : "L.O." }     
+    ]
+    }
+}
+
