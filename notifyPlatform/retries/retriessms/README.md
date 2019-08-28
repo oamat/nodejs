@@ -1,3 +1,3 @@
-# APIStatus, a module of NotifyPlatform for SMS&PNS return states from operator, etc 
+# Retries SMS, a cron module of NotifyPlatform for processing SMS errors or SMS retries
 
 for more information see  https://github.com/oamat/nodejs/blob/master/notifyPlatform/README.md
