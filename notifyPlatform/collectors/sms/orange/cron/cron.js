@@ -10,7 +10,7 @@
 //Dependencies
 const Sms = require('../models/sms');
 const { hget, rpop, rpoplpush } = require('../util/redissms'); //we need to initialize redis
-const { dateFormat, buildChannel, buildChannels } = require('../util/formats'); // utils for formats
+const { dateFormat, buildSMSChannel, buildSMSChannels } = require('../util/formats'); // utils for formats
 const { updateSMS, sendSMS } = require('./cronHelper');
 
 
@@ -24,7 +24,7 @@ var cronStatus = 1; //status of cron. 0: cron stopped, 1 : cron working,
 var cronChanged = false;  //if we need restart cron, 
 var interval = 10; //define the rate/s notifications, interval in cron (100/s by default)
 var intervalControl = 60000; //define interval in controller cron (check by min. by default)
-var channels = buildChannels(operator);
+var channels = buildSMSChannels(operator);
 
 const startCron = async (interval) => { //Start cron only when cron is stopped.
     try {
@@ -71,7 +71,7 @@ const sendNextSMS = async () => {
                 updateSMS(sms._id); // update SMS in MongoDB
                 console.log(process.env.GREEN_COLOR, " SMS sended : " + JSON.stringify(sms));  //JSON.stringify for replace new lines (\n) and tab (\t) chars into string
             } else {
-                await rpoplpush(buildChannel(defaultOperator, sms.priority), buildChannel(operator, sms.priority)); // we put message to the other operator List
+                await rpoplpush(buildSMSChannel(defaultOperator, sms.priority), buildSMSChannel(operator, sms.priority)); // we put message to the other operator List
                 console.log(process.env.YELLOW_COLOR, "change SMS " + sms._id + " from " + defaultOperator + " to " + operator); // we inform about this exceptional action
             }
         }
@@ -157,7 +157,7 @@ const checkOperator = async () => { //change operator for HA
         let newOperator = await hget(defaultCollector, "operator");  //"MOV", "VOD", "ORA",... //change operator for HA
         if (newOperator.toString().trim() != operator) {
             console.log(process.env.YELLOW_COLOR, "Change operator " + operator + " for " + newOperator);
-            channels = buildChannels(newOperator);
+            channels = buildSMSChannels(newOperator);
             operator = newOperator;
         }
     } catch (error) {

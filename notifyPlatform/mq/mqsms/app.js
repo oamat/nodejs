@@ -18,7 +18,7 @@ const { rclient } = require('./config/redissms'); //we need to initialize redis
 const Sms = require('./models/sms');
 const { saveSMS } = require('./util/mongodb');
 const { hget, lpush, sadd, set } = require('./util/redissms');
-const { dateFormat, buildChannel } = require('./util/formats');
+const { dateFormat, buildSMSChannel } = require('./util/formats');
 const auth = require('./auth/auth');
 
 // variables
@@ -135,7 +135,7 @@ async function getCB(err, hObj, gmo, md, buf, hConn) {
 
                     if (await collectorOperator != sms.operator) sms.operator = collectorOperator;  //check if the operator have some problems
 
-                    sms.channel = buildChannel(sms.operator, sms.priority); //get the channel to put notification with operator and priority
+                    sms.channel = buildSMSChannel(sms.operator, sms.priority); //get the channel to put notification with operator and priority
 
                     delete pns.jwt; // we don't need to save jwt in mongodb, only for authoritation.
                     await sms.validate(); //we need await because is a promise and we need to manage the throw exceptions, particularly validating errors in bad request.

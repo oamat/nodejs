@@ -16,7 +16,7 @@ const auth = require('../auth/auth');
 
 const { savePNS } = require('../util/mongodb');
 const { hget, lpush, sadd, set } = require('../util/redispns');
-const { dateFormat, buildChannel } = require('../util/formats');
+const { dateFormat, buildPNSChannel } = require('../util/formats');
 
 
 const router = new express.Router();
@@ -36,7 +36,7 @@ router.post('/pnsSend', auth, async (req, res) => {  //we execute auth before th
 
         if (await collectorOperator != pns.operator) pns.operator = collectorOperator;  //check if the operator have some problems
 
-        pns.channel = buildChannel(pns.operator, pns.priority); //get the channel to put notification with operator and priority
+        pns.channel = buildPNSChannel(pns.operator, pns.priority); //get the channel to put notification with operator and priority
 
         await pns.validate(); //we need await because is a promise and we need to manage the throw exceptions, particularly validating errors in bad request.
         //If you didn't execute "pns.validate()" we would need await because is a promise and we need to manage the throw exceptions, particularly validating errors.

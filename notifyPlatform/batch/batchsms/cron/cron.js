@@ -10,7 +10,7 @@
 //Dependencies
 const Sms = require('../models/sms');
 const { hget, rpop, lpush, sadd } = require('../util/redissms'); //we need to initialize redis
-const { dateFormat, buildChannel } = require('../util/formats'); // utils for formats
+const { dateFormat, buildSMSChannel } = require('../util/formats'); // utils for formats
 const { saveSMS } = require('../util/mongodb');
 const auth = require('../auth/auth');
 const fs = require('fs');
@@ -82,7 +82,7 @@ const getSMSFiles = async () => {
 
                         if (await collectorOperator != sms.operator) sms.operator = collectorOperator;  //check if the operator have some problems
 
-                        sms.channel = buildChannel(sms.operator, priority); //get the channel to put notification with operator and priority
+                        sms.channel = buildSMSChannel(sms.operator, priority); //get the channel to put notification with operator and priority
 
                         await sms.validate(); //we need await because is a promise and we need to manage the throw exceptions, particularly validating errors in bad request.
                         //If you didn't execute "sms.validate()" we would need await because is a promise and we need to manage the throw exceptions, particularly validating errors.

@@ -18,7 +18,7 @@ const { rclient } = require('./config/redispns'); //we need to initialize redis
 const Pns = require('./models/pns');
 const { savePNS } = require('./util/mongodb');
 const { hget, lpush, sadd, set } = require('./util/redispns');
-const { dateFormat, buildChannel } = require('./util/formats');
+const { dateFormat, buildPNSChannel } = require('./util/formats');
 const auth = require('./auth/auth');
 
 // variables
@@ -135,7 +135,7 @@ async function getCB(err, hObj, gmo, md, buf, hConn) {
 
                     if (await collectorOperator != pns.operator) pns.operator = collectorOperator;  //check if the operator have some problems
 
-                    pns.channel = buildChannel(pns.operator, pns.priority); //get the channel to put notification with operator and priority
+                    pns.channel = buildPNSChannel(pns.operator, pns.priority); //get the channel to put notification with operator and priority
                     delete pns.jwt; // we don't need to save jwt in mongodb, only for authoritation.
                     await pns.validate(); //we need await because is a promise and we need to manage the throw exceptions, particularly validating errors in bad request.
                     //If you didn't execute "pns.validate()" we would need await because is a promise and we need to manage the throw exceptions, particularly validating errors.

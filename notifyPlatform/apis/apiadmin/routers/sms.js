@@ -12,7 +12,7 @@ const auth = require('../auth/auth');
 
 const { saveSMS } = require('../util/mongodb');
 const { hget, lpush, sadd, set } = require('../util/redis');
-const { dateFormat, buildChannel } = require('../util/formats');
+const { dateFormat, buildSMSChannel } = require('../util/formats');
 
 
 const router = new express.Router();

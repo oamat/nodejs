@@ -10,7 +10,7 @@
 //Dependencies
 const Pns = require('../models/pns');
 const { hget, rpop, lpush, sadd } = require('../util/redispns'); //we need to initialize redis
-const { dateFormat, buildChannel } = require('../util/formats'); // utils for formats
+const { dateFormat, buildPNSChannel } = require('../util/formats'); // utils for formats
 const { savePNS } = require('../util/mongodb');
 const auth = require('../auth/auth');
 const fs = require('fs');
@@ -82,7 +82,7 @@ const getSMSFiles = async () => {
 
                         if (await collectorOperator != pns.operator) pns.operator = collectorOperator;  //check if the operator have some problems
 
-                        pns.channel = buildChannel(pns.operator, priority); //get the channel to put notification with operator and priority
+                        pns.channel = buildPNSChannel(pns.operator, priority); //get the channel to put notification with operator and priority
 
                         await pns.validate(); //we need await because is a promise and we need to manage the throw exceptions, particularly validating errors in bad request.
                         //If you didn't execute "pns.validate()" we would need await because is a promise and we need to manage the throw exceptions, particularly validating errors.

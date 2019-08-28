@@ -16,7 +16,7 @@ const auth = require('../auth/auth');
 
 const { saveSMS } = require('../util/mongodb');
 const { hget, lpush, sadd, set } = require('../util/redissms');
-const { dateFormat, buildChannel } = require('../util/formats');
+const { dateFormat, buildSMSChannel } = require('../util/formats');
 
 
 const router = new express.Router();
@@ -36,7 +36,7 @@ router.post('/smsSend', auth, async (req, res) => {  //we execute auth before th
 
         if (await collectorOperator != sms.operator) sms.operator = collectorOperator;  //check if the operator have some problems
 
-        sms.channel = buildChannel(sms.operator, sms.priority); //get the channel to put notification with operator and priority
+        sms.channel = buildSMSChannel(sms.operator, sms.priority); //get the channel to put notification with operator and priority
 
         await sms.validate(); //we need await because is a promise and we need to manage the throw exceptions, particularly validating errors in bad request.
         //If you didn't execute "sms.validate()" we would need await because is a promise and we need to manage the throw exceptions, particularly validating errors.
