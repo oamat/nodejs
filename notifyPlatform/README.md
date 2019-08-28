@@ -9,7 +9,6 @@
 - _mongodbd : contains the mongodb conf & docker/compose files
 - _redis : contains the redis conf & docker/compose files
 - _scripts : contains all the scripts for developing project, in order by num.
-
 -  Vagrantfile : The vagrant configuration for dev mode in ubuntu-18.04, you can install all dependencies and packages with the script '0.1.installAllDependencies.sh'
 -  notifyAPI.postman_collection.json : PostMan file for testing: You can use postman for prove requests to the APIS
 
