@@ -24,13 +24,15 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t \"contract\" : \"OTPLOWEB\",\n\t \"telf\" : \"+34699272809\",\n\t \"message\" : \"you have won a gift\",\n\t \"alias\" : \"L.O.\"\n}"
+					"raw": "{\n\t \"contract\" : \"OTPLOWEB\",\n\t \"telf\" : \"+34699272800\",\n\t \"message\" : \"you have won a gift\",\n\t \"alias\" : \"L.O.\"\n}"
 				},
 				"url": {
-					"raw": "{{url}}/smsSend",
+					"raw": "http://localhost:30001/smsSend",
+					"protocol": "http",
 					"host": [
-						"{{url}}"
+						"localhost"
 					],
+					"port": "30001",
 					"path": [
 						"smsSend"
 					]
@@ -60,10 +62,12 @@
 					"raw": "{\n\t \"contract\" : \"PUSHLOWEB\",\n\t \"application\" : \"CaixaAPP\",\n\t \"user\" : \"userTst\",\n\t \"uuiddevice\" : \"kk34699272809\",\n\t \"action\" : \"show\",\n\t \"content\" : \"content push notification\",\n\t \"params\" : [\n\t \t{ \"param\" : \"icono1\", \"value\" : \"new1\", \"type\" : \"String\"},\n\t \t{ \"param\" : \"icono2\", \"value\" : \"new2\", \"type\" : \"String\"}\n\t \t]\n}"
 				},
 				"url": {
-					"raw": "{{url}}/pnsSend",
+					"raw": "http://localhost:30002/pnsSend",
+					"protocol": "http",
 					"host": [
-						"{{url}}"
+						"localhost"
 					],
+					"port": "30002",
 					"path": [
 						"pnsSend"
 					]

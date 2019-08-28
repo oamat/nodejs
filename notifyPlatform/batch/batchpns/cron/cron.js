@@ -73,13 +73,12 @@ const getSMSFiles = async () => {
                     try {
                         var pns = new Pns(pnsJSON); // convert json to object,  await it's unnecessary because is the first creation of object. Model Validations are check when save in Mongodb, not here. 
                         pns.priority = priority;
-                        pns.operator = await hget("contractpns:" + pns.contract, "operator"); //Operator by default by contract. we checked the param before (in auth)
-                        const collectorOperator = hget("collectorpns:" + pns.operator, "operator"); //this method is Async, but we can get in parallel until need it (with await). 
+                        pns.operator = await hget("contractpns:" + pns.contract, "operator"); //Operator by default by contract. we checked the param before (in auth)                         
                         if (pns.operator == "ALL") { //If operator is ALL means that we need to find the better operator for the telf. 
                             //TODO: find the best operator for this tef. Not implemented yet
                             pns.operator = "AND";
                         }
-
+                        const collectorOperator = hget("collectorpns:" + pns.operator, "operator"); //this method is Async, but we can get in parallel until need it (with await).
                         if (await collectorOperator != pns.operator) pns.operator = collectorOperator;  //check if the operator have some problems
 
                         pns.channel = buildPNSChannel(pns.operator, priority); //get the channel to put notification with operator and priority

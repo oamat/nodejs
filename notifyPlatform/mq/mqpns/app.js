@@ -126,13 +126,12 @@ async function getCB(err, hObj, gmo, md, buf, hConn) {
                     const pns = new Pns(JSON.parse(smsJSON)); // convert json to object,  await it's unnecessary because is the first creation of object. Model Validations are check when save in Mongodb, not here. 
                     await auth(pns);
                     if (pns.priority < 1) pns.priority = 2; //only accept priorities 2,3,4,5 in MQ Service. (0,1 are reserved for REST interface).
-                    pns.operator = await hget("contractpns:" + pns.contract, "operator"); //Operator by default by contract. we checked the param before (in auth)
-                    const collectorOperator = hget("collectorpns:" + pns.operator, "operator"); //this method is Async, but we can get in parallel until need it (with await). 
+                    pns.operator = await hget("contractpns:" + pns.contract, "operator"); //Operator by default by contract. we checked the param before (in auth)                    
                     if (pns.operator == "ALL") { //If operator is ALL means that we need to find the better operator for the telf. 
                         //TODO: find the best operator for this tef. Not implemented yet
                         pns.operator = "AND";
                     }
-
+                    const collectorOperator = hget("collectorpns:" + pns.operator, "operator"); //this method is Async, but we can get in parallel until need it (with await). 
                     if (await collectorOperator != pns.operator) pns.operator = collectorOperator;  //check if the operator have some problems
 
                     pns.channel = buildPNSChannel(pns.operator, pns.priority); //get the channel to put notification with operator and priority
