@@ -24,7 +24,7 @@ const router = new express.Router();
 
 //Method post for sending SMS
 router.post('/smsSend', auth, async (req, res) => {  //we execute auth before this post request method
-
+    console.log(process.env.WHITE_COLOR, " SMS new request : " + JSON.stringify(req.body));
     try {
         const sms = new Sms(req.body);  //await it's unnecessary because is the first creation of object. Model Validations are check when save in Mongodb, not here. 
         sms.operator = await hget("contract:" + sms.contract, "operator"); //Operator by default by contract. we checked the param before (in auth)         

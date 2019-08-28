@@ -40,7 +40,7 @@ const startCron = async (interval) => { //Start cron only when cron is stopped.
         }
     } catch (error) {
         console.log(process.env.YELLOW_COLOR, "ERROR: we cannot start cron . Process continuing... " + error.message);
-        console.error(error); //continue the execution cron
+        //console.error(error); //continue the execution cron
     }
 }
 
@@ -53,7 +53,7 @@ const stopCron = async () => { //stop cron only when cron is switched on
         }
     } catch (error) {
         console.log(process.env.YELLOW_COLOR, "ERROR: we cannot stop cron. Process continuing... " + error.message);
-        console.error(error); //continue the execution cron
+        //console.error(error); //continue the execution cron
     }
 }
 
@@ -77,7 +77,7 @@ const sendNextSMS = async () => {
         }
     } catch (error) {
         console.log(process.env.YELLOW_COLOR, "ERROR: we have a problem in sendNextSMS() : " + error.message);
-        console.error(error); //continue the execution cron
+        //console.error(error); //continue the execution cron
     }
 }
 
@@ -86,7 +86,7 @@ const nextSMS = async () => {
         return await rpop(channels.channel0) || await rpop(channels.channel1) || await rpop(channels.channel2) || await rpop(channels.channel3) || await rpop(channels.channel4) || await rpop(channels.channel5); //return the next sms by priority order.  
     } catch (error) {
         console.log(process.env.YELLOW_COLOR, "ERROR: we have a problem with redis rpop : " + error.message);
-        console.error(error); //continue the execution cron
+        //console.error(error); //continue the execution cron
     }
 }
 
@@ -99,7 +99,7 @@ const startController = async (intervalControl) => {
         }, intervalControl);
     } catch (error) {
         console.log(process.env.YELLOW_COLOR, "ERROR: we cannot start cron Controller. . Process continuing... " + error.message);
-        console.error(error); //continue the execution cron
+        //console.error(error); //continue the execution cron
     }
 }
 
@@ -134,7 +134,7 @@ const checkstatus = async () => { //Check status, if it's necessary finish cron 
         }
     } catch (error) {
         console.log(process.env.YELLOW_COLOR, "ERROR: we cannot change status (run/stop cron). current cron status = " + cronStatus + " . . Process continuing... " + error.message);
-        console.error(error); //continue the execution cron
+        //console.error(error); //continue the execution cron
     }
 }
 
@@ -148,7 +148,7 @@ const checkInterval = async () => { //check rate/s, and change cron rate
         }
     } catch (error) {
         console.log(process.env.YELLOW_COLOR, "ERROR: we cannot change rate (cron interval). current interval " + interval + " . . Process continuing... " + error.message);
-        console.error(error); //continue the execution cron
+        //console.error(error); //continue the execution cron
     }
 }
 
@@ -162,7 +162,7 @@ const checkOperator = async () => { //change operator for HA
         }
     } catch (error) {
         console.log(process.env.YELLOW_COLOR, "ERROR: we cannot change operator because a problem, actual operator : " + operator + " . . Process continuing... " + error.message);
-        console.error(error); //continue the execution cron
+        //console.error(error); //continue the execution cron
     }
 }
 
@@ -184,7 +184,7 @@ const initCron = async () => {
         await startController(intervalControl);
     } catch (error) {
         console.log(process.env.YELLOW_COLOR, "ERROR: we cannot initialize cron with personalized params, we will initialize cron with default params (100message/s & 60s to reconfig) . . Process continuing... " + error.message);
-        console.error(error); //continue the execution cron
+        //console.error(error); //continue the execution cron
         await startCron(10); // 100 message/s
         await startController(60000); // 60 seconds
         cronStatus = 1;

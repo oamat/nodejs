@@ -24,7 +24,7 @@ const router = new express.Router();
 
 //Method post for sending PNS  //status, listby user (by date), list by uuid (by date), registeruuid: app, user, osVendor, osVersion, uuidDevice, token,
 router.post('/pnsSend', auth, async (req, res) => {  //we execute auth before this post request method
-
+    console.log(process.env.WHITE_COLOR, " PNS new request : " + JSON.stringify(req.body));
     try {
         const pns = new Pns(req.body);  //await it's unnecessary because is the first creation of object. Model Validations are check when save in Mongodb, not here. 
         pns.operator = await hget("contractpns:" + pns.contract, "operator"); //Operator by default by contract. we checked the param before (in auth)       

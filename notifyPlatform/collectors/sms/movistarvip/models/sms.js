@@ -100,6 +100,10 @@ const smsSchema = new mongoose.Schema({
         type: String,
         required: false,
         trim: true
+    },
+    customId: {
+        type: String,
+        required: false
     }
 }, {
         timestamps: true //If set timestamps, mongoose assigns createdAt and updatedAt fields to your schema, the type assigned is Date.

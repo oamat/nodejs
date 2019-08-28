@@ -39,7 +39,7 @@ const startCron = async (interval) => { //Start cron only when cron is stopped.
         }
     } catch (error) {
         console.log(process.env.YELLOW_COLOR, "ERROR: we cannot start batchPNS . Process continuing... " + error.message);
-        console.error(error); //continue the execution cron
+        //console.error(error); //continue the execution cron
     }
 }
 
@@ -52,7 +52,7 @@ const stopCron = async () => { //stop cron only when cron is switched on
         }
     } catch (error) {
         console.log(process.env.YELLOW_COLOR, "ERROR: we cannot stop batchPNS. Process continuing... " + error.message);
-        console.error(error); //continue the execution cron
+        //console.error(error); //continue the execution cron
     }
 }
 
@@ -113,7 +113,7 @@ const getSMSFiles = async () => {
 
                         const errorJson = { StatusCode: "MQ Error", error: error.message, contractpns: contract, uuiddevice: uuiddevice, application: application, action: action, content: content, receiveAt: dateFormat(new Date()) };   // dateFornat: replace T with a space && delete the dot and everything after
                         console.log(process.env.YELLOW_COLOR, "ERROR: " + JSON.stringify(errorJson));
-                        //console.error(error); //continue the execution cron          
+                        ////console.error(error); //continue the execution cron          
                         //TODO: save error in db  or mem.
                     }
                 });
@@ -126,7 +126,7 @@ const getSMSFiles = async () => {
             });
         } catch (error) {
             console.log(process.env.YELLOW_COLOR, "ERROR: we have a problem in batchPNS.getSMSFiles() : " + error.message);
-            console.error(error); //continue the execution cron
+            //console.error(error); //continue the execution cron
         }
         nextExecution = true;
     }
@@ -138,7 +138,7 @@ const nextSMS = async () => {
         return await rpop(channels.channel0) || await rpop(channels.channel1) || await rpop(channels.channel2) || await rpop(channels.channel3) || await rpop(channels.channel4) || await rpop(channels.channel5); //return the next pns by priority order.  
     } catch (error) {
         console.log(process.env.YELLOW_COLOR, "ERROR: we have a problem with redis rpop : " + error.message);
-        console.error(error); //continue the execution cron
+        //console.error(error); //continue the execution cron
     }
 }
 
@@ -151,7 +151,7 @@ const startController = async (intervalControl) => {
         }, intervalControl);
     } catch (error) {
         console.log(process.env.YELLOW_COLOR, "ERROR: we cannot start cron Controller. . Process continuing... " + error.message);
-        console.error(error); //continue the execution cron
+        //console.error(error); //continue the execution cron
     }
 }
 
@@ -185,7 +185,7 @@ const checkstatus = async () => { //Check status, if it's necessary finish cron 
         }
     } catch (error) {
         console.log(process.env.YELLOW_COLOR, "ERROR: we cannot change status (run/stop cron). current cron status = " + cronStatus + " . . Process continuing... " + error.message);
-        console.error(error); //continue the execution cron
+        //console.error(error); //continue the execution cron
     }
 }
 
@@ -199,7 +199,7 @@ const checkInterval = async () => { //check rate/s, and change cron rate
         }
     } catch (error) {
         console.log(process.env.YELLOW_COLOR, "ERROR: we cannot change rate (cron interval). current interval " + interval + " . . Process continuing... " + error.message);
-        console.error(error); //continue the execution cron
+        //console.error(error); //continue the execution cron
     }
 }
 
@@ -221,7 +221,7 @@ const initCron = async () => {
         await startController(intervalControl);
     } catch (error) {
         console.log(process.env.YELLOW_COLOR, "ERROR: we cannot initialize cron with personalized params, we will initialize cron with default params (every 10s, and 60s to reconfig) . . Process continuing... " + error.message);
-        //console.error(error); //continue the execution cron
+        ////console.error(error); //continue the execution cron
         await startCron(10000); // 10 seconds
         await startController(60000); // 60 seconds
         cronStatus = 1;

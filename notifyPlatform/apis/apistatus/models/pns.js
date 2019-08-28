@@ -119,6 +119,10 @@ const pnsSchema = new mongoose.Schema({
         required: false,
         trim: true
     },
+    customId: {
+        type: String,
+        required: false
+    },
     params: [{
         _id: false,
         param: {

@@ -1,0 +1,11 @@
+/* 1 */
+{
+    "_id" : "be098810-742c-425e-990a-0727b7695c62",
+    "contract" : "OTPLOWEB",
+    "operator" : "MOV",
+    "interface" : "ALL",
+    "jwt" : "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiY29udHJhY3QiOiJPVFBMT1dFQiIsImlhdCI6MjAxNjIzOTAyMn0.RSLawzTU4yX-XwnEZtvWipIBOTOji9LKbkuM391zjss",
+    "createdAt" : ISODate("2019-08-27T22:47:11.705Z"),
+    "updatedAt" : ISODate("2019-08-27T22:47:11.705Z"),
+    "__v" : 0
+}

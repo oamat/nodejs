@@ -13,7 +13,7 @@ services:
     environment:
       NODE_ENV: "docker"
     labels:
-      kompose.service.type: LoadBalancer
+      kompose.service.type: NodePort
       kompose.image-pull-policy: Never
     links:
       - redispns
@@ -32,7 +32,7 @@ services:
     environment:
       NODE_ENV: "docker"
     labels:
-      kompose.service.type: LoadBalancer
+      kompose.service.type: NodePort
       kompose.image-pull-policy: Never
     links:
       - redispns
@@ -51,7 +51,7 @@ services:
     environment:
       NODE_ENV: "docker"
     labels:
-      kompose.service.type: LoadBalancer
+      kompose.service.type: NodePort
       kompose.image-pull-policy: Never
     links:
       - redispns
@@ -70,7 +70,7 @@ services:
     environment:
       NODE_ENV: "docker"
     labels:
-      kompose.service.type: LoadBalancer
+      kompose.service.type: NodePort
       kompose.image-pull-policy: Never
 
     links:
@@ -90,7 +90,7 @@ services:
     environment:
       NODE_ENV: "docker"
     labels:
-      kompose.service.type: LoadBalancer
+      kompose.service.type: NodePort
       kompose.image-pull-policy: Never
 
     links:
@@ -110,7 +110,7 @@ services:
     environment:
       NODE_ENV: "docker"
     labels:
-      kompose.service.type: LoadBalancer
+      kompose.service.type: NodePort
       kompose.image-pull-policy: Never
 
     links:
@@ -130,7 +130,7 @@ services:
     environment:
       NODE_ENV: "docker"
     labels:
-      kompose.service.type: LoadBalancer
+      kompose.service.type: NodePort
       kompose.image-pull-policy: Never
 
     links:
@@ -150,7 +150,7 @@ services:
     environment:
       NODE_ENV: "docker"
     labels:
-      kompose.service.type: LoadBalancer
+      kompose.service.type: NodePort
       kompose.image-pull-policy: Never
 
     links:
@@ -170,7 +170,7 @@ services:
     environment:
       NODE_ENV: "docker"
     labels:
-      kompose.service.type: LoadBalancer
+      kompose.service.type: NodePort
       kompose.image-pull-policy: Never
 
     links:
@@ -192,7 +192,7 @@ services:
     environment:
       NODE_ENV: "docker"
     labels:
-      kompose.service.type: LoadBalancer
+      kompose.service.type: NodePort
       kompose.image-pull-policy: Never
 
     links:
@@ -218,7 +218,7 @@ services:
     environment:
       NODE_ENV: "docker"
     labels:
-      kompose.service.type: LoadBalancer
+      kompose.service.type: NodePort
       kompose.image-pull-policy: Never
 
     links:
@@ -240,7 +240,7 @@ services:
     environment:
       NODE_ENV: "docker"
     labels:
-      kompose.service.type: LoadBalancer
+      kompose.service.type: NodePort
       kompose.image-pull-policy: Never
 
     links:
@@ -262,7 +262,7 @@ services:
     environment:
       NODE_ENV: "docker"
     labels:
-      kompose.service.type: LoadBalancer
+      kompose.service.type: NodePort
       kompose.image-pull-policy: Never
 
     links:
@@ -288,7 +288,7 @@ services:
     environment:
       NODE_ENV: "docker"
     labels:
-      kompose.service.type: LoadBalancer
+      kompose.service.type: NodePort
       kompose.image-pull-policy: Never
 
     links:
@@ -310,7 +310,7 @@ services:
     environment:
       NODE_ENV: "docker"
     labels:
-      kompose.service.type: LoadBalancer
+      kompose.service.type: NodePort
       kompose.image-pull-policy: Never
     links:
       - redispns
@@ -332,7 +332,7 @@ services:
     environment:
       NODE_ENV: "docker"
     labels:
-      kompose.service.type: LoadBalancer
+      kompose.service.type: NodePort
       kompose.image-pull-policy: Never
 
 
@@ -349,7 +349,7 @@ services:
     environment:
       NODE_ENV: "docker"
     labels:
-      kompose.service.type: LoadBalancer
+      kompose.service.type: NodePort
       kompose.image-pull-policy: Never
 
 
@@ -369,7 +369,7 @@ services:
       MONGO_INITDB_ROOT_PASSWORD: "example"
       MONGO_INITDB_DATABASE: "test"
     labels:
-      kompose.service.type: LoadBalancer
+      kompose.service.type: NodePort
       kompose.image-pull-policy: Never
   
   
@@ -390,7 +390,7 @@ services:
       MONGO_INITDB_ROOT_PASSWORD: "example"
       MONGO_INITDB_DATABASE: "test"
     labels:
-      kompose.service.type: LoadBalancer
+      kompose.service.type: NodePort
       kompose.image-pull-policy: Never
   
   

@@ -1,0 +1,83 @@
+/* 1 */
+{
+    "_id" : "be098810-742c-425e-990a-0727b7695c62",
+    "dispatched" : false,
+    "priority" : 5,
+    "interface" : "REST",
+    "retries" : 0,
+    "deferred" : false,
+    "status" : 0,
+    "contract" : "OTPLOWEB",
+    "telf" : "+34699272800",
+    "message" : "you have won a gift",
+    "alias" : "L.O.",
+    "receivedAt" : ISODate("2019-08-27T22:47:11.616Z"),
+    "operator" : "MOV",
+    "channel" : "SMS.MOV.5",
+    "createdAt" : ISODate("2019-08-27T22:47:11.705Z"),
+    "updatedAt" : ISODate("2019-08-27T22:47:11.705Z"),
+    "__v" : 0
+}
+
+/* 2 */
+{
+    "_id" : "b52e72bf-f13a-4d3f-8523-0b7e2589353c",
+    "dispatched" : false,
+    "priority" : 5,
+    "interface" : "REST",
+    "retries" : 0,
+    "deferred" : false,
+    "status" : 0,
+    "contract" : "OTPLOWEB",
+    "telf" : "+34699272800",
+    "message" : "you have won a gift",
+    "alias" : "L.O.",
+    "receivedAt" : ISODate("2019-08-27T22:47:11.619Z"),
+    "operator" : "MOV",
+    "channel" : "SMS.MOV.5",
+    "createdAt" : ISODate("2019-08-27T22:47:11.705Z"),
+    "updatedAt" : ISODate("2019-08-27T22:47:11.705Z"),
+    "__v" : 0
+}
+
+/* 3 */
+{
+    "_id" : "45160ddf-5faf-43bb-9246-7babcdb8b153",
+    "dispatched" : false,
+    "priority" : 5,
+    "interface" : "REST",
+    "retries" : 0,
+    "deferred" : false,
+    "status" : 0,
+    "contract" : "OTPLOWEB",
+    "telf" : "+34699272800",
+    "message" : "you have won a gift",
+    "alias" : "L.O.",
+    "receivedAt" : ISODate("2019-08-27T22:47:11.610Z"),
+    "operator" : "MOV",
+    "channel" : "SMS.MOV.5",
+    "createdAt" : ISODate("2019-08-27T22:47:11.705Z"),
+    "updatedAt" : ISODate("2019-08-27T22:47:11.705Z"),
+    "__v" : 0
+}
+
+/* 4 */
+{
+    "_id" : "ce075cff-4fb8-4b5c-bf79-b7f7480ea06f",
+    "dispatched" : false,
+    "priority" : 5,
+    "interface" : "REST",
+    "retries" : 0,
+    "deferred" : false,
+    "status" : 0,
+    "contract" : "OTPLOWEB",
+    "telf" : "+34699272800",
+    "message" : "you have won a gift",
+    "alias" : "L.O.",
+    "receivedAt" : ISODate("2019-08-27T22:47:11.626Z"),
+    "operator" : "MOV",
+    "channel" : "SMS.MOV.5",
+    "createdAt" : ISODate("2019-08-27T22:47:11.705Z"),
+    "updatedAt" : ISODate("2019-08-27T22:47:11.705Z"),
+    "__v" : 0
+}

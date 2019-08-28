@@ -1,0 +1,51 @@
+/* 1 */
+{
+    "_id" : "be098810-742c-425e-990a-0727b7695c61",
+    "collector" : "MOV",
+    "operator" : "MOV",
+    "status" : "1",
+    "interval" : "200",
+    "intervalControl" : "30000",
+    "createdAt" : ISODate("2019-08-27T22:47:11.705Z"),
+    "updatedAt" : ISODate("2019-08-27T22:47:11.705Z"),
+    "__v" : 0
+}
+
+/* 2 */
+{
+    "_id" : "be098810-742c-425e-990a-0727b7695c62",
+    "collector" : "ORA",
+    "operator" : "ORA",
+    "status" : "1",
+    "interval" : "200",
+    "intervalControl" : "30000",
+    "createdAt" : ISODate("2019-08-27T22:47:11.705Z"),
+    "updatedAt" : ISODate("2019-08-27T22:47:11.705Z"),
+    "__v" : 0
+}
+
+/* 3 */
+{
+    "_id" : "be098810-742c-425e-990a-0727b7695c63",
+    "collector" : "VIP",
+    "operator" : "VIP",
+    "status" : "1",
+    "interval" : "200",
+    "intervalControl" : "30000",
+    "createdAt" : ISODate("2019-08-27T22:47:11.705Z"),
+    "updatedAt" : ISODate("2019-08-27T22:47:11.705Z"),
+    "__v" : 0
+}
+
+/* 4 */
+{
+    "_id" : "be098810-742c-425e-990a-0727b7695c64",
+    "collector" : "VOD",
+    "operator" : "VOD",
+    "status" : "1",
+    "interval" : "200",
+    "intervalControl" : "30000",
+    "createdAt" : ISODate("2019-08-27T22:47:11.705Z"),
+    "updatedAt" : ISODate("2019-08-27T22:47:11.705Z"),
+    "__v" : 0
+}
