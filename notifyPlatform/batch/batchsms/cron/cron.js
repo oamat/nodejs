@@ -11,7 +11,7 @@
 const Sms = require('../models/sms');
 const { hget, rpop, lpush, sadd } = require('../util/redissms'); //we need to initialize redis
 const { dateFormat, buildSMSChannel } = require('../util/formats'); // utils for formats
-const { saveSMS } = require('../util/mongodb');
+const { saveSMS } = require('../util/mongosms');
 const auth = require('../auth/auth');
 const fs = require('fs');
 const batchIn = './files/in/';

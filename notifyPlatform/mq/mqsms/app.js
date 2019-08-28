@@ -16,7 +16,7 @@ require('./config/config'); //we need configurations
 const { initializeMongooseConnection } = require('./config/mongoosesms'); //we need to initialize mongoose
 const { rclient } = require('./config/redissms'); //we need to initialize redis
 const Sms = require('./models/sms');
-const { saveSMS } = require('./util/mongodb');
+const { saveSMS } = require('./util/mongosms');
 const { hget, lpush, sadd, set } = require('./util/redissms');
 const { dateFormat, buildSMSChannel } = require('./util/formats');
 const auth = require('./auth/auth');

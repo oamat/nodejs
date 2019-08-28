@@ -11,7 +11,7 @@
 const Pns = require('../models/pns');
 const { hget, rpop, lpush, sadd } = require('../util/redispns'); //we need to initialize redis
 const { dateFormat, buildPNSChannel } = require('../util/formats'); // utils for formats
-const { savePNS } = require('../util/mongodb');
+const { savePNS } = require('../util/mongopns');
 const auth = require('../auth/auth');
 const fs = require('fs');
 const batchIn = './files/in/';

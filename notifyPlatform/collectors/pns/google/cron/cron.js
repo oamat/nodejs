@@ -11,7 +11,9 @@
 const Pns = require('../models/pns');
 const { hget, rpop, rpoplpush } = require('../util/redispns'); //we need to initialize redis
 const { dateFormat, buildPNSChannel, buildPNSChannels } = require('../util/formats'); // utils for formats
-const { updatePNS, sendPNS } = require('./cronHelper');
+const { updatePNSStatus } = require('../util/mongopns'); //for updating status
+const { sendPNS } = require('./cronHelper');
+
 
 
 //Variables
@@ -68,7 +70,7 @@ const sendNextPNS = async () => {
             //pns.validate(); //It's unnecessary because we cautched from redis, and we checked before in the apipns, the new params are OK.
             if (operator == defaultOperator) { //If we change operator for contingency we change pns to other list
                 await sendPNS(pns); // send PNS to operator
-                updatePNS(pns._id); // update PNS in MongoDB
+                updatePNSStatus(sms._id,1); // update PNS in MongoDB
                 console.log(process.env.GREEN_COLOR, " PNS sended : " + JSON.stringify(pns));  //JSON.stringify for replace new lines (\n) and tab (\t) chars into string
             } else {
                 await rpoplpush(buildPNSChannel(defaultOperator, pns.priority), buildPNSChannel(operator, pns.priority)); // we put message to the other operator List

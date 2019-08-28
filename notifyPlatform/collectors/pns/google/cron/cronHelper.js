@@ -13,7 +13,7 @@ const Pns = require('../models/pns');
 
 
 
-const updatePNS = async (id) => {
+const updatePNSStatus = async (id) => {
     Pns.findOneAndUpdate(id, {
         $set: {
             status: 1,  //0:notSent, 1:Sent, 2:confirmed 3:Error
@@ -49,4 +49,4 @@ const sendPNS = async (pns) => {
     });
     request.end();
 }
-module.exports = { updatePNS, sendPNS }
+module.exports = { sendPNS }

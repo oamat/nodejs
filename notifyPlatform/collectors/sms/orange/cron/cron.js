@@ -11,7 +11,8 @@
 const Sms = require('../models/sms');
 const { hget, rpop, rpoplpush } = require('../util/redissms'); //we need to initialize redis
 const { dateFormat, buildSMSChannel, buildSMSChannels } = require('../util/formats'); // utils for formats
-const { updateSMS, sendSMS } = require('./cronHelper');
+const { updateSMSStatus } = require('../util/mongosms'); //for updating status
+const { sendSMS } = require('./cronHelper');
 
 
 //Variables
@@ -68,7 +69,7 @@ const sendNextSMS = async () => {
             //sms.validate(); //It's unnecessary because we cautched from redis, and we checked before in the apisms, the new params are OK.
             if (operator == defaultOperator) { //If we change operator for contingency we change sms to other list
                 await sendSMS(sms); // send SMS to operator
-                updateSMS(sms._id); // update SMS in MongoDB
+                updateSMSStatus(sms._id,1); // update SMS in MongoDB
                 console.log(process.env.GREEN_COLOR, " SMS sended : " + JSON.stringify(sms));  //JSON.stringify for replace new lines (\n) and tab (\t) chars into string
             } else {
                 await rpoplpush(buildSMSChannel(defaultOperator, sms.priority), buildSMSChannel(operator, sms.priority)); // we put message to the other operator List

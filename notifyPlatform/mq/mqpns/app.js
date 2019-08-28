@@ -16,7 +16,7 @@ require('./config/config'); //we need configurations
 const { initializeMongooseConnection } = require('./config/mongoosepns'); //we need to initialize mongoose
 const { rclient } = require('./config/redispns'); //we need to initialize redis
 const Pns = require('./models/pns');
-const { savePNS } = require('./util/mongodb');
+const { savePNS } = require('./util/mongopns');
 const { hget, lpush, sadd, set } = require('./util/redispns');
 const { dateFormat, buildPNSChannel } = require('./util/formats');
 const auth = require('./auth/auth');

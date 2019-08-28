@@ -13,7 +13,7 @@ const Sms = require('../models/sms');
 
 
 
-const updateSMS = async (id) => {
+const updateSMSStatus = async (id) => {
     Sms.findOneAndUpdate(id, {
         $set: {
             status: 1,  //0:notSent, 1:Sent, 2:confirmed 3:Error
@@ -49,4 +49,4 @@ const sendSMS = async (sms) => {
     });
     request.end();
 }
-module.exports = { updateSMS, sendSMS }
+module.exports = { sendSMS }

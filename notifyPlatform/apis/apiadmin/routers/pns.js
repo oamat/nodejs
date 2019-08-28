@@ -10,7 +10,7 @@ const express = require('express');
 const Pns = require('../models/pns');
 const auth = require('../auth/auth');
 
-const { savePNS } = require('../util/mongodb');
+const { savePNS } = require('../util/mongopns');
 const { hget, lpush, sadd, set } = require('../util/redis');
 const { dateFormat, buildSMSChannel } = require('../util/formats');
 

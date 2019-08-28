@@ -14,7 +14,7 @@ const express = require('express');
 const Sms = require('../models/sms');
 const auth = require('../auth/auth');
 
-const { saveSMS } = require('../util/mongodb');
+const { saveSMS } = require('../util/mongosms');
 const { hget, lpush, sadd, set } = require('../util/redissms');
 const { dateFormat, buildSMSChannel } = require('../util/formats');
 
