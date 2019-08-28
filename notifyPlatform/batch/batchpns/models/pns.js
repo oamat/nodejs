@@ -114,6 +114,11 @@ const pnsSchema = new mongoose.Schema({
         type: String, //PNS.AND.1, [AND, APP, MIC] [0,1,2,3]
         required: true
     },
+    jwt: {  // we need jwt for MQ, but we don't need to save in mongodb.
+        type: String,
+        required: false,
+        trim: true
+    },
     params: [{
         _id: false,
         param: {

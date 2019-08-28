@@ -8,20 +8,14 @@ const dateFormat = (date) => {
    return date.toISOString().replace(/T/, ' ').replace(/\..+/, '');
 }
 
-const buildChannel = (operator, priority) => {
+const buildSMSChannel = (operator, priority) => {
    return "SMS." + operator + "." + priority;
 }
 
-const buildChannels = (operator) => {
-   return { 
-      channel0: buildChannel(operator, 0), 
-      channel1: buildChannel(operator, 1), 
-      channel2: buildChannel(operator, 2), 
-      channel3: buildChannel(operator, 3),
-      channel4: buildChannel(operator, 4),
-      channel5: buildChannel(operator, 5)
-    };
+const buildPNSChannel = (operator, priority) => {
+   return "PNS." + operator + "." + priority;
 }
 
+const counter = ((i = 0) => () => ++i)();
 
-module.exports = { dateFormat, buildChannel, buildChannels }
+module.exports = { dateFormat, buildSMSChannel, buildPNSChannel, counter }

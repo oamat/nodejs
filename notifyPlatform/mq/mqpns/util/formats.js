@@ -3,13 +3,19 @@
  *
  */
 
- //methods to expose
-const dateFormat =  ( date ) =>{
+//methods to expose
+const dateFormat = (date) => {
    return date.toISOString().replace(/T/, ' ').replace(/\..+/, '');
 }
 
-const buildChannel = (operator, priority) => {
+const buildSMSChannel = (operator, priority) => {
+   return "SMS." + operator + "." + priority;
+}
+
+const buildPNSChannel = (operator, priority) => {
    return "PNS." + operator + "." + priority;
 }
 
- module.exports = {dateFormat, buildChannel}
+const counter = ((i = 0) => () => ++i)();
+
+module.exports = { dateFormat, buildSMSChannel, buildPNSChannel, counter }

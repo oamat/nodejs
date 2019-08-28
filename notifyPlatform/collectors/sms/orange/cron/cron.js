@@ -9,7 +9,7 @@
 
 //Dependencies
 const Sms = require('../models/sms');
-const { hget, rpop, rpoplpush } = require('../util/redis'); //we need to initialize redis
+const { hget, rpop, rpoplpush } = require('../util/redissms'); //we need to initialize redis
 const { dateFormat, buildChannel, buildChannels } = require('../util/formats'); // utils for formats
 const { updateSMS, sendSMS } = require('./cronHelper');
 

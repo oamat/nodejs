@@ -14,7 +14,7 @@
 
 // Dependencies
 const jwt = require('jsonwebtoken');
-const { hget } = require('../util/redis');
+const { hget } = require('../util/redispns');
 
 // method auth async, and it's necessary call function next in the end if all is correct.
 const auth = async (pns) => {

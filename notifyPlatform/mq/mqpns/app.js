@@ -17,7 +17,7 @@ const { initializeMongooseConnection } = require('./config/mongoosepns'); //we n
 const { rclient } = require('./config/redispns'); //we need to initialize redis
 const Pns = require('./models/pns');
 const { savePNS } = require('./util/mongodb');
-const { hget, lpush, sadd, set } = require('./util/redis');
+const { hget, lpush, sadd, set } = require('./util/redispns');
 const { dateFormat, buildChannel } = require('./util/formats');
 const auth = require('./auth/auth');
 
@@ -125,7 +125,7 @@ async function getCB(err, hObj, gmo, md, buf, hConn) {
                 try {
                     const pns = new Pns(JSON.parse(smsJSON)); // convert json to object,  await it's unnecessary because is the first creation of object. Model Validations are check when save in Mongodb, not here. 
                     await auth(pns);
-                    if (pns.priority < 1) pns.priority = 2; //only accept priorities 2 or 3 in MQ Service. 
+                    if (pns.priority < 1) pns.priority = 2; //only accept priorities 2,3,4,5 in MQ Service. (0,1 are reserved for REST interface).
                     pns.operator = await hget("contractpns:" + pns.contract, "operator"); //Operator by default by contract. we checked the param before (in auth)
                     const collectorOperator = hget("collectorpns:" + pns.operator, "operator"); //this method is Async, but we can get in parallel until need it (with await). 
                     if (pns.operator == "ALL") { //If operator is ALL means that we need to find the better operator for the telf. 
@@ -136,10 +136,9 @@ async function getCB(err, hObj, gmo, md, buf, hConn) {
                     if (await collectorOperator != pns.operator) pns.operator = collectorOperator;  //check if the operator have some problems
 
                     pns.channel = buildChannel(pns.operator, pns.priority); //get the channel to put notification with operator and priority
-
+                    delete pns.jwt; // we don't need to save jwt in mongodb, only for authoritation.
                     await pns.validate(); //we need await because is a promise and we need to manage the throw exceptions, particularly validating errors in bad request.
                     //If you didn't execute "pns.validate()" we would need await because is a promise and we need to manage the throw exceptions, particularly validating errors.
-
                     await savePNS(pns) //save pns to DB, in this phase we need save PNS to MongoDB.
                         .catch(error => {
                             error.message = "ERROR :  We cannot save notify in MongoBD. " + error.message;

@@ -1,93 +1,34 @@
-{
-  "windocker": {
-      "comment" : "this is for windows enviroments with mongo and redis in Win docker ip 192.168.99.100, but the api, collectors, cron... codes in local",
+/*
+ * DB configuration
+ *
+ */
 
-      "APISMS_PORT": 30001,
-      "APIPNS_PORT": 30002,
-      "APIADMIN_PORT": 30003,
-      "APISTATUS_PORT": 30004,
-      "RETRIESPNS_PORT": 30005,
-      "RETRIESSMS_PORT": 30006,
+"use strict";
 
-      "MONGODBSMS_URI": "mongodb://root:example@192.168.99.100:30090/admin?authMechanism=SCRAM-SHA-1",
-      "MONGODBSMS_PORT": "30090",
-      "MONGODBPNS_URI": "mongodb://root:example@192.168.99.100:30091/admin?authMechanism=SCRAM-SHA-1",
-      "MONGODBPNS_PORT": "30091",
-     
-      "REDISSMS_IP": "192.168.99.100",
-      "REDISSMS_PORT": "30080",
-      "REDISPNS_IP": "192.168.99.100",
-      "REDISPNS_PORT": "30081",
-    
-      "JWT_SECRET": "pojiaj234oi234oij234oij4jgstwsnaKSDADWWssswwwwssQRT"    
-   },
-   
-  "development": {
-    "comment" : "this is for linux enviroments with mongo and redis in native docker loclahost, but the api, collectors, cron... codes in local",
+// Dependencies
+const mongoose = require('mongoose');
 
-    "APISMS_PORT": 30001,
-    "APIPNS_PORT": 30002,
-    "APIADMIN_PORT": 30003,
-    "APISTATUS_PORT": 30004,
-    "RETRIESPNS_PORT": 30005,
-    "RETRIESSMS_PORT": 30006,
+// Init mongoose
+mongoose.Promise = global.Promise;
 
-    "MONGODBSMS_URI": "mongodb://root:example@localhost:30090/admin?authMechanism=SCRAM-SHA-1",
-    "MONGODBSMS_PORT": "30090",
-    "MONGODBPNS_URI": "mongodb://root:example@localhost:30091/admin?authMechanism=SCRAM-SHA-1",
-    "MONGODBPNS_PORT": "30091",
-    
-    "REDISSMS_IP": "localhost",
-    "REDISSMS_PORT": "30080",
-    "REDISPNS_IP": "localhost",
-    "REDISPNS_PORT": "30081",
-    
-    "JWT_SECRET": "pojiaj234oi234oij234oij4jgstwsnaKSDADWWssswwwwssQRT"
-  }, 
 
-  "docker": {
-    "comment" : "this is for Kubernetes or docker-composer with mongo and redis as a service name. And the api, collectors, cron... codes as containers",
+// EventEmitter in case of Errors, stop all process
+mongoose.connection.once('open', () => { //we check the mongodb connection
+    console.log(process.env.GREEN_COLOR, "Connected to DB Server : " + process.env.MONGODBPNS_URI);
+});
 
-    "APISMS_PORT": 30001,
-    "APIPNS_PORT": 30002,
-    "APIADMIN_PORT": 30003,
-    "APISTATUS_PORT": 30004,
-    "RETRIESPNS_PORT": 30005,
-    "RETRIESSMS_PORT": 30006,
+mongoose.connection.on('error', (error) => {  //we need to know if connection works, particularly at the start if we didn't connect with it.
+    console.log(process.env.RED_COLOR, error);
+    console.log(process.env.RED_COLOR, "FATAL ERROR : failed to connect to db server : " + process.env.MONGODBPNS_URI);
+    //process.exit(1);  //because platform doesn't works without Mongodb, we prefer to stop server
+});
 
-    "MONGODBSMS_URI": "mongodb://root:example@mongosms:30090/admin?authMechanism=SCRAM-SHA-1",
-    "MONGODBSMS_PORT": "30090",
-    "MONGODBPNS_URI": "mongodb://root:example@mongopns:30091/admin?authMechanism=SCRAM-SHA-1",
-    "MONGODBPNS_PORT": "30091",
-
-    "REDISSMS_IP": "redissms",
-    "REDISSMS_PORT": "30080",
-    "REDISPNS_IP": "redissms",
-    "REDISPNS_PORT": "30081",
-    
-    "JWT_SECRET": "pojiaj234oi234oij234oij4jgstwsnaKSDADWWssswwwwssQRT"
-  }, 
-
-  "kubernetes": {
-    "comment" : "this is for Kubernetes with IP_MASTER_KUBERNETES. And the api, collectors, cron... codes as containers",
-
-    "APISMS_PORT": 30001,
-    "APIPNS_PORT": 30002,
-    "APIADMIN_PORT": 30003,
-    "APISTATUS_PORT": 30004,
-    "RETRIESPNS_PORT": 30005,
-    "RETRIESSMS_PORT": 30006,
-
-    "MONGODBSMS_URI": "mongodb://root:example@10.0.2.15:30090/admin?authMechanism=SCRAM-SHA-1",
-    "MONGODBSMS_PORT": "30090",
-    "MONGODBPNS_URI": "mongodb://root:example@10.0.2.15:30091/admin?authMechanism=SCRAM-SHA-1",
-    "MONGODBPNS_PORT": "30091",
-
-    "REDISSMS_IP": "10.0.2.15",
-    "REDISSMS_PORT": "30080",
-    "REDISPNS_IP": "10.0.2.15",
-    "REDISPNS_PORT": "30081",
-    
-    "JWT_SECRET": "pojiaj234oi234oij234oij4jgstwsnaKSDADWWssswwwwssQRT"
-  }
+const initializeMongooseConnection = async () => {
+    // await connection to DB
+    await mongoose.connect(process.env.MONGODBPNS_URI, { useNewUrlParser: true, useFindAndModify: false, useCreateIndex: true });
+    // mongoose.set('useNewUrlParser', true); // see https://mongoosejs.com/docs/deprecations.html
+    // mongoose.set('useFindAndModify', false);   // see https://github.com/Automattic/mongoose/pull/6165
+    // mongoose.set('useCreateIndex', true);  // see https://mongoosejs.com/docs/deprecations.html
 }
+
+module.exports = { initializeMongooseConnection, mongoose };

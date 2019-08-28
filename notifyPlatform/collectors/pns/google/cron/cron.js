@@ -9,7 +9,7 @@
 
 //Dependencies
 const Pns = require('../models/pns');
-const { hget, rpop, rpoplpush } = require('../util/redis'); //we need to initialize redis
+const { hget, rpop, rpoplpush } = require('../util/redispns'); //we need to initialize redis
 const { dateFormat, buildChannel, buildChannels } = require('../util/formats'); // utils for formats
 const { updatePNS, sendPNS } = require('./cronHelper');
 

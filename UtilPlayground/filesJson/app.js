@@ -1,7 +1,8 @@
 const fs = require('fs');
 const readline = require('readline');
 const batchFolder = "./files";
-var indexLine = 0;
+const lineCounter = ((i = 0) => () => ++i)();
+
 console.log(" Print all files of folder 'files' : ");
 
 fs.readdirSync(batchFolder).forEach(file => {
@@ -25,9 +26,8 @@ var lineReader = readline.createInterface({
     input: fs.createReadStream('./files/file1.json')
 });
 
-lineReader.on('line', function (line) {
-    indexLine++;
-    console.log('Line [' + indexLine + '] from file:', line);
+lineReader.on('line', function (line, lineNum = lineCounter() ) {    
+    setTimeout( () => { console.log('Line [' + lineNum + '] from file:', line); }, 100);
 });
 
 lineReader.on('close', function () {

@@ -24,6 +24,7 @@ const smsSchema = new mongoose.Schema({
     },
     dispatched: {
         type: Boolean,
+        required: true,
         default: false
     },
     dispatchedAt: {
@@ -50,15 +51,16 @@ const smsSchema = new mongoose.Schema({
         required: true,
         trim: true,
         validate(value) {
-            if (value.length > 160 ) throw new Error('message is invalid, it must be less than 160 characters.');
+            if (value.length > 160) throw new Error('message is invalid, it must be less than 160 characters.');
         }
     },
     priority: {
         type: Number,
         required: true,
-        default: 1,  //0 VIP, 1 online, 2 MQ, 3 batch
+        default: 1,  //0 VIP, 1 online, 2 MQ alta, 3 MQ normal, 4 MQ baja-batch alta, 5 batch baja
         validate(value) {
-            if (value<0 || value>3) throw new Error('priority is invalid. Correct values 0,1,2,3.');
+            if (value < 0) return 0;
+            else if (value > 5) return 5;
         }
     },
     interface: {
@@ -87,12 +89,17 @@ const smsSchema = new mongoose.Schema({
         default: 0  //0:notSent, 1:Sent, 2:confirmed 3:Error
     },
     operator: {
-        type: String, //MOV, ORA, VOD, NOS,...
-        required: true        
+        type: String, //MOV, ORA, VOD, VIP,...
+        required: true
     },
     channel: {
-        type: String, //SMS.MOV.1, 0,2,3
+        type: String, //SMS.MOV.1, [MOV, ORA, VOD, VIP] [0,1,2,3,4,5]
         required: true
+    },
+    jwt: {  // we need jwt for MQ, but we don't need to save in mongodb.
+        type: String,
+        required: false,
+        trim: true
     }
 }, {
         timestamps: true //If set timestamps, mongoose assigns createdAt and updatedAt fields to your schema, the type assigned is Date.

@@ -9,7 +9,7 @@
 
 //Dependencies
 const Sms = require('../models/sms');
-const { hget, rpop, lpush, sadd } = require('../util/redis'); //we need to initialize redis
+const { hget, rpop, lpush, sadd } = require('../util/redissms'); //we need to initialize redis
 const { dateFormat, buildChannel } = require('../util/formats'); // utils for formats
 const { saveSMS } = require('../util/mongodb');
 const auth = require('../auth/auth');
@@ -66,7 +66,7 @@ const getSMSFiles = async () => {
                 var fileJSON = JSON.parse(file);
                 await auth(fileJSON.fileBatch.contract, fileJSON.fileBatch.jwt);
                 var priority = fileJSON.fileBatch.priority;
-                if (priority < 4) priority = 4; //only accept priorities 4 or 5 in batch. 
+                if (priority < 4) priority = 4; //only accept priorities 4 or 5 in batch. (0,1 are reserved for REST interface, 2,3 for MQ interface). 
                 var notifications = fileJSON.fileBatch.notifications;
                 console.log(filename + " have " + notifications.length + " notifications to send");
                 notifications.forEach(async (smsJSON) => {

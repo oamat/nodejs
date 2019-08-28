@@ -17,7 +17,7 @@ const { initializeMongooseConnection } = require('./config/mongoosesms'); //we n
 const { rclient } = require('./config/redissms'); //we need to initialize redis
 const Sms = require('./models/sms');
 const { saveSMS } = require('./util/mongodb');
-const { hget, lpush, sadd, set } = require('./util/redis');
+const { hget, lpush, sadd, set } = require('./util/redissms');
 const { dateFormat, buildChannel } = require('./util/formats');
 const auth = require('./auth/auth');
 
@@ -124,10 +124,8 @@ async function getCB(err, hObj, gmo, md, buf, hConn) {
             if (smsJSON) {
                 try {
                     const sms = new Sms(JSON.parse(smsJSON)); // convert json to object,  await it's unnecessary because is the first creation of object. Model Validations are check when save in Mongodb, not here. 
-                    await auth(sms);
-                    
-                    if (sms.priority < 1) sms.priority = 2; //only accept priorities 2 or 3 in MQ Service. 
-
+                    await auth(sms);                    
+                    if (pns.priority < 1) pns.priority = 2; //only accept priorities 2,3,4,5 in MQ Service. (0,1 are reserved for REST interface).
                     sms.operator = await hget("contract:" + sms.contract, "operator"); //Operator by default by contract. we checked the param before (in auth)
                     const collectorOperator = hget("collector:" + sms.operator, "operator"); //this method is Async, but we can get in parallel until need it (with await). 
                     if (sms.operator == "ALL") { //If operator is ALL means that we need to find the better operator for the telf. 
@@ -139,9 +137,9 @@ async function getCB(err, hObj, gmo, md, buf, hConn) {
 
                     sms.channel = buildChannel(sms.operator, sms.priority); //get the channel to put notification with operator and priority
 
+                    delete pns.jwt; // we don't need to save jwt in mongodb, only for authoritation.
                     await sms.validate(); //we need await because is a promise and we need to manage the throw exceptions, particularly validating errors in bad request.
                     //If you didn't execute "sms.validate()" we would need await because is a promise and we need to manage the throw exceptions, particularly validating errors.
-
                     await saveSMS(sms) //save sms to DB, in this phase we need save SMS to MongoDB.
                         .catch(error => {
                             error.message = "ERROR :  We cannot save notify in MongoBD. " + error.message;

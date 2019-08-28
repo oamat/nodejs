@@ -75,10 +75,10 @@ const pnsSchema = new mongoose.Schema({
     priority: {
         type: Number,
         required: true,
-        default: 3,  //0 VIP, 1 online, 2 MQ alta, 3 MQ normal, 4 MQ baja-batch alta, 5 batch baja
+        default: 1,  //0 VIP, 1 online, 2 MQ alta, 3 MQ normal, 4 MQ baja-batch alta, 5 batch baja
         validate(value) {
-            if (value < 2) return 2;  // MQ priority needs to be >1. 0,1 are reserve for API online 
-            else if (value > 5) return 5;  // MQ priority needs to be <6
+            if (value < 0) return 0;
+            else if (value > 5) return 5;
         }
     },
     interface: {
@@ -113,6 +113,11 @@ const pnsSchema = new mongoose.Schema({
     channel: {
         type: String, //PNS.AND.1, [AND, APP, MIC] [0,1,2,3]
         required: true
+    },
+    jwt: {  // we need jwt for MQ, but we don't need to save in mongodb.
+        type: String,
+        required: false,
+        trim: true
     },
     params: [{
         _id: false,
