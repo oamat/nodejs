@@ -22,23 +22,35 @@ const saveSMS = async (sms) => {
 }
 
 
-//this method update SMS Status in MongoDB and manage the result of this operation
-const updateSMSStatus = async (id, status) => {
+//this method update SMS in MongoDB and manage the result of this operation
+const updateSMS = async (sms) => {
     return new Promise((resolve, reject) => {
-        Sms.findOneAndUpdate({ _id: id }, {
-            $set: {
-                status,  //0:notSent, 1:Sent, 2:confirmed 3:Error
-                dispatched: true,
-                dispatchedAt: new Date()
-            }
-        }, { new: true }, (error, result) => {  //property new returns the new updated document, not the original document
-            try {  //I use Promises but I need to use try/catch in async callback or I could use EventEmitter 
-                if (error) console.log(error.message);
-                else if (result) resolve(result); // everything is OK, return result
-                else throw new Error('we have a problem when try to update SMS in MongoDB. it\'s necessary check the problem before proceding.'); //If we cannot save PNS to MongoDB
-            } catch (error) { reject(error); } // In Callback we need to reject if we have Error. A reject will not pass through here
-        });
+        let options = { upsert: true, new: true, setDefaultsOnInsert: true };
+        let query = { _id: sms._id };
+        Sms.findOneAndUpdate(query, sms, options, (error, result) => {  //property new returns the new updated document, not the original document
+                try {  //I use Promises but I need to use try/catch in async callback or I could use EventEmitter 
+                    if (error) console.log(error.message);
+                    else if (result) resolve(result); // everything is OK, return result
+                    else throw new Error('we have a problem when try to update SMS in MongoDB. it\'s necessary check the problem before proceding.'); //If we cannot save PNS to MongoDB
+                } catch (error) { reject(error); } // In Callback we need to reject if we have Error. A reject will not pass through here
+            });
     });
 }
 
-module.exports = { saveSMS, updateSMSStatus }
+//this method update SMS personalized params in MongoDB and manage the result of this operation
+const updateSomeOfSMS = async (id, toUpdate) => {
+    return new Promise((resolve, reject) => {
+        let options = { new: true };
+        let query = { _id: id };       
+        Sms.findOneAndUpdate(query, { $set: toUpdate }, options, (error, result) => {  //property new returns the new updated document, not the original document
+                try {  //I use Promises but I need to use try/catch in async callback or I could use EventEmitter 
+                    if (error) console.log(error.message);
+                    else if (result) resolve(result); // everything is OK, return result
+                    else throw new Error('we have a problem when try to update SMS in MongoDB. it\'s necessary check the problem before proceding.'); //If we cannot save PNS to MongoDB
+                } catch (error) { reject(error); } // In Callback we need to reject if we have Error. A reject will not pass through here
+            });
+    });
+}
+
+
+module.exports = { saveSMS, updateSMS, updateSomeOfSMS }

@@ -13,18 +13,6 @@ const Pns = require('../models/pns');
 
 
 
-const updatePNSStatus = async (id) => {
-    Pns.findOneAndUpdate(id, {
-        $set: {
-            status: 1,  //0:notSent, 1:Sent, 2:confirmed 3:Error
-            dispatched: true,
-            dispatchedAt: new Date()
-        }
-    }, { new: true }, (error, result) => {
-        if (error) console.log(error.message);
-        else console.log(" update PNS : " + JSON.stringify(result));
-    });
-}
 
 const sendPNS = async (pns) => {
     const options = {

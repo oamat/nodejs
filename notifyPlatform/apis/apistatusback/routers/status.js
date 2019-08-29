@@ -13,7 +13,7 @@
 const express = require('express');
 const auth = require('../auth/auth');
 
-const { updateSMSStatus } = require('../util/mongosms');
+const { updateSomeOfSMS } = require('../util/mongosms');
 const { dateFormat } = require('../util/formats');
 
 
@@ -21,7 +21,7 @@ const router = new express.Router();
 
 
 //Method post for sending SMS
-router.post('/smsStatus', auth, async (req, res) => {  //we execute auth before this post request method
+router.post('/smsStatusBack', auth, async (req, res) => {  //we execute auth before this post request method
     console.log(process.env.WHITE_COLOR, " SMS_Status new request : " + JSON.stringify(req.body));
     try {
         //TODO :  format the operator response, maybe the staus operator is not the same that I expected: //0:notSent, 1:Sent, 2:confirmed 3:Error   
@@ -29,7 +29,8 @@ router.post('/smsStatus', auth, async (req, res) => {  //we execute auth before 
         let operator = req.body.operator;
         let id = req.body.id;
         if (status < 2) throw new Error(" Status from Operator is not correct.");
-        await updateSMSStatus(id, status) //update Status of sms to DB.
+        const toUpdate = { status, operator, id}
+        await updateSomeOfSMS(id, toUpdate) //update Status of sms to DB.
             .catch(error => {
                 error.message = "ERROR :  We cannot save notify in MongoBD. " + error.message;
                 throw error;
