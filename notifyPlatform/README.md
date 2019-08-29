@@ -13,7 +13,7 @@
 -  notifyAPI.postman_collection.json : PostMan file for testing: You can use postman for prove requests to the APIS
 
 ### Structure Project : The Project code structure
--  apis : project APIS: apisms, apipns, apiadmin, apistatus
+-  apis : project APIS: apisms, apipns, apiadmin, apistatusback
 -  batch : project batch: batchsms, batchpns
 -  collectors : project collectors ara crons that sends messages to the operators.
 -  mq : project reception MQ requests : mqsms, mqpns

@@ -90,7 +90,7 @@ services:
     depends_on:
       - redispns
       - mongopns
-:_apistatus_:
+:_apistatusback_:
     links:
       - redispns
       - redissms

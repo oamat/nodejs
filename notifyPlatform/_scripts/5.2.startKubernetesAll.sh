@@ -4,7 +4,7 @@ cd /notifyPlatform/_kubernetes/
 
 kubectl create -f apisms-deployment.yaml -f apisms-service.yaml
 kubectl create -f apipns-deployment.yaml -f apipns-service.yaml
-kubectl create -f apistatus-deployment.yaml -f apistatus-service.yaml
+kubectl create -f apistatusback-deployment.yaml -f apistatusback-service.yaml
 kubectl create -f apiadmin-deployment.yaml -f apiadmin-service.yaml
 
 kubectl create -f retriespns-deployment.yaml -f retriespns-service.yaml

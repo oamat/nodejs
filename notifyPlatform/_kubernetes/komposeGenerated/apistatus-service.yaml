@@ -8,15 +8,15 @@ metadata:
     kompose.version: 1.18.0 (06a2e56)
   creationTimestamp: null
   labels:
-    io.kompose.service: apistatus
-  name: apistatus
+    io.kompose.service: apistatusback
+  name: apistatusback
 spec:
   ports:
   - name: "30004"
     port: 30004
     targetPort: 30004
   selector:
-    io.kompose.service: apistatus
+    io.kompose.service: apistatusback
   type: NodePort
 status:
   loadBalancer: {}

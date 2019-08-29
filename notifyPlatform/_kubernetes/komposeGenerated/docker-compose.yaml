@@ -249,12 +249,12 @@ services:
     depends_on:
       - redispns
       - mongopns
-  #apistatus
+  #apistatusback
    #Optional you can create the docker image  (# docker build -t name) .
-  apistatus: 
+  apistatusback: 
     #build: . #build: Dockerfile #Optional : "build: ." Uses an image that’s built from the Dockerfile in the current directory.  
-    image: apistatus
-    container_name: "apistatus"      
+    image: apistatusback
+    container_name: "apistatusback"      
     restart: always
     ports:
       - 30004:30004

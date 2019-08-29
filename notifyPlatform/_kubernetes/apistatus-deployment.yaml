@@ -1,22 +1,22 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: apistatus
+  name: apistatusback
   labels:
-    app: apistatus
+    app: apistatusback
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: apistatus
+      app: apistatusback
   template:
     metadata:
       labels:
-        app: apistatus
+        app: apistatusback
     spec:
       containers:
-      - name: apistatus
-        image: apistatus
+      - name: apistatusback
+        image: apistatusback
         imagePullPolicy: Never
         ports:
         - containerPort: 30004

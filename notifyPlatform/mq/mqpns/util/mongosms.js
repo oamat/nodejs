@@ -25,7 +25,7 @@ const saveSMS = async (sms) => {
 //this method update SMS Status in MongoDB and manage the result of this operation
 const updateSMSStatus = async (id, status) => {
     return new Promise((resolve, reject) => {
-        Sms.findOneAndUpdate(id, {
+        Sms.findOneAndUpdate({ _id: id }, {
             $set: {
                 status,  //0:notSent, 1:Sent, 2:confirmed 3:Error
                 dispatched: true,

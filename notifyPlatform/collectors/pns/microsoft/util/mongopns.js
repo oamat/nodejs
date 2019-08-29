@@ -26,7 +26,7 @@ const savePNS = async (pns) => {
 //this method update PNS Status in MongoDB and manage the result of this operation
 const updatePNSStatus = async (id, status) => {
     return new Promise((resolve, reject) => {
-        Pns.findOneAndUpdate(id, {
+        Pns.findOneAndUpdate({ _id: id }, {
             $set: {
                 status,  //0:notSent, 1:Sent, 2:confirmed 3:Error
                 dispatched: true,

@@ -4,7 +4,7 @@ cd /notifyPlatform/_kubernetes/
 
 kubectl delete -f apisms-deployment.yaml -f apisms-service.yaml
 kubectl delete -f apipns-deployment.yaml -f apipns-service.yaml
-kubectl delete -f apistatus-deployment.yaml -f apistatus-service.yaml
+kubectl delete -f apistatusback-deployment.yaml -f apistatusback-service.yaml
 kubectl delete -f apiadmin-deployment.yaml -f apiadmin-service.yaml
 
 kubectl delete -f retriespns-deployment.yaml -f retriespns-service.yaml

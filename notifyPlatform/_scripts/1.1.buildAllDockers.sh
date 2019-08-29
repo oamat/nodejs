@@ -14,8 +14,8 @@ cd /notifyPlatform/apis/apisms
 docker build -t apisms .
 cd /notifyPlatform/apis/apiadmin
 docker build -t apiadmin .
-cd /notifyPlatform/apis/apistatus
-docker build -t apistatus .
+cd /notifyPlatform/apis/apistatusback
+docker build -t apistatusback .
 #Collectors PNS
 cd /notifyPlatform/collectors/pns/apple
 docker build -t apple .

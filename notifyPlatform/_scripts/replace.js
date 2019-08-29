@@ -27,7 +27,7 @@ fs.readFile(root + templateFile, 'utf8', async function (err, templateData) {
         await replace("apis/apiadmin", "apiadmin");
         await replace("apis/apisms", "apisms");
         await replace("apis/apipns", "apipns");
-        await replace("apis/apistatus", "apistatus");
+        await replace("apis/apistatusback", "apistatusback");
         await replace("retries/retriessms", "retriessms");
         await replace("retries/retriespns", "retriespns");
         console.log("docker-composer.yaml generated correctly");

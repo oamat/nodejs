@@ -8,8 +8,8 @@ metadata:
     kompose.version: 1.18.0 (06a2e56)
   creationTimestamp: null
   labels:
-    io.kompose.service: apistatus
-  name: apistatus
+    io.kompose.service: apistatusback
+  name: apistatusback
 spec:
   replicas: 1
   strategy: {}
@@ -17,15 +17,15 @@ spec:
     metadata:
       creationTimestamp: null
       labels:
-        io.kompose.service: apistatus
+        io.kompose.service: apistatusback
     spec:
       containers:
       - env:
         - name: NODE_ENV
           value: docker
-        image: apistatus
+        image: apistatusback
         imagePullPolicy: Never
-        name: apistatus
+        name: apistatusback
         ports:
         - containerPort: 30004
         resources: {}

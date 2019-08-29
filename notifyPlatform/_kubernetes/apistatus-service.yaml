@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: apistatus
+  name: apistatusback
   namespace: default
 spec:
   type: NodePort
@@ -10,4 +10,4 @@ spec:
     port: 30004
     nodePort: 30004
   selector:
-    app: apistatus
+    app: apistatusback
