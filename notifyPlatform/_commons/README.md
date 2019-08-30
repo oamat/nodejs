@@ -1,5 +1,4 @@
-# Retries PNS, a cron module of NotifyPlatform for processing PNS errors or PNS retries
-
+# COMMONS COMPONENTS For notify Platform, in this folder there are common libraries for the project
 
 #### In devMode the minimum components for start the aplication are Mongo & Redis, start like here :
 - /_mongodb/mongosms/rundocker.sh 

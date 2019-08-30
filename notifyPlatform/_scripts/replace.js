@@ -1,7 +1,7 @@
 var fs = require('fs')
 
 let templateFile = "_scripts/docker-compose-template.yaml"
-const finalFile = "_kubernetes/docker-compose.yaml"
+const finalFile = "_kubernetes/kubernetes/docker-compose.yaml"
 const yaml = "/docker-compose.yaml";
 const root = "/notifyPlatform/";
 var template;
