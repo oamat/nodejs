@@ -1,3 +1,6 @@
+version: "3.1"
+
+services:
   #batchpns
    #Optional you can create the docker image  (# docker build -t name) .
   batchpns: 
@@ -11,3 +14,9 @@
     labels:
       kompose.service.type: NodePort
       kompose.image-pull-policy: Never
+    links:
+      - redispns
+      - mongopns
+    depends_on:
+      - redispns
+      - mongopns

@@ -1,3 +1,6 @@
+version: "3.1"
+
+services:
   #retriespns
    #Optional you can create the docker image  (# docker build -t name) .
   retriespns: 
@@ -12,4 +15,10 @@
       NODE_ENV: "docker"
     labels:
       kompose.service.type: NodePort
-      kompose.image-pull-policy: Never
+      kompose.image-pull-policy: 
+    links:
+      - redispns
+      - mongopns
+    depends_on:
+      - redispns
+      - mongopns

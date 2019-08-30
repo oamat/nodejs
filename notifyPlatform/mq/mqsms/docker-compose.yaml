@@ -1,3 +1,6 @@
+version: "3.1"
+
+services:
   #mqsms
    #Optional you can create the docker image  (# docker build -t name) .
   mqsms: 
@@ -11,3 +14,9 @@
     labels:
       kompose.service.type: NodePort
       kompose.image-pull-policy: Never
+    links:
+      - redissms
+      - mongosms
+    depends_on:
+      - redissms
+      - mongosms
