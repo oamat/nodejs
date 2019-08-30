@@ -17,7 +17,7 @@ services:
       MONGO_INITDB_ROOT_PASSWORD: "example"
       MONGO_INITDB_DATABASE: "test"
     labels:
-      kompose.service.type: NodePort
-      kompose.image-pull-policy: Never
+     kompose.service.type: NodePort # labels for kompose convert to kubernetes
+     kompose.image-pull-policy: Never # labels for kompose convert to kubernetes
   
   

@@ -1,7 +1,7 @@
 var fs = require('fs')
 
 let templateFile = "_scripts/docker-compose-template.yaml"
-const finalFile = "_kubernetes/kubernetes/docker-compose.yaml"
+const finalFile = "_kubernetes/dockercompose/docker-compose.yaml"
 const yaml = "/docker-compose.yaml";
 const root = "/notifyPlatform/";
 var template;
@@ -41,7 +41,11 @@ async function replace(path, token) {
         if (err) {
             console.log(err);
         } else {
+            data = data.replace('version: "3.1"', '');
+            data = data.replace('services:', '');
+
             template = template.replace(":_" + token + "_:", data);
+
             fs.writeFile(root + finalFile, template, 'utf8', function (err) {
                 if (err) console.log(err);
             });

@@ -2,7 +2,7 @@
 echo "Generating All Kubernetes files from docker-compose.yaml"
 
 
-yes | cp -rf /notifyPlatform/_kubernetes/docker-compose.yaml /notifyPlatform/_kubernetes/komposeGenerated/docker-compose.yaml
+yes | cp -rf /notifyPlatform/_kubernetes/dockercompose/docker-compose.yaml /notifyPlatform/_kubernetes/komposeGenerated/docker-compose.yaml
 
 cd /notifyPlatform/_kubernetes/komposeGenerated/
 

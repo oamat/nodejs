@@ -1,6 +1,6 @@
 #!/bin/bash
 echo "Start All Kubernetes files from Notify Platform "
-cd /notifyPlatform/_kubernetes/
+cd /notifyPlatform/_kubernetes/kubernetes/
 
 kubectl delete -f apisms-deployment.yaml -f apisms-service.yaml
 kubectl delete -f apipns-deployment.yaml -f apipns-service.yaml

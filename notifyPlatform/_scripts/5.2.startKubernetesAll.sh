@@ -1,6 +1,6 @@
 #!/bin/bash
 echo "Start All Kubernetes files from Notify Platform "
-cd /notifyPlatform/_kubernetes/
+cd /notifyPlatform/_kubernetes/kubernetes/
 
 kubectl create -f apisms-deployment.yaml -f apisms-service.yaml
 kubectl create -f apipns-deployment.yaml -f apipns-service.yaml

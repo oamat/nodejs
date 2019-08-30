@@ -14,8 +14,8 @@ services:
     environment:
       NODE_ENV: "docker"
     labels:
-      kompose.service.type: NodePort
-      kompose.image-pull-policy: 
+     kompose.service.type: NodePort # labels for kompose convert to kubernetes
+     kompose.image-pull-policy: Never # labels for kompose convert to kubernetes 
     links:
       - redispns
       - mongopns

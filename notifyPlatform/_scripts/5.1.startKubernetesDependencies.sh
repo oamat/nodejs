@@ -1,6 +1,6 @@
 #!/bin/bash
 echo "Start All Kubernetes files from Notify Platform "
-cd /notifyPlatform/_kubernetes/
+cd /notifyPlatform/_kubernetes/kubernetes/
 
 kubectl create -f mongosms-deployment.yaml -f mongosms-service.yaml
 kubectl create -f mongopns-deployment.yaml -f mongopns-service.yaml

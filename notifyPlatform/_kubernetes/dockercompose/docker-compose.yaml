@@ -2,6 +2,8 @@ version: "3.1"
 
 services:
 
+
+
   #apple
    #Optional you can create the docker image  (# docker build -t name).
   apple: 
@@ -13,15 +15,18 @@ services:
     environment:
       NODE_ENV: "docker"
     labels:
-      kompose.service.type: NodePort
-      kompose.image-pull-policy: Never
+     kompose.service.type: NodePort # labels for kompose convert to kubernetes
+     kompose.image-pull-policy: Never # labels for kompose convert to kubernetes
     links:
       - redispns
       - mongopns
     depends_on:
       - redispns
       - mongopns
-  #google
+  
+
+
+#google
    #Optional you can create the docker image  (# docker build -t name).
   google: 
     #build: . #build: Dockerfile #Optional : "build: ." Uses an image that’s built from the Dockerfile in the current directory.  
@@ -32,14 +37,17 @@ services:
     environment:
       NODE_ENV: "docker"
     labels:
-      kompose.service.type: NodePort
-      kompose.image-pull-policy: Never
+     kompose.service.type: NodePort # labels for kompose convert to kubernetes
+     kompose.image-pull-policy: Never # labels for kompose convert to kubernetes
     links:
       - redispns
       - mongopns
     depends_on:
       - redispns
       - mongopns
+
+
+
   #microsoft
    #Optional you can create the docker image  (# docker build -t name).
   microsoft: 
@@ -51,14 +59,17 @@ services:
     environment:
       NODE_ENV: "docker"
     labels:
-      kompose.service.type: NodePort
-      kompose.image-pull-policy: Never
+     kompose.service.type: NodePort # labels for kompose convert to kubernetes
+     kompose.image-pull-policy: Never # labels for kompose convert to kubernetes
     links:
       - redispns
       - mongopns
     depends_on:
       - redispns
-      - mongopns
+      - mongopns      
+
+
+
   #movistar
    #Optional you can create the docker image  (# docker build -t name) .
   movistar: 
@@ -70,16 +81,18 @@ services:
     environment:
       NODE_ENV: "docker"
     labels:
-      kompose.service.type: NodePort
-      kompose.image-pull-policy: Never
-
+     kompose.service.type: NodePort # labels for kompose convert to kubernetes
+     kompose.image-pull-policy: Never # labels for kompose convert to kubernetes
     links:
       - redissms
       - mongosms
     depends_on:
       - redissms
       - mongosms
-  #movistarvip
+
+
+
+#movistarvip
    #Optional you can create the docker image  (# docker build -t name) .
   movistarvip: 
     #build: . #build: Dockerfile #Optional : "build: ." Uses an image that’s built from the Dockerfile in the current directory.  
@@ -90,15 +103,17 @@ services:
     environment:
       NODE_ENV: "docker"
     labels:
-      kompose.service.type: NodePort
-      kompose.image-pull-policy: Never
-
+     kompose.service.type: NodePort # labels for kompose convert to kubernetes
+     kompose.image-pull-policy: Never # labels for kompose convert to kubernetes
     links:
       - redissms
       - mongosms
     depends_on:
       - redissms
       - mongosms
+
+
+
   #vodafone
    #Optional you can create the docker image  (# docker build -t name) .
   vodafone: 
@@ -110,15 +125,17 @@ services:
     environment:
       NODE_ENV: "docker"
     labels:
-      kompose.service.type: NodePort
-      kompose.image-pull-policy: Never
-
+     kompose.service.type: NodePort # labels for kompose convert to kubernetes
+     kompose.image-pull-policy: Never # labels for kompose convert to kubernetes
     links:
       - redissms
       - mongosms
     depends_on:
       - redissms
-      - mongosms
+      - mongosms  
+
+
+
   #orange
    #Optional you can create the docker image  (# docker build -t name) .
   orange: 
@@ -130,15 +147,17 @@ services:
     environment:
       NODE_ENV: "docker"
     labels:
-      kompose.service.type: NodePort
-      kompose.image-pull-policy: Never
-
+     kompose.service.type: NodePort # labels for kompose convert to kubernetes
+     kompose.image-pull-policy: Never # labels for kompose convert to kubernetes
     links:
       - redissms
       - mongosms
     depends_on:
       - redissms
       - mongosms
+
+
+
   #mqsms
    #Optional you can create the docker image  (# docker build -t name) .
   mqsms: 
@@ -150,15 +169,17 @@ services:
     environment:
       NODE_ENV: "docker"
     labels:
-      kompose.service.type: NodePort
-      kompose.image-pull-policy: Never
-
+     kompose.service.type: NodePort # labels for kompose convert to kubernetes
+     kompose.image-pull-policy: Never # labels for kompose convert to kubernetes
     links:
       - redissms
       - mongosms
     depends_on:
       - redissms
       - mongosms
+
+
+
   #mqpns
    #Optional you can create the docker image  (# docker build -t name) .
   mqpns: 
@@ -170,16 +191,18 @@ services:
     environment:
       NODE_ENV: "docker"
     labels:
-      kompose.service.type: NodePort
-      kompose.image-pull-policy: Never
-
+     kompose.service.type: NodePort # labels for kompose convert to kubernetes
+     kompose.image-pull-policy: Never # labels for kompose convert to kubernetes
     links:
       - redispns
       - mongopns
     depends_on:
       - redispns
       - mongopns
-  #apiadmin
+
+
+
+#apiadmin
    #Optional you can create the docker image  (# docker build -t name) .
   apiadmin: 
     #build: . #build: Dockerfile #Optional : "build: ." Uses an image that’s built from the Dockerfile in the current directory.  
@@ -192,19 +215,17 @@ services:
     environment:
       NODE_ENV: "docker"
     labels:
-      kompose.service.type: NodePort
-      kompose.image-pull-policy: Never
-
+     kompose.service.type: NodePort # labels for kompose convert to kubernetes
+     kompose.image-pull-policy: Never # labels for kompose convert to kubernetes
     links:
       - redispns
-      - redissms
       - mongopns
-      - mongosms
     depends_on:
       - redispns
-      - redissms
       - mongopns
-      - mongosms
+
+
+
   #apisms
    #Optional you can create the docker image  (# docker build -t name) .
   apisms: 
@@ -218,16 +239,18 @@ services:
     environment:
       NODE_ENV: "docker"
     labels:
-      kompose.service.type: NodePort
-      kompose.image-pull-policy: Never
-
+     kompose.service.type: NodePort # labels for kompose convert to kubernetes
+     kompose.image-pull-policy: Never # labels for kompose convert to kubernetes
     links:
       - redissms
       - mongosms
     depends_on:
       - redissms
       - mongosms
-  #apipns
+
+
+
+#apipns
    #Optional you can create the docker image  (# docker build -t name) .
   apipns: 
     #build: . #build: Dockerfile #Optional : "build: ." Uses an image that’s built from the Dockerfile in the current directory.  
@@ -240,16 +263,18 @@ services:
     environment:
       NODE_ENV: "docker"
     labels:
-      kompose.service.type: NodePort
-      kompose.image-pull-policy: Never
-
+     kompose.service.type: NodePort # labels for kompose convert to kubernetes
+     kompose.image-pull-policy: Never # labels for kompose convert to kubernetes
     links:
       - redispns
       - mongopns
     depends_on:
       - redispns
       - mongopns
-  #apistatusback
+  
+
+
+#apistatusback
    #Optional you can create the docker image  (# docker build -t name) .
   apistatusback: 
     #build: . #build: Dockerfile #Optional : "build: ." Uses an image that’s built from the Dockerfile in the current directory.  
@@ -262,19 +287,17 @@ services:
     environment:
       NODE_ENV: "docker"
     labels:
-      kompose.service.type: NodePort
-      kompose.image-pull-policy: Never
-
+     kompose.service.type: NodePort # labels for kompose convert to kubernetes
+     kompose.image-pull-policy: Never # labels for kompose convert to kubernetes
     links:
-      - redispns
       - redissms
-      - mongopns
       - mongosms
     depends_on:
-      - redispns
       - redissms
-      - mongopns
       - mongosms
+
+
+
   #retriessms
    #Optional you can create the docker image  (# docker build -t name) .
   retriessms: 
@@ -288,15 +311,17 @@ services:
     environment:
       NODE_ENV: "docker"
     labels:
-      kompose.service.type: NodePort
-      kompose.image-pull-policy: Never
-
+     kompose.service.type: NodePort # labels for kompose convert to kubernetes
+     kompose.image-pull-policy: Never # labels for kompose convert to kubernetes
     links:
       - redissms
       - mongosms
     depends_on:
       - redissms
       - mongosms
+
+
+
   #retriespns
    #Optional you can create the docker image  (# docker build -t name) .
   retriespns: 
@@ -310,8 +335,8 @@ services:
     environment:
       NODE_ENV: "docker"
     labels:
-      kompose.service.type: NodePort
-      kompose.image-pull-policy: Never
+     kompose.service.type: NodePort # labels for kompose convert to kubernetes
+     kompose.image-pull-policy: Never # labels for kompose convert to kubernetes 
     links:
       - redispns
       - mongopns
@@ -319,7 +344,9 @@ services:
       - redispns
       - mongopns
 
-  #redispns
+
+
+#redispns
    #Optional you can create the docker image  (# docker build -t name) .
   redispns: 
     #build: . #build: Dockerfile #Optional : "build: ." Uses an image that’s built from the Dockerfile in the current directory.  
@@ -332,11 +359,13 @@ services:
     environment:
       NODE_ENV: "docker"
     labels:
-      kompose.service.type: NodePort
-      kompose.image-pull-policy: Never
+     kompose.service.type: NodePort # labels for kompose convert to kubernetes
+     kompose.image-pull-policy: Never # labels for kompose convert to kubernetes
 
 
-  #redissms
+
+
+#redissms
    #Optional you can create the docker image  (# docker build -t name) .
   redissms: 
     #build: . #build: Dockerfile #Optional : "build: ." Uses an image that’s built from the Dockerfile in the current directory.  
@@ -349,11 +378,13 @@ services:
     environment:
       NODE_ENV: "docker"
     labels:
-      kompose.service.type: NodePort
-      kompose.image-pull-policy: Never
+     kompose.service.type: NodePort # labels for kompose convert to kubernetes
+     kompose.image-pull-policy: Never # labels for kompose convert to kubernetes
 
 
-  #mongopns
+
+
+#mongopns
    #Optional you can create the docker image  (# docker build -t name) .
   mongopns: 
     #build: . #build: Dockerfile #Optional : "build: ." Uses an image that’s built from the Dockerfile in the current directory.
@@ -369,12 +400,14 @@ services:
       MONGO_INITDB_ROOT_PASSWORD: "example"
       MONGO_INITDB_DATABASE: "test"
     labels:
-      kompose.service.type: NodePort
-      kompose.image-pull-policy: Never
+     kompose.service.type: NodePort # labels for kompose convert to kubernetes
+     kompose.image-pull-policy: Never # labels for kompose convert to kubernetes
   
   
 
-  #mongosms
+
+
+#mongosms
    #Optional you can create the docker image  (# docker build -t name) .
   mongosms: 
     #build: . #build: Dockerfile #Optional : "build: ." Uses an image that’s built from the Dockerfile in the current directory.
@@ -390,7 +423,7 @@ services:
       MONGO_INITDB_ROOT_PASSWORD: "example"
       MONGO_INITDB_DATABASE: "test"
     labels:
-      kompose.service.type: NodePort
-      kompose.image-pull-policy: Never
+     kompose.service.type: NodePort # labels for kompose convert to kubernetes
+     kompose.image-pull-policy: Never # labels for kompose convert to kubernetes
   
   

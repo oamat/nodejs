@@ -1,125 +1,22 @@
 version: "3.1"
 
 services:
-
 :_apple_:
-    links:
-      - redispns
-      - mongopns
-    depends_on:
-      - redispns
-      - mongopns
 :_google_:
-    links:
-      - redispns
-      - mongopns
-    depends_on:
-      - redispns
-      - mongopns
 :_microsoft_:
-    links:
-      - redispns
-      - mongopns
-    depends_on:
-      - redispns
-      - mongopns
 :_movistar_:
-    links:
-      - redissms
-      - mongosms
-    depends_on:
-      - redissms
-      - mongosms
 :_movistarvip_:
-    links:
-      - redissms
-      - mongosms
-    depends_on:
-      - redissms
-      - mongosms
-:_vodafone_:
-    links:
-      - redissms
-      - mongosms
-    depends_on:
-      - redissms
-      - mongosms
+:_vodafone_:  
 :_orange_:
-    links:
-      - redissms
-      - mongosms
-    depends_on:
-      - redissms
-      - mongosms
 :_mqsms_:
-    links:
-      - redissms
-      - mongosms
-    depends_on:
-      - redissms
-      - mongosms
 :_mqpns_:
-    links:
-      - redispns
-      - mongopns
-    depends_on:
-      - redispns
-      - mongopns
 :_apiadmin_:
-    links:
-      - redispns
-      - redissms
-      - mongopns
-      - mongosms
-    depends_on:
-      - redispns
-      - redissms
-      - mongopns
-      - mongosms
 :_apisms_:
-    links:
-      - redissms
-      - mongosms
-    depends_on:
-      - redissms
-      - mongosms
 :_apipns_:
-    links:
-      - redispns
-      - mongopns
-    depends_on:
-      - redispns
-      - mongopns
 :_apistatusback_:
-    links:
-      - redispns
-      - redissms
-      - mongopns
-      - mongosms
-    depends_on:
-      - redispns
-      - redissms
-      - mongopns
-      - mongosms
 :_retriessms_:
-    links:
-      - redissms
-      - mongosms
-    depends_on:
-      - redissms
-      - mongosms
 :_retriespns_:
-    links:
-      - redispns
-      - mongopns
-    depends_on:
-      - redispns
-      - mongopns
-
 :_redispns_:
-
 :_redissms_:
-
 :_mongopns_:
-
 :_mongosms_:

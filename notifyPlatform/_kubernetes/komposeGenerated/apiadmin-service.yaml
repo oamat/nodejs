@@ -3,8 +3,8 @@ kind: Service
 metadata:
   annotations:
     kompose.cmd: kompose convert
-    kompose.image-pull-policy: Never
-    kompose.service.type: NodePort
+     kompose.image-pull-policy: Never # labels for kompose convert to kubernetes
+   kompose.service.type: NodePort # labels for kompose convert to kubernetes
     kompose.version: 1.18.0 (06a2e56)
   creationTimestamp: null
   labels:
