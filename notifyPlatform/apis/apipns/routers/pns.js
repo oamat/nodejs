@@ -11,7 +11,7 @@
 
 //Dependencies
 const express = require('express');
-const Pns = require('../models/pns');
+const { Pns } = require('../models/pns');
 const auth = require('../auth/auth');
 
 const { savePNS } = require('../util/mongopns');

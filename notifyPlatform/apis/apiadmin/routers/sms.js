@@ -7,30 +7,32 @@
 
 //Dependencies
 const express = require('express');
-const Sms = require('../models/sms');
 const auth = require('../auth/auth');
 
-const { saveSMS } = require('../util/mongosms');
-const { hget, lpush, sadd, set } = require('../util/redis');
-const { dateFormat, buildSMSChannel } = require('../util/formats');
+
+const { findSMS } = require('../util/mongomultisms');
+const { dateFormat } = require('../util/formats');
 
 
 const router = new express.Router();
 
 // GET /smsStatus   # uuid in body or telf and dates in body, and contract or all
 router.get('/smsStatus', auth, async (req, res) => {
-    try { 
-    console.log(req.body);
-    //TODO find sms by id
-    //TODO return Status
-    res.send({ Status: "200 OK" });
-} catch (error) {
-    //TODO personalize errors 400 or 500. 
-    const errorJson = { StatusCode: "400 Bad Request", error: error.message, contract: req.body.contract, telf: req.body.telf, receiveAt: dateFormat(new Date()) };   // dateFornat: replace T with a space && delete the dot and everything after
-    console.log(process.env.YELLOW_COLOR, "ERROR: " + JSON.stringify(errorJson));        
-    res.status(400).send(errorJson);
-    //TODO: save error in db  or mem.
-}
+    try {
+        let condition = {};
+        var result = await findSMS(condition);
+        console.log(result);
+        //TODO find sms by id
+        //TODO return Status
+        res.send({ Status: "200 OK" });
+    } catch (error) {
+        //TODO personalize errors 400 or 500. 
+        const errorJson = { StatusCode: "400 Bad Request", error: error.message, contract: req.body.contract, telf: req.body.telf, receiveAt: dateFormat(new Date()) };   // dateFornat: replace T with a space && delete the dot and everything after
+        console.log(process.env.YELLOW_COLOR, "ERROR: " + JSON.stringify(errorJson));
+        res.status(400).send(errorJson);
+        //TODO: save error in db  or mem.
+        console.log(error);
+    }
 });
 
 

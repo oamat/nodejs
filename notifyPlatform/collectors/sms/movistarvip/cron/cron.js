@@ -8,7 +8,7 @@
 "use strict";
 
 //Dependencies
-const Sms = require('../models/sms');
+const { Sms } = require('../models/sms');
 const { hget, rpop, rpoplpush } = require('../util/redissms'); //we need to initialize redis
 const { dateFormat, buildSMSChannel, buildSMSChannels } = require('../util/formats'); // utils for formats
 const { updateSMS } = require('../util/mongosms'); //for updating status

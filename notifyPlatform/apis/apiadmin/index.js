@@ -7,15 +7,17 @@
 
 // Dependencies
 require('./config/config'); //we need configurations
-const { initializeMongooseConnection } = require('./config/mongoosesms'); //we need to initialize mongoose
-const {  rclient } = require('./config/redissms'); //we need to initialize redis
+const mongoosemulti = require('./config/mongoosemulti'); //we need to initialize mongoose SMS and PNS
+const redissms = require('./config/redissms'); //we need to initialize redis
+const redispns = require('./config/redissms'); //we need to initialize redis
 const app = require('./server/app');  // Declare the app
 
 const initializeAllSources = async () => { // Init Mongoose with await    
      //START PARALLEL excution with await Promise.all.
      await Promise.all([ //Async Promises: all tasks start immediately 
-          initializeMongooseConnection(),  // Init mongoose
-          rclient.set("initializeRedisConnection:test", "test") // little test redis
+          //mongosmspns.initializeMongooseConnection(),  // Init mongoose SMS & PNS
+          redissms.rclient.set("initializeRedisConnection:test", "test"), // little test redis
+          redispns.rclient.set("initializeRedisConnection:test", "test") // little test redis
       ]);
       //END PARALLEL excution with await Promise.all.
 

@@ -107,8 +107,10 @@ const smsSchema = new mongoose.Schema({
     }
 }, {
         timestamps: true //If set timestamps, mongoose assigns createdAt and updatedAt fields to your schema, the type assigned is Date.
+    }, {
+        versionKey: false // You should be aware of the outcome after set to false
     });
 
 const Sms = mongoose.model('Sms', smsSchema);
 
-module.exports = Sms;
+module.exports = { Sms, smsSchema };

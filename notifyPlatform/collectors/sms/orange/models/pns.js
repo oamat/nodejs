@@ -140,8 +140,10 @@ const pnsSchema = new mongoose.Schema({
     }]
 }, {
         timestamps: true //If set timestamps, mongoose assigns createdAt and updatedAt fields to your schema, the type assigned is Date.
+    }, {
+        versionKey: false // You should be aware of the outcome after set to false
     });
 
 const Pns = mongoose.model('Pns', pnsSchema);
 
-module.exports = Pns;
+module.exports = { Pns, pnsSchema };

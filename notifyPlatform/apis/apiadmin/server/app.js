@@ -13,6 +13,7 @@ const express = require('express');
 const contractRouter = require('../routers/contract');
 const smsRouter = require('../routers/sms');
 const pnsRouter = require('../routers/pns');
+const monitorRouter = require('../routers/monitor');
 
 //Starting SERVER
 const app = express(); // Init Express web framework 

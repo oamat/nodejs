@@ -8,7 +8,7 @@
 "use strict";
 
 //Dependencies
-const Pns = require('../models/pns');
+const { Pns } = require('../models/pns');
 const { hget, rpop, rpoplpush } = require('../util/redispns'); //we need to initialize redis
 const { dateFormat, buildPNSChannel, buildPNSChannels } = require('../util/formats'); // utils for formats
 const { updatePNS } = require('../util/mongopns'); //for updating status

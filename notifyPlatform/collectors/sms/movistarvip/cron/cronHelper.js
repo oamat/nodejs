@@ -8,7 +8,7 @@
 
 //Dependencies
 const https = require('https');
-const Sms = require('../models/sms');
+const { Sms } = require('../models/sms');
 
 
 

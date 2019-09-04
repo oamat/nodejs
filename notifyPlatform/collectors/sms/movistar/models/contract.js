@@ -6,15 +6,21 @@
 "use strict";
 
 //Dependencies
+const uuidv4 = require('uuid/v4');
 const mongoose = require('mongoose');
 
 //IMPORTANT: by default Model Validations are check when save in Mongodb, not in the creation. 
 // but you can check with validate() method
 const contractSchema = new mongoose.Schema({
+    _id: {
+        type: String,
+        required: true,
+        default: () => { return uuidv4(); }
+    },
     name: { // the unique id
         type: String,
         required: true,
-        unique = true
+        unique : true
     },
     description: {
         type: String,
@@ -36,7 +42,7 @@ const contractSchema = new mongoose.Schema({
     jwt: { //Secure JWT for authentication
         type: String,
         required: true
-    },    
+    },
     type: { //PNS, SMS, ..
         type: String,
         required: true,
@@ -78,8 +84,10 @@ const contractSchema = new mongoose.Schema({
     }]
 }, {
         timestamps: true //If set timestamps, mongoose assigns createdAt and updatedAt fields to your schema, the type assigned is Date.
+    }, {
+        versionKey: false // You should be aware of the outcome after set to false
     });
 
 const Contract = mongoose.model('Contract', contractSchema);
 
-module.exports = Contract;
+module.exports = { Contract, contractSchema };

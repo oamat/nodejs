@@ -7,12 +7,10 @@
 
 //Dependencies
 const express = require('express');
-const Pns = require('../models/pns');
 const auth = require('../auth/auth');
 
-const { savePNS } = require('../util/mongopns');
-const { hget, lpush, sadd, set } = require('../util/redis');
-const { dateFormat, buildSMSChannel } = require('../util/formats');
+const { findPNS } = require('../util/mongomultipns');
+const { dateFormat } = require('../util/formats');
 
 
 const router = new express.Router();
@@ -20,7 +18,9 @@ const router = new express.Router();
 // GET /pnstatus   # uuid in body or telf and dates in body, and contract or all
 router.get('/pnsStatus', auth, async (req, res) => {
     try { 
-    console.log(req.body);
+    let condition = {};
+    console.log( await findPNS(condition) ) ;
+
     //TODO find sms by id
     //TODO return Status
     res.send({ Status: "200 OK" });

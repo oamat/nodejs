@@ -11,7 +11,7 @@
 
 //Dependencies
 const express = require('express');
-const Sms = require('../models/sms');
+const { Sms } = require('../models/sms');
 const auth = require('../auth/auth');
 
 const { saveSMS } = require('../util/mongosms');

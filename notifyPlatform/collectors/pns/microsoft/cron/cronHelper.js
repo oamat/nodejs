@@ -8,7 +8,7 @@
 
 //Dependencies
 const https = require('https');
-const Pns = require('../models/pns');
+const { Pns } = require('../models/pns');
 
 
 
