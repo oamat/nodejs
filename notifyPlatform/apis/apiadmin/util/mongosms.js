@@ -6,7 +6,7 @@
 "use strict";
 
 //Dependencies
-const { Sms } = require('../models/sms'); // Attention : this Sms Model is model created for unique instance of Mongoose
+const { Sms } = require('../models/sms');
 
 //this method save SMS in MongoDB and manage the result of this operation
 const saveSMS = async (sms) => {
@@ -33,7 +33,7 @@ const updateSMS = async (sms) => {
             try {  //I use Promises but I need to use try/catch in async callback or I could use EventEmitter 
                 if (error) console.log(error.message);
                 else if (result) resolve(result); // everything is OK, return result
-                else throw new Error('we have a problem when try to update SMS in MongoDB. it\'s necessary check the problem before proceding.'); //If we cannot save PNS to MongoDB
+                else throw new Error('we have a problem when try to update SMS in MongoDB. it\'s necessary check the problem before proceding.'); //If we cannot save SMS to MongoDB
             } catch (error) { reject(error); } // In Callback we need to reject if we have Error. A reject will not pass through here
         })
     })
@@ -50,7 +50,7 @@ const updateSomeOfSMS = async (id, toUpdate) => {
             try {  //I use Promises but I need to use try/catch in async callback or I could use EventEmitter 
                 if (error) console.log(error.message);
                 else if (result) resolve(result); // everything is OK, return result
-                else throw new Error('we have a problem when try to update SMS in MongoDB. it\'s necessary check the problem before proceding.'); //If we cannot save PNS to MongoDB
+                else throw new Error('we have a problem when try to update SMS in MongoDB. it\'s necessary check the problem before proceding.'); //If we cannot save SMS to MongoDB
             } catch (error) { reject(error); } // In Callback we need to reject if we have Error. A reject will not pass through here
         })
     })

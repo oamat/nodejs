@@ -76,7 +76,7 @@
 			"response": []
 		},
 		{
-			"name": "/smsStatus",
+			"name": "/smsStatusBack",
 			"request": {
 				"method": "POST",
 				"header": [
@@ -103,6 +103,121 @@
 						"localhost"
 					],
 					"port": "30004",
+					"path": [
+						"smsStatus"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/loadRedis",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "x-api-key",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiY29udHJhY3QiOiJPVFBMT1dFQiIsImlhdCI6MjAxNjIzOTAyMn0.RSLawzTU4yX-XwnEZtvWipIBOTOji9LKbkuM391zjss",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t \"contract\" : \"OTPLOWEB\",\n\t \"telf\" : \"+34699272800\",\n\t \"message\" : \"you have won a gift\",\n\t \"alias\" : \"L.O.\",\n\t \"customId\" : \"myid_4566544\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:30003/loadRedis",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "30003",
+					"path": [
+						"loadRedis"
+					]
+				},
+				"description": "/loadRedis"
+			},
+			"response": []
+		},
+		{
+			"name": "/smsStatus",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "x-api-key",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6ImFkbWluIiwiY29udHJhY3QiOiJBRE1JTiIsImlhdCI6MjAxNjIzOTAyMn0.7UhLsjPpOwneXzN3nlT35OJjduzp70Yni9l1HO9wCck",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t \"contract\" : \"ADMIN\",\n\t \"telf\" : \"+34699272800\",\n\t \"message\" : \"you have won a gift\",\n\t \"alias\" : \"L.O.\",\n\t \"customId\" : \"myid_4566544\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:30003/smsStatus",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "30003",
+					"path": [
+						"smsStatus"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/pnsStatus",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "x-api-key",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6ImFkbWluIiwiY29udHJhY3QiOiJBRE1JTiIsImlhdCI6MjAxNjIzOTAyMn0.7UhLsjPpOwneXzN3nlT35OJjduzp70Yni9l1HO9wCck",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t \"contract\" : \"ADMIN\",\n\t \"telf\" : \"+34699272800\",\n\t \"message\" : \"you have won a gift\",\n\t \"alias\" : \"L.O.\",\n\t \"customId\" : \"myid_4566544\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:30003/smsStatus",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "30003",
 					"path": [
 						"smsStatus"
 					]

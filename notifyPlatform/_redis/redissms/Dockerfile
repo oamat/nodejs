@@ -5,7 +5,7 @@ LABEL version="1.0"
 LABEL description="notifyPlatform redis for PNS"
 
 # Install redis.conf
-#COPY redis.conf /usr/local/etc/redis/redis.conf
+COPY redis.conf /usr/local/etc/redis/redis.conf
 
 ENV NODE_ENV docker
 
@@ -14,5 +14,5 @@ ENV NODE_ENV docker
 
 EXPOSE 30080
 
-CMD [ "redis-server", "--port", "30080"]
-#CMD [ "redis-server", "/usr/local/etc/redis/redis.conf" ]
+#CMD [ "redis-server", "--port", "30080"]
+CMD [ "redis-server", "/usr/local/etc/redis/redis.conf" ]

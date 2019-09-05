@@ -9,7 +9,7 @@ const express = require('express');
 const auth = require('../auth/auth');
 const redissms = require('../util/redissms');
 const redispns = require('../util/redispns');
-const { dateFormat } = require('../util/formats');
+const { dateFormat, logTime } = require('../util/formats');
 
 const router = new express.Router();
 
@@ -28,6 +28,13 @@ const router = new express.Router();
 // GET /smsStatus   # uuid in body or telf and dates in body, and contract or all
 router.get('/loadRedis', async (req, res) => {
     try {
+        console.log(logTime( new Date()));
+
+        console.log(new Date().toString());
+        console.log(new Date().toISOString());
+        console.log(new Date().toLocaleString());
+        console.log(new Date().toLocaleDateString());
+        console.log(new Date().toLocaleTimeString());
 
         //APIADMIN
         redissms.hset("contractadmin:ADMIN", "jwt", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6ImFkbWluIiwiY29udHJhY3QiOiJBRE1JTiIsImlhdCI6MjAxNjIzOTAyMn0.7UhLsjPpOwneXzN3nlT35OJjduzp70Yni9l1HO9wCck");

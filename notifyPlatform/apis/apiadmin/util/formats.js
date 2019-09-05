@@ -3,10 +3,10 @@
  *
  */
 
- //Variables
+//Variables
 
- const SMS = "SMS.";
- const PNS = "PNS.";
+const SMS = "SMS.";
+const PNS = "PNS.";
 
 //methods to expose
 
@@ -17,14 +17,19 @@ const replaceBreaks = (someText) => {
 
 //Replace all double white spaces with single spaces
 const replaceSpacesTo1 = (someText) => {
-   return someText.replace(/\s+/g," ");
+   return someText.replace(/\s+/g, " ");
 }
 
 //Date format for printing undertand date
 const dateFormat = (date) => {
-   return date.toISOString().replace(/T/, ' ').replace(/\..+/, '');
+   return date.toLocaleString();
+   //return date.toISOString().replace(/T/, ' ').replace(/\..+/, '');
 }
 
+const logTime = (date) => {
+   return ( "["+date.toLocaleTimeString()+"."+date.getMilliseconds()+"]");
+ 
+}
 //build the name of SMS channel with operator and priority, we neeed it for redis. 
 const buildSMSChannel = (operator, priority) => {
    return SMS + operator + "." + priority;
@@ -61,4 +66,4 @@ const buildPNSChannels = (operator) => {
 
 const counter = ((i = 0) => () => ++i)();
 
-module.exports = { dateFormat, buildSMSChannel, buildSMSChannels, buildPNSChannel, buildPNSChannels, counter, replaceBreaks, replaceSpacesTo1 }
+module.exports = { dateFormat, logTime, buildSMSChannel, buildSMSChannels, buildPNSChannel, buildPNSChannels, counter, replaceBreaks, replaceSpacesTo1 }

@@ -30,7 +30,7 @@ const updatePNS = async (pns) => {
     return new Promise((resolve, reject) => {
         let options = { upsert: true, new: true, setDefaultsOnInsert: true };
         let query = { _id: pns._id };
-        Sms.findOneAndUpdate(query, pns, options, (error, result) => {  //property new returns the new updated document, not the original document
+        Pns.findOneAndUpdate(query, pns, options, (error, result) => {  //property new returns the new updated document, not the original document
             try {  //I use Promises but I need to use try/catch in async callback or I could use EventEmitter 
                 if (error) console.log(error.message);
                 else if (result) resolve(result); // everything is OK, return result
@@ -47,7 +47,7 @@ const updateSomeOfPNS = async (id, toUpdate) => {
     return new Promise((resolve, reject) => {
         let options = { new: true };
         let query = { _id: id };
-        Sms.findOneAndUpdate(query, { $set: toUpdate }, options, (error, result) => {  //property new returns the new updated document, not the original document
+        Pns.findOneAndUpdate(query, { $set: toUpdate }, options, (error, result) => {  //property new returns the new updated document, not the original document
             try {  //I use Promises but I need to use try/catch in async callback or I could use EventEmitter 
                 if (error) console.log(error.message);
                 else if (result) resolve(result); // everything is OK, return result

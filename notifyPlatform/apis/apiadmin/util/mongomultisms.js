@@ -6,7 +6,7 @@
 "use strict";
 
 //Dependencies
-const { Sms } = require('../config/mongoosemulti');
+const { Sms } = require('../config/mongoosemulti');  // Attention : this Sms Model is model created for multi DB
 
 
 //this method find SMS in SMS MongoDB and manage the result of this operation
