@@ -18,7 +18,7 @@ const { rclient } = require('./config/redispns'); //we need to initialize redis
 const Pns = require('./models/pns');
 const { savePNS } = require('./util/mongopns');
 const { hget, lpush, sadd, set } = require('./util/redispns');
-const { dateFormat, buildPNSChannel } = require('./util/formats');
+const { dateFormat, logTime, buildPNSChannel } = require('./util/formats');
 const auth = require('./auth/auth');
 
 // variables
@@ -86,7 +86,7 @@ function getMessages() {
     gmo.WaitInterval = waitInterval * 1000; // 3 seconds
 
     if (msgId != null) {
-        console.log("Setting Match Option for MsgId");
+        console.log( logTime(new Date()) + "Setting Match Option for MsgId");
         gmo.MatchOptions = MQC.MQMO_MATCH_MSG_ID;
         md.MsgId = hexToBytes(msgId);
     }
@@ -108,7 +108,7 @@ async function getCB(err, hObj, gmo, md, buf, hConn) {
     // If there is an error, prepare to exit by setting the ok flag to false.
     if (err) {
         if (err.mqrc == MQC.MQRC_NO_MSG_AVAILABLE) {
-            console.log("No more messages available.");
+            console.log( logTime(new Date()) + "No more messages available.");
         } else {
             console.log(formatErr(err));
             exitCode = 1;
@@ -120,7 +120,7 @@ async function getCB(err, hObj, gmo, md, buf, hConn) {
     } else {
         if (md.Format == "MQSTR") {
             let pnsJSON = decoder.write(buf);
-            console.log("message <%s>", pnsJSON);
+            console.log( logTime(new Date()) + "message <%s>", pnsJSON);
             if (pnsJSON) {
                 try {
                     const pns = new Pns(JSON.parse(smsJSON)); // convert json to object,  await it's unnecessary because is the first creation of object. Model Validations are check when save in Mongodb, not here. 
@@ -129,7 +129,7 @@ async function getCB(err, hObj, gmo, md, buf, hConn) {
                     pns.operator = await hget("contractpns:" + pns.contract, "operator"); //Operator by default by contract. we checked the param before (in auth)                    
                     if (pns.operator == "ALL") { //If operator is ALL means that we need to find the better operator for the telf. 
                         //TODO: find the best operator for this tef. Not implemented yet
-                        pns.operator = "AND";
+                        pns.operator = "GOO";
                     }
                     const collectorOperator = hget("collectorpns:" + pns.operator, "operator"); //this method is Async, but we can get in parallel until need it (with await). 
                     if (await collectorOperator != pns.operator) pns.operator = collectorOperator;  //check if the operator have some problems
@@ -146,16 +146,16 @@ async function getCB(err, hObj, gmo, md, buf, hConn) {
 
                     // START 2 "tasks" in parallel. Even when we recollect the errors we continue the execution and return OK.    
                     Promise.all([
-                        lpush(pns.channel, JSON.stringify(pns)).catch(error => { return error }),  //put pns to the the apropiate lists channels: PNS.AND.1, PNS.VIP.1, PNS.ORA.1, PNS.VOD.1 (1,2,3) 
+                        lpush(pns.channel, JSON.stringify(pns)).catch(error => { return error }),  //put pns to the the apropiate lists channels: PNS.GOO.1, PNS.VIP.1, PNS.ORA.1, PNS.VOD.1 (1,2,3) 
                         sadd("PNS.IDS.PENDING", pns._id).catch(error => { return error }),         //we save the _id in a SET, for checking the retries, errors, etc.  
                     ]).then(values => {
-                        if (values[0] instanceof Error) { console.log(process.env.YELLOW_COLOR, " ERROR: We cannot save PNS in Redis LIST (lpush): " + values[0].message); }  //lpush returns error
-                        if (values[1] instanceof Error) { console.log(process.env.YELLOW_COLOR, " ERROR: We cannot save PNS in Redis SET (sadd): " + values[1].message); } //sadd returns error          
+                        if (values[0] instanceof Error) { console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "ERROR: We cannot save PNS in Redis LIST (lpush): " + values[0].message); }  //lpush returns error
+                        if (values[1] instanceof Error) { console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "ERROR: We cannot save PNS in Redis SET (sadd): " + values[1].message); } //sadd returns error          
                     });
                     // END the 2 "tasks" in parallel    
 
 
-                    console.log(process.env.GREEN_COLOR, " PNS to send : " + JSON.stringify(pns));  //JSON.stringify for replace new lines (\n) and tab (\t) chars into string
+                    console.log(process.env.GREEN_COLOR, logTime(new Date()) + "PNS to send : " + JSON.stringify(pns));  //JSON.stringify for replace new lines (\n) and tab (\t) chars into string
                 } catch (error) {                   
                     let contract = pns.contract || 'undefined';
                     let uuiddevice = pns.uuiddevice || 'undefined';
@@ -164,14 +164,14 @@ async function getCB(err, hObj, gmo, md, buf, hConn) {
                     let action = pns.action || 'undefined';
 
                     const errorJson = { StatusCode: "MQ Error", error: error.message, contract: contract, uuiddevice: uuiddevice, application: application, action: action, content: content, receiveAt: dateFormat(new Date()) };   // dateFornat: replace T with a space && delete the dot and everything after
-                    console.log(process.env.YELLOW_COLOR, "ERROR: " + JSON.stringify(errorJson)); 
+                    console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "ERROR: " + JSON.stringify(errorJson)); 
                     console.error(error); //continue the execution cron          
                     //TODO: save error in db  or mem.
                 }
             }
 
         } else {
-            console.log("binary message: " + buf);
+            console.log( logTime(new Date()) + "binary message: " + buf);
         }
     }
 }
@@ -184,13 +184,13 @@ function cleanup(hConn, hObj) {
         if (err) {
             console.log(formatErr(err));
         } else {
-            console.log("MQCLOSE successful");
+            console.log( logTime(new Date()) + "MQCLOSE successful");
         }
         mq.Disc(hConn, function (err) {
             if (err) {
                 console.log(formatErr(err));
             } else {
-                console.log("MQDISC successful");
+                console.log( logTime(new Date()) + "MQDISC successful");
             }
         });
     });
@@ -201,7 +201,7 @@ function cleanup(hConn, hObj) {
  * Connect to the queue manager. If that works, the callback function
  * opens the queue, and then we can start to retrieve messages.
  */
-console.log("MQ client starts");
+console.log( logTime(new Date()) + "MQ client starts");
 
 // Get command line parameters
 var myArgs = process.argv.slice(2); // Remove redundant parms
@@ -224,7 +224,7 @@ mq.Conn(qMgr, function (err, hConn) { // Connect to the queue manager, including
         console.log(formatErr(err));
         ok = false;
     } else {
-        console.log("MQCONN to %s successful ", qMgr);
+        console.log( logTime(new Date()) + "MQCONN to %s successful ", qMgr);
         connectionHandle = hConn;
 
         // Define what we want to open, and how we want to open it.
@@ -237,7 +237,7 @@ mq.Conn(qMgr, function (err, hConn) { // Connect to the queue manager, including
             if (err) {
                 console.log(formatErr(err));
             } else {
-                console.log("MQOPEN of %s successful", qName);
+                console.log( logTime(new Date()) + "MQOPEN of %s successful", qName);
                 // And now we can ask for the messages to be delivered.
                 getMessages();
             }
@@ -251,7 +251,7 @@ mq.Conn(qMgr, function (err, hConn) { // Connect to the queue manager, including
 // current status. If not OK, then close everything down cleanly.
 setInterval(function () {
     if (!ok) {
-        console.log("Exiting ...");
+        console.log( logTime(new Date()) + "Exiting ...");
         cleanup(connectionHandle, queueHandle);
         process.exit(exitCode);
     }

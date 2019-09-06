@@ -8,6 +8,7 @@
 
 // Dependencies
 const configs = require('./config.json');
+const { logTime } = require('../util/formats');
 
 //Variables & Const
 const defaultENV = 'development';
@@ -36,5 +37,5 @@ process.env['CYAN_COLOR'] = '\x1b[36m%s\x1b[0m';
 process.env['WHITE_COLOR'] = '\x1b[37m%s\x1b[0m';
 
 //final logs
-console.log(process.env.GREEN_COLOR, "The enviroment loaded is " + env);
+console.log(process.env.GREEN_COLOR, logTime(new Date()) + "The enviroment loaded is " + env);
 

@@ -11,7 +11,7 @@ const auth = require('../auth/auth');
 
 
 const { findSMS } = require('../util/mongomultisms');
-const { dateFormat } = require('../util/formats');
+const { dateFormat, logTime } = require('../util/formats');
 
 
 const router = new express.Router();
@@ -28,10 +28,10 @@ router.get('/smsStatus', auth, async (req, res) => {
     } catch (error) {
         //TODO personalize errors 400 or 500. 
         const errorJson = { StatusCode: "400 Bad Request", error: error.message, contract: req.body.contract, telf: req.body.telf, receiveAt: dateFormat(new Date()) };   // dateFornat: replace T with a space && delete the dot and everything after
-        console.log(process.env.YELLOW_COLOR, "ERROR: " + JSON.stringify(errorJson));
+        console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "ERROR: " + JSON.stringify(errorJson));
         res.status(400).send(errorJson);
         //TODO: save error in db  or mem.
-        console.log(error);
+        //console.log(error);
     }
 });
 

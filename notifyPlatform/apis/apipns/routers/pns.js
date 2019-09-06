@@ -16,7 +16,7 @@ const auth = require('../auth/auth');
 
 const { savePNS } = require('../util/mongopns');
 const { hget, lpush, sadd, set } = require('../util/redispns');
-const { dateFormat, buildPNSChannel } = require('../util/formats');
+const { dateFormat, logTime, buildPNSChannel } = require('../util/formats');
 
 
 const router = new express.Router();
@@ -24,13 +24,13 @@ const router = new express.Router();
 
 //Method post for sending PNS  //status, listby user (by date), list by uuid (by date), registeruuid: app, user, osVendor, osVersion, uuidDevice, token,
 router.post('/pnsSend', auth, async (req, res) => {  //we execute auth before this post request method
-    console.log(process.env.WHITE_COLOR, " PNS new request : " + JSON.stringify(req.body));
+    console.log(process.env.WHITE_COLOR, logTime(new Date()) + "PNS new request : " + JSON.stringify(req.body));
     try {
         const pns = new Pns(req.body);  //await it's unnecessary because is the first creation of object. Model Validations are check when save in Mongodb, not here. 
         pns.operator = await hget("contractpns:" + pns.contract, "operator"); //Operator by default by contract. we checked the param before (in auth)       
         if (pns.operator == "ALL") { //If operator is ALL means that we need to find the better operator for the telf. 
             //TODO: find the best operator for this tef. Not implemented yet
-            pns.operator = "AND";
+            pns.operator = "GOO";
         }
         const collectorOperator = hget("collectorpns:" + pns.operator, "operator"); //this method is Async, but we can get in parallel until need it (with await). 
 
@@ -49,18 +49,18 @@ router.post('/pnsSend', auth, async (req, res) => {  //we execute auth before th
 
         // START 2 "tasks" in parallel. Even when we recollect the errors we continue the execution and return OK.    
         Promise.all([
-            lpush(pns.channel, JSON.stringify(pns)).catch(error => { return error }),  //put pns to the the apropiate lists channels: PNS.AND.1, PNS.VIP.1, PNS.ORA.1, PNS.VOD.1 (1,2,3) 
+            lpush(pns.channel, JSON.stringify(pns)).catch(error => { return error }),  //put pns to the the apropiate lists channels: PNS.GOO.1, PNS.VIP.1, PNS.ORA.1, PNS.VOD.1 (1,2,3) 
             sadd("PNS.IDS.PENDING", pns._id).catch(error => { return error }),         //we save the _id in a SET, for checking the retries, errors, etc.  
         ]).then(values => {
-            if (values[0] instanceof Error) { console.log(process.env.YELLOW_COLOR, " ERROR: We cannot save PNS in Redis LIST (lpush): " + values[0].message); }  //lpush returns error
-            if (values[1] instanceof Error) { console.log(process.env.YELLOW_COLOR, " ERROR: We cannot save PNS in Redis SET (sadd): " + values[1].message); } //sadd returns error          
+            if (values[0] instanceof Error) { console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "ERROR: We cannot save PNS in Redis LIST (lpush): " + values[0].message); }  //lpush returns error
+            if (values[1] instanceof Error) { console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "ERROR: We cannot save PNS in Redis SET (sadd): " + values[1].message); } //sadd returns error          
         });
         // END the 2 "tasks" in parallel    
 
 
         //response 200, with pns._id. is it necessary any more params?
         res.send({ statusCode: "200 OK", _id: pns._id });
-        console.log(process.env.GREEN_COLOR, " PNS to send : " + JSON.stringify(pns));  //JSON.stringify for replace new lines (\n) and tab (\t) chars into string
+        console.log(process.env.GREEN_COLOR, logTime(new Date()) + "PNS to send : " + JSON.stringify(pns));  //JSON.stringify for replace new lines (\n) and tab (\t) chars into string
 
     } catch (error) {
         requestError(error, req, res);
@@ -77,7 +77,7 @@ const requestError = async (error, req, res) => {
     let action = req.body.action || 'undefined';
 
     const errorJson = { StatusCode: "400 Bad Request", error: error.message, contract: contract, uuiddevice: uuiddevice, application: application, action: action, content: content, receiveAt: dateFormat(new Date()) };   // dateFornat: replace T with a space && delete the dot and everything after
-    console.log(process.env.YELLOW_COLOR, "ERROR: " + JSON.stringify(errorJson));
+    console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "ERROR: " + JSON.stringify(errorJson));
     res.status(401).send(errorJson);
     //TODO: save error in db  or mem.
 }

@@ -18,7 +18,7 @@ const { rclient } = require('./config/redissms'); //we need to initialize redis
 const Sms = require('./models/sms');
 const { saveSMS } = require('./util/mongosms');
 const { hget, lpush, sadd, set } = require('./util/redissms');
-const { dateFormat, buildSMSChannel } = require('./util/formats');
+const { dateFormat, logTime, buildSMSChannel } = require('./util/formats');
 const auth = require('./auth/auth');
 
 // variables
@@ -86,7 +86,7 @@ function getMessages() {
     gmo.WaitInterval = waitInterval * 1000; // 3 seconds
 
     if (msgId != null) {
-        console.log("Setting Match Option for MsgId");
+        console.log( logTime(new Date()) + "Setting Match Option for MsgId");
         gmo.MatchOptions = MQC.MQMO_MATCH_MSG_ID;
         md.MsgId = hexToBytes(msgId);
     }
@@ -108,7 +108,7 @@ async function getCB(err, hObj, gmo, md, buf, hConn) {
     // If there is an error, prepare to exit by setting the ok flag to false.
     if (err) {
         if (err.mqrc == MQC.MQRC_NO_MSG_AVAILABLE) {
-            console.log("No more messages available.");
+            console.log( logTime(new Date()) + "No more messages available.");
         } else {
             console.log(formatErr(err));
             exitCode = 1;
@@ -120,7 +120,7 @@ async function getCB(err, hObj, gmo, md, buf, hConn) {
     } else {
         if (md.Format == "MQSTR") {
             let smsJSON = decoder.write(buf);
-            console.log("message <%s>", smsJSON);
+            console.log( logTime(new Date()) + "message <%s>", smsJSON);
             if (smsJSON) {
                 try {
                     const sms = new Sms(JSON.parse(smsJSON)); // convert json to object,  await it's unnecessary because is the first creation of object. Model Validations are check when save in Mongodb, not here. 
@@ -147,15 +147,15 @@ async function getCB(err, hObj, gmo, md, buf, hConn) {
 
                     // START 2 "tasks" in parallel. Even when we recollect the errors we continue the execution and return OK.    
                     Promise.all([
-                        lpush(sms.channel, JSON.stringify(sms)).catch(error => { return error }),  //put sms to the the apropiate lists channels: SMS.AND.1, SMS.VIP.1, SMS.ORA.1, SMS.VOD.1 (1,2,3) 
+                        lpush(sms.channel, JSON.stringify(sms)).catch(error => { return error }),  //put sms to the the apropiate lists channels: SMS.GOO.1, SMS.VIP.1, SMS.ORA.1, SMS.VOD.1 (1,2,3) 
                         sadd("SMS.IDS.PENDING", sms._id).catch(error => { return error }),         //we save the _id in a SET, for checking the retries, errors, etc.  
                     ]).then(values => {
-                        if (values[0] instanceof Error) { console.log(process.env.YELLOW_COLOR, " ERROR: We cannot save SMS in Redis LIST (lpush): " + values[0].message); }  //lpush returns error
-                        if (values[1] instanceof Error) { console.log(process.env.YELLOW_COLOR, " ERROR: We cannot save SMS in Redis SET (sadd): " + values[1].message); } //sadd returns error          
+                        if (values[0] instanceof Error) { console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "ERROR: We cannot save SMS in Redis LIST (lpush): " + values[0].message); }  //lpush returns error
+                        if (values[1] instanceof Error) { console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "ERROR: We cannot save SMS in Redis SET (sadd): " + values[1].message); } //sadd returns error          
                     });
                     // END the 2 "tasks" in parallel    
 
-                    console.log(process.env.GREEN_COLOR, " SMS to send : " + JSON.stringify(sms));  //JSON.stringify for replace new lines (\n) and tab (\t) chars into string
+                    console.log(process.env.GREEN_COLOR, logTime(new Date()) + "SMS to send : " + JSON.stringify(sms));  //JSON.stringify for replace new lines (\n) and tab (\t) chars into string
 
                 } catch (error) {
                     let contract = sms.contract || 'undefined';
@@ -163,14 +163,14 @@ async function getCB(err, hObj, gmo, md, buf, hConn) {
                     let message = sms.message || 'undefined';
 
                     const errorJson = { StatusCode: "SMS MQ ERROR", error: error.message, contract: contract, telf: telf, message: message, receiveAt: dateFormat(new Date()) };   // dateFornat: replace T with a space && delete the dot and everything after
-                    console.log(process.env.YELLOW_COLOR, "ERROR: " + JSON.stringify(errorJson));
+                    console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "ERROR: " + JSON.stringify(errorJson));
                     console.error(error); //continue the execution cron          
                     //TODO: save error in db  or mem.
                 }
             }
 
         } else {
-            console.log("binary message: " + buf);
+            console.log( logTime(new Date()) + "binary message: " + buf);
         }
     }
 }
@@ -183,13 +183,13 @@ function cleanup(hConn, hObj) {
         if (err) {
             console.log(formatErr(err));
         } else {
-            console.log("MQCLOSE successful");
+            console.log( logTime(new Date()) + "MQCLOSE successful");
         }
         mq.Disc(hConn, function (err) {
             if (err) {
                 console.log(formatErr(err));
             } else {
-                console.log("MQDISC successful");
+                console.log( logTime(new Date()) + "MQDISC successful");
             }
         });
     });
@@ -200,7 +200,7 @@ function cleanup(hConn, hObj) {
  * Connect to the queue manager. If that works, the callback function
  * opens the queue, and then we can start to retrieve messages.
  */
-console.log("MQ client starts");
+console.log( logTime(new Date()) + "MQ client starts");
 
 // Get command line parameters
 var myArgs = process.argv.slice(2); // Remove redundant parms
@@ -223,7 +223,7 @@ mq.Conn(qMgr, function (err, hConn) { // Connect to the queue manager, including
         console.log(formatErr(err));
         ok = false;
     } else {
-        console.log("MQCONN to %s successful ", qMgr);
+        console.log( logTime(new Date()) + "MQCONN to %s successful ", qMgr);
         connectionHandle = hConn;
 
         // Define what we want to open, and how we want to open it.
@@ -236,7 +236,7 @@ mq.Conn(qMgr, function (err, hConn) { // Connect to the queue manager, including
             if (err) {
                 console.log(formatErr(err));
             } else {
-                console.log("MQOPEN of %s successful", qName);
+                console.log( logTime(new Date()) + "MQOPEN of %s successful", qName);
                 // And now we can ask for the messages to be delivered.
                 getMessages();
             }
@@ -250,7 +250,7 @@ mq.Conn(qMgr, function (err, hConn) { // Connect to the queue manager, including
 // current status. If not OK, then close everything down cleanly.
 setInterval(function () {
     if (!ok) {
-        console.log("Exiting ...");
+        console.log( logTime(new Date()) + "Exiting ...");
         cleanup(connectionHandle, queueHandle);
         process.exit(exitCode);
     }

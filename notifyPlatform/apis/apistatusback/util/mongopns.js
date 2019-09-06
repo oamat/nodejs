@@ -32,7 +32,7 @@ const updatePNS = async (pns) => {
         let query = { _id: pns._id };
         Pns.findOneAndUpdate(query, pns, options, (error, result) => {  //property new returns the new updated document, not the original document
             try {  //I use Promises but I need to use try/catch in async callback or I could use EventEmitter 
-                if (error) console.log(error.message);
+                if (error) throw error;  //if mongoose give me an error. 
                 else if (result) resolve(result); // everything is OK, return result
                 else throw new Error('we have a problem when try to update PNS in MongoDB. it\'s necessary check the problem before proceding.'); //If we cannot save PNS to MongoDB
             } catch (error) { reject(error); } // In Callback we need to reject if we have Error. A reject will not pass through here
@@ -49,7 +49,7 @@ const updateSomeOfPNS = async (id, toUpdate) => {
         let query = { _id: id };
         Pns.findOneAndUpdate(query, { $set: toUpdate }, options, (error, result) => {  //property new returns the new updated document, not the original document
             try {  //I use Promises but I need to use try/catch in async callback or I could use EventEmitter 
-                if (error) console.log(error.message);
+                if (error) throw error;  //if mongoose give me an error. 
                 else if (result) resolve(result); // everything is OK, return result
                 else throw new Error('we have a problem when try to update PNS in MongoDB. it\'s necessary check the problem before proceding.'); //If we cannot save PNS to MongoDB
             } catch (error) { reject(error); } // In Callback we need to reject if we have Error. A reject will not pass through here

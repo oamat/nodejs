@@ -14,7 +14,7 @@
 // Dependencies
 const jwt = require('jsonwebtoken');
 const { hget } = require('../util/redissms');
-const { dateFormat } = require('../util/formats');
+const { dateFormat, logTime } = require('../util/formats');
 
 // method auth async, and it's necessary call function next in the end if all is correct.
 const auth = async (req, res, next) => {
@@ -47,7 +47,7 @@ const unauthoritzedError = (error, req, res) => { // method for unauthoritzed Er
         let message = req.body.message || 'undefined';
     
         const errorJson = { StatusCode: "401 unauthoritzed", error: error.message, contract: contract, telf: telf, message: message, receiveAt: dateFormat(new Date()) };   // dateFornat: replace T with a space && delete the dot and everything after
-        console.log(process.env.YELLOW_COLOR, "ERROR: " + JSON.stringify(errorJson));
+        console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "ERROR: " + JSON.stringify(errorJson));
         res.status(401).send(errorJson);
         //TODO: save error in db  or mem.
     }

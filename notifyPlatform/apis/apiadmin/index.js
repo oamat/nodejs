@@ -7,10 +7,11 @@
 
 // Dependencies
 require('./config/config'); //we need configurations
-const mongoosemulti = require('./config/mongoosemulti'); //we need to initialize mongoose SMS and PNS
+require('./config/mongoosemulti'); //we need to initialize mongoose SMS and PNS
 const redissms = require('./config/redissms'); //we need to initialize redis
 const redispns = require('./config/redissms'); //we need to initialize redis
 const app = require('./server/app');  // Declare the app
+const { logTime } = require('./util/formats');
 
 const initializeAllSources = async () => { // Init Mongoose with await    
      //START PARALLEL excution with await Promise.all.
@@ -23,7 +24,7 @@ const initializeAllSources = async () => { // Init Mongoose with await
 
      // then we can Init api server
      app.listen(process.env.APIADMIN_PORT, () => {
-          console.log(process.env.GREEN_COLOR, 'The HTTPS server is running on port ' + process.env.APIADMIN_PORT);
+          console.log(process.env.GREEN_COLOR, logTime(new Date()) + 'APIADMIN HTTPS server is running on port ' + process.env.APIADMIN_PORT);
      });
 }
 

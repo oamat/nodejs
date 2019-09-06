@@ -4,13 +4,13 @@ HGET contractpns:PUSHLOWEB jwt
 HSET contractpns:PUSHLOWEB operator "ALL"
 HGET contractpns:PUSHLOWEB operator
 
-HSET collectorpns:AND operator "ALL"
-HGET collectorpns:AND operator
+HSET collectorpns:GOO operator "ALL"
+HGET collectorpns:GOO operator
 
-LPUSH PNS.AND.1 '{"dispatched":false,"priority":1,"interface":"REST","retries":0,"deferred":false,"status":0,"contract":"PUSHLOWEB","application":"CaixaAPP","user":"userTst","uuiddevice":"kk34699272809","action":"show","content":"content push notification","params":[{"param":"icono1","value":"new1","type":"String"},{"param":"icono2","value":"new2","type":"String"}],"_id":"848ba1b0-3ec1-442e-ad67-39d575d45f2e","receivedAt":"2019-08-19T22:05:28.162Z","operator":"AND","channel":"PNS.AND.1","createdAt":"2019-08-19T22:05:28.168Z","updatedAt":"2019-08-19T22:05:28.168Z","__v":0}'
-LPUSH PNS.AND.1 '{"dispatched":false,"priority":1,"interface":"REST","retries":0,"deferred":false,"status":0,"contract":"PUSHLOWEB","application":"CaixaAPP","user":"userTst","uuiddevice":"kk34699272809","action":"show","content":"content push notification","params":[{"param":"icono1","value":"new1","type":"String"},{"param":"icono2","value":"new2","type":"String"}],"_id":"848ba1b0-3ec1-442e-ad67-39d575d45f3e","receivedAt":"2019-08-19T22:05:28.162Z","operator":"AND","channel":"PNS.AND.1","createdAt":"2019-08-19T22:05:28.168Z","updatedAt":"2019-08-19T22:05:28.168Z","__v":0}'
-LLEN PNS.AND.1
-LRANGE PNS.AND.1 0 -1
+LPUSH PNS.GOO.1 '{"dispatched":false,"priority":1,"interface":"REST","retries":0,"deferred":false,"status":0,"contract":"PUSHLOWEB","application":"CaixaAPP","user":"userTst","uuiddevice":"kk34699272809","action":"show","content":"content push notification","params":[{"param":"icono1","value":"new1","type":"String"},{"param":"icono2","value":"new2","type":"String"}],"_id":"848ba1b0-3ec1-442e-ad67-39d575d45f2e","receivedAt":"2019-08-19T22:05:28.162Z","operator":"GOO","channel":"PNS.GOO.1","createdAt":"2019-08-19T22:05:28.168Z","updatedAt":"2019-08-19T22:05:28.168Z","__v":0}'
+LPUSH PNS.GOO.1 '{"dispatched":false,"priority":1,"interface":"REST","retries":0,"deferred":false,"status":0,"contract":"PUSHLOWEB","application":"CaixaAPP","user":"userTst","uuiddevice":"kk34699272809","action":"show","content":"content push notification","params":[{"param":"icono1","value":"new1","type":"String"},{"param":"icono2","value":"new2","type":"String"}],"_id":"848ba1b0-3ec1-442e-ad67-39d575d45f3e","receivedAt":"2019-08-19T22:05:28.162Z","operator":"GOO","channel":"PNS.GOO.1","createdAt":"2019-08-19T22:05:28.168Z","updatedAt":"2019-08-19T22:05:28.168Z","__v":0}'
+LLEN PNS.GOO.1
+LRANGE PNS.GOO.1 0 -1
 
 SADD PNS.IDS.PENDING "848ba1b0-3ec1-442e-ad67-39d575d45f2e"
 SADD PNS.IDS.PENDING "848ba1b0-3ec1-442e-ad67-39d575d45f3e"

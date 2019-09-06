@@ -28,13 +28,6 @@ const router = new express.Router();
 // GET /smsStatus   # uuid in body or telf and dates in body, and contract or all
 router.get('/loadRedis', async (req, res) => {
     try {
-        console.log(logTime( new Date()));
-
-        console.log(new Date().toString());
-        console.log(new Date().toISOString());
-        console.log(new Date().toLocaleString());
-        console.log(new Date().toLocaleDateString());
-        console.log(new Date().toLocaleTimeString());
 
         //APIADMIN
         redissms.hset("contractadmin:ADMIN", "jwt", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6ImFkbWluIiwiY29udHJhY3QiOiJBRE1JTiIsImlhdCI6MjAxNjIzOTAyMn0.7UhLsjPpOwneXzN3nlT35OJjduzp70Yni9l1HO9wCck");
@@ -65,10 +58,10 @@ router.get('/loadRedis', async (req, res) => {
         redispns.hset("collectorpns:APP", "operator", "APP");
 
         //Collectors Android
-        redispns.hset("collectorpns:AND", "status", "1");
-        redispns.hset("collectorpns:AND", "interval", "2000");
-        redispns.hset("collectorpns:AND", "intervalControl", "30000");
-        redispns.hset("collectorpns:AND", "operator", "AND");
+        redispns.hset("collectorpns:GOO", "status", "1");
+        redispns.hset("collectorpns:GOO", "interval", "2000");
+        redispns.hset("collectorpns:GOO", "intervalControl", "30000");
+        redispns.hset("collectorpns:GOO", "operator", "GOO");
 
         //Collectors Microsoft
         redispns.hset("collectorpns:MIC", "status", "1");
@@ -105,7 +98,7 @@ router.get('/loadRedis', async (req, res) => {
     } catch (error) {
         //TODO personalize errors 400 or 500. 
         const errorJson = { StatusCode: "400 Bad Request", error: error.message, contract: req.body.contract, telf: req.body.telf, receiveAt: dateFormat(new Date()) };   // dateFornat: replace T with a space && delete the dot and everything after
-        console.log(process.env.YELLOW_COLOR, "ERROR: " + JSON.stringify(errorJson));
+        console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "ERROR: " + JSON.stringify(errorJson));
         res.status(400).send(errorJson);
         //TODO: save error in db  or mem.
     }

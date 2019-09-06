@@ -8,7 +8,7 @@
 
 //Dependencies
 const https = require('https');
-const { Sms } = require('../models/sms');
+const { logTime } = require('../util/formats');
 
 
 
@@ -24,16 +24,16 @@ const sendSMS = async (sms) => {
     };
    
     const request = https.request(options, (response) => {
-        console.log('statusCode:', response.statusCode);
-        console.log('headers:', response.headers);
+        //console.log('statusCode:', response.statusCode);
+        //console.log('headers:', response.headers);
         
         response.on('data', (data) => {
-            process.stdout.write(data);
+            //process.stdout.write(data);
         });
     });
 
     request.on('error', (error) => {
-        console.error(error.message);
+        console.error(logTime(new Date()) + error.message);
     });
     request.end();
 }

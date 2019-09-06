@@ -22,11 +22,13 @@ const replaceSpacesTo1 = (someText) => {
 
 //Date format for printing undertand date
 const dateFormat = (date) => {
-   return date.toISOString().replace(/T/, ' ').replace(/\..+/, '');
+   return date.toLocaleString();
+   //return date.toISOString().replace(/T/, ' ').replace(/\..+/, '');
 }
 
 const logTime = (date) => {
-   return "[" + dateFormat(date) + "]";
+   return ( "["+date.toLocaleTimeString()+"."+date.getMilliseconds()+"] ");
+ 
 }
 //build the name of SMS channel with operator and priority, we neeed it for redis. 
 const buildSMSChannel = (operator, priority) => {

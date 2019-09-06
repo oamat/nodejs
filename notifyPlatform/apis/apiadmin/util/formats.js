@@ -27,7 +27,7 @@ const dateFormat = (date) => {
 }
 
 const logTime = (date) => {
-   return ( "["+date.toLocaleTimeString()+"."+date.getMilliseconds()+"]");
+   return ( "["+date.toLocaleTimeString()+"."+date.getMilliseconds()+"] ");
  
 }
 //build the name of SMS channel with operator and priority, we neeed it for redis. 

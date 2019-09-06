@@ -107,11 +107,11 @@ const pnsSchema = new mongoose.Schema({
         default: 0  //0:notSent, 1:Sent, 2:confirmed 3:Error
     },
     operator: {
-        type: String, //AND, APP, MIC...
+        type: String, //GOO, APP, MIC...
         required: true
     },
     channel: {
-        type: String, //PNS.AND.1, [AND, APP, MIC] [0,1,2,3]
+        type: String, //PNS.GOO.1, [GOO, APP, MIC] [0,1,2,3]
         required: true
     },
     jwt: {  // we need jwt for MQ, but we don't need to save in mongodb.
