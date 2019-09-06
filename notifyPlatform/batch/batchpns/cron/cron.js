@@ -9,7 +9,8 @@
 
 //Dependencies
 const { Pns } = require('../models/pns');
-const { hget, rpop, lpush, sadd } = require('../util/redispns'); //we need to initialize redis
+const { rpop, lpush, sadd } = require('../util/redispns'); //we need to initialize redis
+const { hget } = require('../util/redisconf');
 const { dateFormat, logTime, buildPNSChannel } = require('../util/formats'); // utils for formats
 const { savePNS } = require('../util/mongopns');
 const auth = require('../auth/auth');

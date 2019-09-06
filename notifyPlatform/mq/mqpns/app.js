@@ -14,10 +14,12 @@
 
 require('./config/config'); //we need configurations
 const { initializeMongooseConnection } = require('./config/mongoosepns'); //we need to initialize mongoose
-const { rclient } = require('./config/redispns'); //we need to initialize redis
+require('./config/redispns'); //we need to initialize redis
+require('./config/redisconf'); //we need to initialize redis
 const Pns = require('./models/pns');
 const { savePNS } = require('./util/mongopns');
-const { hget, lpush, sadd, set } = require('./util/redispns');
+const { lpush, sadd } = require('./util/redispns');
+const { hget } = require('../util/redisconf');
 const { dateFormat, logTime, buildPNSChannel } = require('./util/formats');
 const auth = require('./auth/auth');
 
@@ -44,7 +46,7 @@ const initializeAllSources = async () => { // Init Mongoose with await
     //START PARALLEL excution with await Promise.all.
     await Promise.all([ //Async Promises: all tasks start immediately 
         initializeMongooseConnection(),  // Init mongoose
-        rclient.set("initializeRedisConnection:test", "test") // little test redis
+        //rclient.set("initializeRedisConnection:test", "test") // little test redis
     ]);
     //END PARALLEL excution with await Promise.all.
 

@@ -14,10 +14,12 @@
 
 require('./config/config'); //we need configurations
 const { initializeMongooseConnection } = require('./config/mongoosesms'); //we need to initialize mongoose
-const { rclient } = require('./config/redissms'); //we need to initialize redis
+require('./config/redissms'); //we need to initialize redis
+require('./config/redisconf'); //we need to initialize redis
 const Sms = require('./models/sms');
 const { saveSMS } = require('./util/mongosms');
-const { hget, lpush, sadd, set } = require('./util/redissms');
+const { lpush, sadd } = require('./util/redissms');
+const { hget } = require('../util/redisconf');
 const { dateFormat, logTime, buildSMSChannel } = require('./util/formats');
 const auth = require('./auth/auth');
 

@@ -15,7 +15,8 @@ const { Pns } = require('../models/pns');
 const auth = require('../auth/auth');
 
 const { savePNS } = require('../util/mongopns');
-const { hget, lpush, sadd, set } = require('../util/redispns');
+const { lpush, sadd } = require('../util/redispns');
+const { hget } = require('../util/redisconf');
 const { dateFormat, logTime, buildPNSChannel } = require('../util/formats');
 
 

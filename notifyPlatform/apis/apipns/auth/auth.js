@@ -14,7 +14,7 @@
 
 // Dependencies
 const jwt = require('jsonwebtoken');
-const { hget } = require('../util/redispns');
+const { hget } = require('../util/redisconf');
 const { dateFormat, logTime } = require('../util/formats');
 
 // method auth async, and it's necessary call function next in the end if all is correct.

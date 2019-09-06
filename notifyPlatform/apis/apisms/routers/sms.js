@@ -15,7 +15,8 @@ const { Sms } = require('../models/sms');
 const auth = require('../auth/auth');
 
 const { saveSMS } = require('../util/mongosms');
-const { hget, lpush, sadd, set } = require('../util/redissms');
+const { lpush, sadd, set } = require('../util/redissms');
+const { hget } = require('../util/redisconf');
 const { dateFormat, logTime, buildSMSChannel } = require('../util/formats');
 
 

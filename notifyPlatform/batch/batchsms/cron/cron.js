@@ -9,7 +9,8 @@
 
 //Dependencies
 const { Sms } = require('../models/sms');
-const { hget, rpop, lpush, sadd } = require('../util/redissms'); //we need to initialize redis
+const { rpop, lpush, sadd } = require('../util/redissms'); //we need to initialize redis
+const { hget } = require('../util/redisconf');
 const { dateFormat, logTime, buildSMSChannel } = require('../util/formats'); // utils for formats
 const { saveSMS } = require('../util/mongosms');
 const auth = require('../auth/auth');
