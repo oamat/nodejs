@@ -6,13 +6,13 @@
 "use strict";
 
 //Dependencies
-const { Pns } = require('../config/mongoosemulti');
+const { Pns } = require('../config/mongoosemulti'); // Attention : this Sms Model is model created for multi DB
 
 
 //this method find PNS in PNS MongoDB and manage the result of this operation
 const findPNS = async (condition) => {
     return new Promise((resolve, reject) => {      
-        Pns.find(condition, (error, result) => {
+        Pns().find(condition, (error, result) => {
             try {  //I use Promises but I need to use try/catch in async callback or I could use EventEmitter 
                 if (error) throw error;  //if mongoose give me an error. 
                 else if (result) resolve(result); // everything is OK, return result                                 
@@ -21,7 +21,6 @@ const findPNS = async (condition) => {
     })
         .then((result) => { return result; })  //return the result number
         .catch((error) => { throw error; });  //throw Error exception to the main code, it's unnecessary but maybe we will need put some lógic...  A reject callback will pass through here
-
 }
 
 module.exports = { findPNS }

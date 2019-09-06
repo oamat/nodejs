@@ -287,6 +287,25 @@ yes | cp -rf /notifyPlatform/_commons/util/redispns.js /notifyPlatform/retries/r
 yes | cp -rf /notifyPlatform/_commons/util/redispns.js  /notifyPlatform/mq/mqpns/util/redispns.js
 yes | cp -rf /notifyPlatform/_commons/util/redispns.js  /notifyPlatform/mq/mqsms/util/redispns.js
 
+echo "copying /util/redisconf.js"
+yes | cp -rf /notifyPlatform/_commons/util/redisconf.js /notifyPlatform/apis/apisms/util/redisconf.js
+yes | cp -rf /notifyPlatform/_commons/util/redisconf.js /notifyPlatform/apis/apipns/util/redisconf.js
+yes | cp -rf /notifyPlatform/_commons/util/redisconf.js /notifyPlatform/apis/apiadmin/util/redisconf.js
+yes | cp -rf /notifyPlatform/_commons/util/redisconf.js /notifyPlatform/apis/apistatusback/util/redisconf.js
+yes | cp -rf /notifyPlatform/_commons/util/redisconf.js /notifyPlatform/batch/batchpns/util/redisconf.js
+yes | cp -rf /notifyPlatform/_commons/util/redisconf.js /notifyPlatform/batch/batchsms/util/redisconf.js
+yes | cp -rf /notifyPlatform/_commons/util/redisconf.js /notifyPlatform/collectors/pns/apple/util/redisconf.js
+yes | cp -rf /notifyPlatform/_commons/util/redisconf.js /notifyPlatform/collectors/pns/google/util/redisconf.js
+yes | cp -rf /notifyPlatform/_commons/util/redisconf.js /notifyPlatform/collectors/pns/microsoft/util/redisconf.js
+yes | cp -rf /notifyPlatform/_commons/util/redisconf.js /notifyPlatform/collectors/sms/movistar/util/redisconf.js
+yes | cp -rf /notifyPlatform/_commons/util/redisconf.js /notifyPlatform/collectors/sms/movistarvip/util/redisconf.js
+yes | cp -rf /notifyPlatform/_commons/util/redisconf.js /notifyPlatform/collectors/sms/orange/util/redisconf.js
+yes | cp -rf /notifyPlatform/_commons/util/redisconf.js /notifyPlatform/collectors/sms/vodafone/util/redisconf.js
+yes | cp -rf /notifyPlatform/_commons/util/redisconf.js /notifyPlatform/retries/retriespns/util/redisconf.js
+yes | cp -rf /notifyPlatform/_commons/util/redisconf.js /notifyPlatform/retries/retriessms/util/redisconf.js
+yes | cp -rf /notifyPlatform/_commons/util/redisconf.js  /notifyPlatform/mq/mqpns/util/redisconf.js
+yes | cp -rf /notifyPlatform/_commons/util/redisconf.js  /notifyPlatform/mq/mqsms/util/redisconf.js
+
 
 echo "copying /config/mongoosemulti.js"
 yes | cp -rf /notifyPlatform/_commons/config/mongoosemulti.js /notifyPlatform/apis/apisms/config/mongoosemulti.js

@@ -20,7 +20,7 @@ const options = {
     reconnectTries: Number.MAX_VALUE
 };
 // Init mongoose
-mongoose.Promise = global.Promise;
+//mongoose.Promise = global.Promise; This is legacy code from older examples that isn't needed with Mongoose 5.
 
 
 // EventEmitter in case of Errors, stop all process
@@ -30,11 +30,11 @@ mongoose.connection.once('open', () => { //we check the mongodb connection
 
 mongoose.connection.on('error', (error) => {  //we need to know if connection works, particularly at the start if we didn't connect with it.
     //console.log(process.env.RED_COLOR, error);
-    //console.log(process.env.RED_COLOR, "MONGODB ERROR : failed to connect to db server : " + process.env.MONGODBSMS_URI + " . " + error.message);
+    //console.log(process.env.RED_COLOR, "MONGODB ERROR : failed to reconnect to db server : " + process.env.MONGODBSMS_URI + " . " + error.message);
     //process.exit(1);  //because platform doesn't works without Mongodb, we prefer to stop server
     let date = new Date();
-    console.log(process.env.RED_COLOR, logTime(date) + " MONGODB SMS ERROR : failed to connect to SMS mongodb server : " + process.env.MONGODBSMS_URI);
-    console.log(process.env.YELLOW_COLOR, logTime(date) + " MONGODB SMS ERROR : we will try to connect to SMS mongodb in 15s...");
+    console.log(process.env.RED_COLOR, logTime(date) + " MONGODB SMS ERROR : failed to reconnect to SMS mongodb server : " + process.env.MONGODBSMS_URI);
+    console.log(process.env.YELLOW_COLOR, logTime(date) + " MONGODB SMS ERROR : we will try to reconnect to SMS mongodb in 15s...");
     setTimeout(function () {
         initializeMongooseConnection();
     }, 15000);
