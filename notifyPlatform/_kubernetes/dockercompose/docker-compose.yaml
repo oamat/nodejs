@@ -384,6 +384,24 @@ services:
 
 
 
+#redisconf
+   #Optional you can create the docker image  (# docker build -t name) .
+  redisconf: 
+    #build: . #build: Dockerfile #Optional : "build: ." Uses an image that’s built from the Dockerfile in the current directory.  
+    image: redisconf
+    container_name: "redisconf"      
+    restart: always
+    ports:
+      - 30082:30082
+    
+    environment:
+      NODE_ENV: "docker"
+    labels:
+     kompose.service.type: NodePort # labels for kompose convert to kubernetes
+     kompose.image-pull-policy: Never # labels for kompose convert to kubernetes
+
+
+
 #mongopns
    #Optional you can create the docker image  (# docker build -t name) .
   mongopns: 

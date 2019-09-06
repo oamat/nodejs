@@ -18,6 +18,8 @@
       "REDISSMS_PORT": "30080",
       "REDISPNS_IP": "192.168.99.100",
       "REDISPNS_PORT": "30081",
+      "REDISCONF_IP": "192.168.99.100",
+      "REDISCONF_PORT": "30082",
     
       "JWT_SECRET": "pojiaj234oi234oij234oij4jgstwsnaKSDADWWssswwwwssQRT"    
    },
@@ -41,6 +43,8 @@
     "REDISSMS_PORT": "30080",
     "REDISPNS_IP": "localhost",
     "REDISPNS_PORT": "30081",
+    "REDISCONF_IP": "localhost",
+    "REDISCONF_PORT": "30082",
     
     "JWT_SECRET": "pojiaj234oi234oij234oij4jgstwsnaKSDADWWssswwwwssQRT"
   }, 
@@ -64,6 +68,8 @@
     "REDISSMS_PORT": "30080",
     "REDISPNS_IP": "redissms",
     "REDISPNS_PORT": "30081",
+    "REDISCONF_IP": "redisconf",
+    "REDISCONF_PORT": "30082",
     
     "JWT_SECRET": "pojiaj234oi234oij234oij4jgstwsnaKSDADWWssswwwwssQRT"
   }, 

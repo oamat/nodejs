@@ -15,6 +15,7 @@ fs.readFile(root + templateFile, 'utf8', async function (err, templateData) {
         await replace("_mongodb/mongopns", "mongopns");
         await replace("_redis/redissms", "redissms");
         await replace("_redis/redispns", "redispns");
+        await replace("_redis/redisconf", "redisconf");
         await replace("collectors/pns/apple", "apple");
         await replace("collectors/pns/google", "google");
         await replace("collectors/pns/microsoft", "microsoft");

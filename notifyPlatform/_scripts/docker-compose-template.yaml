@@ -18,5 +18,6 @@ services:
 :_retriespns_:
 :_redispns_:
 :_redissms_:
+:_redisconf_:
 :_mongopns_:
 :_mongosms_:

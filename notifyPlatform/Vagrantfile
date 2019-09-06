@@ -71,6 +71,7 @@ Vagrant.configure("2") do |config|
   #Redis
   config.vm.network "forwarded_port", guest: 30080, host: 30080
   config.vm.network "forwarded_port", guest: 30081, host: 30081
+  config.vm.network "forwarded_port", guest: 30082, host: 30082
 
   #MinikubeDashboard
   config.vm.network "forwarded_port", guest: 33245, host: 33245

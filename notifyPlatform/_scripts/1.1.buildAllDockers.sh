@@ -42,6 +42,8 @@ cd /notifyPlatform/_redis/redispns
 docker build -t redispns .
 cd /notifyPlatform/_redis/redissms
 docker build -t redissms .
+cd /notifyPlatform/_redis/redisconf
+docker build -t redisconf .
 #Retries Interfaces
 cd /notifyPlatform/retries/retriespns
 docker build -t retriespns .

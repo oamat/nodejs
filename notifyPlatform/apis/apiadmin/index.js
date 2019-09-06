@@ -16,7 +16,7 @@ const { logTime } = require('./util/formats');
 const initializeAllSources = async () => { // Init Mongoose with await    
      //START PARALLEL excution with await Promise.all.
      await Promise.all([ //Async Promises: all tasks start immediately 
-          //mongosmspns.initializeMongooseConnection(),  // Init mongoose SMS & PNS
+          //mongosmspns.initializeMongooseConnection(),  // Init mongoose SMS & PNS          
           redissms.rclient.set("initializeRedisConnection:test", "test"), // little test redis
           redispns.rclient.set("initializeRedisConnection:test", "test") // little test redis
       ]);

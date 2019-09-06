@@ -1,8 +1,6 @@
 # NotifyPlatform 
 ###  This is a project for send notifications SMS & PNS to Operators
 
-
-
 ### Structure Project : Utils for the project :
 - _commons : you can find common codes
 - _kubernetes : you can find kubernetes& compose yaml's files
@@ -31,20 +29,21 @@
 - $ cd /notifyPlatform/_mongodb/mongopns/
 - $ . runDocker.sh
 
-
-
 ### Redis dependency: Remember starting redis docker container docker container in dev mode :
 - $ cd /notifyPlatform/_redis/redissms
 - $ . runDocker.sh
 - $ cd /notifyPlatform/_redis/redispns
+- $ . runDocker.sh
+- $ cd /notifyPlatform/_redis/redisconf
 - $ . runDocker.sh
 
 
 ####### you can use Redis client for testing in Linux :
  - $ redis-cli -h 10.0.2.15 / localhost -p 30080  for redissms
  - $ redis-cli -h 10.0.2.15 / localhost -p 30081  for redispns 
+ - $ redis-cli -h 10.0.2.15 / localhost -p 30082  for redisconf 
 
 ####### you can use Redis client for testing in Windows :
   - $ rdcli -h 192.168.99.100 / localhost -p 30080  for redissms (redis-cli for testing: npm install redis )
   - $ rdcli -h 192.168.99.100 / localhost -p 30081  for redispns (redis-cli for testing: npm install redis ) 
-
+  - $ rdcli -h 192.168.99.100 / localhost -p 30082  for redisconf (redis-cli for testing: npm install redis ) 

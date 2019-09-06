@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: redisconf
+  labels:
+    app: redisconf
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: redisconf
+  template:
+    metadata:
+      labels:
+        app: redisconf
+    spec:
+      containers:
+      - name: redisconf
+        image: redisconf
+        imagePullPolicy: Never
+        ports:
+        - containerPort: 30082
+        env:
+        - name: NODE_ENV
+          value: kubernetes
+      restartPolicy: Always

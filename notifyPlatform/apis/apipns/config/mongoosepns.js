@@ -42,12 +42,8 @@ mongoose.connection.on('error', (error) => {  //we need to know if connection wo
 });
 
 const initializeMongooseConnection = async () => {
-    try {
-        // await connection to DB, for options see https://mongoosejs.com/docs/connections.html#options
-        await mongoose.connect(process.env.MONGODBPNS_URI, options);
-        // mongoose.set('useNewUrlParser', true); // see https://mongoosejs.com/docs/deprecations.html
-        // mongoose.set('useFindAndModify', false);   // see https://github.com/Automattic/mongoose/pull/6165
-        // mongoose.set('useCreateIndex', true);  // see https://mongoosejs.com/docs/deprecations.html
+    try {        
+        await mongoose.connect(process.env.MONGODBPNS_URI, options); // await connection to DB, for options see https://mongoosejs.com/docs/connections.html#options
     } catch (error) {
         console.error(process.env.RED_COLOR, logTime(new Date()) + error.message);
     }
