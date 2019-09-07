@@ -22,6 +22,14 @@ const pnsSchema = new mongoose.Schema({
         required: true,
         default: () => { return new Date() }
     },
+    expire: {
+        type: Number,
+        required: false
+    },
+    expired: {
+        type: Boolean,
+        required: false
+    },
     dispatched: {
         type: Boolean,
         required: true,
@@ -104,7 +112,7 @@ const pnsSchema = new mongoose.Schema({
     status: {
         type: Number,
         required: true,
-        default: 0  //0:notSent, 1:Sent, 2:confirmed 3:Error
+        default: 0  //0:notSent, 1:Sent, 2:Confirmed, 3:Error, 4:Expired
     },
     operator: {
         type: String, //GOO, APP, MIC...

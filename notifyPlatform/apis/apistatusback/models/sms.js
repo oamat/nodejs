@@ -74,6 +74,14 @@ const smsSchema = new mongoose.Schema({
         required: true,
         default: 0
     },
+    expire: {
+        type: Number,
+        required: false
+    },
+    expired: {
+        type: Boolean,
+        required: false
+    },
     deferred: {
         type: Boolean,
         required: true,
@@ -86,7 +94,7 @@ const smsSchema = new mongoose.Schema({
     status: {
         type: Number,
         required: true,
-        default: 0  //0:notSent, 1:Sent, 2:confirmed 3:Error
+        default: 0  //0:notSent, 1:Sent, 2:Confirmed, 3:Error, 4:Expired
     },
     operator: {
         type: String, //MOV, ORA, VOD, VIP,...
@@ -106,10 +114,10 @@ const smsSchema = new mongoose.Schema({
         required: false
     }
 }, {
-        timestamps: true //If set timestamps, mongoose assigns createdAt and updatedAt fields to your schema, the type assigned is Date.
-    }, {
-        versionKey: false // You should be aware of the outcome after set to false
-    });
+    timestamps: true //If set timestamps, mongoose assigns createdAt and updatedAt fields to your schema, the type assigned is Date.
+}, {
+    versionKey: false // You should be aware of the outcome after set to false
+});
 
 const Sms = mongoose.model('Sms', smsSchema);
 

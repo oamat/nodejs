@@ -24,7 +24,7 @@ const router = new express.Router();
 router.post('/smsStatusBack', auth, async (req, res) => {  //we execute auth before this post request method
     console.log(process.env.WHITE_COLOR, logTime(new Date()) + "SMS_Status new request : " + JSON.stringify(req.body));
     try {
-        //TODO :  format the operator response, maybe the staus operator is not the same that I expected: //0:notSent, 1:Sent, 2:confirmed 3:Error   
+        //TODO :  format the operator response, maybe the staus operator is not the same that I expected: //0:notSent, 1:Sent, 2:Confirmed, 3:Error, 4:Expired   
         let status = parseInt(req.body.status);
         let operator = req.body.operator;
         let id = req.body.id;

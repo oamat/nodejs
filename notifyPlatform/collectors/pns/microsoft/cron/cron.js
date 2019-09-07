@@ -34,7 +34,7 @@ const startCron = async (interval) => { //Start cron only when cron is stopped.
         if (cron) {
             console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "MICROSOFT cron is executing, so we don't need re-start it.");
         } else {
-            
+
             cron = setInterval(function () {
                 console.log(logTime(new Date()) + "MICROSOFT cron executing");
                 sendNextPNS();
@@ -64,18 +64,28 @@ const sendNextPNS = async () => {
         const pnsJSON = await nextPNS(); //get message with rpop command from PNS.MIC.1, 2, 3 
         if (pnsJSON) {
             const pns = new Pns(JSON.parse(pnsJSON)); // convert json to object
-            pns.status = 1;  //0:notSent, 1:Sent, 2:confirmed 3:Error
+            pns.status = 1;  //0:notSent, 1:Sent, 2:Confirmed, 3:Error, 4:Expired
             pns.dispatched = true;
             pns.dispatchedAt = new Date();
             pns.retries++;
+            let notExpired = true;
+            if ((pns.expire) && (new Date().getMilliseconds() > pns.expire)) { // treat the expired SMS
+                notExpired = false;
+                pns.expired = true;
+                pns.status = 4;
+                updatePNS(pns); // update SMS in MongoDB
+                console.log(process.env.YELLOW_COLOR, logTime(new Date()) + " The PNS " + pns._id + " has expired and has not been sent.");
+            }
             //pns.validate(); //It's unnecessary because we cautched from redis, and we checked before in the apipns, the new params are OK.
-            if (operator == defaultOperator) { //If we change operator for contingency we change pns to other list
-                await sendPNS(pns); // send PNS to operator
-                updatePNS(pns); // update PNS in MongoDB
-                console.log(process.env.GREEN_COLOR, logTime(new Date()) + "PNS sended : " + JSON.stringify(pns));  //JSON.stringify for replace new lines (\n) and tab (\t) chars into string
-            } else {
-                await rpoplpush(buildPNSChannel(defaultOperator, pns.priority), buildPNSChannel(operator, pns.priority)); // we put message to the other operator List
-                console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "change PNS " + pns._id + " from " + defaultOperator + " to " + operator); // we inform about this exceptional action
+            if (notExpired) {
+                if (operator == defaultOperator) { //If we change operator for contingency we change pns to other list
+                    await sendPNS(pns); // send PNS to operator
+                    updatePNS(pns); // update PNS in MongoDB
+                    console.log(process.env.GREEN_COLOR, logTime(new Date()) + "PNS sended : " + JSON.stringify(pns));  //JSON.stringify for replace new lines (\n) and tab (\t) chars into string
+                } else {
+                    await rpoplpush(buildPNSChannel(defaultOperator, pns.priority), buildPNSChannel(operator, pns.priority)); // we put message to the other operator List
+                    console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "change PNS " + pns._id + " from " + defaultOperator + " to " + operator); // we inform about this exceptional action
+                }
             }
         }
     } catch (error) {

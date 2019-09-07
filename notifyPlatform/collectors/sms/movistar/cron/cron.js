@@ -33,7 +33,7 @@ const startCron = async (interval) => { //Start cron only when cron is stopped.
         console.log(process.env.GREEN_COLOR, logTime(new Date()) + "initializing MOVISTAR cron at " + dateFormat(new Date()) + " with interval : " + interval);
         if (cron) {
             console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "MOVISTAR cron is executing, so we don't need re-start it.");
-        } else {            
+        } else {
             cron = setInterval(function () {
                 console.log(logTime(new Date()) + "MOVISTAR cron executing ");
                 sendNextSMS();
@@ -61,21 +61,30 @@ const stopCron = async () => { //stop cron only when cron is switched on
 const sendNextSMS = async () => {
     try {
         const smsJSON = await nextSMS(); //get message with rpop command from SMS.MOV.1, 2, 3 
-        if (smsJSON) {
+        if (smsJSON) {            
             const sms = new Sms(JSON.parse(smsJSON)); // convert json to object
-            sms.status = 1;  //0:notSent, 1:Sent, 2:confirmed 3:Error
+            sms.status = 1;  //0:notSent, 1:Sent, 2:Confirmed, 3:Error, 4:Expired
             sms.dispatched = true;
-            sms.dispatchedAt = new Date();            
-            sms.retries++;         
-            
-            //sms.validate(); //It's unnecessary because we cautched from redis, and we checked before in the apisms, the new params are OK.
-            if (operator == defaultOperator) { //If we change operator for contingency we change sms to other list
-                await sendSMS(sms); // send SMS to operator             
+            sms.dispatchedAt = new Date();
+            sms.retries++;
+            let notExpired = true;
+            if ((sms.expire) && (new Date().getMilliseconds() > sms.expire)) { // treat the expired SMS
+                notExpired = false;
+                sms.expired = true;
+                sms.status = 4;
                 updateSMS(sms); // update SMS in MongoDB
-                console.log(process.env.GREEN_COLOR, logTime(new Date()) + "SMS sended : " + JSON.stringify(sms));  //JSON.stringify for replace new lines (\n) and tab (\t) chars into string
-            } else {
-                await rpoplpush(buildSMSChannel(defaultOperator, sms.priority), buildSMSChannel(operator, sms.priority)); // we put message to the other operator List
-                console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "change SMS " + sms._id + " from " + defaultOperator + " to " + operator); // we inform about this exceptional action
+                console.log(process.env.YELLOW_COLOR, logTime(new Date()) + " The SMS " + sms._id + " has expired and has not been sent.");
+            }
+            //sms.validate(); //It's unnecessary because we cautched from redis, and we checked before in the apisms, the new params are OK.
+            if (notExpired) {
+                if (operator == defaultOperator) { //If we change operator for contingency we change sms to other list
+                    await sendSMS(sms); // send SMS to operator             
+                    updateSMS(sms); // update SMS in MongoDB
+                    console.log(process.env.GREEN_COLOR, logTime(new Date()) + "SMS sended : " + JSON.stringify(sms));  //JSON.stringify for replace new lines (\n) and tab (\t) chars into string
+                } else {
+                    await rpoplpush(buildSMSChannel(defaultOperator, sms.priority), buildSMSChannel(operator, sms.priority)); // we put message to the other operator List
+                    console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "change SMS " + sms._id + " from " + defaultOperator + " to " + operator); // we inform about this exceptional action
+                }
             }
         }
     } catch (error) {
