@@ -26,7 +26,7 @@ const auth = async (req, res, next) => {
         } else {
             const token = req.header('x-api-key').replace('Bearer ', ''); //we need token without Bearer characters.
             const decoded = jwt.verify(token, process.env.JWT_SECRET); //this method is Synchronous, so i don't need await.
-            const contractToken = hget("contract:" + decoded.contract, "jwt"); //this method is Async, but we can get in parallel until need it (with await). 
+            const contractToken = hget("contractsms:" + decoded.contract, "jwt"); //this method is Async, but we can get in parallel until need it (with await). 
             if (decoded.contract != req.body.contract) { //check that contract in request is the same than contract in jwt
                 throw new Error('Your contract does not match with JWT, you need to authenticate on the platform. Please authenticate before proceeding.');
             } else {

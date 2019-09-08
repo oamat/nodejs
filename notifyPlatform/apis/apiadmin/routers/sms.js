@@ -11,7 +11,7 @@ const auth = require('../auth/auth');
 
 
 const { findSMS } = require('../util/mongomultisms');
-const { dateFormat, logTime } = require('../util/formats');
+const { dateFormat, logTime, descStatus } = require('../util/formats');
 
 
 const router = new express.Router();
@@ -19,31 +19,31 @@ const router = new express.Router();
 // GET /smsStatus   # uuid in body or telf and dates in body, and contract or all
 router.get('/smsStatus', auth, async (req, res) => {
     try {
-        let condition = {};
-        var result = await findSMS(condition);
-        console.log(result);
-        //TODO find sms by id
-        //TODO return Status
-        res.send({ Status: "200 OK" });
+        if (!req.body._id) requestError(new Error("Param _id doesn't exist in the smsStatus request body."), req, res);
+        else {
+            let condition = { _id: req.body._id };
+            var sms = await findSMS(condition);
+            if (sms) {                
+                if (sms.dispatchedAt) res.send({ Status: "200 OK", _id: sms._id, status: sms.status, description: descStatus("SMS", sms.status), receivedAt: dateFormat(sms.receivedAt), dispatchedAt: dateFormat(sms.dispatchedAt) });
+                else res.send({ Status: "200 OK", _id: sms._id, status: sms.status, description: descStatus("SMS", sms.status), receivedAt: dateFormat(sms.receivedAt) });
+            } else {
+                 res.send({ Status: "200 OK", _id: req.body._id, status: "-1", description: "SMS not found" });
+            }
+        }
     } catch (error) {
         //TODO personalize errors 400 or 500. 
-        const errorJson = { StatusCode: "400 Bad Request", error: error.message, contract: req.body.contract, telf: req.body.telf, receiveAt: dateFormat(new Date()) };   // dateFornat: replace T with a space && delete the dot and everything after
-        console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "ERROR: " + JSON.stringify(errorJson));
-        res.status(400).send(errorJson);
+        requestError(error, req, res);
         //TODO: save error in db  or mem.
         //console.log(error);
     }
 });
 
 
-// GET /smsInMem  # contract in body
-router.get('/smsPending', auth, async (req, res) => {
-    console.log(req.body);
-
-    //TODO find sms's in redis and return them
-    //TODO return list with SMS's
-    res.send({ Status: "200 OK" });
-});
-
-
+const requestError = async (error, req, res) => {
+    //TODO personalize errors 400 or 500. 
+    const errorJson = { StatusCode: "400 Bad Request", error: error.message, receiveAt: dateFormat(new Date()) };   // dateFornat: replace T with a space && delete the dot and everything after
+    console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "ERROR: " + JSON.stringify(errorJson));
+    res.status(400).send(errorJson);
+    //TODO: save error in db  or mem.
+}
 module.exports = router

@@ -1,8 +1,8 @@
-HSET contract:OTPLOWEB jwt "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiY29udHJhY3QiOiJPVFBMT1dFQiIsImlhdCI6MjAxNjIzOTAyMn0.RSLawzTU4yX-XwnEZtvWipIBOTOji9LKbkuM391zjss"
-HGET contract:OTPLOWEB jwt
+HSET contractsms:OTPLOWEB jwt "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiY29udHJhY3QiOiJPVFBMT1dFQiIsImlhdCI6MjAxNjIzOTAyMn0.RSLawzTU4yX-XwnEZtvWipIBOTOji9LKbkuM391zjss"
+HGET contractsms:OTPLOWEB jwt
 
-HSET contract:OTPLOWEB operator "MOV"
-HGET contract:OTPLOWEB operator
+HSET contractsms:OTPLOWEB operator "MOV"
+HGET contractsms:OTPLOWEB operator
 
 HSET batch:SMS status "1"
 HGET batch:SMS status
@@ -13,8 +13,8 @@ HGET batch:SMS interval
 HSET batch:SMS intervalControl "30000"
 HGET batch:SMS intervalControl
 
-HSET collector:MOV operator "MOV"
-HGET collector:MOV operator
+HSET collectorsms:MOV operator "MOV"
+HGET collectorsms:MOV operator
 
 LPUSH SMS.MOV.5 '{"dispatched":false,"priority":1,"interface":"REST","retries":0,"deferred":false,"status":0,"contract":"OTPLOWEB","telf":"+34699272809","message":"you have won a gift","alias":"L.O.","_id":"6d30f444-815d-48d4-ac24-09a1ae6c0e24","receivedAt":"2019-08-12T15:25:19.642Z","operator":"MOV","channel":"SMS.MOV.1"}'
 LPUSH SMS.MOV.5 '{"dispatched":false,"priority":1,"interface":"REST","retries":0,"deferred":false,"status":0,"contract":"OTPLOWEB","telf":"+34699272809","message":"you have won a gift","alias":"L.O.","_id":"6d30f444-815d-48d4-ac24-09a1ae6c0e23","receivedAt":"2019-08-12T15:25:19.642Z","operator":"MOV","channel":"SMS.MOV.1"}'

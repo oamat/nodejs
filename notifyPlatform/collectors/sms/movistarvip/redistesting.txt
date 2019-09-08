@@ -1,16 +1,16 @@
 
 
-HSET collector:VIP status "1"
-HGET collector:VIP status
+HSET collectorsms:VIP status "1"
+HGET collectorsms:VIP status
 
-HSET collector:VIP interval "2000"
-HGET collector:VIP interval
+HSET collectorsms:VIP interval "2000"
+HGET collectorsms:VIP interval
 
-HSET collector:VIP intervalControl "30000"
-HGET collector:VIP intervalControl
+HSET collectorsms:VIP intervalControl "30000"
+HGET collectorsms:VIP intervalControl
 
-HSET collector:VIP operator "VIP"
-HGET collector:VIP operator
+HSET collectorsms:VIP operator "VIP"
+HGET collectorsms:VIP operator
 
 
 LPUSH SMS.VIP.1 '{"dispatched":false,"priority":1,"interface":"REST","retries":0,"deferred":false,"status":0,"contract":"OTPLOWEB","telf":"+34699272809","message":"you have won a gift","alias":"L.O.","_id":"6d30f444-815d-48d4-ac24-09a1ae6c0e24","receivedAt":"2019-08-12T15:25:19.642Z","operator":"VIP","channel":"SMS.VIP.1"}'

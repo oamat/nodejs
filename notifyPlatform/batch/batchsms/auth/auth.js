@@ -21,7 +21,7 @@ const auth = async (contract, token) => {
         throw new Error("You didn't send the necessary params in the body of the request. You need to send the correct params before proceeding.");
     } else {       
         const decoded = jwt.verify(token, process.env.JWT_SECRET); //this method is Synchronous, so i don't need await.
-        const contractToken = hget("contract:" + decoded.contract, "jwt"); //this method is Async, but we can get in parallel until need it (with await). 
+        const contractToken = hget("contractsms:" + decoded.contract, "jwt"); //this method is Async, but we can get in parallel until need it (with await). 
         if (decoded.contract != contract) { //check that contract in request is the same than contract in jwt
             throw new Error('Your contract does not match with JWT, you need to authenticate on the platform. Please authenticate before proceeding.');
         } else {

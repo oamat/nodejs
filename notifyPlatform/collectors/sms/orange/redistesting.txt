@@ -1,16 +1,16 @@
 
 
-HSET collector:ORA status "1"
-HGET collector:ORA status
+HSET collectorsms:ORA status "1"
+HGET collectorsms:ORA status
 
-HSET collector:ORA interval "2000"
-HGET collector:ORA interval
+HSET collectorsms:ORA interval "2000"
+HGET collectorsms:ORA interval
 
-HSET collector:ORA intervalControl "30000"
-HGET collector:ORA intervalControl
+HSET collectorsms:ORA intervalControl "30000"
+HGET collectorsms:ORA intervalControl
 
-HSET collector:ORA operator "ORA"
-HGET collector:ORA operator
+HSET collectorsms:ORA operator "ORA"
+HGET collectorsms:ORA operator
 
 
 LPUSH SMS.ORA.1 '{"dispatched":false,"priority":1,"interface":"REST","retries":0,"deferred":false,"status":0,"contract":"OTPLOWEB","telf":"+34699272809","message":"you have won a gift","alias":"L.O.","_id":"6d30f444-815d-48d4-ac24-09a1ae6c0e24","receivedAt":"2019-08-12T15:25:19.642Z","operator":"ORA","channel":"SMS.ORA.1"}'

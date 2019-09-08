@@ -6,7 +6,7 @@
 	},
 	"item": [
 		{
-			"name": "/smsSend",
+			"name": "apisms/smsSend",
 			"request": {
 				"method": "POST",
 				"header": [
@@ -24,7 +24,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t \"contract\" : \"OTPLOWEB\",\n\t \"telf\" : \"+34699272800\",\n\t \"message\" : \"you have won a gift\",\n\t \"alias\" : \"L.O.\",\n\t \"customId\" : \"myid_4566544\"\n}"
+					"raw": "{\n\t \"contract\" : \"OTPLOWEB\",\n\t \"telf\" : \"+34699272800\",\n\t \"message\" : \"you have won a gift\",\n\t \"alias\" : \"L.O.\",\n\t \"customId\" : \"myid_4566544\",\n\t \"priority\" : \"0\"\n}"
 				},
 				"url": {
 					"raw": "http://localhost:30001/smsSend",
@@ -41,20 +41,20 @@
 			"response": []
 		},
 		{
-			"name": "/pnsSend",
+			"name": "apipns/pnsSend",
 			"request": {
 				"method": "POST",
 				"header": [
 					{
 						"key": "Content-Type",
 						"name": "Content-Type",
-						"value": "application/json",
-						"type": "text"
+						"type": "text",
+						"value": "application/json"
 					},
 					{
 						"key": "x-api-key",
-						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiY29udHJhY3QiOiJQVVNITE9XRUIiLCJpYXQiOjIwMTYyMzkwMjJ9.2HM9zm5cqGF0KBEqlYamatnZzi4vMUTdhHhhH4S2ySo",
-						"type": "text"
+						"type": "text",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiY29udHJhY3QiOiJQVVNITE9XRUIiLCJpYXQiOjIwMTYyMzkwMjJ9.2HM9zm5cqGF0KBEqlYamatnZzi4vMUTdhHhhH4S2ySo"
 					}
 				],
 				"body": {
@@ -76,20 +76,20 @@
 			"response": []
 		},
 		{
-			"name": "/smsStatusBack",
+			"name": "apistatusback/smsStatusBack",
 			"request": {
 				"method": "POST",
 				"header": [
 					{
 						"key": "x-api-key",
-						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwicmVmcmVxIjoiYXBpX3N0YXR1c19iYWNrX3JlZmVyZW5jZV9yZXF1ZXN0IiwiaWF0IjoyMDE2MjM5MDIyfQ.DQnNzRvVh970YWrZ4dnkd587rrA7AjY4cd09DwTwA34",
-						"type": "text"
+						"type": "text",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwicmVmcmVxIjoiYXBpX3N0YXR1c19iYWNrX3JlZmVyZW5jZV9yZXF1ZXN0IiwiaWF0IjoyMDE2MjM5MDIyfQ.DQnNzRvVh970YWrZ4dnkd587rrA7AjY4cd09DwTwA34"
 					},
 					{
 						"key": "Content-Type",
 						"name": "Content-Type",
-						"value": "application/json",
-						"type": "text"
+						"type": "text",
+						"value": "application/json"
 					}
 				],
 				"body": {
@@ -97,21 +97,21 @@
 					"raw": "{\n\t \"id\" : \"e4478cce-b6b5-4a06-b1b1-60767286117b\",\n\t \"status\" : \"3\",\n\t \"operator\" : \"MOV\"\n}"
 				},
 				"url": {
-					"raw": "http://localhost:30004/smsStatus",
+					"raw": "http://localhost:30004/smsStatusBack",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "30004",
 					"path": [
-						"smsStatus"
+						"smsStatusBack"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "/loadRedis",
+			"name": "apiadmin/loadRedis",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},
@@ -126,13 +126,13 @@
 					},
 					{
 						"key": "x-api-key",
-						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiY29udHJhY3QiOiJPVFBMT1dFQiIsImlhdCI6MjAxNjIzOTAyMn0.RSLawzTU4yX-XwnEZtvWipIBOTOji9LKbkuM391zjss",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6ImFkbWluIiwiY29udHJhY3QiOiJBRE1JTiIsImlhdCI6MjAxNjIzOTAyMn0.7UhLsjPpOwneXzN3nlT35OJjduzp70Yni9l1HO9wCck",
 						"type": "text"
 					}
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t \"contract\" : \"OTPLOWEB\",\n\t \"telf\" : \"+34699272800\",\n\t \"message\" : \"you have won a gift\",\n\t \"alias\" : \"L.O.\",\n\t \"customId\" : \"myid_4566544\"\n}"
+					"raw": "{\n\t \"contract\" : \"ADMIN\"\n}"
 				},
 				"url": {
 					"raw": "http://localhost:30003/loadRedis",
@@ -150,7 +150,46 @@
 			"response": []
 		},
 		{
-			"name": "/smsStatus",
+			"name": "apiadmin/pendingNotifications",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "x-api-key",
+						"type": "text",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6ImFkbWluIiwiY29udHJhY3QiOiJBRE1JTiIsImlhdCI6MjAxNjIzOTAyMn0.7UhLsjPpOwneXzN3nlT35OJjduzp70Yni9l1HO9wCck"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"contract\" : \"ADMIN\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:30003/pendingNotifications",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "30003",
+					"path": [
+						"pendingNotifications"
+					]
+				},
+				"description": "/loadRedis"
+			},
+			"response": []
+		},
+		{
+			"name": "apiadmin/smsStatus",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},
@@ -171,7 +210,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t \"contract\" : \"ADMIN\",\n\t \"telf\" : \"+34699272800\",\n\t \"message\" : \"you have won a gift\",\n\t \"alias\" : \"L.O.\",\n\t \"customId\" : \"myid_4566544\"\n}"
+					"raw": "{\n\t \"contract\" : \"ADMIN\",\n\t \"_id\" : \"00a47da5-fdcc-4fe2-8413-ea755f3a700d\"\n}"
 				},
 				"url": {
 					"raw": "http://localhost:30003/smsStatus",
@@ -188,7 +227,7 @@
 			"response": []
 		},
 		{
-			"name": "/pnsStatus",
+			"name": "apiadmin/pnsStatus",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},
@@ -198,13 +237,13 @@
 					{
 						"key": "Content-Type",
 						"name": "Content-Type",
-						"value": "application/json",
-						"type": "text"
+						"type": "text",
+						"value": "application/json"
 					},
 					{
 						"key": "x-api-key",
-						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6ImFkbWluIiwiY29udHJhY3QiOiJBRE1JTiIsImlhdCI6MjAxNjIzOTAyMn0.7UhLsjPpOwneXzN3nlT35OJjduzp70Yni9l1HO9wCck",
-						"type": "text"
+						"type": "text",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6ImFkbWluIiwiY29udHJhY3QiOiJBRE1JTiIsImlhdCI6MjAxNjIzOTAyMn0.7UhLsjPpOwneXzN3nlT35OJjduzp70Yni9l1HO9wCck"
 					}
 				],
 				"body": {
@@ -212,14 +251,14 @@
 					"raw": "{\n\t \"contract\" : \"ADMIN\",\n\t \"telf\" : \"+34699272800\",\n\t \"message\" : \"you have won a gift\",\n\t \"alias\" : \"L.O.\",\n\t \"customId\" : \"myid_4566544\"\n}"
 				},
 				"url": {
-					"raw": "http://localhost:30003/smsStatus",
+					"raw": "http://localhost:30003/pnsStatus",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "30003",
 					"path": [
-						"smsStatus"
+						"pnsStatus"
 					]
 				}
 			},

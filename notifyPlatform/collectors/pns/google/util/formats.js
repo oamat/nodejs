@@ -27,8 +27,8 @@ const dateFormat = (date) => {
 }
 
 const logTime = (date) => {
-   return ( "["+date.toLocaleTimeString()+"."+date.getMilliseconds()+"] ");
- 
+   return ("[" + date.toLocaleTimeString() + "." + date.getMilliseconds() + "] ");
+
 }
 //build the name of SMS channel with operator and priority, we neeed it for redis. 
 const buildSMSChannel = (operator, priority) => {
@@ -66,4 +66,21 @@ const buildPNSChannels = (operator) => {
 
 const counter = ((i = 0) => () => ++i)();
 
-module.exports = { dateFormat, logTime, buildSMSChannel, buildSMSChannels, buildPNSChannel, buildPNSChannels, counter, replaceBreaks, replaceSpacesTo1 }
+const descStatus = (type, status) => { //0:notSent, 1:Sent, 2:Confirmed, 3:Error, 4:Expired
+   switch (status) {
+      case 0:
+         return type + " not send.";
+      case 1:
+         return type + " sent.";
+      case 2:
+         return type + " sent and confirmed by operator.";
+      case 3:
+         return type + " obtain an error.";
+      case 4:
+         return type + " has expired and has not been sent.";
+   }
+}
+
+
+
+module.exports = { dateFormat, logTime, buildSMSChannel, buildSMSChannels, buildPNSChannel, buildPNSChannels, counter, replaceBreaks, replaceSpacesTo1, descStatus }

@@ -28,12 +28,12 @@ router.post('/smsSend', auth, async (req, res) => {  //we execute auth before th
     console.log(process.env.WHITE_COLOR, logTime(new Date()) + "SMS new request : " + JSON.stringify(req.body));
     try {
         const sms = new Sms(req.body);  //await it's unnecessary because is the first creation of object. Model Validations are check when save in Mongodb, not here. 
-        sms.operator = await hget("contract:" + sms.contract, "operator"); //Operator by default by contract. we checked the param before (in auth)         
+        sms.operator = await hget("contractsms:" + sms.contract, "operator"); //Operator by default by contract. we checked the param before (in auth)         
         if (sms.operator == "ALL") { //If operator is ALL means that we need to find the better operator for the telf. 
             //TODO: find the best operator for this tef. Not implemented yet
             sms.operator = "MOV";
         }
-        const collectorOperator = hget("collector:" + sms.operator, "operator"); //this method is Async, but we can get in parallel until need it (with await).
+        const collectorOperator = hget("collectorsms:" + sms.operator, "operator"); //this method is Async, but we can get in parallel until need it (with await).
         if (await collectorOperator != sms.operator) sms.operator = collectorOperator;  //check if the operator have some problems
 
         sms.channel = buildSMSChannel(sms.operator, sms.priority); //get the channel to put notification with operator and priority
