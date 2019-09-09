@@ -1,5 +1,6 @@
 /*
- * format util for notify platform. 
+ * formats util class for notify platform: we don't use async functions in this class 
+ *        because this methods always return values, they haven't asyncronous methods inside, and we need return a value inmediately, not promises as a async function. 
  *
  */
 

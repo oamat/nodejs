@@ -24,10 +24,9 @@ const channelsAPP = buildPNSChannels("APP");
 const channelsGOO = buildPNSChannels("GOO");
 const channelsMIC = buildPNSChannels("MIC");
 
-// GET /smsInMem  # contract in body
+// GET /pendingNotifications  # contract in body
 router.get('/pendingNotifications', auth, async (req, res) => {
     try {
-
         // START 42 "tasks" in parallel. we put await because we need all results before construct the json   
         await Promise.all([
             redissms.llen(channelsMOV.channel0),
@@ -82,7 +81,7 @@ router.get('/pendingNotifications', auth, async (req, res) => {
                 Status: "200 OK",
                 total,
                 "MOVISTAR": [{
-                    [channelsMOV.channel0]: values[0], 
+                    [channelsMOV.channel0]: values[0],
                     [channelsMOV.channel1]: values[1],
                     [channelsMOV.channel2]: values[2],
                     [channelsMOV.channel3]: values[3],
@@ -146,17 +145,33 @@ router.get('/pendingNotifications', auth, async (req, res) => {
     }
 });
 
-//CollectorStatus
+// GET //serviceStatus  # contract in body
+router.get('/serviceStatus', auth, async (req, res) => {
+    try {
+        //APIStatus
+        //batchStatus
+        //CollectorStatus
+        //RedisStatus
+        //MongoDBStatus
+    } catch (error) {
+        requestError(error, req, res);
+    }
+});
 
-//APIStatus
+// GET //serviceStatus  # contract in body
+router.get('/contingencyActivate', auth, async (req, res) => {
+    try {
+        //ContingencyActivate
+    } catch (error) {
+        requestError(error, req, res);
+    }
+});
 
-//RedisStatus
+//contingencyAllContracts (all with one operator to other or turnback to defaultOperator)
 
-//ContingencyActivate
+//changeCollector cron: Interval, status, operator//contingencyAllContracts (all with one operator to other or turnback to defaultOperator)
 
-//contingencyStatus
-
-//ErrorsPending
+//changeCollector cron: Interval, status, operator
 
 
 // GET /smsStatus   # uuid in body or telf and dates in body, and contract or all
@@ -165,67 +180,55 @@ router.get('/loadRedis', auth, async (req, res) => {
 
         //APIADMIN
         redisconf.hset("contractadmin:ADMIN", "jwt", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6ImFkbWluIiwiY29udHJhY3QiOiJBRE1JTiIsImlhdCI6MjAxNjIzOTAyMn0.7UhLsjPpOwneXzN3nlT35OJjduzp70Yni9l1HO9wCck");
-
         //APIPNS
         redisconf.hset("contractpns:PUSHLOWEB", "jwt", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiY29udHJhY3QiOiJQVVNITE9XRUIiLCJpYXQiOjIwMTYyMzkwMjJ9.2HM9zm5cqGF0KBEqlYamatnZzi4vMUTdhHhhH4S2ySo");
         redisconf.hset("contractpns:PUSHLOWEB", "operator", "ALL");
-
         //APISMS
         redisconf.hset("contractsms:OTPLOWEB", "jwt", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiY29udHJhY3QiOiJPVFBMT1dFQiIsImlhdCI6MjAxNjIzOTAyMn0.RSLawzTU4yX-XwnEZtvWipIBOTOji9LKbkuM391zjss");
         redisconf.hset("contractsms:OTPLOWEB", "operator", "MOV");
-
         //batchSMS
         redisconf.hset("batch:SMS", "status", "1");
         redisconf.hset("batch:SMS", "interval", "2000");
         redisconf.hset("batch:SMS", "intervalControl", "30000");
-
         //batchPNSs
         redisconf.hset("batch:PNS", "status", "1");
         redisconf.hset("batch:PNS", "interval", "2000");
         redisconf.hset("batch:PNS", "intervalControl", "30000");
-
         //Collectors Apple
         redisconf.hset("collectorpns:APP", "status", "1");
         redisconf.hset("collectorpns:APP", "interval", "2000");
         redisconf.hset("collectorpns:APP", "intervalControl", "30000");
         redisconf.hset("collectorpns:APP", "operator", "APP");
-
         //Collectors Android
         redisconf.hset("collectorpns:GOO", "status", "1");
         redisconf.hset("collectorpns:GOO", "interval", "2000");
         redisconf.hset("collectorpns:GOO", "intervalControl", "30000");
         redisconf.hset("collectorpns:GOO", "operator", "GOO");
-
         //Collectors Microsoft
         redisconf.hset("collectorpns:MIC", "status", "1");
         redisconf.hset("collectorpns:MIC", "interval", "2000");
         redisconf.hset("collectorpns:MIC", "intervalControl", "30000");
         redisconf.hset("collectorpns:MIC", "operator", "MIC");
-
         //Collectors Movistar
         redisconf.hset("collectorsms:MOV", "status", "1");
         redisconf.hset("collectorsms:MOV", "interval", "2000");
         redisconf.hset("collectorsms:MOV", "intervalControl", "30000");
         redisconf.hset("collectorsms:MOV", "operator", "MOV");
-
         //Collectors MovistarVIP
         redisconf.hset("collectorsms:VIP", "status", "1");
         redisconf.hset("collectorsms:VIP", "interval", "2000");
         redisconf.hset("collectorsms:VIP", "intervalControl", "30000");
         redisconf.hset("collectorsms:VIP", "operator", "VIP");
-
         //Collectors ORANGE
         redisconf.hset("collectorsms:ORA", "status", "1");
         redisconf.hset("collectorsms:ORA", "interval", "2000");
         redisconf.hset("collectorsms:ORA", "intervalControl", "30000");
         redisconf.hset("collectorsms:ORA", "operator", "ORA");
-
         //Collectors VODAFONE
         redisconf.hset("collectorsms:VOD", "status", "1");
         redisconf.hset("collectorsms:VOD", "interval", "2000");
         redisconf.hset("collectorsms:VOD", "intervalControl", "30000");
         redisconf.hset("collectorsms:VOD", "operator", "VOD");
-
         res.send({ Status: "200 OK" });
     } catch (error) {
         //TODO personalize errors 400 or 500. 
