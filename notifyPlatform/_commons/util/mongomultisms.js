@@ -14,7 +14,7 @@ const findSMS = async (condition) => {
     return new Promise((resolve, reject) => {
         Sms().findOne(condition, (error, result) => {
             try {  //I use Promises but I need to use try/catch in async callback for errors or I could use EventEmitter 
-                if (error) throw error;  //if mongoose give me an error. If I use reject try/catch is unecessary  
+                if (error) throw error;  //if mongoose give me an error. If we used reject the try/catch would be unnecessary  
                 else resolve(result); // everything is OK, return result                                 
             } catch (error) { reject(error); } // In Callback we need to reject if we have Error. A reject will not pass through here
         });
@@ -28,7 +28,7 @@ const findAllSMS = async (condition) => {
     return new Promise((resolve, reject) => {
         Sms().find(condition, (error, result) => {
             try {  //I use Promises but I need to use try/catch in async callback for errors or I could use EventEmitter 
-                if (error) throw error;  //if mongoose give me an error. If I use reject try/catch is unecessary  
+                if (error) throw error;  //if mongoose give me an error. If we used reject the try/catch would be unnecessary  
                 else resolve(result); // everything is OK, return result                                 
             } catch (error) { reject(error); } // In Callback we need to reject if we have Error. A reject will not pass through here
         });
