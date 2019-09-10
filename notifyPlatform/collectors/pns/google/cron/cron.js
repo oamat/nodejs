@@ -10,7 +10,7 @@
 //Dependencies
 const { Pns } = require('../models/pns');
 const { rpop, rpoplpush } = require('../util/redispns'); //we need to initialize redis
-const { hget } = require('../util/redisconf');
+const { hget, hset  } = require('../util/redisconf');
 const { dateFormat, logTime, buildPNSChannel, buildPNSChannels } = require('../util/formats'); // utils for formats
 const { updatePNS } = require('../util/mongopns'); //for updating status
 const { sendPNS } = require('./cronHelper');
@@ -106,8 +106,10 @@ const nextPNS = async () => {
 const startController = async (intervalControl) => {
     try {
         console.log(process.env.GREEN_COLOR, logTime(new Date()) + "initializing cronController at " + dateFormat(new Date()) + " with intervalControl : " + intervalControl);
+        hset(defaultCollector, "last", dateFormat(new Date())); //save first execution in Redis
         var cronController = setInterval(function () {
             console.log(process.env.GREEN_COLOR, logTime(new Date()) + "cronController executing");
+            hset(defaultCollector, "last", dateFormat(new Date())); //save last execution in Redis
             checksController();
         }, intervalControl);
     } catch (error) {

@@ -10,7 +10,7 @@ const express = require('express');
 const auth = require('../auth/auth');
 
 const { findPNS } = require('../util/mongomultipns');
-const { dateFormat, logTime } = require('../util/formats');
+const { dateFormat, logTime, descStatus } = require('../util/formats');
 
 
 const router = new express.Router();
@@ -22,10 +22,11 @@ router.get('/pnsStatus', auth, async (req, res) => {
         else {
             let condition = { _id: req.body._id };
             var pns = await findPNS(condition);
-            if (pns) {                
+            console.log(pns);
+            if (pns) {                                             
                 if (pns.dispatchedAt) res.send({ Status: "200 OK", _id: pns._id, status: pns.status, description: descStatus("PNS", pns.status), receivedAt: dateFormat(pns.receivedAt), dispatchedAt: dateFormat(pns.dispatchedAt) });
                 else res.send({ Status: "200 OK", _id: pns._id, status: pns.status, description: descStatus("PNS", pns.status), receivedAt: dateFormat(pns.receivedAt) });
-            } else {
+            } else {                
                  res.send({ Status: "200 OK", _id: req.body._id, status: "-1", description: "PNS not found" });
             }
         }

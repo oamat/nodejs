@@ -23,7 +23,7 @@ router.get('/smsStatus', auth, async (req, res) => {
         else {
             let condition = { _id: req.body._id };
             var sms = await findSMS(condition);
-            if (sms) {                
+            if (sms) {                          
                 if (sms.dispatchedAt) res.send({ Status: "200 OK", _id: sms._id, status: sms.status, description: descStatus("SMS", sms.status), receivedAt: dateFormat(sms.receivedAt), dispatchedAt: dateFormat(sms.dispatchedAt) });
                 else res.send({ Status: "200 OK", _id: sms._id, status: sms.status, description: descStatus("SMS", sms.status), receivedAt: dateFormat(sms.receivedAt) });
             } else {

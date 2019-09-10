@@ -11,7 +11,7 @@ const { rclient } = require('../config/redispns');
 
 // this method gets hash name and its property, in a generic way
 const hget = async function (name, key) {
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve, reject) => { // we need promise for managing errs and results inside callbacks
         rclient.hget(name, key, (error, result) => { //get the value of hash                   
             try {  //I use Promises but I need to use try/catch in async callback or I could use EventEmitter 
                 if (error) throw error;  //if redis give me an error. 
@@ -26,7 +26,7 @@ const hget = async function (name, key) {
 
 // this method put 1 list message to other list and remove from source list
 const rpoplpush = async function (source, destination) {
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve, reject) => { // we need promise for managing errs and results inside callbacks
         rclient.rpoplpush(source, destination, (error, result) => { //save the value in list                   
             try {  //I use Promises but I need to use try/catch in async callback or I could use EventEmitter 
                 if (error) throw error;  //if redis give me an error. 
@@ -40,7 +40,7 @@ const rpoplpush = async function (source, destination) {
 
 // this method delete 1 list message.
 const rpop = async function (name) {
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve, reject) => { // we need promise for managing errs and results inside callbacks
         rclient.rpop(name, (error, result) => { //save the value in set                  
             try {  //I use Promises but I need to use try/catch in async callback or I could use EventEmitter 
                 if (error) throw error;  //if redis give me an error. 

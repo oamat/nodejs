@@ -10,15 +10,16 @@
 //Dependencies
 const { Pns } = require('../models/pns');
 const { rpop, lpush, sadd } = require('../util/redispns'); //we need to initialize redis
-const { hget } = require('../util/redisconf');
+const { hget, hset } = require('../util/redisconf');
 const { dateFormat, logTime, buildPNSChannel } = require('../util/formats'); // utils for formats
 const { savePNS } = require('../util/mongopns');
 const auth = require('../auth/auth');
 const fs = require('fs');
-const batchIn = './files/in/';
-const batchOut = './files/out/';
 
 //Variables
+const batchIn = './files/in/';
+const batchOut = './files/out/';
+const batchName = "batch:PNS";
 var cron; //the main cron that manage files and put them into redis List.
 var cronStatus = 1; //status of cron. 0: cron stopped, 1 : cron working, 
 var cronChanged = false;  //if we need restart cron, 
@@ -143,10 +144,12 @@ const nextSMS = async () => {
 }
 
 const startController = async (intervalControl) => {
-    try {
+    try {        
         console.log(process.env.GREEN_COLOR, logTime(new Date()) + "initializing cronController at " + dateFormat(new Date()) + " with intervalControl : " + intervalControl);
+        hset(batchName, "last", dateFormat(new Date())); //save first execution in Redis
         var cronController = setInterval(function () {
             console.log(process.env.GREEN_COLOR, logTime(new Date()) + "cronController executing");
+            hset(batchName, "last", dateFormat(new Date())); //save last execution in Redis
             checksController();
         }, intervalControl);
     } catch (error) {
@@ -156,7 +159,7 @@ const startController = async (intervalControl) => {
 }
 
 
-const checksController = async () => {
+const checksController = async () => {   
     await Promise.all([
         checkstatus(),
         checkInterval(),
@@ -178,7 +181,7 @@ const checksController = async () => {
 }
 const checkstatus = async () => { //Check status, if it's necessary finish cron because redis say it.
     try {
-        let newCronStatus = parseInt(await hget("batch:PNS", "status"));  //0 stop, 1 OK.  //finish because redis say it 
+        let newCronStatus = parseInt(await hget(batchName, "status"));  //0 stop, 1 OK.  //finish because redis say it 
         if (cronStatus != newCronStatus) {
             cronStatus = newCronStatus;
             cronChanged = true;
@@ -191,7 +194,7 @@ const checkstatus = async () => { //Check status, if it's necessary finish cron 
 
 const checkInterval = async () => { //check rate/s, and change cron rate
     try {
-        let newInterval = parseInt(await hget("batch:PNS", "interval"));  //rate/s //change cron rate    
+        let newInterval = parseInt(await hget(batchName, "interval"));  //rate/s //change cron rate    
         if (interval != newInterval) { //if we change the interval -> rate/s
             console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "Change rate/interval: old rate " + interval + " , new rate : " + newInterval + " , next restart will be effect.");
             interval = newInterval;
@@ -206,9 +209,9 @@ const checkInterval = async () => { //check rate/s, and change cron rate
 const initCron = async () => {
     try {
         await Promise.all([
-            hget("batch:PNS", "interval"),
-            hget("batch:PNS", "intervalControl"),
-            hget("batch:PNS", "status"),
+            hget(batchName, "interval"),
+            hget(batchName, "intervalControl"),
+            hget(batchName, "status"),
         ]).then((values) => {
             interval = parseInt(values[0]); //The rate/interval of main cron
             intervalControl = parseInt(values[1]); //the interval of controller

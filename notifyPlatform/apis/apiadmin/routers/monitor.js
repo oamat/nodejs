@@ -74,7 +74,7 @@ router.get('/pendingNotifications', auth, async (req, res) => {
 
         ]).then(values => {
             let total = 0;
-            for (var i = 0; i < 42; i++) { //42 iteration loop
+            for (var i = 0; i < 42; i++) { //42 iteration loop for calculate the total pending notifications
                 total = total + values[i];
             }
             res.send({
@@ -148,11 +148,125 @@ router.get('/pendingNotifications', auth, async (req, res) => {
 // GET //serviceStatus  # contract in body
 router.get('/serviceStatus', auth, async (req, res) => {
     try {
-        //APIStatus
-        //batchStatus
-        //CollectorStatus
-        //RedisStatus
-        //MongoDBStatus
+        // START 43 "tasks" in parallel. we put await because we need all results before construct the json   
+        await Promise.all([
+            redisconf.hgetOrNull("batch:SMS", "status"),
+            redisconf.hgetOrNull("batch:SMS", "interval"),
+            redisconf.hgetOrNull("batch:SMS", "intervalControl"),
+            redisconf.hgetOrNull("batch:SMS", "last"),
+            redisconf.hgetOrNull("batch:PNS", "status"),
+            redisconf.hgetOrNull("batch:PNS", "interval"),
+            redisconf.hgetOrNull("batch:PNS", "intervalControl"),
+            redisconf.hgetOrNull("batch:PNS", "last"),
+            //PNS CollectorStatus
+            redisconf.hgetOrNull("collectorpns:APP", "status"),
+            redisconf.hgetOrNull("collectorpns:APP", "interval"),
+            redisconf.hgetOrNull("collectorpns:APP", "intervalControl"),
+            redisconf.hgetOrNull("collectorpns:APP", "last"),
+            redisconf.hgetOrNull("collectorpns:APP", "operator"),
+            redisconf.hgetOrNull("collectorpns:GOO", "status"),
+            redisconf.hgetOrNull("collectorpns:GOO", "interval"),
+            redisconf.hgetOrNull("collectorpns:GOO", "intervalControl"),
+            redisconf.hgetOrNull("collectorpns:GOO", "last"),
+            redisconf.hgetOrNull("collectorpns:GOO", "operator"),
+            redisconf.hgetOrNull("collectorpns:MIC", "status"),
+            redisconf.hgetOrNull("collectorpns:MIC", "interval"),
+            redisconf.hgetOrNull("collectorpns:MIC", "intervalControl"),
+            redisconf.hgetOrNull("collectorpns:MIC", "last"),
+            redisconf.hgetOrNull("collectorpns:MIC", "operator"),
+            //SMS CollectorStatus
+            redisconf.hgetOrNull("collectorsms:MOV", "status"),
+            redisconf.hgetOrNull("collectorsms:MOV", "interval"),
+            redisconf.hgetOrNull("collectorsms:MOV", "intervalControl"),
+            redisconf.hgetOrNull("collectorsms:MOV", "last"),
+            redisconf.hgetOrNull("collectorsms:MOV", "operator"),
+            redisconf.hgetOrNull("collectorsms:VIP", "status"),
+            redisconf.hgetOrNull("collectorsms:VIP", "interval"),
+            redisconf.hgetOrNull("collectorsms:VIP", "intervalControl"),
+            redisconf.hgetOrNull("collectorsms:VIP", "last"),
+            redisconf.hgetOrNull("collectorsms:VIP", "operator"),
+            redisconf.hgetOrNull("collectorsms:ORA", "status"),
+            redisconf.hgetOrNull("collectorsms:ORA", "interval"),
+            redisconf.hgetOrNull("collectorsms:ORA", "intervalControl"),
+            redisconf.hgetOrNull("collectorsms:ORA", "last"),
+            redisconf.hgetOrNull("collectorsms:ORA", "operator"),
+            redisconf.hgetOrNull("collectorsms:VOD", "status"),
+            redisconf.hgetOrNull("collectorsms:VOD", "interval"),
+            redisconf.hgetOrNull("collectorsms:VOD", "intervalControl"),
+            redisconf.hgetOrNull("collectorsms:VOD", "last"),
+            redisconf.hgetOrNull("collectorsms:VOD", "operator")
+
+        ]).then(values => {
+            res.send({
+                Status: "200 OK",
+                description: "status[1:ON, 0:OFF] - interval[cron(ms)] - intervalControl[cronController(ms)] - lastExecutionCheckControl[last CronController execution] - operator[Contingency]",
+                "SMS-Batch": [{
+                    status: values[0],
+                    interval: values[1],
+                    intervalControl: values[2],
+                    lastExecutionCheckControl: values[3]
+                }],
+                "PNS-Batch": [{
+                    status: values[4],
+                    interval: values[5],
+                    intervalControl: values[6],
+                    lastExecutionCheckControl: values[7]
+                }],
+                "APPLE-collector": [{
+                    status: values[8],
+                    interval: values[9],
+                    intervalControl: values[10],
+                    lastExecutionCheckControl: values[11],
+                    operator: values[12]
+                }],
+                "GOOGLE-collector": [{
+                    status: values[13],
+                    interval: values[14],
+                    intervalControl: values[15],
+                    lastExecutionCheckControl: values[16],
+                    operator: values[17]
+                }],
+                "MICROSOFT-collector": [{
+                    status: values[18],
+                    interval: values[19],
+                    intervalControl: values[20],
+                    lastExecutionCheckControl: values[21],
+                    operator: values[22]
+                }],
+                "MOVISTAR-collector": [{
+                    status: values[23],
+                    interval: values[24],
+                    intervalControl: values[25],
+                    lastExecutionCheckControl: values[26],
+                    operator: values[27]
+                }],
+                "VIP-MOVISTAR-collector": [{
+                    status: values[28],
+                    interval: values[29],
+                    intervalControl: values[30],
+                    lastExecutionCheckControl: values[31],
+                    operator: values[32]
+                }],
+                "ORANGE-collector": [{
+                    status: values[33],
+                    interval: values[34],
+                    intervalControl: values[35],
+                    lastExecutionCheckControl: values[36],
+                    operator: values[37]
+                }],
+                "VODAFONE-collector": [{
+                    status: values[38],
+                    interval: values[39],
+                    intervalControl: values[40],
+                    lastExecutionCheckControl: values[41],
+                    operator: values[42]
+                }]
+            });
+        });
+        // END 43 "tasks" in parallel. we put await because we need all results before construct the json   
+        // TODO : APIStatus?
+        // TODO : RedisStatus
+        // TODO : MongoDBStatus
     } catch (error) {
         requestError(error, req, res);
     }

@@ -37,6 +37,25 @@ yes | cp -rf /notifyPlatform/_commons/config/config.js /notifyPlatform/retries/r
 yes | cp -rf /notifyPlatform/_commons/config/config.js /notifyPlatform/mq/mqpns/config/config.js
 yes | cp -rf /notifyPlatform/_commons/config/config.js /notifyPlatform/mq/mqsms/config/config.js
 
+echo "copying /config/mongoosemulti.js"
+yes | cp -rf /notifyPlatform/_commons/config/mongoosemulti.js /notifyPlatform/apis/apisms/config/mongoosemulti.js
+yes | cp -rf /notifyPlatform/_commons/config/mongoosemulti.js /notifyPlatform/apis/apipns/config/mongoosemulti.js
+yes | cp -rf /notifyPlatform/_commons/config/mongoosemulti.js /notifyPlatform/apis/apiadmin/config/mongoosemulti.js
+yes | cp -rf /notifyPlatform/_commons/config/mongoosemulti.js /notifyPlatform/apis/apistatusback/config/mongoosemulti.js
+yes | cp -rf /notifyPlatform/_commons/config/mongoosemulti.js /notifyPlatform/batch/batchpns/config/mongoosemulti.js
+yes | cp -rf /notifyPlatform/_commons/config/mongoosemulti.js /notifyPlatform/batch/batchsms/config/mongoosemulti.js
+yes | cp -rf /notifyPlatform/_commons/config/mongoosemulti.js /notifyPlatform/collectors/pns/apple/config/mongoosemulti.js
+yes | cp -rf /notifyPlatform/_commons/config/mongoosemulti.js /notifyPlatform/collectors/pns/google/config/mongoosemulti.js
+yes | cp -rf /notifyPlatform/_commons/config/mongoosemulti.js /notifyPlatform/collectors/pns/microsoft/config/mongoosemulti.js
+yes | cp -rf /notifyPlatform/_commons/config/mongoosemulti.js /notifyPlatform/collectors/sms/movistar/config/mongoosemulti.js
+yes | cp -rf /notifyPlatform/_commons/config/mongoosemulti.js /notifyPlatform/collectors/sms/movistarvip/config/mongoosemulti.js
+yes | cp -rf /notifyPlatform/_commons/config/mongoosemulti.js /notifyPlatform/collectors/sms/orange/config/mongoosemulti.js
+yes | cp -rf /notifyPlatform/_commons/config/mongoosemulti.js /notifyPlatform/collectors/sms/vodafone/config/mongoosemulti.js
+yes | cp -rf /notifyPlatform/_commons/config/mongoosemulti.js /notifyPlatform/retries/retriespns/config/mongoosemulti.js
+yes | cp -rf /notifyPlatform/_commons/config/mongoosemulti.js /notifyPlatform/retries/retriessms/config/mongoosemulti.js
+yes | cp -rf /notifyPlatform/_commons/config/mongoosemulti.js  /notifyPlatform/mq/mqpns/config/mongoosemulti.js
+yes | cp -rf /notifyPlatform/_commons/config/mongoosemulti.js  /notifyPlatform/mq/mqsms/config/mongoosemulti.js
+
 echo "copying /config/mongoosesms.js"
 yes | cp -rf /notifyPlatform/_commons/config/mongoosesms.js /notifyPlatform/apis/apisms/config/mongoosesms.js
 yes | cp -rf /notifyPlatform/_commons/config/mongoosesms.js /notifyPlatform/apis/apipns/config/mongoosesms.js
@@ -209,6 +228,43 @@ yes | cp -rf /notifyPlatform/_commons/util/formats.js /notifyPlatform/retries/re
 yes | cp -rf /notifyPlatform/_commons/util/formats.js  /notifyPlatform/mq/mqpns/util/formats.js
 yes | cp -rf /notifyPlatform/_commons/util/formats.js  /notifyPlatform/mq/mqsms/util/formats.js
 
+echo "copying /util/mongomultisms.js"
+yes | cp -rf /notifyPlatform/_commons/util/mongomultisms.js /notifyPlatform/apis/apisms/util/mongomultisms.js
+yes | cp -rf /notifyPlatform/_commons/util/mongomultisms.js /notifyPlatform/apis/apipns/util/mongomultisms.js
+yes | cp -rf /notifyPlatform/_commons/util/mongomultisms.js /notifyPlatform/apis/apiadmin/util/mongomultisms.js
+yes | cp -rf /notifyPlatform/_commons/util/mongomultisms.js /notifyPlatform/apis/apistatusback/util/mongomultisms.js
+yes | cp -rf /notifyPlatform/_commons/util/mongomultisms.js /notifyPlatform/batch/batchpns/util/mongomultisms.js
+yes | cp -rf /notifyPlatform/_commons/util/mongomultisms.js /notifyPlatform/batch/batchsms/util/mongomultisms.js
+yes | cp -rf /notifyPlatform/_commons/util/mongomultisms.js /notifyPlatform/collectors/pns/apple/util/mongomultisms.js
+yes | cp -rf /notifyPlatform/_commons/util/mongomultisms.js /notifyPlatform/collectors/pns/google/util/mongomultisms.js
+yes | cp -rf /notifyPlatform/_commons/util/mongomultisms.js /notifyPlatform/collectors/pns/microsoft/util/mongomultisms.js
+yes | cp -rf /notifyPlatform/_commons/util/mongomultisms.js /notifyPlatform/collectors/sms/movistar/util/mongomultisms.js
+yes | cp -rf /notifyPlatform/_commons/util/mongomultisms.js /notifyPlatform/collectors/sms/movistarvip/util/mongomultisms.js
+yes | cp -rf /notifyPlatform/_commons/util/mongomultisms.js /notifyPlatform/collectors/sms/orange/util/mongomultisms.js
+yes | cp -rf /notifyPlatform/_commons/util/mongomultisms.js /notifyPlatform/collectors/sms/vodafone/util/mongomultisms.js
+yes | cp -rf /notifyPlatform/_commons/util/mongomultisms.js /notifyPlatform/retries/retriespns/util/mongomultisms.js
+yes | cp -rf /notifyPlatform/_commons/util/mongomultisms.js /notifyPlatform/retries/retriessms/util/mongomultisms.js
+yes | cp -rf /notifyPlatform/_commons/util/mongomultisms.js  /notifyPlatform/mq/mqpns/util/mongomultisms.js
+yes | cp -rf /notifyPlatform/_commons/util/mongomultisms.js  /notifyPlatform/mq/mqsms/util/mongomultisms.js
+
+echo "copying /util/mongomultipns.js"
+yes | cp -rf /notifyPlatform/_commons/util/mongomultipns.js /notifyPlatform/apis/apisms/util/mongomultipns.js
+yes | cp -rf /notifyPlatform/_commons/util/mongomultipns.js /notifyPlatform/apis/apipns/util/mongomultipns.js
+yes | cp -rf /notifyPlatform/_commons/util/mongomultipns.js /notifyPlatform/apis/apiadmin/util/mongomultipns.js
+yes | cp -rf /notifyPlatform/_commons/util/mongomultipns.js /notifyPlatform/apis/apistatusback/util/mongomultipns.js
+yes | cp -rf /notifyPlatform/_commons/util/mongomultipns.js /notifyPlatform/batch/batchpns/util/mongomultipns.js
+yes | cp -rf /notifyPlatform/_commons/util/mongomultipns.js /notifyPlatform/batch/batchsms/util/mongomultipns.js
+yes | cp -rf /notifyPlatform/_commons/util/mongomultipns.js /notifyPlatform/collectors/pns/apple/util/mongomultipns.js
+yes | cp -rf /notifyPlatform/_commons/util/mongomultipns.js /notifyPlatform/collectors/pns/google/util/mongomultipns.js
+yes | cp -rf /notifyPlatform/_commons/util/mongomultipns.js /notifyPlatform/collectors/pns/microsoft/util/mongomultipns.js
+yes | cp -rf /notifyPlatform/_commons/util/mongomultipns.js /notifyPlatform/collectors/sms/movistar/util/mongomultipns.js
+yes | cp -rf /notifyPlatform/_commons/util/mongomultipns.js /notifyPlatform/collectors/sms/movistarvip/util/mongomultipns.js
+yes | cp -rf /notifyPlatform/_commons/util/mongomultipns.js /notifyPlatform/collectors/sms/orange/util/mongomultipns.js
+yes | cp -rf /notifyPlatform/_commons/util/mongomultipns.js /notifyPlatform/collectors/sms/vodafone/util/mongomultipns.js
+yes | cp -rf /notifyPlatform/_commons/util/mongomultipns.js /notifyPlatform/retries/retriespns/util/mongomultipns.js
+yes | cp -rf /notifyPlatform/_commons/util/mongomultipns.js /notifyPlatform/retries/retriessms/util/mongomultipns.js
+yes | cp -rf /notifyPlatform/_commons/util/mongomultipns.js  /notifyPlatform/mq/mqpns/util/mongomultipns.js
+yes | cp -rf /notifyPlatform/_commons/util/mongomultipns.js  /notifyPlatform/mq/mqsms/util/mongomultipns.js
 
 echo "copying /util/mongosms.js"
 yes | cp -rf /notifyPlatform/_commons/util/mongosms.js /notifyPlatform/apis/apisms/util/mongosms.js
@@ -307,21 +363,3 @@ yes | cp -rf /notifyPlatform/_commons/util/redisconf.js  /notifyPlatform/mq/mqpn
 yes | cp -rf /notifyPlatform/_commons/util/redisconf.js  /notifyPlatform/mq/mqsms/util/redisconf.js
 
 
-echo "copying /config/mongoosemulti.js"
-yes | cp -rf /notifyPlatform/_commons/config/mongoosemulti.js /notifyPlatform/apis/apisms/config/mongoosemulti.js
-yes | cp -rf /notifyPlatform/_commons/config/mongoosemulti.js /notifyPlatform/apis/apipns/config/mongoosemulti.js
-yes | cp -rf /notifyPlatform/_commons/config/mongoosemulti.js /notifyPlatform/apis/apiadmin/config/mongoosemulti.js
-yes | cp -rf /notifyPlatform/_commons/config/mongoosemulti.js /notifyPlatform/apis/apistatusback/config/mongoosemulti.js
-yes | cp -rf /notifyPlatform/_commons/config/mongoosemulti.js /notifyPlatform/batch/batchpns/config/mongoosemulti.js
-yes | cp -rf /notifyPlatform/_commons/config/mongoosemulti.js /notifyPlatform/batch/batchsms/config/mongoosemulti.js
-yes | cp -rf /notifyPlatform/_commons/config/mongoosemulti.js /notifyPlatform/collectors/pns/apple/config/mongoosemulti.js
-yes | cp -rf /notifyPlatform/_commons/config/mongoosemulti.js /notifyPlatform/collectors/pns/google/config/mongoosemulti.js
-yes | cp -rf /notifyPlatform/_commons/config/mongoosemulti.js /notifyPlatform/collectors/pns/microsoft/config/mongoosemulti.js
-yes | cp -rf /notifyPlatform/_commons/config/mongoosemulti.js /notifyPlatform/collectors/sms/movistar/config/mongoosemulti.js
-yes | cp -rf /notifyPlatform/_commons/config/mongoosemulti.js /notifyPlatform/collectors/sms/movistarvip/config/mongoosemulti.js
-yes | cp -rf /notifyPlatform/_commons/config/mongoosemulti.js /notifyPlatform/collectors/sms/orange/config/mongoosemulti.js
-yes | cp -rf /notifyPlatform/_commons/config/mongoosemulti.js /notifyPlatform/collectors/sms/vodafone/config/mongoosemulti.js
-yes | cp -rf /notifyPlatform/_commons/config/mongoosemulti.js /notifyPlatform/retries/retriespns/config/mongoosemulti.js
-yes | cp -rf /notifyPlatform/_commons/config/mongoosemulti.js /notifyPlatform/retries/retriessms/config/mongoosemulti.js
-yes | cp -rf /notifyPlatform/_commons/config/mongoosemulti.js  /notifyPlatform/mq/mqpns/config/mongoosemulti.js
-yes | cp -rf /notifyPlatform/_commons/config/mongoosemulti.js  /notifyPlatform/mq/mqsms/config/mongoosemulti.js

@@ -1,5 +1,7 @@
 /*
- * mongodb util for notify platform. 
+ * mongodb util for notify platform. we use async functions that returns new Promises in this class 
+ *        * because If we need manage and return the errors or results inside asyncronous callbacks, If we didn't use Promises it would be impossible (we could use EventEmitter too).
+ *        * we prefer to use asynchronous functions because they make possible to use await and we can also put some code before or after Promise, if necessary.
  *
  */
 
@@ -10,7 +12,7 @@ const { Sms } = require('../models/sms');
 
 //this method save SMS in MongoDB and manage the result of this operation
 const saveSMS = async (sms) => {
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve, reject) => { // we need promise for managing errs and results inside callbacks
         sms.save((error, result) => {
             try {  //I use Promises but I need to use try/catch in async callback for errors or I could use EventEmitter 
                 if (error) throw error;  //if mongoose give me an error. If we used reject the try/catch would be unnecessary  
@@ -26,7 +28,7 @@ const saveSMS = async (sms) => {
 
 //this method update SMS in MongoDB and manage the result of this operation
 const updateSMS = async (sms) => {
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve, reject) => { // we need promise for managing errs and results inside callbacks
         let options = { upsert: true, new: true, setDefaultsOnInsert: true };
         let query = { _id: sms._id };
         Sms.findOneAndUpdate(query, sms, options, (error, result) => {  //property new returns the new updated document, not the original document
@@ -43,7 +45,7 @@ const updateSMS = async (sms) => {
 
 //this method update SMS personalized params in MongoDB and manage the result of this operation
 const updateSomeOfSMS = async (id, toUpdate) => {
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve, reject) => { // we need promise for managing errs and results inside callbacks
         let options = { new: true };
         let query = { _id: id };
         Sms.findOneAndUpdate(query, { $set: toUpdate }, options, (error, result) => {  //property new returns the new updated document, not the original document

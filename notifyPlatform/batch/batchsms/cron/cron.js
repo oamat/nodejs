@@ -10,7 +10,7 @@
 //Dependencies
 const { Sms } = require('../models/sms');
 const { rpop, lpush, sadd } = require('../util/redissms'); //we need to initialize redis
-const { hget } = require('../util/redisconf');
+const { hget, hset  } = require('../util/redisconf');
 const { dateFormat, logTime, buildSMSChannel } = require('../util/formats'); // utils for formats
 const { saveSMS } = require('../util/mongosms');
 const auth = require('../auth/auth');
@@ -19,7 +19,7 @@ const fs = require('fs');
 //VARS
 const batchIn = './files/in/';
 const batchOut = './files/out/';
-
+const batchName = "batch:SMS";
 //Variables
 var cron; //the main cron that manage files and put them into redis List.
 var cronStatus = 1; //status of cron. 0: cron stopped, 1 : cron working, 
@@ -143,10 +143,12 @@ const nextSMS = async () => {
 }
 
 const startController = async (intervalControl) => {
-    try {
+    try {    
         console.log(process.env.GREEN_COLOR, logTime(new Date()) + "initializing cronController at " + dateFormat(new Date()) + " with intervalControl : " + intervalControl);
+        hset(batchName, "last", dateFormat(new Date())); //save first execution in Redis
         var cronController = setInterval(function () {
             console.log(process.env.GREEN_COLOR, logTime(new Date()) + "cronController executing");
+            hset(batchName, "last", dateFormat(new Date())); //save last execution in Redis
             checksController();
         }, intervalControl);
     } catch (error) {
@@ -178,7 +180,7 @@ const checksController = async () => {
 }
 const checkstatus = async () => { //Check status, if it's necessary finish cron because redis say it.
     try {
-        let newCronStatus = parseInt(await hget("batch:SMS", "status"));  //0 stop, 1 OK.  //finish because redis say it 
+        let newCronStatus = parseInt(await hget(batchName, "status"));  //0 stop, 1 OK.  //finish because redis say it 
         if (cronStatus != newCronStatus) {
             cronStatus = newCronStatus;
             cronChanged = true;
@@ -191,7 +193,7 @@ const checkstatus = async () => { //Check status, if it's necessary finish cron 
 
 const checkInterval = async () => { //check rate/s, and change cron rate
     try {
-        let newInterval = parseInt(await hget("batch:SMS", "interval"));  //rate/s //change cron rate    
+        let newInterval = parseInt(await hget(batchName, "interval"));  //rate/s //change cron rate    
         if (interval != newInterval) { //if we change the interval -> rate/s
             console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "Change rate/interval: old rate " + interval + " , new rate : " + newInterval + " , next restart will be effect.");
             interval = newInterval;
@@ -204,11 +206,11 @@ const checkInterval = async () => { //check rate/s, and change cron rate
 }
 
 const initCron = async () => {
-    try {
+    try {        
         await Promise.all([
-            hget("batch:SMS", "interval"),
-            hget("batch:SMS", "intervalControl"),
-            hget("batch:SMS", "status"),
+            hget(batchName, "interval"),
+            hget(batchName, "intervalControl"),
+            hget(batchName, "status"),
         ]).then((values) => {
             interval = parseInt(values[0]); //The rate/interval of main cron
             intervalControl = parseInt(values[1]); //the interval of controller
