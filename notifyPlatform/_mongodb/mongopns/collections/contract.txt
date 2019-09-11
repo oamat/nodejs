@@ -1,0 +1,37 @@
+/* 1 */
+{
+    "_id" : "5d583282-1d00-4463-923d-d7069528ff65",
+    "operator" : "ALL",
+    "defaultOperator" : "ALL",
+    "activated" : true,
+    "name" : "ADMIN",
+    "description" : "ADMIN",
+    "permission" : "ADMIN",
+    "application" : "ADMIN",
+    "interface" : "ALL",
+    "params" : [],
+    "type" : "ADMIN",
+    "jwt" : "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkFETUlOIiwiY29udHJhY3QiOiJBRE1JTiIsImlhdCI6MjAxNjIzOTAyMn0.vwBNTaBbW40v14Iiqd65uhv4FVQi4qn4ZH50VyQ00rg",
+    "createdAt" : ISODate("2019-09-11T18:30:47.040Z"),
+    "updatedAt" : ISODate("2019-09-11T18:30:47.040Z"),
+    "__v" : 0
+}
+
+/* 2 */
+{
+    "_id" : "c2c54a06-08ca-427f-98bf-ef4d70cf5dab",
+    "operator" : "ALL",
+    "defaultOperator" : "ALL",
+    "activated" : true,
+    "name" : "PUSHLOWEB",
+    "description" : "PUSHLOWEB contract tst",
+    "permission" : "WITHIN_APP",
+    "application" : "PUSHLOWEB_APP",
+    "interface" : "ALL",
+    "params" : [],
+    "type" : "PNS",
+    "jwt" : "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IlBVU0hMT1dFQiIsImNvbnRyYWN0IjoiUFVTSExPV0VCIiwiaWF0IjoyMDE2MjM5MDIyfQ.liOxBh3kFQyjYrIyhg2Uu3COoV83ruUsyLniWEJ8Apw",
+    "createdAt" : ISODate("2019-09-11T18:34:04.253Z"),
+    "updatedAt" : ISODate("2019-09-11T18:34:04.253Z"),
+    "__v" : 0
+}

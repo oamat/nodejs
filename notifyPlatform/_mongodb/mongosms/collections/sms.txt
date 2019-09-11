@@ -1,8 +1,8 @@
-/* 1 */
+//* 1 */
 {
-    "_id" : "be098810-742c-425e-990a-0727b7695c62",
+    "_id" : "20920d8c-fb05-4f49-a24a-06c2f6a74fbc",
     "dispatched" : false,
-    "priority" : 5,
+    "priority" : 1,
     "interface" : "REST",
     "retries" : 0,
     "deferred" : false,
@@ -11,19 +11,20 @@
     "telf" : "+34699272800",
     "message" : "you have won a gift",
     "alias" : "L.O.",
-    "receivedAt" : ISODate("2019-08-27T22:47:11.616Z"),
+    "customId" : "myid_4566544",
+    "receivedAt" : ISODate("2019-09-04T12:39:11.006Z"),
     "operator" : "MOV",
-    "channel" : "SMS.MOV.5",
-    "createdAt" : ISODate("2019-08-27T22:47:11.705Z"),
-    "updatedAt" : ISODate("2019-08-27T22:47:11.705Z"),
+    "channel" : "SMS.MOV.1",
+    "createdAt" : ISODate("2019-09-04T12:39:11.011Z"),
+    "updatedAt" : ISODate("2019-09-04T12:39:11.011Z"),
     "__v" : 0
 }
 
 /* 2 */
 {
-    "_id" : "b52e72bf-f13a-4d3f-8523-0b7e2589353c",
+    "_id" : "5e8d94a5-9aef-46fc-9dfe-a09037a66f16",
     "dispatched" : false,
-    "priority" : 5,
+    "priority" : 1,
     "interface" : "REST",
     "retries" : 0,
     "deferred" : false,
@@ -32,52 +33,11 @@
     "telf" : "+34699272800",
     "message" : "you have won a gift",
     "alias" : "L.O.",
-    "receivedAt" : ISODate("2019-08-27T22:47:11.619Z"),
+    "customId" : "myid_4566544",
+    "receivedAt" : ISODate("2019-09-04T12:39:11.482Z"),
     "operator" : "MOV",
-    "channel" : "SMS.MOV.5",
-    "createdAt" : ISODate("2019-08-27T22:47:11.705Z"),
-    "updatedAt" : ISODate("2019-08-27T22:47:11.705Z"),
-    "__v" : 0
-}
-
-/* 3 */
-{
-    "_id" : "45160ddf-5faf-43bb-9246-7babcdb8b153",
-    "dispatched" : false,
-    "priority" : 5,
-    "interface" : "REST",
-    "retries" : 0,
-    "deferred" : false,
-    "status" : 0,
-    "contract" : "OTPLOWEB",
-    "telf" : "+34699272800",
-    "message" : "you have won a gift",
-    "alias" : "L.O.",
-    "receivedAt" : ISODate("2019-08-27T22:47:11.610Z"),
-    "operator" : "MOV",
-    "channel" : "SMS.MOV.5",
-    "createdAt" : ISODate("2019-08-27T22:47:11.705Z"),
-    "updatedAt" : ISODate("2019-08-27T22:47:11.705Z"),
-    "__v" : 0
-}
-
-/* 4 */
-{
-    "_id" : "ce075cff-4fb8-4b5c-bf79-b7f7480ea06f",
-    "dispatched" : false,
-    "priority" : 5,
-    "interface" : "REST",
-    "retries" : 0,
-    "deferred" : false,
-    "status" : 0,
-    "contract" : "OTPLOWEB",
-    "telf" : "+34699272800",
-    "message" : "you have won a gift",
-    "alias" : "L.O.",
-    "receivedAt" : ISODate("2019-08-27T22:47:11.626Z"),
-    "operator" : "MOV",
-    "channel" : "SMS.MOV.5",
-    "createdAt" : ISODate("2019-08-27T22:47:11.705Z"),
-    "updatedAt" : ISODate("2019-08-27T22:47:11.705Z"),
+    "channel" : "SMS.MOV.1",
+    "createdAt" : ISODate("2019-09-04T12:39:11.484Z"),
+    "updatedAt" : ISODate("2019-09-04T12:39:11.484Z"),
     "__v" : 0
 }

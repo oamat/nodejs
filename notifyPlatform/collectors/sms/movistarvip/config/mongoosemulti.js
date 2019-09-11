@@ -10,12 +10,14 @@ const mongoose = require('mongoose');
 const { smsSchema } = require('../models/sms');
 const { pnsSchema } = require('../models/pns');
 const { contractSchema } = require('../models/contract');
+const { collectorSchema } = require('../models/collector');
 const { logTime } = require('../util/formats');
 
 
 //VARS
 var dbSMS, dbPNS;
-var SmsModel, PnsModel, ContractSmsModel, ContractPnsModel;
+var SmsModel, PnsModel, ContractSmsModel, ContractPnsModel, CollectorSmsModel, CollectorPnsModel;
+
 const options = { //options for connection to MongoDB
     useNewUrlParser: true,
     useFindAndModify: false,
@@ -41,6 +43,9 @@ const initSMSMongooseConnection = async () => {
         SmsModel = dbSMS.model('Sms');
         dbSMS.model('Contract', contractSchema, 'contract'); //we use the common Schema of PNS
         ContractSmsModel = dbSMS.model('Contract');
+        dbSMS.model('Collector', collectorSchema, 'collector'); //we use the common Schema of PNS
+        CollectorSmsModel = dbSMS.model('Collector');
+
     });
     dbSMS.on('error', (error) => {  //we need to know if connection works, particularly at the start if we didn't connect with it.        
         let date = new Date();
@@ -66,6 +71,8 @@ const initPNSMongooseConnection = async () => {
         PnsModel = dbPNS.model('Pns');
         dbPNS.model('Contract', contractSchema, 'contract'); //we use the common Schema of PNS
         ContractPnsModel = dbPNS.model('Contract');
+        dbPNS.model('Collector', collectorSchema, 'collector'); //we use the common Schema of PNS
+        CollectorPnsModel = dbPNS.model('Collector');
     });
     dbPNS.on('error', (error) => {  //we need to know if connection works, particularly at the start if we didn't connect with it.
         let date = new Date();
@@ -99,4 +106,12 @@ const ContractPns = () => {
     return ContractPnsModel;
 }
 
-module.exports = { Sms, Pns, ContractSms, ContractPns, initAllMongooseConnections };
+const CollectorSms = () => {
+    return CollectorSmsModel;
+}
+
+const CollectorPns = () => {
+    return CollectorPnsModel;
+}
+
+module.exports = { Sms, Pns, ContractSms, ContractPns, CollectorSms, CollectorPns, initAllMongooseConnections };

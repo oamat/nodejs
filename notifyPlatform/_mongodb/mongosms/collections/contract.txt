@@ -1,11 +1,37 @@
 /* 1 */
 {
-    "_id" : "be098810-742c-425e-990a-0727b7695c62",
-    "contract" : "OTPLOWEB",
-    "operator" : "MOV",
+    "_id" : "f34d8e5d-717a-4ed8-abc1-61a31a813da0",
+    "operator" : "ALL",
+    "defaultOperator" : "ALL",
+    "activated" : true,
+    "name" : "ADMIN",
+    "description" : "ADMIN",
+    "permission" : "ADMIN",
+    "application" : "ADMIN",
     "interface" : "ALL",
-    "jwt" : "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiY29udHJhY3QiOiJPVFBMT1dFQiIsImlhdCI6MjAxNjIzOTAyMn0.RSLawzTU4yX-XwnEZtvWipIBOTOji9LKbkuM391zjss",
-    "createdAt" : ISODate("2019-08-27T22:47:11.705Z"),
-    "updatedAt" : ISODate("2019-08-27T22:47:11.705Z"),
+    "params" : [],
+    "type" : "ADMIN",
+    "jwt" : "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkFETUlOIiwiY29udHJhY3QiOiJBRE1JTiIsImlhdCI6MjAxNjIzOTAyMn0.vwBNTaBbW40v14Iiqd65uhv4FVQi4qn4ZH50VyQ00rg",
+    "createdAt" : ISODate("2019-09-11T14:45:22.670Z"),
+    "updatedAt" : ISODate("2019-09-11T14:45:22.670Z"),
+    "__v" : 0
+}
+
+/* 2 */
+{
+    "_id" : "59835a26-fa00-46ee-bb1e-0e7f45e492ce",
+    "operator" : "MOV",
+    "defaultOperator" : "MOV",
+    "activated" : true,
+    "name" : "OTPLOWEB",
+    "description" : "OTPLOWEB contract",
+    "permission" : "WITHIN_APP",
+    "application" : "OTPLOWEB",
+    "interface" : "REST",
+    "params" : [],
+    "type" : "SMS",
+    "jwt" : "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6Ik9UUExPV0VCIiwiY29udHJhY3QiOiJPVFBMT1dFQiIsImlhdCI6MjAxNjIzOTAyMn0.BK58iwYbyfGb1u--SLP3YZP7JZxKSMrPHmdc-gfH4t4",
+    "createdAt" : ISODate("2019-09-11T18:41:04.280Z"),
+    "updatedAt" : ISODate("2019-09-11T18:41:04.280Z"),
     "__v" : 0
 }

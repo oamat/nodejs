@@ -1,51 +1,63 @@
 /* 1 */
 {
-    "_id" : "be098810-742c-425e-990a-0727b7695c61",
-    "collector" : "MOV",
+    "_id" : "c2c54a06-08ca-427f-98bf-ef4d70cf5dc1",
     "operator" : "MOV",
-    "status" : "1",
-    "interval" : "200",
-    "intervalControl" : "30000",
-    "createdAt" : ISODate("2019-08-27T22:47:11.705Z"),
-    "updatedAt" : ISODate("2019-08-27T22:47:11.705Z"),
+    "activated" : true,
+    "status" : true,
+    "name" : "MOV",
+    "description" : "Collector SMS Movistar",
+    "interval" : 10,
+    "intervalControl" : 30000,
+    "type" : "SMS",
+    "createdAt" : ISODate("2019-09-11T18:34:04.253Z"),
+    "updatedAt" : ISODate("2019-09-11T18:34:04.253Z"),
     "__v" : 0
 }
 
 /* 2 */
 {
-    "_id" : "be098810-742c-425e-990a-0727b7695c62",
-    "collector" : "ORA",
-    "operator" : "ORA",
-    "status" : "1",
-    "interval" : "200",
-    "intervalControl" : "30000",
-    "createdAt" : ISODate("2019-08-27T22:47:11.705Z"),
-    "updatedAt" : ISODate("2019-08-27T22:47:11.705Z"),
+    "_id" : "c2c54a06-08ca-427f-98bf-ef4d70cf5dc2",
+    "operator" : "VIP",
+    "activated" : true,
+    "status" : true,
+    "name" : "VIP",
+    "description" : "Collector SMS Movistar - VIP",
+    "interval" : 10,
+    "intervalControl" : 30000,
+    "type" : "SMS",
+    "createdAt" : ISODate("2019-09-11T18:34:04.253Z"),
+    "updatedAt" : ISODate("2019-09-11T18:34:04.253Z"),
     "__v" : 0
 }
 
 /* 3 */
 {
-    "_id" : "be098810-742c-425e-990a-0727b7695c63",
-    "collector" : "VIP",
-    "operator" : "VIP",
-    "status" : "1",
-    "interval" : "200",
-    "intervalControl" : "30000",
-    "createdAt" : ISODate("2019-08-27T22:47:11.705Z"),
-    "updatedAt" : ISODate("2019-08-27T22:47:11.705Z"),
+    "_id" : "c2c54a06-08ca-427f-98bf-ef4d70cf5dc3",
+    "operator" : "VOD",
+    "activated" : true,
+    "status" : true,
+    "name" : "VOD",
+    "description" : "Collector SMS Vodafone",
+    "interval" : 10,
+    "intervalControl" : 30000,
+    "type" : "SMS",
+    "createdAt" : ISODate("2019-09-11T18:34:04.253Z"),
+    "updatedAt" : ISODate("2019-09-11T18:34:04.253Z"),
     "__v" : 0
 }
 
 /* 4 */
 {
-    "_id" : "be098810-742c-425e-990a-0727b7695c64",
-    "collector" : "VOD",
-    "operator" : "VOD",
-    "status" : "1",
-    "interval" : "200",
-    "intervalControl" : "30000",
-    "createdAt" : ISODate("2019-08-27T22:47:11.705Z"),
-    "updatedAt" : ISODate("2019-08-27T22:47:11.705Z"),
+    "_id" : "c2c54a06-08ca-427f-98bf-ef4d70cf5dc4",
+    "operator" : "ORA",
+    "activated" : true,
+    "status" : true,
+    "name" : "ORA",
+    "description" : "Collector SMS Orange",
+    "interval" : 10,
+    "intervalControl" : 30000,
+    "type" : "SMS",
+    "createdAt" : ISODate("2019-09-11T18:34:04.253Z"),
+    "updatedAt" : ISODate("2019-09-11T18:34:04.253Z"),
     "__v" : 0
 }

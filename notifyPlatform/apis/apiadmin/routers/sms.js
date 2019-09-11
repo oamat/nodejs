@@ -19,22 +19,19 @@ const router = new express.Router();
 // GET /smsStatus   # uuid in body or telf and dates in body, and contract or all
 router.get('/smsStatus', auth, async (req, res) => {
     try {
-        if (!req.body._id) requestError(new Error("Param _id doesn't exist in the smsStatus request body."), req, res);
+        if (!req.body._id) throw new Error("Param _id doesn't exist in your /smsStatus request body.");
         else {
             let condition = { _id: req.body._id };
             var sms = await findSMS(condition);
-            if (sms) {                          
+            if (sms) {
                 if (sms.dispatchedAt) res.send({ Status: "200 OK", _id: sms._id, status: sms.status, description: descStatus("SMS", sms.status), receivedAt: dateFormat(sms.receivedAt), dispatchedAt: dateFormat(sms.dispatchedAt) });
                 else res.send({ Status: "200 OK", _id: sms._id, status: sms.status, description: descStatus("SMS", sms.status), receivedAt: dateFormat(sms.receivedAt) });
             } else {
-                 res.send({ Status: "200 OK", _id: req.body._id, status: "-1", description: "SMS not found" });
+                res.send({ Status: "200 OK", _id: req.body._id, status: "-1", description: "SMS not found" });
             }
         }
     } catch (error) {
-        //TODO personalize errors 400 or 500. 
         requestError(error, req, res);
-        //TODO: save error in db  or mem.
-        //console.log(error);
     }
 });
 

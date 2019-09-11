@@ -1,0 +1,47 @@
+/* 1 */
+{
+    "_id" : "c2c54a06-08ca-427f-98bf-ef4d70cf5db1",
+    "operator" : "APP",
+    "activated" : true,
+    "status" : true,
+    "name" : "APP",
+    "description" : "Collector PNS Apple",
+    "interval" : 10,
+    "intervalControl" : 30000,
+    "type" : "PNS",
+    "createdAt" : ISODate("2019-09-11T18:34:04.253Z"),
+    "updatedAt" : ISODate("2019-09-11T18:34:04.253Z"),
+    "__v" : 0
+}
+
+/* 2 */
+{
+    "_id" : "c2c54a06-08ca-427f-98bf-ef4d70cf5db2",
+    "operator" : "GOO",
+    "activated" : true,
+    "status" : true,
+    "name" : "GOO",
+    "description" : "Collector PNS Google",
+    "interval" : 10,
+    "intervalControl" : 30000,
+    "type" : "PNS",
+    "createdAt" : ISODate("2019-09-11T18:34:04.253Z"),
+    "updatedAt" : ISODate("2019-09-11T18:34:04.253Z"),
+    "__v" : 0
+}
+
+/* 3 */
+{
+    "_id" : "c2c54a06-08ca-427f-98bf-ef4d70cf5db3",
+    "operator" : "MIC",
+    "activated" : true,
+    "status" : true,
+    "name" : "MIC",
+    "description" : "Collector PNS Microsoft",
+    "interval" : 10,
+    "intervalControl" : 30000,
+    "type" : "PNS",
+    "createdAt" : ISODate("2019-09-11T18:34:04.253Z"),
+    "updatedAt" : ISODate("2019-09-11T18:34:04.253Z"),
+    "__v" : 0
+}

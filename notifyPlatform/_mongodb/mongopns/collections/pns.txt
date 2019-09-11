@@ -1,0 +1,103 @@
+{
+    "_id" : "eb00cb34-6791-408c-a474-afd47ed4525c",
+    "dispatched" : false,
+    "priority" : 1,
+    "interface" : "REST",
+    "retries" : 0,
+    "deferred" : false,
+    "status" : 0,
+    "contract" : "PUSHLOWEB",
+    "application" : "CaixaAPP",
+    "user" : "userTst",
+    "uuiddevice" : "kk34699272809",
+    "action" : "show",
+    "content" : "content push notification",
+    "params" : [ 
+        {
+            "param" : "icono1",
+            "value" : "new1",
+            "type" : "String"
+        }, 
+        {
+            "param" : "icono2",
+            "value" : "new2",
+            "type" : "String"
+        }
+    ],
+    "receivedAt" : ISODate("2019-09-04T10:06:58.819Z"),
+    "operator" : "AND",
+    "channel" : "PNS.AND.1",
+    "createdAt" : ISODate("2019-09-04T10:06:58.830Z"),
+    "updatedAt" : ISODate("2019-09-04T10:06:58.830Z"),
+    "__v" : 0
+}
+
+/* 2 */
+{
+    "_id" : "4e969319-156b-4797-83a9-54da829ab18f",
+    "dispatched" : false,
+    "priority" : 1,
+    "interface" : "REST",
+    "retries" : 0,
+    "deferred" : false,
+    "status" : 0,
+    "contract" : "PUSHLOWEB",
+    "application" : "CaixaAPP",
+    "user" : "userTst",
+    "uuiddevice" : "kk34699272809",
+    "action" : "show",
+    "content" : "content push notification",
+    "params" : [ 
+        {
+            "param" : "icono1",
+            "value" : "new1",
+            "type" : "String"
+        }, 
+        {
+            "param" : "icono2",
+            "value" : "new2",
+            "type" : "String"
+        }
+    ],
+    "receivedAt" : ISODate("2019-09-04T10:06:59.899Z"),
+    "operator" : "AND",
+    "channel" : "PNS.AND.1",
+    "createdAt" : ISODate("2019-09-04T10:06:59.900Z"),
+    "updatedAt" : ISODate("2019-09-04T10:06:59.900Z"),
+    "__v" : 0
+}
+
+/* 3 */
+{
+    "_id" : "b8775786-dbb6-4e99-88e1-22c973bae2ee",
+    "dispatched" : false,
+    "priority" : 1,
+    "interface" : "REST",
+    "retries" : 0,
+    "deferred" : false,
+    "status" : 0,
+    "contract" : "PUSHLOWEB",
+    "application" : "CaixaAPP",
+    "user" : "userTst",
+    "uuiddevice" : "kk34699272809",
+    "action" : "show",
+    "content" : "content push notification",
+    "params" : [ 
+        {
+            "param" : "icono1",
+            "value" : "new1",
+            "type" : "String"
+        }, 
+        {
+            "param" : "icono2",
+            "value" : "new2",
+            "type" : "String"
+        }
+    ],
+    "receivedAt" : ISODate("2019-09-04T10:07:00.628Z"),
+    "operator" : "AND",
+    "channel" : "PNS.AND.1",
+    "createdAt" : ISODate("2019-09-04T10:07:00.630Z"),
+    "updatedAt" : ISODate("2019-09-04T10:07:00.630Z"),
+    "__v" : 0
+}

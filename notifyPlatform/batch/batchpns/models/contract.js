@@ -17,7 +17,7 @@ const contractSchema = new mongoose.Schema({
         required: true,
         default: () => { return uuidv4(); }
     },
-    name: { // the unique id
+    name: { // the unique name for contract
         type: String,
         required: true,
         unique: true
@@ -63,10 +63,9 @@ const contractSchema = new mongoose.Schema({
     },
     operator: { // some contracts can send only for one operator. 
         type: String,
-        required: true,
-        default: 'ALL',
+        required: true,        
         validate(value) {
-            if (this.type = "SMS") {
+            if (this.type == "SMS") {
                 if (value != "MOV" && value != "ORA" && value != "VIP" && value != "VOD" && value != "ALL") throw new Error("Operator is invalid, it must be one of this options: 'MOV', 'VIP', 'ORA', 'VOD' or 'ALL'.");
             } else { //PNS
                 if (value != "APP" && value != "GOO" && value != "MIC" && value != "ALL") throw new Error("Operator is invalid, it must be one of this options: 'APP', 'GOO', 'MIC', or 'ALL'.");
@@ -76,7 +75,7 @@ const contractSchema = new mongoose.Schema({
     defaultOperator: { // just in case contract enters into operator contingency. 
         type: String,
         required: true,
-        default: 'ALL'
+        default: this.operator
     },
     activated: {
         type: Boolean,

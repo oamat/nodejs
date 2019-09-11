@@ -17,24 +17,22 @@ const router = new express.Router();
 
 // GET /pnstatus   # uuid in body or telf and dates in body, and contract or all
 router.get('/pnsStatus', auth, async (req, res) => {
-    try { 
-        if (!req.body._id) requestError(new Error("Param _id doesn't exist in the smsStatus request body."), req, res);
+    try {
+        if (!req.body._id) throw new Error("Param _id doesn't exist in your /pnsStatus request body.");
         else {
             let condition = { _id: req.body._id };
             var pns = await findPNS(condition);
             console.log(pns);
-            if (pns) {                                             
+            if (pns) {
                 if (pns.dispatchedAt) res.send({ Status: "200 OK", _id: pns._id, status: pns.status, description: descStatus("PNS", pns.status), receivedAt: dateFormat(pns.receivedAt), dispatchedAt: dateFormat(pns.dispatchedAt) });
                 else res.send({ Status: "200 OK", _id: pns._id, status: pns.status, description: descStatus("PNS", pns.status), receivedAt: dateFormat(pns.receivedAt) });
-            } else {                
-                 res.send({ Status: "200 OK", _id: req.body._id, status: "-1", description: "PNS not found" });
+            } else {
+                res.send({ Status: "200 OK", _id: req.body._id, status: "-1", description: "PNS not found" });
             }
         }
-} catch (error) {
-    //TODO personalize errors 400 or 500. 
-    requestError(error, req, res);
-    //TODO: save error in db  or mem.
-}
+    } catch (error) {
+        requestError(error, req, res);
+    }
 });
 
 

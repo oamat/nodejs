@@ -208,6 +208,24 @@ yes | cp -rf /notifyPlatform/_commons/models/contract.js /notifyPlatform/retries
 yes | cp -rf /notifyPlatform/_commons/models/contract.js  /notifyPlatform/mq/mqpns/models/contract.js
 yes | cp -rf /notifyPlatform/_commons/models/contract.js  /notifyPlatform/mq/mqsms/models/contract.js
 
+echo "copying /models/collector.js"
+yes | cp -rf /notifyPlatform/_commons/models/collector.js /notifyPlatform/apis/apisms/models/collector.js
+yes | cp -rf /notifyPlatform/_commons/models/collector.js /notifyPlatform/apis/apipns/models/collector.js
+yes | cp -rf /notifyPlatform/_commons/models/collector.js /notifyPlatform/apis/apiadmin/models/collector.js
+yes | cp -rf /notifyPlatform/_commons/models/collector.js /notifyPlatform/apis/apistatusback/models/collector.js
+yes | cp -rf /notifyPlatform/_commons/models/collector.js /notifyPlatform/batch/batchpns/models/collector.js
+yes | cp -rf /notifyPlatform/_commons/models/collector.js /notifyPlatform/batch/batchsms/models/collector.js
+yes | cp -rf /notifyPlatform/_commons/models/collector.js /notifyPlatform/collectors/pns/apple/models/collector.js
+yes | cp -rf /notifyPlatform/_commons/models/collector.js /notifyPlatform/collectors/pns/google/models/collector.js
+yes | cp -rf /notifyPlatform/_commons/models/collector.js /notifyPlatform/collectors/pns/microsoft/models/collector.js
+yes | cp -rf /notifyPlatform/_commons/models/collector.js /notifyPlatform/collectors/sms/movistar/models/collector.js
+yes | cp -rf /notifyPlatform/_commons/models/collector.js /notifyPlatform/collectors/sms/movistarvip/models/collector.js
+yes | cp -rf /notifyPlatform/_commons/models/collector.js /notifyPlatform/collectors/sms/orange/models/collector.js
+yes | cp -rf /notifyPlatform/_commons/models/collector.js /notifyPlatform/collectors/sms/vodafone/models/collector.js
+yes | cp -rf /notifyPlatform/_commons/models/collector.js /notifyPlatform/retries/retriespns/models/collector.js
+yes | cp -rf /notifyPlatform/_commons/models/collector.js /notifyPlatform/retries/retriessms/models/collector.js
+yes | cp -rf /notifyPlatform/_commons/models/collector.js  /notifyPlatform/mq/mqpns/models/collector.js
+yes | cp -rf /notifyPlatform/_commons/models/collector.js  /notifyPlatform/mq/mqsms/models/collector.js
 
 echo "copying /util/formats.js"
 yes | cp -rf /notifyPlatform/_commons/util/formats.js /notifyPlatform/apis/apisms/util/formats.js
