@@ -45,12 +45,26 @@ const hset = async (hash, property, value) => {
         rclient.hset(hash, property, value, (error, result) => { //get the value of hash                   
             try {  //I use Promises but I need to use try/catch in async callback for errors or I could use EventEmitter 
                 if (error) throw error;  //if redis give me an error.  If we used reject the try/catch would be unnecessary 
-                else if (result) resolve(result); // everything is OK, return result                                 
+                else resolve(result); // everything is OK, return result                                 
             } catch (error) { reject(error); } // In Callback we need to reject if we have Error. A reject will not pass through here
         });
     })
         //.then((result) => { return result; })  //return the result value of property hash contract
         //.catch((error) => { throw error; }); //throw Error exception to the main code, it's unnecessary but maybe we will need put some lógic...A reject callback will pass through here
+}
+
+// this method sets N hash properties and values, in a generic way
+const hmset = async (hashproperties) => {
+    return new Promise((resolve, reject) => { // we need promise for managing errs and results inside callbacks
+        rclient.hmset(hashproperties, (error, result) => { //get the value of hash                   
+            try {  //I use Promises but I need to use try/catch in async callback for errors or I could use EventEmitter 
+                if (error) throw error;  //if redis give me an error.  If we used reject the try/catch would be unnecessary 
+                else resolve(result); // everything is OK, return result                                 
+            } catch (error) { reject(error); } // In Callback we need to reject if we have Error. A reject will not pass through here
+        });
+    })
+    //.then((result) => { return result; })  //return the result value of property hash contract
+    //.catch((error) => { throw error; }); //throw Error exception to the main code, it's unnecessary but maybe we will need put some lógic...A reject callback will pass through here
 }
 
 // this method save Json in a list (like qeues MQ)
@@ -127,4 +141,4 @@ const rpop = async function (name) {
         //.then((result) => { return result; })  //return the result 
         //.catch((error) => { throw error; });  //throw Error exception to the main code, it's unnecessary but maybe we will need put some lógic...  A reject callback will pass through here
 }
-module.exports = { hget, hset, lpush, sadd, set, rpop, rpoplpush, hgetOrNull }
+module.exports = { hget, hset, hmset, lpush, sadd, set, rpop, rpoplpush, hgetOrNull }

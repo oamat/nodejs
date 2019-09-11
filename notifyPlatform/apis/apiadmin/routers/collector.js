@@ -9,19 +9,18 @@
 const { ContractSms, ContractPns } = require('../config/mongoosemulti');  // Attention : this Sms Model is model created for multi DB
 const express = require('express');
 const auth = require('../auth/auth');
-const { dateFormat, logTime, replaceSpaces } = require('../util/formats');
+const { dateFormat, logTime } = require('../util/formats');
 const { saveContractSms } = require('../util/mongomultisms');
 const { saveContractPns } = require('../util/mongomultipns');
-const redisconf = require('../util/redisconf');
 const jwt = require('jsonwebtoken');
 
 const router = new express.Router();
 
 
 // POST //addContract 
-router.post('/addSmsContract', auth, async (req, res) => {
+router.post('/addContract', auth, async (req, res) => {
     try {
-        if (!req.body.name || !req.body.description || !req.body.permission || !req.body.application || !req.body.interface || !req.body.operator) {  //first we check the body params request. 
+        if (!req.body.name || !req.body.description || !req.body.permision || !req.body.application || !req.body.interface || !req.body.operator) {  //first we check the body params request. 
             throw new Error("You didn't send the necessary params in the body of the request. You need to send the correct params before proceeding.");
         } else {
             var ContractModel = ContractSms();  // we catch the ContractSMS Model
@@ -29,32 +28,12 @@ router.post('/addSmsContract', auth, async (req, res) => {
             contract.type = "SMS";
             contract.defaultOperator = contract.operator;
             contract.activated = true;
-            contract.name = replaceSpaces(contract.name).toUpperCase();
-            contract.jwt = jwt.sign({
-                sub: "1234567890",
-                name: contract.name,
-                contract: contract.name,
-                "iat": 2016239022
-            },
+            contract.jwt = jwt.sign(
+                { sub: "1234567890", name: contract.name, contract: contract.name, "iat": 2016239022 },
                 process.env.JWT_SECRET
             );
-
             await contract.validate(); // we need await for validations before save anything
-            await Promise.all([  // await is necessary because we have errors, like duplication contract name
-                saveContractSms(contract),
-                redisconf.hmset(["contractsms:" + contract.name, //save in RedisConf               
-                    "jwt", contract.jwt,
-                    "operator", contract.operator,
-                    "defaultOperator", contract.defaultOperator,
-                    "activated", contract.activated,
-                    "permission", contract.permission,
-                    "application", contract.application,
-                    "interface", contract.interface
-                ])
-            ]).catch(function (error) { //we don'r need result, but we need errors. 
-                throw error;
-            });
-
+            saveContractSms(contract); // await it's unnecessary because we validate() before
             res.send({
                 Status: "200 OK",
                 info: "contract created",
@@ -63,14 +42,12 @@ router.post('/addSmsContract', auth, async (req, res) => {
                 jwt: contract.jwt,
                 interface: contract.interface,
                 type: contract.type,
-                description: contract.description,
-                activated: contract.activated,
+                activated: contract.activated,                 
                 permision: contract.permision,
                 application: contract.application
             });
-            console.log(process.env.GREEN_COLOR, logTime(new Date()) + "Contract created : " + JSON.stringify(contract));  //JSON.stringify for replace new lines (\n) and tab (\t) chars into string
         }
-        
+        //addContract 
     } catch (error) {
         requestError(error, req, res);
     }

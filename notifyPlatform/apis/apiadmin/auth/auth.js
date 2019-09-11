@@ -1,13 +1,13 @@
 /*
  * Auth for API
  *   JWT example (no base64 encoded in secret), test in jwt.io : 
- *      eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6ImFkbWluIiwiY29udHJhY3QiOiJBRE1JTiIsImlhdCI6MjAxNjIzOTAyMn0.7UhLsjPpOwneXzN3nlT35OJjduzp70Yni9l1HO9wCck
+ *      eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkFETUlOIiwiY29udHJhY3QiOiJBRE1JTiIsImlhdCI6MjAxNjIzOTAyMn0.vwBNTaBbW40v14Iiqd65uhv4FVQi4qn4ZH50VyQ00rg
  * 
  *    secret : pojiaj234oi234oij234oij4jgstwsnaKSDADWWssswwwwssQRT
  *
  * example :
  * data : { "alg": "HS256", "typ": "JWT"  }  
- * payload :  {   "sub": "1234567890",  "name": "admin",  "contract": "ADMIN", "iat": 2016239022 }
+ * payload :  {   "sub": "1234567890",  "name": "ADMIN",  "contract": "ADMIN", "iat": 2016239022 }
  */
 
 "use strict";

@@ -21,6 +21,12 @@ const replaceSpacesTo1 = (someText) => {
    return someText.replace(/\s+/g, " ");
 }
 
+//Replace all single spaces for no space.
+const replaceSpaces = (someText) => {
+   return someText.replace(/\s+/g, "");
+}
+
+
 //Date format for printing undertand date
 const dateFormat = (date) => {
    return date.toLocaleString();
@@ -84,4 +90,4 @@ const descStatus = (type, status) => { //0:notSent, 1:Sent, 2:Confirmed, 3:Error
 
 
 
-module.exports = { dateFormat, logTime, buildSMSChannel, buildSMSChannels, buildPNSChannel, buildPNSChannels, counter, replaceBreaks, replaceSpacesTo1, descStatus }
+module.exports = { dateFormat, logTime, buildSMSChannel, buildSMSChannels, buildPNSChannel, buildPNSChannels, counter, replaceBreaks, replaceSpacesTo1, replaceSpaces, descStatus }
