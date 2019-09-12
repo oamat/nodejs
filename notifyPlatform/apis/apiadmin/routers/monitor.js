@@ -296,55 +296,90 @@ router.get('/loadRedis', auth, async (req, res) => {
 
         //APIADMIN
         redisconf.hset("contractadmin:ADMIN", "jwt", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkFETUlOIiwiY29udHJhY3QiOiJBRE1JTiIsImlhdCI6MjAxNjIzOTAyMn0.vwBNTaBbW40v14Iiqd65uhv4FVQi4qn4ZH50VyQ00rg");
-        //APIPNS
-        redisconf.hset("contractpns:PUSHLOWEB", "jwt", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IlBVU0hMT1dFQiIsImNvbnRyYWN0IjoiUFVTSExPV0VCIiwiaWF0IjoyMDE2MjM5MDIyfQ.liOxBh3kFQyjYrIyhg2Uu3COoV83ruUsyLniWEJ8Apw");
-        redisconf.hset("contractpns:PUSHLOWEB", "operator", "ALL");
-        //APISMS
-        redisconf.hset("contractsms:OTPLOWEB", "jwt", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6Ik9UUExPV0VCIiwiY29udHJhY3QiOiJPVFBMT1dFQiIsImlhdCI6MjAxNjIzOTAyMn0.BK58iwYbyfGb1u--SLP3YZP7JZxKSMrPHmdc-gfH4t4");
-        redisconf.hset("contractsms:OTPLOWEB", "operator", "MOV");
+
+        //APIPNS Contracts
+        redisconf.hmset(["contractpns:PUSHLOWEB",
+            "jwt", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IlBVU0hMT1dFQiIsImNvbnRyYWN0IjoiUFVTSExPV0VCIiwiaWF0IjoyMDE2MjM5MDIyfQ.liOxBh3kFQyjYrIyhg2Uu3COoV83ruUsyLniWEJ8Apw",
+            "operator", "ALL"
+        ]);
+
+        //APISMS Contracts
+        redisconf.hmset(["contractsms:OTPLOWEB",
+            "jwt", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6Ik9UUExPV0VCIiwiY29udHJhY3QiOiJPVFBMT1dFQiIsImlhdCI6MjAxNjIzOTAyMn0.BK58iwYbyfGb1u--SLP3YZP7JZxKSMrPHmdc-gfH4t4",
+            "operator", "MOV"
+        ]);
+
         //batchSMS
-        redisconf.hset("batch:SMS", "status", "1");
-        redisconf.hset("batch:SMS", "interval", "2000");
-        redisconf.hset("batch:SMS", "intervalControl", "30000");
+        redisconf.hmset(["batch:SMS",
+            "status", "1",
+            "interval", "2000",
+            "intervalControl", "30000"
+        ]);
+
         //batchPNSs
-        redisconf.hset("batch:PNS", "status", "1");
-        redisconf.hset("batch:PNS", "interval", "2000");
-        redisconf.hset("batch:PNS", "intervalControl", "30000");
+        redisconf.hmset(["batch:PNS",
+            "status", "1",
+            "interval", "2000",
+            "intervalControl", "30000"
+        ]);
+
         //Collectors Apple
-        redisconf.hset("collectorpns:APP", "status", "1");
-        redisconf.hset("collectorpns:APP", "interval", "2000");
-        redisconf.hset("collectorpns:APP", "intervalControl", "30000");
-        redisconf.hset("collectorpns:APP", "operator", "APP");
+        redisconf.hmset(["collectorpns:APP",
+            "status", "1",
+            "interval", "2000",
+            "intervalControl", "30000",
+            "operator", "APP"
+        ]);
+
         //Collectors Android
-        redisconf.hset("collectorpns:GOO", "status", "1");
-        redisconf.hset("collectorpns:GOO", "interval", "2000");
-        redisconf.hset("collectorpns:GOO", "intervalControl", "30000");
-        redisconf.hset("collectorpns:GOO", "operator", "GOO");
+        redisconf.hmset(["collectorpns:GOO",
+            "status", "1",
+            "interval", "2000",
+            "intervalControl", "30000",
+            "operator", "GOO"
+        ]);
+
         //Collectors Microsoft
-        redisconf.hset("collectorpns:MIC", "status", "1");
-        redisconf.hset("collectorpns:MIC", "interval", "2000");
-        redisconf.hset("collectorpns:MIC", "intervalControl", "30000");
-        redisconf.hset("collectorpns:MIC", "operator", "MIC");
+        redisconf.hmset(["collectorpns:MIC",
+            "status", "1",
+            "interval", "2000",
+            "intervalControl", "30000",
+            "operator", "MIC"
+        ]);
+
+
         //Collectors Movistar
-        redisconf.hset("collectorsms:MOV", "status", "1");
-        redisconf.hset("collectorsms:MOV", "interval", "2000");
-        redisconf.hset("collectorsms:MOV", "intervalControl", "30000");
-        redisconf.hset("collectorsms:MOV", "operator", "MOV");
+        redisconf.hset(["collectorsms:MOV",
+            "status", "1",
+            "interval", "2000",
+            "intervalControl", "30000",
+            "operator", "MOV"
+        ]);
+
         //Collectors MovistarVIP
-        redisconf.hset("collectorsms:VIP", "status", "1");
-        redisconf.hset("collectorsms:VIP", "interval", "2000");
-        redisconf.hset("collectorsms:VIP", "intervalControl", "30000");
-        redisconf.hset("collectorsms:VIP", "operator", "VIP");
+        redisconf.hset(["collectorsms:VIP",
+            "status", "1",
+            "interval", "2000",
+            "intervalControl", "30000",
+            "operator", "VIP"
+        ]);
+
         //Collectors ORANGE
-        redisconf.hset("collectorsms:ORA", "status", "1");
-        redisconf.hset("collectorsms:ORA", "interval", "2000");
-        redisconf.hset("collectorsms:ORA", "intervalControl", "30000");
-        redisconf.hset("collectorsms:ORA", "operator", "ORA");
+        redisconf.hset(["collectorsms:ORA",
+            "status", "1",
+            "interval", "2000",
+            "intervalControl", "30000",
+            "operator", "ORA"
+        ]);
+
         //Collectors VODAFONE
-        redisconf.hset("collectorsms:VOD", "status", "1");
-        redisconf.hset("collectorsms:VOD", "interval", "2000");
-        redisconf.hset("collectorsms:VOD", "intervalControl", "30000");
-        redisconf.hset("collectorsms:VOD", "operator", "VOD");
+        redisconf.hset(["collectorsms:VOD",
+            "status", "1",
+            "interval", "2000",
+            "intervalControl", "30000",
+            "operator", "VOD"
+        ]);
+
         res.send({ Status: "200 OK" });
     } catch (error) {
         //TODO personalize errors 400 or 500. 

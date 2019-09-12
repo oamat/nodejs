@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "87dee053-cffe-4740-aa87-1ca145627fdc",
+		"_postman_id": "18c44d75-c2c3-415c-9882-f84b53bb58c0",
 		"name": "notifyAPI",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -213,14 +213,14 @@
 					"raw": "{\n\t\"contract\" : \"ADMIN\"\n}"
 				},
 				"url": {
-					"raw": "http://localhost:30003/pendingNotifications",
+					"raw": "http://localhost:30003/serviceStatus",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "30003",
 					"path": [
-						"pendingNotifications"
+						"serviceStatus"
 					]
 				},
 				"description": "/loadRedis"
