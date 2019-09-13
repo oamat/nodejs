@@ -112,7 +112,7 @@ const pnsSchema = new mongoose.Schema({
     status: {
         type: Number,
         required: true,
-        default: 0  //0:notSent, 1:Sent, 2:Confirmed, 3:Error, 4:Expired
+        default: 0  //0:notSent, 1:Sent, 2:Confirmed, 3:Error, 4:Expired, 5:token not found (not register)
     },
     operator: {
         type: String, //GOO, APP, MIC...
@@ -128,6 +128,10 @@ const pnsSchema = new mongoose.Schema({
         trim: true
     },
     customId: {
+        type: String,
+        required: false
+    },
+    token: {
         type: String,
         required: false
     },

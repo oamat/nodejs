@@ -12,6 +12,7 @@
     "uuiddevice" : "kk34699272809",
     "action" : "show",
     "content" : "content push notification",
+    "token" : "AADDERTTTECCDDDkk34699272809WWwwsdfdeeffffAADDERTTTECCDDDkk34699272809WWwwsdfdeeffffAADDERTTTECCDDDkk34699272809WWwwsdfdeeffff",                    
     "params" : [ 
         {
             "param" : "icono1",

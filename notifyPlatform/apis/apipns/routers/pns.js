@@ -16,7 +16,7 @@ const auth = require('../auth/auth');
 
 const { savePNS } = require('../util/mongopns');
 const { lpush, sadd } = require('../util/redispns');
-const { hget } = require('../util/redisconf');
+const { hget, hgetOrNull } = require('../util/redisconf');
 const { dateFormat, logTime, buildPNSChannel } = require('../util/formats');
 
 
@@ -28,11 +28,13 @@ router.post('/pnsSend', auth, async (req, res) => {  //we execute auth before th
     console.log(process.env.WHITE_COLOR, logTime(new Date()) + "PNS new request : " + JSON.stringify(req.body));
     try {
         const pns = new Pns(req.body);  //await it's unnecessary because is the first creation of object. Model Validations are check when save in Mongodb, not here. 
-        pns.operator = await hget("contractpns:" + pns.contract, "operator"); //Operator by default by contract. we checked the param before (in auth)       
-        if (pns.operator == "ALL") { //If operator is ALL means that we need to find the better operator for the telf. 
-            //TODO: find the best operator for this tef. Not implemented yet
-            pns.operator = "GOO";
-        }
+
+        pns.token = await hgetOrNull("tokenpns:" + pns.uuiddevice, "token"); //find the token for this uuiddevice PNS.
+        pns.operator = await hgetOrNull("tokenpns:" + pns.uuiddevice, "operator"); //find the operator for this uuiddevice PNS.
+      
+
+        if (!pns.token)  throw new Error(" This uuiddevice is not register, we cannot find its token neither operator.") //0:notSent, 1:Sent, 2:Confirmed, 3:Error, 4:Expired, 5:token not found (not register)
+        
         const collectorOperator = hget("collectorpns:" + pns.operator, "operator"); //this method is Async, but we can get in parallel until need it (with await). 
 
         if (await collectorOperator != pns.operator) pns.operator = collectorOperator;  //check if the operator have some problems
@@ -49,15 +51,16 @@ router.post('/pnsSend', auth, async (req, res) => {  //we execute auth before th
             });
 
         // START 2 "tasks" in parallel. Even when we recollect the errors we continue the execution and return OK.    
-        Promise.all([
-            lpush(pns.channel, JSON.stringify(pns)).catch(error => { return error }),  //put pns to the the apropiate lists channels: PNS.GOO.1, PNS.VIP.1, PNS.ORA.1, PNS.VOD.1 (1,2,3) 
-            sadd("PNS.IDS.PENDING", pns._id).catch(error => { return error }),         //we save the _id in a SET, for checking the retries, errors, etc.  
-        ]).then(values => {
-            if (values[0] instanceof Error) { console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "ERROR: We cannot save PNS in Redis LIST (lpush): " + values[0].message); }  //lpush returns error
-            if (values[1] instanceof Error) { console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "ERROR: We cannot save PNS in Redis SET (sadd): " + values[1].message); } //sadd returns error          
-        });
-        // END the 2 "tasks" in parallel    
-
+        if (pns.token) {
+            Promise.all([
+                lpush(pns.channel, JSON.stringify(pns)).catch(error => { return error }),  //put pns to the the apropiate lists channels: PNS.GOO.1, PNS.VIP.1, PNS.ORA.1, PNS.VOD.1 (1,2,3) 
+                sadd("PNS.IDS.PENDING", pns._id).catch(error => { return error }),         //we save the _id in a SET, for checking the retries, errors, etc.  
+            ]).then(values => {
+                if (values[0] instanceof Error) { console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "ERROR: We cannot save PNS in Redis LIST (lpush): " + values[0].message); }  //lpush returns error
+                if (values[1] instanceof Error) { console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "ERROR: We cannot save PNS in Redis SET (sadd): " + values[1].message); } //sadd returns error          
+            });
+            // END the 2 "tasks" in parallel    
+        }
 
         //response 200, with pns._id. is it necessary any more params?
         res.send({ statusCode: "200 OK", _id: pns._id });

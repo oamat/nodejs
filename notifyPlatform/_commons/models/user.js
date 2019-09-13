@@ -1,5 +1,5 @@
 /*
- * model Contract
+ * model User
  *
  */
 
@@ -11,7 +11,7 @@ const mongoose = require('mongoose');
 
 //IMPORTANT: by default Model Validations are check when save in Mongodb, not in the creation. 
 // but you can check with validate() method
-const contractSchema = new mongoose.Schema({
+const userSchema = new mongoose.Schema({
     _id: {
         type: String,
         required: true,
@@ -87,6 +87,6 @@ const contractSchema = new mongoose.Schema({
     versionKey: false // You should be aware of the outcome after set to false
 });
 
-const Contract = mongoose.model('Contract', contractSchema);
+const User = mongoose.model('User', userSchema);
 
-module.exports = { Contract, contractSchema };
+module.exports = { User, userSchema };

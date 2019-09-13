@@ -85,6 +85,8 @@ const descStatus = (type, status) => { //0:notSent, 1:Sent, 2:Confirmed, 3:Error
          return type + " obtain an error.";
       case 4:
          return type + " has expired and has not been sent.";
+      case 5:
+         return type + " is not valid, we cannot find token and operator."; //only PNS. 
    }
 }
 

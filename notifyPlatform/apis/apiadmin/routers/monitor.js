@@ -292,7 +292,6 @@ router.get('/contingencyActivate', auth, async (req, res) => {
 router.get('/loadRedis', auth, async (req, res) => {
     try {
 
-        //redisconf.hmset([ "contracttst:ADMIN", "tst", "tst"]);
 
         //APIADMIN
         redisconf.hset("contractadmin:ADMIN", "jwt", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkFETUlOIiwiY29udHJhY3QiOiJBRE1JTiIsImlhdCI6MjAxNjIzOTAyMn0.vwBNTaBbW40v14Iiqd65uhv4FVQi4qn4ZH50VyQ00rg");
@@ -306,7 +305,7 @@ router.get('/loadRedis', auth, async (req, res) => {
         //APISMS Contracts
         redisconf.hmset(["contractsms:OTPLOWEB",
             "jwt", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6Ik9UUExPV0VCIiwiY29udHJhY3QiOiJPVFBMT1dFQiIsImlhdCI6MjAxNjIzOTAyMn0.BK58iwYbyfGb1u--SLP3YZP7JZxKSMrPHmdc-gfH4t4",
-            "operator", "MOV"
+            "operator", "ALL"
         ]);
 
         //batchSMS
@@ -378,6 +377,17 @@ router.get('/loadRedis', auth, async (req, res) => {
             "interval", "2000",
             "intervalControl", "30000",
             "operator", "VOD"
+        ]);
+
+        //PNS token
+        redisconf.hmset(["tokenpns:kRt346992-72809WA",
+            "token", "AADDERTTTECCDDDkk34699272809WWwwsdfdeeffffAADDERTTTECCDDDkk34699272809WWwwsdfdeeffffAADDERTTTECCDDDkk34699272809WWwwsdfdeeffff",
+            "operator", "GOO"
+        ]);
+
+        //SMS telf
+        redisconf.hmset(["telfsms"
+            ,"+34699272800", "VOD"
         ]);
 
         res.send({ Status: "200 OK" });

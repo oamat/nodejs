@@ -1,0 +1,14 @@
+{
+    "_id" : "c2c54a06-08ca-427f-98bf-ef4d70cf5db1",
+    "token" : "AADDERTTTECCDDDkk34699272809WWwwsdfdeeffffAADDERTTTECCDDDkk34699272809WWwwsdfdeeffffAADDERTTTECCDDDkk34699272809WWwwsdfdeeffff",
+    "operator" : "GOO",
+    "activated" : true,
+    "contract" : "PUSHLOWEB",
+    "application" : "CaixaAPP",
+    "user" : "userTst",
+    "uuiddevice" : "kk34699272809",    
+    "createdAt" : ISODate("2019-09-11T18:34:04.253Z"),
+    "updatedAt" : ISODate("2019-09-11T18:34:04.253Z"),
+    "__v" : 0
+}
+    

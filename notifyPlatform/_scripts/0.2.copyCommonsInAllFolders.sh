@@ -227,6 +227,44 @@ yes | cp -rf /notifyPlatform/_commons/models/collector.js /notifyPlatform/retrie
 yes | cp -rf /notifyPlatform/_commons/models/collector.js  /notifyPlatform/mq/mqpns/models/collector.js
 yes | cp -rf /notifyPlatform/_commons/models/collector.js  /notifyPlatform/mq/mqsms/models/collector.js
 
+echo "copying /models/token.js"
+yes | cp -rf /notifyPlatform/_commons/models/token.js /notifyPlatform/apis/apisms/models/token.js
+yes | cp -rf /notifyPlatform/_commons/models/token.js /notifyPlatform/apis/apipns/models/token.js
+yes | cp -rf /notifyPlatform/_commons/models/token.js /notifyPlatform/apis/apiadmin/models/token.js
+yes | cp -rf /notifyPlatform/_commons/models/token.js /notifyPlatform/apis/apistatusback/models/token.js
+yes | cp -rf /notifyPlatform/_commons/models/token.js /notifyPlatform/batch/batchpns/models/token.js
+yes | cp -rf /notifyPlatform/_commons/models/token.js /notifyPlatform/batch/batchsms/models/token.js
+yes | cp -rf /notifyPlatform/_commons/models/token.js /notifyPlatform/collectors/pns/apple/models/token.js
+yes | cp -rf /notifyPlatform/_commons/models/token.js /notifyPlatform/collectors/pns/google/models/token.js
+yes | cp -rf /notifyPlatform/_commons/models/token.js /notifyPlatform/collectors/pns/microsoft/models/token.js
+yes | cp -rf /notifyPlatform/_commons/models/token.js /notifyPlatform/collectors/sms/movistar/models/token.js
+yes | cp -rf /notifyPlatform/_commons/models/token.js /notifyPlatform/collectors/sms/movistarvip/models/token.js
+yes | cp -rf /notifyPlatform/_commons/models/token.js /notifyPlatform/collectors/sms/orange/models/token.js
+yes | cp -rf /notifyPlatform/_commons/models/token.js /notifyPlatform/collectors/sms/vodafone/models/token.js
+yes | cp -rf /notifyPlatform/_commons/models/token.js /notifyPlatform/retries/retriespns/models/token.js
+yes | cp -rf /notifyPlatform/_commons/models/token.js /notifyPlatform/retries/retriessms/models/token.js
+yes | cp -rf /notifyPlatform/_commons/models/token.js  /notifyPlatform/mq/mqpns/models/token.js
+yes | cp -rf /notifyPlatform/_commons/models/token.js  /notifyPlatform/mq/mqsms/models/token.js
+
+echo "copying /models/telf.js"
+yes | cp -rf /notifyPlatform/_commons/models/telf.js /notifyPlatform/apis/apisms/models/telf.js
+yes | cp -rf /notifyPlatform/_commons/models/telf.js /notifyPlatform/apis/apipns/models/telf.js
+yes | cp -rf /notifyPlatform/_commons/models/telf.js /notifyPlatform/apis/apiadmin/models/telf.js
+yes | cp -rf /notifyPlatform/_commons/models/telf.js /notifyPlatform/apis/apistatusback/models/telf.js
+yes | cp -rf /notifyPlatform/_commons/models/telf.js /notifyPlatform/batch/batchpns/models/telf.js
+yes | cp -rf /notifyPlatform/_commons/models/telf.js /notifyPlatform/batch/batchsms/models/telf.js
+yes | cp -rf /notifyPlatform/_commons/models/telf.js /notifyPlatform/collectors/pns/apple/models/telf.js
+yes | cp -rf /notifyPlatform/_commons/models/telf.js /notifyPlatform/collectors/pns/google/models/telf.js
+yes | cp -rf /notifyPlatform/_commons/models/telf.js /notifyPlatform/collectors/pns/microsoft/models/telf.js
+yes | cp -rf /notifyPlatform/_commons/models/telf.js /notifyPlatform/collectors/sms/movistar/models/telf.js
+yes | cp -rf /notifyPlatform/_commons/models/telf.js /notifyPlatform/collectors/sms/movistarvip/models/telf.js
+yes | cp -rf /notifyPlatform/_commons/models/telf.js /notifyPlatform/collectors/sms/orange/models/telf.js
+yes | cp -rf /notifyPlatform/_commons/models/telf.js /notifyPlatform/collectors/sms/vodafone/models/telf.js
+yes | cp -rf /notifyPlatform/_commons/models/telf.js /notifyPlatform/retries/retriespns/models/telf.js
+yes | cp -rf /notifyPlatform/_commons/models/telf.js /notifyPlatform/retries/retriessms/models/telf.js
+yes | cp -rf /notifyPlatform/_commons/models/telf.js  /notifyPlatform/mq/mqpns/models/telf.js
+yes | cp -rf /notifyPlatform/_commons/models/telf.js  /notifyPlatform/mq/mqsms/models/telf.js
+
 echo "copying /util/formats.js"
 yes | cp -rf /notifyPlatform/_commons/util/formats.js /notifyPlatform/apis/apisms/util/formats.js
 yes | cp -rf /notifyPlatform/_commons/util/formats.js /notifyPlatform/apis/apipns/util/formats.js

@@ -11,7 +11,7 @@ const mongoose = require('mongoose');
 
 //IMPORTANT: by default Model Validations are check when save in Mongodb, not in the creation. 
 // but you can check with validate() method
-const contractSchema = new mongoose.Schema({
+const collectorSchema = new mongoose.Schema({
     _id: {
         type: String,
         required: true,
@@ -68,6 +68,6 @@ const contractSchema = new mongoose.Schema({
     versionKey: false // You should be aware of the outcome after set to false
 });
 
-const Collector = mongoose.model('Collector', contractSchema);
+const Collector = mongoose.model('Collector', collectorSchema);
 
-module.exports = { Collector, contractSchema };
+module.exports = { Collector, collectorSchema };

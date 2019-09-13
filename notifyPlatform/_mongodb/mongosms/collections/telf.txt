@@ -1,0 +1,8 @@
+{
+    "_id" : "c2c54a06-08ca-427f-98bf-ef4d70cf5db1",
+    "telf" : "+34699272801",
+    "operator" : "MOV",        
+    "createdAt" : ISODate("2019-09-11T18:34:04.253Z"),
+    "updatedAt" : ISODate("2019-09-11T18:34:04.253Z"),
+    "__v" : 0
+}
