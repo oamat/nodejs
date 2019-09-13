@@ -7,7 +7,7 @@
  *
  * example :
  * data : { "alg": "HS256", "typ": "JWT"  }  
- * payload :  {   "sub": "1234567890",  "name": "John Doe",  "contract": "PUSHLOWEB", "iat": 2016239022 }
+ * payload :  {   "sub": "1234567890",  "name": "PUSHLOWEB",  "contract": "PUSHLOWEB", "iat": 2016239022 }
  */
 
 "use strict";

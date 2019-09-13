@@ -37,12 +37,11 @@ router.get('/pnsStatus', auth, async (req, res) => {
 
 
 
-// GET /pnsPending  # contract in body
-router.get('/pnsPending', auth, async (req, res) => {
+// GET /tokenRegister  # contract in body
+router.get('/tokenRegister', auth, async (req, res) => {
     console.log(req.body);
 
-    //TODO find sms's in redis and return them
-    //TODO return list with PNS's
+    //saveToken
     res.send({ Status: "200 OK" });
 });
 

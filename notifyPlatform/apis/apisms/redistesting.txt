@@ -7,6 +7,8 @@ HGET contractsms:OTPLOWEB operator
 HSET collectorsms:MOV operator "MOV"
 HGET collectorsms:MOV operator
 
+HSET telfsms:0034699272800 operator "VOD"
+        
 LPUSH SMS.MOV.1 '{"dispatched":false,"priority":1,"interface":"REST","retries":0,"deferred":false,"status":0,"contract":"OTPLOWEB","telf":"+34699272809","message":"you have won a gift","alias":"L.O.","_id":"6d30f444-815d-48d4-ac24-09a1ae6c0e24","receivedAt":"2019-08-12T15:25:19.642Z","operator":"MOV","channel":"SMS.MOV.1"}'
 LPUSH SMS.MOV.1 '{"dispatched":false,"priority":1,"interface":"REST","retries":0,"deferred":false,"status":0,"contract":"OTPLOWEB","telf":"+34699272809","message":"you have won a gift","alias":"L.O.","_id":"6d30f444-815d-48d4-ac24-09a1ae6c0e23","receivedAt":"2019-08-12T15:25:19.642Z","operator":"MOV","channel":"SMS.MOV.1"}'
 LLEN SMS.MOV.1

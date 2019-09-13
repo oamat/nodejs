@@ -7,6 +7,9 @@ HGET contractpns:PUSHLOWEB operator
 HSET collectorpns:GOO operator "GOO"
 HGET collectorpns:GOO operator
 
+HSET tokenpns:kRt346992-72809WA token "AADDERTTTECCDDDkk34699272809WWwwsdfdeeffffAADDERTTTECCDDDkk34699272809WWwwsdfdeeffffAADDERTTTECCDDDkk34699272809WWwwsdfdeeffff"
+HSET tokenpns:kRt346992-72809WA operator GOO
+
 LPUSH PNS.GOO.1 '{"dispatched":false,"priority":1,"interface":"REST","retries":0,"deferred":false,"status":0,"contract":"PUSHLOWEB","application":"CaixaAPP","user":"userTst","uuiddevice":"kk34699272809","action":"show","content":"content push notification","params":[{"param":"icono1","value":"new1","type":"String"},{"param":"icono2","value":"new2","type":"String"}],"_id":"848ba1b0-3ec1-442e-ad67-39d575d45f2e","receivedAt":"2019-08-19T22:05:28.162Z","operator":"GOO","channel":"PNS.GOO.1","createdAt":"2019-08-19T22:05:28.168Z","updatedAt":"2019-08-19T22:05:28.168Z","__v":0}'
 LPUSH PNS.GOO.1 '{"dispatched":false,"priority":1,"interface":"REST","retries":0,"deferred":false,"status":0,"contract":"PUSHLOWEB","application":"CaixaAPP","user":"userTst","uuiddevice":"kk34699272809","action":"show","content":"content push notification","params":[{"param":"icono1","value":"new1","type":"String"},{"param":"icono2","value":"new2","type":"String"}],"_id":"848ba1b0-3ec1-442e-ad67-39d575d45f3e","receivedAt":"2019-08-19T22:05:28.162Z","operator":"GOO","channel":"PNS.GOO.1","createdAt":"2019-08-19T22:05:28.168Z","updatedAt":"2019-08-19T22:05:28.168Z","__v":0}'
 LLEN PNS.GOO.1

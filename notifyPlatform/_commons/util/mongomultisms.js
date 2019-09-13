@@ -8,7 +8,7 @@
 "use strict";
 
 //Dependencies
-const { Sms, ContractSms } = require('../config/mongoosemulti');  // Attention : this Sms Model is model created for multi DB
+const { Sms, ContractSms, CollectorSms } = require('../config/mongoosemulti');  // Attention : this Sms Model is model created for multi DB
 
 
 //this method finds one SMS with the condition in SMS MongoDB and manage the result of this operation
@@ -113,7 +113,7 @@ const findAllCollectorSms = async (condition) => {
 //this method save SMS in MongoDB and manage the result of this operation
 const saveCollectorSms = async (collector) => {
     return new Promise((resolve, reject) => { // we need promise for managing errs and results inside callbacks
-        ccollector.save((error, result) => {
+        collector.save((error, result) => {
             try {  //I use Promises but I need to use try/catch in async callback for errors or I could use EventEmitter 
                 if (error) throw error;  //if mongoose give me an error. If we used reject the try/catch would be unnecessary  
                 else if (result) resolve(result); // everything is OK, return result
@@ -124,4 +124,22 @@ const saveCollectorSms = async (collector) => {
     //.then((result) => { return result; })  //return the result, it's unnecessary but maybe we will need put some lógic...
     //.catch((error) => { throw error; });  //throw Error exception to the main code, it's unnecessary but maybe we will need put some lógic...  A reject callback will pass through here
 }
-module.exports = { findSMS, findAllSMS, findContractSms, findAllContractSms, saveContractSms, findCollectorSms, findAllCollectorSms, saveCollectorSms }
+
+//this method update SMS personalized params in MongoDB and manage the result of this operation
+const updateCollectorSMS = async (name, toUpdate) => {
+    return new Promise((resolve, reject) => { // we need promise for managing errs and results inside callbacks
+        let options = { new: true };
+        let query = { name };
+        CollectorSms().findOneAndUpdate(query, { $set: toUpdate }, options, (error, result) => {  //property new returns the new updated document, not the original document
+            try {  //I use Promises but I need to use try/catch in async callback for errors or I could use EventEmitter 
+                if (error) throw error;  //if mongoose give me an error. If we used reject the try/catch would be unnecessary  
+                else if (result) resolve(result); // everything is OK, return result
+                else throw new Error('we have a problem when try to update SMS Collector in MongoDB. it\'s necessary check the problem before proceding.'); //If we cannot save SMS to MongoDB
+            } catch (error) { reject(error); } // In Callback we need to reject if we have Error. A reject will not pass through here
+        })
+    })
+        //.then((result) => { return result; })  //return the result, it's unnecessary but maybe we will need put some lógic...
+        //.catch((error) => { throw error; });  //throw Error exception to the main code, it's unnecessary but maybe we will need put some lógic...  A reject callback will pass through here
+}
+
+module.exports = { findSMS, findAllSMS, findContractSms, findAllContractSms, saveContractSms, findCollectorSms, findAllCollectorSms, saveCollectorSms, updateCollectorSMS }

@@ -32,7 +32,7 @@ const startCron = async (interval) => { //Start cron only when cron is stopped.
         console.log(process.env.GREEN_COLOR, logTime(new Date()) + "initializing batchPNS at " + dateFormat(new Date()) + " with interval : " + interval);
         if (cron) {
             console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "batchPNS is executing, so we don't need re-start it.");
-        } else {            
+        } else {
             cron = setInterval(function () {
                 console.log(logTime(new Date()) + "batchPNS executing ");
                 getSMSFiles();
@@ -74,7 +74,10 @@ const getSMSFiles = async () => {
                     try {
                         var pns = new Pns(pnsJSON); // convert json to object,  await it's unnecessary because is the first creation of object. Model Validations are check when save in Mongodb, not here. 
                         pns.priority = priority;
-                        
+                        pns.token = await hgetOrNull("tokenpns:" + pns.uuiddevice, "token"); //find the token for this uuiddevice PNS.
+                        pns.operator = await hgetOrNull("tokenpns:" + pns.uuiddevice, "operator"); //find the operator for this uuiddevice PNS.
+                        if (!pns.token) throw new Error(" This uuiddevice is not register, we cannot find its token neither operator.") //0:notSent, 1:Sent, 2:Confirmed, 3:Error, 4:Expired, 5:token not found (not register)
+
                         const collectorOperator = hget("collectorpns:" + pns.operator, "operator"); //this method is Async, but we can get in parallel until need it (with await).
                         if (await collectorOperator != pns.operator) pns.operator = collectorOperator;  //check if the operator have some problems
 
@@ -126,7 +129,7 @@ const getSMSFiles = async () => {
             //console.error(error); //continue the execution cron
         }
         nextExecution = true;
-    } 
+    }
 }
 
 
@@ -140,7 +143,7 @@ const nextSMS = async () => {
 }
 
 const startController = async (intervalControl) => {
-    try {        
+    try {
         console.log(process.env.GREEN_COLOR, logTime(new Date()) + "initializing cronController at " + dateFormat(new Date()) + " with intervalControl : " + intervalControl);
         hset(batchName, "last", dateFormat(new Date())); //save first execution in Redis
         var cronController = setInterval(function () {
@@ -155,7 +158,7 @@ const startController = async (intervalControl) => {
 }
 
 
-const checksController = async () => {   
+const checksController = async () => {
     await Promise.all([
         checkstatus(),
         checkInterval(),

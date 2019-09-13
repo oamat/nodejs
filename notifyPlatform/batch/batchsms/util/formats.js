@@ -73,7 +73,7 @@ const buildPNSChannels = (operator) => {
 
 const counter = ((i = 0) => () => ++i)();
 
-const descStatus = (type, status) => { //0:notSent, 1:Sent, 2:Confirmed, 3:Error, 4:Expired
+const descStatus = (type, status) => { //0:notSent, 1:Sent, 2:Confirmed, 3:Error, 4:Expired, 5: token not found(not register)
    switch (status) {
       case 0:
          return type + " not send.";
@@ -90,6 +90,15 @@ const descStatus = (type, status) => { //0:notSent, 1:Sent, 2:Confirmed, 3:Error
    }
 }
 
+const validateOperator = (type, operator) => {
+   if (type == "SMS") {
+      if (operator == "MOV" || operator == "ORA" || operator == "VIP" || operator == "VOD")
+         return true;
+   } else if (type == "PNS") {
+      if (operator == "APP" || operator == "GOO" || operator == "MIC")
+         return true;
+   }
+   return false;
+}
 
-
-module.exports = { dateFormat, logTime, buildSMSChannel, buildSMSChannels, buildPNSChannel, buildPNSChannels, counter, replaceBreaks, replaceSpacesTo1, replaceSpaces, descStatus }
+module.exports = { dateFormat, logTime, buildSMSChannel, buildSMSChannels, buildPNSChannel, buildPNSChannels, counter, replaceBreaks, replaceSpacesTo1, replaceSpaces, descStatus, validateOperator }

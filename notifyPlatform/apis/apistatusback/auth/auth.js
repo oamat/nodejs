@@ -6,7 +6,7 @@
  *    secret : pojiaj234oi234oij234oij4jgstwsnaKSDADWWssswwwwssQRT
  *
  * data : { "alg": "HS256", "typ": "JWT"  }  
- * payload :  {   "sub": "1234567890",  "name": "John Doe",  "refreq": "api_status_back_reference_request", "iat": 2016239022 }
+ * payload :  {   "sub": "1234567890",  "name": "api_status_back_reference_request",  "refreq": "api_status_back_reference_request", "iat": 2016239022 }
  */
 
 "use strict";

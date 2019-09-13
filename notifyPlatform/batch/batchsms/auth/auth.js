@@ -6,7 +6,7 @@
  *    secret : pojiaj234oi234oij234oij4jgstwsnaKSDADWWssswwwwssQRT
  *
  * data : { "alg": "HS256", "typ": "JWT"  }  
- * payload :  {   "sub": "1234567890",  "name": "John Doe",  "contract": "OTPLOWEB", "iat": 2016239022 }
+ * payload :  {   "sub": "1234567890",  "name": "OTPLOWEB",  "contract": "OTPLOWEB", "iat": 2016239022 }
  */
 
 "use strict";

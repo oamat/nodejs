@@ -10,7 +10,7 @@
 //Dependencies
 const { Sms } = require('../models/sms');
 const { rpop, lpush, sadd } = require('../util/redissms'); //we need to initialize redis
-const { hget, hset  } = require('../util/redisconf');
+const { hget, hset } = require('../util/redisconf');
 const { dateFormat, logTime, buildSMSChannel } = require('../util/formats'); // utils for formats
 const { saveSMS } = require('../util/mongosms');
 const auth = require('../auth/auth');
@@ -33,7 +33,7 @@ const startCron = async (interval) => { //Start cron only when cron is stopped.
         console.log(process.env.GREEN_COLOR, logTime(new Date()) + "initializing batchSMS at " + dateFormat(new Date()) + " with interval : " + interval);
         if (cron) {
             console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "batchSMS is executing, so we don't need re-start it.");
-        } else {          
+        } else {
             cron = setInterval(function () {
                 console.log(logTime(new Date()) + "batchSMS executing ");
                 getSMSFiles();
@@ -76,9 +76,10 @@ const getSMSFiles = async () => {
                         var sms = new Sms(smsJSON); // convert json to object,  await it's unnecessary because is the first creation of object. Model Validations are check when save in Mongodb, not here. 
                         sms.priority = priority;
                         sms.operator = await hget("contractsms:" + sms.contract, "operator"); //Operator by default by contract. we checked the param before (in auth)                         
-                        if (sms.operator == "ALL") { //If operator is ALL means that we need to find the better operator for the telf. 
-                            //TODO: find the best operator for this tef. Not implemented yet
-                            sms.operator = "MOV";
+                        sms.telf = sms.telf.replace("+", "00");
+                        if (sms.operator == "ALL") { //If operator is ALL means that we need to find the better operator for the telf.            
+                            sms.operator = await hgetOrNull("telfsms:" + sms.telf, "operator"); //find the best operator for this tef.         
+                            if (!sms.operator) sms.operator = "MOV";  //by default we use MOV
                         }
                         const collectorOperator = hget("collectorsms:" + sms.operator, "operator"); //this method is Async, but we can get in parallel until need it (with await).
                         if (await collectorOperator != sms.operator) sms.operator = collectorOperator;  //check if the operator have some problems
@@ -120,8 +121,8 @@ const getSMSFiles = async () => {
 
                 fs.rename(batchIn + filename, batchOut + filename, (err) => {
                     if (err) throw err;
-                    console.log(logTime(new Date()) + batchIn + filename + ' move to ' + batchOut+ filename +' complete!');
-                  });
+                    console.log(logTime(new Date()) + batchIn + filename + ' move to ' + batchOut + filename + ' complete!');
+                });
 
             });
         } catch (error) {
@@ -143,7 +144,7 @@ const nextSMS = async () => {
 }
 
 const startController = async (intervalControl) => {
-    try {    
+    try {
         console.log(process.env.GREEN_COLOR, logTime(new Date()) + "initializing cronController at " + dateFormat(new Date()) + " with intervalControl : " + intervalControl);
         hset(batchName, "last", dateFormat(new Date())); //save first execution in Redis
         var cronController = setInterval(function () {
@@ -206,7 +207,7 @@ const checkInterval = async () => { //check rate/s, and change cron rate
 }
 
 const initCron = async () => {
-    try {        
+    try {
         await Promise.all([
             hget(batchName, "interval"),
             hget(batchName, "intervalControl"),

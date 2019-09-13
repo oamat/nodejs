@@ -12,7 +12,8 @@ const auth = require('../auth/auth');
 const redisconf = require('../util/redisconf');
 const redissms = require('../util/redissms');
 const redispns = require('../util/redispns');
-const { dateFormat, logTime, buildSMSChannels, buildPNSChannels } = require('../util/formats');
+const { dateFormat, logTime, buildSMSChannels, buildPNSChannels, validateOperator } = require('../util/formats');
+const { updateCollectorSMS } = require('../util/mongomultisms');
 
 //VARS
 const router = new express.Router();
@@ -272,20 +273,76 @@ router.get('/serviceStatus', auth, async (req, res) => {
     }
 });
 
-// GET //serviceStatus  # contract in body
-router.get('/contingencyActivate', auth, async (req, res) => {
+// PATCH //operatorContingency  # contract in body
+router.patch('/operatorContingency', auth, async (req, res) => {
     try {
-        //ContingencyActivate
+        if (!req.body.name || !req.body.operator) throw new Error("you need params name & operator in your /operatorContingency request body.");
+        if (!validateOperator("SMS", req.body.operator)) throw new Error("Operator is invalid, it must be one of this options: 'MOV', 'VIP', 'ORA' or 'VOD'.");
+        if (!validateOperator("SMS", req.body.name)) throw new Error("Name is invalid, it must be one of this options: 'MOV', 'VIP', 'ORA' or 'VOD'.");
+
+        let toUpdate = { operator: req.body.operator };
+        // Execute in Parallel 2 tasks, before response we need to do all tasks for this reason we put await.
+        await Promise.all([
+            updateCollectorSMS(req.body.name, toUpdate), // update Collector SMS in MongoDB
+            redisconf.hset("collectorsms:" + req.body.name, "operator", req.body.operator)
+        ]);
+        // END Execute in Parallel 2 tasks, before response we need to do all tasks for this reason we put await.
+
+        let info = " Contingency: The Collector SMS " + req.body.name + " has been change Operator for " + req.body.operator + ".";
+        res.send({
+            Status: "200 OK",
+            info,
+            name: req.body.name,
+            operator: req.body.operator
+        });
+
+        console.log(process.env.GREEN_COLOR, logTime(new Date()) + info);
+
     } catch (error) {
         requestError(error, req, res);
     }
 });
 
-//contingencyAllContracts (all with one operator to other or turnback to defaultOperator)
+// PATCH //changeCollector  # contract in body
+router.patch('/changeCollector', auth, async (req, res) => {
+    try {
+        if (!req.body.name || !req.body.interval || !req.body.intervalControl || !req.body.status) throw new Error("you need params name, status, interval & intervalControl in your /changeCollector request body.");
+        if (!validateOperator("SMS", req.body.name) && !validateOperator("PNS", req.body.name)) throw new Error("Name is invalid, it must be one of this options for SMS: 'MOV', 'VIP', 'ORA' or 'VOD'. Or for PNS: 'APP', 'GOO' or 'MIC'");
+        if (!Number.isInteger(req.body.interval) || !Number.isInteger(req.body.status) || !Number.isInteger(req.body.intervalControl)) throw new Error("Params status, interval and intervalControl must be a Number (Integer)");
 
-//changeCollector cron: Interval, status, operator//contingencyAllContracts (all with one operator to other or turnback to defaultOperator)
+        let toUpdate = {
+            status: req.body.status,
+            interval: req.body.interval,
+            intervalControl: req.body.intervalControl
+        };
+        // Execute in Parallel 2 tasks, before response we need to do all tasks for this reason we put await.
+        await Promise.all([
+            updateCollectorSMS(req.body.name, toUpdate), // update Collector SMS in MongoDB
+            redisconf.hmset(["collectorsms:" + req.body.name,
+                "status", req.body.status,
+                "interval", req.body.interval,
+                "intervalControl", req.body.intervalControl
+            ])
+        ]);
 
-//changeCollector cron: Interval, status, operator
+
+
+        // END Execute in Parallel 2 tasks, before response we need to do all tasks for this reason we put await.
+
+        let info = " Contingency: The Collector SMS " + req.body.name + " has been change configuration for status:"+ req.body.status + ", interval:" + req.body.interval +", intervalControl:"+req.body.intervalControl+ " .";
+        res.send({
+            Status: "200 OK",
+            info,
+            name: req.body.name,
+            operator: req.body.operator
+        });
+
+        console.log(process.env.GREEN_COLOR, logTime(new Date()) + info);
+
+    } catch (error) {
+        requestError(error, req, res);
+    }
+});
 
 
 // GET /smsStatus   # uuid in body or telf and dates in body, and contract or all
@@ -348,7 +405,7 @@ router.get('/loadRedis', auth, async (req, res) => {
 
 
         //Collectors Movistar
-        redisconf.hset(["collectorsms:MOV",
+        redisconf.hmset(["collectorsms:MOV",
             "status", "1",
             "interval", "2000",
             "intervalControl", "30000",
@@ -356,7 +413,7 @@ router.get('/loadRedis', auth, async (req, res) => {
         ]);
 
         //Collectors MovistarVIP
-        redisconf.hset(["collectorsms:VIP",
+        redisconf.hmset(["collectorsms:VIP",
             "status", "1",
             "interval", "2000",
             "intervalControl", "30000",
@@ -364,7 +421,7 @@ router.get('/loadRedis', auth, async (req, res) => {
         ]);
 
         //Collectors ORANGE
-        redisconf.hset(["collectorsms:ORA",
+        redisconf.hmset(["collectorsms:ORA",
             "status", "1",
             "interval", "2000",
             "intervalControl", "30000",
@@ -372,7 +429,7 @@ router.get('/loadRedis', auth, async (req, res) => {
         ]);
 
         //Collectors VODAFONE
-        redisconf.hset(["collectorsms:VOD",
+        redisconf.hmset(["collectorsms:VOD",
             "status", "1",
             "interval", "2000",
             "intervalControl", "30000",
@@ -386,8 +443,8 @@ router.get('/loadRedis', auth, async (req, res) => {
         ]);
 
         //SMS telf
-        redisconf.hmset(["telfsms"
-            ,"+34699272800", "VOD"
+        redisconf.hmset(["telfsms:0034699272800",
+            "operator", "VOD"
         ]);
 
         res.send({ Status: "200 OK" });

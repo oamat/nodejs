@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "18c44d75-c2c3-415c-9882-f84b53bb58c0",
+		"_postman_id": "18410657-e128-4853-87cb-3e36de0d61ba",
 		"name": "notifyAPI",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -18,7 +18,7 @@
 					},
 					{
 						"key": "x-api-key",
-						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiY29udHJhY3QiOiJPVFBMT1dFQiIsImlhdCI6MjAxNjIzOTAyMn0.RSLawzTU4yX-XwnEZtvWipIBOTOji9LKbkuM391zjss",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6Ik9UUExPV0VCIiwiY29udHJhY3QiOiJPVFBMT1dFQiIsImlhdCI6MjAxNjIzOTAyMn0.BK58iwYbyfGb1u--SLP3YZP7JZxKSMrPHmdc-gfH4t4",
 						"type": "text"
 					}
 				],
@@ -54,12 +54,12 @@
 					{
 						"key": "x-api-key",
 						"type": "text",
-						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiY29udHJhY3QiOiJQVVNITE9XRUIiLCJpYXQiOjIwMTYyMzkwMjJ9.2HM9zm5cqGF0KBEqlYamatnZzi4vMUTdhHhhH4S2ySo"
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IlBVU0hMT1dFQiIsImNvbnRyYWN0IjoiUFVTSExPV0VCIiwiaWF0IjoyMDE2MjM5MDIyfQ.liOxBh3kFQyjYrIyhg2Uu3COoV83ruUsyLniWEJ8Apw"
 					}
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t \"contract\" : \"PUSHLOWEB\",\n\t \"application\" : \"CaixaAPP\",\n\t \"user\" : \"userTst\",\n\t \"uuiddevice\" : \"kk34699272809\",\n\t \"action\" : \"show\",\n\t \"content\" : \"content push notification\",\n\t \"params\" : [\n\t \t{ \"param\" : \"icono1\", \"value\" : \"new1\", \"type\" : \"String\"},\n\t \t{ \"param\" : \"icono2\", \"value\" : \"new2\", \"type\" : \"String\"}\n\t \t]\n}"
+					"raw": "{\n\t \"contract\" : \"PUSHLOWEB\",\n\t \"application\" : \"CaixaAPP\",\n\t \"user\" : \"userTst\",\n\t \"uuiddevice\" : \"kRt346992-72809WA\",\n\t \"action\" : \"show\",\n\t \"content\" : \"content push notification\",\n\t \"params\" : [\n\t \t{ \"param\" : \"icono1\", \"value\" : \"new1\", \"type\" : \"String\"},\n\t \t{ \"param\" : \"icono2\", \"value\" : \"new2\", \"type\" : \"String\"}\n\t \t]\n}"
 				},
 				"url": {
 					"raw": "http://localhost:30002/pnsSend",
@@ -294,6 +294,75 @@
 					"path": [
 						"addPnsContract"
 					]
+				},
+				"description": "/loadRedis"
+			},
+			"response": []
+		},
+		{
+			"name": "apiadmin/operatorContingency",
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "x-api-key",
+						"type": "text",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkFETUlOIiwiY29udHJhY3QiOiJBRE1JTiIsImlhdCI6MjAxNjIzOTAyMn0.vwBNTaBbW40v14Iiqd65uhv4FVQi4qn4ZH50VyQ00rg"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"contract\" : \"ADMIN\",\n\t\"name\" : \"MOV\",\n    \"operator\" : \"ORA\"\n\n}"
+				},
+				"url": {
+					"raw": "http://localhost:30003/operatorContingency",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "30003",
+					"path": [
+						"operatorContingency"
+					]
+				},
+				"description": "/loadRedis"
+			},
+			"response": []
+		},
+		{
+			"name": "apiadmin/changeCollector",
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "x-api-key",
+						"type": "text",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkFETUlOIiwiY29udHJhY3QiOiJBRE1JTiIsImlhdCI6MjAxNjIzOTAyMn0.vwBNTaBbW40v14Iiqd65uhv4FVQi4qn4ZH50VyQ00rg"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"contract\" : \"ADMIN\",\n\t\"name\" : \"MOV\",\n    \"operator\" : \"ORA\"\n\n}"
+				},
+				"url": {
+					"raw": "http://localhost:30003changeCollector",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "30003changeCollector"
 				},
 				"description": "/loadRedis"
 			},
