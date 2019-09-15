@@ -419,3 +419,21 @@ yes | cp -rf /notifyPlatform/_commons/util/redisconf.js  /notifyPlatform/mq/mqpn
 yes | cp -rf /notifyPlatform/_commons/util/redisconf.js  /notifyPlatform/mq/mqsms/util/redisconf.js
 
 
+echo "copying /util/redisdataload.js"
+yes | cp -rf /notifyPlatform/_commons/util/redisdataload.js /notifyPlatform/apis/apisms/util/redisdataload.js
+yes | cp -rf /notifyPlatform/_commons/util/redisdataload.js /notifyPlatform/apis/apipns/util/redisdataload.js
+yes | cp -rf /notifyPlatform/_commons/util/redisdataload.js /notifyPlatform/apis/apiadmin/util/redisdataload.js
+yes | cp -rf /notifyPlatform/_commons/util/redisdataload.js /notifyPlatform/apis/apistatusback/util/redisdataload.js
+yes | cp -rf /notifyPlatform/_commons/util/redisdataload.js /notifyPlatform/batch/batchpns/util/redisdataload.js
+yes | cp -rf /notifyPlatform/_commons/util/redisdataload.js /notifyPlatform/batch/batchsms/util/redisdataload.js
+yes | cp -rf /notifyPlatform/_commons/util/redisdataload.js /notifyPlatform/collectors/pns/apple/util/redisdataload.js
+yes | cp -rf /notifyPlatform/_commons/util/redisdataload.js /notifyPlatform/collectors/pns/google/util/redisdataload.js
+yes | cp -rf /notifyPlatform/_commons/util/redisdataload.js /notifyPlatform/collectors/pns/microsoft/util/redisdataload.js
+yes | cp -rf /notifyPlatform/_commons/util/redisdataload.js /notifyPlatform/collectors/sms/movistar/util/redisdataload.js
+yes | cp -rf /notifyPlatform/_commons/util/redisdataload.js /notifyPlatform/collectors/sms/movistarvip/util/redisdataload.js
+yes | cp -rf /notifyPlatform/_commons/util/redisdataload.js /notifyPlatform/collectors/sms/orange/util/redisdataload.js
+yes | cp -rf /notifyPlatform/_commons/util/redisdataload.js /notifyPlatform/collectors/sms/vodafone/util/redisdataload.js
+yes | cp -rf /notifyPlatform/_commons/util/redisdataload.js /notifyPlatform/retries/retriespns/util/redisdataload.js
+yes | cp -rf /notifyPlatform/_commons/util/redisdataload.js /notifyPlatform/retries/retriessms/util/redisdataload.js
+yes | cp -rf /notifyPlatform/_commons/util/redisdataload.js  /notifyPlatform/mq/mqpns/util/redisdataload.js
+yes | cp -rf /notifyPlatform/_commons/util/redisdataload.js  /notifyPlatform/mq/mqsms/util/redisdataload.js

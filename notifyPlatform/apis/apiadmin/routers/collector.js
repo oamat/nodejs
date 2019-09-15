@@ -18,6 +18,8 @@ const redispns = require('../util/redispns');
 const { dateFormat, logTime, buildSMSChannels, buildPNSChannels, validateOperator } = require('../util/formats');
 const { updateCollectorSms } = require('../util/mongomultisms');
 const { updateCollectorPns } = require('../util/mongomultipns');
+const { loadRedisConf } = require('../util/redisdataload');
+
 
 //VARS
 const router = new express.Router();
@@ -379,105 +381,9 @@ router.patch('/changeCollector', auth, async (req, res) => {
 router.get('/loadRedis', auth, async (req, res) => {
     try {
 
+        loadRedisConf();
 
-        //APIADMIN
-        redisconf.hset("contractadmin:ADMIN", "jwt", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkFETUlOIiwiY29udHJhY3QiOiJBRE1JTiIsImlhdCI6MjAxNjIzOTAyMn0.vwBNTaBbW40v14Iiqd65uhv4FVQi4qn4ZH50VyQ00rg");
-
-        //APIPNS Contracts
-        redisconf.hmset(["contractpns:PUSHLOWEB",
-            "jwt", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IlBVU0hMT1dFQiIsImNvbnRyYWN0IjoiUFVTSExPV0VCIiwiaWF0IjoyMDE2MjM5MDIyfQ.liOxBh3kFQyjYrIyhg2Uu3COoV83ruUsyLniWEJ8Apw",
-            "operator", "ALL"
-        ]);
-
-        //APISMS Contracts
-        redisconf.hmset(["contractsms:OTPLOWEB",
-            "jwt", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6Ik9UUExPV0VCIiwiY29udHJhY3QiOiJPVFBMT1dFQiIsImlhdCI6MjAxNjIzOTAyMn0.BK58iwYbyfGb1u--SLP3YZP7JZxKSMrPHmdc-gfH4t4",
-            "operator", "ALL"
-        ]);
-
-        //batchSMS
-        redisconf.hmset(["collectorsms:batchSMS",
-            "status", "1",
-            "interval", "2000",
-            "intervalControl", "30000"
-        ]);
-
-        //batchPNSs
-        redisconf.hmset(["collectorsms:batchPNS",
-            "status", "1",
-            "interval", "2000",
-            "intervalControl", "30000"
-        ]);
-
-        //Collectors Apple
-        redisconf.hmset(["collectorpns:APP",
-            "status", "1",
-            "interval", "2000",
-            "intervalControl", "30000",
-            "operator", "APP"
-        ]);
-
-        //Collectors Android
-        redisconf.hmset(["collectorpns:GOO",
-            "status", "1",
-            "interval", "2000",
-            "intervalControl", "30000",
-            "operator", "GOO"
-        ]);
-
-        //Collectors Microsoft
-        redisconf.hmset(["collectorpns:MIC",
-            "status", "1",
-            "interval", "2000",
-            "intervalControl", "30000",
-            "operator", "MIC"
-        ]);
-
-
-        //Collectors Movistar
-        redisconf.hmset(["collectorsms:MOV",
-            "status", "1",
-            "interval", "2000",
-            "intervalControl", "30000",
-            "operator", "MOV"
-        ]);
-
-        //Collectors MovistarVIP
-        redisconf.hmset(["collectorsms:VIP",
-            "status", "1",
-            "interval", "2000",
-            "intervalControl", "30000",
-            "operator", "VIP"
-        ]);
-
-        //Collectors ORANGE
-        redisconf.hmset(["collectorsms:ORA",
-            "status", "1",
-            "interval", "2000",
-            "intervalControl", "30000",
-            "operator", "ORA"
-        ]);
-
-        //Collectors VODAFONE
-        redisconf.hmset(["collectorsms:VOD",
-            "status", "1",
-            "interval", "2000",
-            "intervalControl", "30000",
-            "operator", "VOD"
-        ]);
-
-        //PNS token
-        redisconf.hmset(["tokenpnsCaixaAPP:kRt346992-72809WA",
-            "token", "AADDERTTTECCDDDkk34699272809WWwwsdfdeeffffAADDERTTTECCDDDkk34699272809WWwwsdfdeeffffAADDERTTTECCDDDkk34699272809WWwwsdfdeeffff",
-            "operator", "GOO"
-        ]);
-
-        //SMS telf
-        redisconf.hmset(["telfsms:0034699272800",
-            "operator", "VOD"
-        ]);
-
-        res.send({ Status: "200 OK" });
+        res.send({ Status: "200 OK", info: "Loading all Data in RedisConf..." });
     } catch (error) {
         //TODO personalize errors 400 or 500. 
         requestError(error, req, res);
