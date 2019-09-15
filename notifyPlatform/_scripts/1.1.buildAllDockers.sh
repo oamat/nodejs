@@ -51,3 +51,7 @@ cd /notifyPlatform/retries/retriessms
 docker build -t retriessms .
 
 cd /notifyPlatform/_scripts/
+
+echo ""
+echo ""
+echo "# Docker images have been created."

@@ -18,7 +18,9 @@ services:
      kompose.image-pull-policy: Never # labels for kompose convert to kubernetes 
     links:
       - redispns
+      - redisconf
       - mongopns
     depends_on:
       - redispns
+      - redisconf
       - mongopns

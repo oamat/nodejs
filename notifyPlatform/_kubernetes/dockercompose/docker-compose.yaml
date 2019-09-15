@@ -19,9 +19,11 @@ services:
      kompose.image-pull-policy: Never # labels for kompose convert to kubernetes
     links:
       - redispns
+      - redisconf
       - mongopns
     depends_on:
       - redispns
+      - redisconf
       - mongopns
   
 
@@ -41,9 +43,11 @@ services:
      kompose.image-pull-policy: Never # labels for kompose convert to kubernetes
     links:
       - redispns
+      - redisconf
       - mongopns
     depends_on:
       - redispns
+      - redisconf
       - mongopns
 
 
@@ -63,9 +67,11 @@ services:
      kompose.image-pull-policy: Never # labels for kompose convert to kubernetes
     links:
       - redispns
+      - redisconf
       - mongopns
     depends_on:
       - redispns
+      - redisconf
       - mongopns      
 
 
@@ -85,9 +91,11 @@ services:
      kompose.image-pull-policy: Never # labels for kompose convert to kubernetes
     links:
       - redissms
+      - redisconf
       - mongosms
     depends_on:
       - redissms
+      - redisconf
       - mongosms
 
 
@@ -107,9 +115,11 @@ services:
      kompose.image-pull-policy: Never # labels for kompose convert to kubernetes
     links:
       - redissms
+      - redisconf
       - mongosms
     depends_on:
       - redissms
+      - redisconf
       - mongosms
 
 
@@ -129,9 +139,11 @@ services:
      kompose.image-pull-policy: Never # labels for kompose convert to kubernetes
     links:
       - redissms
+      - redisconf
       - mongosms
     depends_on:
       - redissms
+      - redisconf
       - mongosms  
 
 
@@ -151,9 +163,11 @@ services:
      kompose.image-pull-policy: Never # labels for kompose convert to kubernetes
     links:
       - redissms
+      - redisconf
       - mongosms
     depends_on:
       - redissms
+      - redisconf
       - mongosms
 
 
@@ -173,9 +187,11 @@ services:
      kompose.image-pull-policy: Never # labels for kompose convert to kubernetes
     links:
       - redissms
+      - redisconf
       - mongosms
     depends_on:
       - redissms
+      - redisconf
       - mongosms
 
 
@@ -195,9 +211,11 @@ services:
      kompose.image-pull-policy: Never # labels for kompose convert to kubernetes
     links:
       - redispns
+      - redisconf
       - mongopns
     depends_on:
       - redispns
+      - redisconf
       - mongopns
 
 
@@ -219,10 +237,16 @@ services:
      kompose.image-pull-policy: Never # labels for kompose convert to kubernetes
     links:
       - redispns
+      - redisconf
+      - redissms
       - mongopns
+      - mongosms
     depends_on:
       - redispns
+      - redisconf
+      - redissms
       - mongopns
+      - mongosms
 
 
 
@@ -243,9 +267,11 @@ services:
      kompose.image-pull-policy: Never # labels for kompose convert to kubernetes
     links:
       - redissms
+      - redisconf
       - mongosms
     depends_on:
       - redissms
+      - redisconf
       - mongosms
 
 
@@ -267,9 +293,11 @@ services:
      kompose.image-pull-policy: Never # labels for kompose convert to kubernetes
     links:
       - redispns
+      - redisconf
       - mongopns
     depends_on:
       - redispns
+      - redisconf
       - mongopns
   
 
@@ -291,9 +319,11 @@ services:
      kompose.image-pull-policy: Never # labels for kompose convert to kubernetes
     links:
       - redissms
+      - redisconf
       - mongosms
     depends_on:
       - redissms
+      - redisconf
       - mongosms
 
 
@@ -315,9 +345,11 @@ services:
      kompose.image-pull-policy: Never # labels for kompose convert to kubernetes
     links:
       - redissms
+      - redisconf
       - mongosms
     depends_on:
       - redissms
+      - redisconf
       - mongosms
 
 
@@ -339,9 +371,11 @@ services:
      kompose.image-pull-policy: Never # labels for kompose convert to kubernetes 
     links:
       - redispns
+      - redisconf
       - mongopns
     depends_on:
       - redispns
+      - redisconf
       - mongopns
 
 
@@ -399,6 +433,7 @@ services:
     labels:
      kompose.service.type: NodePort # labels for kompose convert to kubernetes
      kompose.image-pull-policy: Never # labels for kompose convert to kubernetes
+
 
 
 

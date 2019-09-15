@@ -3,8 +3,8 @@ kind: Deployment
 metadata:
   annotations:
     kompose.cmd: kompose convert
-     kompose.image-pull-policy: Never # labels for kompose convert to kubernetes
-   kompose.service.type: NodePort # labels for kompose convert to kubernetes
+    kompose.image-pull-policy: Never
+    kompose.service.type: NodePort
     kompose.version: 1.18.0 (06a2e56)
   creationTimestamp: null
   labels:
@@ -22,7 +22,7 @@ spec:
       containers:
       - env:
         - name: NODE_ENV
-          value: docker
+          value: kubernetes
         image: movistar
         imagePullPolicy: Never
         name: movistar

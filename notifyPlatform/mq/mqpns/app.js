@@ -19,7 +19,7 @@ require('./config/redisconf'); //we need to initialize redis
 const Pns = require('./models/pns');
 const { savePNS } = require('./util/mongopns');
 const { lpush, sadd } = require('./util/redispns');
-const { hget } = require('../util/redisconf');
+const { hget } = require('./util/redisconf');
 const { dateFormat, logTime, buildPNSChannel } = require('./util/formats');
 const auth = require('./auth/auth');
 

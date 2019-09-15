@@ -27,6 +27,8 @@ kubectl create -f vodafone-deployment.yaml
 
 cd /notifyPlatform/_scripts/
 
-
-echo " *** INFO : you can write 'curl [IP NodePort]:80' "
-echo " *** INFO :  OR you can write 'curl [IP Kubernetes Master]:30002' , (usually 10.0.2.15)"
+echo ""
+echo ""
+echo "# Kubernetes deployments&Services have been started."
+echo  "You can use 'kubectl get all' or  'kubectl logs deployment.apps/[name]'"
+echo " OR you can write 'curl [IP Kubernetes Master or NodePort]:[port]' , (usually 10.0.2.15 in Linux)"

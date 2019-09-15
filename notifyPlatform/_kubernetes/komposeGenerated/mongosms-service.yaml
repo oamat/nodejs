@@ -3,8 +3,8 @@ kind: Service
 metadata:
   annotations:
     kompose.cmd: kompose convert
-     kompose.image-pull-policy: Never # labels for kompose convert to kubernetes
-   kompose.service.type: NodePort # labels for kompose convert to kubernetes
+    kompose.image-pull-policy: Never
+    kompose.service.type: NodePort
     kompose.version: 1.18.0 (06a2e56)
   creationTimestamp: null
   labels:
@@ -14,7 +14,7 @@ spec:
   ports:
   - name: "30090"
     port: 30090
-    targetPort: 30090
+    nodePort: 30090
   selector:
     io.kompose.service: mongosms
   type: NodePort

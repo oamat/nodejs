@@ -3,13 +3,13 @@ kind: Deployment
 metadata:
   annotations:
     kompose.cmd: kompose convert
-     kompose.image-pull-policy: Never # labels for kompose convert to kubernetes
-   kompose.service.type: NodePort # labels for kompose convert to kubernetes
+    kompose.image-pull-policy: Never
+    kompose.service.type: NodePort
     kompose.version: 1.18.0 (06a2e56)
   creationTimestamp: null
   labels:
-    io.kompose.service: apistatusback
-  name: apistatusback
+    io.kompose.service: redisconf
+  name: redisconf
 spec:
   replicas: 1
   strategy: {}
@@ -17,17 +17,17 @@ spec:
     metadata:
       creationTimestamp: null
       labels:
-        io.kompose.service: apistatusback
+        io.kompose.service: redisconf
     spec:
       containers:
       - env:
         - name: NODE_ENV
-          value: docker
-        image: apistatusback
+          value: kubernetes
+        image: redisconf
         imagePullPolicy: Never
-        name: apistatusback
+        name: redisconf
         ports:
-        - containerPort: 30004
+        - containerPort: 30082
         resources: {}
       restartPolicy: Always
 status: {}

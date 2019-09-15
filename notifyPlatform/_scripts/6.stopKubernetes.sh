@@ -31,3 +31,7 @@ kubectl delete -f redisconf-deployment.yaml -f redisconf-service.yaml
 kubectl delete pods --all --grace-period=0 --force   
 
 cd /notifyPlatform/_scripts/
+
+echo ""
+echo ""
+echo "# Kubernetes deployments&Services have been stopped."

@@ -85,3 +85,7 @@ npm -v
 kubectl version
 minikube version
 
+echo ""
+echo ""
+echo "# All dependencies have been installeds."
+

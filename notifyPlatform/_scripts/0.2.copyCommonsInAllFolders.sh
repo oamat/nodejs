@@ -437,3 +437,7 @@ yes | cp -rf /notifyPlatform/_commons/util/redisdataload.js /notifyPlatform/retr
 yes | cp -rf /notifyPlatform/_commons/util/redisdataload.js /notifyPlatform/retries/retriessms/util/redisdataload.js
 yes | cp -rf /notifyPlatform/_commons/util/redisdataload.js  /notifyPlatform/mq/mqpns/util/redisdataload.js
 yes | cp -rf /notifyPlatform/_commons/util/redisdataload.js  /notifyPlatform/mq/mqsms/util/redisdataload.js
+
+echo ""
+echo ""
+echo "# We copied all files."
