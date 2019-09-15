@@ -15,6 +15,6 @@ kubectl get all
 echo ""
 echo ""
 echo "# Kubernetes deployments&Services of MongoDB and Redis have been started."
-echo  "You can use 'kubectl get all' or  'kubectl logs [pod or service name]'"
+echo  "You can use 'kubectl get all' or  'kubectl logs deployment.apps/[name]'"
 echo " OR you can write 'curl [IP Kubernetes Master or NodePort]:[port]' , (usually 10.0.2.15 in Linux)"
 echo "# ****ATTENTION: wait 20s... before start the rest of Kubernetes files. "
