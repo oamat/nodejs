@@ -68,7 +68,7 @@ const sendNextSMS = async () => {
             sms.dispatchedAt = new Date();
             sms.retries++;
             let notExpired = true;
-            if ((sms.expire) && (new Date().getMilliseconds() > sms.expire)) { // treat the expired SMS
+            if ((sms.expire) && (Date.now() > sms.expire)) { // treat the expired SMS
                 notExpired = false;
                 sms.expired = true;
                 sms.status = 4;

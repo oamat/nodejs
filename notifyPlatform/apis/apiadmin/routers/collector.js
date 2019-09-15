@@ -1,6 +1,9 @@
 /*
- * API REST for manage contracts
- *
+ * API REST for manage collectors
+ *      /pendingNotifications : shows notifications not sent in redis list
+ *      /serviceStatus : return the interval and status of collectors
+ *      /operatorContingency : change operator in a collector
+ *      /changeCollector : change conf like rate and status in collectors
  */
 
 "use strict";
@@ -13,7 +16,8 @@ const redisconf = require('../util/redisconf');
 const redissms = require('../util/redissms');
 const redispns = require('../util/redispns');
 const { dateFormat, logTime, buildSMSChannels, buildPNSChannels, validateOperator } = require('../util/formats');
-const { updateCollectorSMS } = require('../util/mongomultisms');
+const { updateCollectorSms } = require('../util/mongomultisms');
+const { updateCollectorPns } = require('../util/mongomultipns');
 
 //VARS
 const router = new express.Router();
@@ -25,7 +29,7 @@ const channelsAPP = buildPNSChannels("APP");
 const channelsGOO = buildPNSChannels("GOO");
 const channelsMIC = buildPNSChannels("MIC");
 
-// GET /pendingNotifications  # contract in body
+// GET /pendingNotifications   # contract in body for Auth
 router.get('/pendingNotifications', auth, async (req, res) => {
     try {
         // START 42 "tasks" in parallel. we put await because we need all results before construct the json   
@@ -146,19 +150,19 @@ router.get('/pendingNotifications', auth, async (req, res) => {
     }
 });
 
-// GET //serviceStatus  # contract in body
+// GET //serviceStatus   # contract in body for Auth
 router.get('/serviceStatus', auth, async (req, res) => {
     try {
         // START 43 "tasks" in parallel. we put await because we need all results before construct the json   
         await Promise.all([
-            redisconf.hgetOrNull("batch:SMS", "status"),
-            redisconf.hgetOrNull("batch:SMS", "interval"),
-            redisconf.hgetOrNull("batch:SMS", "intervalControl"),
-            redisconf.hgetOrNull("batch:SMS", "last"),
-            redisconf.hgetOrNull("batch:PNS", "status"),
-            redisconf.hgetOrNull("batch:PNS", "interval"),
-            redisconf.hgetOrNull("batch:PNS", "intervalControl"),
-            redisconf.hgetOrNull("batch:PNS", "last"),
+            redisconf.hgetOrNull("collectorsms:batchSMS", "status"),
+            redisconf.hgetOrNull("collectorsms:batchSMS", "interval"),
+            redisconf.hgetOrNull("collectorsms:batchSMS", "intervalControl"),
+            redisconf.hgetOrNull("collectorsms:batchSMS", "last"),
+            redisconf.hgetOrNull("collectorsms:batchPNS", "status"),
+            redisconf.hgetOrNull("collectorsms:batchPNS", "interval"),
+            redisconf.hgetOrNull("collectorsms:batchPNS", "intervalControl"),
+            redisconf.hgetOrNull("collectorsms:batchPNS", "last"),
             //PNS CollectorStatus
             redisconf.hgetOrNull("collectorpns:APP", "status"),
             redisconf.hgetOrNull("collectorpns:APP", "interval"),
@@ -273,7 +277,7 @@ router.get('/serviceStatus', auth, async (req, res) => {
     }
 });
 
-// PATCH //operatorContingency  # contract in body
+// PATCH //operatorContingency   # contract in body for Auth
 router.patch('/operatorContingency', auth, async (req, res) => {
     try {
         if (!req.body.name || !req.body.operator) throw new Error("you need params name & operator in your /operatorContingency request body.");
@@ -283,7 +287,7 @@ router.patch('/operatorContingency', auth, async (req, res) => {
         let toUpdate = { operator: req.body.operator };
         // Execute in Parallel 2 tasks, before response we need to do all tasks for this reason we put await.
         await Promise.all([
-            updateCollectorSMS(req.body.name, toUpdate), // update Collector SMS in MongoDB
+            updateCollectorSms(req.body.name, toUpdate), // update Collector SMS in MongoDB
             redisconf.hset("collectorsms:" + req.body.name, "operator", req.body.operator)
         ]);
         // END Execute in Parallel 2 tasks, before response we need to do all tasks for this reason we put await.
@@ -303,11 +307,13 @@ router.patch('/operatorContingency', auth, async (req, res) => {
     }
 });
 
-// PATCH //changeCollector  # contract in body
+// PATCH //changeCollector   # contract in body for Auth
 router.patch('/changeCollector', auth, async (req, res) => {
     try {
         if (!req.body.name || !req.body.interval || !req.body.intervalControl || !req.body.status) throw new Error("you need params name, status, interval & intervalControl in your /changeCollector request body.");
-        if (!validateOperator("SMS", req.body.name) && !validateOperator("PNS", req.body.name)) throw new Error("Name is invalid, it must be one of this options for SMS: 'MOV', 'VIP', 'ORA' or 'VOD'. Or for PNS: 'APP', 'GOO' or 'MIC'");
+        let SMSrequest = validateOperator("SMS", req.body.name);
+        let PNSrequest = validateOperator("PNS", req.body.name);
+        if (!SMSrequest && !PNSrequest) throw new Error("Name is invalid, it must be one of this options for SMS: 'MOV', 'VIP', 'ORA' or 'VOD'. Or for PNS: 'APP', 'GOO' or 'MIC'");
         if (!Number.isInteger(req.body.interval) || !Number.isInteger(req.body.status) || !Number.isInteger(req.body.intervalControl)) throw new Error("Params status, interval and intervalControl must be a Number (Integer)");
 
         let toUpdate = {
@@ -315,29 +321,53 @@ router.patch('/changeCollector', auth, async (req, res) => {
             interval: req.body.interval,
             intervalControl: req.body.intervalControl
         };
-        // Execute in Parallel 2 tasks, before response we need to do all tasks for this reason we put await.
-        await Promise.all([
-            updateCollectorSMS(req.body.name, toUpdate), // update Collector SMS in MongoDB
-            redisconf.hmset(["collectorsms:" + req.body.name,
-                "status", req.body.status,
-                "interval", req.body.interval,
-                "intervalControl", req.body.intervalControl
-            ])
-        ]);
+        
+        if (SMSrequest) {
+            // Execute in Parallel 2 tasks, before response we need to do all tasks for this reason we put await.
+            await Promise.all([
+                updateCollectorSms(req.body.name, toUpdate), // update Collector SMS in MongoDB
+                redisconf.hmset(["collectorsms:" + req.body.name,
+                    "status", req.body.status,
+                    "interval", req.body.interval,
+                    "intervalControl", req.body.intervalControl
+                ])
+            ]);
+            // END Execute in Parallel 2 tasks, before response we need to do all tasks for this reason we put await.
+
+            let info = " Contingency: The Collector PNS " + req.body.name + " has been change configuration for status:" + req.body.status + ", interval:" + req.body.interval + ", intervalControl:" + req.body.intervalControl + " .";
+            res.send({
+                Status: "200 OK",
+                info,
+                name: req.body.name,
+                operator: req.body.operator
+            });
+            console.log(process.env.GREEN_COLOR, logTime(new Date()) + info);
+        } else {
+            // Execute in Parallel 2 tasks, before response we need to do all tasks for this reason we put await.
+            await Promise.all([
+                updateCollectorPns(req.body.name, toUpdate), // update Collector SMS in MongoDB
+                redisconf.hmset(["collectorpns:" + req.body.name,
+                    "status", req.body.status,
+                    "interval", req.body.interval,
+                    "intervalControl", req.body.intervalControl
+                ])
+            ]);
+            // END Execute in Parallel 2 tasks, before response we need to do all tasks for this reason we put await.
+
+            let info = " Contingency: The Collector SMS " + req.body.name + " has been change configuration for status:" + req.body.status + ", interval:" + req.body.interval + ", intervalControl:" + req.body.intervalControl + " .";
+            res.send({
+                Status: "200 OK",
+                info,
+                name: req.body.name,
+                operator: req.body.operator
+            });
+            console.log(process.env.GREEN_COLOR, logTime(new Date()) + info);
+        }
 
 
 
-        // END Execute in Parallel 2 tasks, before response we need to do all tasks for this reason we put await.
 
-        let info = " Contingency: The Collector SMS " + req.body.name + " has been change configuration for status:"+ req.body.status + ", interval:" + req.body.interval +", intervalControl:"+req.body.intervalControl+ " .";
-        res.send({
-            Status: "200 OK",
-            info,
-            name: req.body.name,
-            operator: req.body.operator
-        });
 
-        console.log(process.env.GREEN_COLOR, logTime(new Date()) + info);
 
     } catch (error) {
         requestError(error, req, res);
@@ -345,7 +375,7 @@ router.patch('/changeCollector', auth, async (req, res) => {
 });
 
 
-// GET /smsStatus   # uuid in body or telf and dates in body, and contract or all
+// GET /loadRedis    # contract in body for Auth
 router.get('/loadRedis', auth, async (req, res) => {
     try {
 
@@ -366,14 +396,14 @@ router.get('/loadRedis', auth, async (req, res) => {
         ]);
 
         //batchSMS
-        redisconf.hmset(["batch:SMS",
+        redisconf.hmset(["collectorsms:batchSMS",
             "status", "1",
             "interval", "2000",
             "intervalControl", "30000"
         ]);
 
         //batchPNSs
-        redisconf.hmset(["batch:PNS",
+        redisconf.hmset(["collectorsms:batchPNS",
             "status", "1",
             "interval", "2000",
             "intervalControl", "30000"
@@ -437,7 +467,7 @@ router.get('/loadRedis', auth, async (req, res) => {
         ]);
 
         //PNS token
-        redisconf.hmset(["tokenpns:kRt346992-72809WA",
+        redisconf.hmset(["tokenpnsCaixaAPP:kRt346992-72809WA",
             "token", "AADDERTTTECCDDDkk34699272809WWwwsdfdeeffffAADDERTTTECCDDDkk34699272809WWwwsdfdeeffffAADDERTTTECCDDDkk34699272809WWwwsdfdeeffff",
             "operator", "GOO"
         ]);

@@ -7,14 +7,14 @@ HGET contractpns:PUSHLOWEB operator
 HSET collectorpns:GOO operator "GOO"
 HGET collectorpns:GOO operator
 
-HSET batch:PNS status "1"
-HGET batch:PNS status
+HSET collectorsms:batchPNS status "1"
+HGET collectorsms:batchPNS status
 
-HSET batch:PNS interval "2000"
-HGET batch:PNS interval
+HSET collectorsms:batchPNS interval "2000"
+HGET collectorsms:batchPNS interval
 
-HSET batch:PNS intervalControl "30000"
-HGET batch:PNS intervalControl
+HSET collectorsms:batchPNS intervalControl "30000"
+HGET collectorsms:batchPNS intervalControl
 
 HSET collectorpns:GOO operator "GOO"
 HGET collectorpns:GOO operator

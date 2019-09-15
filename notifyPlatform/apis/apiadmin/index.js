@@ -11,6 +11,7 @@ const { initAllMongooseConnections } = require('./config/mongoosemulti'); //we n
 const redissms = require('./config/redissms'); //we need to initialize redis
 const redispns = require('./config/redissms'); //we need to initialize redis
 const redisconf = require('./config/redisconf'); //we need to initialize redis conf
+const redisdataload = require('./util/redisdataload');
 const app = require('./server/app');  // Declare the app
 const { logTime } = require('./util/formats');
 
@@ -23,6 +24,9 @@ const initializeAllSources = async () => { // Init Mongoose with await
           redisconf.rclient.set("initializeRedisConnection:test", "test") // little test redis
      ]);
      //END PARALLEL excution with await Promise.all.
+
+     redisdataload.loadRedisConfDependsOnDate();
+
 
      // then we can Init api server
      app.listen(process.env.APIADMIN_PORT, () => {

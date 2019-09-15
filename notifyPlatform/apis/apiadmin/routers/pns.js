@@ -8,9 +8,10 @@
 //Dependencies
 const express = require('express');
 const auth = require('../auth/auth');
-
-const { findPNS } = require('../util/mongomultipns');
-const { dateFormat, logTime, descStatus } = require('../util/formats');
+const redisconf = require('../util/redisconf');
+const { TokenPns } = require('../config/mongoosemulti');  // Attention : this Pns Model is model created for multi DB
+const { findPNS, saveTokenPns } = require('../util/mongomultipns');
+const { dateFormat, logTime, descStatus, validateOperator } = require('../util/formats');
 
 
 const router = new express.Router();
@@ -22,7 +23,6 @@ router.get('/pnsStatus', auth, async (req, res) => {
         else {
             let condition = { _id: req.body._id };
             var pns = await findPNS(condition);
-            console.log(pns);
             if (pns) {
                 if (pns.dispatchedAt) res.send({ Status: "200 OK", _id: pns._id, status: pns.status, description: descStatus("PNS", pns.status), receivedAt: dateFormat(pns.receivedAt), dispatchedAt: dateFormat(pns.dispatchedAt) });
                 else res.send({ Status: "200 OK", _id: pns._id, status: pns.status, description: descStatus("PNS", pns.status), receivedAt: dateFormat(pns.receivedAt) });
@@ -37,13 +37,46 @@ router.get('/pnsStatus', auth, async (req, res) => {
 
 
 
-// GET /tokenRegister  # contract in body
-router.get('/tokenRegister', auth, async (req, res) => {
-    console.log(req.body);
+// POST /tokenRegister  # contract in body
+router.post('/tokenRegister', auth, async (req, res) => {
+    try {
+        if (!req.body.token || !req.body.uuiddevice || !req.body.operator || !req.body.contractToken || !req.body.application || !req.body.user)   //first we check the body params request. 
+            throw new Error("You didn't send the necessary params in the body of the request. You need to send the correct params before proceeding.");
+        if (!validateOperator("PNS", req.body.operator)) throw new Error("Operator is invalid, it must be one of this options for PNS: 'APP', 'GOO' or 'MIC'");
 
-    //saveToken
-    res.send({ Status: "200 OK" });
+        var TokenModel = TokenPns();  // we catch the ContractSMS Model
+        var token = new TokenModel(req.body); //await it's unnecessary because is the first creation of object. Model Validations are check when save in Mongodb, not here. 
+        token.contract = req.body.contractToken;
+        token.activated = true;
+
+        await token.validate(); // we need await for validations before save anything
+        await Promise.all([  // await is necessary because we have errors, like duplication contract name
+            saveTokenPns(token),
+            redisconf.hmset(["tokenpns" + token.application + ":" + token.uuiddevice, //save in RedisConf                           
+                "application", token.application,
+                "contract", token.contract,
+                "uuiddevice", token.uuiddevice,
+                "token", token.token,
+                "user", token.user,
+                "operator", token.operator
+            ])
+        ]).catch(function (error) { //we don'r need result, but we need errors. 
+            throw error;
+        });
+
+        res.send({
+            Status: "200 OK",
+            info: "Token created",
+            token
+        });
+        console.log(process.env.GREEN_COLOR, logTime(new Date()) + "PNS Token created : " + JSON.stringify(token));  //JSON.stringify for replace new lines (\n) and tab (\t) chars into string
+
+
+    } catch (error) {
+        requestError(error, req, res);
+    }
 });
+
 
 
 const requestError = async (error, req, res) => {

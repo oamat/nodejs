@@ -17,9 +17,10 @@ const tokenSchema = new mongoose.Schema({
         required: true,
         default: () => { return uuidv4(); }
     },
-    token: { 
+    token: {  // the unique operator token by mobile user and APP
         type: String,
-        required: true
+        required: true,
+        unique: true
     },
     operator: {  
         type: String,

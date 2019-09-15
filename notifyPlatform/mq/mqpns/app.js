@@ -129,8 +129,8 @@ async function getCB(err, hObj, gmo, md, buf, hConn) {
                     await auth(pns);
                     if (pns.priority < 1) pns.priority = 2; //only accept priorities 2,3,4,5 in MQ Service. (0,1 are reserved for REST interface).
 
-                    pns.token = await hgetOrNull("tokenpns:" + pns.uuiddevice, "token"); //find the token for this uuiddevice PNS.
-                    pns.operator = await hgetOrNull("tokenpns:" + pns.uuiddevice, "operator"); //find the operator for this uuiddevice PNS.
+                    pns.token = await hgetOrNull("tokenpns" + pns.application + ":" + pns.uuiddevice, "token"); //find the token for this uuiddevice PNS.
+                    pns.operator = await hgetOrNull("tokenpns" + pns.application + ":" + pns.uuiddevice, "operator"); //find the operator for this uuiddevice PNS.
                     if (!pns.token) throw new Error(" This uuiddevice is not register, we cannot find its token neither operator.") //0:notSent, 1:Sent, 2:Confirmed, 3:Error, 4:Expired, 5:token not found (not register)
 
                     pns.operator = await hget("contractpns:" + pns.contract, "operator"); //Operator by default by contract. we checked the param before (in auth)                    

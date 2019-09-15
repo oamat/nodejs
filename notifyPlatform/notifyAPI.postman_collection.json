@@ -300,6 +300,78 @@
 			"response": []
 		},
 		{
+			"name": "apiadmin/tokenRegister",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "x-api-key",
+						"type": "text",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkFETUlOIiwiY29udHJhY3QiOiJBRE1JTiIsImlhdCI6MjAxNjIzOTAyMn0.vwBNTaBbW40v14Iiqd65uhv4FVQi4qn4ZH50VyQ00rg"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"contract\" : \"ADMIN\",\n    \"contractToken\" : \"PUSHLOWEB\",\n\t\"application\" : \"CaixaAPP\",\n\t\"user\" : \"userTst\",\n\t\"uuiddevice\" : \"kRt346992-72809WA\",\n    \"token\" : \"AADDERTTTECCDDDkk34699272809WWwwsdfdeeffffAADDERTTTECCDDDkk34699272809WWwwsdfdeeffffAADDERTTTECCDDDkk34699272809WWwwsdfdeeffff\",\n    \"operator\" : \"GOO\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:30003/tokenRegister",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "30003",
+					"path": [
+						"tokenRegister"
+					]
+				},
+				"description": "/loadRedis"
+			},
+			"response": []
+		},
+		{
+			"name": "apiadmin/telfRegister",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "x-api-key",
+						"type": "text",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkFETUlOIiwiY29udHJhY3QiOiJBRE1JTiIsImlhdCI6MjAxNjIzOTAyMn0.vwBNTaBbW40v14Iiqd65uhv4FVQi4qn4ZH50VyQ00rg"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"contract\" : \"ADMIN\",\n    \"telf\" : \"6992728001\",\n    \"operator\" : \"MOV\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:30003/telfRegister",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "30003",
+					"path": [
+						"telfRegister"
+					]
+				},
+				"description": "/loadRedis"
+			},
+			"response": []
+		},
+		{
 			"name": "apiadmin/operatorContingency",
 			"request": {
 				"method": "PATCH",
@@ -354,15 +426,18 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"contract\" : \"ADMIN\",\n\t\"name\" : \"MOV\",\n    \"operator\" : \"ORA\"\n\n}"
+					"raw": "{\n\t\"contract\" : \"ADMIN\",\n\t\"name\" : \"MOV\",\n\t\"status\" : 1,\n    \"interval\" : 100,\n    \"intervalControl\" : 30000\n\n}"
 				},
 				"url": {
-					"raw": "http://localhost:30003changeCollector",
+					"raw": "http://localhost:30003/changeCollector",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "30003changeCollector"
+					"port": "30003",
+					"path": [
+						"changeCollector"
+					]
 				},
 				"description": "/loadRedis"
 			},
@@ -466,7 +541,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t \"contract\" : \"ADMIN\",\n\t \"_id\" : \"00a47da5-fdcc-4fe2-8413-ea755f3a700d\"\n}"
+					"raw": "{\n\t \"contract\" : \"ADMIN\",\n\t \"_id\" : \"b8775786-dbb6-4e99-88e1-22c973bae2ee\"\n}"
 				},
 				"url": {
 					"raw": "http://localhost:30003/pnsStatus",

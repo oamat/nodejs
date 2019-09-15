@@ -19,7 +19,7 @@ const fs = require('fs');
 //Variables
 const batchIn = './files/in/';
 const batchOut = './files/out/';
-const batchName = "batch:PNS";
+const batchName = "collectorsms:batchPNS";
 var cron; //the main cron that manage files and put them into redis List.
 var cronStatus = 1; //status of cron. 0: cron stopped, 1 : cron working, 
 var cronChanged = false;  //if we need restart cron, 
@@ -74,8 +74,8 @@ const getSMSFiles = async () => {
                     try {
                         var pns = new Pns(pnsJSON); // convert json to object,  await it's unnecessary because is the first creation of object. Model Validations are check when save in Mongodb, not here. 
                         pns.priority = priority;
-                        pns.token = await hgetOrNull("tokenpns:" + pns.uuiddevice, "token"); //find the token for this uuiddevice PNS.
-                        pns.operator = await hgetOrNull("tokenpns:" + pns.uuiddevice, "operator"); //find the operator for this uuiddevice PNS.
+                        pns.token = await hgetOrNull("tokenpns" + pns.application + ":" + pns.uuiddevice, "token"); //find the token for this uuiddevice PNS.
+                        pns.operator = await hgetOrNull("tokenpns" + pns.application + ":" + pns.uuiddevice, "operator"); //find the operator for this uuiddevice PNS.
                         if (!pns.token) throw new Error(" This uuiddevice is not register, we cannot find its token neither operator.") //0:notSent, 1:Sent, 2:Confirmed, 3:Error, 4:Expired, 5:token not found (not register)
 
                         const collectorOperator = hget("collectorpns:" + pns.operator, "operator"); //this method is Async, but we can get in parallel until need it (with await).

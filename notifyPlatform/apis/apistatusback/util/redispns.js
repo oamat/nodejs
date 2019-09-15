@@ -12,7 +12,7 @@ const { rclient } = require('../config/redispns');
 
 // this method gets length of a List
 const llen = async (name) => {
-    return new Promise((resolve, reject) => { // we need promise for managing errs and results inside callbacks
+    return new Promise((resolve, reject) => { // we need promise for managing errors and results inside callbacks
         rclient.llen(name, (error, result) => { //get the value of hash                   
             try {  //I use Promises but I need to use try/catch in async callback for errors or I could use EventEmitter 
                 if (error) throw error;  //if redis give me an error.  If we used reject the try/catch would be unnecessary 
@@ -26,7 +26,7 @@ const llen = async (name) => {
 
 // this method gets hash name and its property, in a generic way
 const hget = async (name, key) => {
-    return new Promise((resolve, reject) => { // we need promise for managing errs and results inside callbacks
+    return new Promise((resolve, reject) => { // we need promise for managing errors and results inside callbacks
         rclient.hget(name, key, (error, result) => { //get the value of hash                   
             try {  //I use Promises but I need to use try/catch in async callback for errors or I could use EventEmitter 
                 if (error) throw error;  //if redis give me an error.  If we used reject the try/catch would be unnecessary 
@@ -41,7 +41,7 @@ const hget = async (name, key) => {
 
 // this method sets hash property and value, in a generic way
 const hset = async (hash, property, value) => {
-    return new Promise((resolve, reject) => { // we need promise for managing errs and results inside callbacks
+    return new Promise((resolve, reject) => { // we need promise for managing errors and results inside callbacks
         rclient.hset(hash, property, value, (error, result) => { //get the value of hash                   
             try {  //I use Promises but I need to use try/catch in async callback for errors or I could use EventEmitter 
                 if (error) throw error;  //if redis give me an error.  If we used reject the try/catch would be unnecessary 
@@ -55,7 +55,7 @@ const hset = async (hash, property, value) => {
 
 // this method save pnsJson in a list (like qeues MQ)
 const lpush = async (name, value) => {
-    return new Promise((resolve, reject) => { // we need promise for managing errs and results inside callbacks
+    return new Promise((resolve, reject) => { // we need promise for managing errors and results inside callbacks
         rclient.lpush(name, value, (error, result) => { //save the value in list                   
             try {  //I use Promises but I need to use try/catch in async callback for errors or I could use EventEmitter 
                 if (error) throw error;  //if redis give me an error.  If we used reject the try/catch would be unnecessary 
@@ -70,7 +70,7 @@ const lpush = async (name, value) => {
 
 // this method save id's in a SET for checking retries or errors.
 const sadd = async (name, value) => {
-    return new Promise((resolve, reject) => { // we need promise for managing errs and results inside callbacks
+    return new Promise((resolve, reject) => { // we need promise for managing errors and results inside callbacks
         rclient.sadd(name, value, (error, result) => { //save the value in set                  
             try {  //I use Promises but I need to use try/catch in async callback for errors or I could use EventEmitter 
                 if (error) throw error;  //if redis give me an error.  If we used reject the try/catch would be unnecessary 
@@ -86,7 +86,7 @@ const sadd = async (name, value) => {
 
 // this method save id's in a SET for checking retries or errors.
 const set = async (name, value) => {
-    return new Promise((resolve, reject) => { // we need promise for managing errs and results inside callbacks
+    return new Promise((resolve, reject) => { // we need promise for managing errors and results inside callbacks
         rclient.set(name, value, (error, result) => { //save the value in set                  
             try {  //I use Promises but I need to use try/catch in async callback for errors or I could use EventEmitter               
                 if (error) throw error;  //if redis give me an error.  If we used reject the try/catch would be unnecessary 
@@ -101,7 +101,7 @@ const set = async (name, value) => {
 
 // this method put 1 list message to other list and remove from source list
 const rpoplpush = async function (source, destination) {
-    return new Promise((resolve, reject) => { // we need promise for managing errs and results inside callbacks
+    return new Promise((resolve, reject) => { // we need promise for managing errors and results inside callbacks
         rclient.rpoplpush(source, destination, (error, result) => { //save the value in list                   
             try {  //I use Promises but I need to use try/catch in async callback for errors or I could use EventEmitter 
                 if (error) throw error;  //if redis give me an error.  If we used reject the try/catch would be unnecessary 
@@ -115,7 +115,7 @@ const rpoplpush = async function (source, destination) {
 
 // this method delete 1 list message.
 const rpop = async function (name) {
-    return new Promise((resolve, reject) => { // we need promise for managing errs and results inside callbacks
+    return new Promise((resolve, reject) => { // we need promise for managing errors and results inside callbacks
         rclient.rpop(name, (error, result) => { //save the value in set                  
             try {  //I use Promises but I need to use try/catch in async callback for errors or I could use EventEmitter 
                 if (error) throw error;  //if redis give me an error.  If we used reject the try/catch would be unnecessary 

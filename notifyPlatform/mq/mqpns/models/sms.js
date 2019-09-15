@@ -74,11 +74,11 @@ const smsSchema = new mongoose.Schema({
         required: true,
         default: 0
     },
-    expire: {
+    expire: { //timestamp representing the expiration date
         type: Number,
         required: false
     },
-    expired: {
+    expired: { //if pns was expired
         type: Boolean,
         required: false
     },

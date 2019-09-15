@@ -4,14 +4,14 @@ HGET contractsms:OTPLOWEB jwt
 HSET contractsms:OTPLOWEB operator "MOV"
 HGET contractsms:OTPLOWEB operator
 
-HSET batch:SMS status "1"
-HGET batch:SMS status
+HSET collectorsms:batchSMS status "1"
+HGET collectorsms:batchSMS status
 
-HSET batch:SMS interval "2000"
-HGET batch:SMS interval
+HSET collectorsms:batchSMS interval "2000"
+HGET collectorsms:batchSMS interval
 
-HSET batch:SMS intervalControl "30000"
-HGET batch:SMS intervalControl
+HSET collectorsms:batchSMS intervalControl "30000"
+HGET collectorsms:batchSMS intervalControl
 
 HSET collectorsms:MOV operator "MOV"
 HGET collectorsms:MOV operator

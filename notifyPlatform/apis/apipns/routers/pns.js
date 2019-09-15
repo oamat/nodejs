@@ -28,8 +28,8 @@ router.post('/pnsSend', auth, async (req, res) => {  //we execute auth before th
     console.log(process.env.WHITE_COLOR, logTime(new Date()) + "PNS new request : " + JSON.stringify(req.body));
     try {
         const pns = new Pns(req.body);  //await it's unnecessary because is the first creation of object. Model Validations are check when save in Mongodb, not here. 
-        pns.token = await hgetOrNull("tokenpns:" + pns.uuiddevice, "token"); //find the token for this uuiddevice PNS.
-        pns.operator = await hgetOrNull("tokenpns:" + pns.uuiddevice, "operator"); //find the operator for this uuiddevice PNS.
+        pns.token = await hgetOrNull("tokenpns" + pns.application + ":" + pns.uuiddevice, "token"); //find the token for this uuiddevice PNS.
+        pns.operator = await hgetOrNull("tokenpns" + pns.application + ":" + pns.uuiddevice, "operator"); //find the operator for this uuiddevice PNS.
         if (!pns.token) throw new Error(" This uuiddevice is not register, we cannot find its token neither operator.") //0:notSent, 1:Sent, 2:Confirmed, 3:Error, 4:Expired, 5:token not found (not register)
 
         const collectorOperator = hget("collectorpns:" + pns.operator, "operator"); //this method is Async, but we can get in parallel until need it (with await). 

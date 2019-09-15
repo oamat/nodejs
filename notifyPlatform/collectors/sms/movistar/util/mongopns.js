@@ -12,7 +12,7 @@ const { Pns } = require('../models/pns');
 
 //this method save PNS in MongoDB and manage the result of this operation
 const savePNS = async (pns) => {
-    return new Promise((resolve, reject) => { // we need promise for managing errs and results inside callbacks
+    return new Promise((resolve, reject) => { // we need promise for managing errors and results inside callbacks
         pns.save((error, result) => {
             try {  //I use Promises but I need to use try/catch in async callback for errors or I could use EventEmitter 
                 if (error) throw error;  //if mongoose give me an error. If we used reject the try/catch would be unnecessary  
@@ -29,7 +29,7 @@ const savePNS = async (pns) => {
 
 //this method update PNS Status in MongoDB and manage the result of this operation
 const updatePNS = async (pns) => {
-    return new Promise((resolve, reject) => { // we need promise for managing errs and results inside callbacks
+    return new Promise((resolve, reject) => { // we need promise for managing errors and results inside callbacks
         let options = { upsert: true, new: true, setDefaultsOnInsert: true };
         let query = { _id: pns._id };
         Pns.findOneAndUpdate(query, pns, options, (error, result) => {  //property new returns the new updated document, not the original document
@@ -46,7 +46,7 @@ const updatePNS = async (pns) => {
 
 //this method update PNS personalized params in MongoDB and manage the result of this operation
 const updateSomeOfPNS = async (id, toUpdate) => {
-    return new Promise((resolve, reject) => { // we need promise for managing errs and results inside callbacks
+    return new Promise((resolve, reject) => { // we need promise for managing errors and results inside callbacks
         let options = { new: true };
         let query = { _id: id };
         Pns.findOneAndUpdate(query, { $set: toUpdate }, options, (error, result) => {  //property new returns the new updated document, not the original document

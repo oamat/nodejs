@@ -19,7 +19,7 @@ const fs = require('fs');
 //VARS
 const batchIn = './files/in/';
 const batchOut = './files/out/';
-const batchName = "batch:SMS";
+const batchName = "collectorsms:batchSMS";
 //Variables
 var cron; //the main cron that manage files and put them into redis List.
 var cronStatus = 1; //status of cron. 0: cron stopped, 1 : cron working, 

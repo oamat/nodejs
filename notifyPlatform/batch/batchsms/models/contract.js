@@ -17,7 +17,7 @@ const contractSchema = new mongoose.Schema({
         required: true,
         default: () => { return uuidv4(); }
     },
-    name: { // the unique name for contract
+    name: { // the unique name for contract (the contract default name)
         type: String,
         required: true,
         unique: true

@@ -17,7 +17,7 @@ const telfSchema = new mongoose.Schema({
         required: true,
         default: () => { return uuidv4(); }
     },
-    telf: { // the unique name for collector (the operator name by default)
+    telf: { // the unique user telf 
         type: String,
         required: true,
         unique: true

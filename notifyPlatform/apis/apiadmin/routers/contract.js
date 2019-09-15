@@ -1,5 +1,9 @@
 /*
  * API REST for manage contracts
+ *      /addSmsContract : save new SMS Contract and create new jwt per application in MongoDB
+ *      /addPnsContract : save new PNS Contract and create new jwt per application in MongoDB
+ *      /getContract  : return the contract detail
+ *      /updateContract  : update contract
  *
  */
 
@@ -18,14 +22,14 @@ const jwt = require('jsonwebtoken');
 const router = new express.Router();
 
 
-// POST //addSmsContract 
+// POST //addSmsContract   # contract in body for Auth
 router.post('/addSmsContract', auth, async (req, res) => {
     try {
         if (!req.body.name || !req.body.description || !req.body.permission || !req.body.application || !req.body.interface || !req.body.operator) {  //first we check the body params request. 
             throw new Error("You didn't send the necessary params in the body of the request. You need to send the correct params before proceeding.");
         } else {
-            var ContractModel = ContractSms();  // we catch the ContractSMS Model
-            var contract = new ContractModel(req.body); //await it's unnecessary because is the first creation of object. Model Validations are check when save in Mongodb, not here. 
+            let ContractModel = ContractSms();  // we catch the ContractSMS Model
+            let contract = new ContractModel(req.body); //await it's unnecessary because is the first creation of object. Model Validations are check when save in Mongodb, not here. 
             contract.type = "SMS";
             contract.defaultOperator = contract.operator;
             contract.activated = true;
@@ -59,15 +63,7 @@ router.post('/addSmsContract', auth, async (req, res) => {
             res.send({
                 Status: "200 OK",
                 info: "contract created",
-                name: contract.name,
-                _id: contract._id,
-                jwt: contract.jwt,
-                interface: contract.interface,
-                type: contract.type,
-                description: contract.description,
-                activated: contract.activated,
-                permision: contract.permision,
-                application: contract.application
+                contract
             });
             console.log(process.env.GREEN_COLOR, logTime(new Date()) + "SMS Contract created : " + JSON.stringify(contract));  //JSON.stringify for replace new lines (\n) and tab (\t) chars into string
         }
@@ -78,7 +74,7 @@ router.post('/addSmsContract', auth, async (req, res) => {
 });
 
 
-// POST //addSmsContract 
+// POST //addPnsContract   # contract in body for Auth
 router.post('/addPnsContract', auth, async (req, res) => {
     try {
         if (!req.body.name || !req.body.description || !req.body.permission || !req.body.application || !req.body.interface || !req.body.operator) {  //first we check the body params request. 
@@ -118,15 +114,7 @@ router.post('/addPnsContract', auth, async (req, res) => {
             res.send({
                 Status: "200 OK",
                 info: "contract created",
-                name: contract.name,
-                _id: contract._id,
-                jwt: contract.jwt,
-                interface: contract.interface,
-                type: contract.type,
-                description: contract.description,
-                activated: contract.activated,
-                permision: contract.permision,
-                application: contract.application
+                contract
             });
             console.log(process.env.GREEN_COLOR, logTime(new Date()) + "PNS Contract created : " + JSON.stringify(contract));  //JSON.stringify for replace new lines (\n) and tab (\t) chars into string
         }
@@ -135,8 +123,8 @@ router.post('/addPnsContract', auth, async (req, res) => {
         requestError(error, req, res);
     }
 });
-
-// GET ////getContract  
+ 
+// GET ////getContract    # contract in body for Auth
 router.get('/getContract', auth, async (req, res) => {
     try {
 
@@ -161,7 +149,7 @@ router.get('/getContract', auth, async (req, res) => {
     }
 });
 
-// PATCH //updateContract (activated, operator, etc)  
+// PATCH //updateContract (activated, operator, etc)     # contract in body for Auth
 router.patch('/updateContract', auth, async (req, res) => {
     try {
         //updateContract (activated, operator, etc)

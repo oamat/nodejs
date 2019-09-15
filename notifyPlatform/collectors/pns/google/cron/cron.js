@@ -69,7 +69,7 @@ const sendNextPNS = async () => {
             pns.dispatchedAt = new Date();
             pns.retries++;
             let notExpired = true;
-            if ((pns.expire) && (new Date().getMilliseconds() > pns.expire)) { // treat the expired SMS
+            if ((pns.expire) && (Date.now() > pns.expire)) { // treat the expired SMS
                 notExpired = false;
                 pns.expired = true;
                 pns.status = 4;

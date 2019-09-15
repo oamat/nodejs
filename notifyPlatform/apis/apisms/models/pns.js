@@ -22,12 +22,12 @@ const pnsSchema = new mongoose.Schema({
         required: true,
         default: () => { return new Date() }
     },
-    expire: {
+    expire: {  //timestamp representing the expiration date
         type: Number,
         required: false
     },
-    expired: {
-        type: Boolean,
+    expired: {  //if pns was expired
+        type: Boolean,  
         required: false
     },
     dispatched: {

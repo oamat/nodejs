@@ -17,7 +17,7 @@ const userSchema = new mongoose.Schema({
         required: true,
         default: () => { return uuidv4(); }
     },
-    name: { // the unique id
+    userName: { // the unique userName by user
         type: String,
         required: true,
         unique: true
