@@ -25,24 +25,23 @@ const router = new express.Router();
 
 //Method post for sending SMS
 router.post('/smsSend', auth, async (req, res) => {  //we execute auth before this post request method
-    console.log(process.env.WHITE_COLOR, logTime(new Date()) + "SMS new request : " + JSON.stringify(req.body));
+    //console.log(process.env.WHITE_COLOR, logTime(new Date()) + "SMS new request : " + JSON.stringify(req.body));
     try {
         const sms = new Sms(req.body);  //await it's unnecessary because is the first creation of object. Model Validations are check when save in Mongodb, not here. 
         sms.operator = await hget("contractsms:" + sms.contract, "operator"); //Operator by default by contract. we checked the param before (in auth)         
         sms.telf = sms.telf.replace("+", "00");
-        if (sms.operator == "ALL") { //If operator is ALL means that we need to find the better operator for the telf.            
+        if (sms.operator == "ALL") { //If operator is 'ALL' means that we need to find the better operator for the telf.            
             sms.operator = await hgetOrNull("telfsms:" + sms.telf, "operator"); //find the best operator for this tef.         
             if (!sms.operator) sms.operator = "MOV";  //by default we use MOV
         }
-        const collectorOperator = hget("collectorsms:" + sms.operator, "operator"); //this method is Async, but we can get in parallel until need it (with await).
-        if (await collectorOperator != sms.operator) sms.operator = collectorOperator;  //check if the operator have some problems
+        const collectorOperator = await hget("collectorsms:" + sms.operator, "operator"); //this method is Async, but we can get in parallel until need it (with await).
+        if (collectorOperator != sms.operator) sms.operator = collectorOperator;  //check if the operator have some problems
 
         sms.channel = buildSMSChannel(sms.operator, sms.priority); //get the channel to put notification with operator and priority
 
-        await sms.validate(); //we need await because is a promise and we need to manage the throw exceptions, particularly validating errors in bad request.
-        //If you didn't execute "sms.validate()" we would need await because is a promise and we need to manage the throw exceptions, particularly validating errors.
-
-        await saveSMS(sms) //save sms to DB, in this phase we need save SMS to MongoDB.
+        //await sms.validate(); //validate is unnecessary, we would need await because is a promise and we need to manage the throw exceptions, particularly validating errors in bad request.
+        
+        await saveSMS(sms) //save sms to DB, in this phase we need save SMS to MongoDB. //If you didn't execute "sms.validate()" we would need await in save.
             .catch(error => {
                 error.message = "ERROR :  We cannot save notify in MongoBD. " + error.message;
                 throw error;
@@ -61,7 +60,7 @@ router.post('/smsSend', auth, async (req, res) => {  //we execute auth before th
 
         //response 200, with sms._id. is it necessary any more params?
         res.send({ statusCode: "200 OK", _id: sms._id });
-        console.log(process.env.GREEN_COLOR, logTime(new Date()) + "SMS to send : " + JSON.stringify(sms));  //JSON.stringify for replace new lines (\n) and tab (\t) chars into string
+        console.log(process.env.GREEN_COLOR, logTime(new Date()) + "SMS saved, _id: " + sms._id);  //JSON.stringify for replace new lines (\n) and tab (\t) chars into string
 
     } catch (error) {
         requestError(error, req, res);

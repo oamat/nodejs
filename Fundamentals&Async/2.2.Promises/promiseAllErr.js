@@ -68,7 +68,7 @@ var parallel = async function () {
         ]);
         console.log("-> FINISH PARALLEL Promises.all when both finished. ");
     } catch (error) {
-        console.log("first Catch: stop process & catch error " + error.message);
+        console.log("first Catch: stop process & catch error : " + error.message);
         //console.error(error);
     }
 
@@ -76,11 +76,15 @@ var parallel = async function () {
         console.log("--> starting promise.all with rejects");
         await Promise.all([
             p1().catch(error => { return error }),
-            p2().catch(error => { return error })
+            p2().catch(error => { return error }),
+            resolveAfter2Seconds(false),
+            resolveAfter1Seconds(false)
         ]).then(values => {
             console.log(" then promise.all");
-            if (values[0] instanceof Error)  console.log(values[0].message) // "p1_delayed_rejection"
-            if (values[0] instanceof Error) console.log(values[1].message) // "Error: p2_immediate_rejection"
+            if (values[0] instanceof Error) console.log(values[0].message) // "p1_delayed_rejection"
+            if (values[1] instanceof Error) console.log(values[1].message) // "Error: p2_immediate_rejection"
+            console.log(values[2]);
+            console.log(values[3]);
         });
     } catch (error) {
         console.log("Second Catch: stop process & catch error " + error.message);

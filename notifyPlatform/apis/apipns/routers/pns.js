@@ -25,23 +25,22 @@ const router = new express.Router();
 
 //Method post for sending PNS  //status, listby user (by date), list by uuid (by date), registeruuid: app, user, osVendor, osVersion, uuidDevice, token,
 router.post('/pnsSend', auth, async (req, res) => {  //we execute auth before this post request method
-    console.log(process.env.WHITE_COLOR, logTime(new Date()) + "PNS new request : " + JSON.stringify(req.body));
+    //console.log(process.env.WHITE_COLOR, logTime(new Date()) + "PNS new request : " + JSON.stringify(req.body));
     try {
         const pns = new Pns(req.body);  //await it's unnecessary because is the first creation of object. Model Validations are check when save in Mongodb, not here. 
         pns.token = await hgetOrNull("tokenpns" + pns.application + ":" + pns.uuiddevice, "token"); //find the token for this uuiddevice PNS.
         pns.operator = await hgetOrNull("tokenpns" + pns.application + ":" + pns.uuiddevice, "operator"); //find the operator for this uuiddevice PNS.
         if (!pns.token) throw new Error(" This uuiddevice is not register, we cannot find its token neither operator.") //0:notSent, 1:Sent, 2:Confirmed, 3:Error, 4:Expired, 5:token not found (not register)
 
-        const collectorOperator = hget("collectorpns:" + pns.operator, "operator"); //this method is Async, but we can get in parallel until need it (with await). 
+        const collectorOperator = await hget("collectorpns:" + pns.operator, "operator"); //this method is Async, but we can get in parallel until need it (with await). 
 
-        if (await collectorOperator != pns.operator) pns.operator = collectorOperator;  //check if the operator have some problems
+        if (collectorOperator != pns.operator) pns.operator = collectorOperator;  //check if the operator have some problems
 
         pns.channel = buildPNSChannel(pns.operator, pns.priority); //get the channel to put notification with operator and priority
 
-        await pns.validate(); //we need await because is a promise and we need to manage the throw exceptions, particularly validating errors in bad request.
-        //If you didn't execute "pns.validate()" we would need await because is a promise and we need to manage the throw exceptions, particularly validating errors.
-
-        await savePNS(pns) //save pns to DB, in this phase we need save PNS to MongoDB.
+        //await sms.validate(); //validate is unnecessary, we would need await because is a promise and we need to manage the throw exceptions, particularly validating errors in bad request.
+       
+        await savePNS(pns) //save sms to DB, in this phase we need save SMS to MongoDB. //If you didn't execute "sms.validate()" we would need await in save.
             .catch(error => {
                 error.message = "ERROR :  We cannot save notify in MongoBD. " + error.message;
                 throw error;
@@ -61,7 +60,7 @@ router.post('/pnsSend', auth, async (req, res) => {  //we execute auth before th
 
         //response 200, with pns._id. is it necessary any more params?
         res.send({ statusCode: "200 OK", _id: pns._id });
-        console.log(process.env.GREEN_COLOR, logTime(new Date()) + "PNS to send : " + JSON.stringify(pns));  //JSON.stringify for replace new lines (\n) and tab (\t) chars into string
+        console.log(process.env.GREEN_COLOR, logTime(new Date()) + "PNS saved, _id: " + pns._id);  //JSON.stringify for replace new lines (\n) and tab (\t) chars into string
 
     } catch (error) {
         requestError(error, req, res);
