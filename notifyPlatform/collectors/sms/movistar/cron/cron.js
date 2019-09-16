@@ -18,7 +18,7 @@ const { sendSMS } = require('./cronHelper');
 
 //Variables
 const defaultOperator = "MOV"; //default operator for this collector: "MOV"
-const defaultCollector = "collector:" + defaultOperator; // default collector, for configurations
+const defaultCollector = "collectorsms:" + defaultOperator; // default collector, for configurations
 var operator = defaultOperator; //default operator for this collector: "MOV"
 
 var cron; //the main cron that send message to the operator.
@@ -127,7 +127,7 @@ const checksController = async () => {
 
     if (cronChanged) { //some param changed in cron, we need to restart or stopped.
         if (cronStatus) { //cron must to be started                       
-            console.log(process.env.GREEN_COLOR, logTime(new Date()) + "Re-Start Movistar cron..." + cronStatus);
+            console.log(process.env.GREEN_COLOR, logTime(new Date()) + "Re-Start Movistar cron...");
             cronChanged = false;
             await stopCron();
             await startCron(interval);

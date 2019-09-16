@@ -1,7 +1,7 @@
 #!/bin/bash
 echo "Start minikube for Kubernetes "
 
-minikube start --vm-driver=none
+minikube start --vm-driver=none  --cpus 2 --memory 8192
 
 echo ""
 echo ""

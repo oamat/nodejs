@@ -49,7 +49,7 @@ const startCron = async (interval) => { //Start cron only when cron is stopped.
 const stopCron = async () => { //stop cron only when cron is switched on
     try {
         if (cron) {
-            console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "Stoping Movistar cron at " + dateFormat(new Date()));
+            console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "Stoping Google cron at " + dateFormat(new Date()));
             clearInterval(cron);
             cron = null;
         }
@@ -128,7 +128,7 @@ const checksController = async () => {
 
     if (cronChanged) { //some param changed in cron, we need to restart or stopped.
         if (cronStatus) { //cron must to be started                       
-            console.log(process.env.GREEN_COLOR, logTime(new Date()) + "Re-Start Movistar cron..." + cronStatus);
+            console.log(process.env.GREEN_COLOR, logTime(new Date()) + "Re-Start Google cron...");
             cronChanged = false;
             await stopCron();
             await startCron(interval);

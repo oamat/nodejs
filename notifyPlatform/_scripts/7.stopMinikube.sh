@@ -1,5 +1,5 @@
 #!/bin/bash
-echo "Start All Kubernetes files from Notify Platform "
+echo "Stopping All Kubernetes files from Notify Platform "
 cd /notifyPlatform/_kubernetes/
 
 minikube stop

@@ -167,7 +167,7 @@ const checksController = async () => {
 
     if (cronChanged) { //some param changed in cron, we need to restart or stopped.
         if (cronStatus) { //cron must to be started                       
-            console.log(process.env.GREEN_COLOR, logTime(new Date()) + "Re-Start batchSMS cron..." + cronStatus);
+            console.log(process.env.GREEN_COLOR, logTime(new Date()) + "Re-Start batchSMS cron...");
             cronChanged = false;
             await stopCron();
             await startCron(interval);

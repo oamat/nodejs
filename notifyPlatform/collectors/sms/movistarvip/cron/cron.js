@@ -18,7 +18,7 @@ const { sendSMS } = require('./cronHelper');
 
 //Variables
 const defaultOperator = "VIP"; //default operator for this collector: "VIP"
-const defaultCollector = "collector:" + defaultOperator; // default collector, for configurations
+const defaultCollector = "collectorsms:" + defaultOperator; // default collector, for configurations
 var operator = defaultOperator; //default operator for this collector: "VIP"
 
 var cron; //the main cron that send message to the operator.
@@ -48,7 +48,7 @@ const startCron = async (interval) => { //Start cron only when cron is stopped.
 const stopCron = async () => { //stop cron only when cron is switched on
     try {
         if (cron) {
-            console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "Stoping Movistar cron at " + dateFormat(new Date()));
+            console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "Stoping Movistar-VIP cron at " + dateFormat(new Date()));
             clearInterval(cron);
             cron = null;
         }
@@ -127,7 +127,7 @@ const checksController = async () => {
 
     if (cronChanged) { //some param changed in cron, we need to restart or stopped.
         if (cronStatus) { //cron must to be started                       
-            console.log(process.env.GREEN_COLOR, logTime(new Date()) + "Re-Start Movistar cron..." + cronStatus);
+            console.log(process.env.GREEN_COLOR, logTime(new Date()) + "Re-Start Movistar-VIP cron...");
             cronChanged = false;
             await stopCron();
             await startCron(interval);

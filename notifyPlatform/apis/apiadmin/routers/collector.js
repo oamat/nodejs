@@ -312,7 +312,9 @@ router.patch('/operatorContingency', auth, async (req, res) => {
 // PATCH //changeCollector   # contract in body for Auth
 router.patch('/changeCollector', auth, async (req, res) => {
     try {
-        if (!req.body.name || !req.body.interval || !req.body.intervalControl || !req.body.status) throw new Error("you need params name, status, interval & intervalControl in your /changeCollector request body.");
+        if (!req.body.name || !req.body.interval || !req.body.intervalControl) throw new Error("you need params name, status, interval & intervalControl in your /changeCollector request body.");
+        if (req.body.status!=0 && req.body.status != 1) throw new Error("Status must be a number: 1 (ON) or 0 (OFF).");
+        if (req.body.interval<0 || req.body.intervalControl<0) throw new Error("Interval or IntervalControl must be a number <0. ");
         let SMSrequest = validateOperator("SMS", req.body.name);
         let PNSrequest = validateOperator("PNS", req.body.name);
         if (!SMSrequest && !PNSrequest) throw new Error("Name is invalid, it must be one of this options for SMS: 'MOV', 'VIP', 'ORA' or 'VOD'. Or for PNS: 'APP', 'GOO' or 'MIC'");
@@ -336,7 +338,7 @@ router.patch('/changeCollector', auth, async (req, res) => {
             ]);
             // END Execute in Parallel 2 tasks, before response we need to do all tasks for this reason we put await.
 
-            let info = " Contingency: The Collector PNS " + req.body.name + " has been change configuration for status:" + req.body.status + ", interval:" + req.body.interval + ", intervalControl:" + req.body.intervalControl + " .";
+            let info = "Changed Collector PNS " + req.body.name + " has been change configuration for status:" + req.body.status + ", interval:" + req.body.interval + ", intervalControl:" + req.body.intervalControl + " .";
             res.send({
                 Status: "200 OK",
                 info,
