@@ -31,6 +31,9 @@ const initializeAllSources = async () => { // Init Mongoose with await
      // then we can Init api server
      app.listen(process.env.APIADMIN_PORT, () => {
           console.log(process.env.GREEN_COLOR, logTime(new Date()) + 'APIADMIN HTTPS server is running on port ' + process.env.APIADMIN_PORT);
+     }).on('error', (error) => {
+          console.log(process.env.RED_COLOR, logTime(new Date()) + ' ERROR: Another App server is running this port ' + process.env.APISMS_PORT + " : " + error.message);
+          console.error(error);
      });
 }
 

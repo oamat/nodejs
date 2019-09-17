@@ -1,6 +1,6 @@
 //Dependencies
 
-const { hmset, set, get } = require('./redisconf');
+const { hmset, set, get, hset } = require('./redisconf');
 const { logTime } = require('./formats');
 const { findAllContractSms, findAllCollectorSms, findAllTelfSms, saveCollectorSms, saveContractSms } = require('../util/mongomultisms');
 const { findAllContractPns, findAllCollectorPns, findAllTokenPns, saveCollectorPns, saveContractPns } = require('../util/mongomultipns');
@@ -117,36 +117,36 @@ const initRedisPNSConf = async () => {
 
 const loadRedisForTesting = async () => {
     //APIADMIN
-    redisconf.hset("contractadmin:ADMIN", "jwt", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkFETUlOIiwiY29udHJhY3QiOiJBRE1JTiIsImlhdCI6MjAxNjIzOTAyMn0.vwBNTaBbW40v14Iiqd65uhv4FVQi4qn4ZH50VyQ00rg");
+    hset("contractadmin:ADMIN", "jwt", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkFETUlOIiwiY29udHJhY3QiOiJBRE1JTiIsImlhdCI6MjAxNjIzOTAyMn0.vwBNTaBbW40v14Iiqd65uhv4FVQi4qn4ZH50VyQ00rg");
 
     //APIPNS Contracts
-    redisconf.hmset(["contractpns:PUSHLOWEB",
+    hmset(["contractpns:PUSHLOWEB",
         "jwt", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IlBVU0hMT1dFQiIsImNvbnRyYWN0IjoiUFVTSExPV0VCIiwiaWF0IjoyMDE2MjM5MDIyfQ.liOxBh3kFQyjYrIyhg2Uu3COoV83ruUsyLniWEJ8Apw",
         "operator", "ALL"
     ]);
 
     //APISMS Contracts
-    redisconf.hmset(["contractsms:OTPLOWEB",
+    hmset(["contractsms:OTPLOWEB",
         "jwt", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6Ik9UUExPV0VCIiwiY29udHJhY3QiOiJPVFBMT1dFQiIsImlhdCI6MjAxNjIzOTAyMn0.BK58iwYbyfGb1u--SLP3YZP7JZxKSMrPHmdc-gfH4t4",
         "operator", "ALL"
     ]);
 
     //batchSMS
-    redisconf.hmset(["collectorsms:batchSMS",
+    hmset(["collectorsms:batchSMS",
         "status", "1",
         "interval", "2000",
         "intervalControl", "30000"
     ]);
 
     //batchPNSs
-    redisconf.hmset(["collectorsms:batchPNS",
+    hmset(["collectorsms:batchPNS",
         "status", "1",
         "interval", "2000",
         "intervalControl", "30000"
     ]);
 
     //Collectors Apple
-    redisconf.hmset(["collectorpns:APP",
+    hmset(["collectorpns:APP",
         "status", "1",
         "interval", "2000",
         "intervalControl", "30000",
@@ -154,7 +154,7 @@ const loadRedisForTesting = async () => {
     ]);
 
     //Collectors Android
-    redisconf.hmset(["collectorpns:GOO",
+    hmset(["collectorpns:GOO",
         "status", "1",
         "interval", "2000",
         "intervalControl", "30000",
@@ -162,7 +162,7 @@ const loadRedisForTesting = async () => {
     ]);
 
     //Collectors Microsoft
-    redisconf.hmset(["collectorpns:MIC",
+    hmset(["collectorpns:MIC",
         "status", "1",
         "interval", "2000",
         "intervalControl", "30000",
@@ -171,7 +171,7 @@ const loadRedisForTesting = async () => {
 
 
     //Collectors Movistar
-    redisconf.hmset(["collectorsms:MOV",
+    hmset(["collectorsms:MOV",
         "status", "1",
         "interval", "2000",
         "intervalControl", "30000",
@@ -179,7 +179,7 @@ const loadRedisForTesting = async () => {
     ]);
 
     //Collectors MovistarVIP
-    redisconf.hmset(["collectorsms:VIP",
+    hmset(["collectorsms:VIP",
         "status", "1",
         "interval", "2000",
         "intervalControl", "30000",
@@ -187,7 +187,7 @@ const loadRedisForTesting = async () => {
     ]);
 
     //Collectors ORANGE
-    redisconf.hmset(["collectorsms:ORA",
+    hmset(["collectorsms:ORA",
         "status", "1",
         "interval", "2000",
         "intervalControl", "30000",
@@ -195,7 +195,7 @@ const loadRedisForTesting = async () => {
     ]);
 
     //Collectors VODAFONE
-    redisconf.hmset(["collectorsms:VOD",
+    hmset(["collectorsms:VOD",
         "status", "1",
         "interval", "2000",
         "intervalControl", "30000",
@@ -203,13 +203,13 @@ const loadRedisForTesting = async () => {
     ]);
 
     //PNS token
-    redisconf.hmset(["tokenpnsCaixaAPP:kRt346992-72809WA",
+    hmset(["tokenpnsCaixaAPP:kRt346992-72809WA",
         "token", "AADDERTTTECCDDDkk34699272809WWwwsdfdeeffffAADDERTTTECCDDDkk34699272809WWwwsdfdeeffffAADDERTTTECCDDDkk34699272809WWwwsdfdeeffff",
         "operator", "GOO"
     ]);
 
     //SMS telf
-    redisconf.hmset(["telfsms:0034699272800",
+    hmset(["telfsms:0034699272800",
         "operator", "VOD"
     ]);
 }
@@ -221,11 +221,11 @@ const saveAllSMSDefaultCollectors = async () => {
     saveCollectorSms(new CollectorModel({ "operator": "VOD", "activated": true, "status": true, "name": "VOD", "description": "Collector SMS Vodafone", "interval": 10, "intervalControl": 30000, "type": "SMS" }));
     saveCollectorSms(new CollectorModel({ "operator": "ORA", "activated": true, "status": true, "name": "ORA", "description": "Collector SMS Orange", "interval": 10, "intervalControl": 30000, "type": "SMS" }));
     saveCollectorSms(new CollectorModel({ "operator": "batchSMS", "activated": true, "status": true, "name": "batchSMS", "description": "batch SMS", "interval": 10000, "intervalControl": 30000, "type": "SMS" }));
-    redisconf.hmset(["collectorsms:batchSMS", "status", "1", "interval", "2000", "intervalControl", "30000"]);
-    redisconf.hmset(["collectorsms:MOV", "status", "1", "interval", "2000", "intervalControl", "30000", "operator", "MOV"]);
-    redisconf.hmset(["collectorsms:VIP", "status", "1", "interval", "2000", "intervalControl", "30000", "operator", "VIP"]);
-    redisconf.hmset(["collectorsms:ORA", "status", "1", "interval", "2000", "intervalControl", "30000", "operator", "ORA"]);
-    redisconf.hmset(["collectorsms:VOD", "status", "1", "interval", "2000", "intervalControl", "30000", "operator", "VOD"]);
+    hmset(["collectorsms:batchSMS", "status", "1", "interval", "2000", "intervalControl", "30000"]);
+    hmset(["collectorsms:MOV", "status", "1", "interval", "2000", "intervalControl", "30000", "operator", "MOV"]);
+    hmset(["collectorsms:VIP", "status", "1", "interval", "2000", "intervalControl", "30000", "operator", "VIP"]);
+    hmset(["collectorsms:ORA", "status", "1", "interval", "2000", "intervalControl", "30000", "operator", "ORA"]);
+    hmset(["collectorsms:VOD", "status", "1", "interval", "2000", "intervalControl", "30000", "operator", "VOD"]);
 }
 
 const saveAllPNSDefaultCollectors = async () => {
@@ -234,23 +234,23 @@ const saveAllPNSDefaultCollectors = async () => {
     saveCollectorPns(new CollectorModel({ "operator": "GOO", "activated": true, "status": true, "name": "GOO", "description": "Collector PNS Google", "interval": 10, "intervalControl": 30000, "type": "PNS" }));
     saveCollectorPns(new CollectorModel({ "operator": "MIC", "activated": true, "status": true, "name": "MIC", "description": "Collector PNS Microsoft", "interval": 10, "intervalControl": 30000, "type": "PNS" }));
     saveCollectorPns(new CollectorModel({ "operator": "batchPNS", "activated": true, "status": true, "name": "batchPNS", "description": "batch PNS", "interval": 10000, "intervalControl": 30000, "type": "PNS" }));
-    redisconf.hmset(["collectorsms:batchPNS", "status", "1", "interval", "2000", "intervalControl", "30000"]);
-    redisconf.hmset(["collectorpns:APP", "status", "1", "interval", "2000", "intervalControl", "30000", "operator", "APP"]);
-    redisconf.hmset(["collectorpns:GOO", "status", "1", "interval", "2000", "intervalControl", "30000", "operator", "GOO"]);
-    redisconf.hmset(["collectorpns:MIC", "status", "1", "interval", "2000", "intervalControl", "30000", "operator", "MIC"]);
+    hmset(["collectorsms:batchPNS", "status", "1", "interval", "2000", "intervalControl", "30000"]);
+    hmset(["collectorpns:APP", "status", "1", "interval", "2000", "intervalControl", "30000", "operator", "APP"]);
+    hmset(["collectorpns:GOO", "status", "1", "interval", "2000", "intervalControl", "30000", "operator", "GOO"]);
+    hmset(["collectorpns:MIC", "status", "1", "interval", "2000", "intervalControl", "30000", "operator", "MIC"]);
 }
 
 const saveAdminSMSDefaultContract = async () => {
     let ContractModel = ContractSms();  // we catch the ContractSMS Model            
     saveContractSms(new ContractModel({ "operator": "ALL", "defaultOperator": "ALL", "activated": true, "name": "ADMIN", "description": "ADMIN", "permission": "ALL", "application": "ADMIN", "interface": "ALL", "params": [], "type": "SMS", "jwt": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkFETUlOIiwiY29udHJhY3QiOiJBRE1JTiIsImlhdCI6MjAxNjIzOTAyMn0.vwBNTaBbW40v14Iiqd65uhv4FVQi4qn4ZH50VyQ0rg" }));
-    redisconf.hset("contractadmin:ADMIN", "jwt", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkFETUlOIiwiY29udHJhY3QiOiJBRE1JTiIsImlhdCI6MjAxNjIzOTAyMn0.vwBNTaBbW40v14Iiqd65uhv4FVQi4qn4ZH50VyQ00rg");
+    hset("contractadmin:ADMIN", "jwt", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkFETUlOIiwiY29udHJhY3QiOiJBRE1JTiIsImlhdCI6MjAxNjIzOTAyMn0.vwBNTaBbW40v14Iiqd65uhv4FVQi4qn4ZH50VyQ00rg");
 
 }
 
 const saveAdminPNSDefaultContract = async () => {
     let ContractModel = ContractPns();  // we catch the ContractSMS Model   
     saveContractPns(new ContractModel({ "operator": "ALL", "defaultOperator": "ALL", "activated": true, "name": "ADMIN", "description": "ADMIN", "permission": "ALL", "application": "ADMIN", "interface": "ALL", "params": [], "type": "PNS", "jwt": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkFETUlOIiwiY29udHJhY3QiOiJBRE1JTiIsImlhdCI6MjAxNjIzOTAyMn0.vwBNTaBbW40v14Iiqd65uhv4FVQi4qn4ZH50VyQ0rg" }));
-    redisconf.hset("contractadmin:ADMIN", "jwt", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkFETUlOIiwiY29udHJhY3QiOiJBRE1JTiIsImlhdCI6MjAxNjIzOTAyMn0.vwBNTaBbW40v14Iiqd65uhv4FVQi4qn4ZH50VyQ00rg");
+    hset("contractadmin:ADMIN", "jwt", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkFETUlOIiwiY29udHJhY3QiOiJBRE1JTiIsImlhdCI6MjAxNjIzOTAyMn0.vwBNTaBbW40v14Iiqd65uhv4FVQi4qn4ZH50VyQ00rg");
 
 }
 

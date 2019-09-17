@@ -83,10 +83,9 @@ const getSMSFiles = async () => {
 
                         pns.channel = buildPNSChannel(pns.operator, priority); //get the channel to put notification with operator and priority
 
-                        await pns.validate(); //we need await because is a promise and we need to manage the throw exceptions, particularly validating errors in bad request.
-                        //If you didn't execute "pns.validate()" we would need await because is a promise and we need to manage the throw exceptions, particularly validating errors.
-
-                        await savePNS(pns) //save pns to DB, in this phase we need save SMS to MongoDB.
+                        //await sms.validate(); //validate is unnecessary, we would need await because is a promise and we need to manage the throw exceptions, particularly validating errors in bad request.
+                       
+                        await savePNS(pns) //save pns to DB, in this phase we need save SMS to MongoDB. //If you didn't execute "pns.validate()" we would need await in save.
                             .catch(error => {
                                 error.message = "ERROR :  We cannot save notify in MongoBD. " + error.message;
                                 throw error;

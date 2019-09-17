@@ -112,7 +112,7 @@ const findAllCollectorPns = async (condition) => {
 //this method save PNS Collector  in MongoDB and manage the result of this operation
 const saveCollectorPns = async (collector) => {
     return new Promise((resolve, reject) => { // we need promise for managing errors and results inside callbacks
-        ccollector.save((error, result) => {
+        collector.save((error, result) => {
             try {  //I use Promises but I need to use try/catch in async callback for errors or I could use EventEmitter 
                 if (error) throw error;  //if mongoose give me an error. If we used reject the try/catch would be unnecessary  
                 else if (result) resolve(result); // everything is OK, return result
