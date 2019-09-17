@@ -20,8 +20,8 @@ const llen = async (name) => {
             } catch (error) { reject(error); } // In Callback we need to reject if we have Error. A reject will not pass through here
         });
     })
-        //.then((result) => { return result; })  //return the result value of property hash contract
-        //.catch((error) => { throw error; }); //throw Error exception to the main code, it's unnecessary but maybe we will need put some lógic...A reject callback will pass through here
+    //.then((result) => { return result; })  //return the result value of property hash contract
+    //.catch((error) => { throw error; }); //throw Error exception to the main code, it's unnecessary but maybe we will need put some lógic...A reject callback will pass through here
 }
 
 // this method gets hash name and its property, in a generic way
@@ -35,8 +35,8 @@ const hget = async (name, key) => {
             } catch (error) { reject(error); } // In Callback we need to reject if we have Error. A reject will not pass through here
         });
     })
-        //.then((result) => { return result; })  //return the result value of property hash contract
-        //.catch((error) => { throw error; }); //throw Error exception to the main code, it's unnecessary but maybe we will need put some lógic...A reject callback will pass through here
+    //.then((result) => { return result; })  //return the result value of property hash contract
+    //.catch((error) => { throw error; }); //throw Error exception to the main code, it's unnecessary but maybe we will need put some lógic...A reject callback will pass through here
 }
 
 // this method sets hash property and value, in a generic way
@@ -49,8 +49,8 @@ const hset = async (hash, property, value) => {
             } catch (error) { reject(error); } // In Callback we need to reject if we have Error. A reject will not pass through here
         });
     })
-        //.then((result) => { return result; })  //return the result value of property hash contract
-        //.catch((error) => { throw error; }); //throw Error exception to the main code, it's unnecessary but maybe we will need put some lógic...A reject callback will pass through here
+    //.then((result) => { return result; })  //return the result value of property hash contract
+    //.catch((error) => { throw error; }); //throw Error exception to the main code, it's unnecessary but maybe we will need put some lógic...A reject callback will pass through here
 }
 
 // this method save smsJson in a list (like qeues MQ)
@@ -64,8 +64,8 @@ const lpush = async (name, value) => {
             } catch (error) { reject(error); } // In Callback we need to reject if we have Error.  A reject will not pass through here
         });
     })
-        //.then((result) => { return result; }) //return the result, it's unnecessary but maybe we will need put some lógic...
-        //.catch((error) => { throw error; }); //throw Error exception to the main code, it's unnecessary but maybe we will need put some lógic...A reject callback will pass through here
+    //.then((result) => { return result; }) //return the result, it's unnecessary but maybe we will need put some lógic...
+    //.catch((error) => { throw error; }); //throw Error exception to the main code, it's unnecessary but maybe we will need put some lógic...A reject callback will pass through here
 }
 
 // this method save id's in a SET for checking retries or errors.
@@ -79,10 +79,23 @@ const sadd = async (name, value) => {
             } catch (error) { reject(error); } // In Callback we need to reject if we have Error.  A reject will not pass through here
         });
     })
-        //.then((result) => { return result; })  //return the result, it's unnecessary but maybe we will need put some lógic...
-        //.catch((error) => { throw error; });  //throw Error exception to the main code, it's unnecessary but maybe we will need put some lógic... A reject callback will pass through here
+    //.then((result) => { return result; })  //return the result, it's unnecessary but maybe we will need put some lógic...
+    //.catch((error) => { throw error; });  //throw Error exception to the main code, it's unnecessary but maybe we will need put some lógic... A reject callback will pass through here
 }
 
+// this method Returns if member is a member of the set stored at key..
+const sismember = async (name, value) => {
+    return new Promise((resolve, reject) => { // we need promise for managing errors and results inside callbacks
+        rclient.sismember(name, value, (error, result) => { //save the value in set                  
+            try {  //I use Promises but I need to use try/catch in async callback for errors or I could use EventEmitter 
+                if (error) throw error;  //if redis give me an error.  If we used reject the try/catch would be unnecessary 
+                else resolve(result); // everything is OK, return result                                    
+            } catch (error) { reject(error); } // In Callback we need to reject if we have Error.  A reject will not pass through here
+        });
+    })
+    //.then((result) => { return result; })  //return the result, it's unnecessary but maybe we will need put some lógic...
+    //.catch((error) => { throw error; });  //throw Error exception to the main code, it's unnecessary but maybe we will need put some lógic... A reject callback will pass through here
+}
 
 // this method save id's in a SET for checking retries or errors.
 const set = async (name, value) => {
@@ -95,8 +108,8 @@ const set = async (name, value) => {
             } catch (error) { reject(error); } // In Callback we need to reject if we have Error.  A reject will not pass through here
         });
     })
-        //.then((result) => { return result; })  //return the result, it's unnecessary but maybe we will need put some lógic...
-        //.catch((error) => { throw error; });  //throw Error exception to the main code, it's unnecessary but maybe we will need put some lógic...  A reject callback will pass through here
+    //.then((result) => { return result; })  //return the result, it's unnecessary but maybe we will need put some lógic...
+    //.catch((error) => { throw error; });  //throw Error exception to the main code, it's unnecessary but maybe we will need put some lógic...  A reject callback will pass through here
 }
 
 
@@ -110,8 +123,8 @@ const rpoplpush = async function (source, destination) {
             } catch (error) { reject(error); } // In Callback we need to reject if we have Error.  A reject will not pass through here
         });
     })
-        //.then((result) => { return result; }) //return the result, it's unnecessary but maybe we will need put some lógic...
-        //.catch((error) => { throw error; }); //throw Error exception to the main code, it's unnecessary but maybe we will need put some lógic...  A reject callback will pass through here
+    //.then((result) => { return result; }) //return the result, it's unnecessary but maybe we will need put some lógic...
+    //.catch((error) => { throw error; }); //throw Error exception to the main code, it's unnecessary but maybe we will need put some lógic...  A reject callback will pass through here
 }
 
 // this method delete 1 list message.
@@ -124,7 +137,7 @@ const rpop = async function (name) {
             } catch (error) { reject(error); } // In Callback we need to reject if we have Error.  A reject will not pass through here
         });
     })
-        //.then((result) => { return result; })  //return the result 
-        //.catch((error) => { throw error; });  //throw Error exception to the main code, it's unnecessary but maybe we will need put some lógic...  A reject callback will pass through here
+    //.then((result) => { return result; })  //return the result 
+    //.catch((error) => { throw error; });  //throw Error exception to the main code, it's unnecessary but maybe we will need put some lógic...  A reject callback will pass through here
 }
-module.exports = { hget, hset, lpush, sadd, set, rpop, rpoplpush, llen }
+module.exports = { hget, hset, lpush, sadd, sismember, set, rpop, rpoplpush, llen, }

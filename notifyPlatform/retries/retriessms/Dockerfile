@@ -23,6 +23,6 @@ RUN npm install
 # If you are building your code for production
 # RUN npm install --only=production
 
-EXPOSE 30005
+#EXPOSE 30005
 
-CMD [ "node", "index.js" ]
+CMD [ "node", "app.js" ]

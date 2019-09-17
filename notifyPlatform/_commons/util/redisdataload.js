@@ -134,14 +134,28 @@ const loadRedisForTesting = async () => {
     //batchSMS
     hmset(["collectorsms:batchSMS",
         "status", "1",
-        "interval", "2000",
+        "interval", "10000",
         "intervalControl", "30000"
     ]);
 
     //batchPNSs
     hmset(["collectorsms:batchPNS",
         "status", "1",
-        "interval", "2000",
+        "interval", "10000",
+        "intervalControl", "30000"
+    ]);
+
+    //retriesSMS
+    hmset(["collectorsms:retriesSMS",
+        "status", "1",
+        "interval", "10000",
+        "intervalControl", "30000"
+    ]);
+
+    //retriesPNSs
+    hmset(["collectorsms:retriesPNS",
+        "status", "1",
+        "interval", "10000",
         "intervalControl", "30000"
     ]);
 
@@ -221,11 +235,13 @@ const saveAllSMSDefaultCollectors = async () => {
     saveCollectorSms(new CollectorModel({ "operator": "VOD", "activated": true, "status": true, "name": "VOD", "description": "Collector SMS Vodafone", "interval": 10, "intervalControl": 30000, "type": "SMS" }));
     saveCollectorSms(new CollectorModel({ "operator": "ORA", "activated": true, "status": true, "name": "ORA", "description": "Collector SMS Orange", "interval": 10, "intervalControl": 30000, "type": "SMS" }));
     saveCollectorSms(new CollectorModel({ "operator": "batchSMS", "activated": true, "status": true, "name": "batchSMS", "description": "batch SMS", "interval": 10000, "intervalControl": 30000, "type": "SMS" }));
-    hmset(["collectorsms:batchSMS", "status", "1", "interval", "2000", "intervalControl", "30000"]);
-    hmset(["collectorsms:MOV", "status", "1", "interval", "2000", "intervalControl", "30000", "operator", "MOV"]);
-    hmset(["collectorsms:VIP", "status", "1", "interval", "2000", "intervalControl", "30000", "operator", "VIP"]);
-    hmset(["collectorsms:ORA", "status", "1", "interval", "2000", "intervalControl", "30000", "operator", "ORA"]);
-    hmset(["collectorsms:VOD", "status", "1", "interval", "2000", "intervalControl", "30000", "operator", "VOD"]);
+    saveCollectorSms(new CollectorModel({ "operator": "retriesSMS", "activated": true, "status": true, "name": "retriesSMS", "description": "retries SMS", "interval": 10000, "intervalControl": 30000, "type": "SMS" }));
+    hmset(["collectorsms:batchSMS", "status", "1", "interval", "10000", "intervalControl", "30000"]);
+    hmset(["collectorsms:retriesSMS", "status", "1", "interval", "10000", "intervalControl", "30000"]);
+    hmset(["collectorsms:MOV", "status", "1", "interval", "10", "intervalControl", "30000", "operator", "MOV"]);
+    hmset(["collectorsms:VIP", "status", "1", "interval", "10", "intervalControl", "30000", "operator", "VIP"]);
+    hmset(["collectorsms:ORA", "status", "1", "interval", "10", "intervalControl", "30000", "operator", "ORA"]);
+    hmset(["collectorsms:VOD", "status", "1", "interval", "10", "intervalControl", "30000", "operator", "VOD"]);
 }
 
 const saveAllPNSDefaultCollectors = async () => {
@@ -234,10 +250,12 @@ const saveAllPNSDefaultCollectors = async () => {
     saveCollectorPns(new CollectorModel({ "operator": "GOO", "activated": true, "status": true, "name": "GOO", "description": "Collector PNS Google", "interval": 10, "intervalControl": 30000, "type": "PNS" }));
     saveCollectorPns(new CollectorModel({ "operator": "MIC", "activated": true, "status": true, "name": "MIC", "description": "Collector PNS Microsoft", "interval": 10, "intervalControl": 30000, "type": "PNS" }));
     saveCollectorPns(new CollectorModel({ "operator": "batchPNS", "activated": true, "status": true, "name": "batchPNS", "description": "batch PNS", "interval": 10000, "intervalControl": 30000, "type": "PNS" }));
-    hmset(["collectorsms:batchPNS", "status", "1", "interval", "2000", "intervalControl", "30000"]);
-    hmset(["collectorpns:APP", "status", "1", "interval", "2000", "intervalControl", "30000", "operator", "APP"]);
-    hmset(["collectorpns:GOO", "status", "1", "interval", "2000", "intervalControl", "30000", "operator", "GOO"]);
-    hmset(["collectorpns:MIC", "status", "1", "interval", "2000", "intervalControl", "30000", "operator", "MIC"]);
+    saveCollectorSms(new CollectorModel({ "operator": "retriesPNS", "activated": true, "status": true, "name": "retriesPNS", "description": "retries PNS", "interval": 10000, "intervalControl": 30000, "type": "PNS" }));
+    hmset(["collectorsms:retriesPNS", "status", "1", "interval", "10000", "intervalControl", "30000"]);
+    hmset(["collectorsms:batchPNS", "status", "1", "interval", "10000", "intervalControl", "30000"]);
+    hmset(["collectorpns:APP", "status", "1", "interval", "10", "intervalControl", "30000", "operator", "APP"]);
+    hmset(["collectorpns:GOO", "status", "1", "interval", "10", "intervalControl", "30000", "operator", "GOO"]);
+    hmset(["collectorpns:MIC", "status", "1", "interval", "10", "intervalControl", "30000", "operator", "MIC"]);
 }
 
 const saveAdminSMSDefaultContract = async () => {
