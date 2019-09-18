@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: batchsms
+  labels:
+    app: batchsms
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: batchsms
+  template:
+    metadata:
+      labels:
+        app: batchsms
+    spec:
+      containers: 
+      - name: batchsms
+        image: batchsms
+        imagePullPolicy: Never
+        env:
+        - name: NODE_ENV
+          value: kubernetes
+      restartPolicy: Always     

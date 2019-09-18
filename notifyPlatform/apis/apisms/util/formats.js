@@ -33,6 +33,11 @@ const dateFormat = (date) => {
    //return date.toISOString().replace(/T/, ' ').replace(/\..+/, '');
 }
 
+//Date format for printing undertand date
+const dateFormatWithMillis = (date) => { //only for smsStauts/pnsStatus
+   return date.toLocaleString() +"."+ date.getMilliseconds();  
+}
+
 const logTime = (date) => {
    return ("[" + date.toLocaleTimeString() + "." + date.getMilliseconds() + "] ");
 
@@ -101,4 +106,4 @@ const validateOperator = (type, operator) => {
    return false;
 }
 
-module.exports = { dateFormat, logTime, buildSMSChannel, buildSMSChannels, buildPNSChannel, buildPNSChannels, counter, replaceBreaks, replaceSpacesTo1, replaceSpaces, descStatus, validateOperator }
+module.exports = { dateFormat, dateFormatWithMillis, logTime, buildSMSChannel, buildSMSChannels, buildPNSChannel, buildPNSChannels, counter, replaceBreaks, replaceSpacesTo1, replaceSpaces, descStatus, validateOperator }

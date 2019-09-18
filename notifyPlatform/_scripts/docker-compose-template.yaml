@@ -16,6 +16,8 @@ services:
 :_apistatusback_:
 :_retriessms_:
 :_retriespns_:
+:_batchsms_:
+:_batchpns_:
 :_redispns_:
 :_redissms_:
 :_redisconf_:

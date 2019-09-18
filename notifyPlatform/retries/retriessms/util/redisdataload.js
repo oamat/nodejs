@@ -1,6 +1,6 @@
 //Dependencies
 
-const { hmset, set, get } = require('./redisconf');
+const { hmset, set, get, hset } = require('./redisconf');
 const { logTime } = require('./formats');
 const { findAllContractSms, findAllCollectorSms, findAllTelfSms, saveCollectorSms, saveContractSms } = require('../util/mongomultisms');
 const { findAllContractPns, findAllCollectorPns, findAllTokenPns, saveCollectorPns, saveContractPns } = require('../util/mongomultipns');

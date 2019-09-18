@@ -11,7 +11,7 @@ const auth = require('../auth/auth');
 const redisconf = require('../util/redisconf');
 const { TokenPns } = require('../config/mongoosemulti');  // Attention : this Pns Model is model created for multi DB
 const { findPNS, saveTokenPns } = require('../util/mongomultipns');
-const { dateFormat, logTime, descStatus, validateOperator } = require('../util/formats');
+const {  dateFormatWithMillis, logTime, descStatus, validateOperator } = require('../util/formats');
 
 
 const router = new express.Router();
@@ -24,8 +24,8 @@ router.get('/pnsStatus', auth, async (req, res) => {
             let condition = { _id: req.body._id };
             var pns = await findPNS(condition);
             if (pns) {
-                if (pns.dispatchedAt) res.send({ Status: "200 OK", _id: pns._id, status: pns.status, description: descStatus("PNS", pns.status), receivedAt: dateFormat(pns.receivedAt), dispatchedAt: dateFormat(pns.dispatchedAt) });
-                else res.send({ Status: "200 OK", _id: pns._id, status: pns.status, description: descStatus("PNS", pns.status), receivedAt: dateFormat(pns.receivedAt) });
+                if (pns.dispatchedAt) res.send({ Status: "200 OK", _id: pns._id, status: pns.status, description: descStatus("PNS", pns.status), receivedAt: dateFormatWithMillis(pns.receivedAt), dispatchedAt: dateFormatWithMillis(pns.dispatchedAt) });
+                else res.send({ Status: "200 OK", _id: pns._id, status: pns.status, description: descStatus("PNS", pns.status), receivedAt: dateFormatWithMillis(pns.receivedAt) });
             } else {
                 res.send({ Status: "200 OK", _id: req.body._id, status: "-1", description: "PNS not found" });
             }
@@ -81,7 +81,7 @@ router.post('/tokenRegister', auth, async (req, res) => {
 
 const requestError = async (error, req, res) => {
     //TODO personalize errors 400 or 500. 
-    const errorJson = { StatusCode: "400 Bad Request", error: error.message, receiveAt: dateFormat(new Date()) };   // dateFornat: replace T with a space && delete the dot and everything after
+    const errorJson = { StatusCode: "400 Bad Request", error: error.message, receiveAt: dateFormatWithMillis(new Date()) };   // dateFornat: replace T with a space && delete the dot and everything after
     console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "ERROR: " + JSON.stringify(errorJson));
     res.status(400).send(errorJson);
     //TODO: save error in db  or mem.
