@@ -1,7 +1,7 @@
 {
   "name": "apisms",
   "version": "1.0.0",
-  "description": "apisms",
+  "description": " API Rest for send SMS online",
   "main": "index.js",
   "scripts": {
     "test": "test"

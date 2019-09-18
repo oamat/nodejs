@@ -1,7 +1,7 @@
 {
-  "name": "status",
+  "name": "apistatusback",
   "version": "1.0.0",
-  "description": "status",
+  "description": "API Rest for receive status from operators",
   "main": "index.js",
   "scripts": {
     "test": "test"

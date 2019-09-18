@@ -1,4 +1,11 @@
 # COLLECTOR's code for notify Platform
+    - apple :  collector that send's PNS to the APP operator  
+    - google : collector that send's PNS to the GOO operator
+    - microsoft : collector that send's PNS to the MIC operator  
+    - movistar : collector that send's SMS to the MOV operator.  
+    - movistarVIP : collector that send's SMS to the VIP operator
+    - orange : collector that send's SMS to the ORA operator
+    - vodafone : collector that send's SMS to the VOD operator
 
 #### In devMode the minimum components for start the aplication are Mongo & Redis, start like here :
 - /_mongodb/mongosms/rundocker.sh 

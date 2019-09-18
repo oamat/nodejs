@@ -1,5 +1,6 @@
 # SMS Batch, a module of NotifyPlatform to receive SMS file and send SMS requests to redis / mongodb
-
+- batchsms : batch for send SMS via JSON files.  
+- batchpns : batch for send PNS via JSON files.
 
 #### In devMode the minimum components for start the aplication are Mongo & Redis, start like here :
 - /_mongodb/mongosms/rundocker.sh 

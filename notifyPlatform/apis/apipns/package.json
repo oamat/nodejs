@@ -1,7 +1,7 @@
 {
   "name": "apipns",
   "version": "1.0.0",
-  "description": "apipns",
+  "description": "API Rest for send PNS online",
   "main": "index.js",
   "scripts": {
     "test": "test"

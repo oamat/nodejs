@@ -1,8 +1,8 @@
 {
   "name": "mqpns",
   "version": "1.0.0",
-  "description": "mqpns",
-  "main": "index.js",
+  "description": "This code retrieve PNS from MQ queues and save in redis",
+  "main": "app.js",
   "scripts": {
     "test": "test"
   },

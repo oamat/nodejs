@@ -1,8 +1,8 @@
 {
   "name": "orange",
   "version": "1.0.0",
-  "description": "movistar",
-  "main": "index.js",
+  "description": "collector that send's SMS to the ORA operator",
+  "main": "app.js",
   "scripts": {
     "test": "test"
   },

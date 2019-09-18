@@ -1,8 +1,8 @@
 {
   "name": "movistarvip",
   "version": "1.0.0",
-  "description": "movistar",
-  "main": "index.js",
+  "description": "collector that send's SMS to the VIP operator",
+  "main": "app.js",
   "scripts": {
     "test": "test"
   },

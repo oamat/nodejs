@@ -9,13 +9,31 @@
 - _scripts : contains all the scripts for developing project, in order by num.
 -  Vagrantfile : The vagrant configuration for dev mode in ubuntu-18.04, you can install all dependencies and packages with the script '0.1.installAllDependencies.sh'
 -  notifyAPI.postman_collection.json : PostMan file for testing: You can use postman for prove requests to the APIS
+-  jmeter.jmx: The JMETER tests of performance
 
 ### Structure Project : The Project code structure
--  apis : project APIS: apisms, apipns, apiadmin, apistatusback
--  batch : project batch: batchsms, batchpns
--  collectors : project collectors ara crons that sends messages to the operators.
--  mq : project reception MQ requests : mqsms, mqpns
--  retries : project retries status from operator: retriessms, retriespns
+-  APIS : project apis's: 
+       - apisms : API Rest for send SMS online
+       - apipns : API Rest for send PNS online
+       - apiadmin : API Admin for Notify Platform configurations & monitoring
+       - apistatusback : API Rest for receive status from operators
+-  BATCH : project batch's: 
+       - batchsms : batch for send SMS via JSON files.  
+       - batchpns : batch for send PNS via JSON files.
+-  COLLECTORS : project collectors, they are crons that sends messages to the operators.
+       - apple :  collector that send's PNS to the APP operator  
+       - google : collector that send's PNS to the GOO operator
+       - microsoft : collector that send's PNS to the MIC operator  
+       - movistar : collector that send's SMS to the MOV operator  
+       - movistarVIP : collector that send's SMS to the VIP operator
+       - orange : collector that send's SMS to the ORA operator
+       - vodafone : collector that send's SMS to the VOD operator
+-  MQ : project reception MQ requests : 
+       - mqsms : This code retrieve PNS from MQ queues and save in redis.
+       - mqpns : This code retrieve SMS from MQ queues and save in redis.
+-  RETRIES : These modules crons retry notification shipments: 
+       - retriessms : cron that retries SMS not sent
+       - retriespns : cron that retries PNS not sent
 
 ### Enviroment : use NODE_ENV env variable  : 
        $env:NODE_ENV="windocker"   : for dev mode in Windows (you need to start almost mongo & redis docker) 

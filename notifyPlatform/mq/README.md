@@ -1,5 +1,6 @@
 # MQ's code for notify Platform
-
+       - mqsms : This code retrieve PNS from MQ queues and save in redis.
+       - mqpns : This code retrieve SMS from MQ queues and save in redis.
 #### In devMode the minimum components for start the aplication are Mongo & Redis, start like here :
 - /_mongodb/mongosms/rundocker.sh 
 - /_mongodb/mongopns/rundocker.sh 

@@ -1,7 +1,7 @@
 {
-  "name": "apisms",
+  "name": "apiadmin",
   "version": "1.0.0",
-  "description": "apisms",
+  "description": "API Admin for Notify Platform configurations & monitoring",
   "main": "index.js",
   "scripts": {
     "test": "test"

@@ -1,4 +1,5 @@
 # BATCH's code for notify Platform
+     - batchsms : batch for send SMS via JSON files.  
 
 #### In devMode the minimum components for start the aplication are Mongo & Redis, start like here :
 - /_mongodb/mongosms/rundocker.sh 

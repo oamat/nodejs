@@ -1,4 +1,9 @@
 # APIS code for notify Platform
+-  apis : project APIS: 
+       - apisms : API Rest for send SMS online
+       - apipns : API Rest for send PNS online
+       - apiadmin : API Admin for Notify Platform configurations & monitoring
+       - apistatusback : API Rest for receive status from operators
 
 #### In devMode the minimum components for start the aplication are Mongo & Redis, start like here :
 - /_mongodb/mongosms/rundocker.sh 

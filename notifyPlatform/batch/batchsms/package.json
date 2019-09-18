@@ -1,8 +1,8 @@
 {
   "name": "batchsms",
   "version": "1.0.0",
-  "description": "batchsms",
-  "main": "index.js",
+  "description": "batch for send SMS via JSON files.",
+  "main": "app.js",
   "scripts": {
     "test": "test"
   },
