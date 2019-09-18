@@ -81,7 +81,7 @@ const sendNextPNS = async () => {
                 if (operator == defaultOperator) { //If we change operator for contingency we change pns to other list
                     await sendPNS(pns); // send PNS to operator
                     updatePNS(pns); // update PNS in MongoDB
-                    console.log(process.env.GREEN_COLOR, logTime(new Date()) + "PNS sended : " + JSON.stringify(pns));  //JSON.stringify for replace new lines (\n) and tab (\t) chars into string
+                    console.log(process.env.GREEN_COLOR, logTime(new Date()) + "PNS sended : " + pns._id);  //JSON.stringify for replace new lines (\n) and tab (\t) chars into string
                 } else {
                     await rpoplpush(buildPNSChannel(defaultOperator, pns.priority), buildPNSChannel(operator, pns.priority)); // we put message to the other operator List
                     console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "change PNS " + pns._id + " from " + defaultOperator + " to " + operator); // we inform about this exceptional action

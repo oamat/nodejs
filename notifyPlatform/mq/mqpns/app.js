@@ -19,7 +19,7 @@ require('./config/redisconf'); //we need to initialize redis
 const Pns = require('./models/pns');
 const { savePNS } = require('./util/mongopns');
 const { lpush, sadd } = require('./util/redispns');
-const { hget } = require('./util/redisconf');
+const { hget, hset } = require('./util/redisconf');
 const { dateFormat, logTime, buildPNSChannel } = require('./util/formats');
 const auth = require('./auth/auth');
 
@@ -46,7 +46,7 @@ const initializeAllSources = async () => { // Init Mongoose with await
     //START PARALLEL excution with await Promise.all.
     await Promise.all([ //Async Promises: all tasks start immediately 
         initializeMongooseConnection(),  // Init mongoose
-        //rclient.set("initializeRedisConnection:test", "test") // little test redis
+        hset("mqpns", "last", dateFormat(new Date())) //save last execution in Redis
     ]);
     //END PARALLEL excution with await Promise.all.
 
@@ -140,7 +140,7 @@ async function getCB(err, hObj, gmo, md, buf, hConn) {
                     }
                     const collectorOperator = hget("collectorpns:" + pns.operator, "operator"); //this method is Async, but we can get in parallel until need it (with await). 
                     if (await collectorOperator != pns.operator) pns.operator = collectorOperator;  //check if the operator have some problems
-
+ 
                     pns.channel = buildPNSChannel(pns.operator, pns.priority); //get the channel to put notification with operator and priority
                     delete pns.jwt; // we don't need to save jwt in mongodb, only for authoritation.
                     //await pns.validate(); //await sms.validate(); //validate is unnecessary, we would need await because is a promise and we need to manage the throw exceptions, particularly validating errors in bad request.
@@ -160,9 +160,9 @@ async function getCB(err, hObj, gmo, md, buf, hConn) {
                         if (values[1] instanceof Error) { console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "ERROR: We cannot save PNS in Redis SET (sadd): " + values[1].message); } //sadd returns error          
                     });
                     // END the 2 "tasks" in parallel    
+                    
+                    console.log(process.env.GREEN_COLOR, logTime(new Date()) + "PNS to send : " + pns._id);  //JSON.stringify for replace new lines (\n) and tab (\t) chars into string
 
-
-                    console.log(process.env.GREEN_COLOR, logTime(new Date()) + "PNS to send : " + JSON.stringify(pns));  //JSON.stringify for replace new lines (\n) and tab (\t) chars into string
                 } catch (error) {
                     let contract = pns.contract || 'undefined';
                     let uuiddevice = pns.uuiddevice || 'undefined';
@@ -260,6 +260,6 @@ setInterval(function () {
     if (!ok) {
         console.log(logTime(new Date()) + "Exiting ...");
         cleanup(connectionHandle, queueHandle);
-        process.exit(exitCode);
+        //process.exit(exitCode);
     }
 }, (waitInterval + 2) * 1000);

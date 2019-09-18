@@ -19,7 +19,7 @@ const fs = require('fs');
 //Variables
 const batchIn = './files/in/';
 const batchOut = './files/out/';
-const batchName = "collectorsms:batchPNS";
+const batchName = "collectorpns:batchPNS";
 var cron; //the main cron that manage files and put them into redis List.
 var cronStatus = 1; //status of cron. 0: cron stopped, 1 : cron working, 
 var cronChanged = false;  //if we need restart cron, 
@@ -35,7 +35,7 @@ const startCron = async (interval) => { //Start cron only when cron is stopped.
         } else {
             cron = setInterval(function () {
                 console.log(logTime(new Date()) + "batchPNS executing ");
-                getSMSFiles();
+                getPNSFiles();
             }, interval);
         }
     } catch (error) {
@@ -57,7 +57,7 @@ const stopCron = async () => { //stop cron only when cron is switched on
     }
 }
 
-const getSMSFiles = async () => {
+const getPNSFiles = async () => {
     if (nextExecution) {
         nextExecution = false;
         try {
@@ -83,9 +83,9 @@ const getSMSFiles = async () => {
 
                         pns.channel = buildPNSChannel(pns.operator, priority); //get the channel to put notification with operator and priority
 
-                        //await sms.validate(); //validate is unnecessary, we would need await because is a promise and we need to manage the throw exceptions, particularly validating errors in bad request.
+                        //await pns.validate(); //validate is unnecessary, we would need await because is a promise and we need to manage the throw exceptions, particularly validating errors in bad request.
                        
-                        await savePNS(pns) //save pns to DB, in this phase we need save SMS to MongoDB. //If you didn't execute "pns.validate()" we would need await in save.
+                        await savePNS(pns) //save pns to DB, in this phase we need save PNS to MongoDB. //If you didn't execute "pns.validate()" we would need await in save.
                             .catch(error => {
                                 error.message = "ERROR :  We cannot save notify in MongoBD. " + error.message;
                                 throw error;
@@ -93,15 +93,15 @@ const getSMSFiles = async () => {
 
                         // START 2 "tasks" in parallel. Even when we recollect the errors we continue the execution and return OK.    
                         Promise.all([
-                            lpush(pns.channel, JSON.stringify(pns)).catch(error => { return error }),  //put pns to the the apropiate lists channels: SMS.GOO.1, SMS.VIP.1, SMS.ORA.1, SMS.VOD.1 (1,2,3) 
-                            sadd("SMS.IDS.PENDING", pns._id).catch(error => { return error }),         //we save the _id in a SET, for checking the retries, errors, etc.  
+                            lpush(pns.channel, JSON.stringify(pns)).catch(error => { return error }),  //put pns to the the apropiate lists channels: PNS.GOO.1, PNS.VIP.1, PNS.ORA.1, PNS.VOD.1 (1,2,3) 
+                            sadd("PNS.IDS.PENDING", pns._id).catch(error => { return error }),         //we save the _id in a SET, for checking the retries, errors, etc.  
                         ]).then(values => {
-                            if (values[0] instanceof Error) { console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "ERROR: We cannot save SMS in Redis LIST (lpush): " + values[0].message); }  //lpush returns error
-                            if (values[1] instanceof Error) { console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "ERROR: We cannot save SMS in Redis SET (sadd): " + values[1].message); } //sadd returns error          
+                            if (values[0] instanceof Error) { console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "ERROR: We cannot save PNS in Redis LIST (lpush): " + values[0].message); }  //lpush returns error
+                            if (values[1] instanceof Error) { console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "ERROR: We cannot save PNS in Redis SET (sadd): " + values[1].message); } //sadd returns error          
                         });
                         // END the 2 "tasks" in parallel    
 
-                        console.log(process.env.GREEN_COLOR, logTime(new Date()) + "SMS to send : " + JSON.stringify(pns));  //JSON.stringify for replace new lines (\n) and tab (\t) chars into string
+                        console.log(process.env.GREEN_COLOR, logTime(new Date()) + "PNS to send : " + pns._id);  //JSON.stringify for replace new lines (\n) and tab (\t) chars into string
 
                     } catch (error) {
                         let contract = pns.contract || 'undefined';
@@ -124,7 +124,7 @@ const getSMSFiles = async () => {
 
             });
         } catch (error) {
-            console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "ERROR: we have a problem in batchPNS.getSMSFiles() : " + error.message);
+            console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "ERROR: we have a problem in batchPNS.getPNSFiles() : " + error.message);
             //console.error(error); //continue the execution cron
         }
         nextExecution = true;
@@ -132,7 +132,7 @@ const getSMSFiles = async () => {
 }
 
 
-const nextSMS = async () => {
+const nextPNS = async () => {
     try {
         return await rpop(channels.channel0) || await rpop(channels.channel1) || await rpop(channels.channel2) || await rpop(channels.channel3) || await rpop(channels.channel4) || await rpop(channels.channel5); //return the next pns by priority order.  
     } catch (error) {

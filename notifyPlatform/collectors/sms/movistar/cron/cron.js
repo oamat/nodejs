@@ -80,7 +80,7 @@ const sendNextSMS = async () => {
                 if (operator == defaultOperator) { //If we change operator for contingency we change sms to other list
                     await sendSMS(sms); // send SMS to operator             
                     updateSMS(sms); // update SMS in MongoDB
-                    console.log(process.env.GREEN_COLOR, logTime(new Date()) + "SMS sended : " + JSON.stringify(sms));  //JSON.stringify for replace new lines (\n) and tab (\t) chars into string
+                    console.log(process.env.GREEN_COLOR, logTime(new Date()) + "SMS sended : " + sms._id);  //JSON.stringify for replace new lines (\n) and tab (\t) chars into string
                 } else {
                     await rpoplpush(buildSMSChannel(defaultOperator, sms.priority), buildSMSChannel(operator, sms.priority)); // we put message to the other operator List
                     console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "change SMS " + sms._id + " from " + defaultOperator + " to " + operator); // we inform about this exceptional action

@@ -155,16 +155,10 @@ router.get('/pendingNotifications', auth, async (req, res) => {
 // GET //serviceStatus   # contract in body for Auth
 router.get('/serviceStatus', auth, async (req, res) => {
     try {
+        // TODO: check APIS       
+
         // START 43 "tasks" in parallel. we put await because we need all results before construct the json   
         await Promise.all([
-            redisconf.hgetOrNull("collectorsms:batchSMS", "status"),
-            redisconf.hgetOrNull("collectorsms:batchSMS", "interval"),
-            redisconf.hgetOrNull("collectorsms:batchSMS", "intervalControl"),
-            redisconf.hgetOrNull("collectorsms:batchSMS", "last"),
-            redisconf.hgetOrNull("collectorsms:batchPNS", "status"),
-            redisconf.hgetOrNull("collectorsms:batchPNS", "interval"),
-            redisconf.hgetOrNull("collectorsms:batchPNS", "intervalControl"),
-            redisconf.hgetOrNull("collectorsms:batchPNS", "last"),
             //PNS CollectorStatus
             redisconf.hgetOrNull("collectorpns:APP", "status"),
             redisconf.hgetOrNull("collectorpns:APP", "interval"),
@@ -181,6 +175,7 @@ router.get('/serviceStatus', auth, async (req, res) => {
             redisconf.hgetOrNull("collectorpns:MIC", "intervalControl"),
             redisconf.hgetOrNull("collectorpns:MIC", "last"),
             redisconf.hgetOrNull("collectorpns:MIC", "operator"),
+
             //SMS CollectorStatus
             redisconf.hgetOrNull("collectorsms:MOV", "status"),
             redisconf.hgetOrNull("collectorsms:MOV", "interval"),
@@ -201,73 +196,140 @@ router.get('/serviceStatus', auth, async (req, res) => {
             redisconf.hgetOrNull("collectorsms:VOD", "interval"),
             redisconf.hgetOrNull("collectorsms:VOD", "intervalControl"),
             redisconf.hgetOrNull("collectorsms:VOD", "last"),
-            redisconf.hgetOrNull("collectorsms:VOD", "operator")
+            redisconf.hgetOrNull("collectorsms:VOD", "operator"),
+
+            //Batch Collectors
+            redisconf.hgetOrNull("collectorsms:batchSMS", "status"),
+            redisconf.hgetOrNull("collectorsms:batchSMS", "interval"),
+            redisconf.hgetOrNull("collectorsms:batchSMS", "intervalControl"),
+            redisconf.hgetOrNull("collectorsms:batchSMS", "last"),
+            redisconf.hgetOrNull("collectorsms:batchPNS", "status"),
+            redisconf.hgetOrNull("collectorsms:batchPNS", "interval"),
+            redisconf.hgetOrNull("collectorsms:batchPNS", "intervalControl"),
+            redisconf.hgetOrNull("collectorsms:batchPNS", "last"),
+
+            //MQ
+            redisconf.hgetOrNull("mqpns", "last"),
+            redisconf.hgetOrNull("mqsms", "last"),
+
+            //Retries Collectors
+            redisconf.hgetOrNull("collectorsms:retriesSMS", "status"),
+            redisconf.hgetOrNull("collectorsms:retriesSMS", "interval"),
+            redisconf.hgetOrNull("collectorsms:retriesSMS", "intervalControl"),
+            redisconf.hgetOrNull("collectorsms:retriesSMS", "last"),
+            redisconf.hgetOrNull("collectorpns:retriesPNS", "status"),
+            redisconf.hgetOrNull("collectorpns:retriesPNS", "interval"),
+            redisconf.hgetOrNull("collectorpns:retriesPNS", "intervalControl"),
+            redisconf.hgetOrNull("collectorpns:retriesPNS", "last"),
+
+            //APIS
+            redisconf.hgetOrNull("apiadmin", "last"),            
+            redisconf.hgetOrNull("apisms", "last"),
+            redisconf.hgetOrNull("apipns", "last"),
+            redisconf.hgetOrNull("apistatusback", "last")
 
         ]).then(values => {
+            let index = 0;
             res.send({
                 Status: "200 OK",
                 description: "status[1:ON, 0:OFF] - interval[cron(ms)] - intervalControl[cronController(ms)] - lastExecutionCheckControl[last CronController execution] - operator[Contingency]",
-                "SMS-Batch": [{
-                    status: values[0],
-                    interval: values[1],
-                    intervalControl: values[2],
-                    lastExecutionCheckControl: values[3]
-                }],
-                "PNS-Batch": [{
-                    status: values[4],
-                    interval: values[5],
-                    intervalControl: values[6],
-                    lastExecutionCheckControl: values[7]
-                }],
                 "APPLE-collector": [{
-                    status: values[8],
-                    interval: values[9],
-                    intervalControl: values[10],
-                    lastExecutionCheckControl: values[11],
-                    operator: values[12]
+                    status: values[index++],
+                    interval: values[index++],
+                    intervalControl: values[index++],
+                    lastExecutionCheckControl: values[index++],
+                    operator: values[index++]
                 }],
                 "GOOGLE-collector": [{
-                    status: values[13],
-                    interval: values[14],
-                    intervalControl: values[15],
-                    lastExecutionCheckControl: values[16],
-                    operator: values[17]
+                    status: values[index++],
+                    interval: values[index++],
+                    intervalControl: values[index++],
+                    lastExecutionCheckControl: values[index++],
+                    operator: values[index++]
                 }],
                 "MICROSOFT-collector": [{
-                    status: values[18],
-                    interval: values[19],
-                    intervalControl: values[20],
-                    lastExecutionCheckControl: values[21],
-                    operator: values[22]
+                    status: values[index++],
+                    interval: values[index++],
+                    intervalControl: values[index++],
+                    lastExecutionCheckControl: values[index++],
+                    operator: values[index++]
                 }],
                 "MOVISTAR-collector": [{
-                    status: values[23],
-                    interval: values[24],
-                    intervalControl: values[25],
-                    lastExecutionCheckControl: values[26],
-                    operator: values[27]
+                    status: values[index++],
+                    interval: values[index++],
+                    intervalControl: values[index++],
+                    lastExecutionCheckControl: values[index++],
+                    operator: values[index++]
                 }],
                 "VIP-MOVISTAR-collector": [{
-                    status: values[28],
-                    interval: values[29],
-                    intervalControl: values[30],
-                    lastExecutionCheckControl: values[31],
-                    operator: values[32]
+                    status: values[index++],
+                    interval: values[index++],
+                    intervalControl: values[index++],
+                    lastExecutionCheckControl: values[index++],
+                    operator: values[index++]
                 }],
                 "ORANGE-collector": [{
-                    status: values[33],
-                    interval: values[34],
-                    intervalControl: values[35],
-                    lastExecutionCheckControl: values[36],
-                    operator: values[37]
+                    status: values[index++],
+                    interval: values[index++],
+                    intervalControl: values[index++],
+                    lastExecutionCheckControl: values[index++],
+                    operator: values[index++]
                 }],
                 "VODAFONE-collector": [{
-                    status: values[38],
-                    interval: values[39],
-                    intervalControl: values[40],
-                    lastExecutionCheckControl: values[41],
-                    operator: values[42]
-                }]
+                    status: values[index++],
+                    interval: values[index++],
+                    intervalControl: values[index++],
+                    lastExecutionCheckControl: values[index++],
+                    operator: values[index++]
+                }],
+                "SMS-Batch": [{
+                    status: values[index++],
+                    interval: values[index++],
+                    intervalControl: values[index++],
+                    lastExecutionCheckControl: values[index++]
+                }],
+                "PNS-Batch": [{
+                    status: values[index++],
+                    interval: values[index++],
+                    intervalControl: values[index++],
+                    lastExecutionCheckControl: values[index++]
+                }],
+                "SMS-MQ": [{
+                    status: 1,
+                    lastRestart: values[index++]
+                }],
+                "PNS-MQ": [{
+                    status: 1,
+                    lastRestart: values[index++]
+                }],
+                "SMS-Retries": [{
+                    status: values[index++],
+                    interval: values[index++],
+                    intervalControl: values[index++],
+                    lastExecutionCheckControl: values[index++]
+                }],
+                "PNS-Retries": [{
+                    status: values[index++],
+                    interval: values[index++],
+                    intervalControl: values[index++],
+                    lastExecutionCheckControl: values[index++]
+                }],
+                "API-ADMIN": [{
+                    status: 1,
+                    lastRestart: values[index++]
+                }],
+                "API-SMS": [{
+                    status: 1,
+                    lastRestart: values[index++]
+                }],
+                "API-PNS": [{
+                    status: 1,
+                    lastRestart: values[index++]
+                }],
+                "API-STATUSBACK": [{
+                    status: 1,
+                    lastRestart: values[index++]
+                }],
             });
         });
         // END 43 "tasks" in parallel. we put await because we need all results before construct the json   
@@ -313,8 +375,8 @@ router.patch('/operatorContingency', auth, async (req, res) => {
 router.patch('/changeCollector', auth, async (req, res) => {
     try {
         if (!req.body.name || !req.body.interval || !req.body.intervalControl) throw new Error("you need params name, status, interval & intervalControl in your /changeCollector request body.");
-        if (req.body.status!=0 && req.body.status != 1) throw new Error("Status must be a number: 1 (ON) or 0 (OFF).");
-        if (req.body.interval<0 || req.body.intervalControl<0) throw new Error("Interval or IntervalControl must be a number <0. ");
+        if (req.body.status != 0 && req.body.status != 1) throw new Error("Status must be a number: 1 (ON) or 0 (OFF).");
+        if (req.body.interval < 0 || req.body.intervalControl < 0) throw new Error("Interval or IntervalControl must be a number <0. ");
         let SMSrequest = validateOperator("SMS", req.body.name);
         let PNSrequest = validateOperator("PNS", req.body.name);
         if (!SMSrequest && !PNSrequest) throw new Error("Name is invalid, it must be one of this options for SMS: 'MOV', 'VIP', 'ORA' or 'VOD'. Or for PNS: 'APP', 'GOO' or 'MIC'");
@@ -325,7 +387,7 @@ router.patch('/changeCollector', auth, async (req, res) => {
             interval: req.body.interval,
             intervalControl: req.body.intervalControl
         };
-        
+
         if (SMSrequest) {
             // Execute in Parallel 2 tasks, before response we need to do all tasks for this reason we put await.
             await Promise.all([
@@ -382,9 +444,7 @@ router.patch('/changeCollector', auth, async (req, res) => {
 // GET /loadRedis    # contract in body for Auth
 router.get('/loadRedis', auth, async (req, res) => {
     try {
-
         loadRedisConf();
-
         res.send({ Status: "200 OK", info: "Loading all Data in RedisConf..." });
     } catch (error) {
         //TODO personalize errors 400 or 500. 

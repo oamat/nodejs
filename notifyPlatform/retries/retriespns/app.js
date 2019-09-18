@@ -8,8 +8,8 @@
 
 // Dependencies
 require('./config/config'); //we need configurations
-const { initializeMongooseConnection } = require('./config/mongoosesms'); //we need to initialize mongoose
-require('./config/redissms'); //we need to initialize redis
+const { initializeMongooseConnection } = require('./config/mongoosepns'); //we need to initialize mongoose
+require('./config/redispns'); //we need to initialize redis
 const redisconf = require('./config/redisconf'); //we need to initialize redis
 const { dateFormat } = require('./util/formats'); // utils for format
 //cron Dependency
@@ -20,7 +20,7 @@ const initializeAll = async () => {
     //START PARALLEL excution with await Promise.all.
     await Promise.all([ //Async Promises: all tasks start immediately 
         initializeMongooseConnection(),  // Init mongoose
-        redisconf.rclient.hset("collectorsms:VIP", "last", dateFormat(new Date())) //save last execution in Redis
+        redisconf.rclient.hset("collectorpns:retriesPNS", "last", dateFormat(new Date())) //save last execution in Redis
     ]);
     //END PARALLEL excution with await Promise.all.
 

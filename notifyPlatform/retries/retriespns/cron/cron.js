@@ -9,10 +9,10 @@
 
 //Dependencies
 
-const { sadd, sismember, lpush } = require('../util/redissms'); //we need to initialize redis
+const { sadd, sismember, lpush } = require('../util/redispns'); //we need to initialize redis
 const { hget, hset } = require('../util/redisconf');
 const { dateFormat, logTime } = require('../util/formats'); // utils for formats
-const { findAllSMS } = require('../util/mongosms'); // utils for formats
+const { findAllPNS } = require('../util/mongopns'); // utils for formats
 
 
 //Variables
@@ -25,17 +25,17 @@ var limit = 100;
 
 const startCron = async (interval) => { //Start cron only when cron is stopped.
     try {
-        console.log(process.env.GREEN_COLOR, logTime(new Date()) + "initializing retriessms cron at " + dateFormat(new Date()) + " with interval : " + interval);
+        console.log(process.env.GREEN_COLOR, logTime(new Date()) + "initializing retriespns cron at " + dateFormat(new Date()) + " with interval : " + interval);
         if (cron) {
-            console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "retriessms cron is executing, so we don't need re-start it.");
+            console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "retriespns cron is executing, so we don't need re-start it.");
         } else {
             cron = setInterval(function () {
-                //console.log(logTime(new Date()) + "retriessms cron executing ");
-                retryNextsSMS();
+                //console.log(logTime(new Date()) + "retriespns cron executing ");
+                retryNextsPNS();
             }, interval);
         }
     } catch (error) {
-        console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "ERROR: we cannot start retriessms cron . Process continuing... " + error.message);
+        console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "ERROR: we cannot start retriespns cron . Process continuing... " + error.message);
         //console.error(error); //continue the execution cron
     }
 }
@@ -43,7 +43,7 @@ const startCron = async (interval) => { //Start cron only when cron is stopped.
 const stopCron = async () => { //stop cron only when cron is switched on
     try {
         if (cron) {
-            console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "Stoping retriesSMS cron at " + dateFormat(new Date()));
+            console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "Stoping retriesPNS cron at " + dateFormat(new Date()));
             clearInterval(cron);
             cron = null;
         }
@@ -53,36 +53,36 @@ const stopCron = async () => { //stop cron only when cron is switched on
     }
 }
 
-const retryNextsSMS = async () => {
+const retryNextsPNS = async () => {
     try {
-        const retriesSMS = await nextRetriesSMS(); //get array of SMS not sent. 
+        const retriesPNS = await nextRetriesPNS(); //get array of PNS not sent. 
         let counter = 0;
 
-        for (var i = 0; i < retriesSMS.length; i++) {
-            if (await sismember("SMS.IDS.PENDING", retriesSMS[i]._id) == 0) {
+        for (var i = 0; i < retriesPNS.length; i++) {
+            if (await sismember("PNS.IDS.PENDING", retriesPNS[i]._id) == 0) {
                 // START 2 "tasks" in parallel. Even when we recollect the errors we continue the execution and return OK.
                 await Promise.all([
-                    lpush(retriesSMS[i].channel, JSON.stringify(retriesSMS[i])).catch(error => { return error }),  //put sms to the the apropiate lists channels: SMS.MOV.1, SMS.VIP.1, SMS.ORA.1, SMS.VOD.1 (1,2,3) 
-                    sadd("SMS.IDS.PENDING", retriesSMS[i]._id).catch(error => { return error }),         //we save the _id in a SET, for checking the retries, errors, etc.  
+                    lpush(retriesPNS[i].channel, JSON.stringify(retriesPNS[i])).catch(error => { return error }),  //put pns to the the apropiate lists channels: PNS.MOV.1, PNS.VIP.1, PNS.ORA.1, PNS.VOD.1 (1,2,3) 
+                    sadd("PNS.IDS.PENDING", retriesPNS[i]._id).catch(error => { return error }),         //we save the _id in a SET, for checking the retries, errors, etc.  
                 ]).then(values => {
-                    if (values[0] instanceof Error) { console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "ERROR: We cannot save SMS in Redis LIST (lpush): " + values[0].message); }  //lpush returns error
-                    if (values[1] instanceof Error) { console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "ERROR: We cannot save SMS in Redis SET (sadd): " + values[1].message); } //sadd returns error          
+                    if (values[0] instanceof Error) { console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "ERROR: We cannot save PNS in Redis LIST (lpush): " + values[0].message); }  //lpush returns error
+                    if (values[1] instanceof Error) { console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "ERROR: We cannot save PNS in Redis SET (sadd): " + values[1].message); } //sadd returns error          
                 });
                 // END the 2 "tasks" in parallel    
                 counter++;
             }
         }
 
-        if (counter) console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "We have retried " + counter + " SMS that were not found in REDIS.");
-        else console.log(process.env.GREEN_COLOR, logTime(new Date()) + "We don't find any SMS to retry.");
+        if (counter) console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "We have retried " + counter + " PNS that were not found in REDIS.");
+        else console.log(process.env.GREEN_COLOR, logTime(new Date()) + "We don't find any PNS to retry.");
 
     } catch (error) {
-        console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "ERROR: we have a problem in retryNextsSMS() : " + error.message);
+        console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "ERROR: we have a problem in retryNextsPNS() : " + error.message);
         //console.error(error); //continue the execution cron
     }
 }
 
-const nextRetriesSMS = async () => {
+const nextRetriesPNS = async () => {
     try {  //priority
         let dateFrom = new Date();
         let dateTo = new Date();
@@ -99,7 +99,7 @@ const nextRetriesSMS = async () => {
 
         let options = { skip: 0, limit, sort: { priority: 1 } }; //skip (Starting Row), limit (Ending Row), Sort by priority ASC
 
-        return await findAllSMS(condition, options);//return the nexts sms's not sent by priority order.  
+        return await findAllPNS(condition, options);//return the nexts pns's not sent by priority order.  
 
     } catch (error) {
         console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "ERROR: we have a problem with mongoose.find : " + error.message);
@@ -110,10 +110,10 @@ const nextRetriesSMS = async () => {
 const startController = async (intervalControl) => {
     try {
         console.log(process.env.GREEN_COLOR, logTime(new Date()) + "initializing cronController at " + dateFormat(new Date()) + " with intervalControl : " + intervalControl);
-        hset("collectorsms:retriesSMS", "last", dateFormat(new Date())); //save first execution in Redis
+        hset("collectorpns:retriesPNS", "last", dateFormat(new Date())); //save first execution in Redis
         var cronController = setInterval(function () {
             console.log(process.env.GREEN_COLOR, logTime(new Date()) + "cronController executing");
-            hset("collectorsms:retriesSMS", "last", dateFormat(new Date())); //save last execution in Redis
+            hset("collectorpns:retriesPNS", "last", dateFormat(new Date())); //save last execution in Redis
             checksController();
         }, intervalControl);
     } catch (error) {
@@ -131,7 +131,7 @@ const checksController = async () => {
 
     if (cronChanged) { //some param changed in cron, we need to restart or stopped.
         if (cronStatus) { //cron must to be started                       
-            console.log(process.env.GREEN_COLOR, logTime(new Date()) + "Re-Start retriesSMS cron...");
+            console.log(process.env.GREEN_COLOR, logTime(new Date()) + "Re-Start retriesPNS cron...");
             cronChanged = false;
             await stopCron();
             await startCron(interval);
@@ -145,7 +145,7 @@ const checksController = async () => {
 }
 const checkstatus = async () => { //Check status, if it's necessary finish cron because redis say it.
     try {
-        let newCronStatus = parseInt(await hget("collectorsms:retriesSMS", "status"));  //0 stop, 1 OK.  //finish because redis say it 
+        let newCronStatus = parseInt(await hget("collectorpns:retriesPNS", "status"));  //0 stop, 1 OK.  //finish because redis say it 
         if (cronStatus != newCronStatus) {
             cronStatus = newCronStatus;
             cronChanged = true;
@@ -158,7 +158,7 @@ const checkstatus = async () => { //Check status, if it's necessary finish cron 
 
 const checkInterval = async () => { //check rate/s, and change cron rate
     try {
-        let newInterval = parseInt(await hget("collectorsms:retriesSMS", "interval"));  //rate/s //change cron rate    
+        let newInterval = parseInt(await hget("collectorpns:retriesPNS", "interval"));  //rate/s //change cron rate    
         if (interval != newInterval) { //if we change the interval -> rate/s
             console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "Change rate/interval: old rate " + interval + " , new rate : " + newInterval + " , next restart will be effect.");
             interval = newInterval;
@@ -174,9 +174,9 @@ const checkInterval = async () => { //check rate/s, and change cron rate
 const initCron = async () => {
     try {
         await Promise.all([
-            hget("collectorsms:retriesSMS", "interval"),
-            hget("collectorsms:retriesSMS", "intervalControl"),
-            hget("collectorsms:retriesSMS", "status"),
+            hget("collectorpns:retriesPNS", "interval"),
+            hget("collectorpns:retriesPNS", "intervalControl"),
+            hget("collectorpns:retriesPNS", "status"),
         ]).then((values) => {
             interval = parseInt(values[0]); //The rate/interval of main cron
             intervalControl = parseInt(values[1]); //the interval of controller

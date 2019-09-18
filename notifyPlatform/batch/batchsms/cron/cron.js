@@ -104,7 +104,7 @@ const getSMSFiles = async () => {
                         });
                         // END the 2 "tasks" in parallel    
 
-                        console.log(process.env.GREEN_COLOR, logTime(new Date()) + "SMS to send : " + JSON.stringify(sms));  //JSON.stringify for replace new lines (\n) and tab (\t) chars into string
+                        console.log(process.env.GREEN_COLOR, logTime(new Date()) + "SMS to send : " + sms._id);  //JSON.stringify for replace new lines (\n) and tab (\t) chars into string
 
                     } catch (error) {
                         let contract = sms.contract || 'undefined';

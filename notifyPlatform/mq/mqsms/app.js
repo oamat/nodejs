@@ -19,7 +19,7 @@ require('./config/redisconf'); //we need to initialize redis
 const Sms = require('./models/sms');
 const { saveSMS } = require('./util/mongosms');
 const { lpush, sadd } = require('./util/redissms');
-const { hget } = require('./util/redisconf');
+const { hget, hset } = require('./util/redisconf');
 const { dateFormat, logTime, buildSMSChannel } = require('./util/formats');
 const auth = require('./auth/auth');
 
@@ -46,7 +46,7 @@ const initializeAllSources = async () => { // Init Mongoose with await
     //START PARALLEL excution with await Promise.all.
     await Promise.all([ //Async Promises: all tasks start immediately 
         initializeMongooseConnection(),  // Init mongoose
-        rclient.set("initializeRedisConnection:test", "test") // little test redis
+        hset("mqsms", "last", dateFormat(new Date())) //save last execution in Redis
     ]);
     //END PARALLEL excution with await Promise.all.
 
@@ -158,7 +158,7 @@ async function getCB(err, hObj, gmo, md, buf, hConn) {
                     });
                     // END the 2 "tasks" in parallel    
 
-                    console.log(process.env.GREEN_COLOR, logTime(new Date()) + "SMS to send : " + JSON.stringify(sms));  //JSON.stringify for replace new lines (\n) and tab (\t) chars into string
+                    console.log(process.env.GREEN_COLOR, logTime(new Date()) + "SMS to send : " + sms._id);  //JSON.stringify for replace new lines (\n) and tab (\t) chars into string
 
                 } catch (error) {
                     let contract = sms.contract || 'undefined';
@@ -255,6 +255,6 @@ setInterval(function () {
     if (!ok) {
         console.log( logTime(new Date()) + "Exiting ...");
         cleanup(connectionHandle, queueHandle);
-        process.exit(exitCode);
+        //process.exit(exitCode);
     }
 }, (waitInterval + 2) * 1000);
