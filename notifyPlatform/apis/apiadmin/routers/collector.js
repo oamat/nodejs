@@ -84,64 +84,65 @@ router.get('/pendingNotifications', auth, async (req, res) => {
             for (var i = 0; i < 42; i++) { //42 iteration loop for calculate the total pending notifications
                 total = total + values[i];
             }
+            let index=0;
             res.send({
                 Status: "200 OK",
                 total,
                 "MOVISTAR": [{
-                    [channelsMOV.channel0]: values[0],
-                    [channelsMOV.channel1]: values[1],
-                    [channelsMOV.channel2]: values[2],
-                    [channelsMOV.channel3]: values[3],
-                    [channelsMOV.channel4]: values[4],
-                    [channelsMOV.channel5]: values[5]
+                    [channelsMOV.channel0]: values[index++],
+                    [channelsMOV.channel1]: values[index++],
+                    [channelsMOV.channel2]: values[index++],
+                    [channelsMOV.channel3]: values[index++],
+                    [channelsMOV.channel4]: values[index++],
+                    [channelsMOV.channel5]: values[index++]
                 }],
                 "MOVISTAR-VIP": [{
-                    [channelsVIP.channel0]: values[6],
-                    [channelsVIP.channel1]: values[7],
-                    [channelsVIP.channel2]: values[8],
-                    [channelsVIP.channel3]: values[9],
-                    [channelsVIP.channel4]: values[10],
-                    [channelsVIP.channel5]: values[11]
+                    [channelsVIP.channel0]: values[index++],
+                    [channelsVIP.channel1]: values[index++],
+                    [channelsVIP.channel2]: values[index++],
+                    [channelsVIP.channel3]: values[index++],
+                    [channelsVIP.channel4]: values[index++],
+                    [channelsVIP.channel5]: values[index++]
                 }],
                 "VODAFONE": [{
-                    [channelsVOD.channel0]: values[12],
-                    [channelsVOD.channel1]: values[13],
-                    [channelsVOD.channel2]: values[14],
-                    [channelsVOD.channel3]: values[15],
-                    [channelsVOD.channel4]: values[16],
-                    [channelsVOD.channel5]: values[17]
+                    [channelsVOD.channel0]: values[index++],
+                    [channelsVOD.channel1]: values[index++],
+                    [channelsVOD.channel2]: values[index++],
+                    [channelsVOD.channel3]: values[index++],
+                    [channelsVOD.channel4]: values[index++],
+                    [channelsVOD.channel5]: values[index++]
                 }],
                 "ORANGE": [{
-                    [channelsORA.channel0]: values[18],
-                    [channelsORA.channel1]: values[19],
-                    [channelsORA.channel2]: values[20],
-                    [channelsORA.channel3]: values[21],
-                    [channelsORA.channel4]: values[22],
-                    [channelsORA.channel5]: values[23]
+                    [channelsORA.channel0]: values[index++],
+                    [channelsORA.channel1]: values[index++],
+                    [channelsORA.channel2]: values[index++],
+                    [channelsORA.channel3]: values[index++],
+                    [channelsORA.channel4]: values[index++],
+                    [channelsORA.channel5]: values[index++]
                 }],
                 "APPLE": [{
-                    [channelsAPP.channel0]: values[24],
-                    [channelsAPP.channel1]: values[25],
-                    [channelsAPP.channel2]: values[26],
-                    [channelsAPP.channel3]: values[27],
-                    [channelsAPP.channel4]: values[28],
-                    [channelsAPP.channel5]: values[29]
+                    [channelsAPP.channel0]: values[index++],
+                    [channelsAPP.channel1]: values[index++],
+                    [channelsAPP.channel2]: values[index++],
+                    [channelsAPP.channel3]: values[index++],
+                    [channelsAPP.channel4]: values[index++],
+                    [channelsAPP.channel5]: values[index++]
                 }],
                 "GOOGLE": [{
-                    [channelsGOO.channel0]: values[30],
-                    [channelsGOO.channel1]: values[31],
-                    [channelsGOO.channel2]: values[32],
-                    [channelsGOO.channel3]: values[33],
-                    [channelsGOO.channel4]: values[34],
-                    [channelsGOO.channel5]: values[35]
+                    [channelsGOO.channel0]: values[index++],
+                    [channelsGOO.channel1]: values[index++],
+                    [channelsGOO.channel2]: values[index++],
+                    [channelsGOO.channel3]: values[index++],
+                    [channelsGOO.channel4]: values[index++],
+                    [channelsGOO.channel5]: values[index++]
                 }],
                 "MICROSOFT": [{
-                    [channelsMIC.channel0]: values[36],
-                    [channelsMIC.channel1]: values[37],
-                    [channelsMIC.channel2]: values[38],
-                    [channelsMIC.channel3]: values[39],
-                    [channelsMIC.channel4]: values[40],
-                    [channelsMIC.channel5]: values[41]
+                    [channelsMIC.channel0]: values[index++],
+                    [channelsMIC.channel1]: values[index++],
+                    [channelsMIC.channel2]: values[index++],
+                    [channelsMIC.channel3]: values[index++],
+                    [channelsMIC.channel4]: values[index++],
+                    [channelsMIC.channel5]: values[index++]
                 }]
             });
         });

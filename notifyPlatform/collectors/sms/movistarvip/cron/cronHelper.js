@@ -13,13 +13,16 @@ const { logTime } = require('../util/formats');
 
 
 
+
 const sendSMS = async (sms) => {
+    let body = JSON.stringify(sms);
     const options = {
         hostname: 'encrypted.google.com',
         port: 443,
-        path: '/sendSMS',
+        path: '/sendPNS',
         method: 'POST',
-        body: JSON.stringify(sms)
+        headers: { 'Content-Length': body.length, 'Content-Type': 'application/json', 'AccessToken' : 'Bearer:lkkdwwsklqwllawaalwlalwlldlwaasmwdwadasasQQQWERERERE----77866565' },
+        body: body
     };
    
     const request = https.request(options, (response) => {
