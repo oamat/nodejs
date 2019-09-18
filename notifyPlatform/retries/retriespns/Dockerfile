@@ -2,7 +2,7 @@ FROM node:8
 
 LABEL maintainer="oriol.amat@gmail.com"
 LABEL version="1.0"
-LABEL description="notifyPlatform module test"
+LABEL description="notifyPlatform module for send notifications"
 
 # Create app directory
 WORKDIR /usr/src/app
@@ -23,6 +23,6 @@ RUN npm install
 # If you are building your code for production
 # RUN npm install --only=production
 
-EXPOSE 30006
+#EXPOSE 30006
 
-CMD [ "node", "index.js" ]
+CMD [ "node", "app.js" ]

@@ -147,7 +147,7 @@ const startController = async (intervalControl) => {
         console.log(process.env.GREEN_COLOR, logTime(new Date()) + "initializing cronController at " + dateFormat(new Date()) + " with intervalControl : " + intervalControl);
         hset(batchName, "last", dateFormat(new Date())); //save first execution in Redis
         var cronController = setInterval(function () {
-            console.log(process.env.GREEN_COLOR, logTime(new Date()) + "cronController executing");
+            console.log(process.env.GREEN_COLOR, logTime(new Date()) + "cronController executing: interval of main cron is : " + interval);
             hset(batchName, "last", dateFormat(new Date())); //save last execution in Redis
             checksController();
         }, intervalControl);

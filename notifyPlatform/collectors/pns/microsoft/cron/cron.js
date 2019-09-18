@@ -36,7 +36,7 @@ const startCron = async (interval) => { //Start cron only when cron is stopped.
         } else {
 
             cron = setInterval(function () {
-                console.log(logTime(new Date()) + "MICROSOFT cron executing");
+                //console.log(logTime(new Date()) + "MICROSOFT cron executing");
                 sendNextPNS();
             }, interval);
         }
@@ -108,7 +108,7 @@ const startController = async (intervalControl) => {
         console.log(process.env.GREEN_COLOR, logTime(new Date()) + "initializing cronController at " + dateFormat(new Date()) + " with intervalControl : " + intervalControl);
         hset(defaultCollector, "last", dateFormat(new Date())); //save first execution in Redis
         var cronController = setInterval(function () {
-            console.log(process.env.GREEN_COLOR, logTime(new Date()) + "cronController executing");
+            console.log(process.env.GREEN_COLOR, logTime(new Date()) + "cronController executing: interval of main cron is : " + interval);
             hset(defaultCollector, "last", dateFormat(new Date())); //save last execution in Redis
             checksController();
         }, intervalControl);

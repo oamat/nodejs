@@ -32,7 +32,7 @@ fs.readFile(root + templateFile, 'utf8', async function (err, templateData) {
         await replace("retries/retriessms", "retriessms");
         await replace("retries/retriespns", "retriespns");
         await replace("batch/batchsms", "batchsms");
-        await replace("batch/batchpns", "batchsms");
+        await replace("batch/batchpns", "batchpns");
         console.log("docker-composer.yaml generated correctly");
     }
 

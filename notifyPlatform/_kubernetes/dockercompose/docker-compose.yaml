@@ -380,6 +380,54 @@ services:
 
 
 
+  #batchsms
+   #Optional you can create the docker image  (# docker build -t name) .
+  batchsms: 
+    #build: . #build: Dockerfile #Optional : "build: ." Uses an image that’s built from the Dockerfile in the current directory.  
+    image: batchsms
+    container_name: "batchsms"      
+    restart: always
+    
+    environment:
+      NODE_ENV: "docker"
+    labels:
+     kompose.service.type: NodePort # labels for kompose convert to kubernetes
+     kompose.image-pull-policy: Never # labels for kompose convert to kubernetes
+    links:
+      - redissms
+      - redisconf
+      - mongosms
+    depends_on:
+      - redissms
+      - redisconf
+      - mongosms
+
+
+
+  #batchpns
+   #Optional you can create the docker image  (# docker build -t name) .
+  batchpns: 
+    #build: . #build: Dockerfile #Optional : "build: ." Uses an image that’s built from the Dockerfile in the current directory.  
+    image: batchpns
+    container_name: "batchpns"      
+    restart: always
+    
+    environment:
+      NODE_ENV: "docker"
+    labels:
+     kompose.service.type: NodePort # labels for kompose convert to kubernetes
+     kompose.image-pull-policy: Never # labels for kompose convert to kubernetes
+    links:
+      - redispns
+      - redisconf
+      - mongopns
+    depends_on:
+      - redispns
+      - redisconf
+      - mongopns
+
+
+
 #redispns
    #Optional you can create the docker image  (# docker build -t name) .
   redispns: 

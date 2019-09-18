@@ -1,9 +1,8 @@
 #!/bin/bash
 
-docker stop $(docker ps -a -q)
-docker rm $(docker ps -a -q)
-
-sudo docker ps
+docker container stop $(docker container ls -aq)
+docker container rm $(docker container ls -aq) --force
+docker container prune
 
 echo ""
 echo ""

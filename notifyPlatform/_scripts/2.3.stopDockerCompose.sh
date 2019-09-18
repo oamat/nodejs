@@ -8,4 +8,4 @@ cd /notifyPlatform/_scripts/
 echo ""
 echo ""
 echo "# the docker-compose.yaml have been stoped."
-echo "# ATTENTION: You can jump the kompose commands, because we have the finals Kubernetes yaml's in /_kubernetes/kubernetes/." 
+echo "# ATTENTION: kompose commands are unnecessary, because we have the finals Kubernetes yaml's in /_kubernetes/kubernetes/." 

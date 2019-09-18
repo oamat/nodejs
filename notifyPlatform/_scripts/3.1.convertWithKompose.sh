@@ -19,4 +19,4 @@ cd /notifyPlatform/_scripts/
 echo ""
 echo ""
 echo "# the docker-compose.yaml have been converted to Kubernetes Services & deployment in /_kubernetes/komposeGenerated/."
-echo "# ****ATTENTION: this is for testing: You can jump the kompose commands, because we have the finals Kubernetes yaml's in /_kubernetes/kubernetes/." 
+echo "# ****ATTENTION: this is for testing: kompose commands are unnecessary, because we have the finals Kubernetes yaml's in /_kubernetes/kubernetes/." 

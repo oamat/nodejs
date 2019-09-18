@@ -8,8 +8,6 @@ services:
     image: retriessms
     container_name: "retriessms"      
     restart: always
-    ports:
-      - 30005:30005
     
     environment:
       NODE_ENV: "docker"

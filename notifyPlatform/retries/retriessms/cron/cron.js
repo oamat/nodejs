@@ -74,7 +74,7 @@ const retryNextsSMS = async () => {
         }
 
         if (counter) console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "We have retried " + counter + " SMS that were not found in REDIS.");
-        else console.log(process.env.GREEN_COLOR, logTime(new Date()) + "We don't find any SMS to retry.");
+        //else console.log(process.env.GREEN_COLOR, logTime(new Date()) + "We don't find any SMS to retry.");
 
     } catch (error) {
         console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "ERROR: we have a problem in retryNextsSMS() : " + error.message);
@@ -103,7 +103,7 @@ const nextRetriesSMS = async () => {
 
     } catch (error) {
         console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "ERROR: we have a problem with mongoose.find : " + error.message);
-        console.error(error); //continue the execution cron
+        //console.error(error); //continue the execution cron
     }
 }
 
@@ -112,7 +112,7 @@ const startController = async (intervalControl) => {
         console.log(process.env.GREEN_COLOR, logTime(new Date()) + "initializing cronController at " + dateFormat(new Date()) + " with intervalControl : " + intervalControl);
         hset("collectorsms:retriesSMS", "last", dateFormat(new Date())); //save first execution in Redis
         var cronController = setInterval(function () {
-            console.log(process.env.GREEN_COLOR, logTime(new Date()) + "cronController executing");
+            console.log(process.env.GREEN_COLOR, logTime(new Date()) + "cronController executing: interval of main cron is : " + interval);
             hset("collectorsms:retriesSMS", "last", dateFormat(new Date())); //save last execution in Redis
             checksController();
         }, intervalControl);

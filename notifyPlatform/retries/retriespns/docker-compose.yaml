@@ -8,9 +8,7 @@ services:
     image: retriespns
     container_name: "retriespns"      
     restart: always
-    ports:
-      - 30006:30006
-    
+  
     environment:
       NODE_ENV: "docker"
     labels:
