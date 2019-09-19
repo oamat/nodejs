@@ -112,7 +112,7 @@ const startController = async (intervalControl) => {
         console.log(process.env.GREEN_COLOR, logTime(new Date()) + "initializing cronController at " + dateFormat(new Date()) + " with intervalControl : " + intervalControl);
         hset("collectorsms:retriesSMS", "last", dateFormat(new Date())); //save first execution in Redis
         var cronController = setInterval(function () {
-            console.log(process.env.GREEN_COLOR, logTime(new Date()) + "cronController executing: interval of main cron is : " + interval);
+            console.log(process.env.GREEN_COLOR, logTime(new Date()) + "cronController executing: Main cron interval is " + interval + " and status is " + cronStatus + " [1:ON, 0:OFF].");
             hset("collectorsms:retriesSMS", "last", dateFormat(new Date())); //save last execution in Redis
             checksController();
         }, intervalControl);
@@ -160,7 +160,7 @@ const checkInterval = async () => { //check rate/s, and change cron rate
     try {
         let newInterval = parseInt(await hget("collectorsms:retriesSMS", "interval"));  //rate/s //change cron rate    
         if (interval != newInterval) { //if we change the interval -> rate/s
-            console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "Change rate/interval: old rate " + interval + " , new rate : " + newInterval + " , next restart will be effect.");
+            console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "Change interval:  " + interval + " for new interval : " + newInterval + " , next restart will be effect.");
             interval = newInterval;
             cronChanged = true;
         }
@@ -178,7 +178,7 @@ const initCron = async () => {
             hget("collectorsms:retriesSMS", "intervalControl"),
             hget("collectorsms:retriesSMS", "status"),
         ]).then((values) => {
-            interval = parseInt(values[0]); //The rate/interval of main cron
+            interval = parseInt(values[0]); //The rate/Main cron interval
             intervalControl = parseInt(values[1]); //the interval of controller
             cronStatus = parseInt(values[2]); //maybe somebody stops collector
         });

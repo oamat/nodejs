@@ -52,7 +52,7 @@ docker build -t retriessms .
 #batch Interfaces
 cd /notifyPlatform/batch/batchpns
 docker build -t batchpns .
-cd /notifyPlatform/retries/batchsms
+cd /notifyPlatform/batch/batchsms
 docker build -t batchsms .
 
 cd /notifyPlatform/_scripts/

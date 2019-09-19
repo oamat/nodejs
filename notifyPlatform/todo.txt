@@ -1,0 +1,3 @@
+Configurar intervalControl Dinámico
+Constantes literales en el código
+Configurar persistent volumen en kubernetes

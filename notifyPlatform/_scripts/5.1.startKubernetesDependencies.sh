@@ -8,6 +8,8 @@ kubectl create -f redissms-deployment.yaml -f redissms-service.yaml
 kubectl create -f redispns-deployment.yaml -f redispns-service.yaml
 kubectl create -f redisconf-deployment.yaml -f redisconf-service.yaml
 
+kubectl create -f apiadmin-deployment.yaml -f apiadmin-service.yaml
+
 cd /notifyPlatform/_scripts/
 
 kubectl get all
