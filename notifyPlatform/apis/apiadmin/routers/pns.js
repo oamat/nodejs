@@ -24,8 +24,8 @@ router.get('/pnsStatus', auth, async (req, res) => {
             let condition = { _id: req.body._id };
             var pns = await findPNS(condition);
             if (pns) {
-                if (pns.dispatchedAt) res.send({ Status: "200 OK", _id: pns._id, status: pns.status, description: descStatus("PNS", pns.status), receivedAt: dateFormatWithMillis(pns.receivedAt), dispatchedAt: dateFormatWithMillis(pns.dispatchedAt) });
-                else res.send({ Status: "200 OK", _id: pns._id, status: pns.status, description: descStatus("PNS", pns.status), receivedAt: dateFormatWithMillis(pns.receivedAt) });
+                if (pns.dispatchedAt) res.send({ Status: "200 OK", _id: pns._id, status: pns.status, description: descStatus("PNS", pns.status), receivedAt: dateFormatWithMillis(pns.receivedAt), dispatchedAt: dateFormatWithMillis(pns.dispatchedAt), pns });
+                else res.send({ Status: "200 OK", _id: pns._id, status: pns.status, description: descStatus("PNS", pns.status), receivedAt: dateFormatWithMillis(pns.receivedAt), pns });
             } else {
                 res.send({ Status: "200 OK", _id: req.body._id, status: "-1", description: "PNS not found" });
             }

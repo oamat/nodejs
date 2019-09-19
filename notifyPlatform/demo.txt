@@ -1,0 +1,13 @@
+ppt amb dibuix
+
+el món no es perfecte, el que falta 
+
+una mica de codi (promises, promise.all)
+demo apisms + movistar envío sms (rapidez)
+ver estado en apiadmin
+ver collectores en apiadmin y demo apisms + movistar stop-start
+demo apisms + movistar contingencia operador
+Entrar en REDIS y ver conf (collectorsms, telfs, token) + listas (llen, rpop, prioridades)
+ver vagrant
+ver docker/docker compose 
+ver kubernetes y hacer réplicas

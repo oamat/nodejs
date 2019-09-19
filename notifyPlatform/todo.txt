@@ -1,3 +1,9 @@
-Configurar intervalControl Dinámico
-Constantes literales en el código
-Configurar persistent volumen en kubernetes
+Control cron: Configurar intervalControl Dinámico
+Test : hacer todos los unitarios (mucho tiempo)
+MQ : configurar correctamente el MQ en docker/kubernetes. 
+Constantes : literales en el código
+Kubernetes : statefulSet =  para volumenes. No hacerlo como deployment. 
+kubernets : configmap =  para configuraciones
+!Kubernetes : cronJob =  NO es adecuado para los crons OASIS de 100/s, pero para batch quizá si, dependiendo de la periodicidad
+Dependencia BBDD:  En este proyecto se ha programado la transaccionalidad en BBDD, en futuro se podria ir sin BBDD, 
+MongoDB: Collection SMS y PNS hay que hacer procesos de historificación y borrado 

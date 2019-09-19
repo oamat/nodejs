@@ -9,7 +9,7 @@
 
 //Dependencies
 const { Sms } = require('../models/sms');
-const { rpop, lpush, sadd } = require('../util/redissms'); //we need to initialize redis
+const { lpush, sadd } = require('../util/redissms'); //we need to initialize redis
 const { hget, hset } = require('../util/redisconf');
 const { dateFormat, logTime, buildSMSChannel } = require('../util/formats'); // utils for formats
 const { saveSMS } = require('../util/mongosms');
@@ -61,69 +61,73 @@ const stopCron = async () => { //stop cron only when cron is switched on
 const getSMSFiles = async () => {
     if (nextExecution) {
         nextExecution = false;
-        try {
-            fs.readdirSync(batchIn).forEach(async (filename) => {
-                console.log(logTime(new Date()) + "Process of file :" + filename);
-                var file = fs.readFileSync(batchIn + filename);
-                var fileJSON = JSON.parse(file);
-                await auth(fileJSON.fileBatch.contract, fileJSON.fileBatch.jwt);
-                var priority = fileJSON.fileBatch.priority;
-                if (priority < 4) priority = 4; //only accept priorities 4 or 5 in batch. (0,1 are reserved for REST interface, 2,3 for MQ interface). 
-                var notifications = fileJSON.fileBatch.notifications;
-                console.log(logTime(new Date()) + filename + " have " + notifications.length + " notifications to send");
-                notifications.forEach(async (smsJSON) => {
-                    try {
-                        var sms = new Sms(smsJSON); // convert json to object,  await it's unnecessary because is the first creation of object. Model Validations are check when save in Mongodb, not here. 
-                        sms.priority = priority;
-                        sms.operator = await hget("contractsms:" + sms.contract, "operator"); //Operator by default by contract. we checked the param before (in auth)                         
-                        sms.telf = sms.telf.replace("+", "00");
-                        if (sms.operator == "ALL") { //If operator is ALL means that we need to find the better operator for the telf.            
-                            sms.operator = await hgetOrNull("telfsms:" + sms.telf, "operator"); //find the best operator for this tef.         
-                            if (!sms.operator) sms.operator = "MOV";  //by default we use MOV
-                        }
-                        const collectorOperator = hget("collectorsms:" + sms.operator, "operator"); //this method is Async, but we can get in parallel until need it (with await).
-                        if (await collectorOperator != sms.operator) sms.operator = collectorOperator;  //check if the operator have some problems
+        try {           
+            fs.readdirSync(batchIn).forEach(async (filename) => {               
+                if (require('path').extname(filename) == ".json") {
+                    console.log(logTime(new Date()) + "Process of file :" + filename);
+                    var file = fs.readFileSync(batchIn + filename);
+                    var fileJSON = JSON.parse(file);
+                    await auth(fileJSON.fileBatch.contract, fileJSON.fileBatch.jwt);
+                    var priority = fileJSON.fileBatch.priority;
+                    if (priority < 4) priority = 4; //only accept priorities 4 or 5 in batch. (0,1 are reserved for REST interface, 2,3 for MQ interface). 
+                    var notifications = fileJSON.fileBatch.notifications;
+                    console.log(logTime(new Date()) + filename + " have " + notifications.length + " notifications to send");
+                    notifications.forEach(async (smsJSON) => {
+                        try {
+                            var sms = new Sms(smsJSON); // convert json to object,  await it's unnecessary because is the first creation of object. Model Validations are check when save in Mongodb, not here. 
+                            sms.priority = priority;
+                            sms.operator = await hget("contractsms:" + sms.contract, "operator"); //Operator by default by contract. we checked the param before (in auth)                         
+                            sms.telf = sms.telf.replace("+", "00");
+                            if (sms.operator == "ALL") { //If operator is ALL means that we need to find the better operator for the telf.            
+                                sms.operator = await hgetOrNull("telfsms:" + sms.telf, "operator"); //find the best operator for this tef.         
+                                if (!sms.operator) sms.operator = "MOV";  //by default we use MOV
+                            }
+                            const collectorOperator = hget("collectorsms:" + sms.operator, "operator"); //this method is Async, but we can get in parallel until need it (with await).
+                            if (await collectorOperator != sms.operator) sms.operator = collectorOperator;  //check if the operator have some problems
 
-                        sms.channel = buildSMSChannel(sms.operator, priority); //get the channel to put notification with operator and priority
+                            sms.channel = buildSMSChannel(sms.operator, priority); //get the channel to put notification with operator and priority
 
-                        //await sms.validate(); //validate is unnecessary, we would need await because is a promise and we need to manage the throw exceptions, particularly validating errors in bad request.
+                            //await sms.validate(); //validate is unnecessary, we would need await because is a promise and we need to manage the throw exceptions, particularly validating errors in bad request.
 
-                        await saveSMS(sms) //save sms to DB, in this phase we need save SMS to MongoDB. //If you didn't execute "sms.validate()" we would need await in save.
-                            .catch(error => {
-                                error.message = "ERROR :  We cannot save notify in MongoBD. " + error.message;
-                                throw error;
+                            await saveSMS(sms) //save sms to DB, in this phase we need save SMS to MongoDB. //If you didn't execute "sms.validate()" we would need await in save.
+                                .catch(error => {
+                                    error.message = "ERROR :  We cannot save notify in MongoBD. " + error.message;
+                                    throw error;
+                                });
+
+                            // START 2 "tasks" in parallel. Even when we recollect the errors we continue the execution and return OK.    
+                            Promise.all([
+                                lpush(sms.channel, JSON.stringify(sms)).catch(error => { return error }),  //put sms to the the apropiate lists channels: SMS.GOO.1, SMS.VIP.1, SMS.ORA.1, SMS.VOD.1 (1,2,3) 
+                                sadd("SMS.IDS.PENDING", sms._id).catch(error => { return error }),         //we save the _id in a SET, for checking the retries, errors, etc.  
+                            ]).then(values => {
+                                if (values[0] instanceof Error) { console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "ERROR: We cannot save SMS in Redis LIST (lpush): " + values[0].message); }  //lpush returns error
+                                if (values[1] instanceof Error) { console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "ERROR: We cannot save SMS in Redis SET (sadd): " + values[1].message); } //sadd returns error          
                             });
+                            // END the 2 "tasks" in parallel    
 
-                        // START 2 "tasks" in parallel. Even when we recollect the errors we continue the execution and return OK.    
-                        Promise.all([
-                            lpush(sms.channel, JSON.stringify(sms)).catch(error => { return error }),  //put sms to the the apropiate lists channels: SMS.GOO.1, SMS.VIP.1, SMS.ORA.1, SMS.VOD.1 (1,2,3) 
-                            sadd("SMS.IDS.PENDING", sms._id).catch(error => { return error }),         //we save the _id in a SET, for checking the retries, errors, etc.  
-                        ]).then(values => {
-                            if (values[0] instanceof Error) { console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "ERROR: We cannot save SMS in Redis LIST (lpush): " + values[0].message); }  //lpush returns error
-                            if (values[1] instanceof Error) { console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "ERROR: We cannot save SMS in Redis SET (sadd): " + values[1].message); } //sadd returns error          
-                        });
-                        // END the 2 "tasks" in parallel    
+                            console.log(process.env.GREEN_COLOR, logTime(new Date()) + "SMS to send : " + sms._id);  //JSON.stringify for replace new lines (\n) and tab (\t) chars into string
 
-                        console.log(process.env.GREEN_COLOR, logTime(new Date()) + "SMS to send : " + sms._id);  //JSON.stringify for replace new lines (\n) and tab (\t) chars into string
+                        } catch (error) {
+                            let contract = sms.contract || 'undefined';
+                            let telf = sms.telf || 'undefined';
+                            let message = sms.message || 'undefined';
 
-                    } catch (error) {
-                        let contract = sms.contract || 'undefined';
-                        let telf = sms.telf || 'undefined';
-                        let message = sms.message || 'undefined';
+                            const errorJson = { StatusCode: "batchSMS ERROR", error: error.message, contract: contract, telf: telf, message: message, receiveAt: dateFormat(new Date()) };   // dateFornat: replace T with a space && delete the dot and everything after
+                            console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "ERROR: " + JSON.stringify(errorJson));
+                            //console.error(error); //continue the execution cron          
+                            //TODO: save error in db  or mem.
+                        }
+                    });
 
-                        const errorJson = { StatusCode: "batchSMS ERROR", error: error.message, contract: contract, telf: telf, message: message, receiveAt: dateFormat(new Date()) };   // dateFornat: replace T with a space && delete the dot and everything after
-                        console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "ERROR: " + JSON.stringify(errorJson));
-                        //console.error(error); //continue the execution cron          
-                        //TODO: save error in db  or mem.
-                    }
-                });
-
-                fs.rename(batchIn + filename, batchOut + filename, (err) => {
-                    if (err) throw err;
-                    console.log(logTime(new Date()) + batchIn + filename + ' move to ' + batchOut + filename + ' complete!');
-                });
-
+                    fs.rename(batchIn + filename, batchOut + filename, (err) => {
+                        if (err) throw err;
+                        console.log(logTime(new Date()) + batchIn + filename + ' move to ' + batchOut + filename + ' complete!');
+                    });
+                } else {
+                    console.log(logTime(new Date()) + "No files found.");
+                }
             });
+
         } catch (error) {
             console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "ERROR: we have a problem in batchSMS.getSMSFiles() : " + error.message);
             //console.error(error); //continue the execution cron
@@ -132,15 +136,6 @@ const getSMSFiles = async () => {
     }
 }
 
-
-const nextSMS = async () => {
-    try {
-        return await rpop(channels.channel0) || await rpop(channels.channel1) || await rpop(channels.channel2) || await rpop(channels.channel3) || await rpop(channels.channel4) || await rpop(channels.channel5); //return the next sms by priority order.  
-    } catch (error) {
-        console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "ERROR: we have a problem with redis rpop : " + error.message);
-        //console.error(error); //continue the execution cron
-    }
-}
 
 const startController = async (intervalControl) => {
     try {
@@ -218,8 +213,10 @@ const initCron = async () => {
         });
 
         console.log(process.env.GREEN_COLOR, logTime(new Date()) + "initializing all crons processes at " + dateFormat(new Date()) + " with cron interval [" + interval + "ms] and cron Controller interval : [" + intervalControl + "ms]...");
-        if (cronStatus) await startCron(interval);
-        else console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "Cron status in redis indicates we don't want start cron process. we only start cron Controller.");
+        if (cronStatus) {    
+            getSMSFiles(); // first execution 
+            await startCron(interval);            
+        } else console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "Cron status in redis indicates we don't want start cron process. we only start cron Controller.");
         await startController(intervalControl);
     } catch (error) {
         console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "ERROR: we cannot initialize cron with personalized params, we will initialize cron with default params (every 10s, and 60s to reconfig) . . Process continuing... " + error.message);
