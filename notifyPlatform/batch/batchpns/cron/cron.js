@@ -23,7 +23,7 @@ const batchName = "collectorpns:batchPNS";
 var cron; //the main cron that manage files and put them into redis List.
 var cronStatus = 1; //status of cron. 0: cron stopped, 1 : cron working, 
 var cronChanged = false;  //if we need restart cron, 
-var interval = 10; //define the rate/s notifications, interval in cron (100/s by default)
+var interval = 180000; //define the interval, in this case 3 minutes.
 var intervalControl = 60000; //define interval in controller cron (check by min. by default)
 var nextExecution = true;
 

@@ -188,7 +188,7 @@ const initCron = async () => {
         else console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "Cron status in redis indicates we don't want start cron process. we only start cron Controller.");
         await startController(intervalControl);
     } catch (error) {
-        console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "ERROR: we cannot initialize cron with personalized params, we will initialize cron with default params (100message/s & 60s to reconfig) . . Process continuing... " + error.message);
+        console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "ERROR: we cannot initialize cron with personalized params, we will initialize cron with default params  . . Process continuing... " + error.message);
         //console.error(error); //continue the execution cron
         await startCron(interval); // 100 message/s
         await startController(intervalControl); // 60 seconds

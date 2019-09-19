@@ -18,7 +18,9 @@ services:
       - redissms
       - redisconf
       - mongosms
+      - apiadmin
     depends_on:
       - redissms
       - redisconf
       - mongosms
+      - apiadmin

@@ -20,7 +20,9 @@ services:
       - redispns
       - redisconf
       - mongopns
+      - apiadmin
     depends_on:
       - redispns
       - redisconf
       - mongopns
+      - apiadmin

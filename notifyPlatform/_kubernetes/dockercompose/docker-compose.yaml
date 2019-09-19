@@ -21,11 +21,13 @@ services:
       - redispns
       - redisconf
       - mongopns
+      - apiadmin
     depends_on:
       - redispns
       - redisconf
       - mongopns
-  
+      - apiadmin
+
 
 
 #google
@@ -45,10 +47,12 @@ services:
       - redispns
       - redisconf
       - mongopns
+      - apiadmin
     depends_on:
       - redispns
       - redisconf
       - mongopns
+      - apiadmin
 
 
 
@@ -69,10 +73,12 @@ services:
       - redispns
       - redisconf
       - mongopns
+      - apiadmin
     depends_on:
       - redispns
       - redisconf
-      - mongopns      
+      - mongopns
+      - apiadmin      
 
 
 
@@ -93,10 +99,12 @@ services:
       - redissms
       - redisconf
       - mongosms
+      - apiadmin
     depends_on:
       - redissms
       - redisconf
       - mongosms
+      - apiadmin
 
 
 
@@ -117,10 +125,12 @@ services:
       - redissms
       - redisconf
       - mongosms
+      - apiadmin
     depends_on:
       - redissms
       - redisconf
       - mongosms
+      - apiadmin
 
 
 
@@ -141,10 +151,12 @@ services:
       - redissms
       - redisconf
       - mongosms
+      - apiadmin
     depends_on:
       - redissms
       - redisconf
-      - mongosms  
+      - mongosms
+      - apiadmin  
 
 
 
@@ -165,10 +177,12 @@ services:
       - redissms
       - redisconf
       - mongosms
+      - apiadmin
     depends_on:
       - redissms
       - redisconf
       - mongosms
+      - apiadmin
 
 
 
@@ -189,10 +203,12 @@ services:
       - redissms
       - redisconf
       - mongosms
+      - apiadmin
     depends_on:
       - redissms
       - redisconf
       - mongosms
+      - apiadmin
 
 
 
@@ -213,10 +229,12 @@ services:
       - redispns
       - redisconf
       - mongopns
+      - apiadmin
     depends_on:
       - redispns
       - redisconf
       - mongopns
+      - apiadmin
 
 
 
@@ -269,10 +287,12 @@ services:
       - redissms
       - redisconf
       - mongosms
+      - apiadmin
     depends_on:
       - redissms
       - redisconf
       - mongosms
+      - apiadmin
 
 
 
@@ -295,11 +315,13 @@ services:
       - redispns
       - redisconf
       - mongopns
+      - apiadmin
     depends_on:
       - redispns
       - redisconf
       - mongopns
-  
+      - apiadmin
+
 
 
 #apistatusback
@@ -321,10 +343,12 @@ services:
       - redissms
       - redisconf
       - mongosms
+      - apiadmin
     depends_on:
       - redissms
       - redisconf
       - mongosms
+      - apiadmin
 
 
 
@@ -345,10 +369,12 @@ services:
       - redissms
       - redisconf
       - mongosms
+      - apiadmin      
     depends_on:
       - redissms
       - redisconf
       - mongosms
+      - apiadmin
 
 
 
@@ -369,10 +395,12 @@ services:
       - redispns
       - redisconf
       - mongopns
+      - apiadmin
     depends_on:
       - redispns
       - redisconf
       - mongopns
+      - apiadmin
 
 
 
@@ -393,10 +421,12 @@ services:
       - redissms
       - redisconf
       - mongosms
+      - apiadmin
     depends_on:
       - redissms
       - redisconf
       - mongosms
+      - apiadmin
 
 
 
@@ -417,10 +447,12 @@ services:
       - redispns
       - redisconf
       - mongopns
+      - apiadmin
     depends_on:
       - redispns
       - redisconf
       - mongopns
+      - apiadmin
 
 
 
