@@ -105,8 +105,8 @@ const get = async (name) => {
             } catch (error) { reject(error); } // In Callback we need to reject if we have Error. A reject will not pass through here
         });
     });
-        //.then((result) => { return result; })  //return the result value of property hash contract
-        //.catch((error) => { throw error; }); //throw Error exception to the main code, it's unnecessary but maybe we will need put some lógic...A reject callback will pass through here
+    //.then((result) => { return result; })  //return the result value of property hash contract
+    //.catch((error) => { throw error; }); //throw Error exception to the main code, it's unnecessary but maybe we will need put some lógic...A reject callback will pass through here
 }
 
 // this method save id's in a SET for checking retries or errors.
@@ -151,4 +151,4 @@ const rpop = async function (name) {
     //.then((result) => { return result; })  //return the result 
     //.catch((error) => { throw error; });  //throw Error exception to the main code, it's unnecessary but maybe we will need put some lógic...  A reject callback will pass through here
 }
-module.exports = { hget, hset, lpush, sadd, sismember, set, get, rpop, rpoplpush, llen, }
+module.exports = { hget, hset, lpush, sadd, sismember, set, get, rpop, rpoplpush, llen }

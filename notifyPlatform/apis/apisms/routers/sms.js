@@ -13,14 +13,15 @@
 const express = require('express');
 const { Sms } = require('../models/sms');
 const auth = require('../auth/auth');
-
 const { saveSMS } = require('../util/mongosms');
-const { lpush, sadd, set } = require('../util/redissms');
+const { rclient } = require('../config/redissms');
 const { hget, hgetOrNull } = require('../util/redisconf');
 const { dateFormat, logTime, buildSMSChannel } = require('../util/formats');
 
-
 const router = new express.Router();
+
+//VARS
+const SMS_IDS = "SMS.IDS.PENDING";
 
 
 //Method post for sending SMS
@@ -35,35 +36,33 @@ router.post('/smsSend', auth, async (req, res) => {  //we execute auth before th
             if (!sms.operator) sms.operator = "MOV";  //by default we use MOV
         }
         const collectorOperator = await hget("collectorsms:" + sms.operator, "operator"); //this method is Async, but we can get in parallel until need it (with await).
-        if (collectorOperator != sms.operator) sms.operator = collectorOperator;  //check if the operator have some problems
+        if (collectorOperator != sms.operator) sms.operator = collectorOperator;  //check if the operator have some problems and need contingency
 
         sms.channel = buildSMSChannel(sms.operator, sms.priority); //get the channel to put notification with operator and priority
 
         //await sms.validate(); //validate is unnecessary, we would need await because is a promise and we need to manage the throw exceptions, particularly validating errors in bad request.
 
-        await saveSMS(sms) //save sms to DB, in this phase we need save SMS to MongoDB. //If you didn't execute "sms.validate()" we would need await in save.
-        // .catch(error => {     // we need catch only if get 'await' out          
-        //     throw error;
-        // });
-
-
-        // multi chain with an individual callback
-
-        
-        lpush(sms.channel, JSON.stringify(sms)) //Totally Async, because it doesn't matter if I didn't save, wait for retry
-            .catch(error => {  //lpush Promise returns an error 
-                console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "WARNING: We cannot save SMS in Redis LIST (lpush), we don't save anything in REDIS (wait for retry): " + error.message);
+        saveSMS(sms) //save sms to DB, in this phase we need save SMS to MongoDB. //If you didn't execute "sms.validate()" we would need await in save.
+            .catch(error => {     // we need catch only if get 'await' out          
+                throw error;
             })
-            .then(() => { //lpush Promise save in redis
-                sadd("SMS.IDS.PENDING", sms._id)
-                    .catch(error => { //sadd Promise returns an error 
-                        console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "WARNING: We cannot save SMS in Redis SET (sadd): " + error.message);
-                    })
-            });
+            .then(sms => {  //save method returns sms that has been save to MongoDB
 
-        //response 200, with sms._id. is it necessary any more params?
-        res.send({ statusCode: "200 OK", _id: sms._id });
-        console.log(process.env.GREEN_COLOR, logTime(new Date()) + "SMS saved, _id: " + sms._id);  //JSON.stringify for replace new lines (\n) and tab (\t) chars into string
+                //ALL OK, response 200, with sms._id. TODO: is it necessary any more params?
+                res.send({ statusCode: "200 OK", _id: sms._id });
+
+                //START Redis Transaction with multi chain and result's callback
+                rclient.multi([
+                    ["lpush", sms.channel, JSON.stringify(sms)],    //Trans 1
+                    ["sadd", SMS_IDS, sms._id]                      //Trans 2             
+                ]).exec(function (error, replies) { // drains multi queue and runs atomically                    
+                    if (error) {
+                        console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "WARNING: We couldn't save SMS in Redis (We will have to wait for retry): " + error.message);
+                    }
+                });
+                //END Redis Transaction with multi chain and result's callback
+                console.log(process.env.GREEN_COLOR, logTime(new Date()) + "SMS saved, _id: " + sms._id);  //JSON.stringify for replace new lines (\n) and tab (\t) chars into string
+            });
 
     } catch (error) {
         requestError(error, req, res);

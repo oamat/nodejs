@@ -13,15 +13,13 @@
 const express = require('express');
 const { Pns } = require('../models/pns');
 const auth = require('../auth/auth');
-
 const { savePNS } = require('../util/mongopns');
-const { lpush, sadd } = require('../util/redispns');
+const { rclient } = require('../config/redispns');
 const { hget, hgetOrNull } = require('../util/redisconf');
 const { dateFormat, logTime, buildPNSChannel } = require('../util/formats');
-
-
 const router = new express.Router();
-
+//VARS
+const PNS_IDS = "PNS.IDS.PENDING";
 
 //Method post for sending PNS  //status, listby user (by date), list by uuid (by date), registeruuid: app, user, osVendor, osVersion, uuidDevice, token,
 router.post('/pnsSend', auth, async (req, res) => {  //we execute auth before this post request method
@@ -38,28 +36,30 @@ router.post('/pnsSend', auth, async (req, res) => {  //we execute auth before th
 
         pns.channel = buildPNSChannel(pns.operator, pns.priority); //get the channel to put notification with operator and priority
 
-        //await sms.validate(); //validate is unnecessary, we would need await because is a promise and we need to manage the throw exceptions, particularly validating errors in bad request.
-       
-        await savePNS(pns) //save sms to DB, in this phase we need save SMS to MongoDB. //If you didn't execute "sms.validate()" we would need await in save.
-            // .catch(error => {       // we need catch only if get 'await' out            
-            //     throw error;
-            // });
+        //await pns.validate(); //validate is unnecessary, we would need await because is a promise and we need to manage the throw exceptions, particularly validating errors in bad request.
 
-        // START 2 "tasks" in parallel. Even when we recollect the errors we continue the execution and return OK.    
-        if (pns.token) {
-            Promise.all([
-                lpush(pns.channel, JSON.stringify(pns)).catch(error => { return error }),  //put pns to the the apropiate lists channels: PNS.GOO.1, PNS.VIP.1, PNS.ORA.1, PNS.VOD.1 (1,2,3) 
-                sadd("PNS.IDS.PENDING", pns._id).catch(error => { return error }),         //we save the _id in a SET, for checking the retries, errors, etc.  
-            ]).then(values => {
-                if (values[0] instanceof Error) { console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "ERROR: We cannot save PNS in Redis LIST (lpush): " + values[0].message); }  //lpush returns error
-                if (values[1] instanceof Error) { console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "ERROR: We cannot save PNS in Redis SET (sadd): " + values[1].message); } //sadd returns error          
+        savePNS(pns) //save pns to DB, in this phase we need save PNS to MongoDB. //If you didn't execute "pns.validate()" we would need await in save.
+            .catch(error => {     // we need catch only if get 'await' out          
+                throw error;
+            })
+            .then(pns => {  //save method returns pns that has been save to MongoDB
+
+                //ALL OK, response 200, with pns._id. TODO: is it necessary any more params?
+                res.send({ statusCode: "200 OK", _id: pns._id });
+
+                //START Redis Transaction with multi chain and result's callback
+                rclient.multi([
+                    ["lpush", pns.channel, JSON.stringify(pns)],    //Trans 1
+                    ["sadd", PNS_IDS, pns._id]                      //Trans 2             
+                ]).exec(function (error, replies) { // drains multi queue and runs atomically                    
+                    if (error) {
+                        console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "WARNING: We couldn't save PNS in Redis (We will have to wait for retry): " + error.message);
+                    }
+                });
+                //END Redis Transaction with multi chain and result's callback
+
+                console.log(process.env.GREEN_COLOR, logTime(new Date()) + "PNS saved, _id: " + pns._id);  //JSON.stringify for replace new lines (\n) and tab (\t) chars into string
             });
-            // END the 2 "tasks" in parallel    
-        }
-
-        //response 200, with pns._id. is it necessary any more params?
-        res.send({ statusCode: "200 OK", _id: pns._id });
-        console.log(process.env.GREEN_COLOR, logTime(new Date()) + "PNS saved, _id: " + pns._id);  //JSON.stringify for replace new lines (\n) and tab (\t) chars into string
 
     } catch (error) {
         requestError(error, req, res);
