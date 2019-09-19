@@ -139,19 +139,19 @@ const loadRedisForTesting = async () => {
     //retriesPNSs
     hmset(["collectorpns:retriesPNS", "status", 1, "interval", 1000, "intervalControl", 30000]);
     //Collectors Apple
-    hmset(["collectorpns:APP", "status", 1, "interval", "2000", "intervalControl", 30000, "operator", "APP"]);
+    hmset(["collectorpns:APP", "status", 1, "interval", 10, "intervalControl", 30000, "operator", "APP"]);
     //Collectors Android
-    hmset(["collectorpns:GOO", "status", 1, "interval", "2000", "intervalControl", 30000, "operator", "GOO"]);
+    hmset(["collectorpns:GOO", "status", 1, "interval", 10, "intervalControl", 30000, "operator", "GOO"]);
     //Collectors Microsoft
-    hmset(["collectorpns:MIC", "status", 1, "interval", "2000", "intervalControl", 30000, "operator", "MIC"]);
+    hmset(["collectorpns:MIC", "status", 1, "interval", 10, "intervalControl", 30000, "operator", "MIC"]);
     //Collectors Movistar
-    hmset(["collectorsms:MOV", "status", 1, "interval", "2000", "intervalControl", 30000, "operator", "MOV"]);
+    hmset(["collectorsms:MOV", "status", 1, "interval", 10, "intervalControl", 30000, "operator", "MOV"]);
     //Collectors MovistarVIP
-    hmset(["collectorsms:VIP", "status", 1, "interval", "2000", "intervalControl", 30000, "operator", "VIP"]);
+    hmset(["collectorsms:VIP", "status", 1, "interval", 10, "intervalControl", 30000, "operator", "VIP"]);
     //Collectors ORANGE
-    hmset(["collectorsms:ORA", "status", 1, "interval", "2000", "intervalControl", 30000, "operator", "ORA"]);
+    hmset(["collectorsms:ORA", "status", 1, "interval", 10, "intervalControl", 30000, "operator", "ORA"]);
     //Collectors VODAFONE
-    hmset(["collectorsms:VOD", "status", 1, "interval", "2000", "intervalControl", 30000, "operator", "VOD"]);
+    hmset(["collectorsms:VOD", "status", 1, "interval", 10, "intervalControl", 30000, "operator", "VOD"]);
     //PNS token
     hmset(["tokenpnsCaixaAPP:kRt346992-72809WA", "token", "AADDERTTTECCDDDkk34699272809WWwwsdfdeeffffAADDERTTTECCDDDkk34699272809WWwwsdfdeeffffAADDERTTTECCDDDkk34699272809WWwwsdfdeeffff", "operator", "GOO"]);
     //SMS telf

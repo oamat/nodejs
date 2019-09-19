@@ -20,7 +20,7 @@ asyncAdd(5, '7').then((succedMessage) => {
 console.log("Second Call");
 asyncAdd(5, 7).then((succedMessage) => {
   console.log('Second.1 Call Resolve: ', succedMessage);
-  return asyncAdd(succedMessage, 33);
+  return asyncAdd(succedMessage, "33");
 }).then((succedMessage) => {
   console.log('Second.2 Call Resolve: ', succedMessage);
 }).catch((errorMessage) => {

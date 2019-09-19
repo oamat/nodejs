@@ -19,7 +19,7 @@ const llen = async (name) => {
                 else resolve(result); // everything is OK, return result                                 
             } catch (error) { reject(error); } // In Callback we need to reject if we have Error. A reject will not pass through here
         });
-    })
+    });
     //.then((result) => { return result; })  //return the result value of property hash contract
     //.catch((error) => { throw error; }); //throw Error exception to the main code, it's unnecessary but maybe we will need put some lógic...A reject callback will pass through here
 }
@@ -34,7 +34,7 @@ const hget = async (name, key) => {
                 else throw new Error('Problem in the configuration [' + name + '] does not have [' + key + '] property, you need to reconfigure it before proceding.'); //If we don't find the name:key.                 
             } catch (error) { reject(error); } // In Callback we need to reject if we have Error. A reject will not pass through here
         });
-    })
+    });
     //.then((result) => { return result; })  //return the result value of property hash contract
     //.catch((error) => { throw error; }); //throw Error exception to the main code, it's unnecessary but maybe we will need put some lógic...A reject callback will pass through here
 }
@@ -48,7 +48,7 @@ const hset = async (hash, property, value) => {
                 else resolve(result); // everything is OK, return result                                 
             } catch (error) { reject(error); } // In Callback we need to reject if we have Error. A reject will not pass through here
         });
-    })
+    });
     //.then((result) => { return result; })  //return the result value of property hash contract
     //.catch((error) => { throw error; }); //throw Error exception to the main code, it's unnecessary but maybe we will need put some lógic...A reject callback will pass through here
 }
@@ -62,7 +62,7 @@ const lpush = async (name, value) => {
                 else resolve(result); // everything is OK, return result            
             } catch (error) { reject(error); } // In Callback we need to reject if we have Error.  A reject will not pass through here
         });
-    })
+    });
     //.then((result) => { return result; }) //return the result, it's unnecessary but maybe we will need put some lógic...
     //.catch((error) => { throw error; }); //throw Error exception to the main code, it's unnecessary but maybe we will need put some lógic...A reject callback will pass through here
 }
@@ -76,7 +76,7 @@ const sadd = async (name, value) => {
                 else resolve(result); // everything is OK, return result               
             } catch (error) { reject(error); } // In Callback we need to reject if we have Error.  A reject will not pass through here
         });
-    })
+    });
     //.then((result) => { return result; })  //return the result, it's unnecessary but maybe we will need put some lógic...
     //.catch((error) => { throw error; });  //throw Error exception to the main code, it's unnecessary but maybe we will need put some lógic... A reject callback will pass through here
 }
@@ -90,7 +90,7 @@ const sismember = async (name, value) => {
                 else resolve(result); // everything is OK, return result                                    
             } catch (error) { reject(error); } // In Callback we need to reject if we have Error.  A reject will not pass through here
         });
-    })
+    });
     //.then((result) => { return result; })  //return the result, it's unnecessary but maybe we will need put some lógic...
     //.catch((error) => { throw error; });  //throw Error exception to the main code, it's unnecessary but maybe we will need put some lógic... A reject callback will pass through here
 }
@@ -104,7 +104,7 @@ const get = async (name) => {
                 else resolve(result); // everything is OK, return result                                
             } catch (error) { reject(error); } // In Callback we need to reject if we have Error. A reject will not pass through here
         });
-    })
+    });
         //.then((result) => { return result; })  //return the result value of property hash contract
         //.catch((error) => { throw error; }); //throw Error exception to the main code, it's unnecessary but maybe we will need put some lógic...A reject callback will pass through here
 }
@@ -118,7 +118,7 @@ const set = async (name, value) => {
                 else resolve(result); // everything is OK, return result               
             } catch (error) { reject(error); } // In Callback we need to reject if we have Error.  A reject will not pass through here
         });
-    })
+    });
     //.then((result) => { return result; })  //return the result, it's unnecessary but maybe we will need put some lógic...
     //.catch((error) => { throw error; });  //throw Error exception to the main code, it's unnecessary but maybe we will need put some lógic...  A reject callback will pass through here
 }
@@ -132,7 +132,7 @@ const rpoplpush = async function (source, destination) {
                 else resolve(result); // everything is OK, return result, // even if result = null we return it.
             } catch (error) { reject(error); } // In Callback we need to reject if we have Error.  A reject will not pass through here
         });
-    })
+    });
     //.then((result) => { return result; }) //return the result, it's unnecessary but maybe we will need put some lógic...
     //.catch((error) => { throw error; }); //throw Error exception to the main code, it's unnecessary but maybe we will need put some lógic...  A reject callback will pass through here
 }
@@ -146,7 +146,7 @@ const rpop = async function (name) {
                 else resolve(result); // everything is OK, return result, // even if result = null we return it.
             } catch (error) { reject(error); } // In Callback we need to reject if we have Error.  A reject will not pass through here
         });
-    })
+    });
     //.then((result) => { return result; })  //return the result 
     //.catch((error) => { throw error; });  //throw Error exception to the main code, it's unnecessary but maybe we will need put some lógic...  A reject callback will pass through here
 }

@@ -40,23 +40,26 @@ router.post('/smsSend', auth, async (req, res) => {  //we execute auth before th
         sms.channel = buildSMSChannel(sms.operator, sms.priority); //get the channel to put notification with operator and priority
 
         //await sms.validate(); //validate is unnecessary, we would need await because is a promise and we need to manage the throw exceptions, particularly validating errors in bad request.
-        
+
         await saveSMS(sms) //save sms to DB, in this phase we need save SMS to MongoDB. //If you didn't execute "sms.validate()" we would need await in save.
-            .catch(error => {
-                error.message = "ERROR :  We cannot save notify in MongoBD. " + error.message;
-                throw error;
+        // .catch(error => {     // we need catch only if get 'await' out          
+        //     throw error;
+        // });
+
+
+        // multi chain with an individual callback
+
+        
+        lpush(sms.channel, JSON.stringify(sms)) //Totally Async, because it doesn't matter if I didn't save, wait for retry
+            .catch(error => {  //lpush Promise returns an error 
+                console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "WARNING: We cannot save SMS in Redis LIST (lpush), we don't save anything in REDIS (wait for retry): " + error.message);
+            })
+            .then(() => { //lpush Promise save in redis
+                sadd("SMS.IDS.PENDING", sms._id)
+                    .catch(error => { //sadd Promise returns an error 
+                        console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "WARNING: We cannot save SMS in Redis SET (sadd): " + error.message);
+                    })
             });
-
-        // START 2 "tasks" in parallel. Even when we recollect the errors we continue the execution and return OK.    
-        Promise.all([
-            lpush(sms.channel, JSON.stringify(sms)).catch(error => { return error }),  //put sms to the the apropiate lists channels: SMS.MOV.1, SMS.VIP.1, SMS.ORA.1, SMS.VOD.1 (1,2,3) 
-            sadd("SMS.IDS.PENDING", sms._id).catch(error => { return error }),         //we save the _id in a SET, for checking the retries, errors, etc.  
-        ]).then(values => {
-            if (values[0] instanceof Error) { console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "ERROR: We cannot save SMS in Redis LIST (lpush): " + values[0].message); }  //lpush returns error
-            if (values[1] instanceof Error) { console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "ERROR: We cannot save SMS in Redis SET (sadd): " + values[1].message); } //sadd returns error          
-        });
-        // END the 2 "tasks" in parallel    
-
 
         //response 200, with sms._id. is it necessary any more params?
         res.send({ statusCode: "200 OK", _id: sms._id });

@@ -20,7 +20,7 @@ const findSMS = async (condition) => {
                 else resolve(result); // everything is OK, return result                                 
             } catch (error) { reject(error); } // In Callback we need to reject if we have Error. A reject will not pass through here
         });
-    })
+    });
     //.then((result) => { return result; })  //return the result, it's unnecessary but maybe we will need put some lógic...
     //.catch((error) => { throw error; });  //throw Error exception to the main code, it's unnecessary but maybe we will need put some lógic...  A reject callback will pass through here
 }
@@ -34,7 +34,7 @@ const findAllSMS = async (condition) => {
                 else resolve(result); // everything is OK, return result                                 
             } catch (error) { reject(error); } // In Callback we need to reject if we have Error. A reject will not pass through here
         });
-    })
+    });
     //.then((result) => { return result; })  //return the result, it's unnecessary but maybe we will need put some lógic...
     //.catch((error) => { throw error; });  //throw Error exception to the main code, it's unnecessary but maybe we will need put some lógic...  A reject callback will pass through here
 }
@@ -48,7 +48,7 @@ const findContractSms = async (condition) => {
                 else resolve(result); // everything is OK, return result                                 
             } catch (error) { reject(error); } // In Callback we need to reject if we have Error. A reject will not pass through here
         });
-    })
+    });
     //.then((result) => { return result; })  //return the result, it's unnecessary but maybe we will need put some lógic...
     //.catch((error) => { throw error; });  //throw Error exception to the main code, it's unnecessary but maybe we will need put some lógic...  A reject callback will pass through here
 }
@@ -62,7 +62,7 @@ const findAllContractSms = async (condition) => {
                 else resolve(result); // everything is OK, return result                                 
             } catch (error) { reject(error); } // In Callback we need to reject if we have Error. A reject will not pass through here
         });
-    })
+    });
     //.then((result) => { return result; })  //return the result, it's unnecessary but maybe we will need put some lógic...
     //.catch((error) => { throw error; });  //throw Error exception to the main code, it's unnecessary but maybe we will need put some lógic...  A reject callback will pass through here
 }
@@ -77,7 +77,7 @@ const saveContractSms = async (contract) => {
                 else throw new Error('we have a problem when try to save SMS Contract to MongoDB. it\'s necessary check the problem before proceding.'); //If we cannot save SMS to MongoDB                 
             } catch (error) { reject(error); } // In Callback we need to reject if we have Error. A reject will not pass through here
         })
-    })
+    });
     //.then((result) => { return result; })  //return the result, it's unnecessary but maybe we will need put some lógic...
     //.catch((error) => { throw error; });  //throw Error exception to the main code, it's unnecessary but maybe we will need put some lógic...  A reject callback will pass through here
 }
@@ -91,7 +91,7 @@ const findCollectorSms = async (condition) => {
                 else resolve(result); // everything is OK, return result                                 
             } catch (error) { reject(error); } // In Callback we need to reject if we have Error. A reject will not pass through here
         });
-    })
+    });
     //.then((result) => { return result; })  //return the result, it's unnecessary but maybe we will need put some lógic...
     //.catch((error) => { throw error; });  //throw Error exception to the main code, it's unnecessary but maybe we will need put some lógic...  A reject callback will pass through here
 }
@@ -105,7 +105,7 @@ const findAllCollectorSms = async (condition) => {
                 else resolve(result); // everything is OK, return result                                 
             } catch (error) { reject(error); } // In Callback we need to reject if we have Error. A reject will not pass through here
         });
-    })
+    });
     //.then((result) => { return result; })  //return the result, it's unnecessary but maybe we will need put some lógic...
     //.catch((error) => { throw error; });  //throw Error exception to the main code, it's unnecessary but maybe we will need put some lógic...  A reject callback will pass through here
 }
@@ -119,8 +119,8 @@ const saveCollectorSms = async (collector) => {
                 else if (result) resolve(result); // everything is OK, return result
                 else throw new Error('we have a problem when try to save SMS Collector to MongoDB. it\'s necessary check the problem before proceding.'); //If we cannot save SMS to MongoDB                 
             } catch (error) { reject(error); } // In Callback we need to reject if we have Error. A reject will not pass through here
-        })
-    })
+        });
+    });
     //.then((result) => { return result; })  //return the result, it's unnecessary but maybe we will need put some lógic...
     //.catch((error) => { throw error; });  //throw Error exception to the main code, it's unnecessary but maybe we will need put some lógic...  A reject callback will pass through here
 }
@@ -136,8 +136,8 @@ const updateCollectorSms = async (name, toUpdate) => {
                 else if (result) resolve(result); // everything is OK, return result
                 else throw new Error('we have a problem when try to update SMS Collector in MongoDB. it\'s necessary check the problem before proceding.'); //If we cannot save SMS to MongoDB
             } catch (error) { reject(error); } // In Callback we need to reject if we have Error. A reject will not pass through here
-        })
-    })
+        });
+    });
         //.then((result) => { return result; })  //return the result, it's unnecessary but maybe we will need put some lógic...
         //.catch((error) => { throw error; });  //throw Error exception to the main code, it's unnecessary but maybe we will need put some lógic...  A reject callback will pass through here
 }
@@ -151,7 +151,7 @@ const findTelfSms = async (condition) => {
                 else resolve(result); // everything is OK, return result                                 
             } catch (error) { reject(error); } // In Callback we need to reject if we have Error. A reject will not pass through here
         });
-    })
+    });
     //.then((result) => { return result; })  //return the result, it's unnecessary but maybe we will need put some lógic...
     //.catch((error) => { throw error; });  //throw Error exception to the main code, it's unnecessary but maybe we will need put some lógic...  A reject callback will pass through here
 }
@@ -166,7 +166,7 @@ const findAllTelfSms = async (condition) => {
                 else resolve(result); // everything is OK, return result                                 
             } catch (error) { reject(error); } // In Callback we need to reject if we have Error. A reject will not pass through here
         });
-    })
+    });
     //.then((result) => { return result; })  //return the result, it's unnecessary but maybe we will need put some lógic...
     //.catch((error) => { throw error; });  //throw Error exception to the main code, it's unnecessary but maybe we will need put some lógic...  A reject callback will pass through here
 }
@@ -180,8 +180,8 @@ const saveTelfSms = async (telf) => {
                 else if (result) resolve(result); // everything is OK, return result
                 else throw new Error('we have a problem when try to save SMS Telf to MongoDB. it\'s necessary check the problem before proceding.'); //If we cannot save SMS to MongoDB                 
             } catch (error) { reject(error); } // In Callback we need to reject if we have Error. A reject will not pass through here
-        })
-    })
+        });
+    });
     //.then((result) => { return result; })  //return the result, it's unnecessary but maybe we will need put some lógic...
     //.catch((error) => { throw error; });  //throw Error exception to the main code, it's unnecessary but maybe we will need put some lógic...  A reject callback will pass through here
 }
@@ -197,8 +197,8 @@ const updateTelfSms = async (name, toUpdate) => {
                 else if (result) resolve(result); // everything is OK, return result
                 else throw new Error('we have a problem when try to update SMS Telf in MongoDB. it\'s necessary check the problem before proceding.'); //If we cannot save SMS to MongoDB
             } catch (error) { reject(error); } // In Callback we need to reject if we have Error. A reject will not pass through here
-        })
-    })
+        });
+    });
         //.then((result) => { return result; })  //return the result, it's unnecessary but maybe we will need put some lógic...
         //.catch((error) => { throw error; });  //throw Error exception to the main code, it's unnecessary but maybe we will need put some lógic...  A reject callback will pass through here
 }

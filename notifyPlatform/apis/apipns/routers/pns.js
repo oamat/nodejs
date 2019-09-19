@@ -41,10 +41,9 @@ router.post('/pnsSend', auth, async (req, res) => {  //we execute auth before th
         //await sms.validate(); //validate is unnecessary, we would need await because is a promise and we need to manage the throw exceptions, particularly validating errors in bad request.
        
         await savePNS(pns) //save sms to DB, in this phase we need save SMS to MongoDB. //If you didn't execute "sms.validate()" we would need await in save.
-            .catch(error => {
-                error.message = "ERROR :  We cannot save notify in MongoBD. " + error.message;
-                throw error;
-            });
+            // .catch(error => {       // we need catch only if get 'await' out            
+            //     throw error;
+            // });
 
         // START 2 "tasks" in parallel. Even when we recollect the errors we continue the execution and return OK.    
         if (pns.token) {
