@@ -10,3 +10,4 @@ Certificados HTTPS API + jmeter
 User/Password redis
 FindSMS by telf & date
 MongoDB: Collection SMS y PNS hay que hacer procesos de historificación y borrado 
+Repasar documentación en inglés
