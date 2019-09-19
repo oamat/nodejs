@@ -10,4 +10,14 @@ demo apisms + movistar contingencia operador
 Entrar en REDIS y ver conf (collectorsms, telfs, token) + listas (llen, rpop, prioridades)
 ver vagrant
 ver docker/docker compose 
-ver kubernetes y hacer réplicas
+    docker logs apisms
+    docker logs movistar
+ver kubernetes y hacer réplicas, diferencias entre servcio y deployment
+    kubectl logs apisms
+    kubectl logs movistar
+    kubectl scale deployments/movistar --replicas=3
+    kubectl scale deployments/apisms --replicas=3
+    kubectl describe services/apisms
+    kubectl describe deployments/apisms
+Alguna prueba.
+

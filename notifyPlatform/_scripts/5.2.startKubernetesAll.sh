@@ -2,6 +2,9 @@
 echo "Start All Kubernetes files from Notify Platform "
 cd /notifyPlatform/_kubernetes/kubernetes/
 
+
+kubectl create -f apiadmin-deployment.yaml -f apiadmin-service.yaml
+sleep 5
 kubectl create -f apisms-deployment.yaml -f apisms-service.yaml
 kubectl create -f apipns-deployment.yaml -f apipns-service.yaml
 kubectl create -f apistatusback-deployment.yaml -f apistatusback-service.yaml
@@ -21,8 +24,8 @@ kubectl create -f movistarvip-deployment.yaml
 kubectl create -f orange-deployment.yaml
 kubectl create -f vodafone-deployment.yaml
 
-
-
+kubectl create -f batchsms-deployment.yaml
+kubectl create -f batchpns-deployment.yaml
 
 cd /notifyPlatform/_scripts/
 
