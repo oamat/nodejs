@@ -9,7 +9,8 @@
 
 //Dependencies
 
-const { sadd, sismember, lpush } = require('../util/redispns'); //we need to initialize redis
+const { sismember } = require('../util/redispns'); //we need to initialize redis
+const { rclient } = require('../config/redispns');
 const { hget, hset } = require('../util/redisconf');
 const { dateFormat, logTime } = require('../util/formats'); // utils for formats
 const { findAllPNS } = require('../util/mongopns'); // utils for formats
@@ -22,6 +23,7 @@ var cronChanged = false;  //if we need restart cron,
 var interval = 1000; //define the rate/s notifications, interval in cron (100/s by default)
 var intervalControl = 30000; //define interval in controller cron (check by min. by default)
 var limit = 100;
+const PNS_IDS = "PNS.IDS.PENDING";
 
 const startCron = async (interval) => { //Start cron only when cron is stopped.
     try {
@@ -56,25 +58,23 @@ const stopCron = async () => { //stop cron only when cron is switched on
 const retryNextsPNS = async () => {
     try {
         const retriesPNS = await nextRetriesPNS(); //get array of PNS not sent. 
-        let counter = 0;
 
         for (var i = 0; i < retriesPNS.length; i++) {
-            if (await sismember("PNS.IDS.PENDING", retriesPNS[i]._id) == 0) {
-                // START 2 "tasks" in parallel. Even when we recollect the errors we continue the execution and return OK.
-                await Promise.all([
-                    lpush(retriesPNS[i].channel, JSON.stringify(retriesPNS[i])).catch(error => { return error }),  //put pns to the the apropiate lists channels: PNS.MOV.1, PNS.VIP.1, PNS.ORA.1, PNS.VOD.1 (1,2,3) 
-                    sadd("PNS.IDS.PENDING", retriesPNS[i]._id).catch(error => { return error }),         //we save the _id in a SET, for checking the retries, errors, etc.  
-                ]).then(values => {
-                    if (values[0] instanceof Error) { console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "ERROR: We cannot save PNS in Redis LIST (lpush): " + values[0].message); }  //lpush returns error
-                    if (values[1] instanceof Error) { console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "ERROR: We cannot save PNS in Redis SET (sadd): " + values[1].message); } //sadd returns error          
+            if (await sismember(PNS_IDS, retriesPNS[i]._id) == 0) {
+
+                //START Redis Transaction with multi chain and result's callback
+                rclient.multi([
+                    ["lpush", retriesPNS[i].channel, JSON.stringify(retriesPNS[i])],    //Trans 1
+                    ["sadd", PNS_IDS, retriesPNS[i]._id]                      //Trans 2             
+                ]).exec(function (error, replies) { // drains multi queue and runs atomically                    
+                    let date = logTime(new Date());
+                    if (error) console.log(process.env.YELLOW_COLOR, date + "WARNING: We couldn't save PNS in Redis (We will have to wait for retry): " + error.message);
+                    else console.log(process.env.GREEN_COLOR, date + "We have retried " + retriesPNS[i]._id);
                 });
-                // END the 2 "tasks" in parallel    
-                counter++;
+                //END Redis Transaction with multi chain and result's callback                   
+
             }
         }
-
-        if (counter) console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "We have retried " + counter + " PNS that were not found in REDIS.");
-        //else console.log(process.env.GREEN_COLOR, logTime(new Date()) + "We don't find any PNS to retry.");
 
     } catch (error) {
         console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "ERROR: we have a problem in retryNextsPNS() : " + error.message);
@@ -83,26 +83,27 @@ const retryNextsPNS = async () => {
 }
 
 const nextRetriesPNS = async () => {
-    try {  //priority
-        let dateFrom = new Date();
-        let dateTo = new Date();
-        dateFrom.setDate(dateFrom.getDate() - 1); // date from 24h before
-        dateTo.setSeconds(dateTo.getSeconds() - 30);  //to now -30sconds, because we have the risk that take a message immediately after we sended
-
+    try {
+        let end = new Date();
+        let start = new Date();
+        start.setDate(start.getDate() - 1); // date from 24h before
+        end.setSeconds(end.getSeconds() - 30);  //to now -30sconds, because we have the risk that take a message immediately after we sended
         let condition = {  //query condition 
             dispatched: false, //not dispatched
             expired: null, //not expired
             status: 0, // not sent
-            retries: { $lt: 10 },// retries less than 10
-            receivedAt: { $gte: dateFrom.toISOString(), $lt: dateTo.toISOString() } // receivedAt great than 24h before.
+            //operator: operator, // the operator
+            retries: { '$lt': 10 },// retries less than 10
+            receivedAt: { '$gte': start, '$lte': end } //receivedAt greater than 24h before and less than now-30s.            
         };
 
-        let options = { skip: 0, limit, sort: { priority: 1 } }; //skip (Starting Row), limit (Ending Row), Sort by priority ASC
+        let options = { skip: 0, limit, sort: { priority: 1, receivedAt: -1 } }; //skip (Starting Row), limit (Ending Row), Sort by priority ASC (->0,1,2,3,4,5) and receivedAt DESC (first the oldest)
 
         return await findAllPNS(condition, options);//return the nexts pns's not sent by priority order.  
 
     } catch (error) {
         console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "ERROR: we have a problem with mongoose.find : " + error.message);
+        return null;
         //console.error(error); //continue the execution cron
     }
 }

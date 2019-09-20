@@ -43,9 +43,8 @@ router.post('/pnsSend', auth, async (req, res) => {  //we execute auth before th
                 throw error;
             })
             .then(pns => {  //save method returns pns that has been save to MongoDB
-
-                //ALL OK, response 200, with pns._id. TODO: is it necessary any more params?
-                res.send({ statusCode: "200 OK", _id: pns._id });
+                
+                res.send({ statusCode: "200 OK", _id: pns._id }); //ALL OK, response 200, with pns._id. TODO: is it necessary any more params?
 
                 //START Redis Transaction with multi chain and result's callback
                 rclient.multi([

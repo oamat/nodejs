@@ -18,7 +18,7 @@ require('./config/redispns'); //we need to initialize redis
 require('./config/redisconf'); //we need to initialize redis
 const Pns = require('./models/pns');
 const { savePNS } = require('./util/mongopns');
-const { lpush, sadd } = require('./util/redispns');
+const { rclient } = require('../config/redispns');
 const { hget, hset } = require('./util/redisconf');
 const { dateFormat, logTime, buildPNSChannel } = require('./util/formats');
 const auth = require('./auth/auth');
@@ -35,9 +35,9 @@ var qName = "DEV.QUEUE.1";
 var msgId = null;
 
 // Some global variables
+const PNS_IDS = "PNS.IDS.PENDING";
 var connectionHandle;
 var queueHandle;
-
 var waitInterval = 3; // max seconds to wait for a new message
 var ok = true;
 var exitCode = 0;
@@ -125,7 +125,7 @@ async function getCB(err, hObj, gmo, md, buf, hConn) {
             console.log(logTime(new Date()) + "message <%s>", pnsJSON);
             if (pnsJSON) {
                 try {
-                    const pns = new Pns(JSON.parse(smsJSON)); // convert json to object,  await it's unnecessary because is the first creation of object. Model Validations are check when save in Mongodb, not here. 
+                    const pns = new Pns(JSON.parse(pnsJSON)); // convert json to object,  await it's unnecessary because is the first creation of object. Model Validations are check when save in Mongodb, not here. 
                     await auth(pns);
                     if (pns.priority < 1) pns.priority = 2; //only accept priorities 2,3,4,5 in MQ Service. (0,1 are reserved for REST interface).
 
@@ -140,28 +140,31 @@ async function getCB(err, hObj, gmo, md, buf, hConn) {
                     }
                     const collectorOperator = hget("collectorpns:" + pns.operator, "operator"); //this method is Async, but we can get in parallel until need it (with await). 
                     if (await collectorOperator != pns.operator) pns.operator = collectorOperator;  //check if the operator have some problems
- 
+
                     pns.channel = buildPNSChannel(pns.operator, pns.priority); //get the channel to put notification with operator and priority
                     delete pns.jwt; // we don't need to save jwt in mongodb, only for authoritation.
-                    //await pns.validate(); //await sms.validate(); //validate is unnecessary, we would need await because is a promise and we need to manage the throw exceptions, particularly validating errors in bad request.
-                    
-                    await savePNS(pns) //save pns to DB, in this phase we need save PNS to MongoDB. //If you didn't execute "pns.validate()" we would need await in save.
-                        .catch(error => {
-                            error.message = "ERROR :  We cannot save notify in MongoBD. " + error.message;
-                            throw error;
-                        });
 
-                    // START 2 "tasks" in parallel. Even when we recollect the errors we continue the execution and return OK.    
-                    Promise.all([
-                        lpush(pns.channel, JSON.stringify(pns)).catch(error => { return error }),  //put pns to the the apropiate lists channels: PNS.GOO.1, PNS.VIP.1, PNS.ORA.1, PNS.VOD.1 (1,2,3) 
-                        sadd("PNS.IDS.PENDING", pns._id).catch(error => { return error }),         //we save the _id in a SET, for checking the retries, errors, etc.  
-                    ]).then(values => {
-                        if (values[0] instanceof Error) { console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "ERROR: We cannot save PNS in Redis LIST (lpush): " + values[0].message); }  //lpush returns error
-                        if (values[1] instanceof Error) { console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "ERROR: We cannot save PNS in Redis SET (sadd): " + values[1].message); } //sadd returns error          
-                    });
-                    // END the 2 "tasks" in parallel    
-                    
-                    console.log(process.env.GREEN_COLOR, logTime(new Date()) + "PNS to send : " + pns._id);  //JSON.stringify for replace new lines (\n) and tab (\t) chars into string
+                    //await pns.validate(); //await pns.validate(); //validate is unnecessary, we would need await because is a promise and we need to manage the throw exceptions, particularly validating errors in bad request.
+
+                    savePNS(pns) //save pns to DB, in this phase we need save PNS to MongoDB. //If you didn't execute "pns.validate()" we would need await in save.
+                        .catch(error => {     // we need catch only if get 'await' out          
+                            throw error;
+                        })
+                        .then(pns => {  //save method returns pns that has been save to MongoDB
+
+                            //START Redis Transaction with multi chain and result's callback
+                            rclient.multi([
+                                ["lpush", pns.channel, JSON.stringify(pns)],    //Trans 1
+                                ["sadd", PNS_IDS, pns._id]                      //Trans 2             
+                            ]).exec(function (error, replies) { // drains multi queue and runs atomically                    
+                                if (error) {
+                                    console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "WARNING: We couldn't save PNS in Redis (We will have to wait for retry): " + error.message);
+                                }
+                            });
+                            //END Redis Transaction with multi chain and result's callback
+
+                            console.log(process.env.GREEN_COLOR, logTime(new Date()) + "PNS saved, _id: " + pns._id);  //JSON.stringify for replace new lines (\n) and tab (\t) chars into string
+                        });
 
                 } catch (error) {
                     let contract = pns.contract || 'undefined';

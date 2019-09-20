@@ -62,6 +62,10 @@ const collectorSchema = new mongoose.Schema({
         required: true,
         default: 30000
     },
+    remitter:{ //the default remiter for SMS
+        type: String,
+        required: false        
+    }
 }, {
     timestamps: true //If set timestamps, mongoose assigns createdAt and updatedAt fields to your schema, the type assigned is Date.
 }, {

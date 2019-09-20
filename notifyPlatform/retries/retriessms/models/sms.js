@@ -78,7 +78,7 @@ const smsSchema = new mongoose.Schema({
         type: Number,
         required: false
     },
-    expired: { //if pns was expired
+    expired: { //if sms was expired
         type: Boolean,
         required: false
     },
@@ -112,6 +112,10 @@ const smsSchema = new mongoose.Schema({
     customId: {
         type: String,
         required: false
+    },
+    remitter:{
+        type: String,
+        required: false        
     }
 }, {
     timestamps: true //If set timestamps, mongoose assigns createdAt and updatedAt fields to your schema, the type assigned is Date.

@@ -9,7 +9,7 @@
 
 //Dependencies
 const { Sms } = require('../models/sms');
-const { lpush, sadd } = require('../util/redissms'); //we need to initialize redis
+const { rclient } = require('../config/redissms'); //we need to initialize redis
 const { hget, hset } = require('../util/redisconf');
 const { dateFormat, logTime, buildSMSChannel } = require('../util/formats'); // utils for formats
 const { saveSMS } = require('../util/mongosms');
@@ -20,6 +20,7 @@ const fs = require('fs');
 const batchIn = './files/in/';
 const batchOut = './files/out/';
 const batchName = "collectorsms:batchSMS";
+const SMS_IDS = "SMS.IDS.PENDING";
 //Variables
 var cron; //the main cron that manage files and put them into redis List.
 var cronStatus = 1; //status of cron. 0: cron stopped, 1 : cron working, 
@@ -61,8 +62,8 @@ const stopCron = async () => { //stop cron only when cron is switched on
 const getSMSFiles = async () => {
     if (nextExecution) {
         nextExecution = false;
-        try {           
-            fs.readdirSync(batchIn).forEach(async (filename) => {               
+        try {
+            fs.readdirSync(batchIn).forEach(async (filename) => {
                 if (require('path').extname(filename) == ".json") {
                     console.log(logTime(new Date()) + "Process of file :" + filename);
                     var file = fs.readFileSync(batchIn + filename);
@@ -89,24 +90,27 @@ const getSMSFiles = async () => {
 
                             //await sms.validate(); //validate is unnecessary, we would need await because is a promise and we need to manage the throw exceptions, particularly validating errors in bad request.
 
-                            await saveSMS(sms) //save sms to DB, in this phase we need save SMS to MongoDB. //If you didn't execute "sms.validate()" we would need await in save.
-                                .catch(error => {
-                                    error.message = "ERROR :  We cannot save notify in MongoBD. " + error.message;
+                            saveSMS(sms) //save sms to DB, in this phase we need save SMS to MongoDB. //If you didn't execute "sms.validate()" we would need await in save.
+                                .catch(error => {     // we need catch only if get 'await' out          
                                     throw error;
+                                })
+                                .then(sms => {  //save method returns sms that has been save to MongoDB
+
+                                    res.send({ statusCode: "200 OK", _id: sms._id }); //ALL OK, response 200, with sms._id. TODO: is it necessary any more params?
+
+                                    //START Redis Transaction with multi chain and result's callback
+                                    rclient.multi([
+                                        ["lpush", sms.channel, JSON.stringify(sms)],    //Trans 1
+                                        ["sadd", SMS_IDS, sms._id]                      //Trans 2             
+                                    ]).exec(function (error, replies) { // drains multi queue and runs atomically                    
+                                        if (error) {
+                                            console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "WARNING: We couldn't save SMS in Redis (We will have to wait for retry): " + error.message);
+                                        }
+                                    });
+                                    //END Redis Transaction with multi chain and result's callback
+                                    console.log(process.env.GREEN_COLOR, logTime(new Date()) + "SMS saved, _id: " + sms._id);  //JSON.stringify for replace new lines (\n) and tab (\t) chars into string
                                 });
-
-                            // START 2 "tasks" in parallel. Even when we recollect the errors we continue the execution and return OK.    
-                            Promise.all([
-                                lpush(sms.channel, JSON.stringify(sms)).catch(error => { return error }),  //put sms to the the apropiate lists channels: SMS.GOO.1, SMS.VIP.1, SMS.ORA.1, SMS.VOD.1 (1,2,3) 
-                                sadd("SMS.IDS.PENDING", sms._id).catch(error => { return error }),         //we save the _id in a SET, for checking the retries, errors, etc.  
-                            ]).then(values => {
-                                if (values[0] instanceof Error) { console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "ERROR: We cannot save SMS in Redis LIST (lpush): " + values[0].message); }  //lpush returns error
-                                if (values[1] instanceof Error) { console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "ERROR: We cannot save SMS in Redis SET (sadd): " + values[1].message); } //sadd returns error          
-                            });
-                            // END the 2 "tasks" in parallel    
-
-                            console.log(process.env.GREEN_COLOR, logTime(new Date()) + "SMS to send : " + sms._id);  //JSON.stringify for replace new lines (\n) and tab (\t) chars into string
-
+                                
                         } catch (error) {
                             let contract = sms.contract || 'undefined';
                             let telf = sms.telf || 'undefined';
@@ -213,9 +217,9 @@ const initCron = async () => {
         });
 
         console.log(process.env.GREEN_COLOR, logTime(new Date()) + "initializing all crons processes at " + dateFormat(new Date()) + " with cron interval [" + interval + "ms] and cron Controller interval : [" + intervalControl + "ms]...");
-        if (cronStatus) {    
+        if (cronStatus) {
             getSMSFiles(); // first execution 
-            await startCron(interval);            
+            await startCron(interval);
         } else console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "Cron status in redis indicates we don't want start cron process. we only start cron Controller.");
         await startController(intervalControl);
     } catch (error) {

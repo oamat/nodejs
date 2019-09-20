@@ -25,7 +25,7 @@ const router = new express.Router();
 // POST //addSmsContract   # contract in body for Auth
 router.post('/addSmsContract', auth, async (req, res) => {
     try {
-        if (!req.body.name || !req.body.description || !req.body.permission || !req.body.application || !req.body.interface || !req.body.operator) {  //first we check the body params request. 
+        if (!req.body.name || !req.body.description || !req.body.permission || !req.body.application || !req.body.interface || !req.body.operator || !req.body.remitter) {  //first we check the body params request. 
             throw new Error("You didn't send the necessary params in the body of the request. You need to send the correct params before proceeding.");
         } else {
             let ContractModel = ContractSms();  // we catch the ContractSMS Model
@@ -54,7 +54,8 @@ router.post('/addSmsContract', auth, async (req, res) => {
                     "activated", contract.activated,
                     "permission", contract.permission,
                     "application", contract.application,
-                    "interface", contract.interface
+                    "interface", contract.interface,
+                    "remitter" ,contract.remitter
                 ])
             ]).catch(function (error) { //we don'r need result, but we need errors. 
                 throw error;

@@ -10,7 +10,7 @@
 //Dependencies
 const { Pns } = require('../models/pns');
 const { rpop, rpoplpush } = require('../util/redispns'); //we need to initialize redis
-const { hget, hset  } = require('../util/redisconf');
+const { hget, hset } = require('../util/redisconf');
 const { dateFormat, logTime, buildPNSChannel, buildPNSChannels } = require('../util/formats'); // utils for formats
 const { updatePNS } = require('../util/mongopns'); //for updating status
 const { sendPNS } = require('./cronHelper');
@@ -67,17 +67,15 @@ const sendNextPNS = async () => {
             pns.status = 1;  //0:notSent, 1:Sent, 2:Confirmed, 3:Error, 4:Expired
             pns.dispatched = true;
             pns.dispatchedAt = new Date();
-            pns.retries++;
-            let notExpired = true;
+            pns.retries++;    
             if ((pns.expire) && (Date.now() > pns.expire)) { // treat the expired SMS
-                notExpired = false;
                 pns.expired = true;
                 pns.status = 4;
                 updatePNS(pns); // update SMS in MongoDB
                 console.log(process.env.YELLOW_COLOR, logTime(new Date()) + " The PNS " + pns._id + " has expired and has not been sent.");
-            }
-            //pns.validate(); //It's unnecessary because we cautched from redis, and we checked before in the apipns, the new params are OK.
-            if (notExpired) {
+            } else {
+                //pns.validate(); //It's unnecessary because we cautched from redis, and we checked before in the apipns, the new params are OK.
+
                 if (operator == defaultOperator) { //If we change operator for contingency we change pns to other list
                     await sendPNS(pns); // send PNS to operator
                     updatePNS(pns); // update PNS in MongoDB

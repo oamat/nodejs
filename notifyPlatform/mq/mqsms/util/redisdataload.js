@@ -17,13 +17,32 @@ const initRedisSMSConf = async () => {
     if (!contracts || contracts.length == 0) {
         console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "SMS Contracts not found in MongoDB. Basic config has been saved in mongo & redis.");
         loadRedisForTesting();  // If we don't have contracts, probably mongo is empty, so we load redis with test info
+        saveSMSDefaultContract();
     } else for (var i = 0; i < contracts.length; i++) {
         hmset(["contractsms:" + contracts[i].name,
             "jwt", contracts[i].jwt,
             "operator", contracts[i].operator,
+            "defaultOperator", contracts[i].defaultOperator,
+            "activated", contracts[i].activated,
             "interface", contracts[i].interface,
             "permission", contracts[i].permission,
+            "application", contracts[i].application,
             "type", contracts[i].type
+            //"remitter", contracts[i].remitter
+        ]);
+    }
+
+    //select and save all SMS contracts ADMIN
+    let contractsAdmin = await findAllContractSms({ name: "ADMIN" });
+    if (!contractsAdmin || contractsAdmin.length == 0) { //we safe the default config
+        console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "SMS Contracts Admin not found in MongoDB. Basic config has been saved in mongo & redis.");
+        saveAdminSMSDefaultContract();
+    } else for (var i = 0; i < contractsAdmin.length; i++) {
+        hmset(["contractadmin:" + contractsAdmin[i].name,
+            "jwt", contractsAdmin[i].jwt,
+            "permission", contractsAdmin[i].permission,
+            "type", contractsAdmin[i].type
+            //"remitter", contractsAdmin[i].remitter
         ]);
     }
 
@@ -39,19 +58,7 @@ const initRedisSMSConf = async () => {
             "interval", collectors[i].interval,
             "intervalControl", collectors[i].intervalControl,
             "operator", collectors[i].operator
-        ]);
-    }
-
-    //select and save all SMS contracts ADMIN
-    let contractsAdmin = await findAllContractSms({ name: "ADMIN" });
-    if (!contractsAdmin || contractsAdmin.length == 0) { //we safe the default config
-        console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "SMS Contracts Admin not found in MongoDB. Basic config has been saved in mongo & redis.");
-        saveAdminSMSDefaultContract();
-    } else for (var i = 0; i < contractsAdmin.length; i++) {
-        hmset(["contractadmin:" + contractsAdmin[i].name,
-            "jwt", contractsAdmin[i].jwt,
-            "permission", contractsAdmin[i].permission,
-            "type", contractsAdmin[i].type
+            //"remitter", collectors[i].remitter
         ]);
     }
 
@@ -72,6 +79,7 @@ const initRedisPNSConf = async () => {
     if (!contracts || contracts.length == 0) {
         console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "PNS Contracts not found in MongoDB. Basic config has been saved in mongo & redis.");
         loadRedisForTesting();  // If we don't have contracts, probably mongo is empty, so we load redis with test info
+        savePNSDefaultContract();
     } else for (var i = 0; i < contracts.length; i++) {
         hmset(["contractpns:" + contracts[i].name,
             "jwt", contracts[i].jwt,
@@ -129,7 +137,7 @@ const loadRedisForTesting = async () => {
     //APIPNS Contracts
     hmset(["contractpns:PUSHLOWEB", "jwt", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IlBVU0hMT1dFQiIsImNvbnRyYWN0IjoiUFVTSExPV0VCIiwiaWF0IjoyMDE2MjM5MDIyfQ.liOxBh3kFQyjYrIyhg2Uu3COoV83ruUsyLniWEJ8Apw", "operator", "ALL"]);
     //APISMS Contracts
-    hmset(["contractsms:OTPLOWEB", "jwt", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6Ik9UUExPV0VCIiwiY29udHJhY3QiOiJPVFBMT1dFQiIsImlhdCI6MjAxNjIzOTAyMn0.BK58iwYbyfGb1u--SLP3YZP7JZxKSMrPHmdc-gfH4t4", "operator", "ALL"]);
+    hmset(["contractsms:OTPLOWEB", "remitter", "217771", "operator", "ALL", "defaultOperator", "MOV", "jwt", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6Ik9UUExPV0VCIiwiY29udHJhY3QiOiJPVFBMT1dFQiIsImlhdCI6MjAxNjIzOTAyMn0.BK58iwYbyfGb1u--SLP3YZP7JZxKSMrPHmdc-gfH4t4"]);
     //batchSMS
     hmset(["collectorsms:batchSMS", "status", 1, "interval", 180000, "intervalControl", 30000]);
     //batchPNSs
@@ -145,13 +153,13 @@ const loadRedisForTesting = async () => {
     //Collectors Microsoft
     hmset(["collectorpns:MIC", "status", 1, "interval", 10, "intervalControl", 30000, "operator", "MIC"]);
     //Collectors Movistar
-    hmset(["collectorsms:MOV", "status", 1, "interval", 10, "intervalControl", 30000, "operator", "MOV"]);
+    hmset(["collectorsms:MOV", "status", 1, "interval", 10, "intervalControl", 30000, "operator", "MOV", "remitter", "217771"]);
     //Collectors MovistarVIP
-    hmset(["collectorsms:VIP", "status", 1, "interval", 10, "intervalControl", 30000, "operator", "VIP"]);
+    hmset(["collectorsms:VIP", "status", 1, "interval", 10, "intervalControl", 30000, "operator", "VIP", "remitter", "217771"]);
     //Collectors ORANGE
-    hmset(["collectorsms:ORA", "status", 1, "interval", 10, "intervalControl", 30000, "operator", "ORA"]);
+    hmset(["collectorsms:ORA", "status", 1, "interval", 10, "intervalControl", 30000, "operator", "ORA", "remitter", "217771"]);
     //Collectors VODAFONE
-    hmset(["collectorsms:VOD", "status", 1, "interval", 10, "intervalControl", 30000, "operator", "VOD"]);
+    hmset(["collectorsms:VOD", "status", 1, "interval", 10, "intervalControl", 30000, "operator", "VOD", "remitter", "217771"]);
     //PNS token
     hmset(["tokenpnsCaixaAPP:kRt346992-72809WA", "token", "AADDERTTTECCDDDkk34699272809WWwwsdfdeeffffAADDERTTTECCDDDkk34699272809WWwwsdfdeeffffAADDERTTTECCDDDkk34699272809WWwwsdfdeeffff", "operator", "GOO"]);
     //SMS telf
@@ -160,18 +168,18 @@ const loadRedisForTesting = async () => {
 
 const saveAllSMSDefaultCollectors = async () => {
     let CollectorModel = CollectorSms();  // we catch the ContractSMS Model            
-    saveCollectorSms(new CollectorModel({ "operator": "MOV", "activated": true, "status": true, "name": "MOV", "description": "Collector SMS Movistar", "interval": 10, "intervalControl": 30000, "type": "SMS" }));
-    saveCollectorSms(new CollectorModel({ "operator": "VIP", "activated": true, "status": true, "name": "VIP", "description": "Collector SMS Movistar - VIP", "interval": 10, "intervalControl": 30000, "type": "SMS" }));
-    saveCollectorSms(new CollectorModel({ "operator": "VOD", "activated": true, "status": true, "name": "VOD", "description": "Collector SMS Vodafone", "interval": 10, "intervalControl": 30000, "type": "SMS" }));
-    saveCollectorSms(new CollectorModel({ "operator": "ORA", "activated": true, "status": true, "name": "ORA", "description": "Collector SMS Orange", "interval": 10, "intervalControl": 30000, "type": "SMS" }));
-    saveCollectorSms(new CollectorModel({ "operator": "batchSMS", "activated": true, "status": true, "name": "batchSMS", "description": "batch SMS", "interval": 180000, "intervalControl": 30000, "type": "SMS" }));
-    saveCollectorSms(new CollectorModel({ "operator": "retriesSMS", "activated": true, "status": true, "name": "retriesSMS", "description": "retries SMS", "interval": 1000, "intervalControl": 30000, "type": "SMS" }));
+    saveCollectorSms(new CollectorModel({ "operator": "MOV", "activated": true, "status": true, "name": "MOV", "description": "Collector SMS Movistar", "interval": 10, "intervalControl": 30000, "type": "SMS", "remitter": "217771" }));
+    saveCollectorSms(new CollectorModel({ "operator": "VIP", "activated": true, "status": true, "name": "VIP", "description": "Collector SMS Movistar - VIP", "interval": 10, "intervalControl": 30000, "type": "SMS", "remitter": "217771" }));
+    saveCollectorSms(new CollectorModel({ "operator": "VOD", "activated": true, "status": true, "name": "VOD", "description": "Collector SMS Vodafone", "interval": 10, "intervalControl": 30000, "type": "SMS", "remitter": "217771" }));
+    saveCollectorSms(new CollectorModel({ "operator": "ORA", "activated": true, "status": true, "name": "ORA", "description": "Collector SMS Orange", "interval": 10, "intervalControl": 30000, "type": "SMS", "remitter": "217771" }));
+    saveCollectorSms(new CollectorModel({ "operator": "batchSMS", "activated": true, "status": true, "name": "batchSMS", "description": "batch SMS", "interval": 180000, "intervalControl": 30000, "type": "SMS", "remitter": "217771" }));
+    saveCollectorSms(new CollectorModel({ "operator": "retriesSMS", "activated": true, "status": true, "name": "retriesSMS", "description": "retries SMS", "interval": 1000, "intervalControl": 30000, "type": "SMS", "remitter": "217771" }));
     hmset(["collectorsms:batchSMS", "status", 1, "interval", 180000, "intervalControl", 30000]);
     hmset(["collectorsms:retriesSMS", "status", 1, "interval", 1000, "intervalControl", 30000]);
-    hmset(["collectorsms:MOV", "status", 1, "interval", 10, "intervalControl", 30000, "operator", "MOV"]);
-    hmset(["collectorsms:VIP", "status", 1, "interval", 10, "intervalControl", 30000, "operator", "VIP"]);
-    hmset(["collectorsms:ORA", "status", 1, "interval", 10, "intervalControl", 30000, "operator", "ORA"]);
-    hmset(["collectorsms:VOD", "status", 1, "interval", 10, "intervalControl", 30000, "operator", "VOD"]);
+    hmset(["collectorsms:MOV", "status", 1, "interval", 10, "intervalControl", 30000, "operator", "MOV", "remitter", "217771"]);
+    hmset(["collectorsms:VIP", "status", 1, "interval", 10, "intervalControl", 30000, "operator", "VIP", "remitter", "217771"]);
+    hmset(["collectorsms:ORA", "status", 1, "interval", 10, "intervalControl", 30000, "operator", "ORA", "remitter", "217771"]);
+    hmset(["collectorsms:VOD", "status", 1, "interval", 10, "intervalControl", 30000, "operator", "VOD", "remitter", "217771"]);
 }
 
 const saveAllPNSDefaultCollectors = async () => {
@@ -194,6 +202,19 @@ const saveAdminSMSDefaultContract = async () => {
     hset("contractadmin:ADMIN", "jwt", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkFETUlOIiwiY29udHJhY3QiOiJBRE1JTiIsImlhdCI6MjAxNjIzOTAyMn0.vwBNTaBbW40v14Iiqd65uhv4FVQi4qn4ZH50VyQ00rg");
 
 }
+
+const saveSMSDefaultContract = async () => {
+    let ContractModel = ContractSms();  // we catch the ContractSMS Model            
+    saveContractSms(new ContractModel({ "operator": "MOV", "defaultOperator": "MOV", "activated": true, "name": "OTPLOWEB", "description": "OTPLOWEB", "permission": "WITHIN_APP", "application": "OTPLOWEB_APP", "interface": "ALL", "remitter": "217771", "params": [], "type": "SMS", "jwt": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6Ik9UUExPV0VCIiwiY29udHJhY3QiOiJPVFBMT1dFQiIsImlhdCI6MjAxNjIzOTAyMn0.BK58iwYbyfGb1u--SLP3YZP7JZxKSMrPHmdc-gfH4t4" }));
+    hmset("contract:OTPLOWEB", "defaultOperator", "MOV", "remitter", "217771", "jwt", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6Ik9UUExPV0VCIiwiY29udHJhY3QiOiJPVFBMT1dFQiIsImlhdCI6MjAxNjIzOTAyMn0.BK58iwYbyfGb1u--SLP3YZP7JZxKSMrPHmdc-gfH4t4");
+
+}
+const savePNSDefaultContract = async () => {
+    let ContractModel = ContractPns();  // we catch the ContractSMS Model            
+    saveContractPns(new ContractModel({ "operator": "MOV", "defaultOperator": "MOV", "activated": true, "name": "PUSHLOWEB", "description": "PUSHLOWEB", "permission": "WITHIN_APP", "application": "PUSHLOWEB_APP", "interface": "ALL", "params": [], "type": "PNS", "jwt": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IlBVU0hMT1dFQiIsImNvbnRyYWN0IjoiUFVTSExPV0VCIiwiaWF0IjoyMDE2MjM5MDIyfQ.liOxBh3kFQyjYrIyhg2Uu3COoV83ruUsyLniWEJ8Apw" }));
+    hmset("contract:PUSHLOWEB", "jwt", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IlBVU0hMT1dFQiIsImNvbnRyYWN0IjoiUFVTSExPV0VCIiwiaWF0IjoyMDE2MjM5MDIyfQ.liOxBh3kFQyjYrIyhg2Uu3COoV83ruUsyLniWEJ8Apw");
+}
+
 
 const saveAdminPNSDefaultContract = async () => {
     let ContractModel = ContractPns();  // we catch the ContractSMS Model   

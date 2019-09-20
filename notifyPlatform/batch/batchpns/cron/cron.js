@@ -9,7 +9,7 @@
 
 //Dependencies
 const { Pns } = require('../models/pns');
-const { lpush, sadd } = require('../util/redispns'); //we need to initialize redis
+const { rclient } = require('../config/redispns'); //we need to initialize redis
 const { hget, hset } = require('../util/redisconf');
 const { dateFormat, logTime, buildPNSChannel } = require('../util/formats'); // utils for formats
 const { savePNS } = require('../util/mongopns');
@@ -20,12 +20,14 @@ const fs = require('fs');
 const batchIn = './files/in/';
 const batchOut = './files/out/';
 const batchName = "collectorpns:batchPNS";
+const PNS_IDS = "PNS.IDS.PENDING";
 var cron; //the main cron that manage files and put them into redis List.
 var cronStatus = 1; //status of cron. 0: cron stopped, 1 : cron working, 
 var cronChanged = false;  //if we need restart cron, 
 var interval = 180000; //define the interval, in this case 3 minutes.
 var intervalControl = 60000; //define interval in controller cron (check by min. by default)
 var nextExecution = true;
+
 
 const startCron = async (interval) => { //Start cron only when cron is stopped.
     try {
@@ -86,23 +88,25 @@ const getPNSFiles = async () => {
 
                             //await pns.validate(); //validate is unnecessary, we would need await because is a promise and we need to manage the throw exceptions, particularly validating errors in bad request.
 
-                            await savePNS(pns) //save pns to DB, in this phase we need save PNS to MongoDB. //If you didn't execute "pns.validate()" we would need await in save.
-                                .catch(error => {
-                                    error.message = "ERROR :  We cannot save notify in MongoBD. " + error.message;
+                            savePNS(pns) //save pns to DB, in this phase we need save PNS to MongoDB. //If you didn't execute "pns.validate()" we would need await in save.
+                                .catch(error => {     // we need catch only if get 'await' out          
                                     throw error;
+                                })
+                                .then(pns => {  //save method returns pns that has been save to MongoDB                                   
+
+                                    //START Redis Transaction with multi chain and result's callback
+                                    rclient.multi([
+                                        ["lpush", pns.channel, JSON.stringify(pns)],    //Trans 1
+                                        ["sadd", PNS_IDS, pns._id]                      //Trans 2             
+                                    ]).exec(function (error, replies) { // drains multi queue and runs atomically                    
+                                        if (error) {
+                                            console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "WARNING: We couldn't save PNS in Redis (We will have to wait for retry): " + error.message);
+                                        }
+                                    });
+                                    //END Redis Transaction with multi chain and result's callback
+
+                                    console.log(process.env.GREEN_COLOR, logTime(new Date()) + "PNS saved, _id: " + pns._id);  //JSON.stringify for replace new lines (\n) and tab (\t) chars into string
                                 });
-
-                            // START 2 "tasks" in parallel. Even when we recollect the errors we continue the execution and return OK.    
-                            Promise.all([
-                                lpush(pns.channel, JSON.stringify(pns)).catch(error => { return error }),  //put pns to the the apropiate lists channels: PNS.GOO.1, PNS.VIP.1, PNS.ORA.1, PNS.VOD.1 (1,2,3) 
-                                sadd("PNS.IDS.PENDING", pns._id).catch(error => { return error }),         //we save the _id in a SET, for checking the retries, errors, etc.  
-                            ]).then(values => {
-                                if (values[0] instanceof Error) { console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "ERROR: We cannot save PNS in Redis LIST (lpush): " + values[0].message); }  //lpush returns error
-                                if (values[1] instanceof Error) { console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "ERROR: We cannot save PNS in Redis SET (sadd): " + values[1].message); } //sadd returns error          
-                            });
-                            // END the 2 "tasks" in parallel    
-
-                            console.log(process.env.GREEN_COLOR, logTime(new Date()) + "PNS to send : " + pns._id);  //JSON.stringify for replace new lines (\n) and tab (\t) chars into string
 
                         } catch (error) {
                             let contract = pns.contract || 'undefined';
@@ -212,7 +216,7 @@ const initCron = async () => {
         console.log(process.env.GREEN_COLOR, logTime(new Date()) + "initializing all crons processes at " + dateFormat(new Date()) + " with cron interval [" + interval + "ms] and cron Controller interval : [" + intervalControl + "ms]...");
         if (cronStatus) {
             getPNSFiles(); // first execution 
-            await startCron(interval);            
+            await startCron(interval);
         } else console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "Cron status in redis indicates we don't want start cron process. we only start cron Controller.");
         await startController(intervalControl);
     } catch (error) {

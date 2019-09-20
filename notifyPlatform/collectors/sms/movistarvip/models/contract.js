@@ -82,6 +82,10 @@ const contractSchema = new mongoose.Schema({
         required: true,
         default: true
     },
+    remitter:{
+        type: String,
+        required: false        
+    },
     params: [{  // new params... 
         _id: false,
         param: {

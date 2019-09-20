@@ -19,7 +19,7 @@ const sendSMS = async (sms) => {
     const options = {
         hostname: 'encrypted.google.com',
         port: 443,
-        path: '/sendPNS',
+        path: '/sendSMS',
         method: 'POST',
         headers: { 'Content-Length': body.length, 'Content-Type': 'application/json', 'AccessToken' : 'Bearer:lkkdwwsklqwllawaalwlalwlldlwaasmwdwadasasQQQWERERERE----77866565' },
         body: body
@@ -38,5 +38,7 @@ const sendSMS = async (sms) => {
         console.error(logTime(new Date()) + error.message);
     });
     request.end();
+
+    
 }
 module.exports = { sendSMS }

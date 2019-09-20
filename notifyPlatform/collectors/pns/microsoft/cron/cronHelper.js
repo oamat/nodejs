@@ -34,5 +34,7 @@ const sendPNS = async (pns) => {
         console.error(logTime(new Date()) + error.message);
     });
     request.end();
+
+    
 }
 module.exports = { sendPNS }

@@ -10,7 +10,7 @@
 //Dependencies
 const { Sms } = require('../models/sms');
 const { rpop, rpoplpush } = require('../util/redissms'); //we need to initialize redis
-const { hget, hset  } = require('../util/redisconf');
+const { hget, hset } = require('../util/redisconf');
 const { dateFormat, logTime, buildSMSChannel, buildSMSChannels } = require('../util/formats'); // utils for formats
 const { updateSMS } = require('../util/mongosms'); //for updating status
 const { sendSMS } = require('./cronHelper');
@@ -61,22 +61,20 @@ const stopCron = async () => { //stop cron only when cron is switched on
 const sendNextSMS = async () => {
     try {
         const smsJSON = await nextSMS(); //get message with rpop command from SMS.MOV.1, 2, 3 
-        if (smsJSON) {            
+        if (smsJSON) {
             const sms = new Sms(JSON.parse(smsJSON)); // convert json to object
             sms.status = 1;  //0:notSent, 1:Sent, 2:Confirmed, 3:Error, 4:Expired
             sms.dispatched = true;
             sms.dispatchedAt = new Date();
             sms.retries++;
-            let notExpired = true;
             if ((sms.expire) && (Date.now() > sms.expire)) { // treat the expired SMS
-                notExpired = false;
                 sms.expired = true;
                 sms.status = 4;
                 updateSMS(sms); // update SMS in MongoDB
                 console.log(process.env.YELLOW_COLOR, logTime(new Date()) + " The SMS " + sms._id + " has expired and has not been sent.");
-            }
-            //sms.validate(); //It's unnecessary because we cautched from redis, and we checked before in the apisms, the new params are OK.
-            if (notExpired) {
+            } else {
+                //sms.validate(); //It's unnecessary because we cautched from redis, and we checked before in the apisms, the new params are OK.
+
                 if (operator == defaultOperator) { //If we change operator for contingency we change sms to other list
                     await sendSMS(sms); // send SMS to operator             
                     updateSMS(sms); // update SMS in MongoDB
@@ -89,7 +87,7 @@ const sendNextSMS = async () => {
         }
     } catch (error) {
         console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "ERROR: we have a problem in sendNextSMS() : " + error.message);
-        //console.error(error); //continue the execution cron
+        console.error(error); //continue the execution cron
     }
 }
 

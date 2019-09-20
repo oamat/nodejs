@@ -29,7 +29,7 @@ router.post('/smsSend', auth, async (req, res) => {  //we execute auth before th
     //console.log(process.env.WHITE_COLOR, logTime(new Date()) + "SMS new request : " + JSON.stringify(req.body));
     try {
         const sms = new Sms(req.body);  //await it's unnecessary because is the first creation of object. Model Validations are check when save in Mongodb, not here. 
-        sms.operator = await hget("contractsms:" + sms.contract, "operator"); //Operator by default by contract. we checked the param before (in auth)         
+        sms.operator = await hget("contractsms:" + sms.contract, "operator"); //Operator by default by contract. we checked the param before (in auth)                 
         sms.telf = sms.telf.replace("+", "00");
         if (sms.operator == "ALL") { //If operator is 'ALL' means that we need to find the better operator for the telf.            
             sms.operator = await hgetOrNull("telfsms:" + sms.telf, "operator"); //find the best operator for this tef.         
@@ -48,8 +48,7 @@ router.post('/smsSend', auth, async (req, res) => {  //we execute auth before th
             })
             .then(sms => {  //save method returns sms that has been save to MongoDB
 
-                //ALL OK, response 200, with sms._id. TODO: is it necessary any more params?
-                res.send({ statusCode: "200 OK", _id: sms._id });
+                res.send({ statusCode: "200 OK", _id: sms._id }); //ALL OK, response 200, with sms._id. TODO: is it necessary any more params?
 
                 //START Redis Transaction with multi chain and result's callback
                 rclient.multi([
@@ -61,6 +60,7 @@ router.post('/smsSend', auth, async (req, res) => {  //we execute auth before th
                     }
                 });
                 //END Redis Transaction with multi chain and result's callback
+                
                 console.log(process.env.GREEN_COLOR, logTime(new Date()) + "SMS saved, _id: " + sms._id);  //JSON.stringify for replace new lines (\n) and tab (\t) chars into string
             });
 
