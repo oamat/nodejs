@@ -40,7 +40,7 @@ const startCron = async (interval) => { //Start cron only when cron is stopped.
             }, interval);
         }
     } catch (error) {
-        console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "ERROR: we cannot start ORANGE cron . Process continuing... " + error.message);
+        console.log(process.env.RED_COLOR, logTime(new Date()) + "ERROR: we cannot start ORANGE cron." + error.message);
         //console.error(error); //continue the execution cron
     }
 }
@@ -53,7 +53,7 @@ const stopCron = async () => { //stop cron only when cron is switched on
             cron = null;
         }
     } catch (error) {
-        console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "ERROR: we cannot stop cron. Process continuing... " + error.message);
+        console.log(process.env.RED_COLOR, logTime(new Date()) + "ERROR: we cannot stop cron. Process continuing... " + error.message);
         //console.error(error); //continue the execution cron
     }
 }
@@ -110,7 +110,7 @@ const startController = async (intervalControl) => {
             checksController();
         }, intervalControl);
     } catch (error) {
-        console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "ERROR: we cannot start cron Controller. . Process continuing... " + error.message);
+        console.log(process.env.RED_COLOR, logTime(new Date()) + "ERROR: we cannot start cron Controller. . Process continuing... " + error.message);
         //console.error(error); //continue the execution cron
     }
 }
@@ -145,7 +145,7 @@ const checkstatus = async () => { //Check status, if it's necessary finish cron 
             cronChanged = true;
         }
     } catch (error) {
-        console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "ERROR: we cannot change status (run/stop cron). current cron status = " + cronStatus + " . . Process continuing... " + error.message);
+        console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "WARNING : we didn't find status in Redis (run/stop cron). current cron status = " + cronStatus + " . . Process continuing... " + error.message);
         //console.error(error); //continue the execution cron
     }
 }
@@ -159,7 +159,7 @@ const checkInterval = async () => { //check rate/s, and change cron rate
             cronChanged = true;
         }
     } catch (error) {
-        console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "ERROR: we cannot change rate (cron interval). current interval " + interval + " . . Process continuing... " + error.message);
+        console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "WARNING : we didn't find rate in Redis (cron interval). current interval " + interval + " . . Process continuing... " + error.message);
         //console.error(error); //continue the execution cron
     }
 }
@@ -173,7 +173,7 @@ const checkOperator = async () => { //change operator for HA
             operator = newOperator;
         }
     } catch (error) {
-        console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "ERROR: we cannot change operator because a problem, actual operator : " + operator + " . . Process continuing... " + error.message);
+        console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "WARNING : we didn't find operator in Redis , actual operator : " + operator + " . . Process continuing... " + error.message);
         //console.error(error); //continue the execution cron
     }
 }
@@ -195,7 +195,7 @@ const initCron = async () => {
         else console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "Cron status in redis indicates we don't want start cron process. we only start cron Controller.");
         await startController(intervalControl);
     } catch (error) {
-        console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "ERROR: we cannot initialize cron with personalized params, we will initialize cron with default params  . . Process continuing... " + error.message);
+        console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "WARNING : we didn't find initialize personalized params, we will initialize cron with default params  . . Process continuing... " + error.message);
         //console.error(error); //continue the execution cron
         await startCron(10); // 100 message/s
         await startController(60000); // 60 seconds

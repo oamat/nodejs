@@ -16,7 +16,7 @@ const hget = async function (name, key) {
             try {  //I use Promises but I need to use try/catch in async callback or I could use EventEmitter 
                 if (error) throw error;  //if redis give me an error. 
                 else if (result) resolve(result); // everything is OK, return result
-                else throw new Error('Problem in the configuration [' + name + '] does not have [' + key + '] property, you need to reconfigure it before proceding.'); //If we don't find the name:key.                 
+                else throw new Error('Problem in the configuration [' + name + '] does not have [' + key + '] property.'); //If we don't find the name:key.                 
             } catch (error) { reject(error); } // In Callback we need to reject if we have Error.  A reject will not pass through here
         });
     })
