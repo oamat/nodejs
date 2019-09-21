@@ -1,10 +1,12 @@
 ppt amb dibuix
 Falten coses, No es perfecte, el que falta 
-Estructura del projecte
+Estructura del projecte, config...
+Seguretat: SSL, AUTH, JWT
 Node parallel : (promises, promise.all)
 demo apisms + movistar envío sms (rapidez)
 ver estado en apiadmin
 ver collectores en apiadmin y demo apisms + movistar stop-start
+comentar telf, token, remitent, channel, operadorContingència
 demo apisms + movistar contingencia operador
 Entrar en REDIS y ver conf (collectorsms, telfs, token) + listas (llen, rpop, prioridades)
 ver vagrant

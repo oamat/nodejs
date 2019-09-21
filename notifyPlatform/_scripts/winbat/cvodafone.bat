@@ -1,2 +1,4 @@
 @echo off
-start cmd /k node ..\..\collectors\sms\movistar\app.js
+cd ..\..\collectors\sms\vodafone\
+start cmd /k node ..\..\collectors\sms\vodafone\app.js
+cd ..\..\_scripts\winbat\

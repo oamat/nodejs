@@ -11,3 +11,5 @@ User/Password redis
 FindSMS by telf & date
 MongoDB: Collection SMS y PNS hay que hacer procesos de historificación y borrado 
 Repasar documentación en inglés
+Tantos por ciento de envio( incr )
+Revisar promesas: resolve&reject sin try/catch

@@ -1,0 +1,37 @@
+Always with command line:
+.\jmeter.bat  -n -t E:\dev\nodejs\nodejs\notifyPlatform\jmeter.jmx -l E:\dev\nodejs\nodejs\notifyPlatform\jmetertestresults.jtl
+
+More Memory in jmeter.bat:
+set "HEAP=-Xms1500m -Xmx1500m -XX:MaxMetaspaceSize=512m"
+
+For SSL: Generating jks for JMeter :  http://rajanmanoj.blogspot.com/2011/02/how-to-test-ssl-using-jmeter.html
+    # keytool -importcert -file your.cer -keystore your.jks -alias youralias
+    # keytool -importcert -file your.cer -keystore your.jks -alias youralias -storepass mypass_word 
+
+**************************NEXT STEPS FOR JMETER **********************
+**************************IMPORTANT: shutdown vagrant because ports.... 
+
+Now copy this jks file in some directory. I create a cert directory in jmeter and Keep this file there.
+Open file system.properties from jmeter/bin
+Add this line at that end of the file.
+    javax.net.ssl.trustStore=E:/dev/apache-jmeter-5.1/server.jks
+    javax.net.ssl.trustPassword=mypass_word
+
+(Make sure all other javax.net.ssl.trustStore is commented except what you enter)
+
+Start jmeter from jmeter/bin/jmeter.bat
+
+Create thread with server and login details and you are ready to test SSL using Jmeter.
+
+
+*******************
+
+If your application requires SSL client certificate authentication or authorization, you will need to create a keystore and set the following properties in the system.properties file pointing to that keystore:
+
+# Keystore properties (client certificates)
+javax.net.ssl.keyStore=C:/key.jks
+javax.net.ssl.keyStorePassword=sample
+
+
+
+

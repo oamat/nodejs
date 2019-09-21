@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "76e1b67b-bb11-4841-9cf4-d5195488cd3e",
+		"_postman_id": "92a972c9-ab93-4b87-8e38-a543e6c2dc3f",
 		"name": "notifyAPI",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -27,8 +27,8 @@
 					"raw": "{\n\t \"contract\" : \"OTPLOWEB\",\n\t \"telf\" : \"+34699272801\",\n\t \"message\" : \"you have won a gift\",\n\t \"alias\" : \"L.O.\",\n\t \"customId\" : \"myid_4566544\",\n\t \"priority\" : \"0\"\n}"
 				},
 				"url": {
-					"raw": "http://localhost:30001/smsSend",
-					"protocol": "http",
+					"raw": "https://localhost:30001/smsSend",
+					"protocol": "https",
 					"host": [
 						"localhost"
 					],
@@ -62,8 +62,8 @@
 					"raw": "{\n\t \"contract\" : \"PUSHLOWEB\",\n\t \"application\" : \"CaixaAPP\",\n\t \"user\" : \"userTst\",\n\t \"uuiddevice\" : \"kRt346992-72809WA\",\n\t \"action\" : \"show\",\n\t \"content\" : \"content push notification\",\n\t \"params\" : [\n\t \t{ \"param\" : \"icono1\", \"value\" : \"new1\", \"type\" : \"String\"},\n\t \t{ \"param\" : \"icono2\", \"value\" : \"new2\", \"type\" : \"String\"}\n\t \t]\n}"
 				},
 				"url": {
-					"raw": "http://localhost:30002/pnsSend",
-					"protocol": "http",
+					"raw": "https://localhost:30002/pnsSend",
+					"protocol": "https",
 					"host": [
 						"localhost"
 					],
@@ -97,8 +97,8 @@
 					"raw": "{\n\t \"id\" : \"e4478cce-b6b5-4a06-b1b1-60767286117b\",\n\t \"status\" : \"3\",\n\t \"operator\" : \"MOV\"\n}"
 				},
 				"url": {
-					"raw": "http://localhost:30004/smsStatusBack",
-					"protocol": "http",
+					"raw": "https://localhost:30004/smsStatusBack",
+					"protocol": "https",
 					"host": [
 						"localhost"
 					],
@@ -135,8 +135,8 @@
 					"raw": "{\n\t \"contract\" : \"ADMIN\"\n}"
 				},
 				"url": {
-					"raw": "http://localhost:30003/loadRedis",
-					"protocol": "http",
+					"raw": "https://localhost:30003/loadRedis",
+					"protocol": "https",
 					"host": [
 						"localhost"
 					],
@@ -174,8 +174,8 @@
 					"raw": "{\n\t\"contract\" : \"ADMIN\"\n}"
 				},
 				"url": {
-					"raw": "http://localhost:30003/pendingNotifications",
-					"protocol": "http",
+					"raw": "https://localhost:30003/pendingNotifications",
+					"protocol": "https",
 					"host": [
 						"localhost"
 					],
@@ -213,8 +213,8 @@
 					"raw": "{\n\t\"contract\" : \"ADMIN\"\n}"
 				},
 				"url": {
-					"raw": "http://localhost:30003/serviceStatus",
-					"protocol": "http",
+					"raw": "https://localhost:30003/serviceStatus",
+					"protocol": "https",
 					"host": [
 						"localhost"
 					],
@@ -249,8 +249,8 @@
 					"raw": "{\n\t\"contract\" : \"ADMIN\",\n\t\"name\" : \"OTPLOWEB\",\n\t\"description\" :  \"OTPLOWEB contract\",\n\t\"permission\" : \"WITHIN_APP\",\n\t\"application\" : \"OTPLOWEB\", \n\t\"interface\" : \"REST\",\n\t\"operator\" : \"MOV\",\n\t\"remitter\": \"+217771\"\n}"
 				},
 				"url": {
-					"raw": "http://localhost:30003/addSmsContract",
-					"protocol": "http",
+					"raw": "https://localhost:30003/addSmsContract",
+					"protocol": "https",
 					"host": [
 						"localhost"
 					],
@@ -285,8 +285,8 @@
 					"raw": "{\n\t\"contract\" : \"ADMIN\",\n\t\"name\" : \"PUSHLOWEB\",\n\t\"description\" :  \"PUSHLOWEB contract tst\",\n\t\"permission\" : \"WITHIN_APP\",\n\t\"application\" : \"PUSHLOWEB_APP\", \n\t\"interface\" : \"ALL\",\n\t\"operator\" : \"ALL\"\n}"
 				},
 				"url": {
-					"raw": "http://localhost:30003/addPnsContract",
-					"protocol": "http",
+					"raw": "https://localhost:30003/addPnsContract",
+					"protocol": "https",
 					"host": [
 						"localhost"
 					],
@@ -321,8 +321,8 @@
 					"raw": "{\n\t\"contract\" : \"ADMIN\",\n    \"contractToken\" : \"PUSHLOWEB\",\n\t\"application\" : \"CaixaAPP\",\n\t\"user\" : \"userTst\",\n\t\"uuiddevice\" : \"kRt346992-72809WA\",\n    \"token\" : \"AADDERTTTECCDDDkk34699272809WWwwsdfdeeffffAADDERTTTECCDDDkk34699272809WWwwsdfdeeffffAADDERTTTECCDDDkk34699272809WWwwsdfdeeffff\",\n    \"operator\" : \"GOO\"\n}"
 				},
 				"url": {
-					"raw": "http://localhost:30003/tokenRegister",
-					"protocol": "http",
+					"raw": "https://localhost:30003/tokenRegister",
+					"protocol": "https",
 					"host": [
 						"localhost"
 					],
@@ -357,8 +357,8 @@
 					"raw": "{\n\t\"contract\" : \"ADMIN\",\n    \"telf\" : \"6992728001\",\n    \"operator\" : \"ORA\"\n}"
 				},
 				"url": {
-					"raw": "http://localhost:30003/telfRegister",
-					"protocol": "http",
+					"raw": "https://localhost:30003/telfRegister",
+					"protocol": "https",
 					"host": [
 						"localhost"
 					],
@@ -393,8 +393,8 @@
 					"raw": "{\n\t\"contract\" : \"ADMIN\",\n\t\"name\" : \"MOV\",\n    \"operator\" : \"ORA\"\n\n}"
 				},
 				"url": {
-					"raw": "http://localhost:30003/operatorContingency",
-					"protocol": "http",
+					"raw": "https://localhost:30003/operatorContingency",
+					"protocol": "https",
 					"host": [
 						"localhost"
 					],
@@ -429,8 +429,8 @@
 					"raw": "{\n\t\"contract\" : \"ADMIN\",\n\t\"name\" : \"MOV\",\n\t\"status\" : 1,\n    \"interval\" : 10,\n    \"intervalControl\" : 30000\n\n}"
 				},
 				"url": {
-					"raw": "http://localhost:30003/changeCollector",
-					"protocol": "http",
+					"raw": "https://localhost:30003/changeCollector",
+					"protocol": "https",
 					"host": [
 						"localhost"
 					],
@@ -468,8 +468,8 @@
 					"raw": "{\n\t \"contract\" : \"ADMIN\",\n\t \"_id\" : \"25c91e9f-5355-46e5-9ab1-843aef3f075f\"\n}"
 				},
 				"url": {
-					"raw": "http://localhost:30003/smsStatus",
-					"protocol": "http",
+					"raw": "https://localhost:30003/smsStatus",
+					"protocol": "https",
 					"host": [
 						"localhost"
 					],
@@ -506,8 +506,8 @@
 					"raw": "{\n\t \"contract\" : \"ADMIN\",\n\t \"name\" : \"OTPLOWEB\",\n\t \"type\" : \"SMS\"\n}"
 				},
 				"url": {
-					"raw": "http://localhost:30003/getContract",
-					"protocol": "http",
+					"raw": "https://localhost:30003/getContract",
+					"protocol": "https",
 					"host": [
 						"localhost"
 					],
@@ -544,8 +544,8 @@
 					"raw": "{\n\t \"contract\" : \"ADMIN\",\n\t \"_id\" : \"d8e580f9-4828-4c18-beb6-0cfaebc4da4f\"\n}"
 				},
 				"url": {
-					"raw": "http://localhost:30003/pnsStatus",
-					"protocol": "http",
+					"raw": "https://localhost:30003/pnsStatus",
+					"protocol": "https",
 					"host": [
 						"localhost"
 					],
@@ -557,5 +557,6 @@
 			},
 			"response": []
 		}
-	]
+	],
+	"protocolProfileBehavior": {}
 }

@@ -1,5 +1,5 @@
 /*
- * Primary file for API
+ *  Primary file for API
  *
  */
 
@@ -7,11 +7,20 @@
 
 // Dependencies
 require('./config/config'); //we need configurations
-const { initializeMongooseConnection } = require('./config/mongoosesms'); //we need to initialize mongoose
 require('./config/redissms'); //we need to initialize redis
+const fs = require('fs');
+const https = require('https');
 const redisconf = require('./config/redisconf'); //we need to initialize redis
-const { logTime, dateFormat } = require('./util/formats');
 const app = require('./server/app');  // Declare the app
+const { initializeMongooseConnection } = require('./config/mongoosesms'); //we need to initialize mongoose
+const { logTime, dateFormat } = require('./util/formats');
+
+//VAR & CONST
+const httpsServerOptions = {
+     'key': fs.readFileSync('./ssl/server.key'),
+     'cert': fs.readFileSync('./ssl/server.cert')
+};
+
 
 const initializeAllSources = async () => { // Init Mongoose with await    
      //START PARALLEL excution with await Promise.all.
@@ -22,8 +31,8 @@ const initializeAllSources = async () => { // Init Mongoose with await
      //END PARALLEL excution with await Promise.all.
 
 
-     // then we can Init api server
-     app.listen(process.env.APISMS_PORT, () => {
+     // then we can Init api server  //OLD HTTP: app.listen(process.env.APISMS_PORT, () => {
+     https.createServer( httpsServerOptions , app).listen(process.env.APISMS_PORT, () => {     
           console.log(process.env.GREEN_COLOR, logTime(new Date()) + 'APISMS HTTPS server is running on port ' + process.env.APISMS_PORT);
      }).on('error', (error) => {
           console.log(process.env.RED_COLOR, logTime(new Date()) + ' ERROR: Another App server is running this port ' + process.env.APISMS_PORT + " : " + error.message);
