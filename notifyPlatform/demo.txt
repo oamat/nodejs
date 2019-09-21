@@ -10,6 +10,7 @@ comentar telf, token, remitent, channel, operadorContingència
 demo apisms + movistar contingencia operador
 Entrar en REDIS y ver conf (collectorsms, telfs, token) + listas (llen, rpop, prioridades)
 ver vagrant
+jmeter
 ver docker/docker compose 
     docker logs apisms
     docker logs movistar

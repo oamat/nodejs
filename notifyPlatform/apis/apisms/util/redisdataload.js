@@ -135,7 +135,7 @@ const loadRedisForTesting = async () => {
     //APIADMIN
     hset("contractadmin:ADMIN", "jwt", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkFETUlOIiwiY29udHJhY3QiOiJBRE1JTiIsImlhdCI6MjAxNjIzOTAyMn0.vwBNTaBbW40v14Iiqd65uhv4FVQi4qn4ZH50VyQ00rg");
     //APIPNS Contracts
-    hmset(["contractpns:PUSHLOWEB", "jwt", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IlBVU0hMT1dFQiIsImNvbnRyYWN0IjoiUFVTSExPV0VCIiwiaWF0IjoyMDE2MjM5MDIyfQ.liOxBh3kFQyjYrIyhg2Uu3COoV83ruUsyLniWEJ8Apw", "operator", "ALL"]);
+    hmset(["contractpns:PUSHLOWEB", "operator", "ALL", "jwt", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IlBVU0hMT1dFQiIsImNvbnRyYWN0IjoiUFVTSExPV0VCIiwiaWF0IjoyMDE2MjM5MDIyfQ.liOxBh3kFQyjYrIyhg2Uu3COoV83ruUsyLniWEJ8Apw"]);
     //APISMS Contracts
     hmset(["contractsms:OTPLOWEB", "remitter", "217771", "operator", "ALL", "defaultOperator", "MOV", "jwt", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6Ik9UUExPV0VCIiwiY29udHJhY3QiOiJPVFBMT1dFQiIsImlhdCI6MjAxNjIzOTAyMn0.BK58iwYbyfGb1u--SLP3YZP7JZxKSMrPHmdc-gfH4t4"]);
     //batchSMS
@@ -161,7 +161,7 @@ const loadRedisForTesting = async () => {
     //Collectors VODAFONE
     hmset(["collectorsms:VOD", "status", 1, "interval", 10, "intervalControl", 30000, "operator", "VOD", "remitter", "217771"]);
     //PNS token
-    hmset(["tokenpnsCaixaAPP:kRt346992-72809WA", "token", "AADDERTTTECCDDDkk34699272809WWwwsdfdeeffffAADDERTTTECCDDDkk34699272809WWwwsdfdeeffffAADDERTTTECCDDDkk34699272809WWwwsdfdeeffff", "operator", "GOO"]);
+    hmset(["tokenpnsCaixaAPP:kRt346992-72809WA", "operator", "GOO", "token", "AADDERTTTECCDDDkk34699272809WWwwsdfdeeffffAADDERTTTECCDDDkk34699272809WWwwsdfdeeffffAADDERTTTECCDDDkk34699272809WWwwsdfdeeffff"]);
     //SMS telf
     hmset(["telfsms:0034699272800", "operator", "VOD"]);
 }
