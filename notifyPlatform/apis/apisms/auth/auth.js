@@ -47,7 +47,7 @@ const unauthoritzedError = (error, req, res) => { // method for unauthoritzed Er
         let message = req.body.message || 'undefined';
     
         const errorJson = { StatusCode: "401 unauthoritzed", error: error.message, contract: contract, telf: telf, message: message, receiveAt: dateFormat(new Date()) };   // dateFornat: replace T with a space && delete the dot and everything after
-        console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "ERROR: " + JSON.stringify(errorJson));
+        console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "WARNING: " + JSON.stringify(errorJson));
         res.status(401).send(errorJson);
         //TODO: save error in db  or mem.
     }

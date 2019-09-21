@@ -34,7 +34,7 @@ const initializeAllSources = async () => { // Init Mongoose with await
      https.createServer( httpsServerOptions , app).listen(process.env.APISTATUS_PORT, () => {
           console.log(process.env.GREEN_COLOR, logTime(new Date()) + 'APISTATUSBACK HTTPS server is running on port ' + process.env.APISTATUS_PORT);
      }).on('error', (error) => {
-          console.log(process.env.RED_COLOR, logTime(new Date()) + ' ERROR: Another App server is running this port ' + process.env.APISMS_PORT + " : " + error.message);
+          console.log(process.env.RED_COLOR, logTime(new Date()) + ' WARNING: Another App server is running this port ' + process.env.APISMS_PORT + " : " + error.message);
           console.error(error);
      });
 }

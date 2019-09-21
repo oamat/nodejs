@@ -11,6 +11,7 @@ For SSL: Generating jks for JMeter :  http://rajanmanoj.blogspot.com/2011/02/how
 **************************NEXT STEPS FOR JMETER **********************
 **************************IMPORTANT: shutdown vagrant because ports.... 
 
+@# system.properties
 Now copy this jks file in some directory. I create a cert directory in jmeter and Keep this file there.
 Open file system.properties from jmeter/bin
 Add this line at that end of the file.
@@ -19,6 +20,9 @@ Add this line at that end of the file.
 
 (Make sure all other javax.net.ssl.trustStore is commented except what you enter)
 
+@# jmeter.properties
+httpclient.timeout=0
+httpclient4.idletimeout=0
 Start jmeter from jmeter/bin/jmeter.bat
 
 Create thread with server and login details and you are ready to test SSL using Jmeter.

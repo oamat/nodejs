@@ -37,7 +37,7 @@ const initSMSMongooseConnection = async () => {
         mongoose.createConnection(process.env.MONGODBSMS_URI, options, (error, result) => {
             if (error) {
                 let date = new Date();
-                console.log(process.env.RED_COLOR, logTime(date) + " MONGODB SMS ERROR : failed to reconnect to SMS mongodb server : " + process.env.MONGODBSMS_URI);
+                console.log(process.env.RED_COLOR, logTime(date) + " MONGODB SMS WARNING : failed to reconnect to SMS mongodb server : " + process.env.MONGODBSMS_URI);
                 console.log(process.env.YELLOW_COLOR, logTime(date) + " MONGODB SMS ERROR : we will try to reconnect to SMS mongodb in 15s...");
                 //process.exit(1);  //because platform doesn't works without Mongodb, we prefer to stop server
                 setTimeout(function () {

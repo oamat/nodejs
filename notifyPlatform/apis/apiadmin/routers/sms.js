@@ -39,7 +39,7 @@ router.get('/smsStatus', auth, async (req, res) => {
 const requestError = async (error, req, res) => {
     //TODO personalize errors 400 or 500. 
     const errorJson = { StatusCode: "400 Bad Request", error: error.message, receiveAt: dateFormatWithMillis(new Date()) };   // dateFornat: replace T with a space && delete the dot and everything after
-    console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "ERROR: " + JSON.stringify(errorJson));
+    console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "WARNING: " + JSON.stringify(errorJson));
     res.status(400).send(errorJson);
     //TODO: save error in db  or mem.
 }

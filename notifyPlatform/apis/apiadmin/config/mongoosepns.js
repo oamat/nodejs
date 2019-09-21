@@ -30,11 +30,11 @@ const options = {
 
 // mongoose.connection.on('error', (error) => {  //we need to know if connection works, particularly at the start if we didn't connect with it.
 //     //console.log(process.env.RED_COLOR, error);
-//     //console.log(process.env.RED_COLOR, "MONGODB ERROR : failed to reconnect to db server : " + process.env.MONGODBSMS_URI + " . " + error.message);
+//     //console.log(process.env.RED_COLOR, "MONGODB WARNING : failed to reconnect to db server : " + process.env.MONGODBSMS_URI + " . " + error.message);
 //     //process.exit(1);  //because platform doesn't works without Mongodb, we prefer to stop server
 //     let date = new Date();
-//     console.log(process.env.RED_COLOR, logTime(date) + " MONGODB PNS ERROR : failed to reconnect to PNS mongodb server : " + process.env.MONGODBPNS_URI);
-//     console.log(process.env.YELLOW_COLOR, logTime(date) + " MONGODB PNS ERROR : we will try to reconnect to PNS mongodb in 15s...");
+//     console.log(process.env.RED_COLOR, logTime(date) + " MONGODB PNS WARNING : failed to reconnect to PNS mongodb server : " + process.env.MONGODBPNS_URI);
+//     console.log(process.env.YELLOW_COLOR, logTime(date) + " MONGODB PNS WARNING : we will try to reconnect to PNS mongodb in 15s...");
 //     setTimeout(function () {
 //         initializeMongooseConnection();
 //     }, 15000);
@@ -45,13 +45,13 @@ const initializeMongooseConnection = async () => {
         mongoose.connect(process.env.MONGODBPNS_URI, options, (error, result) => {
             if (error) {
                 let date = new Date();
-                console.log(process.env.RED_COLOR, logTime(date) + " MONGODB PNS ERROR : failed to reconnect to PNS mongodb server : " + process.env.MONGODBPNS_URI);
-                console.log(process.env.YELLOW_COLOR, logTime(date) + " MONGODB PNS ERROR : we will try to reconnect to PNS mongodb in 15s...");
+                console.log(process.env.RED_COLOR, logTime(date) + " MONGODB PNS WARNING : failed to reconnect to PNS mongodb server : " + process.env.MONGODBPNS_URI);
+                console.log(process.env.YELLOW_COLOR, logTime(date) + " MONGODB PNS WARNING : we will try to reconnect to PNS mongodb in 15s...");
                 setTimeout(function () {
                     initializeMongooseConnection();
                 }, 15000);
                 //console.log(process.env.RED_COLOR, error);
-                //console.log(process.env.RED_COLOR, "MONGODB ERROR : failed to reconnect to db server : " + process.env.MONGODBSMS_URI + " . " + error.message);
+                //console.log(process.env.RED_COLOR, "MONGODB WARNING : failed to reconnect to db server : " + process.env.MONGODBSMS_URI + " . " + error.message);
                 //process.exit(1);  //because platform doesn't works without Mongodb, we prefer to stop server
             } else {
                 console.log(process.env.GREEN_COLOR, logTime(new Date()) + "Connected to PNS MongoDB Server : " + process.env.MONGODBPNS_URI);
