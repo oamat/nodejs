@@ -84,7 +84,7 @@ router.get('/pendingNotifications', auth, async (req, res) => {
             for (var i = 0; i < 42; i++) { //42 iteration loop for calculate the total pending notifications
                 total = total + values[i];
             }
-            let index=0;
+            let index = 0;
             res.send({
                 Status: "200 OK",
                 total,
@@ -224,7 +224,7 @@ router.get('/serviceStatus', auth, async (req, res) => {
             redisconf.hget("collectorpns:retriesPNS", "last"),
 
             //APIS
-            redisconf.hget("apiadmin", "last"),            
+            redisconf.hget("apiadmin", "last"),
             redisconf.hget("apisms", "last"),
             redisconf.hget("apipns", "last"),
             redisconf.hget("apistatusback", "last")
@@ -401,7 +401,7 @@ router.patch('/changeCollector', auth, async (req, res) => {
             ]);
             // END Execute in Parallel 2 tasks, before response we need to do all tasks for this reason we put await.
 
-            let info = "Changed Collector PNS " + req.body.name + " has been change configuration for status:" + req.body.status + ", interval:" + req.body.interval + ", intervalControl:" + req.body.intervalControl + " .";
+            let info = "Changed SMS Collector : " + req.body.name + " configuration has been change for status:" + req.body.status + ", interval:" + req.body.interval + ", intervalControl:" + req.body.intervalControl + " .";
             res.send({
                 Status: "200 OK",
                 info,
@@ -421,7 +421,7 @@ router.patch('/changeCollector', auth, async (req, res) => {
             ]);
             // END Execute in Parallel 2 tasks, before response we need to do all tasks for this reason we put await.
 
-            let info = " Contingency: The Collector SMS " + req.body.name + " has been change configuration for status:" + req.body.status + ", interval:" + req.body.interval + ", intervalControl:" + req.body.intervalControl + " .";
+            let info = "Changed PNS Collector : " + req.body.name + " configuration has been change  for status:" + req.body.status + ", interval:" + req.body.interval + ", intervalControl:" + req.body.intervalControl + " .";
             res.send({
                 Status: "200 OK",
                 info,
