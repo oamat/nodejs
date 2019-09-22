@@ -9,16 +9,18 @@
 
 //Dependencies
 const { Sms } = require('../models/sms');
-const { rpop, rpoplpush } = require('../util/redissms'); //we need to initialize redis
+const { rpop, lpush, sismember } = require('../util/redissms'); //we need to initialize redis
 const { hset, hgetall } = require('../util/redisconf');
 const { dateFormat, logTime, buildSMSChannel, buildSMSChannels } = require('../util/formats'); // utils for formats
 const { updateSMS } = require('../util/mongosms'); //for updating status
-const { sendSMS } = require('./cronHelper');
+const { sendSMS } = require('./smsSendMOV');
 
 
 //Variables
+const SMS_IDS = "SMS.IDS.PENDING";
 const defaultOperator = "MOV"; //default operator for this collector: "MOV"
 const defaultCollector = "collectorsms:" + defaultOperator; // default collector, for configurations
+const channels = buildSMSChannels(defaultOperator); //Channels to receive SMS request always are the same.
 
 var operator = defaultOperator; //default operator for this collector: "MOV"
 var cronConf; //the redis cron configuration 
@@ -27,13 +29,13 @@ var cronStatus = 1; //status of cron. 0: cron stopped, 1 : cron working,
 var cronChanged = false;  //if we need restart cron, 
 var interval = 10; //define the rate/s notifications, interval in cron (100/s by default)
 var intervalControl = 60000; //define interval in controller cron (check by min. by default)
-var channels = buildSMSChannels(operator);
+
 
 const startCron = async (interval) => { //Start cron only when cron is stopped.
     try {
-        console.log(process.env.GREEN_COLOR, logTime(new Date()) + "initializing MOVISTAR cron at " + dateFormat(new Date()) + " with interval : " + interval);
+        console.log(process.env.GREEN_COLOR, logTime(new Date()) + "initializing MOVISTAR cronMain at " + dateFormat(new Date()) + " with interval : " + interval);
         if (cron) {
-            console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "MOVISTAR cron is executing, so we don't need re-start it.");
+            console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "MOVISTAR cronMain is executing, so we don't need re-start it.");
         } else {
             cron = setInterval(function () {
                 //console.log(logTime(new Date()) + "MOVISTAR cron executing ");
@@ -49,12 +51,12 @@ const startCron = async (interval) => { //Start cron only when cron is stopped.
 const stopCron = async () => { //stop cron only when cron is switched on
     try {
         if (cron) {
-            console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "Stoping Movistar cron at " + dateFormat(new Date()));
+            console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "Stoping MOVISTAR cronMain at " + dateFormat(new Date()));
             clearInterval(cron);
             cron = null;
         }
     } catch (error) {
-        console.log(process.env.RED_COLOR, logTime(new Date()) + "ERROR: we cannot stop cron. Process continuing... " + error.message);
+        console.log(process.env.RED_COLOR, logTime(new Date()) + "ERROR: we cannot stop MOVISTAR cronMain. Process continuing... " + error.message);
         //console.error(error); //continue the execution cron
     }
 }
@@ -63,32 +65,36 @@ const sendNextSMS = async () => {
     try {
         const smsJSON = await nextSMS(); //get message with rpop command from SMS.MOV.1, 2, 3 
         if (smsJSON) {
-            const sms = new Sms(JSON.parse(smsJSON)); // convert json to object
-            sms.status = 1;  //0:notSent, 1:Sent, 2:Confirmed, 3:Error, 4:Expired
-            sms.dispatched = true;
-            sms.dispatchedAt = new Date();
-            sms.retries++;
+            const sms = new Sms(JSON.parse(smsJSON)); // convert json to object   
             if ((sms.expire) && (Date.now() > sms.expire)) { // treat the expired SMS
                 sms.expired = true;
-                sms.status = 4;
+                sms.status = 4; //0:notSent, 1:Sent, 2:Confirmed, 3:Error, 4:Expired
                 updateSMS(sms); // update SMS in MongoDB
                 console.log(process.env.YELLOW_COLOR, logTime(new Date()) + " The SMS " + sms._id + " has expired and has not been sent.");
             } else {
                 //sms.validate(); //It's unnecessary because we cautched from redis, and we checked before in the apisms, the new params are OK.
 
                 if (operator == defaultOperator) { //If we change operator for contingency we change sms to other list
-                    await sendSMS(sms); // send SMS to operator             
-                    updateSMS(sms); // update SMS in MongoDB
-                    console.log(process.env.GREEN_COLOR, logTime(new Date()) + "SMS sended : " + sms._id);  //JSON.stringify for replace new lines (\n) and tab (\t) chars into string
+                    sms.status = await sendSMS(sms); // send SMS to operator, //return status: 0:notSent, 1:Sent, 2:Confirmed, 3:Error, 4:Expired   
+                    sms.retries++;
+                    sms.dispatched = true;
+                    sms.dispatchedAt = new Date();
+                    Promise.all([
+                        updateSMS(sms).catch(error => { console.log(process.env.YELLOW_COLOR, logTime(new Date()) + error.message); }), // update SMS in MongoDB, in error case we continue
+                        sismember(SMS_IDS, sms._id).catch(error => { console.log(process.env.YELLOW_COLOR, logTime(new Date()) + error.message); }) //delete from redis ID control, in error case we continue
+                    ]).then(() => {
+                        console.log(process.env.GREEN_COLOR, logTime(new Date()) + "SMS sended : " + sms._id);  //JSON.stringify for replace new lines (\n) and tab (\t) chars into string
+                    });
                 } else {
-                    await rpoplpush(buildSMSChannel(defaultOperator, sms.priority), buildSMSChannel(operator, sms.priority)); // we put message to the other operator List
+                    sms.operator = operator; //The real operator to we will send SMS message                   
+                    await lpush(buildSMSChannel(defaultOperator, sms.priority), JSON.stringify(sms)); // we put message to the other operator List
                     console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "change SMS " + sms._id + " from " + defaultOperator + " to " + operator); // we inform about this exceptional action
                 }
             }
         }
     } catch (error) {
-        console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "ERROR: we have a problem in sendNextSMS() : " + error.message);
-        console.error(error); //continue the execution cron
+        console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "ERROR: we have a problem in MOVISTAR cronMain sendNextSMS() : " + error.message);
+        //console.error(error); //continue the execution cron
     }
 }
 
@@ -117,18 +123,16 @@ const startController = async (intervalControl) => {
 
 const checksController = async () => {
     try {
-
-
         cronConf = await hgetall(defaultCollector);
         Promise.all([
-            hset(defaultCollector, "last", dateFormat(new Date())).catch(error => { }),  //save last execution in Redis
-            checkstatus(parseInt(cronConf.status)).catch(error => { }),
-            checkInterval(parseInt(cronConf.interval)).catch(error => { }),
-            checkOperator(cronConf.operator).catch(error => { })
+            hset(defaultCollector, "last", dateFormat(new Date())).catch(error => { console.log(process.env.YELLOW_COLOR, logTime(new Date()) + error.message); }),  //save last execution in Redis, in error case we continue
+            checkstatus(parseInt(cronConf.status)).catch(error => { console.log(process.env.YELLOW_COLOR, logTime(new Date()) + error.message); }), //check status in Redis, in error case we continue
+            checkInterval(parseInt(cronConf.interval)).catch(error => { console.log(process.env.YELLOW_COLOR, logTime(new Date()) + error.message); }), //check interval in Redis, in error case we continue
+            checkOperator(cronConf.operator).catch(error => { console.log(process.env.YELLOW_COLOR, logTime(new Date()) + error.message); }) //check operator in Redis, in error case we continue
         ]).then(async () => {
             if (cronChanged) { //some param changed in cron, we need to restart or stopped.
                 if (cronStatus) { //cron must to be started                       
-                    console.log(process.env.GREEN_COLOR, logTime(new Date()) + "Re-Start Movistar cron...");
+                    console.log(process.env.GREEN_COLOR, logTime(new Date()) + "Re-Start MOVISTAR cron...");
                     cronChanged = false;
                     await stopCron();
                     await startCron(interval);
@@ -137,12 +141,12 @@ const checksController = async () => {
                     await stopCron(); //if I stop cron N times, it doesn't matter... 
                 }
             }
-            console.log(process.env.GREEN_COLOR, logTime(new Date()) + "Movistar cronController : Main cron interval is " + interval + ", operator is '" + operator + "' and status is " + cronStatus + " [1:ON, 0:OFF].");
+            console.log(process.env.GREEN_COLOR, logTime(new Date()) + "MOVISTAR cronController : cronMain interval is " + interval + ", operator is '" + operator + "' and status is " + cronStatus + " [1:ON, 0:OFF].");
         });
 
 
     } catch (error) {
-        console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "WARNING : we have had a problem with configuration control in Redis. Process continuing... " + error.message);
+        console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "WARNING : we have had a problem with MOVISTAR configuration in Redis. Process continuing... " + error.message);
         //console.error(error); //continue the execution cron
     }
 
@@ -154,7 +158,7 @@ const checkstatus = async (newCronStatus) => { //Check status, if it's necessary
             cronChanged = true;
         }
     } catch (error) {
-        console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "WARNING : we didn't find status in Redis (run/stop cron). current cron status = " + cronStatus + " . . Process continuing... " + error.message);
+        console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "WARNING : we didn't find MOVISTAR status in Redis (run/stop cron). current cron status = " + cronStatus + " . . Process continuing... " + error.message);
         //console.error(error); //continue the execution cron
     }
 }
@@ -162,12 +166,12 @@ const checkstatus = async (newCronStatus) => { //Check status, if it's necessary
 const checkInterval = async (newInterval) => { //check rate/s, and change cron rate
     try {
         if (interval != newInterval) { //if we change the interval -> rate/s
-            console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "Change interval:  " + interval + " for new interval : " + newInterval + " , next restart will be effect.");
+            console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "Change MOVISTAR cronMain interval:  " + interval + " for new interval : " + newInterval + " , next restart will be effect.");
             interval = newInterval;
             cronChanged = true;
         }
     } catch (error) {
-        console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "WARNING : we didn't find rate in Redis (cron interval). current interval " + interval + " . . Process continuing... " + error.message);
+        console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "WARNING : we didn't find MOVISTAR interval in Redis. current interval " + interval + " . . Process continuing... " + error.message);
         //console.error(error); //continue the execution cron
     }
 }
@@ -175,42 +179,42 @@ const checkInterval = async (newInterval) => { //check rate/s, and change cron r
 const checkOperator = async (newOperator) => { //change operator for HA //"MOV", "VOD", "ORA",... //change operator for HA
     try {
         if (newOperator.toString().trim() != operator) {
-            console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "Change operator " + operator + " for " + newOperator);
-            channels = buildSMSChannels(newOperator);
+            console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "Change MOVISTAR operator " + operator + " for " + newOperator);
             operator = newOperator;
         }
     } catch (error) {
-        console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "WARNING : we didn't find operator in Redis , actual operator : " + operator + " . . Process continuing... " + error.message);
+        console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "WARNING : we didn't find MOVISTAR operator in Redis , actual operator : " + operator + " . . Process continuing... " + error.message);
         //console.error(error); //continue the execution cron
     }
 }
 
 const initCron = async () => {
     try {
-        cronConf = await hgetall(defaultCollector);
+        cronConf = await hgetall(defaultCollector); // redis conf
         if (cronConf) {
-            interval = parseInt(cronConf.interval); //The rate/Main cron interval
+            interval = parseInt(cronConf.interval); //The rate/cronMain interval
             intervalControl = parseInt(cronConf.intervalControl); //the interval of controller
             cronStatus = parseInt(cronConf.status); //maybe somebody stops collector
+            checkOperator(cronConf.operator);
+        } else console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "WARNING : We didn't find MOVISTAR initialization parameters in Redis, we will initialize cron with default params  . . Process continuing. ");
+
+
+        if (cronStatus) {
+            await startCron(interval).catch(error => { throw new Error("ERROR in MOVISTAR cronMain." + error.message) });
+            console.log(process.env.GREEN_COLOR, logTime(new Date()) + "initializing MOVISTAR cronMain at " + dateFormat(new Date()) + " with interval [" + interval + "ms], cronController interval : [" + intervalControl + "ms], and collector operator  [" + operator + "].");
         } else {
-            console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "WARNING : We didn't find initialization parameters in Redis, we will initialize cron with default params  . . Process continuing. ");
+            console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "MOVISTAR Redis Configuration status indicates we don't want start cronMain process. we only start cron Controller.");
+            console.log(process.env.GREEN_COLOR, logTime(new Date()) + "MOVISTAR cronController : cronMain interval is " + interval + ", operator is '" + operator + "' and status is " + cronStatus + " [1:ON, 0:OFF].");
         }
 
-        await startController(intervalControl);
-        
-        if (cronStatus) {
-            await startCron(interval);
-            console.log(process.env.GREEN_COLOR, logTime(new Date()) + "initializing all crons processes at " + dateFormat(new Date()) + " with cron interval [" + interval + "ms] and cron Controller interval : [" + intervalControl + "ms]...");
-        } else console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "Cron status in redis indicates we don't want start cron process. we only start cron Controller.");
-        
-        
-        checksController();
+        await startController(intervalControl).catch(error => { throw new Error("ERROR in MOVISTAR cronController." + error.message) });
+
     } catch (error) {
-        console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "WARNING : We didn't find initialization parameters in Redis, we will initialize cron with default params  . . Process continuing... " + error.message);
+        console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "WARNING : We have a problem in initialization. Process continuing... " + error.message);
         //console.error(error); //continue the execution cron
-        await startCron(10); // 100 message/s
-        await startController(60000); // 60 seconds
         cronStatus = 1;
+        startCron(interval); // 100 message/s
+        startController(intervalControl); // 60 seconds        
     }
 }
 

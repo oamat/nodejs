@@ -426,7 +426,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"contract\" : \"ADMIN\",\n\t\"name\" : \"MOV\",\n\t\"status\" : 1,\n    \"interval\" : 10,\n    \"intervalControl\" : 30000\n\n}"
+					"raw": "{\n\t\"contract\" : \"ADMIN\",\n\t\"name\" : \"MOV\",\n\t\"type\" : \"SMS\",\n\t\"status\" : 1,\n    \"interval\" : 100,\n    \"intervalControl\" : 30000,\n    \"operator\" : \"MOV\"\n\n}"
 				},
 				"url": {
 					"raw": "https://localhost:30003/changeCollector",

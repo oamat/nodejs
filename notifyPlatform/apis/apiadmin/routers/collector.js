@@ -375,67 +375,40 @@ router.patch('/operatorContingency', auth, async (req, res) => {
 // PATCH //changeCollector   # contract in body for Auth
 router.patch('/changeCollector', auth, async (req, res) => {
     try {
-        if (!req.body.name || !req.body.interval || !req.body.intervalControl) throw new Error("you need params name, status, interval & intervalControl in your /changeCollector request body.");
+        if (!req.body.name || !req.body.interval || !req.body.intervalControl || !req.body.type) throw new Error("you need params name, status, interval & intervalControl in your /changeCollector request body.");
         if (req.body.status != 0 && req.body.status != 1) throw new Error("Status must be a number: 1 (ON) or 0 (OFF).");
         if (req.body.interval < 0 || req.body.intervalControl < 0) throw new Error("Interval or IntervalControl must be a number <0. ");
-        let SMSrequest = validateOperator("SMS", req.body.name);
-        let PNSrequest = validateOperator("PNS", req.body.name);
-        if (!SMSrequest && !PNSrequest) throw new Error("Name is invalid, it must be one of this options for SMS: 'MOV', 'VIP', 'ORA' or 'VOD'. Or for PNS: 'APP', 'GOO' or 'MIC'");
         if (!Number.isInteger(req.body.interval) || !Number.isInteger(req.body.status) || !Number.isInteger(req.body.intervalControl)) throw new Error("Params status, interval and intervalControl must be a Number (Integer)");
 
-        let toUpdate = {
-            status: req.body.status,
-            interval: req.body.interval,
-            intervalControl: req.body.intervalControl
-        };
-
-        if (SMSrequest) {
-            // Execute in Parallel 2 tasks, before response we need to do all tasks for this reason we put await.
-            await Promise.all([
-                updateCollectorSms(req.body.name, toUpdate), // update Collector SMS in MongoDB
+        if (req.body.type == "SMS") {
+            if (!validateOperator("SMS", req.body.operator)) throw new Error("Operator is invalid, it must be one of this options for SMS: 'MOV', 'VIP', 'ORA' or 'VOD'.");
+            let toUpdate = { status: req.body.status, interval: req.body.interval, intervalControl: req.body.intervalControl, operator: req.body.operator };
+            await updateCollectorSms(req.body.name, toUpdate).then(() => { // update Collector SMS in MongoDB
                 redisconf.hmset(["collectorsms:" + req.body.name,
                     "status", req.body.status,
                     "interval", req.body.interval,
-                    "intervalControl", req.body.intervalControl
-                ])
-            ]);
-            // END Execute in Parallel 2 tasks, before response we need to do all tasks for this reason we put await.
-
-            let info = "Changed SMS Collector : " + req.body.name + " configuration has been change for status:" + req.body.status + ", interval:" + req.body.interval + ", intervalControl:" + req.body.intervalControl + " .";
-            res.send({
-                Status: "200 OK",
-                info,
-                name: req.body.name,
-                operator: req.body.operator
+                    "intervalControl", req.body.intervalControl,
+                    "operator", req.body.operator
+                ]).catch(error => { console.log(process.env.YELLOW_COLOR, logTime(new Date()) + error.message); });
+                let info = "Changed SMS Collector : " + req.body.name + " configuration has been change for status:" + req.body.status + ", interval:" + req.body.interval + ", intervalControl:" + req.body.intervalControl + ", operator:" + req.body.operator + " .";
+                res.send({ Status: "200 OK", info });
+                console.log(process.env.GREEN_COLOR, logTime(new Date()) + info);
             });
-            console.log(process.env.GREEN_COLOR, logTime(new Date()) + info);
+
         } else {
-            // Execute in Parallel 2 tasks, before response we need to do all tasks for this reason we put await.
-            await Promise.all([
-                updateCollectorPns(req.body.name, toUpdate), // update Collector SMS in MongoDB
+            let toUpdate = { status: req.body.status, interval: req.body.interval, intervalControl: req.body.intervalControl };
+            await updateCollectorPns(req.body.name, toUpdate).then(() => {  // update Collector SMS in MongoDB
                 redisconf.hmset(["collectorpns:" + req.body.name,
                     "status", req.body.status,
                     "interval", req.body.interval,
                     "intervalControl", req.body.intervalControl
-                ])
-            ]);
-            // END Execute in Parallel 2 tasks, before response we need to do all tasks for this reason we put await.
-
-            let info = "Changed PNS Collector : " + req.body.name + " configuration has been change  for status:" + req.body.status + ", interval:" + req.body.interval + ", intervalControl:" + req.body.intervalControl + " .";
-            res.send({
-                Status: "200 OK",
-                info,
-                name: req.body.name,
-                operator: req.body.operator
+                ]).catch(error => { console.log(process.env.YELLOW_COLOR, logTime(new Date()) + error.message); });
+                let info = "Changed PNS Collector : " + req.body.name + " configuration has been change  for status:" + req.body.status + ", interval:" + req.body.interval + ", intervalControl:" + req.body.intervalControl + " .";
+                res.send({ Status: "200 OK", info });
+                console.log(process.env.GREEN_COLOR, logTime(new Date()) + info);
             });
-            console.log(process.env.GREEN_COLOR, logTime(new Date()) + info);
+
         }
-
-
-
-
-
-
     } catch (error) {
         requestError(error, req, res);
     }
