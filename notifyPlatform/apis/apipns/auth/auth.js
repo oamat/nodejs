@@ -27,11 +27,11 @@ const auth = async (req, res, next) => {
         } else {
             const token = req.header('x-api-key').replace('Bearer ', ''); //we need token without Bearer characters.
             const decoded = jwt.verify(token, process.env.JWT_SECRET); //this method is Synchronous, so i don't need await.
-            const contractToken = hget("contractpns:" + decoded.contract, "jwt"); //this method is Async, but we can get in parallel until need it (with await). 
+            const contractToken = hget("contractpns:" + decoded.contract, "jwt"); //this method is Async, but we can get in parallel until need it (with await 3 steps after). 
             if (decoded.contract != req.body.contract) { //check that contract in request is the same than contract in jwt
                 throw new Error('Your contract does not match with JWT, you need to authenticate on the platform. Please authenticate before proceeding.');
             } else {
-                if (token != await contractToken) { //check that jwt was created from this server and exist in redis Conf, we need to wait the result.                         
+                if (token != await contractToken) { //check that jwt was created from this server and exist in redis Conf contract, we need to wait the result.                         
                     throw new Error('Your JWT is invalid, you need to authenticate on the platform with correct JWT. Please authenticate before proceeding.');
                 } else next(); // next() represents the next method, see router pns.
             }

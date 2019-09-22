@@ -25,20 +25,20 @@ const sendSMS = async (sms) => {
         body: body
     };
    
-    const request = https.request(options, (response) => {
-        //console.log('statusCode:', response.statusCode);
-        //console.log('headers:', response.headers);
+    // const request = https.request(options, (response) => {
+    //     //console.log('statusCode:', response.statusCode);
+    //     //console.log('headers:', response.headers);
         
-        response.on('data', (data) => {
-            //process.stdout.write(data);
-        });
-    });
+    //     response.on('data', (data) => {
+    //         //process.stdout.write(data);
+    //     });
+    // });
 
-    request.on('error', (error) => {
-        console.error(logTime(new Date()) + error.message);
-    });
-    request.end();
+    // request.on('error', (error) => {
+    //     console.error(logTime(new Date()) + error.message);
+    // });
+    // request.end();
 
-    
+    setTimeout(() => { return("OK"); } , 2);
 }
 module.exports = { sendSMS }

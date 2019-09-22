@@ -10,15 +10,12 @@
 //Dependencies
 const { Sms, ContractSms, CollectorSms, TelfSms } = require('../config/mongoosemulti');  // Attention : this Sms Model is model created for multi DB
 
-
 //this method finds one SMS request with the condition in SMS MongoDB and manage the result of this operation
 const findSMS = async (condition) => {
     return new Promise((resolve, reject) => { // we need promise for managing errors and results inside callbacks
         Sms().findOne(condition, (error, result) => {
-            try {  //I use Promises but I need to use try/catch in async callback for errors or I could use EventEmitter 
-                if (error) throw error;  //if mongoose give me an error. If we used reject the try/catch would be unnecessary  
-                else resolve(result); // everything is OK, return result                                 
-            } catch (error) { reject(error); } // In Callback we need to reject if we have Error. A reject will not pass through here
+            if (error) reject(error);  //if mongoose give me an error. If we used reject the try/catch would be unnecessary  
+            else resolve(result); // everything is OK, return result                                 
         });
     });
     //.then((result) => { return result; })  //return the result, it's unnecessary but maybe we will need put some lógic...
@@ -29,10 +26,8 @@ const findSMS = async (condition) => {
 const findAllSMS = async (condition) => {
     return new Promise((resolve, reject) => { // we need promise for managing errors and results inside callbacks
         Sms().find(condition, (error, result) => {
-            try {  //I use Promises but I need to use try/catch in async callback for errors or I could use EventEmitter 
-                if (error) throw error;  //if mongoose give me an error. If we used reject the try/catch would be unnecessary  
-                else resolve(result); // everything is OK, return result                                 
-            } catch (error) { reject(error); } // In Callback we need to reject if we have Error. A reject will not pass through here
+            if (error) reject(error);  //if mongoose give me an error. If we used reject the try/catch would be unnecessary  
+            else resolve(result); // everything is OK, return result                                 
         });
     });
     //.then((result) => { return result; })  //return the result, it's unnecessary but maybe we will need put some lógic...
@@ -43,10 +38,8 @@ const findAllSMS = async (condition) => {
 const findContractSms = async (condition) => {
     return new Promise((resolve, reject) => { // we need promise for managing errors and results inside callbacks
         ContractSms().findOne(condition, (error, result) => {
-            try {  //I use Promises but I need to use try/catch in async callback for errors or I could use EventEmitter 
-                if (error) throw error;  //if mongoose give me an error. If we used reject the try/catch would be unnecessary  
-                else resolve(result); // everything is OK, return result                                 
-            } catch (error) { reject(error); } // In Callback we need to reject if we have Error. A reject will not pass through here
+            if (error) reject(error);  //if mongoose give me an error. If we used reject the try/catch would be unnecessary  
+            else resolve(result); // everything is OK, return result                                 
         });
     });
     //.then((result) => { return result; })  //return the result, it's unnecessary but maybe we will need put some lógic...
@@ -57,10 +50,8 @@ const findContractSms = async (condition) => {
 const findAllContractSms = async (condition) => {
     return new Promise((resolve, reject) => { // we need promise for managing errors and results inside callbacks
         ContractSms().find(condition, (error, result) => {
-            try {  //I use Promises but I need to use try/catch in async callback for errors or I could use EventEmitter 
-                if (error) throw error;  //if mongoose give me an error. If we used reject the try/catch would be unnecessary  
-                else resolve(result); // everything is OK, return result                                 
-            } catch (error) { reject(error); } // In Callback we need to reject if we have Error. A reject will not pass through here
+            if (error) reject(error);  //if mongoose give me an error. If we used reject the try/catch would be unnecessary  
+            else resolve(result); // everything is OK, return result                                 
         });
     });
     //.then((result) => { return result; })  //return the result, it's unnecessary but maybe we will need put some lógic...
@@ -71,11 +62,9 @@ const findAllContractSms = async (condition) => {
 const saveContractSms = async (contract) => {
     return new Promise((resolve, reject) => { // we need promise for managing errors and results inside callbacks
         contract.save((error, result) => {
-            try {  //I use Promises but I need to use try/catch in async callback for errors or I could use EventEmitter 
-                if (error) throw error;  //if mongoose give me an error. If we used reject the try/catch would be unnecessary  
-                else if (result) resolve(result); // everything is OK, return result
-                else throw new Error('we have a problem when try to save SMS Contract to MongoDB. it\'s necessary check the problem before proceding.'); //If we cannot save SMS to MongoDB                 
-            } catch (error) { reject(error); } // In Callback we need to reject if we have Error. A reject will not pass through here
+            if (error) reject(error);  //if mongoose give me an error. If we used reject the try/catch would be unnecessary  
+            else if (result) resolve(result); // everything is OK, return result
+            else reject(new Error("we have a problem when try to save SMS Contract to MongoDB. it's necessary check the problem before proceding.")); //If we cannot save SMS to MongoDB                 
         })
     });
     //.then((result) => { return result; })  //return the result, it's unnecessary but maybe we will need put some lógic...
@@ -86,10 +75,8 @@ const saveContractSms = async (contract) => {
 const findCollectorSms = async (condition) => {
     return new Promise((resolve, reject) => { // we need promise for managing errors and results inside callbacks
         CollectorSms().findOne(condition, (error, result) => {
-            try {  //I use Promises but I need to use try/catch in async callback for errors or I could use EventEmitter 
-                if (error) throw error;  //if mongoose give me an error. If we used reject the try/catch would be unnecessary  
-                else resolve(result); // everything is OK, return result                                 
-            } catch (error) { reject(error); } // In Callback we need to reject if we have Error. A reject will not pass through here
+            if (error) reject(error);  //if mongoose give me an error. If we used reject the try/catch would be unnecessary  
+            else resolve(result); // everything is OK, return result                                 
         });
     });
     //.then((result) => { return result; })  //return the result, it's unnecessary but maybe we will need put some lógic...
@@ -100,10 +87,8 @@ const findCollectorSms = async (condition) => {
 const findAllCollectorSms = async (condition) => {
     return new Promise((resolve, reject) => { // we need promise for managing errors and results inside callbacks
         CollectorSms().find(condition, (error, result) => {
-            try {  //I use Promises but I need to use try/catch in async callback for errors or I could use EventEmitter 
-                if (error) throw error;  //if mongoose give me an error. If we used reject the try/catch would be unnecessary  
-                else resolve(result); // everything is OK, return result                                 
-            } catch (error) { reject(error); } // In Callback we need to reject if we have Error. A reject will not pass through here
+            if (error) reject(error);  //if mongoose give me an error. If we used reject the try/catch would be unnecessary  
+            else resolve(result); // everything is OK, return result                                 
         });
     });
     //.then((result) => { return result; })  //return the result, it's unnecessary but maybe we will need put some lógic...
@@ -114,11 +99,9 @@ const findAllCollectorSms = async (condition) => {
 const saveCollectorSms = async (collector) => {
     return new Promise((resolve, reject) => { // we need promise for managing errors and results inside callbacks
         collector.save((error, result) => {
-            try {  //I use Promises but I need to use try/catch in async callback for errors or I could use EventEmitter 
-                if (error) throw error;  //if mongoose give me an error. If we used reject the try/catch would be unnecessary  
-                else if (result) resolve(result); // everything is OK, return result
-                else throw new Error('we have a problem when try to save SMS Collector to MongoDB. it\'s necessary check the problem before proceding.'); //If we cannot save SMS to MongoDB                 
-            } catch (error) { reject(error); } // In Callback we need to reject if we have Error. A reject will not pass through here
+            if (error) reject(error);  //if mongoose give me an error. If we used reject the try/catch would be unnecessary  
+            else if (result) resolve(result); // everything is OK, return result
+            else reject(new Error("we have a problem when try to save SMS Collector to MongoDB. it's necessary check the problem before proceding.")); //If we cannot save SMS to MongoDB                 
         });
     });
     //.then((result) => { return result; })  //return the result, it's unnecessary but maybe we will need put some lógic...
@@ -131,25 +114,21 @@ const updateCollectorSms = async (name, toUpdate) => {
         let options = { new: true };
         let query = { name };
         CollectorSms().findOneAndUpdate(query, { $set: toUpdate }, options, (error, result) => {  //property new returns the new updated document, not the original document
-            try {  //I use Promises but I need to use try/catch in async callback for errors or I could use EventEmitter 
-                if (error) throw error;  //if mongoose give me an error. If we used reject the try/catch would be unnecessary  
-                else if (result) resolve(result); // everything is OK, return result
-                else throw new Error('we have a problem when try to update SMS Collector in MongoDB. it\'s necessary check the problem before proceding.'); //If we cannot save SMS to MongoDB
-            } catch (error) { reject(error); } // In Callback we need to reject if we have Error. A reject will not pass through here
+            if (error) reject(error);  //if mongoose give me an error. If we used reject the try/catch would be unnecessary  
+            else if (result) resolve(result); // everything is OK, return result
+            else reject(new Error("we have a problem when try to update SMS Collector in MongoDB. it's necessary check the problem before proceding.")); //If we cannot save SMS to MongoDB
         });
     });
-        //.then((result) => { return result; })  //return the result, it's unnecessary but maybe we will need put some lógic...
-        //.catch((error) => { throw error; });  //throw Error exception to the main code, it's unnecessary but maybe we will need put some lógic...  A reject callback will pass through here
+    //.then((result) => { return result; })  //return the result, it's unnecessary but maybe we will need put some lógic...
+    //.catch((error) => { throw error; });  //throw Error exception to the main code, it's unnecessary but maybe we will need put some lógic...  A reject callback will pass through here
 }
 
 //this method finds one Telf SMS with the condition in SMS MongoDB and manage the result of this operation
 const findTelfSms = async (condition) => {
     return new Promise((resolve, reject) => { // we need promise for managing errors and results inside callbacks
         TelfSms().findOne(condition, (error, result) => {
-            try {  //I use Promises but I need to use try/catch in async callback for errors or I could use EventEmitter 
-                if (error) throw error;  //if mongoose give me an error. If we used reject the try/catch would be unnecessary  
-                else resolve(result); // everything is OK, return result                                 
-            } catch (error) { reject(error); } // In Callback we need to reject if we have Error. A reject will not pass through here
+            if (error) reject(error);  //if mongoose give me an error. If we used reject the try/catch would be unnecessary  
+            else resolve(result); // everything is OK, return result                                 
         });
     });
     //.then((result) => { return result; })  //return the result, it's unnecessary but maybe we will need put some lógic...
@@ -161,10 +140,8 @@ const findTelfSms = async (condition) => {
 const findAllTelfSms = async (condition) => {
     return new Promise((resolve, reject) => { // we need promise for managing errors and results inside callbacks
         TelfSms().find(condition, (error, result) => {
-            try {  //I use Promises but I need to use try/catch in async callback for errors or I could use EventEmitter 
-                if (error) throw error;  //if mongoose give me an error. If we used reject the try/catch would be unnecessary  
-                else resolve(result); // everything is OK, return result                                 
-            } catch (error) { reject(error); } // In Callback we need to reject if we have Error. A reject will not pass through here
+            if (error) reject(error);  //if mongoose give me an error. If we used reject the try/catch would be unnecessary  
+            else resolve(result); // everything is OK, return result                                 
         });
     });
     //.then((result) => { return result; })  //return the result, it's unnecessary but maybe we will need put some lógic...
@@ -175,11 +152,9 @@ const findAllTelfSms = async (condition) => {
 const saveTelfSms = async (telf) => {
     return new Promise((resolve, reject) => { // we need promise for managing errors and results inside callbacks
         telf.save((error, result) => {
-            try {  //I use Promises but I need to use try/catch in async callback for errors or I could use EventEmitter 
-                if (error) throw error;  //if mongoose give me an error. If we used reject the try/catch would be unnecessary  
-                else if (result) resolve(result); // everything is OK, return result
-                else throw new Error('we have a problem when try to save SMS Telf to MongoDB. it\'s necessary check the problem before proceding.'); //If we cannot save SMS to MongoDB                 
-            } catch (error) { reject(error); } // In Callback we need to reject if we have Error. A reject will not pass through here
+            if (error) reject(error);  //if mongoose give me an error. If we used reject the try/catch would be unnecessary  
+            else if (result) resolve(result); // everything is OK, return result
+            else reject(new Error("we have a problem when try to save SMS Telf to MongoDB. it's necessary check the problem before proceding.")); //If we cannot save SMS to MongoDB                 
         });
     });
     //.then((result) => { return result; })  //return the result, it's unnecessary but maybe we will need put some lógic...
@@ -192,15 +167,13 @@ const updateTelfSms = async (name, toUpdate) => {
         let options = { new: true };
         let query = { name };
         TelfSms().findOneAndUpdate(query, { $set: toUpdate }, options, (error, result) => {  //property new returns the new updated document, not the original document
-            try {  //I use Promises but I need to use try/catch in async callback for errors or I could use EventEmitter 
-                if (error) throw error;  //if mongoose give me an error. If we used reject the try/catch would be unnecessary  
-                else if (result) resolve(result); // everything is OK, return result
-                else throw new Error('we have a problem when try to update SMS Telf in MongoDB. it\'s necessary check the problem before proceding.'); //If we cannot save SMS to MongoDB
-            } catch (error) { reject(error); } // In Callback we need to reject if we have Error. A reject will not pass through here
+            if (error) reject(error);  //if mongoose give me an error. If we used reject the try/catch would be unnecessary  
+            else if (result) resolve(result); // everything is OK, return result
+            else reject(new Error("we have a problem when try to update SMS Telf in MongoDB. it's necessary check the problem before proceding.")); //If we cannot save SMS to MongoDB
         });
     });
-        //.then((result) => { return result; })  //return the result, it's unnecessary but maybe we will need put some lógic...
-        //.catch((error) => { throw error; });  //throw Error exception to the main code, it's unnecessary but maybe we will need put some lógic...  A reject callback will pass through here
+    //.then((result) => { return result; })  //return the result, it's unnecessary but maybe we will need put some lógic...
+    //.catch((error) => { throw error; });  //throw Error exception to the main code, it's unnecessary but maybe we will need put some lógic...  A reject callback will pass through here
 }
 
-module.exports = { findSMS, findAllSMS, findContractSms, findAllContractSms, saveContractSms, findCollectorSms, findAllCollectorSms, saveCollectorSms, updateCollectorSms, findTelfSms, findAllTelfSms, saveTelfSms, updateTelfSms  } 
+module.exports = { findSMS, findAllSMS, findContractSms, findAllContractSms, saveContractSms, findCollectorSms, findAllCollectorSms, saveCollectorSms, updateCollectorSms, findTelfSms, findAllTelfSms, saveTelfSms, updateTelfSms } 

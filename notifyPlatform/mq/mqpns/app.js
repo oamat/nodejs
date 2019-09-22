@@ -19,7 +19,7 @@ require('./config/redisconf'); //we need to initialize redis
 const Pns = require('./models/pns');
 const { savePNS } = require('./util/mongopns');
 const { rclient } = require('../config/redispns');
-const { hget, hset } = require('./util/redisconf');
+const { hgetConf, hset } = require('./util/redisconf');
 const { dateFormat, logTime, buildPNSChannel } = require('./util/formats');
 const auth = require('./auth/auth');
 
@@ -129,16 +129,16 @@ async function getCB(err, hObj, gmo, md, buf, hConn) {
                     await auth(pns);
                     if (pns.priority < 1) pns.priority = 2; //only accept priorities 2,3,4,5 in MQ Service. (0,1 are reserved for REST interface).
 
-                    pns.token = await hgetOrNull("tokenpns" + pns.application + ":" + pns.uuiddevice, "token"); //find the token for this uuiddevice PNS.
-                    pns.operator = await hgetOrNull("tokenpns" + pns.application + ":" + pns.uuiddevice, "operator"); //find the operator for this uuiddevice PNS.
+                    pns.token = await hget("tokenpns" + pns.application + ":" + pns.uuiddevice, "token"); //find the token for this uuiddevice PNS.
+                    pns.operator = await hget("tokenpns" + pns.application + ":" + pns.uuiddevice, "operator"); //find the operator for this uuiddevice PNS.
                     if (!pns.token) throw new Error(" This uuiddevice is not register, we cannot find its token neither operator.") //0:notSent, 1:Sent, 2:Confirmed, 3:Error, 4:Expired, 5:token not found (not register)
 
-                    pns.operator = await hget("contractpns:" + pns.contract, "operator"); //Operator by default by contract. we checked the param before (in auth)                    
+                    pns.operator = await hgetConf("contractpns:" + pns.contract, "operator"); //Operator by default by contract. we checked the param before (in auth)                    
                     if (pns.operator == "ALL") { //If operator is ALL means that we need to find the better operator for the telf. 
                         //TODO: find the best operator for this tef. Not implemented yet
                         pns.operator = "GOO";
                     }
-                    const collectorOperator = hget("collectorpns:" + pns.operator, "operator"); //this method is Async, but we can get in parallel until need it (with await). 
+                    const collectorOperator = hgetConf("collectorpns:" + pns.operator, "operator"); //this method is Async, but we can get in parallel until need it (with await). 
                     if (await collectorOperator != pns.operator) pns.operator = collectorOperator;  //check if the operator have some problems
 
                     pns.channel = buildPNSChannel(pns.operator, pns.priority); //get the channel to put notification with operator and priority

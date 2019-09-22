@@ -11,7 +11,7 @@
 
 const { sismember } = require('../util/redissms'); //we need to initialize redis
 const { rclient } = require('../config/redissms');
-const { hget, hset } = require('../util/redisconf');
+const { hgetConf, hset } = require('../util/redisconf');
 const { dateFormat, logTime } = require('../util/formats'); // utils for formats
 const { findAllSMS } = require('../util/mongosms'); // utils for formats
 
@@ -143,7 +143,7 @@ const checksController = async () => {
 }
 const checkstatus = async () => { //Check status, if it's necessary finish cron because redis say it.
     try {
-        let newCronStatus = parseInt(await hget("collectorsms:retriesSMS", "status"));  //0 stop, 1 OK.  //finish because redis say it 
+        let newCronStatus = parseInt(await hgetConf("collectorsms:retriesSMS", "status"));  //0 stop, 1 OK.  //finish because redis say it 
         if (cronStatus != newCronStatus) {
             cronStatus = newCronStatus;
             cronChanged = true;
@@ -156,7 +156,7 @@ const checkstatus = async () => { //Check status, if it's necessary finish cron 
 
 const checkInterval = async () => { //check rate/s, and change cron rate
     try {
-        let newInterval = parseInt(await hget("collectorsms:retriesSMS", "interval"));  //rate/s //change cron rate    
+        let newInterval = parseInt(await hgetConf("collectorsms:retriesSMS", "interval"));  //rate/s //change cron rate    
         if (interval != newInterval) { //if we change the interval -> rate/s
             console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "Change interval:  " + interval + " for new interval : " + newInterval + " , next restart will be effect.");
             interval = newInterval;
@@ -172,9 +172,9 @@ const checkInterval = async () => { //check rate/s, and change cron rate
 const initCron = async () => {
     try {
         await Promise.all([
-            hget("collectorsms:retriesSMS", "interval"),
-            hget("collectorsms:retriesSMS", "intervalControl"),
-            hget("collectorsms:retriesSMS", "status"),
+            hgetConf("collectorsms:retriesSMS", "interval"),
+            hgetConf("collectorsms:retriesSMS", "intervalControl"),
+            hgetConf("collectorsms:retriesSMS", "status"),
         ]).then((values) => {
             interval = parseInt(values[0]); //The rate/Main cron interval
             intervalControl = parseInt(values[1]); //the interval of controller

@@ -10,7 +10,7 @@ const { rclient } = require('../config/redissms');
 
 
 // this method gets hash name and its property, in a generic way
-const hget = async function (name, key) {
+const hgetConf = async function (name, key) {
     return new Promise((resolve, reject) => { // we need promise for managing errors and results inside callbacks
         rclient.hget(name, key, (error, result) => { //get the value of hash                   
             try {  //I use Promises but I need to use try/catch in async callback or I could use EventEmitter 

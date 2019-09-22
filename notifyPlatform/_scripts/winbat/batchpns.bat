@@ -1,4 +1,4 @@
 @echo off
 cd ..\..\batch\batchpns\
-start cmd /k node ..\..\batch\batchpns\app.js
+start cmd /k node app.js
 cd ..\..\_scripts\winbat\

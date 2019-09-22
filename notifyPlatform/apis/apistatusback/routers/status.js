@@ -13,7 +13,7 @@
 const express = require('express');
 const auth = require('../auth/auth');
 
-const { updateSomeOfSMS } = require('../util/mongosms');
+const { updateSomeSMS } = require('../util/mongosms');
 const { dateFormat, logTime } = require('../util/formats');
 
 
@@ -30,7 +30,7 @@ router.post('/smsStatusBack', auth, async (req, res) => {  //we execute auth bef
         let id = req.body.id;
         if (status < 2) throw new Error(" Status from Operator is not correct.");
         const toUpdate = { status, operator, id}
-        await updateSomeOfSMS(id, toUpdate) //update Status of sms to DB.
+        await updateSomeSMS(id, toUpdate) //update Status of sms to DB.
             .catch(error => {
                 error.message = "WARNING :  We cannot save notify in MongoBD. " + error.message;
                 throw error;

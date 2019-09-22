@@ -4,7 +4,7 @@ const { hmset, set, get, hset } = require('./redisconf');
 const { logTime } = require('./formats');
 const { findAllContractSms, findAllCollectorSms, findAllTelfSms, saveCollectorSms, saveContractSms } = require('../util/mongomultisms');
 const { findAllContractPns, findAllCollectorPns, findAllTokenPns, saveCollectorPns, saveContractPns } = require('../util/mongomultipns');
-const { CollectorSms, CollectorPns, ContractSms, ContractPns } = require('../config/mongoosemulti');
+const { CollectorSms, CollectorPns, ContractSms, ContractPns, TokenPns, TelfSms } = require('../config/mongoosemulti');
 //{ findPNS, findAllPNS, findContractPns, findAllContractPns, saveContractPns, findCollectorPns, findAllCollectorPns, saveCollectorPns, updateCollectorPns, findTokenPns, findAllTokenPns, saveTokenPns, updateTokenPns }
 //VARS
 
@@ -27,24 +27,22 @@ const initRedisSMSConf = async () => {
             "interface", contracts[i].interface,
             "permission", contracts[i].permission,
             "application", contracts[i].application,
-            "type", contracts[i].type
-            //"remitter", contracts[i].remitter
+            "type", contracts[i].type,
+            "frontend", (contracts[i].frontend ? contracts[i].frontend : "NO"),
+            "remitter", (contracts[i].remitter ? contracts[i].remitter : "NO")
         ]);
+
+        if (contracts[i].frontend) {
+            hmset(["contractadmin:" + contracts[i].name,
+                "jwt", contracts[i].jwt,
+                "permission", contracts[i].permission,
+                "application", contracts[i].application,
+                "type", contracts[i].type,
+                "frontend", contracts[i].frontend
+            ]);
+        }
     }
 
-    //select and save all SMS contracts ADMIN
-    let contractsAdmin = await findAllContractSms({ name: "ADMIN" });
-    if (!contractsAdmin || contractsAdmin.length == 0) { //we safe the default config
-        console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "SMS Contracts Admin not found in MongoDB. Basic config has been saved in mongo & redis.");
-        saveAdminSMSDefaultContract();
-    } else for (var i = 0; i < contractsAdmin.length; i++) {
-        hmset(["contractadmin:" + contractsAdmin[i].name,
-            "jwt", contractsAdmin[i].jwt,
-            "permission", contractsAdmin[i].permission,
-            "type", contractsAdmin[i].type
-            //"remitter", contractsAdmin[i].remitter
-        ]);
-    }
 
     //select and save all SMS collectors
     let collectors = await findAllCollectorSms({ activated: true });
@@ -57,8 +55,8 @@ const initRedisSMSConf = async () => {
             "status", (collectors[i].status ? 1 : 0),
             "interval", collectors[i].interval,
             "intervalControl", collectors[i].intervalControl,
-            "operator", collectors[i].operator
-            //"remitter", collectors[i].remitter
+            "operator", collectors[i].operator,
+            "remitter", (collectors[i].remitter ? collectors[i].remitter : "NO")
         ]);
     }
 
@@ -84,12 +82,25 @@ const initRedisPNSConf = async () => {
         hmset(["contractpns:" + contracts[i].name,
             "jwt", contracts[i].jwt,
             "operator", contracts[i].operator,
+            "defaultOperator", contracts[i].defaultOperator,
+            "activated", contracts[i].activated,
             "interface", contracts[i].interface,
             "permission", contracts[i].permission,
-            "type", contracts[i].type
+            "application", contracts[i].application,
+            "type", contracts[i].type,
+            "frontend", (contracts[i].frontend ? contracts[i].frontend : "NO"),
+            "remitter", (contracts[i].remitter ? contracts[i].remitter : "NO")
         ]);
+        if (contracts[i].frontend) {
+            hmset(["contractadmin:" + contracts[i].name,
+                "jwt", contracts[i].jwt,
+                "permission", contracts[i].permission,
+                "application", contracts[i].application,
+                "type", contracts[i].type,
+                "frontend", contracts[i].frontend
+            ]);
+        }
     }
-
     //select and save all PNS collectors
     let collectors = await findAllCollectorPns({ activated: true });
     if (!collectors || collectors.length == 0) { //we safe the default config
@@ -101,24 +112,12 @@ const initRedisPNSConf = async () => {
             "status", (collectors[i].status ? 1 : 0),
             "interval", collectors[i].interval,
             "intervalControl", collectors[i].intervalControl,
-            "operator", collectors[i].operator
+            "operator", collectors[i].operator,
+            "remitter", (collectors[i].remitter ? collectors[i].remitter : "NO")
         ]);
     }
 
-    //select and save all SMS contracts ADMIN
-    let contractsAdmin = await findAllContractPns({ name: "ADMIN" });
-    if (!contractsAdmin || contractsAdmin.length == 0) {  //we safe the default config
-        console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "PNS Contracts Admin not found in MongoDB. Basic config has been saved in mongo & redis.");
-        saveAdminPNSDefaultContract();
-    } else for (var i = 0; i < contractsAdmin.length; i++) {
-        hmset(["contractadmin:" + contractsAdmin[i].name,
-            "jwt", contractsAdmin[i].jwt,
-            "permission", contractsAdmin[i].permission,
-            "type", contractsAdmin[i].type
-        ]);
-    }
-
-    //select and save all PSN tokens (huge documents)
+    //select and save all PNS tokens (huge documents)
     let tokens = await findAllTokenPns({});
     if (!tokens || tokens.length == 0) console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "PNS Tokens not found in MongoDB. Basic config has been saved in mongo & redis.");
     else for (var i = 0; i < tokens.length; i++) {
@@ -129,15 +128,71 @@ const initRedisPNSConf = async () => {
     }
 }
 
+const saveAllSMSDefaultCollectors = async () => {
+    let CollectorModel = CollectorSms();  // we catch the ContractSMS Model            
+    saveCollectorSms(new CollectorModel({ "operator": "MOV", "activated": true, "status": true, "name": "MOV", "description": "Collector SMS Movistar", "interval": 10, "intervalControl": 30000, "type": "SMS", "remitter": "217771" }));
+    saveCollectorSms(new CollectorModel({ "operator": "VIP", "activated": true, "status": true, "name": "VIP", "description": "Collector SMS Movistar - VIP", "interval": 10, "intervalControl": 30000, "type": "SMS", "remitter": "217771" }));
+    saveCollectorSms(new CollectorModel({ "operator": "VOD", "activated": true, "status": true, "name": "VOD", "description": "Collector SMS Vodafone", "interval": 10, "intervalControl": 30000, "type": "SMS", "remitter": "217771" }));
+    saveCollectorSms(new CollectorModel({ "operator": "ORA", "activated": true, "status": true, "name": "ORA", "description": "Collector SMS Orange", "interval": 10, "intervalControl": 30000, "type": "SMS", "remitter": "217771" }));
+    saveCollectorSms(new CollectorModel({ "operator": "ALL", "activated": true, "status": true, "name": "batchSMS", "description": "batch SMS", "interval": 180000, "intervalControl": 30000, "type": "SMS", "remitter": "217771" }));
+    saveCollectorSms(new CollectorModel({ "operator": "ALL", "activated": true, "status": true, "name": "retriesSMS", "description": "retries SMS", "interval": 1000, "intervalControl": 30000, "type": "SMS", "remitter": "217771" }));
+    hmset(["collectorsms:batchSMS", "status", 1, "interval", 180000, "intervalControl", 30000]);
+    hmset(["collectorsms:retriesSMS", "status", 1, "interval", 1000, "intervalControl", 30000]);
+    hmset(["collectorsms:MOV", "status", 1, "interval", 10, "intervalControl", 30000, "operator", "MOV", "remitter", "217771"]);
+    hmset(["collectorsms:VIP", "status", 1, "interval", 10, "intervalControl", 30000, "operator", "VIP", "remitter", "217771"]);
+    hmset(["collectorsms:ORA", "status", 1, "interval", 10, "intervalControl", 30000, "operator", "ORA", "remitter", "217771"]);
+    hmset(["collectorsms:VOD", "status", 1, "interval", 10, "intervalControl", 30000, "operator", "VOD", "remitter", "217771"]);
+}
 
+const saveAllPNSDefaultCollectors = async () => {
+    let CollectorModel = CollectorPns();  // we catch the ContractSMS Model   
+    saveCollectorPns(new CollectorModel({ "operator": "APP", "activated": true, "status": true, "name": "APP", "description": "Collector PNS Apple", "interval": 10, "intervalControl": 30000, "type": "PNS" }));
+    saveCollectorPns(new CollectorModel({ "operator": "GOO", "activated": true, "status": true, "name": "GOO", "description": "Collector PNS Google", "interval": 10, "intervalControl": 30000, "type": "PNS" }));
+    saveCollectorPns(new CollectorModel({ "operator": "MIC", "activated": true, "status": true, "name": "MIC", "description": "Collector PNS Microsoft", "interval": 10, "intervalControl": 30000, "type": "PNS" }));
+    saveCollectorPns(new CollectorModel({ "operator": "ALL", "activated": true, "status": true, "name": "batchPNS", "description": "batch PNS", "interval": 180000, "intervalControl": 30000, "type": "PNS" }));
+    saveCollectorSms(new CollectorModel({ "operator": "ALL", "activated": true, "status": true, "name": "retriesPNS", "description": "retries PNS", "interval": 10000, "intervalControl": 30000, "type": "PNS" }));
+    hmset(["collectorpns:batchPNS", "status", 1, "interval", 180000, "intervalControl", 30000]);
+    hmset(["collectorpns:retriesPNS", "status", 1, "interval", 1000, "intervalControl", 30000]);
+    hmset(["collectorpns:APP", "status", 1, "interval", 10, "intervalControl", 30000, "operator", "APP"]);
+    hmset(["collectorpns:GOO", "status", 1, "interval", 10, "intervalControl", 30000, "operator", "GOO"]);
+    hmset(["collectorpns:MIC", "status", 1, "interval", 10, "intervalControl", 30000, "operator", "MIC"]);
+}
+
+
+const saveSMSDefaultContract = async () => {
+    let ContractModel = ContractSms();  // we catch the ContractSMS Model            
+    saveContractSms(new ContractModel({ "operator": "MOV", "defaultOperator": "MOV", "frontend": "THIS", "activated": true, "name": "OTPLOWEB", "description": "OTPLOWEB", "permission": "WITHIN_APP", "application": "OTPLOWEB_APP", "interface": "ALL", "remitter": "217771", "params": [], "type": "SMS", "jwt": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6Ik9UUExPV0VCIiwiY29udHJhY3QiOiJPVFBMT1dFQiIsImlhdCI6MjAxNjIzOTAyMn0.BK58iwYbyfGb1u--SLP3YZP7JZxKSMrPHmdc-gfH4t4" }));
+    saveContractSms(new ContractModel({ "operator": "ALL", "defaultOperator": "ALL", "frontend": "ALL", "activated": true, "name": "ADMIN", "description": "ADMIN", "permission": "ALL", "application": "ADMIN", "interface": "ALL", "remitter": "217771", "params": [], "type": "SMS", "jwt": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkFETUlOIiwiY29udHJhY3QiOiJBRE1JTiIsImlhdCI6MjAxNjIzOTAyMn0.vwBNTaBbW40v14Iiqd65uhv4FVQi4qn4ZH50VyQ00rg" }));
+    hmset(["contractsms:OTPLOWEB", "interface", "ALL", "permission", "WITHIN_APP", "frontend", "THIS", "operator", "MOV", "defaultOperator", "MOV", "remitter", "217771", "jwt", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6Ik9UUExPV0VCIiwiY29udHJhY3QiOiJPVFBMT1dFQiIsImlhdCI6MjAxNjIzOTAyMn0.BK58iwYbyfGb1u--SLP3YZP7JZxKSMrPHmdc-gfH4t4"]);
+    hmset(["contractsms:ADMIN", "interface", "ALL", "permission", "ALL", "frontend", "ALL", "operator", "ALL", "defaultOperator", "MOV", "remitter", "217771", "jwt", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkFETUlOIiwiY29udHJhY3QiOiJBRE1JTiIsImlhdCI6MjAxNjIzOTAyMn0.vwBNTaBbW40v14Iiqd65uhv4FVQi4qn4ZH50VyQ00rg"]);
+    hmset(["contractadmin:OTPLOWEB", "interface", "ALL", "permission", "WITHIN_APP", "frontend", "THIS", "operator", "MOV", "defaultOperator", "MOV", "remitter", "217771", "jwt", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6Ik9UUExPV0VCIiwiY29udHJhY3QiOiJPVFBMT1dFQiIsImlhdCI6MjAxNjIzOTAyMn0.BK58iwYbyfGb1u--SLP3YZP7JZxKSMrPHmdc-gfH4t4"]);
+    hmset(["contractadmin:ADMIN", "interface", "ALL", "permission", "ALL", "frontend", "ALL", "operator", "ALL", "defaultOperator", "MOV", "remitter", "217771", "jwt", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkFETUlOIiwiY29udHJhY3QiOiJBRE1JTiIsImlhdCI6MjAxNjIzOTAyMn0.vwBNTaBbW40v14Iiqd65uhv4FVQi4qn4ZH50VyQ00rg"]);
+
+}
+const savePNSDefaultContract = async () => {
+    let ContractModel = ContractPns();  // we catch the ContractSMS Model            
+    saveContractPns(new ContractModel({ "operator": "ALL", "defaultOperator": "ALL", "frontend": "THIS", "activated": true, "name": "PUSHLOWEB", "description": "PUSHLOWEB", "permission": "WITHIN_APP", "application": "PUSHLOWEB_APP", "interface": "ALL", "params": [], "type": "PNS", "jwt": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IlBVU0hMT1dFQiIsImNvbnRyYWN0IjoiUFVTSExPV0VCIiwiaWF0IjoyMDE2MjM5MDIyfQ.liOxBh3kFQyjYrIyhg2Uu3COoV83ruUsyLniWEJ8Apw" }));
+    saveContractPns(new ContractModel({ "operator": "ALL", "defaultOperator": "ALL", "frontend": "ALL", "activated": true, "name": "ADMIN", "description": "ADMIN", "permission": "ALL", "application": "ADMIN", "interface": "ALL", "params": [], "type": "PNS", "jwt": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkFETUlOIiwiY29udHJhY3QiOiJBRE1JTiIsImlhdCI6MjAxNjIzOTAyMn0.vwBNTaBbW40v14Iiqd65uhv4FVQi4qn4ZH50VyQ00rg" }));
+    hmset(["contractpns:PUSHLOWEB", "interface", "ALL", "permission", "WITHIN_APP", "frontend", "THIS", "operator", "ALL", "defaultOperator", "ALL", "jwt", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IlBVU0hMT1dFQiIsImNvbnRyYWN0IjoiUFVTSExPV0VCIiwiaWF0IjoyMDE2MjM5MDIyfQ.liOxBh3kFQyjYrIyhg2Uu3COoV83ruUsyLniWEJ8Apw"]);
+    hmset(["contractpns:ADMIN", "jwt", "interface", "ALL", "permission", "ALL", "frontend", "ALL", "operator", "ALL", "defaultOperator", "ALL", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkFETUlOIiwiY29udHJhY3QiOiJBRE1JTiIsImlhdCI6MjAxNjIzOTAyMn0.vwBNTaBbW40v14Iiqd65uhv4FVQi4qn4ZH50VyQ00rg"]);
+    hmset(["contractadmin:PUSHLOWEB", "interface", "ALL", "permission", "WITHIN_APP", "frontend", "THIS", "operator", "ALL", "defaultOperator", "ALL", "jwt", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IlBVU0hMT1dFQiIsImNvbnRyYWN0IjoiUFVTSExPV0VCIiwiaWF0IjoyMDE2MjM5MDIyfQ.liOxBh3kFQyjYrIyhg2Uu3COoV83ruUsyLniWEJ8Apw"]);
+    hmset(["contractadmin:ADMIN", "jwt", "interface", "ALL", "permission", "ALL", "frontend", "ALL", "operator", "ALL", "defaultOperator", "ALL", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkFETUlOIiwiY29udHJhY3QiOiJBRE1JTiIsImlhdCI6MjAxNjIzOTAyMn0.vwBNTaBbW40v14Iiqd65uhv4FVQi4qn4ZH50VyQ00rg"]);
+
+}
 
 const loadRedisForTesting = async () => {
-    //APIADMIN
-    hset("contractadmin:ADMIN", "jwt", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkFETUlOIiwiY29udHJhY3QiOiJBRE1JTiIsImlhdCI6MjAxNjIzOTAyMn0.vwBNTaBbW40v14Iiqd65uhv4FVQi4qn4ZH50VyQ00rg");
-    //APIPNS Contracts
-    hmset(["contractpns:PUSHLOWEB", "operator", "ALL", "jwt", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IlBVU0hMT1dFQiIsImNvbnRyYWN0IjoiUFVTSExPV0VCIiwiaWF0IjoyMDE2MjM5MDIyfQ.liOxBh3kFQyjYrIyhg2Uu3COoV83ruUsyLniWEJ8Apw"]);
-    //APISMS Contracts
-    hmset(["contractsms:OTPLOWEB", "remitter", "217771", "operator", "ALL", "defaultOperator", "MOV", "jwt", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6Ik9UUExPV0VCIiwiY29udHJhY3QiOiJPVFBMT1dFQiIsImlhdCI6MjAxNjIzOTAyMn0.BK58iwYbyfGb1u--SLP3YZP7JZxKSMrPHmdc-gfH4t4"]);
+    //SMS CONTRACTS
+    hmset(["contractsms:OTPLOWEB", "interface", "ALL", "permission", "WITHIN_APP", "frontend", "THIS", "operator", "MOV", "defaultOperator", "MOV", "remitter", "217771", "jwt", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6Ik9UUExPV0VCIiwiY29udHJhY3QiOiJPVFBMT1dFQiIsImlhdCI6MjAxNjIzOTAyMn0.BK58iwYbyfGb1u--SLP3YZP7JZxKSMrPHmdc-gfH4t4"]);
+    hmset(["contractsms:ADMIN", "interface", "ALL", "permission", "ALL", "frontend", "ALL", "operator", "ALL", "defaultOperator", "MOV", "remitter", "217771", "jwt", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkFETUlOIiwiY29udHJhY3QiOiJBRE1JTiIsImlhdCI6MjAxNjIzOTAyMn0.vwBNTaBbW40v14Iiqd65uhv4FVQi4qn4ZH50VyQ00rg"]);
+    hmset(["contractadmin:OTPLOWEB", "interface", "ALL", "permission", "WITHIN_APP", "frontend", "THIS", "operator", "MOV", "defaultOperator", "MOV", "remitter", "217771", "jwt", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6Ik9UUExPV0VCIiwiY29udHJhY3QiOiJPVFBMT1dFQiIsImlhdCI6MjAxNjIzOTAyMn0.BK58iwYbyfGb1u--SLP3YZP7JZxKSMrPHmdc-gfH4t4"]);
+    hmset(["contractadmin:ADMIN", "interface", "ALL", "permission", "ALL", "frontend", "ALL", "operator", "ALL", "defaultOperator", "MOV", "remitter", "217771", "jwt", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkFETUlOIiwiY29udHJhY3QiOiJBRE1JTiIsImlhdCI6MjAxNjIzOTAyMn0.vwBNTaBbW40v14Iiqd65uhv4FVQi4qn4ZH50VyQ00rg"]);
+
+    //PNS CONTRACTS
+    hmset(["contractsms:OTPLOWEB", "interface", "ALL", "permission", "WITHIN_APP", "frontend", "THIS", "operator", "MOV", "defaultOperator", "MOV", "remitter", "217771", "jwt", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6Ik9UUExPV0VCIiwiY29udHJhY3QiOiJPVFBMT1dFQiIsImlhdCI6MjAxNjIzOTAyMn0.BK58iwYbyfGb1u--SLP3YZP7JZxKSMrPHmdc-gfH4t4"]);
+    hmset(["contractsms:ADMIN", "interface", "ALL", "permission", "ALL", "frontend", "ALL", "operator", "ALL", "defaultOperator", "MOV", "remitter", "217771", "jwt", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkFETUlOIiwiY29udHJhY3QiOiJBRE1JTiIsImlhdCI6MjAxNjIzOTAyMn0.vwBNTaBbW40v14Iiqd65uhv4FVQi4qn4ZH50VyQ00rg"]);
+    hmset(["contractadmin:OTPLOWEB", "interface", "ALL", "permission", "WITHIN_APP", "frontend", "THIS", "operator", "MOV", "defaultOperator", "MOV", "remitter", "217771", "jwt", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6Ik9UUExPV0VCIiwiY29udHJhY3QiOiJPVFBMT1dFQiIsImlhdCI6MjAxNjIzOTAyMn0.BK58iwYbyfGb1u--SLP3YZP7JZxKSMrPHmdc-gfH4t4"]);
+    hmset(["contractadmin:ADMIN", "interface", "ALL", "permission", "ALL", "frontend", "ALL", "operator", "ALL", "defaultOperator", "MOV", "remitter", "217771", "jwt", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkFETUlOIiwiY29udHJhY3QiOiJBRE1JTiIsImlhdCI6MjAxNjIzOTAyMn0.vwBNTaBbW40v14Iiqd65uhv4FVQi4qn4ZH50VyQ00rg"]);
+
     //batchSMS
     hmset(["collectorsms:batchSMS", "status", 1, "interval", 180000, "intervalControl", 30000]);
     //batchPNSs
@@ -166,62 +221,10 @@ const loadRedisForTesting = async () => {
     hmset(["telfsms:0034699272800", "operator", "VOD"]);
 }
 
-const saveAllSMSDefaultCollectors = async () => {
-    let CollectorModel = CollectorSms();  // we catch the ContractSMS Model            
-    saveCollectorSms(new CollectorModel({ "operator": "MOV", "activated": true, "status": true, "name": "MOV", "description": "Collector SMS Movistar", "interval": 10, "intervalControl": 30000, "type": "SMS", "remitter": "217771" }));
-    saveCollectorSms(new CollectorModel({ "operator": "VIP", "activated": true, "status": true, "name": "VIP", "description": "Collector SMS Movistar - VIP", "interval": 10, "intervalControl": 30000, "type": "SMS", "remitter": "217771" }));
-    saveCollectorSms(new CollectorModel({ "operator": "VOD", "activated": true, "status": true, "name": "VOD", "description": "Collector SMS Vodafone", "interval": 10, "intervalControl": 30000, "type": "SMS", "remitter": "217771" }));
-    saveCollectorSms(new CollectorModel({ "operator": "ORA", "activated": true, "status": true, "name": "ORA", "description": "Collector SMS Orange", "interval": 10, "intervalControl": 30000, "type": "SMS", "remitter": "217771" }));
-    saveCollectorSms(new CollectorModel({ "operator": "batchSMS", "activated": true, "status": true, "name": "batchSMS", "description": "batch SMS", "interval": 180000, "intervalControl": 30000, "type": "SMS", "remitter": "217771" }));
-    saveCollectorSms(new CollectorModel({ "operator": "retriesSMS", "activated": true, "status": true, "name": "retriesSMS", "description": "retries SMS", "interval": 1000, "intervalControl": 30000, "type": "SMS", "remitter": "217771" }));
-    hmset(["collectorsms:batchSMS", "status", 1, "interval", 180000, "intervalControl", 30000]);
-    hmset(["collectorsms:retriesSMS", "status", 1, "interval", 1000, "intervalControl", 30000]);
-    hmset(["collectorsms:MOV", "status", 1, "interval", 10, "intervalControl", 30000, "operator", "MOV", "remitter", "217771"]);
-    hmset(["collectorsms:VIP", "status", 1, "interval", 10, "intervalControl", 30000, "operator", "VIP", "remitter", "217771"]);
-    hmset(["collectorsms:ORA", "status", 1, "interval", 10, "intervalControl", 30000, "operator", "ORA", "remitter", "217771"]);
-    hmset(["collectorsms:VOD", "status", 1, "interval", 10, "intervalControl", 30000, "operator", "VOD", "remitter", "217771"]);
-}
-
-const saveAllPNSDefaultCollectors = async () => {
-    let CollectorModel = CollectorPns();  // we catch the ContractSMS Model   
-    saveCollectorPns(new CollectorModel({ "operator": "APP", "activated": true, "status": true, "name": "APP", "description": "Collector PNS Apple", "interval": 10, "intervalControl": 30000, "type": "PNS" }));
-    saveCollectorPns(new CollectorModel({ "operator": "GOO", "activated": true, "status": true, "name": "GOO", "description": "Collector PNS Google", "interval": 10, "intervalControl": 30000, "type": "PNS" }));
-    saveCollectorPns(new CollectorModel({ "operator": "MIC", "activated": true, "status": true, "name": "MIC", "description": "Collector PNS Microsoft", "interval": 10, "intervalControl": 30000, "type": "PNS" }));
-    saveCollectorPns(new CollectorModel({ "operator": "batchPNS", "activated": true, "status": true, "name": "batchPNS", "description": "batch PNS", "interval": 180000, "intervalControl": 30000, "type": "PNS" }));
-    saveCollectorSms(new CollectorModel({ "operator": "retriesPNS", "activated": true, "status": true, "name": "retriesPNS", "description": "retries PNS", "interval": 10000, "intervalControl": 30000, "type": "PNS" }));
-    hmset(["collectorpns:batchPNS", "status", 1, "interval", 180000, "intervalControl", 30000]);
-    hmset(["collectorpns:retriesPNS", "status", 1, "interval", 1000, "intervalControl", 30000]);
-    hmset(["collectorpns:APP", "status", 1, "interval", 10, "intervalControl", 30000, "operator", "APP"]);
-    hmset(["collectorpns:GOO", "status", 1, "interval", 10, "intervalControl", 30000, "operator", "GOO"]);
-    hmset(["collectorpns:MIC", "status", 1, "interval", 10, "intervalControl", 30000, "operator", "MIC"]);
-}
-
-const saveAdminSMSDefaultContract = async () => {
-    let ContractModel = ContractSms();  // we catch the ContractSMS Model            
-    saveContractSms(new ContractModel({ "operator": "ALL", "defaultOperator": "ALL", "activated": true, "name": "ADMIN", "description": "ADMIN", "permission": "ALL", "application": "ADMIN", "interface": "ALL", "params": [], "type": "SMS", "jwt": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkFETUlOIiwiY29udHJhY3QiOiJBRE1JTiIsImlhdCI6MjAxNjIzOTAyMn0.vwBNTaBbW40v14Iiqd65uhv4FVQi4qn4ZH50VyQ00rg" }));
-    hset("contractadmin:ADMIN", "jwt", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkFETUlOIiwiY29udHJhY3QiOiJBRE1JTiIsImlhdCI6MjAxNjIzOTAyMn0.vwBNTaBbW40v14Iiqd65uhv4FVQi4qn4ZH50VyQ00rg");
-
-}
-
-const saveSMSDefaultContract = async () => {
-    let ContractModel = ContractSms();  // we catch the ContractSMS Model            
-    saveContractSms(new ContractModel({ "operator": "MOV", "defaultOperator": "MOV", "activated": true, "name": "OTPLOWEB", "description": "OTPLOWEB", "permission": "WITHIN_APP", "application": "OTPLOWEB_APP", "interface": "ALL", "remitter": "217771", "params": [], "type": "SMS", "jwt": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6Ik9UUExPV0VCIiwiY29udHJhY3QiOiJPVFBMT1dFQiIsImlhdCI6MjAxNjIzOTAyMn0.BK58iwYbyfGb1u--SLP3YZP7JZxKSMrPHmdc-gfH4t4" }));
-    hmset(["contract:OTPLOWEB", "defaultOperator", "MOV", "remitter", "217771", "jwt", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6Ik9UUExPV0VCIiwiY29udHJhY3QiOiJPVFBMT1dFQiIsImlhdCI6MjAxNjIzOTAyMn0.BK58iwYbyfGb1u--SLP3YZP7JZxKSMrPHmdc-gfH4t4"]);
-
-}
-const savePNSDefaultContract = async () => {
-    let ContractModel = ContractPns();  // we catch the ContractSMS Model            
-    saveContractPns(new ContractModel({ "operator": "MOV", "defaultOperator": "MOV", "activated": true, "name": "PUSHLOWEB", "description": "PUSHLOWEB", "permission": "WITHIN_APP", "application": "PUSHLOWEB_APP", "interface": "ALL", "params": [], "type": "PNS", "jwt": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IlBVU0hMT1dFQiIsImNvbnRyYWN0IjoiUFVTSExPV0VCIiwiaWF0IjoyMDE2MjM5MDIyfQ.liOxBh3kFQyjYrIyhg2Uu3COoV83ruUsyLniWEJ8Apw" }));
-    hmset(["contract:PUSHLOWEB", "jwt", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IlBVU0hMT1dFQiIsImNvbnRyYWN0IjoiUFVTSExPV0VCIiwiaWF0IjoyMDE2MjM5MDIyfQ.liOxBh3kFQyjYrIyhg2Uu3COoV83ruUsyLniWEJ8Apw"]);
-}
 
 
-const saveAdminPNSDefaultContract = async () => {
-    let ContractModel = ContractPns();  // we catch the ContractSMS Model   
-    saveContractPns(new ContractModel({ "operator": "ALL", "defaultOperator": "ALL", "activated": true, "name": "ADMIN", "description": "ADMIN", "permission": "ALL", "application": "ADMIN", "interface": "ALL", "params": [], "type": "PNS", "jwt": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkFETUlOIiwiY29udHJhY3QiOiJBRE1JTiIsImlhdCI6MjAxNjIzOTAyMn0.vwBNTaBbW40v14Iiqd65uhv4FVQi4qn4ZH50VyQ00rg" }));
-    hset("contractadmin:ADMIN", "jwt", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkFETUlOIiwiY29udHJhY3QiOiJBRE1JTiIsImlhdCI6MjAxNjIzOTAyMn0.vwBNTaBbW40v14Iiqd65uhv4FVQi4qn4ZH50VyQ00rg");
 
-}
+
 
 const loadRedisConfDependsOnDate = async () => {
     let last = parseInt(await get("lastLoadRedisConf"));

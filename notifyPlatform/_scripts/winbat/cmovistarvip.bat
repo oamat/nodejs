@@ -1,4 +1,4 @@
 @echo off
 cd ..\..\collectors\sms\movistarvip\
-start cmd /k node ..\..\collectors\sms\movistarvip\app.js
+start cmd /k node app.js
 cd ..\..\_scripts\winbat\

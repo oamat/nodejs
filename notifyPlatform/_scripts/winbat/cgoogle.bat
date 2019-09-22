@@ -1,4 +1,4 @@
 @echo off
 cd ..\..\collectors\pns\google\
-start cmd /k node ..\..\collectors\pns\google\app.js
+start cmd /k node app.js
 cd ..\..\_scripts\winbat\

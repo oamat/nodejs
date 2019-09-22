@@ -19,7 +19,7 @@ require('./config/redisconf'); //we need to initialize redis
 const Sms = require('./models/sms');
 const { saveSMS } = require('./util/mongosms');
 const { rclient } = require('../config/redissms');
-const { hget, hset } = require('./util/redisconf');
+const { hgetConf, hset } = require('./util/redisconf');
 const { dateFormat, logTime, buildSMSChannel } = require('./util/formats');
 const auth = require('./auth/auth');
 
@@ -128,13 +128,13 @@ async function getCB(err, hObj, gmo, md, buf, hConn) {
                     const sms = new Sms(JSON.parse(smsJSON)); // convert json to object,  await it's unnecessary because is the first creation of object. Model Validations are check when save in Mongodb, not here. 
                     await auth(sms);
                     if (sms.priority < 1) sms.priority = 2; //only accept priorities 2,3,4,5 in MQ Service. (0,1 are reserved for REST interface).
-                    sms.operator = await hget("contractsms:" + sms.contract, "operator"); //Operator by default by contract. we checked the param before (in auth)                    
+                    sms.operator = await hgetConf("contractsms:" + sms.contract, "operator"); //Operator by default by contract. we checked the param before (in auth)                    
                     sms.telf = sms.telf.replace("+", "00");
                     if (sms.operator == "ALL") { //If operator is ALL means that we need to find the better operator for the telf.            
-                        sms.operator = await hgetOrNull("telfsms:" + sms.telf, "operator"); //find the best operator for this tef.         
+                        sms.operator = await hget("telfsms:" + sms.telf, "operator"); //find the best operator for this tef.         
                         if (!sms.operator) sms.operator = "MOV";  //by default we use MOV
                     }
-                    const collectorOperator = hget("collectorsms:" + sms.operator, "operator"); //this method is Async, but we can get in parallel until need it (with await). 
+                    const collectorOperator = hgetConf("collectorsms:" + sms.operator, "operator"); //this method is Async, but we can get in parallel until need it (with await). 
                     if (await collectorOperator != sms.operator) sms.operator = collectorOperator;  //check if the operator have some problems
 
                     sms.channel = buildSMSChannel(sms.operator, sms.priority); //get the channel to put notification with operator and priority

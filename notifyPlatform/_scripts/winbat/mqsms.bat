@@ -1,4 +1,4 @@
 @echo off
 cd ..\..\collectors\mq\mqsms\
-start cmd /k node ..\..\mq\mqsms\app.js
+start cmd /k node app.js
 cd ..\..\_scripts\winbat\

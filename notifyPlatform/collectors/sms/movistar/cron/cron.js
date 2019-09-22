@@ -10,7 +10,7 @@
 //Dependencies
 const { Sms } = require('../models/sms');
 const { rpop, rpoplpush } = require('../util/redissms'); //we need to initialize redis
-const { hget, hset } = require('../util/redisconf');
+const { hset, hgetall } = require('../util/redisconf');
 const { dateFormat, logTime, buildSMSChannel, buildSMSChannels } = require('../util/formats'); // utils for formats
 const { updateSMS } = require('../util/mongosms'); //for updating status
 const { sendSMS } = require('./cronHelper');
@@ -19,8 +19,9 @@ const { sendSMS } = require('./cronHelper');
 //Variables
 const defaultOperator = "MOV"; //default operator for this collector: "MOV"
 const defaultCollector = "collectorsms:" + defaultOperator; // default collector, for configurations
-var operator = defaultOperator; //default operator for this collector: "MOV"
 
+var operator = defaultOperator; //default operator for this collector: "MOV"
+var cronConf; //the redis cron configuration 
 var cron; //the main cron that send message to the operator.
 var cronStatus = 1; //status of cron. 0: cron stopped, 1 : cron working, 
 var cronChanged = false;  //if we need restart cron, 
@@ -117,29 +118,33 @@ const startController = async (intervalControl) => {
 
 
 const checksController = async () => {
-    await Promise.all([
-        checkstatus(),
-        checkInterval(),
-        checkOperator()
-    ]);
+    try {
+        cronConf = await hgetall(defaultCollector);
+        await Promise.all([
+            checkstatus(parseInt(cronConf.status)),
+            checkInterval(parseInt(cronConf.interval)),
+            checkOperator(cronConf.operator)
+        ]);
 
-    if (cronChanged) { //some param changed in cron, we need to restart or stopped.
-        if (cronStatus) { //cron must to be started                       
-            console.log(process.env.GREEN_COLOR, logTime(new Date()) + "Re-Start Movistar cron...");
-            cronChanged = false;
-            await stopCron();
-            await startCron(interval);
-        } else { //cron must to be stopped            
-            cronChanged = false;
-            await stopCron(); //if I stop cron N times, it doesn't matter... 
+        if (cronChanged) { //some param changed in cron, we need to restart or stopped.
+            if (cronStatus) { //cron must to be started                       
+                console.log(process.env.GREEN_COLOR, logTime(new Date()) + "Re-Start Movistar cron...");
+                cronChanged = false;
+                await stopCron();
+                await startCron(interval);
+            } else { //cron must to be stopped            
+                cronChanged = false;
+                await stopCron(); //if I stop cron N times, it doesn't matter... 
+            }
         }
+    } catch (error) {
+        console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "WARNING : we have had a problem with configuration control in Redis. Process continuing... " + error.message);
+        //console.error(error); //continue the execution cron
     }
 
-
 }
-const checkstatus = async () => { //Check status, if it's necessary finish cron because redis say it.
+const checkstatus = async (newCronStatus) => { //Check status, if it's necessary finish cron because redis say it.
     try {
-        let newCronStatus = parseInt(await hget(defaultCollector, "status"));  //0 stop, 1 OK.  //finish because redis say it 
         if (cronStatus != newCronStatus) {
             cronStatus = newCronStatus;
             cronChanged = true;
@@ -150,9 +155,8 @@ const checkstatus = async () => { //Check status, if it's necessary finish cron 
     }
 }
 
-const checkInterval = async () => { //check rate/s, and change cron rate
+const checkInterval = async (newInterval) => { //check rate/s, and change cron rate
     try {
-        let newInterval = parseInt(await hget(defaultCollector, "interval"));  //rate/s //change cron rate    
         if (interval != newInterval) { //if we change the interval -> rate/s
             console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "Change interval:  " + interval + " for new interval : " + newInterval + " , next restart will be effect.");
             interval = newInterval;
@@ -164,9 +168,8 @@ const checkInterval = async () => { //check rate/s, and change cron rate
     }
 }
 
-const checkOperator = async () => { //change operator for HA
+const checkOperator = async (newOperator) => { //change operator for HA //"MOV", "VOD", "ORA",... //change operator for HA
     try {
-        let newOperator = await hget(defaultCollector, "operator");  //"MOV", "VOD", "ORA",... //change operator for HA
         if (newOperator.toString().trim() != operator) {
             console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "Change operator " + operator + " for " + newOperator);
             channels = buildSMSChannels(newOperator);
@@ -180,15 +183,10 @@ const checkOperator = async () => { //change operator for HA
 
 const initCron = async () => {
     try {
-        await Promise.all([
-            hget(defaultCollector, "interval"),
-            hget(defaultCollector, "intervalControl"),
-            hget(defaultCollector, "status"),
-        ]).then((values) => {
-            interval = parseInt(values[0]); //The rate/Main cron interval
-            intervalControl = parseInt(values[1]); //the interval of controller
-            cronStatus = parseInt(values[2]); //maybe somebody stops collector
-        });
+        cronConf = await hgetall(defaultCollector);
+        interval = parseInt(cronConf.interval); //The rate/Main cron interval
+        intervalControl = parseInt(cronConf.intervalControl); //the interval of controller
+        cronStatus = parseInt(cronConf.status); //maybe somebody stops collector
 
         console.log(process.env.GREEN_COLOR, logTime(new Date()) + "initializing all crons processes at " + dateFormat(new Date()) + " with cron interval [" + interval + "ms] and cron Controller interval : [" + intervalControl + "ms]...");
         if (cronStatus) await startCron(interval);

@@ -1,4 +1,4 @@
 @echo off
 cd ..\..\apis\apistatusback\
-start cmd /k node ..\..\apis\apistatusback\index.js
+start cmd /k node index.js
 cd ..\..\_scripts\winbat\

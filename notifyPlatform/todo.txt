@@ -13,3 +13,4 @@ MongoDB: Collection SMS y PNS hay que hacer procesos de historificación y borra
 Repasar documentación en inglés
 Tantos por ciento de envio( incr )
 Revisar promesas: resolve&reject sin try/catch
+FrontEnd permisos (frondendPass : null, ALL,  )

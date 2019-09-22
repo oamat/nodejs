@@ -42,6 +42,13 @@ const contractSchema = new mongoose.Schema({
         required: true,
         trim: true
     },
+    frontend: {  // If != null: "THIS":only this contract, "WITHIN_APP": contracts with the same application, "ALL": All contracts. ( ADMIN CONTRACT ALLWAYS CAN SEE ALL )
+        type: String,
+        required: false,
+        validate(value) {
+            if (value != "THIS" && value != "WITHIN_APP" && value != "ALL") throw new Error("Permission is invalid, it must be one of this options: 'NO': no permission, 'THIS':only this contract, 'WITHIN_APP': contracts with the same application, 'ALL': All contracts.");
+        }
+    },
     jwt: { //Secure JWT for authentication
         type: String,
         required: true
@@ -63,7 +70,7 @@ const contractSchema = new mongoose.Schema({
     },
     operator: { // some contracts can send only for one operator. 
         type: String,
-        required: true,        
+        required: true,
         validate(value) {
             if (this.type == "SMS") {
                 if (value != "MOV" && value != "ORA" && value != "VIP" && value != "VOD" && value != "ALL") throw new Error("Operator is invalid, it must be one of this options: 'MOV', 'VIP', 'ORA', 'VOD' or 'ALL'.");
@@ -82,9 +89,9 @@ const contractSchema = new mongoose.Schema({
         required: true,
         default: true
     },
-    remitter:{
+    remitter: {
         type: String,
-        required: false        
+        required: false
     },
     params: [{  // new params... 
         _id: false,

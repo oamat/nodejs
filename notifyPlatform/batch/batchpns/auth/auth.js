@@ -13,7 +13,7 @@
 
 // Dependencies
 const jwt = require('jsonwebtoken');
-const { hget } = require('../util/redisconf');
+const { hgetConf } = require('../util/redisconf');
 
 // method auth async, and it's necessary call function next in the end if all is correct.
 const auth = async (contract, token) => {
@@ -21,7 +21,7 @@ const auth = async (contract, token) => {
         throw new Error("You didn't send the necessary params in the body of the request. You need to send the correct params before proceeding.");
     } else {       
         const decoded = jwt.verify(token, process.env.JWT_SECRET); //this method is Synchronous, so i don't need await.
-        const contractToken = hget("contractpns:" + decoded.contract, "jwt"); //this method is Async, but we can get in parallel until need it (with await). 
+        const contractToken = hgetConf("contractpns:" + decoded.contract, "jwt"); //this method is Async, but we can get in parallel until need it (with await). 
         if (decoded.contract != contract) { //check that contract in request is the same than contract in jwt
             throw new Error('Your contract does not match with JWT, you need to authenticate on the platform. Please authenticate before proceeding.');
         } else {

@@ -10,7 +10,7 @@
 //Dependencies
 const { Pns } = require('../models/pns');
 const { rclient } = require('../config/redispns'); //we need to initialize redis
-const { hget, hset } = require('../util/redisconf');
+const { hgetConf, hset } = require('../util/redisconf');
 const { dateFormat, logTime, buildPNSChannel } = require('../util/formats'); // utils for formats
 const { savePNS } = require('../util/mongopns');
 const auth = require('../auth/auth');
@@ -77,11 +77,11 @@ const getPNSFiles = async () => {
                         try {
                             var pns = new Pns(pnsJSON); // convert json to object,  await it's unnecessary because is the first creation of object. Model Validations are check when save in Mongodb, not here. 
                             pns.priority = priority;
-                            pns.token = await hgetOrNull("tokenpns" + pns.application + ":" + pns.uuiddevice, "token"); //find the token for this uuiddevice PNS.
-                            pns.operator = await hgetOrNull("tokenpns" + pns.application + ":" + pns.uuiddevice, "operator"); //find the operator for this uuiddevice PNS.
+                            pns.token = await hget("tokenpns" + pns.application + ":" + pns.uuiddevice, "token"); //find the token for this uuiddevice PNS.
+                            pns.operator = await hget("tokenpns" + pns.application + ":" + pns.uuiddevice, "operator"); //find the operator for this uuiddevice PNS.
                             if (!pns.token) throw new Error(" This uuiddevice is not register, we cannot find its token neither operator.") //0:notSent, 1:Sent, 2:Confirmed, 3:Error, 4:Expired, 5:token not found (not register)
 
-                            const collectorOperator = hget("collectorpns:" + pns.operator, "operator"); //this method is Async, but we can get in parallel until need it (with await).
+                            const collectorOperator = hgetConf("collectorpns:" + pns.operator, "operator"); //this method is Async, but we can get in parallel until need it (with await).
                             if (await collectorOperator != pns.operator) pns.operator = collectorOperator;  //check if the operator have some problems
 
                             pns.channel = buildPNSChannel(pns.operator, priority); //get the channel to put notification with operator and priority
@@ -176,7 +176,7 @@ const checksController = async () => {
 }
 const checkstatus = async () => { //Check status, if it's necessary finish cron because redis say it.
     try {
-        let newCronStatus = parseInt(await hget(batchName, "status"));  //0 stop, 1 OK.  //finish because redis say it 
+        let newCronStatus = parseInt(await hgetConf(batchName, "status"));  //0 stop, 1 OK.  //finish because redis say it 
         if (cronStatus != newCronStatus) {
             cronStatus = newCronStatus;
             cronChanged = true;
@@ -189,7 +189,7 @@ const checkstatus = async () => { //Check status, if it's necessary finish cron 
 
 const checkInterval = async () => { //check rate/s, and change cron rate
     try {
-        let newInterval = parseInt(await hget(batchName, "interval"));  //rate/s //change cron rate    
+        let newInterval = parseInt(await hgetConf(batchName, "interval"));  //rate/s //change cron rate    
         if (interval != newInterval) { //if we change the interval -> rate/s
             console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "Change interval:  " + interval + " for new interval : " + newInterval + " , next restart will be effect.");
             interval = newInterval;
@@ -204,9 +204,9 @@ const checkInterval = async () => { //check rate/s, and change cron rate
 const initCron = async () => {
     try {
         await Promise.all([
-            hget(batchName, "interval"),
-            hget(batchName, "intervalControl"),
-            hget(batchName, "status"),
+            hgetConf(batchName, "interval"),
+            hgetConf(batchName, "intervalControl"),
+            hgetConf(batchName, "status"),
         ]).then((values) => {
             interval = parseInt(values[0]); //The rate/Main cron interval
             intervalControl = parseInt(values[1]); //the interval of controller
