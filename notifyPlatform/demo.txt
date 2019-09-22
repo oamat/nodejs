@@ -1,8 +1,9 @@
-ppt amb dibuix
+Node: llenguatge funcional, asincron, orientat a events(callback), no bloquejant
+Node tipus programació: asyncrona, parallel, síncrona : (promises, promise.all)
+OASIS: ppt amb dibuix
 Falten coses, No es perfecte, el que falta 
 Estructura del projecte, config...
 Seguretat: SSL, AUTH, JWT
-Node parallel : (promises, promise.all)
 demo apisms + movistar envío sms (rapidez)
 ver estado en apiadmin
 ver collectores en apiadmin y demo apisms + movistar stop-start

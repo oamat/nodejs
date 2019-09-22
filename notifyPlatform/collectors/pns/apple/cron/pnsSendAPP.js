@@ -10,13 +10,13 @@
 const https = require('https');
 const { logTime } = require('../util/formats');
 
-const sendSMS = async (sms) => {
+const sendPNS = async (sms) => {
     return new Promise((resolve, reject) => { // we need promise for managing errors and results inside callbacks
         let body = JSON.stringify(sms);
         const options = {
             hostname: 'encrypted.google.com',
             port: 443,
-            path: '/sendSMS',
+            path: '/sendPNS',
             method: 'POST',
             headers: { 'Content-Length': body.length, 'Content-Type': 'application/json', 'AccessToken': sms.token },
             body: body
@@ -41,4 +41,4 @@ const sendSMS = async (sms) => {
         setTimeout(() => { resolve(1); }, 1); //For testing
     });
 }
-module.exports = { sendSMS }
+module.exports = { sendPNS }

@@ -9,34 +9,36 @@
 
 //Dependencies
 const { Pns } = require('../models/pns');
-const { rpop, rpoplpush } = require('../util/redispns'); //we need to initialize redis
-const { hgetConf, hset } = require('../util/redisconf');
+const { rpop, sismember } = require('../util/redispns'); //we need to initialize redis
+const { hset, hgetall } = require('../util/redisconf');
 const { dateFormat, logTime, buildPNSChannel, buildPNSChannels } = require('../util/formats'); // utils for formats
 const { updatePNS } = require('../util/mongopns'); //for updating status
-const { sendPNS } = require('./cronHelper');
+const { sendPNS } = require('./pnsSendMIC');
 
 
 //Variables
+const PNS_IDS = "PNS.IDS.PENDING";
 const defaultOperator = "MIC"; //default operator for this collector: "MIC"
 const defaultCollector = "collectorpns:" + defaultOperator; // default collector, for configurations
-var operator = defaultOperator; //default operator for this collector: "MIC"
+const channels = buildPNSChannels(defaultOperator); //Channels to receive PNS request always are the same.
 
+var operator = defaultOperator; //default operator for this collector: "MIC"
+var cronConf; //the redis cron configuration 
 var cron; //the main cron that send message to the operator.
 var cronStatus = 1; //status of cron. 0: cron stopped, 1 : cron working, 
 var cronChanged = false;  //if we need restart cron, 
 var interval = 10; //define the rate/s notifications, interval in cron (100/s by default)
 var intervalControl = 60000; //define interval in controller cron (check by min. by default)
-var channels = buildPNSChannels(operator);
+
 
 const startCron = async (interval) => { //Start cron only when cron is stopped.
     try {
-        console.log(process.env.GREEN_COLOR, logTime(new Date()) + "initializing MICROSOFT cron at " + dateFormat(new Date()) + " with interval : " + interval);
+        console.log(process.env.GREEN_COLOR, logTime(new Date()) + "initializing MICROSOFT cronMain at " + dateFormat(new Date()) + " with interval : " + interval);
         if (cron) {
-            console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "MICROSOFT cron is executing, so we don't need re-start it.");
+            console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "MICROSOFT cronMain is executing, so we don't need re-start it.");
         } else {
-
             cron = setInterval(function () {
-                //console.log(logTime(new Date()) + "MICROSOFT cron executing");
+                //console.log(logTime(new Date()) + "MICROSOFT cron executing ");
                 sendNextPNS();
             }, interval);
         }
@@ -49,12 +51,12 @@ const startCron = async (interval) => { //Start cron only when cron is stopped.
 const stopCron = async () => { //stop cron only when cron is switched on
     try {
         if (cron) {
-            console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "Stoping Microsoft cron at " + dateFormat(new Date()));
+            console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "Stoping MICROSOFT cronMain at " + dateFormat(new Date()));
             clearInterval(cron);
             cron = null;
         }
     } catch (error) {
-        console.log(process.env.RED_COLOR, logTime(new Date()) + "ERROR: we cannot stop cron. Process continuing... " + error.message);
+        console.log(process.env.RED_COLOR, logTime(new Date()) + "ERROR: we cannot stop MICROSOFT cronMain. Process continuing... " + error.message);
         //console.error(error); //continue the execution cron
     }
 }
@@ -63,31 +65,28 @@ const sendNextPNS = async () => {
     try {
         const pnsJSON = await nextPNS(); //get message with rpop command from PNS.MIC.1, 2, 3 
         if (pnsJSON) {
-            const pns = new Pns(JSON.parse(pnsJSON)); // convert json to object
-            pns.status = 1;  //0:notSent, 1:Sent, 2:Confirmed, 3:Error, 4:Expired
-            pns.dispatched = true;
-            pns.dispatchedAt = new Date();
-            pns.retries++;     
-            if ((pns.expire) && (Date.now() > pns.expire)) { // treat the expired SMS
+            const pns = new Pns(JSON.parse(pnsJSON)); //EXPIRED // convert json text to json object   
+            if ((pns.expire) && (Date.now() > pns.expire)) { // is the PNS expired?
                 pns.expired = true;
-                pns.status = 4;
-                updatePNS(pns); // update SMS in MongoDB
+                pns.status = 4; //0:notSent, 1:Sent, 2:Confirmed, 3:Error, 4:Expired
+                updatePNS(pns).catch(error => { console.log(process.env.YELLOW_COLOR, logTime(new Date()) + error.message) }); //update PNS in MongoDB, is the last task, it's unnecessary await
                 console.log(process.env.YELLOW_COLOR, logTime(new Date()) + " The PNS " + pns._id + " has expired and has not been sent.");
-            } else {
-                //pns.validate(); //It's unnecessary because we cautched from redis, and we checked before in the apipns, the new params are OK.
-
-                if (operator == defaultOperator) { //If we change operator for contingency we change pns to other list
-                    await sendPNS(pns); // send PNS to operator
-                    updatePNS(pns); // update PNS in MongoDB
+            } else {  //MICROSOFT WILL SEND
+                //pns.validate(); //It's unnecessary because we cautched from redis, and we checked before in the apipns, the new params are OK.               
+                pns.status = await sendPNS(pns); // send PNS to operator, //return status: 0:notSent, 1:Sent, 2:Confirmed, 3:Error, 4:Expired   
+                pns.retries++;
+                pns.dispatched = true;
+                pns.dispatchedAt = new Date();
+                Promise.all([ //Always we need delete ID in PNS_IDS SET, in error case we continue
+                    updatePNS(pns).catch(error => { console.log(process.env.YELLOW_COLOR, logTime(new Date()) + error.message); }), // update PNS in MongoDB, in error case we continue
+                    sismember(PNS_IDS, pns._id).catch(error => { console.log(process.env.YELLOW_COLOR, logTime(new Date()) + error.message); }) //delete from redis ID control, in error case we continue
+                ]).then(() => { //we always enter here
                     console.log(process.env.GREEN_COLOR, logTime(new Date()) + "PNS sended : " + pns._id);  //JSON.stringify for replace new lines (\n) and tab (\t) chars into string
-                } else {
-                    await rpoplpush(buildPNSChannel(defaultOperator, pns.priority), buildPNSChannel(operator, pns.priority)); // we put message to the other operator List
-                    console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "change PNS " + pns._id + " from " + defaultOperator + " to " + operator); // we inform about this exceptional action
-                }
+                });
             }
         }
     } catch (error) {
-        console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "ERROR: we have a problem in sendNextPNS() : " + error.message);
+        console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "ERROR: we have a problem in MICROSOFT cronMain sendNextPNS() : " + error.message);
         //console.error(error); //continue the execution cron
     }
 }
@@ -106,8 +105,6 @@ const startController = async (intervalControl) => {
         console.log(process.env.GREEN_COLOR, logTime(new Date()) + "initializing cronController at " + dateFormat(new Date()) + " with intervalControl : " + intervalControl);
         hset(defaultCollector, "last", dateFormat(new Date())); //save first execution in Redis
         var cronController = setInterval(function () {
-            console.log(process.env.GREEN_COLOR, logTime(new Date()) + "cronController executing: Main cron interval is " + interval + " and status is " + cronStatus + " [1:ON, 0:OFF].");
-            hset(defaultCollector, "last", dateFormat(new Date())); //save last execution in Redis
             checksController();
         }, intervalControl);
     } catch (error) {
@@ -118,89 +115,83 @@ const startController = async (intervalControl) => {
 
 
 const checksController = async () => {
-    await Promise.all([
-        checkstatus(),
-        checkInterval(),
-        checkOperator()
-    ]);
+    try {
+        cronConf = await hgetall(defaultCollector); //get the cronConf
+        Promise.all([ //In error case we continue with other tasks
+            hset(defaultCollector, "last", dateFormat(new Date())).catch(error => { console.log(process.env.YELLOW_COLOR, logTime(new Date()) + error.message); }),  //save last execution in Redis, in error case we continue
+            checkstatus(parseInt(cronConf.status)).catch(error => { console.log(process.env.YELLOW_COLOR, logTime(new Date()) + error.message); }), //check status in Redis, in error case we continue
+            checkInterval(parseInt(cronConf.interval)).catch(error => { console.log(process.env.YELLOW_COLOR, logTime(new Date()) + error.message); }) //check interval in Redis, in error case we continue
+        ]).then(async () => {
+            if (cronChanged) { //some param changed in cron, we need to restart or stopped.
+                if (cronStatus) { //cron must to be started                       
+                    console.log(process.env.GREEN_COLOR, logTime(new Date()) + "Re-Start MICROSOFT cron...");
+                    cronChanged = false;
+                    await stopCron();
+                    await startCron(interval);
+                } else { //cron must to be stopped            
+                    cronChanged = false;
+                    await stopCron(); //if I stop cron N times, it doesn't matter... 
+                }
+            }
+            console.log(process.env.GREEN_COLOR, logTime(new Date()) + "MICROSOFT cronController : cronMain interval is " + interval + ", operator is '" + operator + "' and status is " + cronStatus + " [1:ON, 0:OFF].");
+        });
 
-    if (cronChanged) { //some param changed in cron, we need to restart or stopped.
-        if (cronStatus) { //cron must to be started                       
-            console.log(process.env.GREEN_COLOR, logTime(new Date()) + "Re-Start Microsoft cron...");
-            cronChanged = false;
-            await stopCron();
-            await startCron(interval);
-        } else { //cron must to be stopped            
-            cronChanged = false;
-            await stopCron(); //if I stop cron N times, it doesn't matter... 
-        }
+    } catch (error) {
+        console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "WARNING : we have had a problem with MICROSOFT configuration in Redis. Process continuing... " + error.message);
+        //console.error(error); //continue the execution cron
     }
 
-
 }
-const checkstatus = async () => { //Check status, if it's necessary finish cron because redis say it.
+const checkstatus = async (newCronStatus) => { //Check status, if it's necessary finish cron because redis say it.
     try {
-        let newCronStatus = parseInt(await hgetConf(defaultCollector, "status"));  //0 stop, 1 OK.  //finish because redis say it 
         if (cronStatus != newCronStatus) {
             cronStatus = newCronStatus;
             cronChanged = true;
         }
     } catch (error) {
-        console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "WARNING : we didn't find status in Redis (run/stop cron). current cron status = " + cronStatus + " . . Process continuing... " + error.message);
+        console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "WARNING : we didn't find MICROSOFT status in Redis (run/stop cron). current cron status = " + cronStatus + " . . Process continuing... " + error.message);
         //console.error(error); //continue the execution cron
     }
 }
 
-const checkInterval = async () => { //check rate/s, and change cron rate
+const checkInterval = async (newInterval) => { //check rate/s, and change cron rate
     try {
-        let newInterval = parseInt(await hgetConf(defaultCollector, "interval"));  //rate/s //change cron rate    
         if (interval != newInterval) { //if we change the interval -> rate/s
-            console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "Change interval:  " + interval + " for new interval : " + newInterval + " , next restart will be effect.");
+            console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "Change MICROSOFT cronMain interval:  " + interval + " for new interval : " + newInterval + " , next restart will be effect.");
             interval = newInterval;
             cronChanged = true;
         }
     } catch (error) {
-        console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "WARNING : we didn't find rate in Redis (cron interval). current interval " + interval + " . . Process continuing... " + error.message);
-        //console.error(error); //continue the execution cron
-    }
-}
-
-const checkOperator = async () => { //change operator for HA
-    try {
-        let newOperator = await hgetConf(defaultCollector, "operator");  //"APP", "GOO", "MIC",... //change operator for HA
-        if (newOperator.toString().trim() != operator) {
-            console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "Change operator " + operator + " for " + newOperator);
-            channels = buildPNSChannels(newOperator);
-            operator = newOperator;
-        }
-    } catch (error) {
-        console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "WARNING : we didn't find operator in Redis , actual operator : " + operator + " . . Process continuing... " + error.message);
+        console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "WARNING : we didn't find MICROSOFT interval in Redis. current interval " + interval + " . . Process continuing... " + error.message);
         //console.error(error); //continue the execution cron
     }
 }
 
 const initCron = async () => {
     try {
-        await Promise.all([
-            hgetConf(defaultCollector, "interval"),
-            hgetConf(defaultCollector, "intervalControl"),
-            hgetConf(defaultCollector, "status"),
-        ]).then((values) => {
-            interval = parseInt(values[0]); //The rate/Main cron interval
-            intervalControl = parseInt(values[1]); //the interval of controller
-            cronStatus = parseInt(values[2]); //maybe somebody stops collector
-        });
+        cronConf = await hgetall(defaultCollector); // redis conf
+        if (cronConf) {
+            interval = parseInt(cronConf.interval); //The rate/cronMain interval
+            intervalControl = parseInt(cronConf.intervalControl); //the interval of controller
+            cronStatus = parseInt(cronConf.status); //maybe somebody stops collector
+        } else console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "WARNING : We didn't find MICROSOFT initialization parameters in Redis, we will initialize cron with default params  . . Process continuing. ");
 
-        console.log(process.env.GREEN_COLOR, logTime(new Date()) + "initializing all crons processes at " + dateFormat(new Date()) + " with cron interval [" + interval + "ms] and cron Controller interval : [" + intervalControl + "ms]...");
-        if (cronStatus) await startCron(interval);
-        else console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "Cron status in redis indicates we don't want start cron process. we only start cron Controller.");
-        await startController(intervalControl);
+        if (cronStatus) {
+            await startCron(interval).catch(error => { throw new Error("ERROR in MICROSOFT cronMain." + error.message) });
+            console.log(process.env.GREEN_COLOR, logTime(new Date()) + "initializing MICROSOFT cronMain at " + dateFormat(new Date()) + " with interval [" + interval + "ms], cronController interval : [" + intervalControl + "ms], and collector operator  [" + operator + "].");
+        } else {
+            console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "MICROSOFT Redis Configuration status indicates we don't want start cronMain process. we only start cron Controller.");
+            console.log(process.env.GREEN_COLOR, logTime(new Date()) + "MICROSOFT cronController : cronMain interval is " + interval + ", operator is '" + operator + "' and status is " + cronStatus + " [1:ON, 0:OFF].");
+        }
+
+        await startController(intervalControl).catch(error => { throw new Error("ERROR in MICROSOFT cronController." + error.message) });
+
     } catch (error) {
-        console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "WARNING : We didn't find initialization parameters in Redis, we will initialize cron with default params  . . Process continuing... " + error.message);
+        console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "WARNING : We have a problem in initialization. Process continuing... " + error.message);
         //console.error(error); //continue the execution cron
-        await startCron(10); // 100 message/s
-        await startController(60000); // 60 seconds
         cronStatus = 1;
+        startCron(interval); // 100 message/s
+        startController(intervalControl); // 60 seconds        
     }
 }
 

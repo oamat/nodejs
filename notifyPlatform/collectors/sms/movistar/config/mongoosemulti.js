@@ -23,7 +23,7 @@ const options = { //options for connection to MongoDB
     useNewUrlParser: true,
     useFindAndModify: false,
     useCreateIndex: true,
-    poolSize: 5,
+    poolSize: process.env.MONGODB_MULTI_POOL,
     dbName: "notifyplatform",
     autoReconnect: true,
     reconnectTries: Number.MAX_VALUE

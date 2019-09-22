@@ -14,7 +14,7 @@ const options = {
     useNewUrlParser: true,
     useFindAndModify: false,
     useCreateIndex: true,
-    poolSize: 5,
+    poolSize: process.env.MONGODBPNS_POOL,
     dbName: "notifyplatform",
     autoReconnect: true,
     reconnectTries: Number.MAX_VALUE

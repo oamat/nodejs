@@ -40,22 +40,18 @@ router.post('/pnsSend', auth, async (req, res) => {  //we execute auth before th
 
         savePNS(pns) //save pns to DB, in this phase we need save PNS to MongoDB. //If you didn't execute "pns.validate()" we would need await in save.
             .catch(error => {     // we need catch only if get 'await' out          
-                throw error;
+                throw error; //and return json error to client
             })
             .then(pns => {  //save method returns pns that has been save to MongoDB
-                
+
                 res.send({ statusCode: "200 OK", _id: pns._id }); //ALL OK, response 200, with pns._id. TODO: is it necessary any more params?
 
-                //START Redis Transaction with multi chain and result's callback
-                rclient.multi([
+                rclient.multi([ //START Redis Transaction with multi chain and result's callback
                     ["lpush", pns.channel, JSON.stringify(pns)],    //Trans 1
                     ["sadd", PNS_IDS, pns._id]                      //Trans 2             
                 ]).exec(function (error, replies) { // drains multi queue and runs atomically                    
-                    if (error) {
-                        console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "WARNING: We couldn't save PNS in Redis (We will have to wait for retry): " + error.message);
-                    }
-                });
-                //END Redis Transaction with multi chain and result's callback
+                    if (error) console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "WARNING: We couldn't save PNS in Redis (We will have to wait for retry): " + error.message);
+                });  //END Redis Transaction with multi chain and result's callback               
 
                 console.log(process.env.GREEN_COLOR, logTime(new Date()) + "PNS saved, _id: " + pns._id);  //JSON.stringify for replace new lines (\n) and tab (\t) chars into string
             });

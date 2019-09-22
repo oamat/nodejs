@@ -22,7 +22,7 @@ const sendSMS = async (sms) => {
             body: body
         };
 
-        // const request = https.request(options, (response) => {
+        // const request = https.request(options, (response) => { //see https://nodejs.org/api/https.html#https_https_request_options_callback
         //     //console.log('statusCode:', response.statusCode);
         //     //console.log('headers:', response.headers);
         //     //console.log('data:', response.data);

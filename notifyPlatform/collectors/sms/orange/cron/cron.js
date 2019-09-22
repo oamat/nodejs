@@ -65,29 +65,29 @@ const sendNextSMS = async () => {
     try {
         const smsJSON = await nextSMS(); //get message with rpop command from SMS.ORA.1, 2, 3 
         if (smsJSON) {
-            const sms = new Sms(JSON.parse(smsJSON)); // convert json to object   
-            if ((sms.expire) && (Date.now() > sms.expire)) { // treat the expired SMS
+            const sms = new Sms(JSON.parse(smsJSON)); //EXPIRED // convert json text to json object   
+            if ((sms.expire) && (Date.now() > sms.expire)) { // is the SMS expired?
                 sms.expired = true;
                 sms.status = 4; //0:notSent, 1:Sent, 2:Confirmed, 3:Error, 4:Expired
-                updateSMS(sms); // update SMS in MongoDB
+                updateSMS(sms).catch(error => { console.log(process.env.YELLOW_COLOR, logTime(new Date()) + error.message) }); //update SMS in MongoDB, is the last task, it's unnecessary await
                 console.log(process.env.YELLOW_COLOR, logTime(new Date()) + " The SMS " + sms._id + " has expired and has not been sent.");
-            } else {
+            } else { 
                 //sms.validate(); //It's unnecessary because we cautched from redis, and we checked before in the apisms, the new params are OK.
-
-                if (operator == defaultOperator) { //If we change operator for contingency we change sms to other list
+                if (operator == defaultOperator) { //ORANGE WILL SEND //If we change operator for contingency we change sms to other list
                     sms.status = await sendSMS(sms); // send SMS to operator, //return status: 0:notSent, 1:Sent, 2:Confirmed, 3:Error, 4:Expired   
                     sms.retries++;
                     sms.dispatched = true;
                     sms.dispatchedAt = new Date();
-                    Promise.all([
+                    Promise.all([ //Always we need delete ID in SMS_IDS SET, in error case we continue
                         updateSMS(sms).catch(error => { console.log(process.env.YELLOW_COLOR, logTime(new Date()) + error.message); }), // update SMS in MongoDB, in error case we continue
                         sismember(SMS_IDS, sms._id).catch(error => { console.log(process.env.YELLOW_COLOR, logTime(new Date()) + error.message); }) //delete from redis ID control, in error case we continue
-                    ]).then(() => {
+                    ]).then(() => { //we always enter here
                         console.log(process.env.GREEN_COLOR, logTime(new Date()) + "SMS sended : " + sms._id);  //JSON.stringify for replace new lines (\n) and tab (\t) chars into string
                     });
-                } else {
-                    sms.operator = operator; //The real operator to we will send SMS message                   
-                    await lpush(buildSMSChannel(defaultOperator, sms.priority), JSON.stringify(sms)); // we put message to the other operator List
+                } else { //CONTINGENCY //In this case we don't delete ID in SMS_IDS SET.
+                    sms.operator = operator; //The real operator to we will send SMS message      
+                    sms.channel = buildSMSChannel(operator, sms.priority); //The real channel we will send SMS message
+                    await lpush(sms.channel, JSON.stringify(sms)); // we put message to the other operator List
                     console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "change SMS " + sms._id + " from " + defaultOperator + " to " + operator); // we inform about this exceptional action
                 }
             }
@@ -123,8 +123,8 @@ const startController = async (intervalControl) => {
 
 const checksController = async () => {
     try {
-        cronConf = await hgetall(defaultCollector);
-        Promise.all([
+        cronConf = await hgetall(defaultCollector); //get the cronConf
+        Promise.all([ //In error case we continue with other tasks
             hset(defaultCollector, "last", dateFormat(new Date())).catch(error => { console.log(process.env.YELLOW_COLOR, logTime(new Date()) + error.message); }),  //save last execution in Redis, in error case we continue
             checkstatus(parseInt(cronConf.status)).catch(error => { console.log(process.env.YELLOW_COLOR, logTime(new Date()) + error.message); }), //check status in Redis, in error case we continue
             checkInterval(parseInt(cronConf.interval)).catch(error => { console.log(process.env.YELLOW_COLOR, logTime(new Date()) + error.message); }), //check interval in Redis, in error case we continue
@@ -176,7 +176,7 @@ const checkInterval = async (newInterval) => { //check rate/s, and change cron r
     }
 }
 
-const checkOperator = async (newOperator) => { //change operator for HA //"ORA", "VOD", "ORA",... //change operator for HA
+const checkOperator = async (newOperator) => { //change operator for HA //"ORA", "VIP", "VOD", "ORA",... //change operator for HA
     try {
         if (newOperator.toString().trim() != operator) {
             console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "Change ORANGE operator " + operator + " for " + newOperator);

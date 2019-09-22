@@ -1,4 +1,5 @@
 Always with command line:
+.\jmeter.bat  -n -t E:\dev\nodejs\nodejs\notifyPlatform\jmeter.jmx 
 .\jmeter.bat  -n -t E:\dev\nodejs\nodejs\notifyPlatform\jmeter.jmx -l E:\dev\nodejs\nodejs\notifyPlatform\jmetertestresults.jtl
 
 More Memory in jmeter.bat:

@@ -10,9 +10,13 @@
       "RETRIESSMS_PORT": 30006,
 
       "MONGODBSMS_URI": "mongodb://root:example@192.168.99.100:30090/admin?authMechanism=SCRAM-SHA-1",
-      "MONGODBSMS_PORT": "30090",
+      "MONGODBSMS_PORT": "30090",         
       "MONGODBPNS_URI": "mongodb://root:example@192.168.99.100:30091/admin?authMechanism=SCRAM-SHA-1",
       "MONGODBPNS_PORT": "30091",
+      "MONGODBSMS_POOL": 20, 
+      "MONGODBPNS_POOL": 20,
+      "MONGODB_MULTI_POOL": 5, 
+      
      
       "REDISSMS_IP": "192.168.99.100",
       "REDISSMS_PORT": "30080",
@@ -38,6 +42,9 @@
     "MONGODBSMS_PORT": "30090",
     "MONGODBPNS_URI": "mongodb://root:example@localhost:30091/admin?authMechanism=SCRAM-SHA-1",
     "MONGODBPNS_PORT": "30091",
+    "MONGODBSMS_POOL": 20,  
+    "MONGODBPNS_POOL": 20,
+    "MONGODB_MULTI_POOL": 5, 
     
     "REDISSMS_IP": "localhost",
     "REDISSMS_PORT": "30080",
@@ -63,6 +70,9 @@
     "MONGODBSMS_PORT": "30090",
     "MONGODBPNS_URI": "mongodb://root:example@mongopns:30091/admin?authMechanism=SCRAM-SHA-1",
     "MONGODBPNS_PORT": "30091",
+    "MONGODBSMS_POOL": 20,
+    "MONGODBPNS_POOL": 20,
+    "MONGODB_MULTI_POOL": 5, 
 
     "REDISSMS_IP": "redissms",
     "REDISSMS_PORT": "30080",
@@ -88,6 +98,10 @@
     "MONGODBSMS_PORT": "30090",
     "MONGODBPNS_URI": "mongodb://root:example@10.0.2.15:30091/admin?authMechanism=SCRAM-SHA-1",
     "MONGODBPNS_PORT": "30091",
+    "MONGODBSMS_POOL": 20,
+    "MONGODBPNS_POOL": 20,
+    "MONGODB_MULTI_POOL": 5,   
+   
 
     "REDISSMS_IP": "10.0.2.15",
     "REDISSMS_PORT": "30080",
