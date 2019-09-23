@@ -47,7 +47,7 @@ const buildSMSChannel = (operator, priority) => {
    return SMS + operator + "." + priority;
 }
 
-//build the name of all SMS channels with operator and priority, we neeed it for redis. 
+//build json the name of all SMS channels with operator and priority, we neeed it for redis. 
 const buildSMSChannels = (operator) => {
    return {
       channel0: buildSMSChannel(operator, 0),
@@ -58,6 +58,31 @@ const buildSMSChannels = (operator) => {
       channel5: buildSMSChannel(operator, 5)
    }
 }
+
+//build and array with the name of all SMS channels with operator and priority, we neeed it for redis. 
+const arraySMSChannels = (operator) => {
+   return [ 
+      buildSMSChannel(operator, 0),
+      buildSMSChannel(operator, 1),
+      buildSMSChannel(operator, 2),
+      buildSMSChannel(operator, 3),
+      buildSMSChannel(operator, 4),
+      buildSMSChannel(operator, 5)
+   ]
+}
+
+//build and array with the name of all PNS channels with operator and priority, we neeed it for redis. 
+const arrayPNSChannels = (operator) => {
+   return [ 
+      buildSMSChannel(operator, 0),
+      buildSMSChannel(operator, 1),
+      buildSMSChannel(operator, 2),
+      buildSMSChannel(operator, 3),
+      buildSMSChannel(operator, 4),
+      buildSMSChannel(operator, 5)
+   ]
+}
+
 
 //build the name of PNS channel with operator and priority, we neeed it for redis. 
 const buildPNSChannel = (operator, priority) => {
@@ -76,8 +101,10 @@ const buildPNSChannels = (operator) => {
    }
 }
 
+//counter generic
 const counter = ((i = 0) => () => ++i)();
 
+//return description of states
 const descStatus = (type, status) => { //0:notSent, 1:Sent, 2:Confirmed, 3:Error, 4:Expired, 5: token not found(not register)
    switch (status) {
       case 0:
@@ -106,4 +133,4 @@ const validateOperator = (type, operator) => {
    return false;
 }
 
-module.exports = { dateFormat, dateFormatWithMillis, logTime, buildSMSChannel, buildSMSChannels, buildPNSChannel, buildPNSChannels, counter, replaceBreaks, replaceSpacesTo1, replaceSpaces, descStatus, validateOperator }
+module.exports = { dateFormat, dateFormatWithMillis, logTime, buildSMSChannel, buildSMSChannels, buildPNSChannel, buildPNSChannels, arrayPNSChannels,arraySMSChannels, counter, replaceBreaks, replaceSpacesTo1, replaceSpaces, descStatus, validateOperator }

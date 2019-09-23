@@ -15,8 +15,9 @@ const { Pns } = require('../models/pns');
 const auth = require('../auth/auth');
 const { savePNS } = require('../util/mongopns');
 const { rclient } = require('../config/redispns');
-const { hgetConf, hget } = require('../util/redisconf');
+const { hgetall } = require('../util/redisconf');
 const { dateFormat, logTime, buildPNSChannel } = require('../util/formats');
+
 const router = new express.Router();
 //VARS
 const PNS_IDS = "PNS.IDS.PENDING";
@@ -26,14 +27,11 @@ router.post('/pnsSend', auth, async (req, res) => {  //we execute auth before th
     //console.log(process.env.WHITE_COLOR, logTime(new Date()) + "PNS new request : " + JSON.stringify(req.body));
     try {
         const pns = new Pns(req.body);  //await it's unnecessary because is the first creation of object. Model Validations are check when save in Mongodb, not here. 
-        pns.token = await hget("tokenpns" + pns.application + ":" + pns.uuiddevice, "token"); //find the token for this uuiddevice PNS.
-        pns.operator = await hget("tokenpns" + pns.application + ":" + pns.uuiddevice, "operator"); //find the operator for this uuiddevice PNS.
-        if (!pns.token) throw new Error(" This uuiddevice is not register, we cannot find its token neither operator.") //0:notSent, 1:Sent, 2:Confirmed, 3:Error, 4:Expired, 5:token not found (not register)
-
-        const collectorOperator = await hgetConf("collectorpns:" + pns.operator, "operator"); //this method is Async, but we can get in parallel until need it (with await). 
-
-        if (collectorOperator != pns.operator) pns.operator = collectorOperator;  //check if the operator have some problems
-
+        let tokenConf = await hgetall("tokenpns" + pns.application + ":" + pns.uuiddevice); ////find the "token" & "operator" for this application uuiddevice PNS.
+        if (!tokenConf.token || !tokenConf.operator) throw new Error(" This uuiddevice is not register, we cannot find its token neither operator.") //0:notSent, 1:Sent, 2:Confirmed, 3:Error, 4:Expired, 5:token not found (not register)
+        
+        pns.token = tokenConf.token; //get the token for this uuiddevice PNS.
+        pns.operator = tokenConf.operator; //get the operator for this uuiddevice PNS.
         pns.channel = buildPNSChannel(pns.operator, pns.priority); //get the channel to put notification with operator and priority
 
         //await pns.validate(); //validate is unnecessary, we would need await because is a promise and we need to manage the throw exceptions, particularly validating errors in bad request.

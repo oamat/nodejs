@@ -15,3 +15,6 @@ summary =  10000 in 00:00:12 =  844.7/s Avg:   988 Min:     3 Max:  4470 Err:  2
 summary =   6000 in 00:00:07 =  815.7/s Avg:  1103 Min:     1 Max:  4641 Err:  153 (2,55%)
 summary =   6000 in 00:00:07 =  812.3/s Avg:  1106 Min:    60 Max:  4440 Err:  154 (2,57%)
 summary =   6000 in 00:00:08 =  799.3/s Avg:  1075 Min:    70 Max:  4618 Err:  155 (2,58%)
+
+summary +    140 in 00:00:00 =  595.7/s Avg:   276 Min:    16 Max:   433 Err:     0 (0.00%)
+summary =   9860 in 00:00:37 =  269.8/s Avg:   366 Min:   259 Max:   905 Err:     0 (0.00%)

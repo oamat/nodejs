@@ -9,7 +9,6 @@
 //Dependencies
 const https = require('https');
 const fs = require('fs');
-const { dateFormatWithMillis } = require('../util/formats')
 
 
 process.env["NODE_TLS_REJECT_UNAUTHORIZED"] = 0;
@@ -28,12 +27,14 @@ const options = {
     port: 30001,
     path: '/smsSend',
     method: 'POST',
-    key: fs.readFileSync('../ssl/server.key'),
-    cert: fs.readFileSync('../ssl/server.cert'),
+    key: fs.readFileSync('./server.key'),
+    cert: fs.readFileSync('./server.cert'),
     headers: { 'Content-Length': body.length, 'Content-Type': 'application/json', 'x-api-key': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6Ik9UUExPV0VCIiwiY29udHJhY3QiOiJPVFBMT1dFQiIsImlhdCI6MjAxNjIzOTAyMn0.BK58iwYbyfGb1u--SLP3YZP7JZxKSMrPHmdc-gfH4t4' },
     body: body,
     agent: false
 };
+
+const array =  new Array();
 
 const TOTAL = 1000;
 const LOOP = 5;
@@ -48,14 +49,23 @@ const sendSMS = async () => {
 
 
         const request = https.request(options, (response) => { //see https://nodejs.org/api/https.html#https_https_request_options_callback
-            //console.log('statusCode:', response.statusCode);
+            console.log(Date.now() + "  statusCode:  ", response.statusCode);
+            array.push(Date.now());
+            
+
+            // if (counter == TOTALLOOP) {
+            //     array.length
+            // }
+
             //console.log('headers:', response.headers);
             //console.log('data:', response.data);
             response.on('data', (data) => {
                 //process.stdout.write(data);
                 counter++;
                 OK++
-                if (counter == TOTALLOOP) console.log(dateFormatWithMillis(new Date()) + " Req. OKs :" + counter + " Req. Err :" + err + " Time :" + (Date.now() - startTime));
+                if (counter == TOTALLOOP) console.log(" Req. OKs :" + counter + " Req. Err :" + err + " Time :" + (Date.now() - startTime));
+
+                
             });
         });
 
@@ -81,15 +91,16 @@ const sendSMS = async () => {
 }
 
 
-const start = async () => {
-    
+const start = async () => {    
     for (var i = 0; i < TOTAL; i++) {
         sendSMS();
     }
 }
 
 
+console.log("Preparing performance testing : ");
 startTime = Date.now();
 for (var j = 0; j < LOOP; j++) {
     start();
 }
+console.log("Finish performance testing ");
