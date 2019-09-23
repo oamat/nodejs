@@ -1,9 +1,11 @@
 Always with command line:
 .\jmeter.bat  -n -t E:\dev\nodejs\nodejs\notifyPlatform\jmeter.jmx 
+    .\jmeter.bat  -n -t C:\Users\Oriol\Downloads\nodejs\nodejs\notifyPlatform\jmeter.jmx 
+
 .\jmeter.bat  -n -t E:\dev\nodejs\nodejs\notifyPlatform\jmeter.jmx -l E:\dev\nodejs\nodejs\notifyPlatform\jmetertestresults.jtl
 
 More Memory in jmeter.bat:
-set "HEAP=-Xms1500m -Xmx1500m -XX:MaxMetaspaceSize=512m"
+set "HEAP=-Xms2000m -Xmx2000m -XX:MaxMetaspaceSize=512m"
 
 For SSL: Generating jks for JMeter :  http://rajanmanoj.blogspot.com/2011/02/how-to-test-ssl-using-jmeter.html
     # keytool -importcert -file your.cer -keystore your.jks -alias youralias
@@ -12,11 +14,14 @@ For SSL: Generating jks for JMeter :  http://rajanmanoj.blogspot.com/2011/02/how
 **************************NEXT STEPS FOR JMETER **********************
 **************************IMPORTANT: shutdown vagrant because ports.... 
 
+//ATTENTION: if VAGRANT is UP : { Error: read ECONNRESET at _errnoException (util.js:1022:11) at TLSWrap.onread (net.js:628:25) code: 'ECONNRESET', errno: 'ECONNRESET', syscall: 'read' }
+
+Copy server.jks to known path 
 @# system.properties
 Now copy this jks file in some directory. I create a cert directory in jmeter and Keep this file there.
 Open file system.properties from jmeter/bin
 Add this line at that end of the file.
-    javax.net.ssl.trustStore=E:/dev/apache-jmeter-5.1/server.jks
+    javax.net.ssl.trustStore=E:/dev/apache-jmeter-5.1/server.jks (the known path )
     javax.net.ssl.trustPassword=mypass_word
 
 (Make sure all other javax.net.ssl.trustStore is commented except what you enter)

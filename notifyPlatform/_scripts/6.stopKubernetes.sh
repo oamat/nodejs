@@ -13,6 +13,9 @@ kubectl delete -f retriessms-deployment.yaml -f retriessms-service.yaml
 kubectl delete -f mqsms-deployment.yaml
 kubectl delete -f mqpns-deployment.yaml
 
+kubectl delete -f batchsms-deployment.yaml
+kubectl delete -f batchpns-deployment.yaml
+
 kubectl delete -f apple-deployment.yaml
 kubectl delete -f google-deployment.yaml
 kubectl delete -f microsoft-deployment.yaml

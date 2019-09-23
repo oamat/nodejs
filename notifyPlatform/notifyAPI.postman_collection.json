@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "92a972c9-ab93-4b87-8e38-a543e6c2dc3f",
+		"_postman_id": "ef8bbc59-82c0-458e-a2cf-c73a54dfb9bc",
 		"name": "notifyAPI",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -24,7 +24,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t \"contract\" : \"OTPLOWEB\",\n\t \"telf\" : \"+34699272801\",\n\t \"message\" : \"you have won a gift\",\n\t \"alias\" : \"L.O.\",\n\t \"customId\" : \"myid_4566544\",\n\t \"priority\" : \"0\"\n}"
+					"raw": "{\n\t \"contract\" : \"OTPLOWEB\",\n\t \"telf\" : \"+34699272800\",\n\t \"message\" : \"you have won a gift\",\n\t \"alias\" : \"L.O.\",\n\t \"customId\" : \"myid_4566544\",\n\t \"priority\" : \"0\"\n}"
 				},
 				"url": {
 					"raw": "https://localhost:30001/smsSend",
@@ -557,6 +557,5 @@
 			},
 			"response": []
 		}
-	],
-	"protocolProfileBehavior": {}
+	]
 }
