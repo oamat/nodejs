@@ -28,8 +28,7 @@ router.post('/pnsSend', auth, async (req, res) => {  //we execute auth before th
     try {
         const pns = new Pns(req.body);  //await it's unnecessary because is the first creation of object. Model Validations are check when save in Mongodb, not here. 
         let tokenConf = await hgetall("tokenpns" + pns.application + ":" + pns.uuiddevice); ////find the "token" & "operator" for this application uuiddevice PNS.
-        if (!tokenConf.token || !tokenConf.operator) throw new Error(" This uuiddevice is not register, we cannot find its token neither operator.") //0:notSent, 1:Sent, 2:Confirmed, 3:Error, 4:Expired, 5:token not found (not register)
-        
+        if (!tokenConf || !tokenConf.token || !tokenConf.operator) throw new Error("This uuiddevice is not register, we cannot find its token neither operator : 'tokenpns" + pns.application + ":" + pns.uuiddevice) //0:notSent, 1:Sent, 2:Confirmed, 3:Error, 4:Expired, 5:token not found (not register)
         pns.token = tokenConf.token; //get the token for this uuiddevice PNS.
         pns.operator = tokenConf.operator; //get the operator for this uuiddevice PNS.
         pns.channel = buildPNSChannel(pns.operator, pns.priority); //get the channel to put notification with operator and priority

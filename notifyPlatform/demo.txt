@@ -4,6 +4,8 @@ OASIS: ppt amb dibuix
 Falten coses, No es perfecte, el que falta 
 Estructura del projecte, config...
 Seguretat: SSL, AUTH, JWT
+
+Explicar crons, es requereix coneixement: Control cron: Configurar intervalControl Dinámico
 demo apisms + movistar envío sms (rapidez)
 ver estado en apiadmin
 ver collectores en apiadmin y demo apisms + movistar stop-start

@@ -32,7 +32,7 @@ router.post('/smsSend', auth, async (req, res) => {  //we execute auth before th
         sms.operator = await hgetConf("contractsms:" + sms.contract, "operator"); //Operator by default by contract. we checked the param before (in auth)                 
         //sms.telf = sms.telf.replace("+", "00"); Maybe it's unnecessary...
         if (sms.operator == "ALL") { //If operator is 'ALL' means that we need to find the better operator for the telf.            
-            sms.operator = await hget("telfsms:" + sms.telf, "operator"); //find the best operator for this tef.         
+            sms.operator = await hget("telfsms:" + sms.telf, "operator"); //find the best operator for this telf.         
             if (!sms.operator) sms.operator = "MOV";  //by default we use MOV
         }
         const collectorOperator = await hgetConf("collectorsms:" + sms.operator, "operator"); //this method is Async, but we can get in parallel until need it (with await).

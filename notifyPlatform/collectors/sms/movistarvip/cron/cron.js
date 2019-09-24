@@ -28,7 +28,7 @@ var cron; //the main cron that send message to the operator.
 var cronController;  //the Controller cron that send message to the operator.
 var cronStatus = 1; //status of cron. 0: cron stopped, 1 : cron working, 
 var cronChanged = false;  //if we need restart cron,  we use this control var
-var cronControllerChange = false; //if we need restart cron, we use this control var
+var cronControllerChanged = false; //if we need restart cron, we use this control var
 var interval = 10; //define the rate/s notifications, interval in cron (100/s by default)
 var intervalControl = 60000; //define interval in controller cron (check by min. by default)
 
@@ -111,13 +111,17 @@ const nextSMS = async () => {
 
 const startController = async (intervalControl) => {
     try {
-        console.log(process.env.GREEN_COLOR, logTime(new Date()) + "initializing cronController at " + dateFormat(new Date()) + " with intervalControl : " + intervalControl);
+        console.log(process.env.GREEN_COLOR, logTime(new Date()) + "initializing MOVISTAR-VIP cronController at " + dateFormat(new Date()) + " with intervalControl : " + intervalControl);
         hset(defaultCollector, "last", dateFormat(new Date())); //save first execution in Redis
-        cronController = setInterval(function () {
-            checksController();
-        }, intervalControl);
+        if (cronController) {
+            console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "MOVISTAR-VIP cronController is executing, so we don't need re-start it.");
+        } else {
+            cronController = setInterval(function () {
+                checksController();
+            }, intervalControl);
+        }
     } catch (error) {
-        console.log(process.env.RED_COLOR, logTime(new Date()) + "ERROR: we cannot start cron Controller. . Process continuing... " + error.message);
+        console.log(process.env.RED_COLOR, logTime(new Date()) + "ERROR: we cannot start MOVISTAR-VIP cron Controller. . Process continuing... " + error.message);
         //console.error(error); //continue the execution cron
     }
 }
@@ -130,8 +134,8 @@ const checksController = async () => {
             hset(defaultCollector, "last", dateFormat(new Date())).catch(error => { console.log(process.env.YELLOW_COLOR, logTime(new Date()) + error.message); }),  //save last execution in Redis, in error case we continue
             checkstatus(parseInt(cronConf.status)).catch(error => { console.log(process.env.YELLOW_COLOR, logTime(new Date()) + error.message); }), //check status in Redis, in error case we continue
             checkInterval(parseInt(cronConf.interval)).catch(error => { console.log(process.env.YELLOW_COLOR, logTime(new Date()) + error.message); }), //check interval in Redis, in error case we continue
-            checkOperator(cronConf.operator).catch(error => { console.log(process.env.YELLOW_COLOR, logTime(new Date()) + error.message); }),
-            checkIntervalControl(parseInt(cronConf.intervalControl)).catch(error => { console.log(process.env.YELLOW_COLOR, logTime(new Date()) + error.message); }) //check operator in Redis, in error case we continue
+            checkOperator(cronConf.operator).catch(error => { console.log(process.env.YELLOW_COLOR, logTime(new Date()) + error.message); }),//check operator in Redis, in error case we continue
+            checkIntervalControl(parseInt(cronConf.intervalControl)).catch(error => { console.log(process.env.YELLOW_COLOR, logTime(new Date()) + error.message); }) //check intervalControl in Redis, in error case we continue
         ]).then(async () => {
             // Cron Main Check
             if (cronChanged) { //some param changed in cron, we need to restart or stopped.
@@ -146,9 +150,9 @@ const checksController = async () => {
                 }
             }
             // Cron Controller Check
-            if (cronControllerChange) {
+            if (cronControllerChanged) {
                 console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "Stopping and Re-starting MOVISTAR-VIP cronController at " + dateFormat(new Date()));
-                cronControllerChange = false;                
+                cronControllerChanged = false;                
                 clearInterval(cronController); 
                 cronController = null;                
                 await startController(intervalControl).catch(error => { throw new Error("ERROR in MOVISTAR-VIP cronController." + error.message) });
@@ -193,7 +197,7 @@ const checkIntervalControl = async (newIntervalControl) => { //check rate/s, and
         if (intervalControl != newIntervalControl) { //if we change the interval -> rate/s
             console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "Change MOVISTAR-VIPcronController interval:  " + intervalControl + " for new interval : " + newIntervalControl + " , next restart will be effect.");
             intervalControl = newIntervalControl;
-            cronControllerChange = true;
+            cronControllerChanged = true;
         }
     } catch (error) {
         console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "WARNING  checkIntervalControl: we didn't find MOVISTAR-VIPintervalControl in Redis. current intervalControl " + intervalControl + " . . Process continuing... " + error.message);

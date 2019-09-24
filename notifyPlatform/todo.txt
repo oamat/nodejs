@@ -1,4 +1,4 @@
-Control cron: Configurar intervalControl Dinámico
+Gravar errors a BBDD 
 Test : hacer todos los unitarios (mucho tiempo)
 MQ : configurar correctamente el MQ en docker/kubernetes. 
 Constantes : literales en el código

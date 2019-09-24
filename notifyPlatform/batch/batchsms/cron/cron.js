@@ -10,38 +10,41 @@
 //Dependencies
 const { Sms } = require('../models/sms');
 const { rclient } = require('../config/redissms'); //we need to initialize redis
-const { hgetConf, hset } = require('../util/redisconf');
+const { hset, hgetall } = require('../util/redisconf');
 const { dateFormat, logTime, buildSMSChannel } = require('../util/formats'); // utils for formats
-const { saveSMS } = require('../util/mongosms');
+const { saveSMS } = require('../util/mongosms'); //for updating status
 const auth = require('../auth/auth');
 const fs = require('fs');
 
-//VARS
+//Variables
 const batchIn = './files/in/';
 const batchOut = './files/out/';
 const batchName = "collectorsms:batchSMS";
 const SMS_IDS = "SMS.IDS.PENDING";
-//Variables
-var cron; //the main cron that manage files and put them into redis List.
+var cronConf; //the redis cron configuration 
+var cron; //the main cron that send message to the operator.
+var cronController;  //the Controller cron that send message to the operator.
 var cronStatus = 1; //status of cron. 0: cron stopped, 1 : cron working, 
-var cronChanged = false;  //if we need restart cron, 
-var interval = 180000; //define the rate/s notifications, interval in cron (100/s by default)
-var intervalControl = 60000; //define interval in controller cron (check by min. by default)
+var cronChanged = false;  //if we need restart cron,  we use this control var
+var cronControllerChanged = false; //if we need restart cron, we use this control var
+var interval = 180000; //define the interval, in this case 3 minutes.
+var intervalControl = 60000; //define interval in controller cron (check every min. by default)
 var nextExecution = true;
+
 
 const startCron = async (interval) => { //Start cron only when cron is stopped.
     try {
-        console.log(process.env.GREEN_COLOR, logTime(new Date()) + "initializing batchSMS at " + dateFormat(new Date()) + " with interval : " + interval);
+        console.log(process.env.GREEN_COLOR, logTime(new Date()) + "initializing BATCHSMS cronMain with interval : " + interval);
         if (cron) {
-            console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "batchSMS is executing, so we don't need re-start it.");
+            console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "BATCHSMS cronMain is executing, so we don't need re-start it.");
         } else {
             cron = setInterval(function () {
-                console.log(logTime(new Date()) + "batchSMS executing ");
+                //console.log(logTime(new Date()) + "BATCHSMS cron executing ");
                 getSMSFiles();
             }, interval);
         }
     } catch (error) {
-        console.log(process.env.RED_COLOR, logTime(new Date()) + "ERROR: we cannot start batchSMS . Process continuing... " + error.message);
+        console.log(process.env.RED_COLOR, logTime(new Date()) + "ERROR: we cannot start BATCHSMS cron." + error.message);
         //console.error(error); //continue the execution cron
     }
 }
@@ -49,12 +52,12 @@ const startCron = async (interval) => { //Start cron only when cron is stopped.
 const stopCron = async () => { //stop cron only when cron is switched on
     try {
         if (cron) {
-            console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "Stoping batchSMS cron at " + dateFormat(new Date()));
+            console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "Stoping BATCHSMS cronMain at " + dateFormat(new Date()));
             clearInterval(cron);
             cron = null;
         }
     } catch (error) {
-        console.log(process.env.RED_COLOR, logTime(new Date()) + "ERROR: we cannot stop batchSMS. Process continuing... " + error.message);
+        console.log(process.env.RED_COLOR, logTime(new Date()) + "ERROR: we cannot stop BATCHSMS cronMain. Process continuing... " + error.message);
         //console.error(error); //continue the execution cron
     }
 }
@@ -70,23 +73,23 @@ const getSMSFiles = async () => {
                     var fileJSON = JSON.parse(file);
                     await auth(fileJSON.fileBatch.contract, fileJSON.fileBatch.jwt);
                     var priority = fileJSON.fileBatch.priority;
-                    if (priority < 4) priority = 4; //only accept priorities 4 or 5 in batch. (0,1 are reserved for REST interface, 2,3 for MQ interface). 
+                    if (priority < 4) priority = 4; //only accept priorities 4 or 5 in batch. (0,1 are reserved for REST interface, 2,3 for MQ interface).
                     var notifications = fileJSON.fileBatch.notifications;
                     console.log(logTime(new Date()) + filename + " have " + notifications.length + " notifications to send");
                     notifications.forEach(async (smsJSON) => {
                         try {
                             var sms = new Sms(smsJSON); // convert json to object,  await it's unnecessary because is the first creation of object. Model Validations are check when save in Mongodb, not here. 
                             sms.priority = priority;
-                            sms.operator = await hgetConf("contractsms:" + sms.contract, "operator"); //Operator by default by contract. we checked the param before (in auth)                         
-                            sms.telf = sms.telf.replace("+", "00");
-                            if (sms.operator == "ALL") { //If operator is ALL means that we need to find the better operator for the telf.            
-                                sms.operator = await hget("telfsms:" + sms.telf, "operator"); //find the best operator for this tef.         
+                            sms.operator = await hgetConf("contractsms:" + sms.contract, "operator"); //Operator by default by contract. we checked the param before (in auth)                 
+                            //sms.telf = sms.telf.replace("+", "00"); Maybe it's unnecessary...
+                            if (sms.operator == "ALL") { //If operator is 'ALL' means that we need to find the better operator for the telf.            
+                                sms.operator = await hget("telfsms:" + sms.telf, "operator"); //find the best operator for this telf.         
                                 if (!sms.operator) sms.operator = "MOV";  //by default we use MOV
                             }
-                            const collectorOperator = hgetConf("collectorsms:" + sms.operator, "operator"); //this method is Async, but we can get in parallel until need it (with await).
-                            if (await collectorOperator != sms.operator) sms.operator = collectorOperator;  //check if the operator have some problems
+                            const collectorOperator = await hgetConf("collectorsms:" + sms.operator, "operator"); //this method is Async, but we can get in parallel until need it (with await).
+                            if (collectorOperator != sms.operator) sms.operator = collectorOperator;  //check if the operator have some problems and need contingency
 
-                            sms.channel = buildSMSChannel(sms.operator, priority); //get the channel to put notification with operator and priority
+                            sms.channel = buildSMSChannel(sms.operator, sms.priority); //get the channel to put notification with operator and priority
 
                             //await sms.validate(); //validate is unnecessary, we would need await because is a promise and we need to manage the throw exceptions, particularly validating errors in bad request.
 
@@ -94,9 +97,7 @@ const getSMSFiles = async () => {
                                 .catch(error => {     // we need catch only if get 'await' out          
                                     throw error;
                                 })
-                                .then(sms => {  //save method returns sms that has been save to MongoDB
-
-                                    res.send({ statusCode: "200 OK", _id: sms._id }); //ALL OK, response 200, with sms._id. TODO: is it necessary any more params?
+                                .then(sms => {  //save method returns sms that has been save to MongoDB                                   
 
                                     //START Redis Transaction with multi chain and result's callback
                                     rclient.multi([
@@ -108,17 +109,13 @@ const getSMSFiles = async () => {
                                         }
                                     });
                                     //END Redis Transaction with multi chain and result's callback
+
                                     console.log(process.env.GREEN_COLOR, logTime(new Date()) + "SMS saved, _id: " + sms._id);  //JSON.stringify for replace new lines (\n) and tab (\t) chars into string
                                 });
-                                
-                        } catch (error) {
-                            let contract = sms.contract || 'undefined';
-                            let telf = sms.telf || 'undefined';
-                            let message = sms.message || 'undefined';
 
-                            const errorJson = { StatusCode: "batchSMS ERROR", error: error.message, contract: contract, telf: telf, message: message, receiveAt: dateFormat(new Date()) };   // dateFornat: replace T with a space && delete the dot and everything after
-                            console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "ERROR: " + JSON.stringify(errorJson));
-                            //console.error(error); //continue the execution cron          
+                        } catch (error) {
+                            console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "ERROR: BatchSMS processing file, process continue, error : " + error.message);
+                            ////console.error(error); //continue the execution cron          
                             //TODO: save error in db  or mem.
                         }
                     });
@@ -127,11 +124,12 @@ const getSMSFiles = async () => {
                         if (err) throw err;
                         console.log(logTime(new Date()) + batchIn + filename + ' move to ' + batchOut + filename + ' complete!');
                     });
+                    console.log(logTime(new Date()) + + notifications.length + ' notifications processed.');
+                    
                 } else {
                     console.log(logTime(new Date()) + "No files found.");
                 }
             });
-
         } catch (error) {
             console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "ERROR: we have a problem in batchSMS.getSMSFiles() : " + error.message);
             //console.error(error); //continue the execution cron
@@ -143,91 +141,126 @@ const getSMSFiles = async () => {
 
 const startController = async (intervalControl) => {
     try {
-        console.log(process.env.GREEN_COLOR, logTime(new Date()) + "initializing cronController at " + dateFormat(new Date()) + " with intervalControl : " + intervalControl);
+        console.log(process.env.GREEN_COLOR, logTime(new Date()) + "initializing BATCHSMS cronController with intervalControl : " + intervalControl);
         hset(batchName, "last", dateFormat(new Date())); //save first execution in Redis
-        var cronController = setInterval(function () {
-            console.log(process.env.GREEN_COLOR, logTime(new Date()) + "cronController executing: Main cron interval is " + interval + " and status is " + cronStatus + " [1:ON, 0:OFF].");
-            hset(batchName, "last", dateFormat(new Date())); //save last execution in Redis
-            checksController();
-        }, intervalControl);
+        if (cronController) {
+            console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "BATCHSMS cronController is executing, so we don't need re-start it.");
+        } else {
+            cronController = setInterval(function () {
+                checksController();
+            }, intervalControl);
+        }
+        getSMSFiles(); // first execution    
     } catch (error) {
-        console.log(process.env.RED_COLOR, logTime(new Date()) + "ERROR: we cannot start cron Controller. . Process continuing... " + error.message);
+        console.log(process.env.RED_COLOR, logTime(new Date()) + "ERROR: we cannot start BATCHSMS cron Controller. . Process continuing... " + error.message);
         //console.error(error); //continue the execution cron
     }
 }
 
 
 const checksController = async () => {
-    await Promise.all([
-        checkstatus(),
-        checkInterval(),
-    ]);
-
-    if (cronChanged) { //some param changed in cron, we need to restart or stopped.
-        if (cronStatus) { //cron must to be started                       
-            console.log(process.env.GREEN_COLOR, logTime(new Date()) + "Re-Start batchSMS cron...");
-            cronChanged = false;
-            await stopCron();
-            await startCron(interval);
-        } else { //cron must to be stopped            
-            cronChanged = false;
-            await stopCron(); //if I stop cron N times, it doesn't matter... 
-        }
-    }
-
-
-}
-const checkstatus = async () => { //Check status, if it's necessary finish cron because redis say it.
     try {
-        let newCronStatus = parseInt(await hgetConf(batchName, "status"));  //0 stop, 1 OK.  //finish because redis say it 
+        cronConf = await hgetall(batchName); //get the cronConf
+        Promise.all([ //In error case we continue with other tasks
+            hset(batchName, "last", dateFormat(new Date())).catch(error => { console.log(process.env.YELLOW_COLOR, logTime(new Date()) + error.message); }),  //save last execution in Redis, in error case we continue
+            checkstatus(parseInt(cronConf.status)).catch(error => { console.log(process.env.YELLOW_COLOR, logTime(new Date()) + error.message); }), //check status in Redis, in error case we continue
+            checkInterval(parseInt(cronConf.interval)).catch(error => { console.log(process.env.YELLOW_COLOR, logTime(new Date()) + error.message); }), //check interval in Redis, in error case we continue
+            checkIntervalControl(parseInt(cronConf.intervalControl)).catch(error => { console.log(process.env.YELLOW_COLOR, logTime(new Date()) + error.message); }) //check intervalControl in Redis, in error case we continue
+        ]).then(async () => {
+            // Cron Main Check
+            if (cronChanged) { //some param changed in cron, we need to restart or stopped.
+                if (cronStatus) { //cron must to be started                       
+                    console.log(process.env.GREEN_COLOR, logTime(new Date()) + "Stopping and Re-Starting BATCHSMS cronMain...");
+                    cronChanged = false;
+                    await stopCron();
+                    await startCron(interval);
+                } else { //cron must to be stopped            
+                    cronChanged = false;
+                    await stopCron(); //if I stop cron N times, it doesn't matter... 
+                }
+            }
+            // Cron Controller Check
+            if (cronControllerChanged) {
+                console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "Stopping and Re-starting BATCHSMS cronController at " + dateFormat(new Date()));
+                cronControllerChanged = false;
+                clearInterval(cronController);
+                cronController = null;
+                await startController(intervalControl).catch(error => { throw new Error("ERROR in BATCHSMS cronController." + error.message) });
+            }
+            console.log(process.env.GREEN_COLOR, logTime(new Date()) + "BATCHSMS cronController : cronMain intervalControl is " + interval + ", cronController interval is " + interval + " and status is " + cronStatus + " ([1:ON, 0:OFF]).");
+            if (!cronStatus) console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "ATTENTION: BATCHSMS cronMain is OFF");
+        });
+
+    } catch (error) {
+        console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "WARNING : we have had a problem with BATCHSMS configuration in Redis. Process continuing... " + error.message);
+        //console.error(error); //continue the execution cron
+    }
+}
+
+const checkstatus = async (newCronStatus) => { //Check status, if it's necessary finish cron because redis say it.
+    try {
         if (cronStatus != newCronStatus) {
             cronStatus = newCronStatus;
             cronChanged = true;
         }
     } catch (error) {
-        console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "WARNING: we didn't find status (run/stop cron). current cron status = " + cronStatus + " . . Process continuing... " + error.message);
+        console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "WARNING : we didn't find BATCHSMS status in Redis (run/stop cron). current cron status = " + cronStatus + " . . Process continuing... " + error.message);
         //console.error(error); //continue the execution cron
     }
 }
 
-const checkInterval = async () => { //check rate/s, and change cron rate
+const checkInterval = async (newInterval) => { //check rate/s, and change cron rate
     try {
-        let newInterval = parseInt(await hgetConf(batchName, "interval"));  //rate/s //change cron rate    
         if (interval != newInterval) { //if we change the interval -> rate/s
-            console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "Change interval:  " + interval + " for new interval : " + newInterval + " , next restart will be effect.");
+            console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "Change BATCHSMS cronMain interval:  " + interval + " for new interval : " + newInterval + " , next restart will be effect.");
             interval = newInterval;
             cronChanged = true;
         }
     } catch (error) {
-        console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "WARNING: we didn't find rate in Redis (cron interval). current interval " + interval + " . . Process continuing... " + error.message);
+        console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "WARNING : we didn't find BATCHSMS interval in Redis. current interval " + interval + " . . Process continuing... " + error.message);
         //console.error(error); //continue the execution cron
     }
 }
 
+const checkIntervalControl = async (newIntervalControl) => { //check rate/s, and change cron rate
+    try {
+        if (intervalControl != newIntervalControl) { //if we change the interval -> rate/s
+            console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "Change BATCHSMS cronController interval:  " + intervalControl + " for new interval : " + newIntervalControl + " , next restart will be effect.");
+            intervalControl = newIntervalControl;
+            cronControllerChanged = true;
+        }
+    } catch (error) {
+        console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "WARNING  checkIntervalControl: we didn't find BATCHSMS intervalControl in Redis. current intervalControl " + intervalControl + " . . Process continuing... " + error.message);
+        //console.error(error); //continue the execution cron
+    }
+}
+
+
 const initCron = async () => {
     try {
-        await Promise.all([
-            hgetConf(batchName, "interval"),
-            hgetConf(batchName, "intervalControl"),
-            hgetConf(batchName, "status"),
-        ]).then((values) => {
-            interval = parseInt(values[0]); //The rate/Main cron interval
-            intervalControl = parseInt(values[1]); //the interval of controller
-            cronStatus = parseInt(values[2]); //maybe somebody stops collector
-        });
+        cronConf = await hgetall(batchName); // redis conf
+        if (cronConf) {
+            interval = parseInt(cronConf.interval); //The rate/cronMain interval
+            intervalControl = parseInt(cronConf.intervalControl); //the interval of controller
+            cronStatus = parseInt(cronConf.status); //maybe somebody stops collector
+        } else console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "WARNING : We didn't find BATCHSMS initialization parameters in Redis, we will initialize cron with default params  . . Process continuing. ");
 
-        console.log(process.env.GREEN_COLOR, logTime(new Date()) + "initializing all crons processes at " + dateFormat(new Date()) + " with cron interval [" + interval + "ms] and cron Controller interval : [" + intervalControl + "ms]...");
         if (cronStatus) {
-            getSMSFiles(); // first execution 
-            await startCron(interval);
-        } else console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "Cron status in redis indicates we don't want start cron process. we only start cron Controller.");
-        await startController(intervalControl);
+            console.log(process.env.GREEN_COLOR, logTime(new Date()) + "BATCHSMS cronMain interval [" + interval + "ms], cronController interval : [" + intervalControl + "ms] and status [" + cronStatus + "](1:ON, 0:OFF).");
+            await startCron(interval).catch(error => { throw new Error("ERROR in BATCHSMS cronMain." + error.message) });
+        } else {
+            console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "BATCHSMS Redis Configuration status indicates we don't want start cronMain process. we only start cron Controller.");
+            console.log(process.env.GREEN_COLOR, logTime(new Date()) + "BATCHSMS cronController : cronMain interval is " + interval + ", cronController intervalControl is " + interval + " and status is " + cronStatus + " ([1:ON, 0:OFF]).");
+        }
+
+        await startController(intervalControl).catch(error => { throw new Error("ERROR in BATCHSMS cronController." + error.message) });
+
     } catch (error) {
-        console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "WARNING: we didn't find initialize params, we will initialize cron with default params (every 10s, and 60s to reconfig) . . Process continuing... " + error.message);
-        ////console.error(error); //continue the execution cron
-        await startCron(10000); // 10 seconds
-        await startController(60000); // 60 seconds
+        console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "WARNING : We have a problem in initialization. Process continuing... " + error.message);
+        //console.error(error); //continue the execution cron
         cronStatus = 1;
+        startCron(interval); // 100 message/s
+        startController(intervalControl); // 60 seconds        
     }
 }
 

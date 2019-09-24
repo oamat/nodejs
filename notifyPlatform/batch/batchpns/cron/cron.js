@@ -10,9 +10,9 @@
 //Dependencies
 const { Pns } = require('../models/pns');
 const { rclient } = require('../config/redispns'); //we need to initialize redis
-const { hgetConf, hset } = require('../util/redisconf');
+const { hset, hgetall } = require('../util/redisconf');
 const { dateFormat, logTime, buildPNSChannel } = require('../util/formats'); // utils for formats
-const { savePNS } = require('../util/mongopns');
+const { savePNS } = require('../util/mongopns'); //for updating status
 const auth = require('../auth/auth');
 const fs = require('fs');
 
@@ -21,27 +21,30 @@ const batchIn = './files/in/';
 const batchOut = './files/out/';
 const batchName = "collectorpns:batchPNS";
 const PNS_IDS = "PNS.IDS.PENDING";
-var cron; //the main cron that manage files and put them into redis List.
+var cronConf; //the redis cron configuration 
+var cron; //the main cron that send message to the operator.
+var cronController;  //the Controller cron that send message to the operator.
 var cronStatus = 1; //status of cron. 0: cron stopped, 1 : cron working, 
-var cronChanged = false;  //if we need restart cron, 
+var cronChanged = false;  //if we need restart cron,  we use this control var
+var cronControllerChanged = false; //if we need restart cron, we use this control var
 var interval = 180000; //define the interval, in this case 3 minutes.
-var intervalControl = 60000; //define interval in controller cron (check by min. by default)
+var intervalControl = 60000; //define interval in controller cron (check every min. by default)
 var nextExecution = true;
 
 
 const startCron = async (interval) => { //Start cron only when cron is stopped.
     try {
-        console.log(process.env.GREEN_COLOR, logTime(new Date()) + "initializing batchPNS at " + dateFormat(new Date()) + " with interval : " + interval);
+        console.log(process.env.GREEN_COLOR, logTime(new Date()) + "initializing BATCHPNS cronMain with interval : " + interval);
         if (cron) {
-            console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "batchPNS is executing, so we don't need re-start it.");
+            console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "BATCHPNS cronMain is executing, so we don't need re-start it.");
         } else {
             cron = setInterval(function () {
-                //console.log(logTime(new Date()) + "batchPNS executing ");
+                //console.log(logTime(new Date()) + "BATCHPNS cron executing ");
                 getPNSFiles();
             }, interval);
         }
     } catch (error) {
-        console.log(process.env.RED_COLOR, logTime(new Date()) + "ERROR: we cannot start batchPNS . Process continuing... " + error.message);
+        console.log(process.env.RED_COLOR, logTime(new Date()) + "ERROR: we cannot start BATCHPNS cron." + error.message);
         //console.error(error); //continue the execution cron
     }
 }
@@ -49,12 +52,12 @@ const startCron = async (interval) => { //Start cron only when cron is stopped.
 const stopCron = async () => { //stop cron only when cron is switched on
     try {
         if (cron) {
-            console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "Stoping batchPNS cron at " + dateFormat(new Date()));
+            console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "Stoping BATCHPNS cronMain at " + dateFormat(new Date()));
             clearInterval(cron);
             cron = null;
         }
     } catch (error) {
-        console.log(process.env.RED_COLOR, logTime(new Date()) + "ERROR: we cannot stop batchPNS. Process continuing... " + error.message);
+        console.log(process.env.RED_COLOR, logTime(new Date()) + "ERROR: we cannot stop BATCHPNS cronMain. Process continuing... " + error.message);
         //console.error(error); //continue the execution cron
     }
 }
@@ -77,14 +80,11 @@ const getPNSFiles = async () => {
                         try {
                             var pns = new Pns(pnsJSON); // convert json to object,  await it's unnecessary because is the first creation of object. Model Validations are check when save in Mongodb, not here. 
                             pns.priority = priority;
-                            pns.token = await hget("tokenpns" + pns.application + ":" + pns.uuiddevice, "token"); //find the token for this uuiddevice PNS.
-                            pns.operator = await hget("tokenpns" + pns.application + ":" + pns.uuiddevice, "operator"); //find the operator for this uuiddevice PNS.
-                            if (!pns.token) throw new Error(" This uuiddevice is not register, we cannot find its token neither operator.") //0:notSent, 1:Sent, 2:Confirmed, 3:Error, 4:Expired, 5:token not found (not register)
-
-                            const collectorOperator = hgetConf("collectorpns:" + pns.operator, "operator"); //this method is Async, but we can get in parallel until need it (with await).
-                            if (await collectorOperator != pns.operator) pns.operator = collectorOperator;  //check if the operator have some problems
-
-                            pns.channel = buildPNSChannel(pns.operator, priority); //get the channel to put notification with operator and priority
+                            let tokenConf = await hgetall("tokenpns" + pns.application + ":" + pns.uuiddevice); ////find the "token" & "operator" for this application uuiddevice PNS.
+                            if (!tokenConf || !tokenConf.token || !tokenConf.operator) throw new Error("This uuiddevice is not register, we cannot find its token neither operator : 'tokenpns" + pns.application + ":" + pns.uuiddevice) //0:notSent, 1:Sent, 2:Confirmed, 3:Error, 4:Expired, 5:token not found (not register)
+                            pns.token = tokenConf.token; //get the token for this uuiddevice PNS.
+                            pns.operator = tokenConf.operator; //get the operator for this uuiddevice PNS.
+                            pns.channel = buildPNSChannel(pns.operator, pns.priority); //get the channel to put notification with operator and priority
 
                             //await pns.validate(); //validate is unnecessary, we would need await because is a promise and we need to manage the throw exceptions, particularly validating errors in bad request.
 
@@ -107,16 +107,8 @@ const getPNSFiles = async () => {
 
                                     console.log(process.env.GREEN_COLOR, logTime(new Date()) + "PNS saved, _id: " + pns._id);  //JSON.stringify for replace new lines (\n) and tab (\t) chars into string
                                 });
-
                         } catch (error) {
-                            let contract = pns.contract || 'undefined';
-                            let uuiddevice = pns.uuiddevice || 'undefined';
-                            let content = pns.content || 'undefined';
-                            let application = pns.application || 'undefined';
-                            let action = pns.action || 'undefined';
-
-                            const errorJson = { StatusCode: "MQ Error", error: error.message, contractpns: contract, uuiddevice: uuiddevice, application: application, action: action, content: content, receiveAt: dateFormat(new Date()) };   // dateFornat: replace T with a space && delete the dot and everything after
-                            console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "ERROR: " + JSON.stringify(errorJson));
+                            console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "ERROR: BatchPNS processing file, process continue, error : " + error.message);
                             ////console.error(error); //continue the execution cron          
                             //TODO: save error in db  or mem.
                         }
@@ -138,93 +130,129 @@ const getPNSFiles = async () => {
     }
 }
 
+
 const startController = async (intervalControl) => {
     try {
-        console.log(process.env.GREEN_COLOR, logTime(new Date()) + "initializing cronController at " + dateFormat(new Date()) + " with intervalControl : " + intervalControl);
+        console.log(process.env.GREEN_COLOR, logTime(new Date()) + "initializing BATCHPNS cronController with intervalControl : " + intervalControl);
         hset(batchName, "last", dateFormat(new Date())); //save first execution in Redis
-        var cronController = setInterval(function () {
-            console.log(process.env.GREEN_COLOR, logTime(new Date()) + "cronController executing: Main cron interval is " + interval + " and status is " + cronStatus + " [1:ON, 0:OFF].");
-            hset(batchName, "last", dateFormat(new Date())); //save last execution in Redis
-            checksController();
-        }, intervalControl);
+        if (cronController) {
+            console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "BATCHPNS cronController is executing, so we don't need re-start it.");
+        } else {
+            cronController = setInterval(function () {
+                checksController();
+            }, intervalControl);
+        }
+        getPNSFiles(); // first execution    
     } catch (error) {
-        console.log(process.env.RED_COLOR, logTime(new Date()) + "ERROR: we cannot start cron Controller. . Process continuing... " + error.message);
+        console.log(process.env.RED_COLOR, logTime(new Date()) + "ERROR: we cannot start BATCHPNS cron Controller. . Process continuing... " + error.message);
         //console.error(error); //continue the execution cron
     }
 }
 
 
 const checksController = async () => {
-    await Promise.all([
-        checkstatus(),
-        checkInterval(),
-    ]);
-
-    if (cronChanged) { //some param changed in cron, we need to restart or stopped.
-        if (cronStatus) { //cron must to be started                       
-            console.log(process.env.GREEN_COLOR, logTime(new Date()) + "Re-Start batchPNS cron...");
-            cronChanged = false;
-            await stopCron();
-            await startCron(interval);
-        } else { //cron must to be stopped            
-            cronChanged = false;
-            await stopCron(); //if I stop cron N times, it doesn't matter... 
-        }
-    }
-
-
-}
-const checkstatus = async () => { //Check status, if it's necessary finish cron because redis say it.
     try {
-        let newCronStatus = parseInt(await hgetConf(batchName, "status"));  //0 stop, 1 OK.  //finish because redis say it 
+        cronConf = await hgetall(batchName); //get the cronConf
+        Promise.all([ //In error case we continue with other tasks
+            hset(batchName, "last", dateFormat(new Date())).catch(error => { console.log(process.env.YELLOW_COLOR, logTime(new Date()) + error.message); }),  //save last execution in Redis, in error case we continue
+            checkstatus(parseInt(cronConf.status)).catch(error => { console.log(process.env.YELLOW_COLOR, logTime(new Date()) + error.message); }), //check status in Redis, in error case we continue
+            checkInterval(parseInt(cronConf.interval)).catch(error => { console.log(process.env.YELLOW_COLOR, logTime(new Date()) + error.message); }), //check interval in Redis, in error case we continue
+            checkIntervalControl(parseInt(cronConf.intervalControl)).catch(error => { console.log(process.env.YELLOW_COLOR, logTime(new Date()) + error.message); }) //check intervalControl in Redis, in error case we continue
+        ]).then(async () => {
+            // Cron Main Check
+            if (cronChanged) { //some param changed in cron, we need to restart or stopped.
+                if (cronStatus) { //cron must to be started                       
+                    console.log(process.env.GREEN_COLOR, logTime(new Date()) + "Stopping and Re-Starting BATCHPNS cronMain...");
+                    cronChanged = false;
+                    await stopCron();
+                    await startCron(interval);
+                } else { //cron must to be stopped            
+                    cronChanged = false;
+                    await stopCron(); //if I stop cron N times, it doesn't matter... 
+                }
+            }
+            // Cron Controller Check
+            if (cronControllerChanged) {
+                console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "Stopping and Re-starting BATCHPNS cronController at " + dateFormat(new Date()));
+                cronControllerChanged = false;
+                clearInterval(cronController);
+                cronController = null;
+                await startController(intervalControl).catch(error => { throw new Error("ERROR in BATCHPNS cronController." + error.message) });
+            }
+            console.log(process.env.GREEN_COLOR, logTime(new Date()) + "BATCHPNS cronController : cronMain intervalControl is " + interval + ", cronController interval is " + interval + " and status is " + cronStatus + " ([1:ON, 0:OFF]).");
+            if (!cronStatus) console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "ATTENTION: BATCHPNS cronMain is OFF");
+        });
+
+    } catch (error) {
+        console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "WARNING : we have had a problem with BATCHPNS configuration in Redis. Process continuing... " + error.message);
+        //console.error(error); //continue the execution cron
+    }
+}
+
+const checkstatus = async (newCronStatus) => { //Check status, if it's necessary finish cron because redis say it.
+    try {
         if (cronStatus != newCronStatus) {
             cronStatus = newCronStatus;
             cronChanged = true;
         }
     } catch (error) {
-        console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "WARNING: we didn't find status (run/stop cron). current cron status = " + cronStatus + " . . Process continuing... " + error.message);
+        console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "WARNING : we didn't find BATCHPNS status in Redis (run/stop cron). current cron status = " + cronStatus + " . . Process continuing... " + error.message);
         //console.error(error); //continue the execution cron
     }
 }
 
-const checkInterval = async () => { //check rate/s, and change cron rate
+const checkInterval = async (newInterval) => { //check rate/s, and change cron rate
     try {
-        let newInterval = parseInt(await hgetConf(batchName, "interval"));  //rate/s //change cron rate    
         if (interval != newInterval) { //if we change the interval -> rate/s
-            console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "Change interval:  " + interval + " for new interval : " + newInterval + " , next restart will be effect.");
+            console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "Change BATCHPNS cronMain interval:  " + interval + " for new interval : " + newInterval + " , next restart will be effect.");
             interval = newInterval;
             cronChanged = true;
         }
     } catch (error) {
-        console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "WARNING: we didn't find rate in Redis (cron interval). current interval " + interval + " . . Process continuing... " + error.message);
+        console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "WARNING : we didn't find BATCHPNS interval in Redis. current interval " + interval + " . . Process continuing... " + error.message);
         //console.error(error); //continue the execution cron
     }
 }
 
+const checkIntervalControl = async (newIntervalControl) => { //check rate/s, and change cron rate
+    try {
+        if (intervalControl != newIntervalControl) { //if we change the interval -> rate/s
+            console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "Change BATCHPNS cronController interval:  " + intervalControl + " for new interval : " + newIntervalControl + " , next restart will be effect.");
+            intervalControl = newIntervalControl;
+            cronControllerChanged = true;
+        }
+    } catch (error) {
+        console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "WARNING  checkIntervalControl: we didn't find BATCHPNS intervalControl in Redis. current intervalControl " + intervalControl + " . . Process continuing... " + error.message);
+        //console.error(error); //continue the execution cron
+    }
+}
+
+
 const initCron = async () => {
     try {
-        await Promise.all([
-            hgetConf(batchName, "interval"),
-            hgetConf(batchName, "intervalControl"),
-            hgetConf(batchName, "status"),
-        ]).then((values) => {
-            interval = parseInt(values[0]); //The rate/Main cron interval
-            intervalControl = parseInt(values[1]); //the interval of controller
-            cronStatus = parseInt(values[2]); //maybe somebody stops collector
-        });
+        cronConf = await hgetall(batchName); // redis conf
+        if (cronConf) {
+            interval = parseInt(cronConf.interval); //The rate/cronMain interval
+            intervalControl = parseInt(cronConf.intervalControl); //the interval of controller
+            cronStatus = parseInt(cronConf.status); //maybe somebody stops collector
+        } else console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "WARNING : We didn't find BATCHPNS initialization parameters in Redis, we will initialize cron with default params  . . Process continuing. ");
 
-        console.log(process.env.GREEN_COLOR, logTime(new Date()) + "initializing all crons processes at " + dateFormat(new Date()) + " with cron interval [" + interval + "ms] and cron Controller interval : [" + intervalControl + "ms]...");
         if (cronStatus) {
-            getPNSFiles(); // first execution 
-            await startCron(interval);
-        } else console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "Cron status in redis indicates we don't want start cron process. we only start cron Controller.");
-        await startController(intervalControl);
+            console.log(process.env.GREEN_COLOR, logTime(new Date()) + "BATCHPNS cronMain interval [" + interval + "ms], cronController interval : [" + intervalControl + "ms] and status [" + cronStatus + "](1:ON, 0:OFF).");
+            await startCron(interval).catch(error => { throw new Error("ERROR in BATCHPNS cronMain." + error.message) });
+        } else {
+            console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "BATCHPNS Redis Configuration status indicates we don't want start cronMain process. we only start cron Controller.");
+            console.log(process.env.GREEN_COLOR, logTime(new Date()) + "BATCHPNS cronController : cronMain interval is " + interval + ", cronController intervalControl is " + interval + " and status is " + cronStatus + " ([1:ON, 0:OFF]).");
+        }
+
+        await startController(intervalControl).catch(error => { throw new Error("ERROR in BATCHPNS cronController." + error.message) });
+
     } catch (error) {
-        console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "WARNING: we didn't find initialize params, we will initialize cron with default params (every 10s, and 60s to reconfig) . . Process continuing... " + error.message);
-        console.error(error); //continue the execution cron
-        await startCron(10000); // 10 seconds
-        await startController(60000); // 60 seconds
+        console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "WARNING : We have a problem in initialization. Process continuing... " + error.message);
+        //console.error(error); //continue the execution cron
         cronStatus = 1;
+        startCron(interval); // 100 message/s
+        startController(intervalControl); // 60 seconds        
     }
 }
 
