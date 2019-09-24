@@ -1,5 +1,5 @@
 config: #Results https://artillery.io/docs/getting-started/
-  target: 'https://localhost:30003'
+  target: 'https:/'
   http:
      timeout: 10  # Responses have to be sent within 10 seconds or the request will be aborted
      pool: 100 # All HTTP requests from all virtual users will be sent over the same 10 connections
@@ -21,6 +21,12 @@ config: #Results https://artillery.io/docs/getting-started/
       x-api-key: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkFETUlOIiwiY29udHJhY3QiOiJBRE1JTiIsImlhdCI6MjAxNjIzOTAyMn0.vwBNTaBbW40v14Iiqd65uhv4FVQi4qn4ZH50VyQ00rg'
 scenarios:
   - flow:
+      - post:
+          url: "/localhost:30001/smsSend"
+          body: '{  "contract": "ADMIN",  "telf": "+34699272800",  "message": "you have won a gift", "alias": "L.O.", "customId": "myid_4566544", "priority": "0"}' 
+      - post:
+          url: "/localhost:30002/pnsSend"
+          body: '{	 "contract" : "ADMIN",	 "application" : "CaixaAPP",	 "user" : "userTst",	 "uuiddevice" : "kRt346992-72809WA",	 "action" : "show",	 "content" : "content push notification" }'  
       - get:
-          url: "/smsStatus"
-          body: '{	"contract" : "ADMIN",	 "_id" : "25c91e9f-5355-46e5-9ab1-843aef3f075f" }'                    
+          url: "/localhost:30003/smsStatus"
+          body: '{	"contract" : "ADMIN",	 "_id" : "25c91e9f-5355-46e5-9ab1-843aef3f075f" }'                                         

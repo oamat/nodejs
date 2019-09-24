@@ -396,7 +396,7 @@ router.patch('/changeCollector', auth, async (req, res) => {
             });
 
         } else {
-            let toUpdate = { status: req.body.status, interval: req.body.interval, intervalControl: req.body.intervalControl };
+            let toUpdate = { status: req.body.status, interval: req.body.interval, intervalControl: req.body.intervalControl }; //we don't change operator, unnecessary
             await updateCollectorPns(req.body.name, toUpdate).then(() => {  // update Collector SMS in MongoDB
                 redisconf.hmset(["collectorpns:" + req.body.name,
                     "status", req.body.status,

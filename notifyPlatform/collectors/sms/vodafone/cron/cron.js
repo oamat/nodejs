@@ -25,8 +25,10 @@ const channels = buildSMSChannels(defaultOperator); //Channels to receive SMS re
 var operator = defaultOperator; //default operator for this collector: "VOD"
 var cronConf; //the redis cron configuration 
 var cron; //the main cron that send message to the operator.
+var cronController;  //the Controller cron that send message to the operator.
 var cronStatus = 1; //status of cron. 0: cron stopped, 1 : cron working, 
-var cronChanged = false;  //if we need restart cron, 
+var cronChanged = false;  //if we need restart cron,  we use this control var
+var cronControllerChange = false; //if we need restart cron, we use this control var
 var interval = 10; //define the rate/s notifications, interval in cron (100/s by default)
 var intervalControl = 60000; //define interval in controller cron (check by min. by default)
 
@@ -111,7 +113,7 @@ const startController = async (intervalControl) => {
     try {
         console.log(process.env.GREEN_COLOR, logTime(new Date()) + "initializing cronController at " + dateFormat(new Date()) + " with intervalControl : " + intervalControl);
         hset(defaultCollector, "last", dateFormat(new Date())); //save first execution in Redis
-        var cronController = setInterval(function () {
+        cronController = setInterval(function () {
             checksController();
         }, intervalControl);
     } catch (error) {
@@ -128,11 +130,13 @@ const checksController = async () => {
             hset(defaultCollector, "last", dateFormat(new Date())).catch(error => { console.log(process.env.YELLOW_COLOR, logTime(new Date()) + error.message); }),  //save last execution in Redis, in error case we continue
             checkstatus(parseInt(cronConf.status)).catch(error => { console.log(process.env.YELLOW_COLOR, logTime(new Date()) + error.message); }), //check status in Redis, in error case we continue
             checkInterval(parseInt(cronConf.interval)).catch(error => { console.log(process.env.YELLOW_COLOR, logTime(new Date()) + error.message); }), //check interval in Redis, in error case we continue
-            checkOperator(cronConf.operator).catch(error => { console.log(process.env.YELLOW_COLOR, logTime(new Date()) + error.message); }) //check operator in Redis, in error case we continue
+            checkOperator(cronConf.operator).catch(error => { console.log(process.env.YELLOW_COLOR, logTime(new Date()) + error.message); }),
+            checkIntervalControl(parseInt(cronConf.intervalControl)).catch(error => { console.log(process.env.YELLOW_COLOR, logTime(new Date()) + error.message); }) //check operator in Redis, in error case we continue
         ]).then(async () => {
+            // Cron Main Check
             if (cronChanged) { //some param changed in cron, we need to restart or stopped.
                 if (cronStatus) { //cron must to be started                       
-                    console.log(process.env.GREEN_COLOR, logTime(new Date()) + "Re-Start VODAFONE cron...");
+                    console.log(process.env.GREEN_COLOR, logTime(new Date()) + "Stopping and Re-Starting VODAFONE cronMain...");
                     cronChanged = false;
                     await stopCron();
                     await startCron(interval);
@@ -141,16 +145,24 @@ const checksController = async () => {
                     await stopCron(); //if I stop cron N times, it doesn't matter... 
                 }
             }
-            console.log(process.env.GREEN_COLOR, logTime(new Date()) + "VODAFONE cronController : cronMain interval is " + interval + ", operator is '" + operator + "' and status is " + cronStatus + " [1:ON, 0:OFF].");
+            // Cron Controller Check
+            if (cronControllerChange) {
+                console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "Stopping and Re-starting VODAFONE cronController at " + dateFormat(new Date()));
+                cronControllerChange = false;                
+                clearInterval(cronController); 
+                cronController = null;                
+                await startController(intervalControl).catch(error => { throw new Error("ERROR in VODAFONE cronController." + error.message) });
+            }            
+            console.log(process.env.GREEN_COLOR, logTime(new Date()) + "VODAFONE cronController : cronMain intervalControl is " + interval + ", cronController interval is " + interval + ", operator is '" + operator + "' and status is " + cronStatus + " ([1:ON, 0:OFF]).");
+            if (!cronStatus) console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "ATTENTION: VODAFONE cronMain is OFF");
         });
-
 
     } catch (error) {
         console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "WARNING : we have had a problem with VODAFONE configuration in Redis. Process continuing... " + error.message);
         //console.error(error); //continue the execution cron
     }
-
 }
+
 const checkstatus = async (newCronStatus) => { //Check status, if it's necessary finish cron because redis say it.
     try {
         if (cronStatus != newCronStatus) {
@@ -172,6 +184,19 @@ const checkInterval = async (newInterval) => { //check rate/s, and change cron r
         }
     } catch (error) {
         console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "WARNING : we didn't find VODAFONE interval in Redis. current interval " + interval + " . . Process continuing... " + error.message);
+        //console.error(error); //continue the execution cron
+    }
+}
+
+const checkIntervalControl = async (newIntervalControl) => { //check rate/s, and change cron rate
+    try {
+        if (intervalControl != newIntervalControl) { //if we change the interval -> rate/s
+            console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "Change VODAFONE cronController interval:  " + intervalControl + " for new interval : " + newIntervalControl + " , next restart will be effect.");
+            intervalControl = newIntervalControl;
+            cronControllerChange = true;
+        }
+    } catch (error) {
+        console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "WARNING  checkIntervalControl: we didn't find VODAFONE intervalControl in Redis. current intervalControl " + intervalControl + " . . Process continuing... " + error.message);
         //console.error(error); //continue the execution cron
     }
 }
