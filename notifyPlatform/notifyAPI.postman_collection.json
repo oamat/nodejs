@@ -505,7 +505,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"contract\" : \"ADMIN\",\n    \"telf\" : \"6992728001\",\n    \"operator\" : \"VIP\"\n}"
+					"raw": "{\n\t\"contract\" : \"ADMIN\",\n    \"telf\" : \"+34699272802\",\n    \"operator\" : \"VIP\"\n}"
 				},
 				"url": {
 					"raw": "https://localhost:30003/telfRegister",
