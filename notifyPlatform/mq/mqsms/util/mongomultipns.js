@@ -70,6 +70,21 @@ const saveContractPns = async (contract) => {
     //.catch((error) => { throw error; });  //throw Error exception to the main code, it's unnecessary but maybe we will need put some lógic...  A reject callback will pass through here
 }
 
+//this method update Contract SMS  personalized params in MongoDB and manage the result of this operation
+const updateContractPns = async (name, toUpdate) => {
+    return new Promise((resolve, reject) => { // we need promise for managing errors and results inside callbacks
+        let options = { new: true };
+        let query = { name };
+        ContractPns().findOneAndUpdate(query, { $set: toUpdate }, options, (error, result) => {  //property new returns the new updated document, not the original document
+            if (error) reject(error);  //if mongoose give me an error. If we used reject the try/catch would be unnecessary  
+            else if (result) resolve(result); // everything is OK, return result
+            else reject(new Error("This Contract name doesn't exist, we cannot update PNS Contract in MongoDB.")); //If we cannot save SMS to MongoDB
+        });
+    });
+    //.then((result) => { return result; })  //return the result, it's unnecessary but maybe we will need put some lógic...
+    //.catch((error) => { throw error; });  //throw Error exception to the main code, it's unnecessary but maybe we will need put some lógic...  A reject callback will pass through here
+}
+
 //this method finds one PNS Collector with the condition in PNS MongoDB and manage the result of this operation
 const findCollectorPns = async (condition) => {
     return new Promise((resolve, reject) => { // we need promise for managing errors and results inside callbacks
@@ -115,7 +130,7 @@ const updateCollectorPns = async (name, toUpdate) => {
         CollectorPns().findOneAndUpdate(query, { $set: toUpdate }, options, (error, result) => {  //property new returns the new updated document, not the original document
             if (error) reject(error);  //if mongoose give me an error. If we used reject the try/catch would be unnecessary  
             else if (result) resolve(result); // everything is OK, return result
-            else reject(new Error("we have a problem when try to update PNS Collector in MongoDB. it's necessary check the problem before proceding.")); //If we cannot save PNS to MongoDB
+            else reject(new Error("This Collector name doesn't exist, we cannot update PNS Collector in MongoDB. it's necessary check the problem before proceding.")); //If we cannot save PNS to MongoDB
         });
     });
     //.then((result) => { return result; })  //return the result, it's unnecessary but maybe we will need put some lógic...
@@ -168,11 +183,11 @@ const updateTokenPns = async (name, toUpdate) => {
         TokenPns().findOneAndUpdate(query, { $set: toUpdate }, options, (error, result) => {  //property new returns the new updated document, not the original document
             if (error) reject(error);  //if mongoose give me an error. If we used reject the try/catch would be unnecessary  
             else if (result) resolve(result); // everything is OK, return result
-            else reject(new Error("we have a problem when try to update PNS Token in MongoDB. it's necessary check the problem before proceding.")); //If we cannot save PNS to MongoDB
+            else reject(new Error("This Token doesn't exist, we cannot update PNS Token in MongoDB. it's necessary check the problem before proceding.")); //If we cannot save PNS to MongoDB
         });
     });
     //.then((result) => { return result; })  //return the result, it's unnecessary but maybe we will need put some lógic...
     //.catch((error) => { throw error; });  //throw Error exception to the main code, it's unnecessary but maybe we will need put some lógic...  A reject callback will pass through here
 }
 
-module.exports = { findPNS, findAllPNS, findContractPns, findAllContractPns, saveContractPns, findCollectorPns, findAllCollectorPns, saveCollectorPns, updateCollectorPns, findTokenPns, findAllTokenPns, saveTokenPns, updateTokenPns }
+module.exports = { findPNS, findAllPNS, findContractPns, findAllContractPns, saveContractPns, updateContractPns, findCollectorPns, findAllCollectorPns, saveCollectorPns, updateCollectorPns, findTokenPns, findAllTokenPns, saveTokenPns, updateTokenPns }

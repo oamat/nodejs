@@ -15,11 +15,10 @@ const { Sms } = require('../models/sms');
 const auth = require('../auth/auth');
 const { saveSMS } = require('../util/mongosms');
 const { rclient } = require('../config/redissms');
-const { hgetConf, hget } = require('../util/redisconf');
-const { dateFormat, logTime, buildSMSChannel } = require('../util/formats');
+const { hgetConf, hget, hincrby1 } = require('../util/redisconf');
+const { dateFormat, logTime, telfFormat, buildSMSChannel } = require('../util/formats');
 
 const router = new express.Router();
-
 //VARS
 const SMS_IDS = "SMS.IDS.PENDING";
 
@@ -30,9 +29,9 @@ router.post('/smsSend', auth, async (req, res) => {  //we execute auth before th
     try {
         const sms = new Sms(req.body);  //await it's unnecessary because is the first creation of object. Model Validations are check when save in Mongodb, not here. 
         sms.operator = await hgetConf("contractsms:" + sms.contract, "operator"); //Operator by default by contract. we checked the param before (in auth)                 
-        //sms.telf = sms.telf.replace("+", "00"); Maybe it's unnecessary...
+        sms.telf = telfFormat(sms.telf);
         if (sms.operator == "ALL") { //If operator is 'ALL' means that we need to find the better operator for the telf.            
-            sms.operator = await hget("telfsms:" + sms.telf, "operator"); //find the best operator for this telf.         
+            sms.operator = await hget("telfsms:" + sms.telf, "operator"); //find the best operator for this telf. without errors        
             if (!sms.operator) sms.operator = "MOV";  //by default we use MOV
         }
         const collectorOperator = await hgetConf("collectorsms:" + sms.operator, "operator"); //this method is Async, but we can get in parallel until need it (with await).
@@ -58,10 +57,12 @@ router.post('/smsSend', auth, async (req, res) => {  //we execute auth before th
                 }); //END Redis Transaction with multi chain and result's callback
 
                 console.log(process.env.GREEN_COLOR, logTime(new Date()) + "SMS saved, _id: " + sms._id);  //JSON.stringify for replace new lines (\n) and tab (\t) chars into string
+                hincrby1("apisms", "processed");
             });
 
     } catch (error) {
         requestError(error, req, res);
+        hincrby1("apisms", "errors");
         //TODO : maybe we can save  the errors in Redis
     }
 });

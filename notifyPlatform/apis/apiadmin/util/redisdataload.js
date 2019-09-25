@@ -1,9 +1,9 @@
 //Dependencies
 
-const { hmset, set, get, hset } = require('./redisconf');
+const { hmset, set, get } = require('./redisconf');
 const { logTime } = require('./formats');
-const { findAllContractSms, findAllCollectorSms, findAllTelfSms, saveCollectorSms, saveContractSms } = require('../util/mongomultisms');
-const { findAllContractPns, findAllCollectorPns, findAllTokenPns, saveCollectorPns, saveContractPns } = require('../util/mongomultipns');
+const { findAllContractSms, findAllCollectorSms, findAllTelfSms, saveCollectorSms, saveContractSms, saveTelfSms } = require('../util/mongomultisms');
+const { findAllContractPns, findAllCollectorPns, findAllTokenPns, saveCollectorPns, saveContractPns, saveTokenPns } = require('../util/mongomultipns');
 const { CollectorSms, CollectorPns, ContractSms, ContractPns, TokenPns, TelfSms } = require('../config/mongoosemulti');
 //{ findPNS, findAllPNS, findContractPns, findAllContractPns, saveContractPns, findCollectorPns, findAllCollectorPns, saveCollectorPns, updateCollectorPns, findTokenPns, findAllTokenPns, saveTokenPns, updateTokenPns }
 //VARS
@@ -62,7 +62,10 @@ const initRedisSMSConf = async () => {
 
     //select and save all SMS telfs (huge documents)
     let telfs = await findAllTelfSms({});
-    if (!telfs || telfs.length == 0) console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "SMS telfs not found in MongoDB. Basic config has been saved in mongo & redis.");
+    if (!telfs || telfs.length == 0) {
+        console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "SMS telfs not found in MongoDB. Basic config has been saved in mongo & redis.");
+        saveSMSDefaultTelfSms();
+    }
     else for (var i = 0; i < telfs.length; i++) {
         hmset(["telfsms:" + telfs[i].telf,  //TODO: change key operator by .telf
             "operator", telfs[i].operator
@@ -119,13 +122,38 @@ const initRedisPNSConf = async () => {
 
     //select and save all PNS tokens (huge documents)
     let tokens = await findAllTokenPns({});
-    if (!tokens || tokens.length == 0) console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "PNS Tokens not found in MongoDB. Basic config has been saved in mongo & redis.");
+    if (!tokens || tokens.length == 0) {
+        console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "PNS Tokens not found in MongoDB. Basic config has been saved in mongo & redis.");
+        savePNSDefaultTokenPns();
+    }
     else for (var i = 0; i < tokens.length; i++) {
         hmset(["tokenpns:" + tokens[i].application + tokens[i].uuiddevice,
             "token", tokens[i].token,   //TODO: change key token by application+":"+uuiddevice
             "operator", tokens[i].operator
         ]);
     }
+}
+
+
+const resetAllProcessedErrors = async () => {
+    //PNS CollectorStatus
+    hmset(["collectorpns:APP", "processed", 0, "errors", 0]);
+    hmset(["collectorpns:GOO", "processed", 0, "errors", 0]);
+    hmset(["collectorpns:MIC", "processed", 0, "errors", 0]);
+    hmset(["collectorsms:MOV", "processed", 0, "errors", 0]);
+    hmset(["collectorsms:VIP", "processed", 0, "errors", 0]);
+    hmset(["collectorsms:VOD", "processed", 0, "errors", 0]);
+    hmset(["collectorsms:ORA", "processed", 0, "errors", 0]);
+    hmset(["collectorsms:batchSMS", "processed", 0, "errors", 0]);
+    hmset(["collectorpns:batchPNS", "processed", 0, "errors", 0]);
+    hmset(["collectorsms:retriesSMS", "processed", 0, "errors", 0]);
+    hmset(["collectorpns:retriesPNS", "processed", 0, "errors", 0]);
+    hmset(["apiadmin", "processed", 0, "errors", 0]);
+    hmset(["apisms", "processed", 0, "errors", 0]);
+    hmset(["apipns", "processed", 0, "errors", 0]);
+    hmset(["apistatusback", "processed", 0, "errors", 0]);
+    hmset(["mqsms", "processed", 0, "errors", 0]);
+    hmset(["mqpns", "processed", 0, "errors", 0]);
 }
 
 const saveAllSMSDefaultCollectors = async () => {
@@ -162,36 +190,68 @@ const saveAllPNSDefaultCollectors = async () => {
 const saveSMSDefaultContract = async () => {
     let ContractModel = ContractSms();  // we catch the ContractSMS Model            
     saveContractSms(new ContractModel({ "operator": "MOV", "defaultOperator": "MOV", "frontend": "THIS", "activated": true, "name": "OTPLOWEB", "description": "OTPLOWEB", "permission": "WITHIN_APP", "application": "OTPLOWEB_APP", "interface": "ALL", "remitter": "217771", "params": [], "type": "SMS", "jwt": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6Ik9UUExPV0VCIiwiY29udHJhY3QiOiJPVFBMT1dFQiIsImlhdCI6MjAxNjIzOTAyMn0.BK58iwYbyfGb1u--SLP3YZP7JZxKSMrPHmdc-gfH4t4" }));
-    saveContractSms(new ContractModel({ "operator": "ALL", "defaultOperator": "ALL", "frontend": "ALL", "activated": true, "name": "ADMIN", "description": "ADMIN", "permission": "ALL", "application": "ADMIN", "interface": "ALL", "remitter": "217771", "params": [], "type": "SMS", "jwt": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkFETUlOIiwiY29udHJhY3QiOiJBRE1JTiIsImlhdCI6MjAxNjIzOTAyMn0.vwBNTaBbW40v14Iiqd65uhv4FVQi4qn4ZH50VyQ00rg" }));
+    saveContractSms(new ContractModel({ "operator": "MOV", "defaultOperator": "ALL", "frontend": "ALL", "activated": true, "name": "ADMIN", "description": "ADMIN", "permission": "ALL", "application": "ADMIN", "interface": "ALL", "remitter": "217771", "params": [], "type": "SMS", "jwt": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkFETUlOIiwiY29udHJhY3QiOiJBRE1JTiIsImlhdCI6MjAxNjIzOTAyMn0.vwBNTaBbW40v14Iiqd65uhv4FVQi4qn4ZH50VyQ00rg" }));
     hmset(["contractsms:OTPLOWEB", "interface", "ALL", "permission", "WITHIN_APP", "frontend", "THIS", "operator", "MOV", "defaultOperator", "MOV", "remitter", "217771", "jwt", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6Ik9UUExPV0VCIiwiY29udHJhY3QiOiJPVFBMT1dFQiIsImlhdCI6MjAxNjIzOTAyMn0.BK58iwYbyfGb1u--SLP3YZP7JZxKSMrPHmdc-gfH4t4"]);
-    hmset(["contractsms:ADMIN", "interface", "ALL", "permission", "ALL", "frontend", "ALL", "operator", "ALL", "defaultOperator", "MOV", "remitter", "217771", "jwt", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkFETUlOIiwiY29udHJhY3QiOiJBRE1JTiIsImlhdCI6MjAxNjIzOTAyMn0.vwBNTaBbW40v14Iiqd65uhv4FVQi4qn4ZH50VyQ00rg"]);
+    hmset(["contractsms:ADMIN", "interface", "ALL", "permission", "ALL", "frontend", "ALL", "operator", "MOV", "defaultOperator", "MOV", "remitter", "217771", "jwt", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkFETUlOIiwiY29udHJhY3QiOiJBRE1JTiIsImlhdCI6MjAxNjIzOTAyMn0.vwBNTaBbW40v14Iiqd65uhv4FVQi4qn4ZH50VyQ00rg"]);
     hmset(["contractadmin:OTPLOWEB", "interface", "ALL", "permission", "WITHIN_APP", "frontend", "THIS", "operator", "MOV", "defaultOperator", "MOV", "remitter", "217771", "jwt", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6Ik9UUExPV0VCIiwiY29udHJhY3QiOiJPVFBMT1dFQiIsImlhdCI6MjAxNjIzOTAyMn0.BK58iwYbyfGb1u--SLP3YZP7JZxKSMrPHmdc-gfH4t4"]);
-    hmset(["contractadmin:ADMIN", "interface", "ALL", "permission", "ALL", "frontend", "ALL", "operator", "ALL", "defaultOperator", "MOV", "remitter", "217771", "jwt", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkFETUlOIiwiY29udHJhY3QiOiJBRE1JTiIsImlhdCI6MjAxNjIzOTAyMn0.vwBNTaBbW40v14Iiqd65uhv4FVQi4qn4ZH50VyQ00rg"]);
+    hmset(["contractadmin:ADMIN", "interface", "ALL", "permission", "ALL", "frontend", "ALL", "operator", "MOV", "defaultOperator", "MOV", "remitter", "217771", "jwt", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkFETUlOIiwiY29udHJhY3QiOiJBRE1JTiIsImlhdCI6MjAxNjIzOTAyMn0.vwBNTaBbW40v14Iiqd65uhv4FVQi4qn4ZH50VyQ00rg"]);
 
 }
 const savePNSDefaultContract = async () => {
     let ContractModel = ContractPns();  // we catch the ContractSMS Model            
     saveContractPns(new ContractModel({ "operator": "ALL", "defaultOperator": "ALL", "frontend": "THIS", "activated": true, "name": "PUSHLOWEB", "description": "PUSHLOWEB", "permission": "WITHIN_APP", "application": "PUSHLOWEB_APP", "interface": "ALL", "params": [], "type": "PNS", "jwt": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IlBVU0hMT1dFQiIsImNvbnRyYWN0IjoiUFVTSExPV0VCIiwiaWF0IjoyMDE2MjM5MDIyfQ.liOxBh3kFQyjYrIyhg2Uu3COoV83ruUsyLniWEJ8Apw" }));
     saveContractPns(new ContractModel({ "operator": "ALL", "defaultOperator": "ALL", "frontend": "ALL", "activated": true, "name": "ADMIN", "description": "ADMIN", "permission": "ALL", "application": "ADMIN", "interface": "ALL", "params": [], "type": "PNS", "jwt": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkFETUlOIiwiY29udHJhY3QiOiJBRE1JTiIsImlhdCI6MjAxNjIzOTAyMn0.vwBNTaBbW40v14Iiqd65uhv4FVQi4qn4ZH50VyQ00rg" }));
-    hmset(["contractpns:PUSHLOWEB", "interface", "ALL", "permission", "WITHIN_APP", "frontend", "THIS", "operator", "ALL", "defaultOperator", "ALL", "jwt", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IlBVU0hMT1dFQiIsImNvbnRyYWN0IjoiUFVTSExPV0VCIiwiaWF0IjoyMDE2MjM5MDIyfQ.liOxBh3kFQyjYrIyhg2Uu3COoV83ruUsyLniWEJ8Apw"]);
-    hmset(["contractpns:ADMIN", "interface", "ALL", "permission", "ALL", "frontend", "ALL", "operator", "ALL", "defaultOperator", "ALL", "jwt", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkFETUlOIiwiY29udHJhY3QiOiJBRE1JTiIsImlhdCI6MjAxNjIzOTAyMn0.vwBNTaBbW40v14Iiqd65uhv4FVQi4qn4ZH50VyQ00rg"]);
-    hmset(["contractadmin:PUSHLOWEB", "interface", "ALL", "permission", "WITHIN_APP", "frontend", "THIS", "operator", "ALL", "defaultOperator", "ALL", "jwt", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IlBVU0hMT1dFQiIsImNvbnRyYWN0IjoiUFVTSExPV0VCIiwiaWF0IjoyMDE2MjM5MDIyfQ.liOxBh3kFQyjYrIyhg2Uu3COoV83ruUsyLniWEJ8Apw"]);
-    hmset(["contractadmin:ADMIN", "interface", "ALL", "permission", "ALL", "frontend", "ALL", "operator", "ALL", "defaultOperator", "ALL", "jwt", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkFETUlOIiwiY29udHJhY3QiOiJBRE1JTiIsImlhdCI6MjAxNjIzOTAyMn0.vwBNTaBbW40v14Iiqd65uhv4FVQi4qn4ZH50VyQ00rg"]);
+    hmset(["contractpns:PUSHLOWEB", "interface", "ALL", "permission", "WITHIN_APP", "frontend", "THIS", "operator", "MOV", "defaultOperator", "ALL", "jwt", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IlBVU0hMT1dFQiIsImNvbnRyYWN0IjoiUFVTSExPV0VCIiwiaWF0IjoyMDE2MjM5MDIyfQ.liOxBh3kFQyjYrIyhg2Uu3COoV83ruUsyLniWEJ8Apw"]);
+    hmset(["contractpns:ADMIN", "interface", "ALL", "permission", "ALL", "frontend", "ALL", "operator", "MOV", "defaultOperator", "ALL", "jwt", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkFETUlOIiwiY29udHJhY3QiOiJBRE1JTiIsImlhdCI6MjAxNjIzOTAyMn0.vwBNTaBbW40v14Iiqd65uhv4FVQi4qn4ZH50VyQ00rg"]);
+    hmset(["contractadmin:PUSHLOWEB", "interface", "ALL", "permission", "WITHIN_APP", "frontend", "THIS", "operator", "MOV", "defaultOperator", "ALL", "jwt", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IlBVU0hMT1dFQiIsImNvbnRyYWN0IjoiUFVTSExPV0VCIiwiaWF0IjoyMDE2MjM5MDIyfQ.liOxBh3kFQyjYrIyhg2Uu3COoV83ruUsyLniWEJ8Apw"]);
+    hmset(["contractadmin:ADMIN", "interface", "ALL", "permission", "ALL", "frontend", "ALL", "operator", "MOV", "defaultOperator", "ALL", "jwt", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkFETUlOIiwiY29udHJhY3QiOiJBRE1JTiIsImlhdCI6MjAxNjIzOTAyMn0.vwBNTaBbW40v14Iiqd65uhv4FVQi4qn4ZH50VyQ00rg"]);
 
 }
+
+const saveSMSDefaultTelfSms = async () => {
+    let TelfModel = TelfSms();  // we catch the ContractSMS Model
+    saveTelfSms(new TelfModel({ "telf": "0034699272800", "operator": "MOV" }));
+    saveTelfSms(new TelfModel({ "telf": "0034699272801", "operator": "MOV" }));
+    saveTelfSms(new TelfModel({ "telf": "0034699272802", "operator": "MOV" }));
+    saveTelfSms(new TelfModel({ "telf": "0034699272803", "operator": "MOV" }));
+    saveTelfSms(new TelfModel({ "telf": "0034699272804", "operator": "MOV" }));
+    saveTelfSms(new TelfModel({ "telf": "0034699272805", "operator": "MOV" }));
+    hmset(["telfsms:0034699272800", "operator", "MOV"]);
+    hmset(["telfsms:0034699272801", "operator", "MOV"]);
+    hmset(["telfsms:0034699272802", "operator", "MOV"]);
+    hmset(["telfsms:0034699272803", "operator", "MOV"]);
+    hmset(["telfsms:0034699272804", "operator", "MOV"]);
+    hmset(["telfsms:0034699272805", "operator", "MOV"]);
+}
+
+const savePNSDefaultTokenPns = async () => {
+    let TokenModel = TokenPns();  // we catch the ContractSMS Model
+    saveTokenPns(new TokenModel({ "activated": true, "contract": "PUSHLOWEB", "application": "CaixaAPP", "user": "userTst", "uuiddevice": "kRt346992-72809WA", "token": "AADDERTTTECCDDDkk34699272809WWwwsdfdeeffffAADDERTTTECCDDDkk34699272809WWwwsdfdeeffffAADDERTTTECCDDDkk34699272809WWwwsdfdeeffff", "operator": "GOO" }));
+    saveTokenPns(new TokenModel({ "activated": true, "contract": "PUSHLOWEB", "application": "CaixaAPP", "user": "userTst", "uuiddevice": "kRt346992-72809WB", "token": "AADDERTTTECCDDDkk34699272809WWwwsdfdeeffffAADDERTTTECCDDDkk34699272809WWwwsdfdeeffffAADDERTTTECCDDDkk34699272809WWwwsdfdeeffff", "operator": "GOO" }));
+    saveTokenPns(new TokenModel({ "activated": true, "contract": "PUSHLOWEB", "application": "CaixaAPP", "user": "userTst", "uuiddevice": "kRt346992-72809WC", "token": "AADDERTTTECCDDDkk34699272809WWwwsdfdeeffffAADDERTTTECCDDDkk34699272809WWwwsdfdeeffffAADDERTTTECCDDDkk34699272809WWwwsdfdeeffff", "operator": "GOO" }));
+    saveTokenPns(new TokenModel({ "activated": true, "contract": "PUSHLOWEB", "application": "CaixaAPP", "user": "userTst", "uuiddevice": "kRt346992-72809WD", "token": "AADDERTTTECCDDDkk34699272809WWwwsdfdeeffffAADDERTTTECCDDDkk34699272809WWwwsdfdeeffffAADDERTTTECCDDDkk34699272809WWwwsdfdeeffff", "operator": "GOO" }));
+    saveTokenPns(new TokenModel({ "activated": true, "contract": "PUSHLOWEB", "application": "CaixaAPP", "user": "userTst", "uuiddevice": "kRt346992-72809WE", "token": "AADDERTTTECCDDDkk34699272809WWwwsdfdeeffffAADDERTTTECCDDDkk34699272809WWwwsdfdeeffffAADDERTTTECCDDDkk34699272809WWwwsdfdeeffff", "operator": "GOO" }));
+    hmset(["tokenpnsCaixaAPP:kRt346992-72809WA", "application", "CaixaAPP", "contract", "PUSHLOWEB", "uuiddevice", "kRt346992-72809WA", "token", "AADDERTTTECCDDDkk34699272809WWwwsdfdeeffffAADDERTTTECCDDDkk34699272809WWwwsdfdeeffffAADDERTTTECCDDDkk34699272809WWwwsdfdeeffff", "user", "userTst", "operator", "GOO"]);
+    hmset(["tokenpnsCaixaAPP:kRt346992-72809WB", "application", "CaixaAPP", "contract", "PUSHLOWEB", "uuiddevice", "kRt346992-72809WA", "token", "AADDERTTTECCDDDkk34699272809WWwwsdfdeeffffAADDERTTTECCDDDkk34699272809WWwwsdfdeeffffAADDERTTTECCDDDkk34699272809WWwwsdfdeeffff", "user", "userTst", "operator", "GOO"]);
+    hmset(["tokenpnsCaixaAPP:kRt346992-72809WC", "application", "CaixaAPP", "contract", "PUSHLOWEB", "uuiddevice", "kRt346992-72809WA", "token", "AADDERTTTECCDDDkk34699272809WWwwsdfdeeffffAADDERTTTECCDDDkk34699272809WWwwsdfdeeffffAADDERTTTECCDDDkk34699272809WWwwsdfdeeffff", "user", "userTst", "operator", "GOO"]);
+    hmset(["tokenpnsCaixaAPP:kRt346992-72809WD", "application", "CaixaAPP", "contract", "PUSHLOWEB", "uuiddevice", "kRt346992-72809WA", "token", "AADDERTTTECCDDDkk34699272809WWwwsdfdeeffffAADDERTTTECCDDDkk34699272809WWwwsdfdeeffffAADDERTTTECCDDDkk34699272809WWwwsdfdeeffff", "user", "userTst", "operator", "GOO"]);
+    hmset(["tokenpnsCaixaAPP:kRt346992-72809WE", "application", "CaixaAPP", "contract", "PUSHLOWEB", "uuiddevice", "kRt346992-72809WA", "token", "AADDERTTTECCDDDkk34699272809WWwwsdfdeeffffAADDERTTTECCDDDkk34699272809WWwwsdfdeeffffAADDERTTTECCDDDkk34699272809WWwwsdfdeeffff", "user", "userTst", "operator", "GOO"]);
+}
+
+
 
 const loadRedisForTesting = async () => {
     //SMS CONTRACTS
     hmset(["contractsms:OTPLOWEB", "interface", "ALL", "permission", "WITHIN_APP", "frontend", "THIS", "operator", "MOV", "defaultOperator", "MOV", "remitter", "217771", "jwt", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6Ik9UUExPV0VCIiwiY29udHJhY3QiOiJPVFBMT1dFQiIsImlhdCI6MjAxNjIzOTAyMn0.BK58iwYbyfGb1u--SLP3YZP7JZxKSMrPHmdc-gfH4t4"]);
-    hmset(["contractsms:ADMIN", "interface", "ALL", "permission", "ALL", "frontend", "ALL", "operator", "ALL", "defaultOperator", "MOV", "remitter", "217771", "jwt", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkFETUlOIiwiY29udHJhY3QiOiJBRE1JTiIsImlhdCI6MjAxNjIzOTAyMn0.vwBNTaBbW40v14Iiqd65uhv4FVQi4qn4ZH50VyQ00rg"]);
+    hmset(["contractsms:ADMIN", "interface", "ALL", "permission", "ALL", "frontend", "ALL", "operator", "MOV", "defaultOperator", "MOV", "remitter", "217771", "jwt", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkFETUlOIiwiY29udHJhY3QiOiJBRE1JTiIsImlhdCI6MjAxNjIzOTAyMn0.vwBNTaBbW40v14Iiqd65uhv4FVQi4qn4ZH50VyQ00rg"]);
     hmset(["contractadmin:OTPLOWEB", "interface", "ALL", "permission", "WITHIN_APP", "frontend", "THIS", "operator", "MOV", "defaultOperator", "MOV", "remitter", "217771", "jwt", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6Ik9UUExPV0VCIiwiY29udHJhY3QiOiJPVFBMT1dFQiIsImlhdCI6MjAxNjIzOTAyMn0.BK58iwYbyfGb1u--SLP3YZP7JZxKSMrPHmdc-gfH4t4"]);
-    hmset(["contractadmin:ADMIN", "interface", "ALL", "permission", "ALL", "frontend", "ALL", "operator", "ALL", "defaultOperator", "MOV", "remitter", "217771", "jwt", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkFETUlOIiwiY29udHJhY3QiOiJBRE1JTiIsImlhdCI6MjAxNjIzOTAyMn0.vwBNTaBbW40v14Iiqd65uhv4FVQi4qn4ZH50VyQ00rg"]);
+    hmset(["contractadmin:ADMIN", "interface", "ALL", "permission", "ALL", "frontend", "ALL", "operator", "MOV", "defaultOperator", "MOV", "remitter", "217771", "jwt", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkFETUlOIiwiY29udHJhY3QiOiJBRE1JTiIsImlhdCI6MjAxNjIzOTAyMn0.vwBNTaBbW40v14Iiqd65uhv4FVQi4qn4ZH50VyQ00rg"]);
 
     //PNS CONTRACTS
     hmset(["contractsms:OTPLOWEB", "interface", "ALL", "permission", "WITHIN_APP", "frontend", "THIS", "operator", "MOV", "defaultOperator", "MOV", "remitter", "217771", "jwt", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6Ik9UUExPV0VCIiwiY29udHJhY3QiOiJPVFBMT1dFQiIsImlhdCI6MjAxNjIzOTAyMn0.BK58iwYbyfGb1u--SLP3YZP7JZxKSMrPHmdc-gfH4t4"]);
-    hmset(["contractsms:ADMIN", "interface", "ALL", "permission", "ALL", "frontend", "ALL", "operator", "ALL", "defaultOperator", "MOV", "remitter", "217771", "jwt", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkFETUlOIiwiY29udHJhY3QiOiJBRE1JTiIsImlhdCI6MjAxNjIzOTAyMn0.vwBNTaBbW40v14Iiqd65uhv4FVQi4qn4ZH50VyQ00rg"]);
+    hmset(["contractsms:ADMIN", "interface", "ALL", "permission", "ALL", "frontend", "ALL", "operator", "MOV", "defaultOperator", "MOV", "remitter", "217771", "jwt", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkFETUlOIiwiY29udHJhY3QiOiJBRE1JTiIsImlhdCI6MjAxNjIzOTAyMn0.vwBNTaBbW40v14Iiqd65uhv4FVQi4qn4ZH50VyQ00rg"]);
     hmset(["contractadmin:OTPLOWEB", "interface", "ALL", "permission", "WITHIN_APP", "frontend", "THIS", "operator", "MOV", "defaultOperator", "MOV", "remitter", "217771", "jwt", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6Ik9UUExPV0VCIiwiY29udHJhY3QiOiJPVFBMT1dFQiIsImlhdCI6MjAxNjIzOTAyMn0.BK58iwYbyfGb1u--SLP3YZP7JZxKSMrPHmdc-gfH4t4"]);
-    hmset(["contractadmin:ADMIN", "interface", "ALL", "permission", "ALL", "frontend", "ALL", "operator", "ALL", "defaultOperator", "MOV", "remitter", "217771", "jwt", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkFETUlOIiwiY29udHJhY3QiOiJBRE1JTiIsImlhdCI6MjAxNjIzOTAyMn0.vwBNTaBbW40v14Iiqd65uhv4FVQi4qn4ZH50VyQ00rg"]);
+    hmset(["contractadmin:ADMIN", "interface", "ALL", "permission", "ALL", "frontend", "ALL", "operator", "MOV", "defaultOperator", "MOV", "remitter", "217771", "jwt", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkFETUlOIiwiY29udHJhY3QiOiJBRE1JTiIsImlhdCI6MjAxNjIzOTAyMn0.vwBNTaBbW40v14Iiqd65uhv4FVQi4qn4ZH50VyQ00rg"]);
 
     //batchSMS
     hmset(["collectorsms:batchSMS", "status", 1, "interval", 180000, "intervalControl", 30000]);
@@ -222,10 +282,6 @@ const loadRedisForTesting = async () => {
 }
 
 
-
-
-
-
 const loadRedisConfDependsOnDate = async () => {
     let last = parseInt(await get("lastLoadRedisConf"));
     let now = Date.now();
@@ -236,7 +292,7 @@ const loadRedisConfDependsOnDate = async () => {
         set("lastLoadRedisConf", now);
         console.log(process.env.GREEN_COLOR, logTime(new Date()) + "Loading all Data in RedisConf...");
     } else {
-        if ((last + 36) < now) {
+        if ((last + 360000) < now) {
             initRedisPNSConf();
             initRedisSMSConf();
             set("lastLoadRedisConf", now);
@@ -248,8 +304,10 @@ const loadRedisConfDependsOnDate = async () => {
 }
 
 const loadRedisConf = async () => {
+    if (!await get("resetAllProcessedErrors")) resetAllProcessedErrors();
+    set("resetAllProcessedErrors", 1);
     initRedisPNSConf();
     initRedisSMSConf();
 }
 
-module.exports = { loadRedisConf, loadRedisConfDependsOnDate }
+module.exports = { loadRedisConf, loadRedisConfDependsOnDate, resetAllProcessedErrors }

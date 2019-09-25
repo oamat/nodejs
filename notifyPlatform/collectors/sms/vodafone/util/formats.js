@@ -35,7 +35,7 @@ const dateFormat = (date) => {
 
 //Date format for printing undertand date
 const dateFormatWithMillis = (date) => { //only for smsStauts/pnsStatus
-   return date.toLocaleString() +"."+ date.getMilliseconds();  
+   return date.toLocaleString() + "." + date.getMilliseconds();
 }
 
 const logTime = (date) => {
@@ -97,13 +97,29 @@ const descStatus = (type, status) => { //0:notSent, 1:Sent, 2:Confirmed, 3:Error
 
 const validateOperator = (type, operator) => {
    if (type == "SMS") {
-      if (operator == "MOV" || operator == "ORA" || operator == "VIP" || operator == "VOD")
+      if (operator == "MOV" || operator == "ORA" || operator == "VIP" || operator == "VOD" || operator == "ALL")
          return true;
    } else if (type == "PNS") {
-      if (operator == "APP" || operator == "GOO" || operator == "MIC")
+      if (operator == "APP" || operator == "GOO" || operator == "MIC" || operator == "ALL")
          return true;
    }
    return false;
 }
 
-module.exports = { dateFormat, dateFormatWithMillis, logTime, buildSMSChannel, buildSMSChannels, buildPNSChannel, buildPNSChannels, counter, replaceBreaks, replaceSpacesTo1, replaceSpaces, descStatus, validateOperator }
+
+const validateInterface = (interface) => {
+   if (interface == "REST" || interface == "BATCH" || interface == "MQ" || interface == "ALL")  return true;
+   else return false;
+}
+
+const validatePermission = (permission) => {
+   if (permission == "THIS" || permission == "WITHIN_APP" || permission == "ALL") return true;
+   else return false;
+}
+
+const telfFormat = (telf) => {
+   if (telf.length < 10) return "0034"+telf;
+   return telf.replace("+", "00");
+}
+
+module.exports = { dateFormat, dateFormatWithMillis, logTime, buildSMSChannel, buildSMSChannels, buildPNSChannel, buildPNSChannels, counter, replaceBreaks, replaceSpacesTo1, replaceSpaces, descStatus, validateOperator, validateInterface, validatePermission, telfFormat }

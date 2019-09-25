@@ -12,7 +12,7 @@
 //Dependencies
 const express = require('express');
 const auth = require('../auth/auth');
-
+const { hincrby1 } = require('../util/redisconf');
 const { updateSomeSMS } = require('../util/mongosms');
 const { dateFormat, logTime } = require('../util/formats');
 
@@ -40,8 +40,10 @@ router.post('/smsStatusBack', auth, async (req, res) => {  //we execute auth bef
         let response = { statusCode: "200 OK", id, status, operator }
         res.send(response);
         console.log(process.env.GREEN_COLOR, logTime(new Date()) + "SMS Status update : " + JSON.stringify(response));  //JSON.stringify for replace new lines (\n) and tab (\t) chars into string
+        hincrby1("apistatusback", "processed");
     } catch (error) {
         requestError(error, req, res);
+        hincrby1("apistatusback", "errors");
         //TODO : maybe we can save  the errors in Redis
     }
 });

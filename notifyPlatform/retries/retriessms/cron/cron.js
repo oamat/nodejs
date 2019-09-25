@@ -11,7 +11,7 @@
 
 const { sismember } = require('../util/redissms'); //we need to initialize redis
 const { rclient } = require('../config/redissms');
-const { hgetConf, hset } = require('../util/redisconf');
+const { hgetConf, hset, hincrby1 } = require('../util/redisconf');
 const { dateFormat, logTime } = require('../util/formats'); // utils for formats
 const { findAllSMS } = require('../util/mongosms'); // utils for formats
 
@@ -27,7 +27,7 @@ const SMS_IDS = "SMS.IDS.PENDING";
 
 const startCron = async (interval) => { //Start cron only when cron is stopped.
     try {
-        console.log(process.env.GREEN_COLOR, logTime(new Date()) + "initializing retriessms cron at " + dateFormat(new Date()) + " with interval : " + interval);
+        console.log(process.env.GREEN_COLOR, logTime(new Date()) + "initializing retriessms cron with interval : " + interval);
         if (cron) {
             console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "retriessms cron is executing, so we don't need re-start it.");
         } else {
@@ -45,7 +45,7 @@ const startCron = async (interval) => { //Start cron only when cron is stopped.
 const stopCron = async () => { //stop cron only when cron is switched on
     try {
         if (cron) {
-            console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "Stoping retriesSMS cron at " + dateFormat(new Date()));
+            console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "Stoping retriesSMS cron ");
             clearInterval(cron);
             cron = null;
         }
@@ -67,7 +67,13 @@ const retryNextsSMS = async () => {
                         ["lpush", retriesSMS[i].channel, JSON.stringify(retriesSMS[i])],    //Trans 1
                         ["sadd", SMS_IDS, retriesSMS[i]._id]                      //Trans 2             
                     ]).exec(function (error, replies) { // drains multi queue and runs atomically                                   
-                        if (error) console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "WARNING: We couldn't save SMS in Redis (We will have to wait for retry): " + error.message);
+                        if (error) {
+                            console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "WARNING: We couldn't save SMS in Redis (We will have to wait for retry): " + error.message);
+                            hincrby1("collectorsms:retriesSMS", "errors");
+                        } else {
+                            console.log(process.env.GREEN_COLOR, date + "We have retried " + retriesSMS[i]._id);
+                            hincrby1("collectorsms:retriesSMS", "processed");
+                        }
                     });
                     //END Redis Transaction with multi chain and result's callback    
                 }
@@ -107,7 +113,7 @@ const nextRetriesSMS = async () => {
 
 const startController = async (intervalControl) => {
     try {
-        console.log(process.env.GREEN_COLOR, logTime(new Date()) + "initializing cronController at " + dateFormat(new Date()) + " with intervalControl : " + intervalControl);
+        console.log(process.env.GREEN_COLOR, logTime(new Date()) + "initializing cronController with intervalControl : " + intervalControl);
         hset("collectorsms:retriesSMS", "last", dateFormat(new Date())); //save first execution in Redis
         var cronController = setInterval(function () {
             console.log(process.env.GREEN_COLOR, logTime(new Date()) + "cronController executing: Main cron interval is " + interval + " and status is " + cronStatus + " [1:ON, 0:OFF].");
@@ -181,7 +187,7 @@ const initCron = async () => {
             cronStatus = parseInt(values[2]); //maybe somebody stops collector
         });
 
-        console.log(process.env.GREEN_COLOR, logTime(new Date()) + "initializing all crons processes at " + dateFormat(new Date()) + " with cron interval [" + interval + "ms] and cron Controller interval : [" + intervalControl + "ms]...");
+        console.log(process.env.GREEN_COLOR, logTime(new Date()) + "initializing all crons processes with cron interval [" + interval + "ms] and cron Controller interval : [" + intervalControl + "ms]...");
         if (cronStatus) await startCron(interval);
         else console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "Cron status in redis indicates we don't want start cron process. we only start cron Controller.");
         await startController(intervalControl);

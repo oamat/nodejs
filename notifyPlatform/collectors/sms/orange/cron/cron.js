@@ -10,7 +10,7 @@
 //Dependencies
 const { Sms } = require('../models/sms');
 const { rpop, lpush, sismember } = require('../util/redissms'); //we need to initialize redis
-const { hset, hgetall } = require('../util/redisconf');
+const { hset, hgetall, hincrby1 } = require('../util/redisconf');
 const { dateFormat, logTime, buildSMSChannel, buildSMSChannels } = require('../util/formats'); // utils for formats
 const { updateSMS } = require('../util/mongosms'); //for updating status
 const { sendSMS } = require('./smsSendORA');
@@ -35,7 +35,7 @@ var intervalControl = 60000; //define interval in controller cron (check by min.
 
 const startCron = async (interval) => { //Start cron only when cron is stopped.
     try {
-        console.log(process.env.GREEN_COLOR, logTime(new Date()) + "initializing ORANGE cronMain at " + dateFormat(new Date()) + " with interval : " + interval);
+        console.log(process.env.GREEN_COLOR, logTime(new Date()) + "initializing ORANGE cronMain with interval : " + interval);
         if (cron) {
             console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "ORANGE cronMain is executing, so we don't need re-start it.");
         } else {
@@ -53,7 +53,7 @@ const startCron = async (interval) => { //Start cron only when cron is stopped.
 const stopCron = async () => { //stop cron only when cron is switched on
     try {
         if (cron) {
-            console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "Stoping ORANGE cronMain at " + dateFormat(new Date()));
+            console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "Stoping ORANGE cronMain ");
             clearInterval(cron);
             cron = null;
         }
@@ -73,7 +73,7 @@ const sendNextSMS = async () => {
                 sms.status = 4; //0:notSent, 1:Sent, 2:Confirmed, 3:Error, 4:Expired
                 updateSMS(sms).catch(error => { console.log(process.env.YELLOW_COLOR, logTime(new Date()) + error.message) }); //update SMS in MongoDB, is the last task, it's unnecessary await
                 console.log(process.env.YELLOW_COLOR, logTime(new Date()) + " The SMS " + sms._id + " has expired and has not been sent.");
-            } else { 
+            } else {
                 //sms.validate(); //It's unnecessary because we cautched from redis, and we checked before in the apisms, the new params are OK.
                 if (operator == defaultOperator) { //ORANGE WILL SEND //If we change operator for contingency we change sms to other list
                     sms.status = await sendSMS(sms); // send SMS to operator, //return status: 0:notSent, 1:Sent, 2:Confirmed, 3:Error, 4:Expired   
@@ -85,17 +85,20 @@ const sendNextSMS = async () => {
                         sismember(SMS_IDS, sms._id).catch(error => { console.log(process.env.YELLOW_COLOR, logTime(new Date()) + error.message); }) //delete from redis ID control, in error case we continue
                     ]).then(() => { //we always enter here
                         console.log(process.env.GREEN_COLOR, logTime(new Date()) + "SMS sended : " + sms._id);  //JSON.stringify for replace new lines (\n) and tab (\t) chars into string
+                        hincrby1(defaultCollector, "processed");
                     });
                 } else { //CONTINGENCY //In this case we don't delete ID in SMS_IDS SET.
                     sms.operator = operator; //The real operator to we will send SMS message      
                     sms.channel = buildSMSChannel(operator, sms.priority); //The real channel we will send SMS message
                     await lpush(sms.channel, JSON.stringify(sms)); // we put message to the other operator List
                     console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "change SMS " + sms._id + " from " + defaultOperator + " to " + operator); // we inform about this exceptional action
+                    hincrby1(defaultCollector, "processed");
                 }
             }
         }
     } catch (error) {
         console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "ERROR: we have a problem in ORANGE cronMain sendNextSMS() : " + error.message);
+        hincrby1(defaultCollector, "errors");
         //console.error(error); //continue the execution cron
     }
 }
@@ -111,7 +114,7 @@ const nextSMS = async () => {
 
 const startController = async (intervalControl) => {
     try {
-        console.log(process.env.GREEN_COLOR, logTime(new Date()) + "initializing ORANGE cronController at " + dateFormat(new Date()) + " with intervalControl : " + intervalControl);
+        console.log(process.env.GREEN_COLOR, logTime(new Date()) + "initializing ORANGE cronController with intervalControl : " + intervalControl);
         hset(defaultCollector, "last", dateFormat(new Date())); //save first execution in Redis
         if (cronController) {
             console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "ORANGE cronController is executing, so we don't need re-start it.");
@@ -151,13 +154,13 @@ const checksController = async () => {
             }
             // Cron Controller Check
             if (cronControllerChanged) {
-                console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "Stopping and Re-starting ORACLE cronController at " + dateFormat(new Date()));
-                cronControllerChanged = false;                
-                clearInterval(cronController); 
-                cronController = null;                
+                console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "Stopping and Re-starting ORACLE cronController ");
+                cronControllerChanged = false;
+                clearInterval(cronController);
+                cronController = null;
                 await startController(intervalControl).catch(error => { throw new Error("ERROR in ORACLE cronController." + error.message) });
-            }            
-            console.log(process.env.GREEN_COLOR, logTime(new Date()) + "ORACLE cronController : cronMain intervalControl is " + interval + ", cronController interval is " + interval + ", operator is '" + operator + "' and status is " + cronStatus + " ([1:ON, 0:OFF]).");
+            }
+            console.log(process.env.GREEN_COLOR, logTime(new Date()) + "ORANGE cronMain interval [" + interval + "ms], cronController interval : [" + intervalControl + "ms], collector operator  [" + operator + "] and status [" + cronStatus + "](1:ON, 0:OFF).");
             if (!cronStatus) console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "ATTENTION: ORACLE cronMain is OFF");
         });
 
@@ -229,8 +232,8 @@ const initCron = async () => {
 
 
         if (cronStatus) {
+            console.log(process.env.GREEN_COLOR, logTime(new Date()) + "ORANGE cronMain interval [" + interval + "ms], cronController interval : [" + intervalControl + "ms], collector operator  [" + operator + "] and status [" + cronStatus + "](1:ON, 0:OFF).");
             await startCron(interval).catch(error => { throw new Error("ERROR in ORANGE cronMain." + error.message) });
-            console.log(process.env.GREEN_COLOR, logTime(new Date()) + "initializing ORANGE cronMain at " + dateFormat(new Date()) + " with interval [" + interval + "ms], cronController interval : [" + intervalControl + "ms], and collector operator  [" + operator + "].");
         } else {
             console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "ORANGE Redis Configuration status indicates we don't want start cronMain process. we only start cron Controller.");
             console.log(process.env.GREEN_COLOR, logTime(new Date()) + "ORANGE cronController : cronMain interval is " + interval + ", operator is '" + operator + "' and status is " + cronStatus + " [1:ON, 0:OFF].");

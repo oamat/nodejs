@@ -18,7 +18,7 @@ const redispns = require('../util/redispns');
 const { dateFormat, logTime, buildSMSChannels, buildPNSChannels, validateOperator } = require('../util/formats');
 const { updateCollectorSms } = require('../util/mongomultisms');
 const { updateCollectorPns } = require('../util/mongomultipns');
-const { loadRedisConf } = require('../util/redisdataload');
+const { loadRedisConf, resetAllProcessedErrors } = require('../util/redisdataload');
 
 
 //VARS
@@ -30,6 +30,167 @@ const channelsVOD = buildSMSChannels("VOD");
 const channelsAPP = buildPNSChannels("APP");
 const channelsGOO = buildPNSChannels("GOO");
 const channelsMIC = buildPNSChannels("MIC");
+
+
+
+// GET /resetAllProcessedErrors  # All counters processed & errors have been reset to 0.
+router.get('/resetAllProcessedErrors', auth, async (req, res) => {
+    resetAllProcessedErrors();
+    res.send({
+        Status: "200 OK",
+        info: " All counters processed & errors have been reset to 0."
+    });
+});
+
+// GET //serviceStatus   # contract in body for Auth
+router.get('/serviceStatus', auth, async (req, res) => {
+    try {
+        // TODO: check APIS       
+
+        // START 43 "tasks" in parallel. we put await because we need all results before construct the json   
+        await Promise.all([
+            //PNS CollectorStatus
+            redisconf.hgetall("collectorpns:APP"),
+            redisconf.hgetall("collectorpns:GOO"),
+            redisconf.hgetall("collectorpns:MIC"),
+            //SMS CollectorStatus
+            redisconf.hgetall("collectorsms:MOV"),
+            redisconf.hgetall("collectorsms:VIP"),
+            redisconf.hgetall("collectorpns:VOD"),
+            redisconf.hgetall("collectorsms:ORA"),
+            //Batch Collectors
+            redisconf.hgetall("collectorsms:batchSMS"),
+            redisconf.hgetall("collectorpns:batchPNS"),
+            //Retries Collectors
+            redisconf.hgetall("collectorsms:retriesSMS"),
+            redisconf.hgetall("collectorpns:retriesPNS"),
+            //APIS
+            redisconf.hgetall("apiadmin", "last"),
+            redisconf.hgetall("apisms", "last"),
+            redisconf.hgetall("apipns", "last"),
+            redisconf.hgetall("apistatusback", "last"),
+            //MQ
+            redisconf.hgetall("mqpns"),
+            redisconf.hgetall("mqsms")
+
+        ]).then(values => {
+            let index = 0;            
+            res.send({
+                Status: "200 OK",
+                description: "status[1:ON, 0:OFF] - interval[cron(ms)] - intervalControl[cronController(ms)] - lastExecutionCheckControl[last CronController execution] - operator[Contingency]",
+                "APPLE-collector": values[index++],
+                "GOOGLE-collector": values[index++],
+                "MICROSOFT-collector": values[index++],
+                "MOVISTAR-collector": values[index++],
+                "VIP-MOVISTAR-collector": values[index++],
+                "ORANGE-collector": values[index++],
+                "VODAFONE-collector": values[index++],
+                "SMS-Batch": values[index++],
+                "PNS-Batch": values[index++],
+                "SMS-Retries": values[index++],
+                "PNS-Retries": values[index++],
+                "API-ADMIN": values[index++],
+                "API-SMS": values[index++],
+                "API-PNS": values[index++],
+                "API-STATUSBACK": values[index++],
+                "SMS-MQ": values[index++],
+                "PNS-MQ": values[index++]
+            });
+        });
+        // END 43 "tasks" in parallel. we put await because we need all results before construct the json   
+        // TODO : APIStatus?
+        // TODO : RedisStatus
+        // TODO : MongoDBStatus
+    } catch (error) {
+        requestError(error, req, res);
+    }
+});
+
+// PATCH //operatorContingency   # contract in body for Auth
+router.patch('/operatorContingency', auth, async (req, res) => {
+    try {
+        if (!req.body.name || !req.body.operator) throw new Error("you need params name & operator in your /operatorContingency request body.");
+        if (!validateOperator("SMS", req.body.operator)) throw new Error("Operator is invalid, it must be one of this options: 'MOV', 'VIP', 'ORA' or 'VOD'.");
+        if (!validateOperator("SMS", req.body.name)) throw new Error("Name is invalid, it must be one of this options: 'MOV', 'VIP', 'ORA' or 'VOD'.");
+        let toUpdate = { operator: req.body.operator };
+        // Execute in Parallel 2 tasks, before response we need to do all tasks for this reason we put await.
+        await Promise.all([
+            updateCollectorSms(req.body.name, toUpdate), // update Collector SMS in MongoDB
+            redisconf.hset("collectorsms:" + req.body.name, "operator", req.body.operator)
+        ]);
+        // END Execute in Parallel 2 tasks, before response we need to do all tasks for this reason we put await.
+
+        let info = " Contingency: The Collector SMS " + req.body.name + " has been change Operator for " + req.body.operator + ".";
+        res.send({
+            Status: "200 OK",
+            info,
+            name: req.body.name,
+            operator: req.body.operator
+        });
+
+        console.log(process.env.GREEN_COLOR, logTime(new Date()) + info);
+
+    } catch (error) {
+        requestError(error, req, res);
+    }
+});
+
+// PATCH //changeCollector   # contract in body for Auth
+router.patch('/changeCollector', auth, async (req, res) => {
+    try {
+        if (!req.body.name || !req.body.interval || !req.body.intervalControl || !req.body.type) throw new Error("you need params name, status, interval & intervalControl in your /changeCollector request body.");
+        if (req.body.status != 0 && req.body.status != 1) throw new Error("Status must be a number: 1 (ON) or 0 (OFF).");
+        if (req.body.interval < 0 || req.body.intervalControl < 0) throw new Error("Interval or IntervalControl must be a number <0. ");
+        if (!Number.isInteger(req.body.interval) || !Number.isInteger(req.body.status) || !Number.isInteger(req.body.intervalControl)) throw new Error("Params status, interval and intervalControl must be a Number (Integer)");
+
+        if (req.body.type == "SMS") {
+            if (!validateOperator("SMS", req.body.operator) || req.body.operator == "ALL") throw new Error("Operator is invalid, it must be one of this options for SMS: 'MOV', 'VIP', 'ORA', or 'VOD'.");
+            let toUpdate = { status: req.body.status, interval: req.body.interval, intervalControl: req.body.intervalControl, operator: req.body.operator };
+            await updateCollectorSms(req.body.name, toUpdate).then(() => { // update Collector SMS in MongoDB
+                redisconf.hmset(["collectorsms:" + req.body.name,
+                    "status", req.body.status,
+                    "interval", req.body.interval,
+                    "intervalControl", req.body.intervalControl,
+                    "operator", req.body.operator
+                ]).catch(error => { console.log(process.env.YELLOW_COLOR, logTime(new Date()) + error.message); });
+                let info = "Changed SMS Collector : " + req.body.name + " configuration has been change for status:" + req.body.status + ", interval:" + req.body.interval + ", intervalControl:" + req.body.intervalControl + ", operator:" + req.body.operator + " .";
+                res.send({ Status: "200 OK", info });
+                console.log(process.env.GREEN_COLOR, logTime(new Date()) + info);
+            });
+
+        } else if (req.body.type == "PNS") {
+            if (!validateOperator("PNS", req.body.operator) || req.body.operator == "ALL") throw new Error("Operator is invalid, it must be one of this options for PNS: 'APP', 'GOO' or 'MIC'.");
+            let toUpdate = { status: req.body.status, interval: req.body.interval, intervalControl: req.body.intervalControl, operator: req.body.operator }; //we don't change operator, unnecessary
+            await updateCollectorPns(req.body.name, toUpdate).then(() => {  // update Collector SMS in MongoDB
+                redisconf.hmset(["collectorpns:" + req.body.name,
+                    "status", req.body.status,
+                    "interval", req.body.interval,
+                    "intervalControl", req.body.intervalControl
+                ]).catch(error => { console.log(process.env.YELLOW_COLOR, logTime(new Date()) + error.message); });
+                let info = "Changed PNS Collector : " + req.body.name + " configuration has been change  for status:" + req.body.status + ", interval:" + req.body.interval + ", intervalControl:" + req.body.intervalControl + " .";
+                res.send({ Status: "200 OK", info });
+                console.log(process.env.GREEN_COLOR, logTime(new Date()) + info);
+            });
+
+        } else throw new Error("type is invalid, it must be one of this options: 'SMS'or 'PNS'.");
+    } catch (error) {
+        requestError(error, req, res);
+    }
+});
+
+
+// GET /loadRedis    # contract in body for Auth
+router.get('/loadRedis', auth, async (req, res) => {
+    try {
+        loadRedisConf();
+        res.send({ Status: "200 OK", info: "Loading all Data in RedisConf..." });
+    } catch (error) {
+        //TODO personalize errors 400 or 500. 
+        requestError(error, req, res);
+        //TODO: save error in db  or mem.
+    }
+});
+
 
 // GET /pendingNotifications   # contract in body for Auth
 router.get('/pendingNotifications', auth, async (req, res) => {
@@ -153,280 +314,8 @@ router.get('/pendingNotifications', auth, async (req, res) => {
     }
 });
 
-// GET //serviceStatus   # contract in body for Auth
-router.get('/serviceStatus', auth, async (req, res) => {
-    try {
-        // TODO: check APIS       
 
-        // START 43 "tasks" in parallel. we put await because we need all results before construct the json   
-        await Promise.all([
-            //PNS CollectorStatus
-            redisconf.hget("collectorpns:APP", "status"),
-            redisconf.hget("collectorpns:APP", "interval"),
-            redisconf.hget("collectorpns:APP", "intervalControl"),
-            redisconf.hget("collectorpns:APP", "last"),
-            redisconf.hget("collectorpns:APP", "operator"),
-            redisconf.hget("collectorpns:GOO", "status"),
-            redisconf.hget("collectorpns:GOO", "interval"),
-            redisconf.hget("collectorpns:GOO", "intervalControl"),
-            redisconf.hget("collectorpns:GOO", "last"),
-            redisconf.hget("collectorpns:GOO", "operator"),
-            redisconf.hget("collectorpns:MIC", "status"),
-            redisconf.hget("collectorpns:MIC", "interval"),
-            redisconf.hget("collectorpns:MIC", "intervalControl"),
-            redisconf.hget("collectorpns:MIC", "last"),
-            redisconf.hget("collectorpns:MIC", "operator"),
-
-            //SMS CollectorStatus
-            redisconf.hget("collectorsms:MOV", "status"),
-            redisconf.hget("collectorsms:MOV", "interval"),
-            redisconf.hget("collectorsms:MOV", "intervalControl"),
-            redisconf.hget("collectorsms:MOV", "last"),
-            redisconf.hget("collectorsms:MOV", "operator"),
-            redisconf.hget("collectorsms:VIP", "status"),
-            redisconf.hget("collectorsms:VIP", "interval"),
-            redisconf.hget("collectorsms:VIP", "intervalControl"),
-            redisconf.hget("collectorsms:VIP", "last"),
-            redisconf.hget("collectorsms:VIP", "operator"),
-            redisconf.hget("collectorsms:ORA", "status"),
-            redisconf.hget("collectorsms:ORA", "interval"),
-            redisconf.hget("collectorsms:ORA", "intervalControl"),
-            redisconf.hget("collectorsms:ORA", "last"),
-            redisconf.hget("collectorsms:ORA", "operator"),
-            redisconf.hget("collectorsms:VOD", "status"),
-            redisconf.hget("collectorsms:VOD", "interval"),
-            redisconf.hget("collectorsms:VOD", "intervalControl"),
-            redisconf.hget("collectorsms:VOD", "last"),
-            redisconf.hget("collectorsms:VOD", "operator"),
-
-            //Batch Collectors
-            redisconf.hget("collectorsms:batchSMS", "status"),
-            redisconf.hget("collectorsms:batchSMS", "interval"),
-            redisconf.hget("collectorsms:batchSMS", "intervalControl"),
-            redisconf.hget("collectorsms:batchSMS", "last"),
-            redisconf.hget("collectorsms:batchPNS", "status"),
-            redisconf.hget("collectorsms:batchPNS", "interval"),
-            redisconf.hget("collectorsms:batchPNS", "intervalControl"),
-            redisconf.hget("collectorsms:batchPNS", "last"),
-
-            //MQ
-            redisconf.hget("mqpns", "last"),
-            redisconf.hget("mqsms", "last"),
-
-            //Retries Collectors
-            redisconf.hget("collectorsms:retriesSMS", "status"),
-            redisconf.hget("collectorsms:retriesSMS", "interval"),
-            redisconf.hget("collectorsms:retriesSMS", "intervalControl"),
-            redisconf.hget("collectorsms:retriesSMS", "last"),
-            redisconf.hget("collectorpns:retriesPNS", "status"),
-            redisconf.hget("collectorpns:retriesPNS", "interval"),
-            redisconf.hget("collectorpns:retriesPNS", "intervalControl"),
-            redisconf.hget("collectorpns:retriesPNS", "last"),
-
-            //APIS
-            redisconf.hget("apiadmin", "last"),
-            redisconf.hget("apisms", "last"),
-            redisconf.hget("apipns", "last"),
-            redisconf.hget("apistatusback", "last")
-
-        ]).then(values => {
-            let index = 0;
-            res.send({
-                Status: "200 OK",
-                description: "status[1:ON, 0:OFF] - interval[cron(ms)] - intervalControl[cronController(ms)] - lastExecutionCheckControl[last CronController execution] - operator[Contingency]",
-                "APPLE-collector": [{
-                    status: values[index++],
-                    interval: values[index++],
-                    intervalControl: values[index++],
-                    lastExecutionCheckControl: values[index++],
-                    operator: values[index++]
-                }],
-                "GOOGLE-collector": [{
-                    status: values[index++],
-                    interval: values[index++],
-                    intervalControl: values[index++],
-                    lastExecutionCheckControl: values[index++],
-                    operator: values[index++]
-                }],
-                "MICROSOFT-collector": [{
-                    status: values[index++],
-                    interval: values[index++],
-                    intervalControl: values[index++],
-                    lastExecutionCheckControl: values[index++],
-                    operator: values[index++]
-                }],
-                "MOVISTAR-collector": [{
-                    status: values[index++],
-                    interval: values[index++],
-                    intervalControl: values[index++],
-                    lastExecutionCheckControl: values[index++],
-                    operator: values[index++]
-                }],
-                "VIP-MOVISTAR-collector": [{
-                    status: values[index++],
-                    interval: values[index++],
-                    intervalControl: values[index++],
-                    lastExecutionCheckControl: values[index++],
-                    operator: values[index++]
-                }],
-                "ORANGE-collector": [{
-                    status: values[index++],
-                    interval: values[index++],
-                    intervalControl: values[index++],
-                    lastExecutionCheckControl: values[index++],
-                    operator: values[index++]
-                }],
-                "VODAFONE-collector": [{
-                    status: values[index++],
-                    interval: values[index++],
-                    intervalControl: values[index++],
-                    lastExecutionCheckControl: values[index++],
-                    operator: values[index++]
-                }],
-                "SMS-Batch": [{
-                    status: values[index++],
-                    interval: values[index++],
-                    intervalControl: values[index++],
-                    lastExecutionCheckControl: values[index++]
-                }],
-                "PNS-Batch": [{
-                    status: values[index++],
-                    interval: values[index++],
-                    intervalControl: values[index++],
-                    lastExecutionCheckControl: values[index++]
-                }],
-                "SMS-MQ": [{
-                    status: 1,
-                    lastRestart: values[index++]
-                }],
-                "PNS-MQ": [{
-                    status: 1,
-                    lastRestart: values[index++]
-                }],
-                "SMS-Retries": [{
-                    status: values[index++],
-                    interval: values[index++],
-                    intervalControl: values[index++],
-                    lastExecutionCheckControl: values[index++]
-                }],
-                "PNS-Retries": [{
-                    status: values[index++],
-                    interval: values[index++],
-                    intervalControl: values[index++],
-                    lastExecutionCheckControl: values[index++]
-                }],
-                "API-ADMIN": [{
-                    status: 1,
-                    lastRestart: values[index++]
-                }],
-                "API-SMS": [{
-                    status: 1,
-                    lastRestart: values[index++]
-                }],
-                "API-PNS": [{
-                    status: 1,
-                    lastRestart: values[index++]
-                }],
-                "API-STATUSBACK": [{
-                    status: 1,
-                    lastRestart: values[index++]
-                }],
-            });
-        });
-        // END 43 "tasks" in parallel. we put await because we need all results before construct the json   
-        // TODO : APIStatus?
-        // TODO : RedisStatus
-        // TODO : MongoDBStatus
-    } catch (error) {
-        requestError(error, req, res);
-    }
-});
-
-// PATCH //operatorContingency   # contract in body for Auth
-router.patch('/operatorContingency', auth, async (req, res) => {
-    try {
-        if (!req.body.name || !req.body.operator) throw new Error("you need params name & operator in your /operatorContingency request body.");
-        if (!validateOperator("SMS", req.body.operator)) throw new Error("Operator is invalid, it must be one of this options: 'MOV', 'VIP', 'ORA' or 'VOD'.");
-        if (!validateOperator("SMS", req.body.name)) throw new Error("Name is invalid, it must be one of this options: 'MOV', 'VIP', 'ORA' or 'VOD'.");
-
-        let toUpdate = { operator: req.body.operator };
-        // Execute in Parallel 2 tasks, before response we need to do all tasks for this reason we put await.
-        await Promise.all([
-            updateCollectorSms(req.body.name, toUpdate), // update Collector SMS in MongoDB
-            redisconf.hset("collectorsms:" + req.body.name, "operator", req.body.operator)
-        ]);
-        // END Execute in Parallel 2 tasks, before response we need to do all tasks for this reason we put await.
-
-        let info = " Contingency: The Collector SMS " + req.body.name + " has been change Operator for " + req.body.operator + ".";
-        res.send({
-            Status: "200 OK",
-            info,
-            name: req.body.name,
-            operator: req.body.operator
-        });
-
-        console.log(process.env.GREEN_COLOR, logTime(new Date()) + info);
-
-    } catch (error) {
-        requestError(error, req, res);
-    }
-});
-
-// PATCH //changeCollector   # contract in body for Auth
-router.patch('/changeCollector', auth, async (req, res) => {
-    try {
-        if (!req.body.name || !req.body.interval || !req.body.intervalControl || !req.body.type) throw new Error("you need params name, status, interval & intervalControl in your /changeCollector request body.");
-        if (req.body.status != 0 && req.body.status != 1) throw new Error("Status must be a number: 1 (ON) or 0 (OFF).");
-        if (req.body.interval < 0 || req.body.intervalControl < 0) throw new Error("Interval or IntervalControl must be a number <0. ");
-        if (!Number.isInteger(req.body.interval) || !Number.isInteger(req.body.status) || !Number.isInteger(req.body.intervalControl)) throw new Error("Params status, interval and intervalControl must be a Number (Integer)");
-
-        if (req.body.type == "SMS") {
-            if (!validateOperator("SMS", req.body.operator)) throw new Error("Operator is invalid, it must be one of this options for SMS: 'MOV', 'VIP', 'ORA' or 'VOD'.");
-            let toUpdate = { status: req.body.status, interval: req.body.interval, intervalControl: req.body.intervalControl, operator: req.body.operator };
-            await updateCollectorSms(req.body.name, toUpdate).then(() => { // update Collector SMS in MongoDB
-                redisconf.hmset(["collectorsms:" + req.body.name,
-                    "status", req.body.status,
-                    "interval", req.body.interval,
-                    "intervalControl", req.body.intervalControl,
-                    "operator", req.body.operator
-                ]).catch(error => { console.log(process.env.YELLOW_COLOR, logTime(new Date()) + error.message); });
-                let info = "Changed SMS Collector : " + req.body.name + " configuration has been change for status:" + req.body.status + ", interval:" + req.body.interval + ", intervalControl:" + req.body.intervalControl + ", operator:" + req.body.operator + " .";
-                res.send({ Status: "200 OK", info });
-                console.log(process.env.GREEN_COLOR, logTime(new Date()) + info);
-            });
-
-        } else {
-            let toUpdate = { status: req.body.status, interval: req.body.interval, intervalControl: req.body.intervalControl }; //we don't change operator, unnecessary
-            await updateCollectorPns(req.body.name, toUpdate).then(() => {  // update Collector SMS in MongoDB
-                redisconf.hmset(["collectorpns:" + req.body.name,
-                    "status", req.body.status,
-                    "interval", req.body.interval,
-                    "intervalControl", req.body.intervalControl
-                ]).catch(error => { console.log(process.env.YELLOW_COLOR, logTime(new Date()) + error.message); });
-                let info = "Changed PNS Collector : " + req.body.name + " configuration has been change  for status:" + req.body.status + ", interval:" + req.body.interval + ", intervalControl:" + req.body.intervalControl + " .";
-                res.send({ Status: "200 OK", info });
-                console.log(process.env.GREEN_COLOR, logTime(new Date()) + info);
-            });
-
-        }
-    } catch (error) {
-        requestError(error, req, res);
-    }
-});
-
-
-// GET /loadRedis    # contract in body for Auth
-router.get('/loadRedis', auth, async (req, res) => {
-    try {
-        loadRedisConf();
-        res.send({ Status: "200 OK", info: "Loading all Data in RedisConf..." });
-    } catch (error) {
-        //TODO personalize errors 400 or 500. 
-        requestError(error, req, res);
-        //TODO: save error in db  or mem.
-    }
-});
-
+// return the error to the client
 const requestError = async (error, req, res) => {
     //TODO personalize errors 400 or 500. 
     const errorJson = { StatusCode: "400 Bad Request", error: error.message, receiveAt: dateFormat(new Date()) };   // dateFornat: replace T with a space && delete the dot and everything after

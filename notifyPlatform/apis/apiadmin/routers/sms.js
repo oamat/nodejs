@@ -11,7 +11,7 @@ const auth = require('../auth/auth');
 const redisconf = require('../util/redisconf');
 const { TelfSms } = require('../config/mongoosemulti');  // Attention : this Pns Model is model created for multi DB
 const { findSMS, saveTelfSms } = require('../util/mongomultisms');
-const { dateFormatWithMillis, logTime, descStatus, validateOperator } = require('../util/formats');
+const { dateFormatWithMillis, logTime, descStatus, validateOperator, telfFormat } = require('../util/formats');
 
 
 const router = new express.Router();
@@ -53,7 +53,7 @@ router.post('/telfRegister', auth, async (req, res) => {
 
         var TelfModel = TelfSms();  // we catch the ContractSMS Model
         var telf = new TelfModel(req.body); //await it's unnecessary because is the first creation of object. Model Validations are check when save in Mongodb, not here.       
-
+        telf.telf = telfFormat(telf.telf);
         await telf.validate(); // we need await for validations before save anything
         await Promise.all([  // await is necessary because we have errors, like duplication contract name
             saveTelfSms(telf),

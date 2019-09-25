@@ -1,16 +1,9 @@
-Gravar errors a BBDD 
-Test : hacer todos los unitarios (mucho tiempo)
-MQ : configurar correctamente el MQ en docker/kubernetes. 
+FrontEnd para que visualmente se pueda hacer todo lo de apiadmin 
+Dependencia BBDD:  En este proyecto se ha programado la transaccionalidad en BBDD, en futuro se podria ir sin BBDD,
+Gravar todos los errors en BBDD (no solo incr) actualment només a logs
+Unit Test : hacer todos los unitarios (mucho tiempo)
+MQ : configurar IBM MQ para pruebas 
 Constantes : literales en el código
-Kubernetes : statefulSet =  para volumenes. No hacerlo como deployment. 
-kubernets : configmap =  para configuraciones
-!Kubernetes : cronJob =  NO es adecuado para los crons OASIS de 100/s, pero para batch quizá si, dependiendo de la periodicidad
-Dependencia BBDD:  En este proyecto se ha programado la transaccionalidad en BBDD, en futuro se podria ir sin BBDD, 
-Certificados HTTPS API + jmeter
-User/Password redis
-FindSMS by telf & date
-MongoDB: Collection SMS y PNS hay que hacer procesos de historificación y borrado 
+Kubernetes : statefulSet =  para volumenes. Configmap =  para configuraciones. CronJob =  batch, NO crons
 Repasar documentación en inglés
-Tantos por ciento de envio( incr )
-Revisar promesas: resolve&reject sin try/catch
-FrontEnd permisos (frondendPass : null, ALL,  )
+Tantos por ciento de envio( incr 

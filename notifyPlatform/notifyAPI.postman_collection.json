@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "ef8bbc59-82c0-458e-a2cf-c73a54dfb9bc",
+		"_postman_id": "92a972c9-ab93-4b87-8e38-a543e6c2dc3f",
 		"name": "notifyAPI",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -24,7 +24,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t \"contract\" : \"OTPLOWEB\",\n\t \"telf\" : \"+34699272800\",\n\t \"message\" : \"you have won a gift\",\n\t \"alias\" : \"L.O.\",\n\t \"customId\" : \"myid_4566544\",\n\t \"priority\" : \"0\"\n}"
+					"raw": "{\n\t \"contract\" : \"OTPLOWEB\",\n\t \"telf\" : \"+34699272801\",\n\t \"message\" : \"you have won a gift\",\n\t \"alias\" : \"L.O.\",\n\t \"customId\" : \"myid_4566544\",\n\t \"priority\" : \"0\"\n}"
 				},
 				"url": {
 					"raw": "https://localhost:30001/smsSend",
@@ -35,6 +35,44 @@
 					"port": "30001",
 					"path": [
 						"smsSend"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "apiadmin/smsStatus",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "x-api-key",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkFETUlOIiwiY29udHJhY3QiOiJBRE1JTiIsImlhdCI6MjAxNjIzOTAyMn0.vwBNTaBbW40v14Iiqd65uhv4FVQi4qn4ZH50VyQ00rg",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t \"contract\" : \"ADMIN\",\n\t \"_id\" : \"2382f35e-052d-4221-9c90-4bb301ba16a5\"\n}"
+				},
+				"url": {
+					"raw": "https://localhost:30003/smsStatus",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "30003",
+					"path": [
+						"smsStatus"
 					]
 				}
 			},
@@ -59,7 +97,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t \"contract\" : \"PUSHLOWEB\",\n\t \"application\" : \"CaixaAPP\",\n\t \"user\" : \"userTst\",\n\t \"uuiddevice\" : \"kRt346992-72809WA\",\n\t \"action\" : \"show\",\n\t \"content\" : \"content push notification\",\n\t \"params\" : [\n\t \t{ \"param\" : \"icono1\", \"value\" : \"new1\", \"type\" : \"String\"},\n\t \t{ \"param\" : \"icono2\", \"value\" : \"new2\", \"type\" : \"String\"}\n\t \t]\n}"
+					"raw": "{\n\t \"contract\" : \"PUSHLOWEB\",\n\t \"application\" : \"CaixaAPP\",\n\t \"user\" : \"userTst\",\n\t \"uuiddevice\" : \"kRt346992-72809WA\",\n\t \"action\" : \"show\",\n\t \"content\" : \"content push notification\",\n\t \"priority\" : 3,\n\t \"params\" : [\n\t \t{ \"param\" : \"icono1\", \"value\" : \"new1\", \"type\" : \"String\"},\n\t \t{ \"param\" : \"icono2\", \"value\" : \"new2\", \"type\" : \"String\"}\n\t \t]\n}"
 				},
 				"url": {
 					"raw": "https://localhost:30002/pnsSend",
@@ -76,42 +114,7 @@
 			"response": []
 		},
 		{
-			"name": "apistatusback/smsStatusBack",
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "x-api-key",
-						"type": "text",
-						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwicmVmcmVxIjoiYXBpX3N0YXR1c19iYWNrX3JlZmVyZW5jZV9yZXF1ZXN0IiwiaWF0IjoyMDE2MjM5MDIyfQ.DQnNzRvVh970YWrZ4dnkd587rrA7AjY4cd09DwTwA34"
-					},
-					{
-						"key": "Content-Type",
-						"name": "Content-Type",
-						"type": "text",
-						"value": "application/json"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n\t \"id\" : \"e4478cce-b6b5-4a06-b1b1-60767286117b\",\n\t \"status\" : \"3\",\n\t \"operator\" : \"MOV\"\n}"
-				},
-				"url": {
-					"raw": "https://localhost:30004/smsStatusBack",
-					"protocol": "https",
-					"host": [
-						"localhost"
-					],
-					"port": "30004",
-					"path": [
-						"smsStatusBack"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "apiadmin/loadRedis",
+			"name": "apiadmin/pnsStatus",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},
@@ -121,28 +124,66 @@
 					{
 						"key": "Content-Type",
 						"name": "Content-Type",
-						"value": "application/json",
-						"type": "text"
+						"type": "text",
+						"value": "application/json"
 					},
 					{
 						"key": "x-api-key",
-						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkFETUlOIiwiY29udHJhY3QiOiJBRE1JTiIsImlhdCI6MjAxNjIzOTAyMn0.vwBNTaBbW40v14Iiqd65uhv4FVQi4qn4ZH50VyQ00rg",
-						"type": "text"
+						"type": "text",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkFETUlOIiwiY29udHJhY3QiOiJBRE1JTiIsImlhdCI6MjAxNjIzOTAyMn0.vwBNTaBbW40v14Iiqd65uhv4FVQi4qn4ZH50VyQ00rg"
 					}
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t \"contract\" : \"ADMIN\"\n}"
+					"raw": "{\n\t \"contract\" : \"ADMIN\",\n\t \"_id\" : \"eb00cb34-6791-408c-a474-afd47ed4525c\"\n}"
 				},
 				"url": {
-					"raw": "https://localhost:30003/loadRedis",
+					"raw": "https://localhost:30003/pnsStatus",
 					"protocol": "https",
 					"host": [
 						"localhost"
 					],
 					"port": "30003",
 					"path": [
-						"loadRedis"
+						"pnsStatus"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "apiadmin/serviceStatus",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "x-api-key",
+						"type": "text",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkFETUlOIiwiY29udHJhY3QiOiJBRE1JTiIsImlhdCI6MjAxNjIzOTAyMn0.vwBNTaBbW40v14Iiqd65uhv4FVQi4qn4ZH50VyQ00rg"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"contract\" : \"ADMIN\"\n}"
+				},
+				"url": {
+					"raw": "https://localhost:30003/serviceStatus",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "30003",
+					"path": [
+						"serviceStatus"
 					]
 				},
 				"description": "/loadRedis"
@@ -189,7 +230,7 @@
 			"response": []
 		},
 		{
-			"name": "apiadmin/serviceStatus",
+			"name": "apiadmin/resetAllProcessedErrors",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},
@@ -210,17 +251,17 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"contract\" : \"ADMIN\"\n}"
+					"raw": "{\n\t \"contract\" : \"ADMIN\"\n}"
 				},
 				"url": {
-					"raw": "https://localhost:30003/serviceStatus",
+					"raw": "https://localhost:30003/resetAllProcessedErrors",
 					"protocol": "https",
 					"host": [
 						"localhost"
 					],
 					"port": "30003",
 					"path": [
-						"serviceStatus"
+						"resetAllProcessedErrors"
 					]
 				},
 				"description": "/loadRedis"
@@ -228,7 +269,7 @@
 			"response": []
 		},
 		{
-			"name": "apiadmin/addSmsContract",
+			"name": "apiadmin/addContract",
 			"request": {
 				"method": "POST",
 				"header": [
@@ -246,17 +287,17 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"contract\" : \"ADMIN\",\n\t\"name\" : \"OTPLOWEB\",\n\t\"description\" :  \"OTPLOWEB contract\",\n\t\"permission\" : \"WITHIN_APP\",\n\t\"application\" : \"OTPLOWEB\", \n\t\"interface\" : \"REST\",\n\t\"operator\" : \"MOV\",\n\t\"remitter\": \"+217771\"\n}"
+					"raw": "{\n\t\"contract\" : \"ADMIN\",\n\t\"name\" : \"OTPLOWEB\",\n\t\"type\": \"SMS\",\n\t\"description\" :  \"OTPLOWEB contract\",\n\t\"permission\" : \"WITHIN_APP\",\n\t\"application\" : \"OTPLOWEB\", \n\t\"interface\" : \"REST\",\n\t\"operator\" : \"MOV\",\n\t\"remitter\": \"+217771\"\n}"
 				},
 				"url": {
-					"raw": "https://localhost:30003/addSmsContract",
+					"raw": "https://localhost:30003/addContract",
 					"protocol": "https",
 					"host": [
 						"localhost"
 					],
 					"port": "30003",
 					"path": [
-						"addSmsContract"
+						"addContract"
 					]
 				},
 				"description": "/loadRedis"
@@ -264,9 +305,12 @@
 			"response": []
 		},
 		{
-			"name": "apiadmin/addPnsContract",
+			"name": "apiadmin/getContract",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
 			"request": {
-				"method": "POST",
+				"method": "GET",
 				"header": [
 					{
 						"key": "Content-Type",
@@ -282,17 +326,124 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"contract\" : \"ADMIN\",\n\t\"name\" : \"PUSHLOWEB\",\n\t\"description\" :  \"PUSHLOWEB contract tst\",\n\t\"permission\" : \"WITHIN_APP\",\n\t\"application\" : \"PUSHLOWEB_APP\", \n\t\"interface\" : \"ALL\",\n\t\"operator\" : \"ALL\"\n}"
+					"raw": "{\n\t \"contract\" : \"ADMIN\",\n\t \"name\" : \"OTPLOWEB\",\n\t \"type\" : \"SMS\"\n}"
 				},
 				"url": {
-					"raw": "https://localhost:30003/addPnsContract",
+					"raw": "https://localhost:30003/getContract",
 					"protocol": "https",
 					"host": [
 						"localhost"
 					],
 					"port": "30003",
 					"path": [
-						"addPnsContract"
+						"getContract"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "apiadmin/changeContract",
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "x-api-key",
+						"type": "text",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkFETUlOIiwiY29udHJhY3QiOiJBRE1JTiIsImlhdCI6MjAxNjIzOTAyMn0.vwBNTaBbW40v14Iiqd65uhv4FVQi4qn4ZH50VyQ00rg"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"contract\" : \"ADMIN\",\n\t\"name\" : \"OTPLOWEB\",\n    \"type\" : \"SMS\",\n    \"operator\": \"ALL\",\n    \"activated\": \"true\",\n    \"frontend\": \"THIS\",\n    \"permission\": \"THIS\",\n    \"interface\": \"ALL\"\n \n}"
+				},
+				"url": {
+					"raw": "https://localhost:30003/changeContract",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "30003",
+					"path": [
+						"changeContract"
+					]
+				},
+				"description": "/loadRedis"
+			},
+			"response": []
+		},
+		{
+			"name": "apiadmin/changeCollector",
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "x-api-key",
+						"type": "text",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkFETUlOIiwiY29udHJhY3QiOiJBRE1JTiIsImlhdCI6MjAxNjIzOTAyMn0.vwBNTaBbW40v14Iiqd65uhv4FVQi4qn4ZH50VyQ00rg"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"contract\" : \"ADMIN\",\n\t\"name\" : \"GOO\",\n\t\"type\" : \"PNS\",\n\t\"status\" : 1,\n    \"interval\" : 1000,\n    \"intervalControl\" : 5000,\n    \"operator\" : \"ALL\"\n\n}"
+				},
+				"url": {
+					"raw": "https://localhost:30003/changeCollector",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "30003",
+					"path": [
+						"changeCollector"
+					]
+				},
+				"description": "/loadRedis"
+			},
+			"response": []
+		},
+		{
+			"name": "apiadmin/operatorContingency",
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "x-api-key",
+						"type": "text",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkFETUlOIiwiY29udHJhY3QiOiJBRE1JTiIsImlhdCI6MjAxNjIzOTAyMn0.vwBNTaBbW40v14Iiqd65uhv4FVQi4qn4ZH50VyQ00rg"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"contract\" : \"ADMIN\",\n\t\"name\" : \"MOV\",\n    \"operator\" : \"ORA\"\n\n}"
+				},
+				"url": {
+					"raw": "https://localhost:30003/operatorContingency",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "30003",
+					"path": [
+						"operatorContingency"
 					]
 				},
 				"description": "/loadRedis"
@@ -354,7 +505,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"contract\" : \"ADMIN\",\n    \"telf\" : \"6992728001\",\n    \"operator\" : \"ORA\"\n}"
+					"raw": "{\n\t\"contract\" : \"ADMIN\",\n    \"telf\" : \"6992728001\",\n    \"operator\" : \"VIP\"\n}"
 				},
 				"url": {
 					"raw": "https://localhost:30003/telfRegister",
@@ -372,79 +523,7 @@
 			"response": []
 		},
 		{
-			"name": "apiadmin/operatorContingency",
-			"request": {
-				"method": "PATCH",
-				"header": [
-					{
-						"key": "Content-Type",
-						"name": "Content-Type",
-						"type": "text",
-						"value": "application/json"
-					},
-					{
-						"key": "x-api-key",
-						"type": "text",
-						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkFETUlOIiwiY29udHJhY3QiOiJBRE1JTiIsImlhdCI6MjAxNjIzOTAyMn0.vwBNTaBbW40v14Iiqd65uhv4FVQi4qn4ZH50VyQ00rg"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n\t\"contract\" : \"ADMIN\",\n\t\"name\" : \"MOV\",\n    \"operator\" : \"ORA\"\n\n}"
-				},
-				"url": {
-					"raw": "https://localhost:30003/operatorContingency",
-					"protocol": "https",
-					"host": [
-						"localhost"
-					],
-					"port": "30003",
-					"path": [
-						"operatorContingency"
-					]
-				},
-				"description": "/loadRedis"
-			},
-			"response": []
-		},
-		{
-			"name": "apiadmin/changeCollector",
-			"request": {
-				"method": "PATCH",
-				"header": [
-					{
-						"key": "Content-Type",
-						"name": "Content-Type",
-						"type": "text",
-						"value": "application/json"
-					},
-					{
-						"key": "x-api-key",
-						"type": "text",
-						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkFETUlOIiwiY29udHJhY3QiOiJBRE1JTiIsImlhdCI6MjAxNjIzOTAyMn0.vwBNTaBbW40v14Iiqd65uhv4FVQi4qn4ZH50VyQ00rg"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n\t\"contract\" : \"ADMIN\",\n\t\"name\" : \"MOV\",\n\t\"type\" : \"SMS\",\n\t\"status\" : 1,\n    \"interval\" : 100,\n    \"intervalControl\" : 30000,\n    \"operator\" : \"MOV\"\n\n}"
-				},
-				"url": {
-					"raw": "https://localhost:30003/changeCollector",
-					"protocol": "https",
-					"host": [
-						"localhost"
-					],
-					"port": "30003",
-					"path": [
-						"changeCollector"
-					]
-				},
-				"description": "/loadRedis"
-			},
-			"response": []
-		},
-		{
-			"name": "apiadmin/smsStatus",
+			"name": "apiadmin/loadRedis",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},
@@ -465,97 +544,58 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t \"contract\" : \"ADMIN\",\n\t \"_id\" : \"25c91e9f-5355-46e5-9ab1-843aef3f075f\"\n}"
+					"raw": "{\n\t \"contract\" : \"ADMIN\"\n}"
 				},
 				"url": {
-					"raw": "https://localhost:30003/smsStatus",
+					"raw": "https://localhost:30003/loadRedis",
 					"protocol": "https",
 					"host": [
 						"localhost"
 					],
 					"port": "30003",
 					"path": [
-						"smsStatus"
+						"loadRedis"
 					]
-				}
+				},
+				"description": "/loadRedis"
 			},
 			"response": []
 		},
 		{
-			"name": "apiadmin/getContract",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
+			"name": "apistatusback/smsStatusBack",
 			"request": {
-				"method": "GET",
+				"method": "POST",
 				"header": [
+					{
+						"key": "x-api-key",
+						"type": "text",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwicmVmcmVxIjoiYXBpX3N0YXR1c19iYWNrX3JlZmVyZW5jZV9yZXF1ZXN0IiwiaWF0IjoyMDE2MjM5MDIyfQ.DQnNzRvVh970YWrZ4dnkd587rrA7AjY4cd09DwTwA34"
+					},
 					{
 						"key": "Content-Type",
 						"name": "Content-Type",
 						"type": "text",
 						"value": "application/json"
-					},
-					{
-						"key": "x-api-key",
-						"type": "text",
-						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkFETUlOIiwiY29udHJhY3QiOiJBRE1JTiIsImlhdCI6MjAxNjIzOTAyMn0.vwBNTaBbW40v14Iiqd65uhv4FVQi4qn4ZH50VyQ00rg"
 					}
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t \"contract\" : \"ADMIN\",\n\t \"name\" : \"OTPLOWEB\",\n\t \"type\" : \"SMS\"\n}"
+					"raw": "{\n\t \"id\" : \"e4478cce-b6b5-4a06-b1b1-60767286117b\",\n\t \"status\" : \"3\",\n\t \"operator\" : \"MOV\"\n}"
 				},
 				"url": {
-					"raw": "https://localhost:30003/getContract",
+					"raw": "https://localhost:30004/smsStatusBack",
 					"protocol": "https",
 					"host": [
 						"localhost"
 					],
-					"port": "30003",
+					"port": "30004",
 					"path": [
-						"getContract"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "apiadmin/pnsStatus",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "Content-Type",
-						"name": "Content-Type",
-						"type": "text",
-						"value": "application/json"
-					},
-					{
-						"key": "x-api-key",
-						"type": "text",
-						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkFETUlOIiwiY29udHJhY3QiOiJBRE1JTiIsImlhdCI6MjAxNjIzOTAyMn0.vwBNTaBbW40v14Iiqd65uhv4FVQi4qn4ZH50VyQ00rg"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n\t \"contract\" : \"ADMIN\",\n\t \"_id\" : \"d8e580f9-4828-4c18-beb6-0cfaebc4da4f\"\n}"
-				},
-				"url": {
-					"raw": "https://localhost:30003/pnsStatus",
-					"protocol": "https",
-					"host": [
-						"localhost"
-					],
-					"port": "30003",
-					"path": [
-						"pnsStatus"
+						"smsStatusBack"
 					]
 				}
 			},
 			"response": []
 		}
-	]
+	],
+	"protocolProfileBehavior": {}
 }

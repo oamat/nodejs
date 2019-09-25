@@ -10,7 +10,7 @@
 //Dependencies
 const { Pns } = require('../models/pns');
 const { rclient } = require('../config/redispns'); //we need to initialize redis
-const { hset, hgetall } = require('../util/redisconf');
+const { hset, hgetall, hincrby1 } = require('../util/redisconf');
 const { dateFormat, logTime, buildPNSChannel } = require('../util/formats'); // utils for formats
 const { savePNS } = require('../util/mongopns'); //for updating status
 const auth = require('../auth/auth');
@@ -52,7 +52,7 @@ const startCron = async (interval) => { //Start cron only when cron is stopped.
 const stopCron = async () => { //stop cron only when cron is switched on
     try {
         if (cron) {
-            console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "Stoping BATCHPNS cronMain at " + dateFormat(new Date()));
+            console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "Stoping BATCHPNS cronMain ");
             clearInterval(cron);
             cron = null;
         }
@@ -76,7 +76,7 @@ const getPNSFiles = async () => {
                     if (priority < 4) priority = 4; //only accept priorities 4 or 5 in batch. (0,1 are reserved for REST interface, 2,3 for MQ interface).
                     var notifications = fileJSON.fileBatch.notifications;
                     console.log(logTime(new Date()) + filename + " have " + notifications.length + " notifications to send");
-                    notifications.forEach(async (pnsJSON) => {
+                    notifications.forEach(async (pnsJSON, index) => {
                         try {
                             var pns = new Pns(pnsJSON); // convert json to object,  await it's unnecessary because is the first creation of object. Model Validations are check when save in Mongodb, not here. 
                             pns.priority = priority;
@@ -106,9 +106,12 @@ const getPNSFiles = async () => {
                                     //END Redis Transaction with multi chain and result's callback
 
                                     console.log(process.env.GREEN_COLOR, logTime(new Date()) + "PNS saved, _id: " + pns._id);  //JSON.stringify for replace new lines (\n) and tab (\t) chars into string
+                                    hincrby1(batchName, "processed");
+                                    if ( (index + 1) == notifications.length ) console.log(logTime(new Date()) + + notifications.length + ' notifications processed.');
                                 });
                         } catch (error) {
-                            console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "ERROR: BatchPNS processing file, process continue, error : " + error.message);
+                            console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "ERROR: BatchPNS processing a notification:  batchPNS.getPNSFiles() : process continue, error :" + error.message);
+                            hincrby1(batchName, "errors");
                             ////console.error(error); //continue the execution cron          
                             //TODO: save error in db  or mem.
                         }
@@ -123,7 +126,7 @@ const getPNSFiles = async () => {
                 }
             });
         } catch (error) {
-            console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "ERROR: we have a problem in batchPNS.getPNSFiles() : " + error.message);
+            console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "ERROR: BatchPNS processing a file: batchPNS.getPNSFiles() : " + error.message);
             //console.error(error); //continue the execution cron
         }
         nextExecution = true;
@@ -173,7 +176,7 @@ const checksController = async () => {
             }
             // Cron Controller Check
             if (cronControllerChanged) {
-                console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "Stopping and Re-starting BATCHPNS cronController at " + dateFormat(new Date()));
+                console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "Stopping and Re-starting BATCHPNS cronController ");
                 cronControllerChanged = false;
                 clearInterval(cronController);
                 cronController = null;
@@ -251,8 +254,8 @@ const initCron = async () => {
         console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "WARNING : We have a problem in initialization. Process continuing... " + error.message);
         //console.error(error); //continue the execution cron
         cronStatus = 1;
-        startCron(interval); // 100 message/s
-        startController(intervalControl); // 60 seconds        
+        startCron(interval); // 180000 ms by default /
+        startController(intervalControl); // 60 seconds by default      
     }
 }
 

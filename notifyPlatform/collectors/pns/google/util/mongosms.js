@@ -43,7 +43,7 @@ const updateSMS = async (sms) => {
         Sms.findOneAndUpdate(query, sms, options, (error, result) => {  //property new returns the new updated document, not the original document
             if (error) reject(error);  //if mongoose give me an error. If we used reject the try/catch would be unnecessary  
             else if (result) resolve(result); // everything is OK, return result
-            else reject(new Error("we have a problem when try to update SMS in MongoDB. it's necessary check the problem before proceding.")); //If we cannot save SMS to MongoDB
+            else reject(new Error("This Contract name doesn't exist, we cannot update SMS in MongoDB. it's necessary check the problem before proceding.")); //If we cannot save SMS to MongoDB
         });
     });
     //.then((result) => { return result; })  //return the result, it's unnecessary but maybe we will need put some lógic...
@@ -58,7 +58,7 @@ const updateSomeSMS = async (id, toUpdate) => {
         Sms.findOneAndUpdate(query, { $set: toUpdate }, options, (error, result) => {  //property new returns the new updated document, not the original document
             if (error) reject(error);  //if mongoose give me an error. If we used reject the try/catch would be unnecessary  
             else if (result) resolve(result); // everything is OK, return result
-            else reject(new Error("we have a problem when try to update SMS in MongoDB. it's necessary check the problem before proceding.")); //If we cannot save SMS to MongoDB
+            else reject(new Error("This Contract name doesn't exist, we cannot update SMS in MongoDB. it's necessary check the problem before proceding.")); //If we cannot save SMS to MongoDB
         });
     });
     //.then((result) => { return result; })  //return the result, it's unnecessary but maybe we will need put some lógic...

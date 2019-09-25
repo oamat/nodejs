@@ -1,0 +1,16 @@
+{
+    "fileBatch": {
+        "id": "file201908231208",
+        "contract": "OTPLOWEB",
+        "jwt": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6Ik9UUExPV0VCIiwiY29udHJhY3QiOiJPVFBMT1dFQiIsImlhdCI6MjAxNjIzOTAyMn0.BK58iwYbyfGb1u--SLP3YZP7JZxKSMrPHmdc-gfH4t4",
+        "deferred": "09:00",
+        "priority": 5,
+        "notifications": [
+            {"contract": "OTPLOWEB", "telf": "+34699272800", "message": "you have won a gift", "alias": "L.O."},
+            {"contract": "OTPLOWEB", "telf": "+34699272800", "message": "you have won a gift", "alias": "L.O."},
+            {"contract": "OTPLOWEB", "telf": "+34699272800", "message": "you have won a gift", "alias": "L.O."},
+            {"contract": "OTPLOWEB", "telf": "+34699272800", "message": "you have won a gift", "alias": "L.O."},    
+            {"contract": "OTPLOWEB", "telf": "+34699272800", "message": "you have won a gift", "alias": "L.O."}
+        ]
+    }
+}

@@ -10,7 +10,7 @@
 //Dependencies
 const { Sms } = require('../models/sms');
 const { rclient } = require('../config/redissms'); //we need to initialize redis
-const { hset, hgetall } = require('../util/redisconf');
+const { hset, hgetall, hgetConf, hincrby1 } = require('../util/redisconf');
 const { dateFormat, logTime, buildSMSChannel } = require('../util/formats'); // utils for formats
 const { saveSMS } = require('../util/mongosms'); //for updating status
 const auth = require('../auth/auth');
@@ -52,7 +52,7 @@ const startCron = async (interval) => { //Start cron only when cron is stopped.
 const stopCron = async () => { //stop cron only when cron is switched on
     try {
         if (cron) {
-            console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "Stoping BATCHSMS cronMain at " + dateFormat(new Date()));
+            console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "Stoping BATCHSMS cronMain ");
             clearInterval(cron);
             cron = null;
         }
@@ -76,8 +76,8 @@ const getSMSFiles = async () => {
                     if (priority < 4) priority = 4; //only accept priorities 4 or 5 in batch. (0,1 are reserved for REST interface, 2,3 for MQ interface).
                     var notifications = fileJSON.fileBatch.notifications;
                     console.log(logTime(new Date()) + filename + " have " + notifications.length + " notifications to send");
-                    notifications.forEach(async (smsJSON) => {
-                        try {
+                    notifications.forEach(async (smsJSON, index) => {
+                        try {                            
                             var sms = new Sms(smsJSON); // convert json to object,  await it's unnecessary because is the first creation of object. Model Validations are check when save in Mongodb, not here. 
                             sms.priority = priority;
                             sms.operator = await hgetConf("contractsms:" + sms.contract, "operator"); //Operator by default by contract. we checked the param before (in auth)                 
@@ -111,27 +111,29 @@ const getSMSFiles = async () => {
                                     //END Redis Transaction with multi chain and result's callback
 
                                     console.log(process.env.GREEN_COLOR, logTime(new Date()) + "SMS saved, _id: " + sms._id);  //JSON.stringify for replace new lines (\n) and tab (\t) chars into string
+                                    hincrby1(batchName, "processed");
+                                     if ( (index + 1) == notifications.length ) console.log(logTime(new Date()) + + notifications.length + ' notifications processed.');
                                 });
 
                         } catch (error) {
-                            console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "ERROR: BatchSMS processing file, process continue, error : " + error.message);
+                            console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "ERROR: BatchSMS processing a notification:  batchSMS.getSMSFiles() : process continue, error : " + error.message);
+                            hincrby1(batchName, "errors");
                             ////console.error(error); //continue the execution cron          
                             //TODO: save error in db  or mem.
-                        }
+                        }                        
                     });
 
                     fs.rename(batchIn + filename, batchOut + filename, (err) => {
                         if (err) throw err;
                         console.log(logTime(new Date()) + batchIn + filename + ' move to ' + batchOut + filename + ' complete!');
-                    });
-                    console.log(logTime(new Date()) + + notifications.length + ' notifications processed.');
+                    });                   
                     
                 } else {
                     console.log(logTime(new Date()) + "No files found.");
                 }
             });
         } catch (error) {
-            console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "ERROR: we have a problem in batchSMS.getSMSFiles() : " + error.message);
+            console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "ERROR: BatchSMS processing a file: batchSMS.getSMSFiles() : " + error.message);
             //console.error(error); //continue the execution cron
         }
         nextExecution = true;
@@ -181,7 +183,7 @@ const checksController = async () => {
             }
             // Cron Controller Check
             if (cronControllerChanged) {
-                console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "Stopping and Re-starting BATCHSMS cronController at " + dateFormat(new Date()));
+                console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "Stopping and Re-starting BATCHSMS cronController ");
                 cronControllerChanged = false;
                 clearInterval(cronController);
                 cronController = null;
@@ -259,8 +261,8 @@ const initCron = async () => {
         console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "WARNING : We have a problem in initialization. Process continuing... " + error.message);
         //console.error(error); //continue the execution cron
         cronStatus = 1;
-        startCron(interval); // 100 message/s
-        startController(intervalControl); // 60 seconds        
+        startCron(interval); // 180000 ms by default /
+        startController(intervalControl); // 60 seconds by default        
     }
 }
 

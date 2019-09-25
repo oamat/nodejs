@@ -10,8 +10,8 @@
 //Dependencies
 const { Pns } = require('../models/pns');
 const { rpop, sismember } = require('../util/redispns'); //we need to initialize redis
-const { hset, hgetall } = require('../util/redisconf');
-const { dateFormat, logTime, buildPNSChannel, buildPNSChannels } = require('../util/formats'); // utils for formats
+const { hset, hgetall, hincrby1 } = require('../util/redisconf');
+const { dateFormat, logTime, buildPNSChannels } = require('../util/formats'); // utils for formats
 const { updatePNS } = require('../util/mongopns'); //for updating status
 const { sendPNS } = require('./pnsSendAPP');
 
@@ -35,7 +35,7 @@ var intervalControl = 60000; //define interval in controller cron (check by min.
 
 const startCron = async (interval) => { //Start cron only when cron is stopped.
     try {
-        console.log(process.env.GREEN_COLOR, logTime(new Date()) + "initializing APPLE cronMain at " + dateFormat(new Date()) + " with interval : " + interval);
+        console.log(process.env.GREEN_COLOR, logTime(new Date()) + "initializing APPLE cronMain with interval : " + interval);
         if (cron) {
             console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "APPLE cronMain is executing, so we don't need re-start it.");
         } else {
@@ -53,7 +53,7 @@ const startCron = async (interval) => { //Start cron only when cron is stopped.
 const stopCron = async () => { //stop cron only when cron is switched on
     try {
         if (cron) {
-            console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "Stoping APPLE cronMain at " + dateFormat(new Date()));
+            console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "Stoping APPLE cronMain ");
             clearInterval(cron);
             cron = null;
         }
@@ -84,11 +84,13 @@ const sendNextPNS = async () => {
                     sismember(PNS_IDS, pns._id).catch(error => { console.log(process.env.YELLOW_COLOR, logTime(new Date()) + error.message); }) //delete from redis ID control, in error case we continue
                 ]).then(() => { //we always enter here
                     console.log(process.env.GREEN_COLOR, logTime(new Date()) + "PNS sended : " + pns._id);  //JSON.stringify for replace new lines (\n) and tab (\t) chars into string
+                    hincrby1(defaultCollector, "processed");
                 });
             }
         }
     } catch (error) {
         console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "ERROR: we have a problem in APPLE cronMain sendNextPNS() : " + error.message);
+        hincrby1(defaultCollector, "errors");
         //console.error(error); //continue the execution cron
     }
 }
@@ -104,7 +106,7 @@ const nextPNS = async () => {
 
 const startController = async (intervalControl) => {
     try {
-        console.log(process.env.GREEN_COLOR, logTime(new Date()) + "initializing APPLE cronController at " + dateFormat(new Date()) + " with intervalControl : " + intervalControl);
+        console.log(process.env.GREEN_COLOR, logTime(new Date()) + "initializing APPLE cronController with intervalControl : " + intervalControl);
         hset(defaultCollector, "last", dateFormat(new Date())); //save first execution in Redis
         if (cronController) {
             console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "APPLE cronController is executing, so we don't need re-start it.");
@@ -143,12 +145,12 @@ const checksController = async () => {
             }
             // Cron Controller Check
             if (cronControllerChanged) {
-                console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "Stopping and Re-starting APPLE cronController at " + dateFormat(new Date()));
-                cronControllerChanged = false;                
-                clearInterval(cronController); 
-                cronController = null;                
+                console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "Stopping and Re-starting APPLE cronController ");
+                cronControllerChanged = false;
+                clearInterval(cronController);
+                cronController = null;
                 await startController(intervalControl).catch(error => { throw new Error("ERROR in APPLE cronController." + error.message) });
-            }            
+            }
             console.log(process.env.GREEN_COLOR, logTime(new Date()) + "APPLE cronController : cronMain intervalControl is " + interval + ", cronController interval is " + interval + ", operator is '" + operator + "' and status is " + cronStatus + " ([1:ON, 0:OFF]).");
             if (!cronStatus) console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "ATTENTION: APPLE cronMain is OFF");
         });
@@ -207,8 +209,8 @@ const initCron = async () => {
         } else console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "WARNING : We didn't find APPLE initialization parameters in Redis, we will initialize cron with default params  . . Process continuing. ");
 
         if (cronStatus) {
+            console.log(process.env.GREEN_COLOR, logTime(new Date()) + "APPLE cronMain interval [" + interval + "ms], cronController interval : [" + intervalControl + "ms], collector operator  [" + operator + "] and status [" + cronStatus + "](1:ON, 0:OFF).");
             await startCron(interval).catch(error => { throw new Error("ERROR in APPLE cronMain." + error.message) });
-            console.log(process.env.GREEN_COLOR, logTime(new Date()) + "initializing APPLE cronMain at " + dateFormat(new Date()) + " with interval [" + interval + "ms], cronController interval : [" + intervalControl + "ms], and collector operator  [" + operator + "].");
         } else {
             console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "APPLE Redis Configuration status indicates we don't want start cronMain process. we only start cron Controller.");
             console.log(process.env.GREEN_COLOR, logTime(new Date()) + "APPLE cronController : cronMain interval is " + interval + ", operator is '" + operator + "' and status is " + cronStatus + " [1:ON, 0:OFF].");

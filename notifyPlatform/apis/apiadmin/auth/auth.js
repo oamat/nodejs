@@ -18,7 +18,7 @@ const { hmget } = require('../util/redisconf');
 const { dateFormat, logTime } = require('../util/formats');
 
 // method auth async, and it's necessary call function next in the end if all is correct.
-const auth = async (req, res, next) => {
+const auth = async (req, res, next) => {    
     try {
         if (!req || !req.body || !req.body.contract) {  //first we check the body params request. 
             throw new Error("You didn't send the necessary params in the body of the request. You need to send the correct params before proceeding.");

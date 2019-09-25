@@ -83,6 +83,18 @@ const hmset = async (hashproperties) => {
     //.catch((error) => { throw error; }); //throw Error exception to the main code, it's unnecessary but maybe we will need put some lógic...A reject callback will pass through here
 }
 
+// this method increment by 1 the property hash
+const hincrby1 = async (key, property) => {
+    return new Promise((resolve, reject) => { // we need promise for managing errors and results inside callbacks
+        rclient.hincrby(key, property, 1, (error, result) => { //get the value of hash                   
+            if (error) reject(error);  //if redis give me an error.  If we used reject the try/catch would be unnecessary 
+            else resolve(result); // everything is OK, return result                                 
+        });
+    });
+    //.then((result) => { return result; })  //return the result value of property hash contract
+    //.catch((error) => { throw error; }); //throw Error exception to the main code, it's unnecessary but maybe we will need put some lógic...A reject callback will pass through here
+}
+
 // this method save Json in a list (like qeues MQ)
 const lpush = async (name, value) => {
     return new Promise((resolve, reject) => { // we need promise for managing errors and results inside callbacks
@@ -160,4 +172,4 @@ const rpop = async function (name) {
     //.catch((error) => { throw error; });  //throw Error exception to the main code, it's unnecessary but maybe we will need put some lógic...  A reject callback will pass through here
 }
 
-module.exports = { hset, hmset, lpush, sadd, set, get, rpop, rpoplpush, hget, hgetConf, hmget, hgetall }
+module.exports = { hset, hmset, hincrby1, lpush, sadd, set, get, rpop, rpoplpush, hget, hgetConf, hmget, hgetall }

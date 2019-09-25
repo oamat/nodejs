@@ -10,8 +10,8 @@
 //Dependencies
 const { Pns } = require('../models/pns');
 const { rpop, sismember } = require('../util/redispns'); //we need to initialize redis
-const { hset, hgetall } = require('../util/redisconf');
-const { dateFormat, logTime, buildPNSChannel, buildPNSChannels } = require('../util/formats'); // utils for formats
+const { hset, hgetall, hincrby1 } = require('../util/redisconf');
+const { dateFormat, logTime, buildPNSChannels } = require('../util/formats'); // utils for formats
 const { updatePNS } = require('../util/mongopns'); //for updating status
 const { sendPNS } = require('./pnsSendGOO');
 
@@ -35,7 +35,7 @@ var intervalControl = 60000; //define interval in controller cron (check by min.
 
 const startCron = async (interval) => { //Start cron only when cron is stopped.
     try {
-        console.log(process.env.GREEN_COLOR, logTime(new Date()) + "initializing GOOGLE cronMain at " + dateFormat(new Date()) + " with interval : " + interval);
+        console.log(process.env.GREEN_COLOR, logTime(new Date()) + "initializing GOOGLE cronMain with interval : " + interval);
         if (cron) {
             console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "GOOGLE cronMain is executing, so we don't need re-start it.");
         } else {
@@ -53,7 +53,7 @@ const startCron = async (interval) => { //Start cron only when cron is stopped.
 const stopCron = async () => { //stop cron only when cron is switched on
     try {
         if (cron) {
-            console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "Stoping GOOGLE cronMain at " + dateFormat(new Date()));
+            console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "Stoping GOOGLE cronMain ");
             clearInterval(cron);
             cron = null;
         }
@@ -84,11 +84,13 @@ const sendNextPNS = async () => {
                     sismember(PNS_IDS, pns._id).catch(error => { console.log(process.env.YELLOW_COLOR, logTime(new Date()) + error.message); }) //delete from redis ID control, in error case we continue
                 ]).then(() => { //we always enter here
                     console.log(process.env.GREEN_COLOR, logTime(new Date()) + "PNS sended : " + pns._id);  //JSON.stringify for replace new lines (\n) and tab (\t) chars into string
+                    hincrby1(defaultCollector, "processed");
                 });
             }
         }
     } catch (error) {
         console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "ERROR: we have a problem in GOOGLE cronMain sendNextPNS() : " + error.message);
+        hincrby1(defaultCollector, "errors");
         //console.error(error); //continue the execution cron
     }
 }
@@ -104,7 +106,7 @@ const nextPNS = async () => {
 
 const startController = async (intervalControl) => {
     try {
-        console.log(process.env.GREEN_COLOR, logTime(new Date()) + "initializing GOOGLE cronController at " + dateFormat(new Date()) + " with intervalControl : " + intervalControl);
+        console.log(process.env.GREEN_COLOR, logTime(new Date()) + "initializing GOOGLE cronController with intervalControl : " + intervalControl);
         hset(defaultCollector, "last", dateFormat(new Date())); //save first execution in Redis
         if (cronController) {
             console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "GOOGLE cronController is executing, so we don't need re-start it.");
@@ -143,13 +145,13 @@ const checksController = async () => {
             }
             // Cron Controller Check
             if (cronControllerChanged) {
-                console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "Stopping and Re-starting GOOGLE cronController at " + dateFormat(new Date()));
-                cronControllerChanged = false;                
-                clearInterval(cronController); 
-                cronController = null;                
+                console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "Stopping and Re-starting GOOGLE cronController ");
+                cronControllerChanged = false;
+                clearInterval(cronController);
+                cronController = null;
                 await startController(intervalControl).catch(error => { throw new Error("ERROR in GOOGLE cronController." + error.message) });
-            }            
-            console.log(process.env.GREEN_COLOR, logTime(new Date()) + "GOOGLE cronController : cronMain intervalControl is " + interval + ", cronController interval is " + interval + ", operator is '" + operator + "' and status is " + cronStatus + " ([1:ON, 0:OFF]).");
+            }
+            console.log(process.env.GREEN_COLOR, logTime(new Date()) + "GOOGLE cronMain interval [" + interval + "ms], cronController interval : [" + intervalControl + "ms], collector operator  [" + operator + "] and status [" + cronStatus + "](1:ON, 0:OFF).");
             if (!cronStatus) console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "ATTENTION: GOOGLE cronMain is OFF");
         });
 
@@ -158,6 +160,19 @@ const checksController = async () => {
         //console.error(error); //continue the execution cron
     }
 }
+
+const checkstatus = async (newCronStatus) => { //Check status, if it's necessary finish cron because redis say it.
+    try {
+        if (cronStatus != newCronStatus) {
+            cronStatus = newCronStatus;
+            cronChanged = true;
+        }
+    } catch (error) {
+        console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "WARNING : we didn't find GOOGLE status in Redis (run/stop cron). current cron status = " + cronStatus + " . . Process continuing... " + error.message);
+        //console.error(error); //continue the execution cron
+    }
+}
+
 
 const checkInterval = async (newInterval) => { //check rate/s, and change cron rate
     try {
@@ -195,8 +210,8 @@ const initCron = async () => {
         } else console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "WARNING : We didn't find GOOGLE initialization parameters in Redis, we will initialize cron with default params  . . Process continuing. ");
 
         if (cronStatus) {
+            console.log(process.env.GREEN_COLOR, logTime(new Date()) + "GOOGLE cronMain interval [" + interval + "ms], cronController interval : [" + intervalControl + "ms], collector operator  [" + operator + "] and status [" + cronStatus + "](1:ON, 0:OFF).");
             await startCron(interval).catch(error => { throw new Error("ERROR in GOOGLE cronMain." + error.message) });
-            console.log(process.env.GREEN_COLOR, logTime(new Date()) + "initializing GOOGLE cronMain at " + dateFormat(new Date()) + " with interval [" + interval + "ms], cronController interval : [" + intervalControl + "ms], and collector operator  [" + operator + "].");
         } else {
             console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "GOOGLE Redis Configuration status indicates we don't want start cronMain process. we only start cron Controller.");
             console.log(process.env.GREEN_COLOR, logTime(new Date()) + "GOOGLE cronController : cronMain interval is " + interval + ", operator is '" + operator + "' and status is " + cronStatus + " [1:ON, 0:OFF].");

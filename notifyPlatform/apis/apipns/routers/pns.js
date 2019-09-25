@@ -15,7 +15,7 @@ const { Pns } = require('../models/pns');
 const auth = require('../auth/auth');
 const { savePNS } = require('../util/mongopns');
 const { rclient } = require('../config/redispns');
-const { hgetall } = require('../util/redisconf');
+const { hgetall, hincrby1 } = require('../util/redisconf');
 const { dateFormat, logTime, buildPNSChannel } = require('../util/formats');
 
 const router = new express.Router();
@@ -51,10 +51,12 @@ router.post('/pnsSend', auth, async (req, res) => {  //we execute auth before th
                 });  //END Redis Transaction with multi chain and result's callback               
 
                 console.log(process.env.GREEN_COLOR, logTime(new Date()) + "PNS saved, _id: " + pns._id);  //JSON.stringify for replace new lines (\n) and tab (\t) chars into string
+                hincrby1("apipns", "processed");
             });
 
     } catch (error) {
         requestError(error, req, res);
+        hincrby1("apipns", "errors");
         //TODO : maybe we can save  the errors in Redis
     }
 });

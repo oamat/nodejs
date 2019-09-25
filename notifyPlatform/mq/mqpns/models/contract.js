@@ -30,7 +30,7 @@ const contractSchema = new mongoose.Schema({
             if (value.length > 160) throw new Error('Description is invalid, it must be less than 160 characters.');
         }
     },
-    permission: { //"THIS":only this contract, "WITHIN_APP": contracts with the same application, "ALL": All contracts. ( ADMIN CONTRACT ALLWAYS CAN SEE ALL )
+    permission: { //For manage contracts or notifications status, //"THIS":only this contract, "WITHIN_APP": contracts with the same application, "ALL": All contracts. ( ADMIN CONTRACT ALLWAYS CAN SEE ALL )
         type: String,
         required: true,
         validate(value) {
@@ -42,7 +42,7 @@ const contractSchema = new mongoose.Schema({
         required: true,
         trim: true
     },
-    frontend: {  // If != null: "THIS":only this contract, "WITHIN_APP": contracts with the same application, "ALL": All contracts. ( ADMIN CONTRACT ALLWAYS CAN SEE ALL )
+    frontend: {  //FrontEnd permission, // If != null: "THIS":only this contract, "WITHIN_APP": contracts with the same application, "ALL": All contracts. ( ADMIN CONTRACT ALLWAYS CAN SEE ALL )
         type: String,
         required: false,
         validate(value) {
