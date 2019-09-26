@@ -37,20 +37,24 @@ router.post('/addContract', auth, async (req, res) => {
             contract.application = replaceSpaces(contract.application).toUpperCase();
             contract.jwt = jwt.sign({ sub: "1234567890", name: contract.name, contract: contract.name, "iat": 2016239022 }, process.env.JWT_SECRET);
             await contract.validate(); // we need await for validations before save anything
-            await saveContractSms(contract).then(() => { // save Contract SMS in MongoDB
-                redisconf.hmset(["contractsms:" + contract.name, //save in RedisConf               
-                    "jwt", contract.jwt,
-                    "operator", contract.operator,
-                    "defaultOperator", contract.defaultOperator,
-                    "activated", contract.activated,
-                    "permission", contract.permission,
-                    "application", contract.application,
-                    "interface", contract.interface,
-                    "remitter", contract.remitter
-                ]).catch(error => { console.log(process.env.YELLOW_COLOR, logTime(new Date()) + error.message); });
-                res.send({ Status: "200 OK", info: "contract created", contract });
-                console.log(process.env.GREEN_COLOR, logTime(new Date()) + "SMS Contract created : " + JSON.stringify(contract));  //JSON.stringify for replace new lines (\n) and tab (\t) chars into string
-            });
+            saveContractSms(contract)
+                .catch(error => {     // we need catch only if get 'await' out          
+                    throw error;  //and return json error to client
+                })
+                .then(() => { // save Contract SMS in MongoDB
+                    redisconf.hmset(["contractsms:" + contract.name, //save in RedisConf               
+                        "jwt", contract.jwt,
+                        "operator", contract.operator,
+                        "defaultOperator", contract.defaultOperator,
+                        "activated", contract.activated,
+                        "permission", contract.permission,
+                        "application", contract.application,
+                        "interface", contract.interface,
+                        "remitter", contract.remitter
+                    ]).catch(error => { console.log(process.env.YELLOW_COLOR, logTime(new Date()) + error.message); });
+                    res.send({ Status: "200 OK", info: "contract created", contract });
+                    console.log(process.env.GREEN_COLOR, logTime(new Date()) + "SMS Contract created : " + JSON.stringify(contract));  //JSON.stringify for replace new lines (\n) and tab (\t) chars into string
+                });
         } else if (req.body.type == "PNS") {
             var ContractModel = ContractPns();  // we catch the ContractSMS Model
             var contract = new ContractModel(req.body); //await it's unnecessary because is the first creation of object. Model Validations are check when save in Mongodb, not here. 
@@ -60,19 +64,23 @@ router.post('/addContract', auth, async (req, res) => {
             contract.application = replaceSpaces(contract.application).toUpperCase();
             contract.jwt = jwt.sign({ sub: "1234567890", name: contract.name, contract: contract.name, "iat": 2016239022 }, process.env.JWT_SECRET);
             await contract.validate(); // we need await for validations before save anything
-            await saveContractPns(contract).then(() => { // save Contract SMS in MongoDB
-                redisconf.hmset(["contractpns:" + contract.name, //save in RedisConf               
-                    "jwt", contract.jwt,
-                    "operator", contract.operator,
-                    "defaultOperator", contract.defaultOperator,
-                    "activated", contract.activated,
-                    "permission", contract.permission,
-                    "application", contract.application,
-                    "interface", contract.interface
-                ]).catch(error => { console.log(process.env.YELLOW_COLOR, logTime(new Date()) + error.message); });
-                res.send({ Status: "200 OK", info: "contract created", contract });
-                console.log(process.env.GREEN_COLOR, logTime(new Date()) + "PNS Contract created : " + JSON.stringify(contract));  //JSON.stringify for replace new lines (\n) and tab (\t) chars into string
-            });
+            saveContractPns(contract)
+                .catch(error => {     // we need catch only if get 'await' out          
+                    throw error;  //and return json error to client
+                })
+                .then(() => { // save Contract SMS in MongoDB
+                    redisconf.hmset(["contractpns:" + contract.name, //save in RedisConf               
+                        "jwt", contract.jwt,
+                        "operator", contract.operator,
+                        "defaultOperator", contract.defaultOperator,
+                        "activated", contract.activated,
+                        "permission", contract.permission,
+                        "application", contract.application,
+                        "interface", contract.interface
+                    ]).catch(error => { console.log(process.env.YELLOW_COLOR, logTime(new Date()) + error.message); });
+                    res.send({ Status: "200 OK", info: "contract created", contract });
+                    console.log(process.env.GREEN_COLOR, logTime(new Date()) + "PNS Contract created : " + JSON.stringify(contract));  //JSON.stringify for replace new lines (\n) and tab (\t) chars into string
+                });
         } else throw new Error("type param is invalid, it must be one of this options: 'SMS'or 'PNS'.");
 
     } catch (error) {
@@ -98,7 +106,7 @@ router.get('/getContract', auth, async (req, res) => {
             if (contract) {
                 res.send({ Status: "200 OK", contract });
             } else {
-                res.send({ Status: "200 OK", name: req.body.name, type: req.body.type, description: "Contract not found" });
+                res.send({ Status: "200 OK", name: req.body.name, type: req.body.type, description: "Contract not found." });
             }
         }
     } catch (error) {
@@ -118,31 +126,39 @@ router.patch('/changeContract', auth, async (req, res) => {
         if (req.body.type == "SMS") {
             if (!validateOperator("SMS", req.body.operator)) throw new Error("Operator param is invalid, it must be one of this options for SMS: 'MOV', 'VIP', 'ORA', 'VOD' or 'ALL'.");
             let toUpdate = { operator: req.body.operator, activated: req.body.activated, frontend: req.body.frontend, interface: req.body.interface };
-            await updateContractSms(req.body.name, toUpdate).then(() => { // update Contract SMS in MongoDB
-                redisconf.hmset(["contractsms:" + req.body.name,
-                    "operator", req.body.operator,
-                    "activated", req.body.activated,
-                    "frontend", req.body.frontend,
-                    "interface", req.body.interface             
-                ]);
-                let info = "Changed SMS Contract : " + req.body.name + " configuration has been change for operator:" + req.body.operator + ", activated:" + req.body.activated + ", interface" + req.body.interface + " and frontend:" + req.body.frontend + " .";
-                res.send({ Status: "200 OK", info });
-                console.log(process.env.GREEN_COLOR, logTime(new Date()) + info);
-            });
+            updateContractSms(req.body.name, toUpdate)
+                .catch(error => {     // we need catch only if get 'await' out          
+                    throw error;  //and return json error to client
+                })
+                .then(() => { // update Contract SMS in MongoDB
+                    redisconf.hmset(["contractsms:" + req.body.name,
+                        "operator", req.body.operator,
+                        "activated", req.body.activated,
+                        "frontend", req.body.frontend,
+                        "interface", req.body.interface
+                    ]);
+                    let info = "Changed SMS Contract : " + req.body.name + " configuration has been change for operator:" + req.body.operator + ", activated:" + req.body.activated + ", interface" + req.body.interface + " and frontend:" + req.body.frontend + " .";
+                    res.send({ Status: "200 OK", info });
+                    console.log(process.env.GREEN_COLOR, logTime(new Date()) + info);
+                });
         } else if (req.body.type == "PNS") {
             if (!validateOperator("PNS", req.body.operator)) throw new Error("Operator param is invalid, it must be one of this options for PNS: 'APP', 'GOO', 'MIC' or 'ALL'.");
             let toUpdate = { operator: req.body.operator, activated: req.body.activated, frontend: req.body.frontend, interface: req.body.interface };
-            await updateContractPns(req.body.name, toUpdate).then(() => { // update Contract SMS in MongoDB
-                redisconf.hmset(["contractpns:" + req.body.name,
-                    "operator", req.body.operator,
-                    "activated", req.body.activated,
-                    "frontend", req.body.frontend,
-                    "interface", req.body.interface
-                ]);
-                let info = "Changed PNS Contract : " + req.body.name + " configuration has been change for operator:" + req.body.operator + ", activated:" + req.body.activated + ", interface:" + req.body.interface + " and frontend:" + req.body.frontend + ".";
-                res.send({ Status: "200 OK", info });
-                console.log(process.env.GREEN_COLOR, logTime(new Date()) + info);
-            });
+            updateContractPns(req.body.name, toUpdate)
+                .catch(error => {     // we need catch only if get 'await' out          
+                    throw error;  //and return json error to client
+                })
+                .then(() => { // update Contract SMS in MongoDB
+                    redisconf.hmset(["contractpns:" + req.body.name,
+                        "operator", req.body.operator,
+                        "activated", req.body.activated,
+                        "frontend", req.body.frontend,
+                        "interface", req.body.interface
+                    ]);
+                    let info = "Changed PNS Contract : " + req.body.name + " configuration has been change for operator:" + req.body.operator + ", activated:" + req.body.activated + ", interface:" + req.body.interface + " and frontend:" + req.body.frontend + ".";
+                    res.send({ Status: "200 OK", info });
+                    console.log(process.env.GREEN_COLOR, logTime(new Date()) + info);
+                });
         } else throw new Error("type param is invalid, it must be one of this options: 'SMS'or 'PNS'.");
     } catch (error) {
         requestError(error, req, res);

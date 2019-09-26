@@ -11,7 +11,7 @@ const auth = require('../auth/auth');
 const redisconf = require('../util/redisconf');
 const { TokenPns } = require('../config/mongoosemulti');  // Attention : this Pns Model is model created for multi DB
 const { findPNS, saveTokenPns } = require('../util/mongomultipns');
-const {  dateFormatWithMillis, logTime, descStatus, validateOperator } = require('../util/formats');
+const { dateFormatWithMillis, logTime, descStatus, validateOperator } = require('../util/formats');
 
 
 const router = new express.Router();
@@ -50,28 +50,27 @@ router.post('/tokenRegister', auth, async (req, res) => {
         token.activated = true;
 
         await token.validate(); // we need await for validations before save anything
-        await Promise.all([  // await is necessary because we have errors, like duplication contract name
-            saveTokenPns(token),
-            redisconf.hmset(["tokenpns" + token.application + ":" + token.uuiddevice, //save in RedisConf                           
-                "application", token.application,
-                "contract", token.contract,
-                "uuiddevice", token.uuiddevice,
-                "token", token.token,
-                "user", token.user,
-                "operator", token.operator
-            ])
-        ]).catch(function (error) { //we don'r need result, but we need errors. 
-            throw error;
-        });
+        saveTokenPns(token)
+            .catch(function (error) { //we don'r need result, but we need errors. 
+                throw error;
+            })
+            .then(() => {
+                res.send({ Status: "200 OK", info: "Token created", token });
 
-        res.send({
-            Status: "200 OK",
-            info: "Token created",
-            token
-        });
-        console.log(process.env.GREEN_COLOR, logTime(new Date()) + "PNS Token created : " + JSON.stringify(token));  //JSON.stringify for replace new lines (\n) and tab (\t) chars into string
+                redisconf.hmset(["tokenpns" + token.application + ":" + token.uuiddevice, //save in RedisConf                           
+                    "application", token.application,
+                    "contract", token.contract,
+                    "uuiddevice", token.uuiddevice,
+                    "token", token.token,
+                    "user", token.user,
+                    "operator", token.operator
+                ]);
+                console.log(process.env.GREEN_COLOR, logTime(new Date()) + "PNS Token created : " + JSON.stringify(token));  //JSON.stringify for replace new lines (\n) and tab (\t) chars into string
 
-
+            })
+            .catch(function (error) { //we don'r need result, but we need errors. 
+                throw error;
+            });
     } catch (error) {
         requestError(error, req, res);
     }
