@@ -146,10 +146,7 @@ async function getCB(err, hObj, gmo, md, buf, hConn) {
 
                     //await pns.validate(); //await pns.validate(); //validate is unnecessary, we would need await because is a promise and we need to manage the throw exceptions, particularly validating errors in bad request.
 
-                    savePNS(pns) //save pns to DB, in this phase we need save PNS to MongoDB. //If you didn't execute "pns.validate()" we would need await in save.
-                        .catch(error => {     // we need catch only if get 'await' out          
-                            throw error;
-                        })
+                    savePNS(pns) //save pns to DB, in this phase we need save PNS to MongoDB. //If you didn't execute "pns.validate()" we would need await in save.                    
                         .then(pns => {  //save method returns pns that has been save to MongoDB
 
                             //START Redis Transaction with multi chain and result's callback
@@ -164,6 +161,9 @@ async function getCB(err, hObj, gmo, md, buf, hConn) {
                             //END Redis Transaction with multi chain and result's callback
 
                             console.log(process.env.GREEN_COLOR, logTime(new Date()) + "PNS saved, _id: " + pns._id);  //JSON.stringify for replace new lines (\n) and tab (\t) chars into string
+                        })
+                        .catch(error => {     // we need catch only if get 'await' out          
+                            console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "ERROR: " + error.message);
                         });
 
                 } catch (error) {

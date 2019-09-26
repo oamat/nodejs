@@ -11,7 +11,7 @@ const mongoose = require('mongoose');
 
 //IMPORTANT: by default Model Validations are check when save in Mongodb, not in the creation. 
 // but you can check with validate() method
-const tokenSchema = new mongoose.Schema({
+const tokenSchema = new mongoose.Schema({    
     _id: {
         type: String,
         required: true,
@@ -50,7 +50,7 @@ const tokenSchema = new mongoose.Schema({
     timestamps: true //If set timestamps, mongoose assigns createdAt and updatedAt fields to your schema, the type assigned is Date.
 }, {
     versionKey: false // You should be aware of the outcome after set to false
-});
+}).index({ application: 1, uuiddevice: 1 }, { unique: true });
 
 const Token = mongoose.model('Token', tokenSchema);
 

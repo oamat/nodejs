@@ -40,6 +40,7 @@ router.get('/resetAllProcessedErrors', auth, async (req, res) => {
         Status: "200 OK",
         info: " All counters processed & errors have been reset to 0."
     });
+    redisconf.hincrby1("apiadmin", "processed");
 });
 
 // GET //serviceStatus   # contract in body for Auth
@@ -73,37 +74,37 @@ router.get('/serviceStatus', auth, async (req, res) => {
             redisconf.hgetall("mqpns"),
             redisconf.hgetall("mqsms")
 
-        ])
-            .catch(error => {     // we need catch only if get 'await' out          
-                throw error;  //and return json error to client
-            })
-            .then(values => {
-                let index = 0;
-                res.send({
-                    Status: "200 OK",
-                    description: "status[1:ON, 0:OFF] - interval[cron(ms)] - intervalControl[cronController(ms)] - lastExecutionCheckControl[last CronController execution] - operator[Contingency]",
-                    "APPLE-collector": values[index++],
-                    "GOOGLE-collector": values[index++],
-                    "MICROSOFT-collector": values[index++],
-                    "MOVISTAR-collector": values[index++],
-                    "VIP-MOVISTAR-collector": values[index++],
-                    "ORANGE-collector": values[index++],
-                    "VODAFONE-collector": values[index++],
-                    "SMS-Batch": values[index++],
-                    "PNS-Batch": values[index++],
-                    "SMS-Retries": values[index++],
-                    "PNS-Retries": values[index++],
-                    "API-ADMIN": values[index++],
-                    "API-SMS": values[index++],
-                    "API-PNS": values[index++],
-                    "API-STATUSBACK": values[index++],
-                    "SMS-MQ": values[index++],
-                    "PNS-MQ": values[index++]
-                });
+        ]).then(values => {
+            let index = 0;
+            res.send({
+                Status: "200 OK",
+                description: "status[1:ON, 0:OFF] - interval[cron(ms)] - intervalControl[cronController(ms)] - lastExecutionCheckControl[last CronController execution] - operator[Contingency]",
+                "APPLE-collector": values[index++],
+                "GOOGLE-collector": values[index++],
+                "MICROSOFT-collector": values[index++],
+                "MOVISTAR-collector": values[index++],
+                "VIP-MOVISTAR-collector": values[index++],
+                "ORANGE-collector": values[index++],
+                "VODAFONE-collector": values[index++],
+                "SMS-Batch": values[index++],
+                "PNS-Batch": values[index++],
+                "SMS-Retries": values[index++],
+                "PNS-Retries": values[index++],
+                "API-ADMIN": values[index++],
+                "API-SMS": values[index++],
+                "API-PNS": values[index++],
+                "API-STATUSBACK": values[index++],
+                "SMS-MQ": values[index++],
+                "PNS-MQ": values[index++]
             });
+            redisconf.hincrby1("apiadmin", "processed");
+        })
+            .catch(error => {     // we need catch only if get 'await' out          
+                requestError(error, res);  //and return json error to client
+            })
         // END 43 "tasks" in parallel. we put await because we need all results before construct the json        
     } catch (error) {
-        requestError(error, req, res);
+        requestError(error, res);
     }
 });
 
@@ -116,12 +117,9 @@ router.patch('/changeCollector', auth, async (req, res) => {
         if (!Number.isInteger(req.body.interval) || !Number.isInteger(req.body.status) || !Number.isInteger(req.body.intervalControl)) throw new Error("Params status, interval and intervalControl must be a Number (Integer)");
 
         if (req.body.type == "SMS") {
-            if (!validateOperator("SMS", req.body.operator) || req.body.operator == "ALL") throw new Error("Operator is invalid, it must be one of this options for SMS: 'MOV', 'VIP', 'ORA', or 'VOD'.");
+            if (!validateOperator("SMS", req.body.operator) && req.body.operator != "ALL") throw new Error("Operator is invalid, it must be one of this options for SMS: 'MOV', 'VIP', 'ORA', or 'VOD'.");
             let toUpdate = { status: req.body.status, interval: req.body.interval, intervalControl: req.body.intervalControl, operator: req.body.operator };
             updateCollectorSms(req.body.name, toUpdate)
-                .catch(error => {     // we need catch only if get 'await' out          
-                    throw error;  //and return json error to client
-                })
                 .then(() => { // update Collector SMS in MongoDB
                     redisconf.hmset(["collectorsms:" + req.body.name,
                         "status", req.body.status,
@@ -132,15 +130,16 @@ router.patch('/changeCollector', auth, async (req, res) => {
                     let info = "Changed SMS Collector : " + req.body.name + " configuration has been change for status:" + req.body.status + ", interval:" + req.body.interval + ", intervalControl:" + req.body.intervalControl + ", operator:" + req.body.operator + " .";
                     res.send({ Status: "200 OK", info });
                     console.log(process.env.GREEN_COLOR, logTime(new Date()) + info);
-                });
+                    redisconf.hincrby1("apiadmin", "processed");
+                })
+                .catch(error => {     // we need catch only if get 'await' out          
+                    requestError(error, res);  //and return json error to client
+                })
 
         } else if (req.body.type == "PNS") {
-            if (!validateOperator("PNS", req.body.operator) || req.body.operator == "ALL") throw new Error("Operator is invalid, it must be one of this options for PNS: 'APP', 'GOO' or 'MIC'.");
+            if (!validateOperator("PNS", req.body.operator) && req.body.operator != "ALL") throw new Error("Operator is invalid, it must be one of this options for PNS: 'APP', 'GOO' or 'MIC'.");
             let toUpdate = { status: req.body.status, interval: req.body.interval, intervalControl: req.body.intervalControl, operator: req.body.operator }; //we don't change operator, unnecessary
             updateCollectorPns(req.body.name, toUpdate)
-                .catch(error => {     // we need catch only if get 'await' out          
-                    throw error;  //and return json error to client
-                })
                 .then(() => {  // update Collector SMS in MongoDB
                     redisconf.hmset(["collectorpns:" + req.body.name,
                         "status", req.body.status,
@@ -150,11 +149,15 @@ router.patch('/changeCollector', auth, async (req, res) => {
                     let info = "Changed PNS Collector : " + req.body.name + " configuration has been change  for status:" + req.body.status + ", interval:" + req.body.interval + ", intervalControl:" + req.body.intervalControl + " .";
                     res.send({ Status: "200 OK", info });
                     console.log(process.env.GREEN_COLOR, logTime(new Date()) + info);
-                });
+                    redisconf.hincrby1("apiadmin", "processed");
+                })
+                .catch(error => {     // we need catch only if get 'await' out          
+                    requestError(error, res);  //and return json error to client
+                })
 
         } else throw new Error("type is invalid, it must be one of this options: 'SMS'or 'PNS'.");
     } catch (error) {
-        requestError(error, req, res);
+        requestError(error, res);
     }
 });
 
@@ -166,7 +169,7 @@ router.get('/loadRedis', auth, async (req, res) => {
         res.send({ Status: "200 OK", info: "Loading all Data in RedisConf..." });
     } catch (error) {
         //TODO personalize errors 400 or 500. 
-        requestError(error, req, res);
+        requestError(error, res);
         //TODO: save error in db  or mem.
     }
 });
@@ -176,7 +179,7 @@ router.get('/loadRedis', auth, async (req, res) => {
 router.get('/pendingNotifications', auth, async (req, res) => {
     try {
         // START 42 "tasks" in parallel. we put await because we need all results before construct the json   
-        await Promise.all([
+        Promise.all([
             redissms.llen(channelsMOV.channel0),
             redissms.llen(channelsMOV.channel1),
             redissms.llen(channelsMOV.channel2),
@@ -219,7 +222,6 @@ router.get('/pendingNotifications', auth, async (req, res) => {
             redispns.llen(channelsMIC.channel3),
             redispns.llen(channelsMIC.channel4),
             redispns.llen(channelsMIC.channel5)
-
         ]).then(values => {
             let total = 0;
             for (var i = 0; i < 42; i++) { //42 iteration loop for calculate the total pending notifications
@@ -286,21 +288,26 @@ router.get('/pendingNotifications', auth, async (req, res) => {
                     [channelsMIC.channel5]: values[index++]
                 }]
             });
-        });
+            redisconf.hincrby1("apiadmin", "processed");
+        })
+            .catch(error => {     // we need catch only if get 'await' out          
+                requestError(error, res);  //and return json error to client               
+            });
         // END 42 "tasks" in parallel. we put await because we need all results before construct the json   
 
     } catch (error) {
-        requestError(error, req, res);
+        requestError(error, res);
     }
 });
 
 
 // return the error to the client
-const requestError = async (error, req, res) => {
+const requestError = async (error, res) => {
     //TODO personalize errors 400 or 500. 
     const errorJson = { StatusCode: "400 Bad Request", error: error.message, receiveAt: dateFormat(new Date()) };   // dateFornat: replace T with a space && delete the dot and everything after
     console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "WARNING: " + JSON.stringify(errorJson));
     res.status(400).send(errorJson);
+    redisconf.hincrby1("apiadmin", "errors");
     //TODO: save error in db  or mem.
 }
 

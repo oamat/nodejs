@@ -88,10 +88,7 @@ const getPNSFiles = async () => {
 
                             //await pns.validate(); //validate is unnecessary, we would need await because is a promise and we need to manage the throw exceptions, particularly validating errors in bad request.
 
-                            savePNS(pns) //save pns to DB, in this phase we need save PNS to MongoDB. //If you didn't execute "pns.validate()" we would need await in save.
-                                .catch(error => {     // we need catch only if get 'await' out          
-                                    throw error;
-                                })
+                            savePNS(pns) //save pns to DB, in this phase we need save PNS to MongoDB. //If you didn't execute "pns.validate()" we would need await in save.                                
                                 .then(pns => {  //save method returns pns that has been save to MongoDB                                   
 
                                     //START Redis Transaction with multi chain and result's callback
@@ -107,8 +104,12 @@ const getPNSFiles = async () => {
 
                                     console.log(process.env.GREEN_COLOR, logTime(new Date()) + "PNS saved, _id: " + pns._id);  //JSON.stringify for replace new lines (\n) and tab (\t) chars into string
                                     hincrby1(batchName, "processed");
-                                    if ( (index + 1) == notifications.length ) console.log(logTime(new Date()) + + notifications.length + ' notifications processed.');
-                                });
+                                    if ((index + 1) == notifications.length) console.log(logTime(new Date()) + + notifications.length + ' notifications processed.');
+                                })
+                                .catch(error => {     // we need catch only if get 'await' out          
+                                    console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "ERROR: BatchPNS processing a notification:  batchPNS.getPNSFiles() : process continue, error :" + error.message);
+                                    hincrby1(batchName, "errors");
+                                })
                         } catch (error) {
                             console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "ERROR: BatchPNS processing a notification:  batchPNS.getPNSFiles() : process continue, error :" + error.message);
                             hincrby1(batchName, "errors");

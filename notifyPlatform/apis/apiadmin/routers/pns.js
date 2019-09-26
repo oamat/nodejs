@@ -29,9 +29,10 @@ router.get('/pnsStatus', auth, async (req, res) => {
             } else {
                 res.send({ Status: "200 OK", _id: req.body._id, status: "-1", description: "PNS not found" });
             }
+            redisconf.hincrby1("apiadmin", "processed");
         }
     } catch (error) {
-        requestError(error, req, res);
+        requestError(error, res);
     }
 });
 
@@ -51,9 +52,6 @@ router.post('/tokenRegister', auth, async (req, res) => {
 
         await token.validate(); // we need await for validations before save anything
         saveTokenPns(token)
-            .catch(function (error) { //we don'r need result, but we need errors. 
-                throw error;
-            })
             .then(() => {
                 res.send({ Status: "200 OK", info: "Token created", token });
 
@@ -66,23 +64,24 @@ router.post('/tokenRegister', auth, async (req, res) => {
                     "operator", token.operator
                 ]);
                 console.log(process.env.GREEN_COLOR, logTime(new Date()) + "PNS Token created : " + JSON.stringify(token));  //JSON.stringify for replace new lines (\n) and tab (\t) chars into string
-
+                redisconf.hincrby1("apiadmin", "processed");
             })
-            .catch(function (error) { //we don'r need result, but we need errors. 
-                throw error;
-            });
+            .catch(error => { //we don'r need result, but we need errors. 
+                requestError(error, res);
+            })
     } catch (error) {
-        requestError(error, req, res);
+        requestError(error, res);
     }
 });
 
 
 
-const requestError = async (error, req, res) => {
+const requestError = async (error, res) => {
     //TODO personalize errors 400 or 500. 
     const errorJson = { StatusCode: "400 Bad Request", error: error.message, receiveAt: dateFormatWithMillis(new Date()) };   // dateFornat: replace T with a space && delete the dot and everything after
     console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "WARNING: " + JSON.stringify(errorJson));
     res.status(400).send(errorJson);
+    redisconf.hincrby1("apiadmin", "errors");
     //TODO: save error in db  or mem.
 }
 

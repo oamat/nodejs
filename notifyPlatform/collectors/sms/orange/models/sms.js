@@ -39,7 +39,11 @@ const smsSchema = new mongoose.Schema({
     telf: {
         type: String,
         required: true,
-        trim: true
+        validate(value) {
+            value = value.replace("+", "00");
+            if (isNaN(value) || value.length < 10) throw new Error("Telephone is invalid. You need a valid telephone before proceeding.");
+            return value;
+        }
     },
     alias: {
         type: String,

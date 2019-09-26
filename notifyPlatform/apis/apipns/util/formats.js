@@ -108,7 +108,7 @@ const validateOperator = (type, operator) => {
 
 
 const validateInterface = (interface) => {
-   if (interface == "REST" || interface == "BATCH" || interface == "MQ" || interface == "ALL")  return true;
+   if (interface == "REST" || interface == "BATCH" || interface == "MQ" || interface == "ALL") return true;
    else return false;
 }
 
@@ -117,9 +117,8 @@ const validatePermission = (permission) => {
    else return false;
 }
 
-const telfFormat = (telf) => {
-   if (telf.length < 10) return "0034"+telf;
-   return telf.replace("+", "00");
+module.exports = {
+   dateFormat, dateFormatWithMillis, logTime, buildSMSChannel, buildSMSChannels, buildPNSChannel,
+   buildPNSChannels, counter, replaceBreaks, replaceSpacesTo1, replaceSpaces, descStatus,
+   validateOperator, validateInterface, validatePermission
 }
-
-module.exports = { dateFormat, dateFormatWithMillis, logTime, buildSMSChannel, buildSMSChannels, buildPNSChannel, buildPNSChannels, counter, replaceBreaks, replaceSpacesTo1, replaceSpaces, descStatus, validateOperator, validateInterface, validatePermission, telfFormat }

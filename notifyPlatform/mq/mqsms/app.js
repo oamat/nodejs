@@ -143,9 +143,6 @@ async function getCB(err, hObj, gmo, md, buf, hConn) {
                     //await sms.validate(); //we need await because is a promise and we need to manage the throw exceptions, particularly validating errors in bad request.
                     //If you didn't execute "sms.validate()" we would need await because is a promise and we need to manage the throw exceptions, particularly validating errors.
                     saveSMS(sms) //save sms to DB, in this phase we need save SMS to MongoDB. //If you didn't execute "sms.validate()" we would need await in save.
-                        .catch(error => {     // we need catch only if get 'await' out          
-                            throw error;
-                        })
                         .then(sms => {  //save method returns sms that has been save to MongoDB
 
                             //START Redis Transaction with multi chain and result's callback
@@ -159,7 +156,10 @@ async function getCB(err, hObj, gmo, md, buf, hConn) {
                             });
                             //END Redis Transaction with multi chain and result's callback
                             console.log(process.env.GREEN_COLOR, logTime(new Date()) + "SMS saved, _id: " + sms._id);  //JSON.stringify for replace new lines (\n) and tab (\t) chars into string
-                        });
+                        })
+                        .catch(error => {     // we need catch only if get 'await' out          
+                            console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "ERROR: " + error.message);
+                        })
 
                 } catch (error) {
                     let contract = sms.contract || 'undefined';

@@ -23,7 +23,7 @@ const telfSchema = new mongoose.Schema({
         unique: true,
         validate(value) {
             value = value.replace("+", "00");
-            if (isNaN(value)) throw new Error("Telephone is invalid. You need a valid telephone before proceeding.");
+            if (isNaN(value) || value.length < 10) throw new Error("Telephone is invalid. You need a valid telephone before proceeding.");
             return value;
         }
     },

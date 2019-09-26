@@ -43,7 +43,7 @@ const updatePNS = async (pns) => {
         Pns.findOneAndUpdate(query, pns, options, (error, result) => {  //property new returns the new updated document, not the original document
             if (error) reject(error);  //if mongoose give me an error. If we used reject the try/catch would be unnecessary  
             else if (result) resolve(result); // everything is OK, return result
-            else reject(new Error("This PNS doesn't exist, we cannot update PNS in MongoDB. it's necessary check the problem before proceding.")); //If we cannot save PNS to MongoDB
+            else reject(new Error("This PNS id doesn't exist, we cannot update PNS in MongoDB. it's necessary check the problem before proceding.")); //If we cannot save PNS to MongoDB
         });
     });
     //.then((result) => { return result; })  //return the result, it's unnecessary but maybe we will need put some lógic...
@@ -58,7 +58,7 @@ const updateSomePNS = async (id, toUpdate) => {
         Pns.findOneAndUpdate(query, { $set: toUpdate }, options, (error, result) => {  //property new returns the new updated document, not the original document
             if (error) reject(error);  //if mongoose give me an error. If we used reject the try/catch would be unnecessary  
             else if (result) resolve(result); // everything is OK, return result
-            else reject(new Error("This PNS doesn't exist, we cannot update PNS in MongoDB. it's necessary check the problem before proceding.")); //If we cannot save PNS to MongoDB
+            else reject(new Error("This PNS id doesn't exist, we cannot update PNS in MongoDB. it's necessary check the problem before proceding.")); //If we cannot save PNS to MongoDB
         });
     });
     //.then((result) => { return result; })  //return the result, it's unnecessary but maybe we will need put some lógic...

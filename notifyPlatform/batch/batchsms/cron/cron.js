@@ -77,7 +77,7 @@ const getSMSFiles = async () => {
                     var notifications = fileJSON.fileBatch.notifications;
                     console.log(logTime(new Date()) + filename + " have " + notifications.length + " notifications to send");
                     notifications.forEach(async (smsJSON, index) => {
-                        try {                            
+                        try {
                             var sms = new Sms(smsJSON); // convert json to object,  await it's unnecessary because is the first creation of object. Model Validations are check when save in Mongodb, not here. 
                             sms.priority = priority;
                             sms.operator = await hgetConf("contractsms:" + sms.contract, "operator"); //Operator by default by contract. we checked the param before (in auth)                 
@@ -93,10 +93,7 @@ const getSMSFiles = async () => {
 
                             //await sms.validate(); //validate is unnecessary, we would need await because is a promise and we need to manage the throw exceptions, particularly validating errors in bad request.
 
-                            saveSMS(sms) //save sms to DB, in this phase we need save SMS to MongoDB. //If you didn't execute "sms.validate()" we would need await in save.
-                                .catch(error => {     // we need catch only if get 'await' out          
-                                    throw error;
-                                })
+                            saveSMS(sms) //save sms to DB, in this phase we need save SMS to MongoDB. //If you didn't execute "sms.validate()" we would need await in save.                         
                                 .then(sms => {  //save method returns sms that has been save to MongoDB                                   
 
                                     //START Redis Transaction with multi chain and result's callback
@@ -112,22 +109,26 @@ const getSMSFiles = async () => {
 
                                     console.log(process.env.GREEN_COLOR, logTime(new Date()) + "SMS saved, _id: " + sms._id);  //JSON.stringify for replace new lines (\n) and tab (\t) chars into string
                                     hincrby1(batchName, "processed");
-                                     if ( (index + 1) == notifications.length ) console.log(logTime(new Date()) + + notifications.length + ' notifications processed.');
-                                });
+                                    if ((index + 1) == notifications.length) console.log(logTime(new Date()) + + notifications.length + ' notifications processed.');
+                                })
+                                .catch(error => {     // we need catch only if get 'await' out          
+                                    console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "ERROR: BatchSMS processing a notification:  batchSMS.getSMSFiles() : process continue, error : " + error.message);
+                                    hincrby1(batchName, "errors");
+                                })
 
                         } catch (error) {
                             console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "ERROR: BatchSMS processing a notification:  batchSMS.getSMSFiles() : process continue, error : " + error.message);
                             hincrby1(batchName, "errors");
                             ////console.error(error); //continue the execution cron          
                             //TODO: save error in db  or mem.
-                        }                        
+                        }
                     });
 
                     fs.rename(batchIn + filename, batchOut + filename, (err) => {
                         if (err) throw err;
                         console.log(logTime(new Date()) + batchIn + filename + ' move to ' + batchOut + filename + ' complete!');
-                    });                   
-                    
+                    });
+
                 } else {
                     console.log(logTime(new Date()) + "No files found.");
                 }

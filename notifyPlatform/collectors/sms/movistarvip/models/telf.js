@@ -20,12 +20,17 @@ const telfSchema = new mongoose.Schema({
     telf: { // the unique user telf 
         type: String,
         required: true,
-        unique: true
+        unique: true,
+        validate(value) {
+            value = value.replace("+", "00");
+            if (isNaN(value) || value.length < 10) throw new Error("Telephone is invalid. You need a valid telephone before proceeding.");
+            return value;
+        }
     },
     operator: {
         type: String, //MOV, ORA, VOD, VIP,...
         required: true
-    },    
+    },
 }, {
     timestamps: true //If set timestamps, mongoose assigns createdAt and updatedAt fields to your schema, the type assigned is Date.
 }, {

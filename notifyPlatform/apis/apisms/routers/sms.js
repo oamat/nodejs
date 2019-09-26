@@ -16,7 +16,7 @@ const auth = require('../auth/auth');
 const { saveSMS } = require('../util/mongosms');
 const { rclient } = require('../config/redissms');
 const { hgetConf, hget, hincrby1 } = require('../util/redisconf');
-const { dateFormat, logTime, telfFormat, buildSMSChannel } = require('../util/formats');
+const { dateFormat, logTime, buildSMSChannel } = require('../util/formats');
 
 const router = new express.Router();
 //VARS
@@ -29,7 +29,6 @@ router.post('/smsSend', auth, async (req, res) => {  //we execute auth before th
     try {
         const sms = new Sms(req.body);  //await it's unnecessary because is the first creation of object. Model Validations are check when save in Mongodb, not here. 
         sms.operator = await hgetConf("contractsms:" + sms.contract, "operator"); //Operator by default by contract. we checked the param before (in auth)                 
-        sms.telf = telfFormat(sms.telf);
         if (sms.operator == "ALL") { //If operator is 'ALL' means that we need to find the better operator for the telf.            
             sms.operator = await hget("telfsms:" + sms.telf, "operator"); //find the best operator for this telf. without errors        
             if (!sms.operator) sms.operator = "MOV";  //by default we use MOV
@@ -41,28 +40,25 @@ router.post('/smsSend', auth, async (req, res) => {  //we execute auth before th
 
         //await sms.validate(); //validate is unnecessary, we would need await because is a promise and we need to manage the throw exceptions, particularly validating errors in bad request.
 
-        saveSMS(sms) //save sms to DB, in this phase we need save SMS to MongoDB. //If you didn't execute "sms.validate()" we would need await in save.
-            .catch(error => {     // we need catch only if get 'await' out          
-                throw error;  //and return json error to client
-            })
+        saveSMS(sms) //save sms to DB, in this phase we need save SMS to MongoDB. //If you didn't execute "sms.validate()" we would need await in save.            
             .then(sms => {  //save method returns sms that has been save to MongoDB
-
                 res.send({ statusCode: "200 OK", _id: sms._id }); //ALL OK, response 200, with sms._id. TODO: is it necessary any more params?
-
                 rclient.multi([ //START Redis Transaction with multi chain and result's callback
                     ["lpush", sms.channel, JSON.stringify(sms)],    //Trans 1
                     ["sadd", SMS_IDS, sms._id]                      //Trans 2             
-                ]).exec(function (error, replies) { // drains multi queue and runs atomically                    
+                ]).exec((error, replies) => { // drains multi queue and runs atomically                    
                     if (error) console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "WARNING: We couldn't save SMS in Redis (We will have to wait for retry): " + error.message);
                 }); //END Redis Transaction with multi chain and result's callback
 
                 console.log(process.env.GREEN_COLOR, logTime(new Date()) + "SMS saved, _id: " + sms._id);  //JSON.stringify for replace new lines (\n) and tab (\t) chars into string
                 hincrby1("apisms", "processed");
+            })
+            .catch(error => {     // we need catch only if get 'await' out          
+                requestError(error, req, res);  //and return json error to client
             });
 
     } catch (error) {
         requestError(error, req, res);
-        hincrby1("apisms", "errors");
         //TODO : maybe we can save  the errors in Redis
     }
 });
@@ -76,6 +72,7 @@ const requestError = async (error, req, res) => {
     const errorJson = { StatusCode: "400 Bad Request", error: error.message, contract: contract, telf: telf, message: message, receiveAt: dateFormat(new Date()) };   // dateFornat: replace T with a space && delete the dot and everything after
     console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "WARNING: " + JSON.stringify(errorJson));
     res.status(400).send(errorJson);
+    hincrby1("apisms", "errors");
     //TODO: save error in db  or mem.
 }
 module.exports = router

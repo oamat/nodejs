@@ -11,7 +11,7 @@ const auth = require('../auth/auth');
 const redisconf = require('../util/redisconf');
 const { TelfSms } = require('../config/mongoosemulti');  // Attention : this Pns Model is model created for multi DB
 const { findSMS, saveTelfSms } = require('../util/mongomultisms');
-const { dateFormatWithMillis, logTime, descStatus, validateOperator, telfFormat } = require('../util/formats');
+const { dateFormatWithMillis, logTime, descStatus, validateOperator } = require('../util/formats');
 
 
 const router = new express.Router();
@@ -23,9 +23,6 @@ router.get('/smsStatus', auth, async (req, res) => {
         else {
             let condition = { _id: req.body._id };
             findSMS(condition)
-                .catch(error => {
-                    throw error;
-                })
                 .then((sms) => {
                     if (sms) {
                         if (sms.dispatchedAt) res.send({ Status: "200 OK", _id: sms._id, status: sms.status, description: descStatus("SMS", sms.status), receivedAt: dateFormatWithMillis(sms.receivedAt), dispatchedAt: dateFormatWithMillis(sms.dispatchedAt), sms });
@@ -33,10 +30,14 @@ router.get('/smsStatus', auth, async (req, res) => {
                     } else {
                         res.send({ Status: "200 OK", _id: req.body._id, status: "-1", description: "SMS not found" });
                     }
-                });
+                    redisconf.hincrby1("apiadmin", "processed");
+                })
+                .catch(error => {
+                    requestError(error, res);
+                })
         }
     } catch (error) {
-        requestError(error, req, res);
+        requestError(error, res);
     }
 });
 
@@ -52,31 +53,33 @@ router.post('/telfRegister', auth, async (req, res) => {
         var telf = new TelfModel(req.body); //await it's unnecessary because is the first creation of object. Model Validations are check when save in Mongodb, not here.       
         await telf.validate(); // we need await for validations before save anything
         saveTelfSms(telf)
-            .catch(error => {
-                throw error;
-            })
             .then((telf) => {
                 res.send({ Status: "200 OK", info: "Telf created", telf });
                 redisconf.hmset(["telfsms:" + telf.telf, //save in RedisConf         
                     "operator", telf.operator
                 ]);
+                redisconf.hincrby1("apiadmin", "processed");
             })
+            .catch(error => {
+                requestError(error, res);                
+            });
 
 
         console.log(process.env.GREEN_COLOR, logTime(new Date()) + "SMS Telf created : " + JSON.stringify(telf));  //JSON.stringify for replace new lines (\n) and tab (\t) chars into string
 
 
     } catch (error) {
-        requestError(error, req, res);
+        requestError(error, res);
     }
 });
 
 
-const requestError = async (error, req, res) => {
+const requestError = async (error, res) => {
     //TODO personalize errors 400 or 500. 
     const errorJson = { StatusCode: "400 Bad Request", error: error.message, receiveAt: dateFormatWithMillis(new Date()) };   // dateFornat: replace T with a space && delete the dot and everything after
     console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "WARNING: " + JSON.stringify(errorJson));
     res.status(400).send(errorJson);
+    redisconf.hincrby1("apiadmin", "errors");
     //TODO: save error in db  or mem.
 }
 

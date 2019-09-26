@@ -36,27 +36,24 @@ router.post('/pnsSend', auth, async (req, res) => {  //we execute auth before th
         //await pns.validate(); //validate is unnecessary, we would need await because is a promise and we need to manage the throw exceptions, particularly validating errors in bad request.
 
         savePNS(pns) //save pns to DB, in this phase we need save PNS to MongoDB. //If you didn't execute "pns.validate()" we would need await in save.
-            .catch(error => {     // we need catch only if get 'await' out          
-                throw error; //and return json error to client
-            })
             .then(pns => {  //save method returns pns that has been save to MongoDB
-
                 res.send({ statusCode: "200 OK", _id: pns._id }); //ALL OK, response 200, with pns._id. TODO: is it necessary any more params?
-
                 rclient.multi([ //START Redis Transaction with multi chain and result's callback
                     ["lpush", pns.channel, JSON.stringify(pns)],    //Trans 1
                     ["sadd", PNS_IDS, pns._id]                      //Trans 2             
-                ]).exec(function (error, replies) { // drains multi queue and runs atomically                    
+                ]).exec((error, replies) => { // drains multi queue and runs atomically                    
                     if (error) console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "WARNING: We couldn't save PNS in Redis (We will have to wait for retry): " + error.message);
                 });  //END Redis Transaction with multi chain and result's callback               
 
                 console.log(process.env.GREEN_COLOR, logTime(new Date()) + "PNS saved, _id: " + pns._id);  //JSON.stringify for replace new lines (\n) and tab (\t) chars into string
                 hincrby1("apipns", "processed");
+            })
+            .catch(error => {     // we need catch only if get 'await' out          
+                requestError(error, req, res);  //and return json error to client
             });
 
     } catch (error) {
         requestError(error, req, res);
-        hincrby1("apipns", "errors");
         //TODO : maybe we can save  the errors in Redis
     }
 });
@@ -72,6 +69,7 @@ const requestError = async (error, req, res) => {
     const errorJson = { StatusCode: "400 Bad Request", error: error.message, contract: contract, uuiddevice: uuiddevice, application: application, action: action, content: content, receiveAt: dateFormat(new Date()) };   // dateFornat: replace T with a space && delete the dot and everything after
     console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "WARNING: " + JSON.stringify(errorJson));
     res.status(401).send(errorJson);
+    hincrby1("apipns", "errors");
     //TODO: save error in db  or mem.
 }
 module.exports = router
