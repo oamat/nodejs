@@ -10,13 +10,13 @@ const express = require('express');
 const auth = require('../auth/auth');
 const redisconf = require('../util/redisconf');
 const { TokenPns } = require('../config/mongoosemulti');  // Attention : this Pns Model is model created for multi DB
-const { findPNS, saveTokenPns } = require('../util/mongomultipns');
+const { findPNS, saveTokenPns, findTokenPns, updateTokenPns } = require('../util/mongomultipns');
 const { dateFormatWithMillis, logTime, descStatus, validateOperator } = require('../util/formats');
 
 
 const router = new express.Router();
 
-// GET /pnstatus   # uuid in body or telf and dates in body, and contract or all
+// GET /pnstatus   # uuid in body or token and dates in body, and contract or all
 router.get('/pnsStatus', auth, async (req, res) => {
     try {
         if (!req.body._id) throw new Error("Param _id doesn't exist in your /pnsStatus request body.");
@@ -45,30 +45,51 @@ router.post('/tokenRegister', auth, async (req, res) => {
             throw new Error("You didn't send the necessary params in the body of the request. You need to send the correct params before proceeding.");
         if (!validateOperator("PNS", req.body.operator)) throw new Error("Operator is invalid, it must be one of this options for PNS: 'APP', 'GOO' or 'MIC'");
 
-        var TokenModel = TokenPns();  // we catch the ContractSMS Model
+        var TokenModel = TokenPns();  // we catch the ContractPNS Model
         var token = new TokenModel(req.body); //await it's unnecessary because is the first creation of object. Model Validations are check when save in Mongodb, not here. 
         token.contract = req.body.contractToken;
         token.activated = true;
 
         await token.validate(); // we need await for validations before save anything
-        saveTokenPns(token)
-            .then(() => {
-                res.send({ Status: "200 OK", info: "Token created", token });
-
-                redisconf.hmset(["tokenpns" + token.application + ":" + token.uuiddevice, //save in RedisConf                           
-                    "application", token.application,
-                    "contract", token.contract,
-                    "uuiddevice", token.uuiddevice,
-                    "token", token.token,
-                    "user", token.user,
-                    "operator", token.operator
-                ]);
-                console.log(process.env.GREEN_COLOR, logTime(new Date()) + "PNS Token created : " + JSON.stringify(token));  //JSON.stringify for replace new lines (\n) and tab (\t) chars into string
-                redisconf.hincrby1("apiadmin", "processed");
-            })
-            .catch(error => { //we don'r need result, but we need errors. 
-                requestError(error, res);
-            })
+        findTokenPns({ uuiddevice: token.uuiddevice, application: token.application }).then((result) => {
+            if (result) {
+                updateTokenPns({ _id: result._id }, { token: token.token, operator: token.operator, contractToken: token.contractToken, user: token.user, activated: token.activated })
+                    .then((token) => {
+                        res.send({ Status: "200 OK", info: "Token Updated", token });
+                        redisconf.hmset(["tokenpns" + token.application + ":" + token.uuiddevice, //save in RedisConf                           
+                            "application", token.application,
+                            "contract", token.contract,
+                            "uuiddevice", token.uuiddevice,
+                            "token", token.token,
+                            "user", token.user,
+                            "operator", token.operator
+                        ]);
+                        console.log(process.env.GREEN_COLOR, logTime(new Date()) + "PNS Token updated : " + token._id);  //JSON.stringify for replace new lines (\n) and tab (\t) chars into string
+                        redisconf.hincrby1("apiadmin", "processed");
+                    })
+                    .catch(error => {
+                        requestError(error, res);
+                    });
+            } else {
+                saveTokenPns(token)
+                    .then(() => {
+                        res.send({ Status: "200 OK", info: "Token created", token });
+                        redisconf.hmset(["tokenpns" + token.application + ":" + token.uuiddevice, //save in RedisConf                           
+                            "application", token.application,
+                            "contract", token.contract,
+                            "uuiddevice", token.uuiddevice,
+                            "token", token.token,
+                            "user", token.user,
+                            "operator", token.operator
+                        ]);
+                        console.log(process.env.GREEN_COLOR, logTime(new Date()) + "PNS Token created : " + + token._id);  //JSON.stringify for replace new lines (\n) and tab (\t) chars into string
+                        redisconf.hincrby1("apiadmin", "processed");
+                    })
+                    .catch(error => { //we don'r need result, but we need errors. 
+                        requestError(error, res);
+                    });
+            }
+        });
     } catch (error) {
         requestError(error, res);
     }

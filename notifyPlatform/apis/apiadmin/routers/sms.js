@@ -10,7 +10,7 @@ const express = require('express');
 const auth = require('../auth/auth');
 const redisconf = require('../util/redisconf');
 const { TelfSms } = require('../config/mongoosemulti');  // Attention : this Pns Model is model created for multi DB
-const { findSMS, saveTelfSms } = require('../util/mongomultisms');
+const { findSMS, saveTelfSms, findTelfSms, updateTelfSms } = require('../util/mongomultisms');
 const { dateFormatWithMillis, logTime, descStatus, validateOperator } = require('../util/formats');
 
 
@@ -52,21 +52,39 @@ router.post('/telfRegister', auth, async (req, res) => {
         var TelfModel = TelfSms();  // we catch the ContractSMS Model
         var telf = new TelfModel(req.body); //await it's unnecessary because is the first creation of object. Model Validations are check when save in Mongodb, not here.       
         await telf.validate(); // we need await for validations before save anything
-        saveTelfSms(telf)
-            .then((telf) => {
-                res.send({ Status: "200 OK", info: "Telf created", telf });
-                redisconf.hmset(["telfsms:" + telf.telf, //save in RedisConf         
-                    "operator", telf.operator
-                ]);
-                redisconf.hincrby1("apiadmin", "processed");
-            })
+
+        findTelfSms({ telf: telf.telf }).then((result) => {
+            if (result) {        
+                updateTelfSms({ _id: result._id }, { operator: req.body.operator })
+                    .then((telf) => {
+                        res.send({ Status: "200 OK", info: "Telf Updated", telf });
+                        redisconf.hmset(["telfsms:" + telf.telf, //save in RedisConf         
+                            "operator", telf.operator
+                        ]);
+                        console.log(process.env.GREEN_COLOR, logTime(new Date()) + "SMS Telf updated : " + telf._id);  //JSON.stringify for replace new lines (\n) and tab (\t) chars into string
+                        redisconf.hincrby1("apiadmin", "processed");
+                    })
+                    .catch(error => {
+                        requestError(error, res);
+                    });
+            } else {
+                saveTelfSms(telf)
+                    .then((telf) => {
+                        res.send({ Status: "200 OK", info: "Telf created", telf });
+                        redisconf.hmset(["telfsms:" + telf.telf, //save in RedisConf         
+                            "operator", telf.operator
+                        ]);
+                        console.log(process.env.GREEN_COLOR, logTime(new Date()) + "SMS Telf created : " + telf._id);  //JSON.stringify for replace new lines (\n) and tab (\t) chars into string
+                        redisconf.hincrby1("apiadmin", "processed");
+                    })
+                    .catch(error => {
+                        requestError(error, res);
+                    });
+            }
+        })
             .catch(error => {
-                requestError(error, res);                
-            });
-
-
-        console.log(process.env.GREEN_COLOR, logTime(new Date()) + "SMS Telf created : " + JSON.stringify(telf));  //JSON.stringify for replace new lines (\n) and tab (\t) chars into string
-
+                requestError(error, res);
+            });        
 
     } catch (error) {
         requestError(error, res);

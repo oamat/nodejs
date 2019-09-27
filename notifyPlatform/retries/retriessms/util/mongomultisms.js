@@ -72,11 +72,10 @@ const saveContractSms = async (contract) => {
 }
 
 //this method update Contract SMS  personalized params in MongoDB and manage the result of this operation
-const updateContractSms = async (name, toUpdate) => {
+const updateContractSms = async (condition, toUpdate) => {
     return new Promise((resolve, reject) => { // we need promise for managing errors and results inside callbacks
         let options = { new: true };
-        let query = { name };
-        ContractSms().findOneAndUpdate(query, { $set: toUpdate }, options, (error, result) => {  //property new returns the new updated document, not the original document
+        ContractSms().findOneAndUpdate(condition, { $set: toUpdate }, options, (error, result) => {  //property new returns the new updated document, not the original document
             if (error) reject(error);  //if mongoose give me an error. If we used reject the try/catch would be unnecessary  
             else if (result) resolve(result); // everything is OK, return result
             else reject(new Error("This Contract name doesn't exist, we cannot update SMS Contract in MongoDB. it's necessary check the problem before proceding.")); //If we cannot save SMS to MongoDB
@@ -124,11 +123,10 @@ const saveCollectorSms = async (collector) => {
 }
 
 //this method update Collector SMS  personalized params in MongoDB and manage the result of this operation
-const updateCollectorSms = async (name, toUpdate) => {
+const updateCollectorSms = async (condition, toUpdate) => {
     return new Promise((resolve, reject) => { // we need promise for managing errors and results inside callbacks
         let options = { new: true };
-        let query = { name };
-        CollectorSms().findOneAndUpdate(query, { $set: toUpdate }, options, (error, result) => {  //property new returns the new updated document, not the original document
+        CollectorSms().findOneAndUpdate(condition, { $set: toUpdate }, options, (error, result) => {  //property new returns the new updated document, not the original document
             if (error) reject(error);  //if mongoose give me an error. If we used reject the try/catch would be unnecessary  
             else if (result) resolve(result); // everything is OK, return result
             else reject(new Error("This Collector name doesn't exist, we cannot update SMS Collector in MongoDB. it's necessary check the problem before proceding.")); //If we cannot save SMS to MongoDB
@@ -177,11 +175,10 @@ const saveTelfSms = async (telf) => {
 }
 
 //this method update Telf SMS  personalized params in MongoDB and manage the result of this operation
-const updateTelfSms = async (name, toUpdate) => {
+const updateTelfSms = async (condition, toUpdate) => {
     return new Promise((resolve, reject) => { // we need promise for managing errors and results inside callbacks
         let options = { new: true };
-        let query = { name };
-        TelfSms().findOneAndUpdate(query, { $set: toUpdate }, options, (error, result) => {  //property new returns the new updated document, not the original document
+        TelfSms().findOneAndUpdate(condition, { $set: toUpdate }, options, (error, result) => {  //property new returns the new updated document, not the original document
             if (error) reject(error);  //if mongoose give me an error. If we used reject the try/catch would be unnecessary  
             else if (result) resolve(result); // everything is OK, return result
             else reject(new Error("This Telephone doesn't exist, we cannot update SMS Telf in MongoDB. it's necessary check the problem before proceding.")); //If we cannot save SMS to MongoDB
@@ -191,4 +188,7 @@ const updateTelfSms = async (name, toUpdate) => {
     //.catch((error) => { throw error; });  //throw Error exception to the main code, it's unnecessary but maybe we will need put some lógic...  A reject callback will pass through here
 }
 
-module.exports = { findSMS, findAllSMS, findContractSms, findAllContractSms, saveContractSms, updateContractSms, findCollectorSms, findAllCollectorSms, saveCollectorSms, updateCollectorSms, findTelfSms, findAllTelfSms, saveTelfSms, updateTelfSms } 
+module.exports = {
+    findSMS, findAllSMS, findContractSms, findAllContractSms, saveContractSms, updateContractSms, findCollectorSms,
+    findAllCollectorSms, saveCollectorSms, updateCollectorSms, findTelfSms, findAllTelfSms, saveTelfSms, updateTelfSms
+} 

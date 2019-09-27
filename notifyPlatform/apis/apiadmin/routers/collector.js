@@ -139,7 +139,7 @@ router.patch('/changeCollector', auth, async (req, res) => {
         } else if (req.body.type == "PNS") {
             if (!validateOperator("PNS", req.body.operator) && req.body.operator != "ALL") throw new Error("Operator is invalid, it must be one of this options for PNS: 'APP', 'GOO' or 'MIC'.");
             let toUpdate = { status: req.body.status, interval: req.body.interval, intervalControl: req.body.intervalControl, operator: req.body.operator }; //we don't change operator, unnecessary
-            updateCollectorPns(req.body.name, toUpdate)
+            updateCollectorPns({name: req.body.name}, toUpdate)
                 .then(() => {  // update Collector SMS in MongoDB
                     redisconf.hmset(["collectorpns:" + req.body.name,
                         "status", req.body.status,

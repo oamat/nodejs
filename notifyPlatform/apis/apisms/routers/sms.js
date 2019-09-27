@@ -19,6 +19,7 @@ const { hgetConf, hget, hincrby1 } = require('../util/redisconf');
 const { dateFormat, logTime, buildSMSChannel } = require('../util/formats');
 
 const router = new express.Router();
+
 //VARS
 const SMS_IDS = "SMS.IDS.PENDING";
 

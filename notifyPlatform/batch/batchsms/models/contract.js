@@ -46,7 +46,7 @@ const contractSchema = new mongoose.Schema({
         type: String,
         required: false,
         validate(value) {
-            if (value != "THIS" && value != "WITHIN_APP" && value != "ALL") throw new Error("Permission is invalid, it must be one of this options: 'NO': no permission, 'THIS':only this contract, 'WITHIN_APP': contracts with the same application, 'ALL': All contracts.");
+            if (value != "THIS" && value != "WITHIN_APP" && value != "ALL") throw new Error("Frontend is invalid, it must be one of this options: 'THIS':only this contract, 'WITHIN_APP': contracts with the same application, 'ALL': All contracts.");
         }
     },
     jwt: { //Secure JWT for authentication
@@ -56,7 +56,6 @@ const contractSchema = new mongoose.Schema({
     type: { //PNS, SMS, ..
         type: String,
         required: true,
-        trim: true,
         validate(value) {
             if (value != "PNS" && value != "SMS") throw new Error("Type is invalid, it must be one of this options: 'PNS' or 'SMS'.");
         }
