@@ -1,4 +1,4 @@
-config:
+config:  #Results https://artillery.io/docs/getting-started/
   target: 'https:/'
   http:
      timeout: 10  # Responses have to be sent within 10 seconds or the request will be aborted
