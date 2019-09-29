@@ -21,13 +21,5 @@ const initFunc = (a, b, c, ...manyMoreArgs) => {
 
 }
 
-function myFun(a, b, ...manyMoreArgs) {
-    console.log("a", a);
-    console.log("b", b);
-    console.log("manyMoreArgs", manyMoreArgs);
-}
-
-myFun("one", "two", "three", "four", "five", "six");
-
-initFunc(func1, func2, func3, func1, func2);
+initFunc(func1, func2, func3, func1, func2, "one", "two", "three", "four", "five", "six");
 

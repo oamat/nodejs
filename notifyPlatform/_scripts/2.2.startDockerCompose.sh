@@ -9,5 +9,7 @@ cd /notifyPlatform/_scripts/
 echo ""
 echo ""
 echo "# the docker-compose.yaml have been started."
-echo "# You can use 'docker logs -f [ContainerName]' for watch logs" 
+echo "# You can use 'docker logs -f [ContainerName]' for watch logs"
+echo "# You can enter inside container: 'docker exec -it [ContainerName] /bin/bash'"
+
 

@@ -164,36 +164,37 @@ const startController = async (intervalControl) => {
 const checksController = async () => {
     try {
         cronConf = await hgetall(batchName); //get the cronConf
-        Promise.all([ //In error case we continue with other tasks
-            hset(batchName, "last", dateFormat(new Date())).catch(error => { console.log(process.env.YELLOW_COLOR, logTime(new Date()) + error.message); }),  //save last execution in Redis, in error case we continue
-            checkstatus(parseInt(cronConf.status)).catch(error => { console.log(process.env.YELLOW_COLOR, logTime(new Date()) + error.message); }), //check status in Redis, in error case we continue
-            checkInterval(parseInt(cronConf.interval)).catch(error => { console.log(process.env.YELLOW_COLOR, logTime(new Date()) + error.message); }), //check interval in Redis, in error case we continue
-            checkIntervalControl(parseInt(cronConf.intervalControl)).catch(error => { console.log(process.env.YELLOW_COLOR, logTime(new Date()) + error.message); }) //check intervalControl in Redis, in error case we continue
-        ]).then(async () => {
-            // Cron Main Check
-            if (cronChanged) { //some param changed in cron, we need to restart or stopped.
-                if (cronStatus) { //cron must to be started                       
-                    console.log(process.env.GREEN_COLOR, logTime(new Date()) + "Stopping and Re-Starting BATCHSMS cronMain...");
-                    cronChanged = false;
-                    await stopCron();
-                    await startCron(interval);
-                } else { //cron must to be stopped            
-                    cronChanged = false;
-                    await stopCron(); //if I stop cron N times, it doesn't matter... 
+        if (cronConf && Object.keys(cronConf).length > 1) {
+            Promise.all([ //In error case we continue with other tasks
+                hset(batchName, "last", dateFormat(new Date())).catch(error => { console.log(process.env.YELLOW_COLOR, logTime(new Date()) + error.message); }),  //save last execution in Redis, in error case we continue
+                checkstatus(cronConf.status).catch(error => { console.log(process.env.YELLOW_COLOR, logTime(new Date()) + error.message); }), //check status in Redis, in error case we continue
+                checkInterval(cronConf.interval).catch(error => { console.log(process.env.YELLOW_COLOR, logTime(new Date()) + error.message); }), //check interval in Redis, in error case we continue
+                checkIntervalControl(cronConf.intervalControl).catch(error => { console.log(process.env.YELLOW_COLOR, logTime(new Date()) + error.message); }) //check intervalControl in Redis, in error case we continue
+            ]).then(async () => {
+                // Cron Main Check
+                if (cronChanged) { //some param changed in cron, we need to restart or stopped.
+                    if (cronStatus) { //cron must to be started                       
+                        console.log(process.env.GREEN_COLOR, logTime(new Date()) + "Stopping and Re-Starting BATCHSMS cronMain...");
+                        cronChanged = false;
+                        await stopCron();
+                        await startCron(interval);
+                    } else { //cron must to be stopped            
+                        cronChanged = false;
+                        await stopCron(); //if I stop cron N times, it doesn't matter... 
+                    }
                 }
-            }
-            // Cron Controller Check
-            if (cronControllerChanged) {
-                console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "Stopping and Re-starting BATCHSMS cronController ");
-                cronControllerChanged = false;
-                clearInterval(cronController);
-                cronController = null;
-                await startController(intervalControl).catch(error => { throw new Error("ERROR in BATCHSMS cronController." + error.message) });
-            }
-            console.log(process.env.GREEN_COLOR, logTime(new Date()) + "BATCHSMS cronController : cronMain intervalControl is " + interval + ", cronController interval is " + interval + " and status is " + cronStatus + " ([1:ON, 0:OFF]).");
-            if (!cronStatus) console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "ATTENTION: BATCHSMS cronMain is OFF");
-        });
-
+                // Cron Controller Check
+                if (cronControllerChanged) {
+                    console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "Stopping and Re-starting BATCHSMS cronController ");
+                    cronControllerChanged = false;
+                    clearInterval(cronController);
+                    cronController = null;
+                    await startController(intervalControl).catch(error => { throw new Error("ERROR in BATCHSMS cronController." + error.message) });
+                }
+                console.log(process.env.GREEN_COLOR, logTime(new Date()) + "BATCHSMS cronController : cronMain intervalControl is " + interval + ", cronController interval is " + interval + " and status is " + cronStatus + " ([1:ON, 0:OFF]).");
+                if (!cronStatus) console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "ATTENTION: BATCHSMS cronMain is OFF");
+            });
+        } else console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "WARNING : We didn't find configuration parameters in Redis, we will continue with default params. Process continuing.");
     } catch (error) {
         console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "WARNING : we have had a problem with BATCHSMS configuration in Redis. Process continuing... " + error.message);
         //console.error(error); //continue the execution cron
@@ -202,8 +203,8 @@ const checksController = async () => {
 
 const checkstatus = async (newCronStatus) => { //Check status, if it's necessary finish cron because redis say it.
     try {
-        if (cronStatus != newCronStatus) {
-            cronStatus = newCronStatus;
+        if (newCronStatus && parseInt(newCronStatus) != cronStatus) {
+            cronStatus = parseInt(newCronStatus);
             cronChanged = true;
         }
     } catch (error) {
@@ -214,9 +215,9 @@ const checkstatus = async (newCronStatus) => { //Check status, if it's necessary
 
 const checkInterval = async (newInterval) => { //check rate/s, and change cron rate
     try {
-        if (interval != newInterval) { //if we change the interval -> rate/s
+        if (newInterval && parseInt(newInterval) != interval) { //if we change the interval -> rate/s
             console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "Change BATCHSMS cronMain interval:  " + interval + " for new interval : " + newInterval + " , next restart will be effect.");
-            interval = newInterval;
+            interval = parseInt(newInterval);
             cronChanged = true;
         }
     } catch (error) {
@@ -227,9 +228,9 @@ const checkInterval = async (newInterval) => { //check rate/s, and change cron r
 
 const checkIntervalControl = async (newIntervalControl) => { //check rate/s, and change cron rate
     try {
-        if (intervalControl != newIntervalControl) { //if we change the interval -> rate/s
+        if (newIntervalControl && parseInt(newIntervalControl) != intervalControl) { //if we change the interval -> rate/s
             console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "Change BATCHSMS cronController interval:  " + intervalControl + " for new interval : " + newIntervalControl + " , next restart will be effect.");
-            intervalControl = newIntervalControl;
+            intervalControl = parseInt(newIntervalControl);
             cronControllerChanged = true;
         }
     } catch (error) {
@@ -242,10 +243,10 @@ const checkIntervalControl = async (newIntervalControl) => { //check rate/s, and
 const initCron = async () => {
     try {
         cronConf = await hgetall(batchName); // redis conf
-        if (cronConf) {
-            interval = parseInt(cronConf.interval); //The rate/cronMain interval
-            intervalControl = parseInt(cronConf.intervalControl); //the interval of controller
-            cronStatus = parseInt(cronConf.status); //maybe somebody stops collector
+        if (cronConf && Object.keys(cronConf).length > 1) {
+            if (cronConf.interval) interval = parseInt(cronConf.interval); //The rate/cronMain interval
+            if (cronConf.intervalControl) intervalControl = parseInt(cronConf.intervalControl); //the interval of controller
+            if (cronConf.status) cronStatus = parseInt(cronConf.status); //maybe somebody stops collector
         } else console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "WARNING : We didn't find BATCHSMS initialization parameters in Redis, we will initialize cron with default params  . . Process continuing. ");
 
         if (cronStatus) {

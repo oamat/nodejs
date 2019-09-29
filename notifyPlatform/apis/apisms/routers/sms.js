@@ -44,6 +44,7 @@ router.post('/smsSend', auth, async (req, res) => {  //we execute auth before th
         saveSMS(sms) //save sms to DB, in this phase we need save SMS to MongoDB. //If you didn't execute "sms.validate()" we would need await in save.            
             .then(sms => {  //save method returns sms that has been save to MongoDB
                 res.send({ statusCode: "200 OK", _id: sms._id }); //ALL OK, response 200, with sms._id. TODO: is it necessary any more params?
+                
                 rclient.multi([ //START Redis Transaction with multi chain and result's callback
                     ["lpush", sms.channel, JSON.stringify(sms)],    //Trans 1
                     ["sadd", SMS_IDS, sms._id]                      //Trans 2             
@@ -52,6 +53,7 @@ router.post('/smsSend', auth, async (req, res) => {  //we execute auth before th
                 }); //END Redis Transaction with multi chain and result's callback
 
                 console.log(process.env.GREEN_COLOR, logTime(new Date()) + "SMS saved, _id: " + sms._id);  //JSON.stringify for replace new lines (\n) and tab (\t) chars into string
+                
                 hincrby1("apisms", "processed");
             })
             .catch(error => {     // we need catch only if get 'await' out          
