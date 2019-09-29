@@ -1,5 +1,5 @@
 config: #Results https://artillery.io/docs/getting-started/
-  target: 'https://localhost:30002'
+  target: 'https:/'
   http:
      timeout: 10  # Responses have to be sent within 10 seconds or the request will be aborted
      pool: 80 # All HTTP requests from all virtual users will be sent over the same 10 connections
@@ -21,6 +21,15 @@ config: #Results https://artillery.io/docs/getting-started/
       x-api-key: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IlBVU0hMT1dFQiIsImNvbnRyYWN0IjoiUFVTSExPV0VCIiwiaWF0IjoyMDE2MjM5MDIyfQ.liOxBh3kFQyjYrIyhg2Uu3COoV83ruUsyLniWEJ8Apw'
 scenarios:
   - flow:
-      - post:
-          url: "/pnsSend"
-          body: '{	 "contract" : "PUSHLOWEB",	 "application" : "CaixaAPP",	 "user" : "userTst",	 "uuiddevice" : "kRt346992-72809WA",	 "action" : "show",	 "content" : "content push notification" }'                    
+      - post:  # PNS by GOOGLE, token: kRt346992-72809WA, PUSHLOWEB contract
+          url: "/localhost:30002/pnsSend"
+          body: '{	 "contract" : "PUSHLOWEB",	 "application" : "CaixaAPP",	 "user" : "userTst",	 "uuiddevice" : "kRt346992-72809WA",	 "action" : "show",	 "content" : "content push notification" }'  
+          headers:
+            Content-Type: 'application/json'
+            x-api-key: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IlBVU0hMT1dFQiIsImNvbnRyYWN0IjoiUFVTSExPV0VCIiwiaWF0IjoyMDE2MjM5MDIyfQ.liOxBh3kFQyjYrIyhg2Uu3COoV83ruUsyLniWEJ8Apw'
+      - post:  # PNS by APPLE, token: kRt346992-72809WB, PUSHLOWEB contract
+          url: "/localhost:30002/pnsSend"
+          body: '{	 "contract" : "PUSHLOWEB",	 "application" : "CaixaAPP",	 "user" : "userTst",	 "uuiddevice" : "kRt346992-72809WB",	 "action" : "show",	 "content" : "content push" }' 
+          headers:
+            Content-Type: 'application/json'
+            x-api-key: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IlBVU0hMT1dFQiIsImNvbnRyYWN0IjoiUFVTSExPV0VCIiwiaWF0IjoyMDE2MjM5MDIyfQ.liOxBh3kFQyjYrIyhg2Uu3COoV83ruUsyLniWEJ8Apw'

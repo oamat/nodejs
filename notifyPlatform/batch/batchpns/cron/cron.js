@@ -127,6 +127,7 @@ const getPNSFiles = async () => {
                 }
             });
         } catch (error) {
+            hincrby1(batchName, "errors");
             console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "ERROR: BatchPNS processing a file: batchPNS.getPNSFiles() : " + error.message);
             //console.error(error); //continue the execution cron
         }

@@ -62,9 +62,11 @@ const stopCron = async () => { //stop cron only when cron is switched on
 
 const retryNextsSMS = async () => {
     try {
-        const retriesSMS = await nextRetriesSMS(); //get array of SMS not sent.
+        let retriesSMS = await nextRetriesSMS(); //get array of SMS not sent.
+        //if (retriesSMS.length > 0) console.log(process.env.GREEN_COLOR, logTime(new Date()) + "INFO: We have found " + retriesSMS.length + " SMS with possible delay. The lowest priority found: [" + retriesSMS[0].priority+"]");
         for (var i = 0; i < retriesSMS.length; i++) {
             if (await sismember(SMS_IDS, retriesSMS[i]._id) == 0) {
+                let id = retriesSMS[i]._id
                 //START Redis Transaction with multi chain and result's callback
                 rclient.multi([
                     ["lpush", retriesSMS[i].channel, JSON.stringify(retriesSMS[i])],    //Trans 1
@@ -75,7 +77,7 @@ const retryNextsSMS = async () => {
                         console.log(process.env.YELLOW_COLOR, date + "WARNING: We couldn't save SMS in Redis (We will have to wait for retry): " + error.message);
                         hincrby1("collectorsms:retriesSMS", "errors");
                     } else {
-                        console.log(process.env.GREEN_COLOR, date + "We have retried " + retriesSMS[i]._id);
+                        console.log(process.env.GREEN_COLOR, date + "We have retried " + id);
                         hincrby1("collectorsms:retriesSMS", "processed");
                     }
                 });
@@ -84,6 +86,7 @@ const retryNextsSMS = async () => {
         }
     } catch (error) {
         console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "ERROR: we have a problem in retryNextsSMS() : " + error.message);
+        hincrby1("collectorsms:retriesSMS", "errors");
         //console.error(error); //continue the execution cron
     }
 }
@@ -109,6 +112,7 @@ const nextRetriesSMS = async () => {
 
     } catch (error) {
         console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "ERROR: we have a problem with mongoose.find : " + error.message);
+        hincrby1("collectorsms:retriesSMS", "errors");
         return null;
         //console.error(error); //continue the execution cron
     }
@@ -228,7 +232,7 @@ const initCron = async () => {
             console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "RETRIESSMS Redis Configuration status indicates we don't want start cronMain process. we only start cron Controller.");
             console.log(process.env.GREEN_COLOR, logTime(new Date()) + "RETRIESSMS cronController : cronMain interval is " + interval + ", cronController intervalControl is " + interval + " and status is " + cronStatus + " ([1:ON, 0:OFF]).");
         }
-        
+
         await startController(intervalControl).catch(error => { throw new Error("ERROR in RETRIESSMS cronController." + error.message) });
 
     } catch (error) {

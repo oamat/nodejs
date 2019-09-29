@@ -16,17 +16,47 @@ config: #Results https://artillery.io/docs/getting-started/
     - duration: 30 #The medium high load for 120 seconds.
       arrivalRate: 1000 #500 virtual users/second
   defaults:
-    headers:
+    headers: #HEADERS ADMIN contract
       Content-Type: 'application/json'
       x-api-key: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkFETUlOIiwiY29udHJhY3QiOiJBRE1JTiIsImlhdCI6MjAxNjIzOTAyMn0.vwBNTaBbW40v14Iiqd65uhv4FVQi4qn4ZH50VyQ00rg'
 scenarios:
   - flow:
-      - post:
+      - post:  # SMS by MOVISTAR, OTPLOWEB contract
           url: "/localhost:30001/smsSend"
-          body: '{  "contract": "ADMIN",  "telf": "+34699272800",  "message": "you have won a gift", "alias": "L.O.", "customId": "myid_4566544", "priority": "0"}' 
-      - post:
+          body: '{  "contract": "OTPLOWEB",  "telf": "+34699272809",  "message": "you have won a gift", "priority": "1"}' 
+          headers: #HEADERS OTPLOWEB contract
+            Content-Type: 'application/json'
+            x-api-key: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6Ik9UUExPV0VCIiwiY29udHJhY3QiOiJPVFBMT1dFQiIsImlhdCI6MjAxNjIzOTAyMn0.BK58iwYbyfGb1u--SLP3YZP7JZxKSMrPHmdc-gfH4t4'
+      - post:  # PNS by GOOGLE, token: kRt346992-72809WA, PUSHLOWEB contract
           url: "/localhost:30002/pnsSend"
-          body: '{	 "contract" : "ADMIN",	 "application" : "CaixaAPP",	 "user" : "userTst",	 "uuiddevice" : "kRt346992-72809WA",	 "action" : "show",	 "content" : "content push notification" }'  
-      - get:
+          body: '{	 "contract" : "PUSHLOWEB",	 "application" : "CaixaAPP",	 "user" : "userTst",	 "uuiddevice" : "kRt346992-72809WA",	 "action" : "show",	 "content" : "content push notification" }'  
+          headers:
+            Content-Type: 'application/json'
+            x-api-key: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IlBVU0hMT1dFQiIsImNvbnRyYWN0IjoiUFVTSExPV0VCIiwiaWF0IjoyMDE2MjM5MDIyfQ.liOxBh3kFQyjYrIyhg2Uu3COoV83ruUsyLniWEJ8Apw'
+      - get:   # GET STATUS
           url: "/localhost:30003/smsStatus"
-          body: '{	"contract" : "ADMIN",	 "_id" : "25c91e9f-5355-46e5-9ab1-843aef3f075f" }'                                         
+          body: '{	"contract" : "ADMIN",	 "_id" : "25c91e9f-5355-46e5-9ab1-843aef3f075f" }' 
+          headers: #HEADERS ADMIN contract
+            Content-Type: 'application/json'
+            x-api-key: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkFETUlOIiwiY29udHJhY3QiOiJBRE1JTiIsImlhdCI6MjAxNjIzOTAyMn0.vwBNTaBbW40v14Iiqd65uhv4FVQi4qn4ZH50VyQ00rg'
+      - post:  # SMS by VODAFONE, OTPLOWEBVOD contract
+          url: "/localhost:30001/smsSend"
+          body: '{  "contract": "OTPLOWEBVOD",  "telf": "+34699272808",  "message": "you have won a gift", "priority": "0"}'
+          headers: #HEADERS OTPLOWEB contract
+            Content-Type: 'application/json'
+            x-api-key: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6Ik9UUExPV0VCVk9EIiwiY29udHJhY3QiOiJPVFBMT1dFQlZPRCIsImlhdCI6MjAxNjIzOTAyMn0.DZlLbO-xak3lneZ_93yZQszEd0gKXb0MVhwS27Unbtg'     
+      - post:  # PNS by APPLE, token: kRt346992-72809WB, PUSHLOWEB contract
+          url: "/localhost:30002/pnsSend"
+          body: '{	 "contract" : "PUSHLOWEB",	 "application" : "CaixaAPP",	 "user" : "userTst",	 "uuiddevice" : "kRt346992-72809WB",	 "action" : "show",	 "content" : "content push" }' 
+          headers:
+            Content-Type: 'application/json'
+            x-api-key: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IlBVU0hMT1dFQiIsImNvbnRyYWN0IjoiUFVTSExPV0VCIiwiaWF0IjoyMDE2MjM5MDIyfQ.liOxBh3kFQyjYrIyhg2Uu3COoV83ruUsyLniWEJ8Apw'
+      - get:   # GET CONTRACT
+          url: "/localhost:30003/getContract"
+          body: '{ "contract" : "ADMIN",	 "name" : "OTPLOWEB",	 "type" : "SMS"}'  
+          headers: #HEADERS ADMIN contract
+            Content-Type: 'application/json'
+            x-api-key: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkFETUlOIiwiY29udHJhY3QiOiJBRE1JTiIsImlhdCI6MjAxNjIzOTAyMn0.vwBNTaBbW40v14Iiqd65uhv4FVQi4qn4ZH50VyQ00rg'
+     
+          
+          

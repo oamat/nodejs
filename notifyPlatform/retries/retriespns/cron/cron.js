@@ -63,8 +63,10 @@ const stopCron = async () => { //stop cron only when cron is switched on
 const retryNextsPNS = async () => {
     try {
         const retriesPNS = await nextRetriesPNS(); //get array of PNS not sent.
+        //if (retriesPNS.length > 0) console.log(process.env.GREEN_COLOR, logTime(new Date()) + "INFO: We have found " + retriesPNS.length + " PNS with possible delay. The lowest priority found:[" + retriesPNS[0].priority+"]");
         for (var i = 0; i < retriesPNS.length; i++) {
             if (await sismember(PNS_IDS, retriesPNS[i]._id) == 0) {
+                let id = retriesPNS[i]._id
                 //START Redis Transaction with multi chain and result's callback
                 rclient.multi([
                     ["lpush", retriesPNS[i].channel, JSON.stringify(retriesPNS[i])],    //Trans 1
@@ -84,6 +86,7 @@ const retryNextsPNS = async () => {
         }
     } catch (error) {
         console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "ERROR: we have a problem in retryNextsPNS() : " + error.message);
+        hincrby1("collectorpns:retriesPNS", "errors");
         //console.error(error); //continue the execution cron
     }
 }
@@ -93,7 +96,7 @@ const nextRetriesPNS = async () => {
         let end = new Date();
         let start = new Date();
         start.setDate(start.getDate() - 1); // date from 24h before
-        end.setSeconds(end.getSeconds() - 30);  //to now -30sconds, because we have the risk that take a message immediately after we sended
+        end.setSeconds(end.getSeconds() - 15);  //to now -30seconds, because we have the risk that take a message immediately after we sended
         let condition = {  //query condition 
             dispatched: false, //not dispatched
             expired: null, //not expired
@@ -109,6 +112,7 @@ const nextRetriesPNS = async () => {
 
     } catch (error) {
         console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "ERROR: we have a problem with mongoose.find : " + error.message);
+        hincrby1("collectorpns:retriesPNS", "errors");
         return null;
         //console.error(error); //continue the execution cron
     }
@@ -228,7 +232,7 @@ const initCron = async () => {
             console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "RETRIESPNS Redis Configuration status indicates we don't want start cronMain process. we only start cron Controller.");
             console.log(process.env.GREEN_COLOR, logTime(new Date()) + "RETRIESPNS cronController : cronMain interval is " + interval + ", cronController intervalControl is " + interval + " and status is " + cronStatus + " ([1:ON, 0:OFF]).");
         }
-    
+
         await startController(intervalControl).catch(error => { throw new Error("ERROR in RETRIESPNS cronController." + error.message) });
 
     } catch (error) {

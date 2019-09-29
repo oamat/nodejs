@@ -1,0 +1,61 @@
+#Results https://artillery.io/docs/getting-started/
+
+Elapsed time: 1 minute, 0 seconds # artillery run .\apipns.yaml
+  Scenarios launched:  5095
+  Scenarios completed: 4053
+  Requests completed:  8639
+  RPS sent: 967.13
+  Request latency:
+    min: 1126.4
+    max: 2225.9
+    median: 1664.9
+    p95: 2155
+    p99: 2194.4
+  Codes:
+    200: 8639
+    
+Started phase 3, duration: 30s @ 23:21:38(+0200) 2019-09-29 #2019-09-29 artillery run .\apisms.yaml 
+Report @ 23:21:42(+0200) 2019-09-29
+Elapsed time: 1 minute, 0 seconds
+  Scenarios launched:  5038
+  Scenarios completed: 2999
+  Requests completed:  6987
+  RPS sent: 900.8
+  Request latency:
+    min: 1686.9
+    max: 3778.7
+    median: 3377.1
+    p95: 3687.2
+    p99: 3731.1
+  Codes:
+    200: 6987
+
+Report @ 23:18:56(+0200) 2019-09-29  # artillery run .\apiadmin.yaml
+Elapsed time: 1 minute, 50 seconds
+  Scenarios launched:  4941
+  Scenarios completed: 4943
+  Requests completed:  9883
+  RPS sent: 986.13
+  Request latency:
+    min: 2.7
+    max: 893.7
+    median: 270.7
+    p95: 782.7
+    p99: 845.3
+  Codes:
+    200: 9883
+
+Report @ 00:06:37(+0200) 2019-09-30 # artillery run .\apiall.yaml
+Elapsed time: 2 minutes, 0 seconds
+  Scenarios launched:  1662
+  Scenarios completed: 924
+  Requests completed:  7960
+  RPS sent: 864.61
+  Request latency:
+    min: 2.8
+    max: 2114.3
+    median: 16.8
+    p95: 1547.4
+    p99: 1974
+  Codes:
+    200: 7960

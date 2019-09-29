@@ -1,5 +1,5 @@
 config:
-  target: 'https://localhost:30001'
+  target: 'https:/'
   http:
      timeout: 10  # Responses have to be sent within 10 seconds or the request will be aborted
      pool: 100 # All HTTP requests from all virtual users will be sent over the same 10 connections
@@ -15,12 +15,20 @@ config:
       arrivalRate: 500 #500 virtual users/second
     - duration: 30 #The medium high load for 120 seconds.
       arrivalRate: 1000 #500 virtual users/second
-  defaults:
-    headers:
-      Content-Type: 'application/json'
-      x-api-key: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6Ik9UUExPV0VCIiwiY29udHJhY3QiOiJPVFBMT1dFQiIsImlhdCI6MjAxNjIzOTAyMn0.BK58iwYbyfGb1u--SLP3YZP7JZxKSMrPHmdc-gfH4t4'
+  defaults:     
 scenarios:
   - flow:
-      - post:
-          url: "/smsSend"
-          body: '{  "contract": "OTPLOWEB",  "telf": "+34699272800",  "message": "you have won a gift", "alias": "L.O.", "customId": "myid_4566544", "priority": "0"}'                    
+      - post:  # SMS by MOVISTAR, OTPLOWEB contract
+          url: "/localhost:30001/smsSend"
+          body: '{  "contract": "OTPLOWEB",  "telf": "+34699272809",  "message": "you have won a gift", "priority": "1"}' 
+          headers: #HEADERS OTPLOWEB contract
+            Content-Type: 'application/json'
+            x-api-key: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6Ik9UUExPV0VCIiwiY29udHJhY3QiOiJPVFBMT1dFQiIsImlhdCI6MjAxNjIzOTAyMn0.BK58iwYbyfGb1u--SLP3YZP7JZxKSMrPHmdc-gfH4t4'
+      - post:  # SMS by VODAFONE, OTPLOWEBVOD contract
+          url: "/localhost:30001/smsSend"
+          body: '{  "contract": "OTPLOWEBVOD",  "telf": "+34699272808",  "message": "you have won a gift", "priority": "0"}'
+          headers: #HEADERS OTPLOWEB contract
+            Content-Type: 'application/json'
+            x-api-key: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6Ik9UUExPV0VCVk9EIiwiY29udHJhY3QiOiJPVFBMT1dFQlZPRCIsImlhdCI6MjAxNjIzOTAyMn0.DZlLbO-xak3lneZ_93yZQszEd0gKXb0MVhwS27Unbtg'     
+   
+          

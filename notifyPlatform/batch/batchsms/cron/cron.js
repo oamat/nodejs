@@ -134,6 +134,7 @@ const getSMSFiles = async () => {
                 }
             });
         } catch (error) {
+            hincrby1(batchName, "errors");
             console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "ERROR: BatchSMS processing a file: batchSMS.getSMSFiles() : " + error.message);
             //console.error(error); //continue the execution cron
         }
