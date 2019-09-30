@@ -261,9 +261,9 @@ const loadRedisForTesting = async () => {
     saveSMSDefaultContract(false);
     //PNS CONTRACTS    
     savePNSDefaultContract(false);   
-    //Collectors PNS
+    //PNS Collectors 
     saveAllPNSDefaultCollectors(false);
-    //Collectors SMS
+    //SMS Collectors 
     saveAllSMSDefaultCollectors(false);
     //PNS token
     savePNSDefaultTokenPns(false);

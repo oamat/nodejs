@@ -76,15 +76,21 @@ const sendNextSMS = async () => {
             } else {
                 //sms.validate(); //It's unnecessary because we cautched from redis, and we checked before in the apisms, the new params are OK.
                 if (operator == defaultOperator) { //MOVISTAR-VIP WILL SEND //If we change operator for contingency we change sms to other list
-                    sms.status = await sendSMS(sms); // send SMS to operator, //return status: 0:notSent, 1:Sent, 2:Confirmed, 3:Error, 4:Expired   
+                    sms.status = 1;
                     sms.retries++;
                     sms.dispatched = true;
                     sms.dispatchedAt = new Date();
                     Promise.all([ //Always we need delete ID in SMS_IDS SET, in error case we continue
                         updateSMS(sms).catch(error => { console.log(process.env.YELLOW_COLOR, logTime(new Date()) + error.message); }), // update SMS in MongoDB, in error case we continue
-                        sismember(SMS_IDS, sms._id).catch(error => { console.log(process.env.YELLOW_COLOR, logTime(new Date()) + error.message); }) //delete from redis ID control, in error case we continue
-                    ]).then(() => { //we always enter here
-                        console.log(process.env.GREEN_COLOR, logTime(new Date()) + "SMS sended : " + sms._id);  //JSON.stringify for replace new lines (\n) and tab (\t) chars into string
+                        sismember(SMS_IDS, sms._id).catch(error => { console.log(process.env.YELLOW_COLOR, logTime(new Date()) + error.message); }), //delete from redis ID control, in error case we continue
+                        sendSMS(sms).catch(error => { console.log(process.env.YELLOW_COLOR, logTime(new Date()) + error.message); return 3; }) // send SMS to operator, //return status: 0:notSent, 1:Sent, 2:Confirmed, 3:Error, 4:Expired 
+                    ]).then((values) => { //we always enter here
+                        console.log(process.env.GREEN_COLOR, logTime(new Date()) + "SMS sended : " + sms._id);  //JSON.stringify for replace new lines (\n) and tab (\t) chars into string                        
+                        if (values[2] == 3) { //if stataus is different than 1: sent
+                            values[0].status = 3; //error
+                            updateSMS(values[0]).catch(error => { console.log(process.env.YELLOW_COLOR, logTime(new Date()) + error.message); });
+                            hincrby1(defaultCollector, "errors");
+                        }
                         hincrby1(defaultCollector, "processed");
                     });
                 } else { //CONTINGENCY //In this case we don't delete ID in SMS_IDS SET.

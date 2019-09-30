@@ -74,16 +74,22 @@ const sendNextPNS = async () => {
                 updatePNS(pns).catch(error => { console.log(process.env.YELLOW_COLOR, logTime(new Date()) + error.message) }); //update PNS in MongoDB, is the last task, it's unnecessary await
                 console.log(process.env.YELLOW_COLOR, logTime(new Date()) + " The PNS " + pns._id + " has expired and has not been sent.");
             } else {  //GOOGLE WILL SEND
-                //pns.validate(); //It's unnecessary because we cautched from redis, and we checked before in the apipns, the new params are OK.               
-                pns.status = await sendPNS(pns); // send PNS to operator, //return status: 0:notSent, 1:Sent, 2:Confirmed, 3:Error, 4:Expired   
+                //pns.validate(); //It's unnecessary because we cautched from redis, and we checked before in the apipns, the new params are OK.                
+                pns.status = 1;
                 pns.retries++;
                 pns.dispatched = true;
                 pns.dispatchedAt = new Date();
                 Promise.all([ //Always we need delete ID in PNS_IDS SET, in error case we continue
                     updatePNS(pns).catch(error => { console.log(process.env.YELLOW_COLOR, logTime(new Date()) + error.message); }), // update PNS in MongoDB, in error case we continue
-                    sismember(PNS_IDS, pns._id).catch(error => { console.log(process.env.YELLOW_COLOR, logTime(new Date()) + error.message); }) //delete from redis ID control, in error case we continue
-                ]).then(() => { //we always enter here
+                    sismember(PNS_IDS, pns._id).catch(error => { console.log(process.env.YELLOW_COLOR, logTime(new Date()) + error.message); }), //delete from redis ID control, in error case we continue
+                    sendPNS(pns).catch(error => { console.log(process.env.YELLOW_COLOR, logTime(new Date()) + error.message); return 3; }) // send PNS to operator, //return status: 0:notSent, 1:Sent, 2:Confirmed, 3:Error, 4:Expired 
+                ]).then((values) => { //we always enter here
                     console.log(process.env.GREEN_COLOR, logTime(new Date()) + "PNS sended : " + pns._id);  //JSON.stringify for replace new lines (\n) and tab (\t) chars into string
+                    if (values[2] == 3) { //if stataus is different than 1: sent
+                        values[0].status = 3; //error
+                        updatePNS(values[0]).catch(error => { console.log(process.env.YELLOW_COLOR, logTime(new Date()) + error.message); });
+                        hincrby1(defaultCollector, "errors");
+                    }
                     hincrby1(defaultCollector, "processed");
                 });
             }
