@@ -65,6 +65,8 @@ Vagrant.configure("2") do |config|
   config.vm.network "forwarded_port", guest: 30004, host: 30004
   config.vm.network "forwarded_port", guest: 30005, host: 30005
   config.vm.network "forwarded_port", guest: 30006, host: 30006
+  #Server Dummy
+  config.vm.network "forwarded_port", guest: 30010, host: 30010
   #Mongo
   config.vm.network "forwarded_port", guest: 30090, host: 30090
   config.vm.network "forwarded_port", guest: 30091, host: 30091

@@ -1,4 +1,4 @@
 @echo off
 cd ..\..\collectors\sms\movistar\
-start cmd /k node --max-old-space-size=6000 app.js
+start cmd /k node app.js
 cd ..\..\..\_scripts\winbat\

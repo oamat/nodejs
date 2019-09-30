@@ -22,21 +22,21 @@ const sendPNS = async (sms) => {
             body: body
         };
 
-        // const request = https.request(options, (response) => { //see https://nodejs.org/api/https.html#https_https_request_options_callback
-        //     //console.log('statusCode:', response.statusCode);
-        //     //console.log('headers:', response.headers);
-        //     //console.log('data:', response.data);
-        //     resolve(1);
-        //     response.on('data', (data) => {
-        //         //process.stdout.write(data);
-        //     });
-        // });
+        const request = https.request(options, (response) => { //see https://nodejs.org/api/https.html#https_https_request_options_callback
+            //console.log('statusCode:', response.statusCode);
+            //console.log('headers:', response.headers);
+            //console.log('data:', response.data);
+            resolve(1);
+            response.on('data', (data) => {
+                //process.stdout.write(data);
+            });
+        });
 
-        // request.on('error', (error) => {
-        //     //console.error(logTime(new Date()) + error.message);
-        //     reject(new Error(error));
-        // });
-        // request.end();
+        request.on('error', (error) => {
+            //console.error(logTime(new Date()) + error.message);
+            reject(new Error(error));
+        });
+        request.end();
 
         setTimeout(() => { resolve(1); }, 1); //For testing
     });

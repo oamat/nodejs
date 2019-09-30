@@ -30,12 +30,12 @@ const initializeAllSources = async () => { // Init Mongoose with await
      ]);
      //END PARALLEL excution with await Promise.all.
 
-     //OLD HTTP: app.listen(process.env.APISMS_PORT, () => {
-     app.listen(30010, () => {                        
-          }).on('error', (error) => {
-               console.log(process.env.RED_COLOR, logTime(new Date()) + ' ERROR: Another App server is running this port 30010');
-               console.error(error);
-          });
+     // //OLD HTTP: app.listen(process.env.APISMS_PORT, () => {
+     // app.listen(30010, () => {                        
+     //      }).on('error', (error) => {
+     //           console.log(process.env.RED_COLOR, logTime(new Date()) + ' ERROR: Another App server is running this port 30010');
+     //           console.error(error);
+     //      });
 
      // then we can Init api server       
      https.createServer( httpsServerOptions , app).listen(process.env.APISMS_PORT, () => {     

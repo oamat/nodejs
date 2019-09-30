@@ -1,0 +1,18 @@
+version: "3.1"
+
+services:
+  #serverdummy
+   #Optional you can create the docker image  (# docker build -t name) .
+  serverdummy: 
+    #build: . #build: Dockerfile #Optional : "build: ." Uses an image that’s built from the Dockerfile in the current directory.  
+    image: serverdummy
+    container_name: "serverdummy"      
+    restart: always
+    ports:
+      - 30010:30010
+    
+    environment:
+      NODE_ENV: "docker"
+    labels:
+     kompose.service.type: NodePort # labels for kompose convert to kubernetes
+     kompose.image-pull-policy: Never # labels for kompose convert to kubernetes

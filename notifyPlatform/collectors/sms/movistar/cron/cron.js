@@ -67,7 +67,7 @@ const sendNextSMS = async () => {
     try {
         const smsJSON = await nextSMS(); //get message with rpop command from SMS.MOV.1, 2, 3 
         if (smsJSON) {
-            const sms = new Sms(JSON.parse(smsJSON)); //EXPIRED // convert json text to json object   
+            const sms = new Sms(JSON.parse(smsJSON)); //EXPIRED // convert json text to json object               
             if ((sms.expire) && (Date.now() > sms.expire)) { // is the SMS expired?
                 sms.expired = true;
                 sms.status = 4; //0:notSent, 1:Sent, 2:Confirmed, 3:Error, 4:Expired
@@ -84,19 +84,20 @@ const sendNextSMS = async () => {
                         updateSMS(sms).catch(error => { console.log(process.env.YELLOW_COLOR, logTime(new Date()) + error.message); }), // update SMS in MongoDB, in error case we continue
                         sismember(SMS_IDS, sms._id).catch(error => { console.log(process.env.YELLOW_COLOR, logTime(new Date()) + error.message); }), //delete from redis ID control, in error case we continue
                         sendSMS(sms).catch(error => { console.log(process.env.YELLOW_COLOR, logTime(new Date()) + error.message); return 3; }) // send SMS to operator, //return status: 0:notSent, 1:Sent, 2:Confirmed, 3:Error, 4:Expired 
-                    ]).then((values) => { //we always enter here
-                        console.log(process.env.GREEN_COLOR, logTime(new Date()) + "SMS sended : " + sms._id);  //JSON.stringify for replace new lines (\n) and tab (\t) chars into string                        
+                    ]).then((values) => { //we always enter here                        
                         if (values[2] == 3) { //if stataus is different than 1: sent
-                            values[0].status = 3; //error
+                            values[0].status = 3; //change status for error
                             updateSMS(values[0]).catch(error => { console.log(process.env.YELLOW_COLOR, logTime(new Date()) + error.message); });
                             hincrby1(defaultCollector, "errors");
+                        } else {
+                            console.log(process.env.GREEN_COLOR, logTime(new Date()) + "SMS sended : " + sms._id);  //JSON.stringify for replace new lines (\n) and tab (\t) chars into string                        
+                            hincrby1(defaultCollector, "processed");
                         }
-                        hincrby1(defaultCollector, "processed");
                     });
                 } else { //CONTINGENCY //In this case we don't delete ID in SMS_IDS SET.
                     sms.operator = operator; //The real operator to we will send SMS message      
                     sms.channel = buildSMSChannel(operator, sms.priority); //The real channel we will send SMS message
-                    await lpush(sms.channel, JSON.stringify(sms)); // we put message to the other operator List
+                    lpush(sms.channel, JSON.stringify(sms)); // we put message to the other operator List
                     console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "change SMS " + sms._id + " from " + defaultOperator + " to " + operator); // we inform about this exceptional action
                     hincrby1(defaultCollector, "processed");
                 }
