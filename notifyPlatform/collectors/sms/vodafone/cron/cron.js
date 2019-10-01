@@ -67,19 +67,20 @@ const sendNextSMS = async () => {
     try {
         const smsJSON = await nextSMS(); //get message with rpop command from SMS.VOD.1, 2, 3 
         if (smsJSON) {
+            let date = new Date();
             const sms = new Sms(JSON.parse(smsJSON)); //EXPIRED // convert json text to json object   
-            if ((sms.expire) && (Date.now() > sms.expire)) { // is the SMS expired?
+            if ((sms.expire) && (date > sms.expire)) { // is the SMS expired?
                 sms.expired = true;
                 sms.status = 4; //0:notSent, 1:Sent, 2:Confirmed, 3:Error, 4:Expired
                 updateSMS(sms).catch(error => { console.log(process.env.YELLOW_COLOR, logTime(new Date()) + error.message) }); //update SMS in MongoDB, is the last task, it's unnecessary await
-                console.log(process.env.YELLOW_COLOR, logTime(new Date()) + " The SMS " + sms._id + " has expired and has not been sent.");
+                console.log(process.env.YELLOW_COLOR, logTime(date) + " The SMS " + sms._id + " has expired and has not been sent.");
             } else {
                 //sms.validate(); //It's unnecessary because we cautched from redis, and we checked before in the apisms, the new params are OK.
                 if (operator == defaultOperator) { //VODAFONE WILL SEND //If we change operator for contingency we change sms to other list
                     sms.status = 1;
                     sms.retries++;
                     sms.dispatched = true;
-                    sms.dispatchedAt = new Date();
+                    sms.dispatchedAt = date;
                     Promise.all([ //Always we need delete ID in SMS_IDS SET, in error case we continue
                         updateSMS(sms).catch(error => { console.log(process.env.YELLOW_COLOR, logTime(new Date()) + error.message); }), // update SMS in MongoDB, in error case we continue
                         sismember(SMS_IDS, sms._id).catch(error => { console.log(process.env.YELLOW_COLOR, logTime(new Date()) + error.message); }), //delete from redis ID control, in error case we continue
@@ -90,15 +91,15 @@ const sendNextSMS = async () => {
                             updateSMS(values[0]).catch(error => { console.log(process.env.YELLOW_COLOR, logTime(new Date()) + error.message); });
                             hincrby1(defaultCollector, "errors");
                         } else {
-                            console.log(process.env.GREEN_COLOR, logTime(new Date()) + "SMS sended : " + sms._id);  //JSON.stringify for replace new lines (\n) and tab (\t) chars into string  
-                            hincrby1(defaultCollector, "processed");                      
-                        }                        
+                            console.log(process.env.GREEN_COLOR, logTime(values[0].dispatchedAt) + "SMS sended : " + sms._id);  //JSON.stringify for replace new lines (\n) and tab (\t) chars into string  
+                            hincrby1(defaultCollector, "processed");
+                        }
                     });
                 } else { //CONTINGENCY //In this case we don't delete ID in SMS_IDS SET.
                     sms.operator = operator; //The real operator to we will send SMS message      
                     sms.channel = buildSMSChannel(operator, sms.priority); //The real channel we will send SMS message
                     lpush(sms.channel, JSON.stringify(sms)); // we put message to the other operator List
-                    console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "change SMS " + sms._id + " from " + defaultOperator + " to " + operator); // we inform about this exceptional action
+                    console.log(process.env.YELLOW_COLOR, logTime(date) + "change SMS " + sms._id + " from " + defaultOperator + " to " + operator); // we inform about this exceptional action
                     hincrby1(defaultCollector, "processed");
                 }
             }
