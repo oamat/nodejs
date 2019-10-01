@@ -11,9 +11,9 @@ config:  #Results https://artillery.io/docs/getting-started/
     - duration: 30 #A ramp up phase where we go from 20 to 200 new virtual user arrivals over 120 seconds
       arrivalRate: 20 #from 20 virtual users/second
       rampTo: 200 #to 200 virtual users/second
-    - duration: 15 #The medium high load for 120 seconds.
+    - duration: 15 #The medium load for 120 seconds.
       arrivalRate: 500 #500 virtual users/second
-    - duration: 30 #The medium high load for 120 seconds.
+    - duration: 30 #The  high load for 120 seconds.
       arrivalRate: 1000 #500 virtual users/second
   defaults:     
 scenarios:

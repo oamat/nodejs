@@ -1,6 +1,6 @@
 Always with command line:
-.\jmeter.bat  -n -t E:\dev\nodejs\nodejs\notifyPlatform\jmeter.jmx 
-    .\jmeter.bat  -n -t C:\Users\Oriol\Downloads\nodejs\nodejs\notifyPlatform\jmeter.jmx 
+.\jmeter.bat  -n -t E:\dev\nodejs\nodejs\notifyPlatform\_performance\jmeter.jmx 
+    .\jmeter.bat  -n -t C:\Users\Oriol\Downloads\nodejs\nodejs\notifyPlatform\_performance\jmeter.jmx 
 
 .\jmeter.bat  -n -t E:\dev\nodejs\nodejs\notifyPlatform\jmeter.jmx -l E:\dev\nodejs\nodejs\notifyPlatform\jmetertestresults.jtl
 
