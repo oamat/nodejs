@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: serverdummy
+  labels:
+    app: serverdummy
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: serverdummy
+  template:
+    metadata:
+      labels:
+        app: serverdummy
+    spec:
+      containers: 
+      - name: serverdummy
+        image: serverdummy
+        imagePullPolicy: Never
+        ports:
+        - containerPort: 30010
+        env:
+        - name: NODE_ENV
+          value: kubernetes
+      restartPolicy: Always     

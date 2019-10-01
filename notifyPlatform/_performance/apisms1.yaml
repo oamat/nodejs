@@ -1,0 +1,27 @@
+config:  #Results https://artillery.io/docs/getting-started/
+  target: 'https:/'
+  http:
+     timeout: 10  # Responses have to be sent within 10 seconds or the request will be aborted
+     pool: 100 # All HTTP requests from all virtual users will be sent over the same 10 connections
+  tls:
+    rejectUnauthorized: false
+  phases:
+    - duration: 10    #A warm up phase for 30 seconds. 
+      arrivalRate: 20   #20 virtual users/second
+    - duration: 30 #A ramp up phase where we go from 20 to 200 new virtual user arrivals over 120 seconds
+      arrivalRate: 20 #from 20 virtual users/second
+      rampTo: 200 #to 200 virtual users/second
+    - duration: 15 #The medium load for 120 seconds.
+      arrivalRate: 500 #500 virtual users/second
+    - duration: 30 #The  high load for 120 seconds.
+      arrivalRate: 1000 #500 virtual users/second
+  defaults:     
+scenarios:
+  - flow:
+      - post:  # SMS by MOVISTAR, OTPLOWEB contract
+          url: "/localhost:30001/smsSend"
+          body: '{  "contract": "OTPLOWEB",  "telf": "+34699272809",  "message": "you have won a gift", "priority": "1"}' 
+          headers: #HEADERS OTPLOWEB contract
+            Content-Type: 'application/json'
+            x-api-key: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6Ik9UUExPV0VCIiwiY29udHJhY3QiOiJPVFBMT1dFQiIsImlhdCI6MjAxNjIzOTAyMn0.BK58iwYbyfGb1u--SLP3YZP7JZxKSMrPHmdc-gfH4t4'
+      

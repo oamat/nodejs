@@ -30,7 +30,7 @@ kubectl delete -f mongopns-deployment.yaml -f mongopns-service.yaml
 kubectl delete -f redissms-deployment.yaml -f redissms-service.yaml
 kubectl delete -f redispns-deployment.yaml -f redispns-service.yaml
 kubectl delete -f redisconf-deployment.yaml -f redisconf-service.yaml
-
+kubectl delete -f serverdummy-deployment.yaml -f serverdummy-service.yaml
 kubectl delete pods --all --grace-period=0 --force   
 
 cd /notifyPlatform/_scripts/

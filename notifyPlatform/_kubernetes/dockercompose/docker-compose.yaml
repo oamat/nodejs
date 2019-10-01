@@ -18,15 +18,21 @@ services:
      kompose.service.type: NodePort # labels for kompose convert to kubernetes
      kompose.image-pull-policy: Never # labels for kompose convert to kubernetes
     links:
-      - redispns
-      - redisconf
       - mongopns
+      - mongosms
+      - redisconf
+      - redispns
+      - redissms     
       - apiadmin
+      - serverdummy
     depends_on:
-      - redispns
-      - redisconf
       - mongopns
+      - mongosms
+      - redisconf
+      - redispns
+      - redissms     
       - apiadmin
+      - serverdummy
 
 
 
@@ -44,15 +50,21 @@ services:
      kompose.service.type: NodePort # labels for kompose convert to kubernetes
      kompose.image-pull-policy: Never # labels for kompose convert to kubernetes
     links:
-      - redispns
-      - redisconf
       - mongopns
+      - mongosms
+      - redisconf
+      - redispns
+      - redissms     
       - apiadmin
+      - serverdummy
     depends_on:
-      - redispns
-      - redisconf
       - mongopns
+      - mongosms
+      - redisconf
+      - redispns
+      - redissms     
       - apiadmin
+      - serverdummy
 
 
 
@@ -70,15 +82,21 @@ services:
      kompose.service.type: NodePort # labels for kompose convert to kubernetes
      kompose.image-pull-policy: Never # labels for kompose convert to kubernetes
     links:
-      - redispns
-      - redisconf
       - mongopns
+      - mongosms
+      - redisconf
+      - redispns
+      - redissms     
       - apiadmin
+      - serverdummy
     depends_on:
-      - redispns
-      - redisconf
       - mongopns
-      - apiadmin      
+      - mongosms
+      - redisconf
+      - redispns
+      - redissms     
+      - apiadmin
+      - serverdummy      
 
 
 
@@ -96,15 +114,21 @@ services:
      kompose.service.type: NodePort # labels for kompose convert to kubernetes
      kompose.image-pull-policy: Never # labels for kompose convert to kubernetes
     links:
-      - redissms
-      - redisconf
+      - mongopns
       - mongosms
+      - redisconf
+      - redispns
+      - redissms     
       - apiadmin
+      - serverdummy
     depends_on:
-      - redissms
-      - redisconf
+      - mongopns
       - mongosms
+      - redisconf
+      - redispns
+      - redissms     
       - apiadmin
+      - serverdummy
 
 
 
@@ -122,15 +146,21 @@ services:
      kompose.service.type: NodePort # labels for kompose convert to kubernetes
      kompose.image-pull-policy: Never # labels for kompose convert to kubernetes
     links:
-      - redissms
-      - redisconf
+      - mongopns
       - mongosms
+      - redisconf
+      - redispns
+      - redissms     
       - apiadmin
+      - serverdummy
     depends_on:
-      - redissms
-      - redisconf
+      - mongopns
       - mongosms
+      - redisconf
+      - redispns
+      - redissms     
       - apiadmin
+      - serverdummy
 
 
 
@@ -148,15 +178,21 @@ services:
      kompose.service.type: NodePort # labels for kompose convert to kubernetes
      kompose.image-pull-policy: Never # labels for kompose convert to kubernetes
     links:
-      - redissms
-      - redisconf
+      - mongopns
       - mongosms
+      - redisconf
+      - redispns
+      - redissms     
       - apiadmin
+      - serverdummy
     depends_on:
-      - redissms
-      - redisconf
+      - mongopns
       - mongosms
-      - apiadmin  
+      - redisconf
+      - redispns
+      - redissms     
+      - apiadmin
+      - serverdummy  
 
 
 
@@ -174,15 +210,21 @@ services:
      kompose.service.type: NodePort # labels for kompose convert to kubernetes
      kompose.image-pull-policy: Never # labels for kompose convert to kubernetes
     links:
-      - redissms
-      - redisconf
+      - mongopns
       - mongosms
+      - redisconf
+      - redispns
+      - redissms     
       - apiadmin
+      - serverdummy
     depends_on:
-      - redissms
-      - redisconf
+      - mongopns
       - mongosms
+      - redisconf
+      - redispns
+      - redissms     
       - apiadmin
+      - serverdummy
 
 
 
@@ -200,15 +242,21 @@ services:
      kompose.service.type: NodePort # labels for kompose convert to kubernetes
      kompose.image-pull-policy: Never # labels for kompose convert to kubernetes
     links:
-      - redissms
-      - redisconf
+      - mongopns
       - mongosms
+      - redisconf
+      - redispns
+      - redissms     
       - apiadmin
+      - serverdummy
     depends_on:
-      - redissms
-      - redisconf
+      - mongopns
       - mongosms
+      - redisconf
+      - redispns
+      - redissms     
       - apiadmin
+      - serverdummy
 
 
 
@@ -226,15 +274,21 @@ services:
      kompose.service.type: NodePort # labels for kompose convert to kubernetes
      kompose.image-pull-policy: Never # labels for kompose convert to kubernetes
     links:
-      - redispns
-      - redisconf
       - mongopns
+      - mongosms
+      - redisconf
+      - redispns
+      - redissms     
       - apiadmin
+      - serverdummy
     depends_on:
-      - redispns
-      - redisconf
       - mongopns
+      - mongosms
+      - redisconf
+      - redispns
+      - redissms     
       - apiadmin
+      - serverdummy
 
 
 
@@ -254,18 +308,19 @@ services:
      kompose.service.type: NodePort # labels for kompose convert to kubernetes
      kompose.image-pull-policy: Never # labels for kompose convert to kubernetes
     links:
-      - redispns
-      - redisconf
-      - redissms
       - mongopns
       - mongosms
+      - redisconf
+      - redispns
+      - redissms
+      - serverdummy
     depends_on:
-      - redispns
-      - redisconf
-      - redissms
       - mongopns
       - mongosms
-
+      - redisconf
+      - redispns
+      - redissms
+      - serverdummy
 
 
   #apisms
@@ -284,15 +339,21 @@ services:
      kompose.service.type: NodePort # labels for kompose convert to kubernetes
      kompose.image-pull-policy: Never # labels for kompose convert to kubernetes
     links:
-      - redissms
-      - redisconf
+      - mongopns
       - mongosms
+      - redisconf
+      - redispns
+      - redissms     
       - apiadmin
+      - serverdummy
     depends_on:
-      - redissms
-      - redisconf
+      - mongopns
       - mongosms
+      - redisconf
+      - redispns
+      - redissms     
       - apiadmin
+      - serverdummy
 
 
 
@@ -312,15 +373,21 @@ services:
      kompose.service.type: NodePort # labels for kompose convert to kubernetes
      kompose.image-pull-policy: Never # labels for kompose convert to kubernetes
     links:
-      - redispns
-      - redisconf
       - mongopns
+      - mongosms
+      - redisconf
+      - redispns
+      - redissms     
       - apiadmin
+      - serverdummy
     depends_on:
-      - redispns
-      - redisconf
       - mongopns
+      - mongosms
+      - redisconf
+      - redispns
+      - redissms     
       - apiadmin
+      - serverdummy
 
 
 
@@ -340,16 +407,21 @@ services:
      kompose.service.type: NodePort # labels for kompose convert to kubernetes
      kompose.image-pull-policy: Never # labels for kompose convert to kubernetes
     links:
-      - redissms
-      - redisconf
+      - mongopns
       - mongosms
+      - redisconf
+      - redispns
+      - redissms     
       - apiadmin
+      - serverdummy
     depends_on:
-      - redissms
-      - redisconf
+      - mongopns
       - mongosms
+      - redisconf
+      - redispns
+      - redissms     
       - apiadmin
-
+      - serverdummy
 
 
   #retriessms
@@ -366,15 +438,21 @@ services:
      kompose.service.type: NodePort # labels for kompose convert to kubernetes
      kompose.image-pull-policy: Never # labels for kompose convert to kubernetes
     links:
-      - redissms
-      - redisconf
+      - mongopns
       - mongosms
-      - apiadmin      
-    depends_on:
-      - redissms
       - redisconf
-      - mongosms
+      - redispns
+      - redissms     
       - apiadmin
+      - serverdummy
+    depends_on:
+      - mongopns
+      - mongosms
+      - redisconf
+      - redispns
+      - redissms     
+      - apiadmin
+      - serverdummy
 
 
 
@@ -392,15 +470,21 @@ services:
      kompose.service.type: NodePort # labels for kompose convert to kubernetes
      kompose.image-pull-policy: Never # labels for kompose convert to kubernetes 
     links:
-      - redispns
-      - redisconf
       - mongopns
+      - mongosms
+      - redisconf
+      - redispns
+      - redissms     
       - apiadmin
+      - serverdummy
     depends_on:
-      - redispns
-      - redisconf
       - mongopns
+      - mongosms
+      - redisconf
+      - redispns
+      - redissms     
       - apiadmin
+      - serverdummy
 
 
 
@@ -418,15 +502,21 @@ services:
      kompose.service.type: NodePort # labels for kompose convert to kubernetes
      kompose.image-pull-policy: Never # labels for kompose convert to kubernetes
     links:
-      - redissms
-      - redisconf
+      - mongopns
       - mongosms
+      - redisconf
+      - redispns
+      - redissms     
       - apiadmin
+      - serverdummy
     depends_on:
-      - redissms
-      - redisconf
+      - mongopns
       - mongosms
+      - redisconf
+      - redispns
+      - redissms     
       - apiadmin
+      - serverdummy
 
 
 
@@ -444,15 +534,21 @@ services:
      kompose.service.type: NodePort # labels for kompose convert to kubernetes
      kompose.image-pull-policy: Never # labels for kompose convert to kubernetes
     links:
-      - redispns
-      - redisconf
       - mongopns
+      - mongosms
+      - redisconf
+      - redispns
+      - redissms     
       - apiadmin
+      - serverdummy
     depends_on:
-      - redispns
-      - redisconf
       - mongopns
+      - mongosms
+      - redisconf
+      - redispns
+      - redissms     
       - apiadmin
+      - serverdummy
 
 
 
@@ -471,7 +567,13 @@ services:
     labels:
      kompose.service.type: NodePort # labels for kompose convert to kubernetes
      kompose.image-pull-policy: Never # labels for kompose convert to kubernetes
-
+    links:
+      - mongopns
+      - mongosms      
+    depends_on:
+      - mongopns
+      - mongosms
+      
 
 
 
@@ -490,7 +592,12 @@ services:
     labels:
      kompose.service.type: NodePort # labels for kompose convert to kubernetes
      kompose.image-pull-policy: Never # labels for kompose convert to kubernetes
-
+    links:
+      - mongopns
+      - mongosms      
+    depends_on:
+      - mongopns
+      - mongosms      
 
 
 
@@ -509,7 +616,13 @@ services:
     labels:
      kompose.service.type: NodePort # labels for kompose convert to kubernetes
      kompose.image-pull-policy: Never # labels for kompose convert to kubernetes
-
+    links:
+      - mongopns
+      - mongosms
+      
+    depends_on:
+      - mongopns
+      - mongosms     
 
 
 
@@ -571,3 +684,18 @@ services:
     labels:
      kompose.service.type: NodePort # labels for kompose convert to kubernetes
      kompose.image-pull-policy: Never # labels for kompose convert to kubernetes
+    links:
+      - mongopns
+      - mongosms
+      - redisconf
+      - redispns
+      - redissms
+    depends_on:
+      - mongopns
+      - mongosms
+      - redisconf
+      - redispns
+      - redissms    
+
+     
+     

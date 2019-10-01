@@ -7,6 +7,7 @@ kubectl create -f mongopns-deployment.yaml -f mongopns-service.yaml
 kubectl create -f redissms-deployment.yaml -f redissms-service.yaml
 kubectl create -f redispns-deployment.yaml -f redispns-service.yaml
 kubectl create -f redisconf-deployment.yaml -f redisconf-service.yaml
+kubectl create -f serverdummy-deployment.yaml -f serverdummy-service.yaml
 
 
 cd /notifyPlatform/_scripts/
