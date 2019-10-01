@@ -54,6 +54,9 @@ cd /notifyPlatform/batch/batchpns
 docker build -t batchpns .
 cd /notifyPlatform/batch/batchsms
 docker build -t batchsms .
+#serverdummy for testing
+cd /notifyPlatform/collectors/serverdummy
+docker build -t serverdummy .
 
 cd /notifyPlatform/_scripts/
 
