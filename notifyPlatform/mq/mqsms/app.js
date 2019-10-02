@@ -18,7 +18,7 @@ require('./config/redissms'); //we need to initialize redis
 require('./config/redisconf'); //we need to initialize redis
 const Sms = require('./models/sms');
 const { saveSMS } = require('./util/mongosms');
-const { rclient } = require('../config/redissms');
+const { rclient } = require('./config/redissms');
 const { hgetConf, hset } = require('./util/redisconf');
 const { dateFormat, logTime, buildSMSChannel } = require('./util/formats');
 const auth = require('./auth/auth');
