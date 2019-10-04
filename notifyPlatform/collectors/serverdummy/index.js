@@ -11,5 +11,5 @@ https.createServer( httpsServerOptions ,function (req, res) {
   res.write('ok'); //write a response
   res.end(); //end the response
 }).listen(30010, function () {
-  console.log("HTTPS Server Dummy for Collectors start at port 30010"); //the server object listens on port 30010
+  console.log("HTTPS Server Dummy for Collectors started at port 30010"); //the server object listens on port 30010
 });
