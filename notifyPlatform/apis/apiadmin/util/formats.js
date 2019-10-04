@@ -78,7 +78,7 @@ const buildPNSChannels = (operator) => {
 
 const counter = ((i = 0) => () => ++i)();
 
-const descStatus = (type, status) => { //0:notSent, 1:Sent, 2:Confirmed, 3:Error, 4:Expired, 5: token not found(not register)
+const descStatus = (type, status) => { //0:notSent, 1:Sent, 2:Confirmed, 3:retry, 4:Expired, 5:Error service or token not found(not register)
    switch (status) {
       case 0:
          return type + " not send.";
@@ -87,11 +87,11 @@ const descStatus = (type, status) => { //0:notSent, 1:Sent, 2:Confirmed, 3:Error
       case 2:
          return type + " sent and confirmed by operator.";
       case 3:
-         return type + " obtain an error.";
+         return type + " obtain an error. We will try to send again.";
       case 4:
          return type + " has expired and has not been sent.";
       case 5:
-         return type + " is not valid, we cannot find token and operator."; //only PNS. 
+         return type + " obtain an error and is not valid, we cannot find token or operator service. we cannot try again."; //only PNS. 
    }
 }
 

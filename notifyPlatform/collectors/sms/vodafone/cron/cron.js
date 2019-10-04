@@ -12,7 +12,7 @@ const { Sms } = require('../models/sms');
 const { rpop, lpush, sismember } = require('../util/redissms'); //we need to initialize redis
 const { hset, hgetall, hincrby1 } = require('../util/redisconf');
 const { dateFormat, logTime, buildSMSChannel, buildSMSChannels } = require('../util/formats'); // utils for formats
-const { updateSMS } = require('../util/mongosms'); //for updating status
+const { updateOneSMS } = require('../util/mongosms'); //for updating status
 const { sendSMS } = require('./smsSendVOD');
 
 
@@ -65,33 +65,27 @@ const stopCron = async () => { //stop cron only when cron is switched on
 
 const sendNextSMS = async () => {
     try {
-        const smsJSON = await nextSMS(); //get message with rpop command from SMS.VOD.1, 2, 3 
+        const smsJSON = await nextSMS(); //get message with rpop command from SMS.MOV.1, 2, 3 
         if (smsJSON) {
             let date = new Date();
-            const sms = new Sms(JSON.parse(smsJSON)); //EXPIRED // convert json text to json object   
+            const sms = new Sms(JSON.parse(smsJSON)); //EXPIRED // convert json text to json object               
             if ((sms.expire) && (date > sms.expire)) { // is the SMS expired?
-                sms.expired = true;
-                sms.status = 4; //0:notSent, 1:Sent, 2:Confirmed, 3:Error, 4:Expired
-                updateSMS(sms).catch(error => { console.log(process.env.YELLOW_COLOR, logTime(new Date()) + error.message) }); //update SMS in MongoDB, is the last task, it's unnecessary await
+                updateOneSMS(sms._id, { status: 4, expired: true }).catch(error => { console.log(process.env.YELLOW_COLOR, logTime(new Date()) + error.message) }); //update SMS in MongoDB, is the last task, it's unnecessary await //0:notSent, 1:Sent, 2:Confirmed, 3:retry, 4:Expired, 5:Error
                 console.log(process.env.YELLOW_COLOR, logTime(date) + " The SMS " + sms._id + " has expired and has not been sent.");
             } else {
                 //sms.validate(); //It's unnecessary because we cautched from redis, and we checked before in the apisms, the new params are OK.
-                if (operator == defaultOperator) { //VODAFONE WILL SEND //If we change operator for contingency we change sms to other list
-                    sms.status = 1;
-                    sms.retries++;
-                    sms.dispatched = true;
-                    sms.dispatchedAt = date;
+                if (operator == defaultOperator) { //MOVISTAR WILL SEND //If we change operator for contingency we change sms to other list
+                    let toUpdate = { status: 1, dispatched: true, dispatchedAt: date, retries: ++sms.retries };
                     Promise.all([ //Always we need delete ID in SMS_IDS SET, in error case we continue
-                        updateSMS(sms).catch(error => { console.log(process.env.YELLOW_COLOR, logTime(new Date()) + error.message); }), // update SMS in MongoDB, in error case we continue
-                        sismember(SMS_IDS, sms._id).catch(error => { console.log(process.env.YELLOW_COLOR, logTime(new Date()) + error.message); }), //delete from redis ID control, in error case we continue
-                        sendSMS(sms).catch(error => { console.log(process.env.YELLOW_COLOR, logTime(new Date()) + error.message); return 3; }) // send SMS to operator, //return status: 0:notSent, 1:Sent, 2:Confirmed, 3:Error, 4:Expired 
+                        updateOneSMS(sms._id, toUpdate).catch(error => { console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "SMS ERROR : " + sms._id + " : " + error.message); return null; }), // update SMS in MongoDB, in error case we continue
+                        sismember(SMS_IDS, sms._id).catch(error => { console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "SMS ERROR : " + sms._id + " : " + error.message); return null; }), //delete from redis ID control, in error case we continue
+                        sendSMS(sms).catch(error => { console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "SMS ERROR : " + sms._id + " : " + error.message); return 3; }) // send SMS to operator, //return status: 0:notSent, 1:Sent, 2:Confirmed, 3:retry, 4:Expired, 5:Error 
                     ]).then((values) => { //we always enter here                        
-                        if (values[2] == 3) { //if stataus is different than 1: sent
-                            values[0].status = 3; //error
-                            updateSMS(values[0]).catch(error => { console.log(process.env.YELLOW_COLOR, logTime(new Date()) + error.message); });
+                        if (values[2] != 1) { //if status is different than 1: sent, save new state
+                            updateOneSMS(sms._id, { status: values[2] }).catch(error => { console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "SMS ERROR : " + sms._id + " : " + error.message); }); //status is different than 1 (sent), so we need to save new state //change status for error
                             hincrby1(defaultCollector, "errors");
                         } else {
-                            console.log(process.env.GREEN_COLOR, logTime(values[0].dispatchedAt) + "SMS sended : " + sms._id);  //JSON.stringify for replace new lines (\n) and tab (\t) chars into string  
+                            console.log(process.env.GREEN_COLOR, logTime(date) + "SMS sended : " + sms._id);  //JSON.stringify for replace new lines (\n) and tab (\t) chars into string                        
                             hincrby1(defaultCollector, "processed");
                         }
                     });
@@ -105,7 +99,7 @@ const sendNextSMS = async () => {
             }
         }
     } catch (error) {
-        console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "ERROR: we have a problem in VODAFONE cronMain sendNextSMS() : " + error.message);
+        console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "ERROR: we have a problem in MOVISTAR cronMain sendNextSMS() : " + error.message);
         hincrby1(defaultCollector, "errors");
         //console.error(error); //continue the execution cron
     }

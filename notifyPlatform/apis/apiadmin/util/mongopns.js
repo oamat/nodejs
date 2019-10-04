@@ -51,13 +51,11 @@ const updatePNS = async (pns) => {
 }
 
 //this method update PNS personalized params in MongoDB and manage the result of this operation
-const updateSomePNS = async (id, toUpdate) => {
+const updateOnePNS = async (id, toUpdate) => {
     return new Promise((resolve, reject) => { // we need promise for managing errors and results inside callbacks
-        let options = { new: true };
-        let query = { _id: id };
-        Pns.findOneAndUpdate(query, { $set: toUpdate }, options, (error, result) => {  //property new returns the new updated document, not the original document
+        Pns.findOneAndUpdate({ _id: id }, { $set: toUpdate }, (error, result) => {  //property new returns the new updated document, not the original document
             if (error) reject(error);  //if mongoose give me an error. If we used reject the try/catch would be unnecessary  
-            else if (result) resolve(result); // everything is OK, return result
+            else if (result) resolve(result._id); // everything is OK, return result
             else reject(new Error("This PNS id doesn't exist, we cannot update PNS in MongoDB. it's necessary check the problem before proceding.")); //If we cannot save PNS to MongoDB
         });
     });
@@ -65,4 +63,4 @@ const updateSomePNS = async (id, toUpdate) => {
     //.catch((error) => { throw error; });  //throw Error exception to the main code, it's unnecessary but maybe we will need put some lógic...  A reject callback will pass through here
 }
 
-module.exports = { savePNS, updatePNS, updateSomePNS, findAllPNS }
+module.exports = { savePNS, updatePNS, updateOnePNS, findAllPNS }

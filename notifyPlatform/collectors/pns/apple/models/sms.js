@@ -98,7 +98,7 @@ const smsSchema = new mongoose.Schema({
     status: {
         type: Number,
         required: true,
-        default: 0  //0:notSent, 1:Sent, 2:Confirmed, 3:Error, 4:Expired
+        default: 0  //0:notSent, 1:Sent, 2:Confirmed, 3:retry, 4:Expired, 5:Error
     },
     operator: {
         type: String, //MOV, ORA, VOD, VIP,...

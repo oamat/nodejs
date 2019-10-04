@@ -64,14 +64,14 @@ const stopCron = async () => { //stop cron only when cron is switched on
 }
 
 const sendNextPNS = async () => {
-    try {        
+    try {
         const pnsJSON = await nextPNS(); //get message with rpop command from PNS.GOO.1, 2, 3 
         if (pnsJSON) {
-            let date = Date.now();
+            let date = new Date();
             const pns = new Pns(JSON.parse(pnsJSON)); //EXPIRED // convert json text to json object   
             if ((pns.expire) && (date > pns.expire)) { // is the PNS expired?
                 pns.expired = true;
-                pns.status = 4; //0:notSent, 1:Sent, 2:Confirmed, 3:Error, 4:Expired
+                pns.status = 4; //0:notSent, 1:Sent, 2:Confirmed, 3:retry, 4:Expired, 5:Error
                 updatePNS(pns).catch(error => { console.log(process.env.YELLOW_COLOR, logTime(new Date()) + error.message) }); //update PNS in MongoDB, is the last task, it's unnecessary await
                 console.log(process.env.YELLOW_COLOR, logTime(date) + " The PNS " + pns._id + " has expired and has not been sent.");
             } else {  //GOOGLE WILL SEND
@@ -83,15 +83,16 @@ const sendNextPNS = async () => {
                 Promise.all([ //Always we need delete ID in PNS_IDS SET, in error case we continue
                     updatePNS(pns).catch(error => { console.log(process.env.YELLOW_COLOR, logTime(new Date()) + error.message); }), // update PNS in MongoDB, in error case we continue
                     sismember(PNS_IDS, pns._id).catch(error => { console.log(process.env.YELLOW_COLOR, logTime(new Date()) + error.message); }), //delete from redis ID control, in error case we continue
-                    sendPNS(pns).catch(error => { console.log(process.env.YELLOW_COLOR, logTime(new Date()) + error.message); return 3; }) // send PNS to operator, //return status: 0:notSent, 1:Sent, 2:Confirmed, 3:Error, 4:Expired 
-                ]).then((values) => { //we always enter here
-                    console.log(process.env.GREEN_COLOR, logTime(values[0].dispatchedAt) + "PNS sended : " + pns._id);  //JSON.stringify for replace new lines (\n) and tab (\t) chars into string
-                    if (values[2] == 3) { //if stataus is different than 1: sent
-                        values[0].status = 3; //error
+                    sendPNS(pns).catch(error => { console.log(process.env.YELLOW_COLOR, logTime(new Date()) + error.message); return 3; }) // send PNS to operator, //return status: 0:notSent, 1:Sent, 2:Confirmed, 3:retry, 4:Expired, 5:Error 
+                ]).then((values) => { //we always enter here                    
+                    if (values[2] != 1) { //if status is different than 1: sent, save new state
+                        values[0].status = values[2]; //status is different than 1 (sent), so we need to save new state //error
                         updatePNS(values[0]).catch(error => { console.log(process.env.YELLOW_COLOR, logTime(values[0].dispatchedAt) + error.message); });
                         hincrby1(defaultCollector, "errors");
+                    } else {
+                        hincrby1(defaultCollector, "processed");
+                        console.log(process.env.GREEN_COLOR, logTime(values[0].dispatchedAt) + "PNS sended : " + pns._id);  //JSON.stringify for replace new lines (\n) and tab (\t) chars into string
                     }
-                    hincrby1(defaultCollector, "processed");
                 });
             }
         }

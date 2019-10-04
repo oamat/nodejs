@@ -131,7 +131,7 @@ async function getCB(err, hObj, gmo, md, buf, hConn) {
 
                     pns.token = await hget("tokenpns" + pns.application + ":" + pns.uuiddevice, "token"); //find the token for this uuiddevice PNS.
                     pns.operator = await hget("tokenpns" + pns.application + ":" + pns.uuiddevice, "operator"); //find the operator for this uuiddevice PNS.
-                    if (!pns.token) throw new Error(" This uuiddevice is not register, we cannot find its token neither operator.") //0:notSent, 1:Sent, 2:Confirmed, 3:Error, 4:Expired, 5:token not found (not register)
+                    if (!pns.token) throw new Error(" This uuiddevice is not register, we cannot find its token neither operator.") //0:notSent, 1:Sent, 2:Confirmed, 3:retry, 4:Expired, 5:Error, 5:token not found (not register)
 
                     pns.operator = await hgetConf("contractpns:" + pns.contract, "operator"); //Operator by default by contract. we checked the param before (in auth)                    
                     if (pns.operator == "ALL") { //If operator is ALL means that we need to find the better operator for the telf. 

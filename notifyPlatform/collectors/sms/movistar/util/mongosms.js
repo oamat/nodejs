@@ -51,13 +51,11 @@ const updateSMS = async (sms) => {
 }
 
 //this method update SMS personalized params in MongoDB and manage the result of this operation
-const updateSomeSMS = async (id, toUpdate) => {
+const updateOneSMS = async (id, toUpdate) => {
     return new Promise((resolve, reject) => { // we need promise for managing errors and results inside callbacks
-        let options = { new: true };
-        let query = { _id: id };
-        Sms.findOneAndUpdate(query, { $set: toUpdate }, options, (error, result) => {  //property new returns the new updated document, not the original document
+        Sms.findOneAndUpdate({ _id: id }, { $set: toUpdate }, (error, result) => {  //property new returns the new updated document, not the original document
             if (error) reject(error);  //if mongoose give me an error. If we used reject the try/catch would be unnecessary  
-            else if (result) resolve(result); // everything is OK, return result
+            else if (result) resolve(result._id); // everything is OK, return result
             else reject(new Error("This SMS id doesn't exist, we cannot update SMS in MongoDB. it's necessary check the problem before proceding.")); //If we cannot save SMS to MongoDB
         });
     });
@@ -65,4 +63,5 @@ const updateSomeSMS = async (id, toUpdate) => {
     //.catch((error) => { throw error; });  //throw Error exception to the main code, it's unnecessary but maybe we will need put some lógic...  A reject callback will pass through here
 }
 
-module.exports = { saveSMS, updateSMS, updateSomeSMS, findAllSMS }
+
+module.exports = { saveSMS, updateSMS, updateOneSMS, findAllSMS }
