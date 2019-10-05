@@ -69,35 +69,37 @@ const sendNextSMS = async () => {
         if (smsJSON) {
             let date = new Date();
             const sms = new Sms(JSON.parse(smsJSON)); //EXPIRED // convert json text to json object               
-            if ((sms.expire) && (date > sms.expire)) { // is the SMS expired?
-                updateOneSMS(sms._id, { status: 4, expired: true }).catch(error => { console.log(process.env.YELLOW_COLOR, logTime(new Date()) + error.message) }); //update SMS in MongoDB, is the last task, it's unnecessary await //0:notSent, 1:Sent, 2:Confirmed, 3:retry, 4:Expired, 5:Error
-                console.log(process.env.YELLOW_COLOR, logTime(date) + " The SMS " + sms._id + " has expired and has not been sent.");
-            } else {
-                //sms.validate(); //It's unnecessary because we cautched from redis, and we checked before in the apisms, the new params are OK.
-                if (operator == defaultOperator) { //MOVISTAR WILL SEND //If we change operator for contingency we change sms to other list
-                    let toUpdate = { status: 1, dispatched: true, dispatchedAt: date, retries: ++sms.retries };
-                    Promise.all([ //Always we need delete ID in SMS_IDS SET, in error case we continue
-                        updateOneSMS(sms._id, toUpdate).catch(error => { console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "SMS ERROR : " + sms._id + " : " + error.message); return null; }), // update SMS in MongoDB, in error case we continue
-                        sismember(SMS_IDS, sms._id).catch(error => { console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "SMS ERROR : " + sms._id + " : " + error.message); return null; }), //delete from redis ID control, in error case we continue
-                        sendSMS(sms).catch(error => { console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "SMS ERROR : " + sms._id + " : " + error.message); return 3; }) // send SMS to operator, //return status: 0:notSent, 1:Sent, 2:Confirmed, 3:retry, 4:Expired, 5:Error 
-                    ]).then((values) => { //we always enter here                        
-                        if (values[2] != 1) { //if status is different than 1: sent, save new state
-                            updateOneSMS(sms._id, { status: values[2] }).catch(error => { console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "SMS ERROR : " + sms._id + " : " + error.message); }); //status is different than 1 (sent), so we need to save new state //change status for error
-                            hincrby1(defaultCollector, "errors");
-                        } else {
-                            console.log(process.env.GREEN_COLOR, logTime(date) + "SMS sended : " + sms._id);  //JSON.stringify for replace new lines (\n) and tab (\t) chars into string                        
-                            hincrby1(defaultCollector, "processed");
-                        }
-                    });
-                } else { //CONTINGENCY //In this case we don't delete ID in SMS_IDS SET.
-                    sms.operator = operator; //The real operator to we will send SMS message      
-                    sms.channel = buildSMSChannel(operator, sms.priority); //The real channel we will send SMS message
-                    lpush(sms.channel, JSON.stringify(sms)); // we put message to the other operator List
-                    console.log(process.env.YELLOW_COLOR, logTime(date) + "change SMS " + sms._id + " from " + defaultOperator + " to " + operator); // we inform about this exceptional action
-                    hincrby1(defaultCollector, "processed");
-                }
+            // if ((sms.expire) && (date > sms.expire)) { // is the SMS expired?
+            //     updateOneSMS(sms._id, { status: 4, expired: true }).catch(error => { console.log(process.env.YELLOW_COLOR, logTime(new Date()) + error.message) }); //update SMS in MongoDB, is the last task, it's unnecessary await //0:notSent, 1:Sent, 2:Confirmed, 3:retry, 4:Expired, 5:Error
+            //     sismember(SMS_IDS, sms._id).catch(error => { console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "SMS ERROR : " + sms._id + " : " + error.message); }) //delete from redis ID control, in error case we continue
+            //     console.log(process.env.YELLOW_COLOR, logTime(date) + " The SMS " + sms._id + " has expired and has not been sent.");
+            // } else {
+            //sms.validate(); //It's unnecessary because we cautched from redis, and we checked before in the apisms, the new params are OK.
+            if (operator == defaultOperator) { //MOVISTAR WILL SEND //If we change operator for contingency we change sms to other list
+                let toUpdate = { status: 1, dispatched: true, dispatchedAt: date, retries: ++sms.retries };
+                Promise.all([ //Always we need delete ID in SMS_IDS SET, in error case we continue
+                    sendSMS(sms).catch(error => { console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "SMS ERROR : " + sms._id + " : " + error.message); return 3; }), // send SMS to operator, //return status: 0:notSent, 1:Sent, 2:Confirmed, 3:retry, 4:Expired, 5:Error 
+                    updateOneSMS(sms._id, toUpdate).catch(error => { console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "SMS ERROR : " + sms._id + " : " + error.message); return null; }) // update SMS in MongoDB, in error case we continue
+                ]).then((values) => { //we always enter here                        
+                    if (values[0] != 1) { //if status is different than 1: sent, save new state
+                        updateOneSMS(sms._id, { status: values[0], dispatched: false, dispatchedAt: null }).catch(error => { console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "SMS ERROR : " + sms._id + " : " + error.message); }); //status is different than 1 (sent), so we need to save new state //change status for error
+                        hincrby1(defaultCollector, "errors");
+                    } else {
+                        hincrby1(defaultCollector, "processed");
+                        console.log(process.env.GREEN_COLOR, logTime(date) + "SMS sended : " + sms._id);  //JSON.stringify for replace new lines (\n) and tab (\t) chars into string                        
+                    }
+                    sismember(SMS_IDS, sms._id).catch(error => { console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "SMS ERROR : " + sms._id + " : " + error.message); }) //delete from redis ID control, in error case we continue
+                });
+            } else { //CONTINGENCY //In this case we don't delete ID in SMS_IDS SET.
+                sms.operator = operator; //The real operator to we will send SMS message      
+                sms.channel = buildSMSChannel(operator, sms.priority); //The real channel we will send SMS message
+                lpush(sms.channel, JSON.stringify(sms)); // we put message to the other operator List
+                console.log(process.env.YELLOW_COLOR, logTime(date) + "change SMS " + sms._id + " from " + defaultOperator + " to " + operator); // we inform about this exceptional action
+                hincrby1(defaultCollector, "processed");
+                //NOTE: we don't use sysmember because SMS continues in other Operator List of Redis
             }
         }
+        //}
     } catch (error) {
         console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "ERROR: we have a problem in MOVISTAR cronMain sendNextSMS() : " + error.message);
         hincrby1(defaultCollector, "errors");
@@ -134,10 +136,10 @@ const startController = async (intervalControl) => {
 
 const checksController = async () => {
     try {
+        hset(defaultCollector, "last", dateFormat(new Date())).catch(error => { console.log(process.env.YELLOW_COLOR, logTime(new Date()) + error.message); })  //save last execution in Redis, in error case we continue
         cronConf = await hgetall(defaultCollector); //get the cronConf
         if (cronConf && Object.keys(cronConf).length > 1) {
             Promise.all([ //In error case we continue with other tasks
-                hset(defaultCollector, "last", dateFormat(new Date())).catch(error => { console.log(process.env.YELLOW_COLOR, logTime(new Date()) + error.message); }),  //save last execution in Redis, in error case we continue
                 checkstatus(cronConf.status).catch(error => { console.log(process.env.YELLOW_COLOR, logTime(new Date()) + error.message); }), //check status in Redis, in error case we continue
                 checkInterval(cronConf.interval).catch(error => { console.log(process.env.YELLOW_COLOR, logTime(new Date()) + error.message); }), //check interval in Redis, in error case we continue
                 checkOperator(cronConf.operator).catch(error => { console.log(process.env.YELLOW_COLOR, logTime(new Date()) + error.message); }), //check operator in Redis, in error case we continue
