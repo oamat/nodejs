@@ -17,7 +17,7 @@ const { findAllPNS } = require('../util/mongopns'); // utils for formats
 //Variables
 const PNS_IDS = "PNS.IDS.PENDING";
 const retryName = "collectorpns:retriesPNS"
-const OPTIONS = { skip: 0, limit: 100, sort: { priority: 1, retries: 1, updateAt: -1 } }; //skip (Starting Row), limit (Ending Row), Sort by priority ASC (->0,1,2,3,4,5) and receivedAt DESC (first the oldest)
+const OPTIONS = { skip: 0, limit: 100, sort: { priority: 1, retries: 1, receivedAt: 1 } }; //skip (Starting Row), limit (Ending Row), Sort by priority/retries/receivedAt ASC (->0,1,2,3,4,5,... &  the oldest date first).
 const RETRIES_NUMBER = 11 // IMPORTANT: Put times to try +1
 const HOURS = 10;
 const SECONDS = 10;
