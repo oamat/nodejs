@@ -269,42 +269,6 @@
 			"response": []
 		},
 		{
-			"name": "apiadmin/addContract",
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"name": "Content-Type",
-						"type": "text",
-						"value": "application/json"
-					},
-					{
-						"key": "x-api-key",
-						"type": "text",
-						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkFETUlOIiwiY29udHJhY3QiOiJBRE1JTiIsImlhdCI6MjAxNjIzOTAyMn0.vwBNTaBbW40v14Iiqd65uhv4FVQi4qn4ZH50VyQ00rg"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n\t\"contract\" : \"ADMIN\",\n\t\"name\" : \"OTPLOWEB\",\n\t\"type\": \"SMS\",\n\t\"description\" :  \"OTPLOWEB contract\",\n\t\"permission\" : \"WITHIN_APP\",\n\t\"application\" : \"OTPLOWEB\", \n\t\"interface\" : \"REST\",\n\t\"operator\" : \"MOV\",\n\t\"remitter\": \"+217771\"\n}"
-				},
-				"url": {
-					"raw": "https://localhost:30003/addContract",
-					"protocol": "https",
-					"host": [
-						"localhost"
-					],
-					"port": "30003",
-					"path": [
-						"addContract"
-					]
-				},
-				"description": "/loadRedis"
-			},
-			"response": []
-		},
-		{
 			"name": "apiadmin/getContract",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
@@ -343,42 +307,6 @@
 			"response": []
 		},
 		{
-			"name": "apiadmin/changeContract",
-			"request": {
-				"method": "PATCH",
-				"header": [
-					{
-						"key": "Content-Type",
-						"name": "Content-Type",
-						"type": "text",
-						"value": "application/json"
-					},
-					{
-						"key": "x-api-key",
-						"type": "text",
-						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkFETUlOIiwiY29udHJhY3QiOiJBRE1JTiIsImlhdCI6MjAxNjIzOTAyMn0.vwBNTaBbW40v14Iiqd65uhv4FVQi4qn4ZH50VyQ00rg"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n\t\"contract\" : \"ADMIN\",\n\t\"name\" : \"OTPLOWEB\",\n    \"type\" : \"SMS\",\n    \"operator\": \"ALL\",\n    \"activated\": \"true\",\n    \"frontend\": \"THIS\",\n    \"permission\": \"THIS\",\n    \"interface\": \"ALL\"\n \n}"
-				},
-				"url": {
-					"raw": "https://localhost:30003/changeContract",
-					"protocol": "https",
-					"host": [
-						"localhost"
-					],
-					"port": "30003",
-					"path": [
-						"changeContract"
-					]
-				},
-				"description": "/loadRedis"
-			},
-			"response": []
-		},
-		{
 			"name": "apiadmin/changeCollector",
 			"request": {
 				"method": "PATCH",
@@ -408,6 +336,42 @@
 					"port": "30003",
 					"path": [
 						"changeCollector"
+					]
+				},
+				"description": "/loadRedis"
+			},
+			"response": []
+		},
+		{
+			"name": "apiadmin/contractRegister",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "x-api-key",
+						"type": "text",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkFETUlOIiwiY29udHJhY3QiOiJBRE1JTiIsImlhdCI6MjAxNjIzOTAyMn0.vwBNTaBbW40v14Iiqd65uhv4FVQi4qn4ZH50VyQ00rg"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"contract\" : \"ADMIN\",\n\t\"name\" : \"OTPLOWEB\",\n\t\"type\": \"SMS\",\n\t\"description\" :  \"OTPLOWEB contract\",\n\t\"permission\" : \"WITHIN_APP\",\n\t\"application\" : \"OTPLOWEB\", \n\t\"interface\" : \"REST\",\n\t\"operator\" : \"MOV\",\n\t\"remitter\": \"+217771\"\n}"
+				},
+				"url": {
+					"raw": "https://localhost:30003/addContract",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "30003",
+					"path": [
+						"addContract"
 					]
 				},
 				"description": "/loadRedis"

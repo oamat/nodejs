@@ -17,7 +17,8 @@ const options = {
     poolSize: process.env.MONGODBSMS_POOL,
     dbName: "notifyplatform",
     autoReconnect: true,
-    reconnectTries: Number.MAX_VALUE
+    reconnectTries: Number.MAX_VALUE,
+    useUnifiedTopology: true
 };
 
 // Init mongoose

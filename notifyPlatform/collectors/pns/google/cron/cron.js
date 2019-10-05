@@ -9,10 +9,10 @@
 
 //Dependencies
 const { Pns } = require('../models/pns');
-const { rpop, sismember } = require('../util/redispns'); //we need to initialize redis
+const { rpop, srem } = require('../util/redispns'); //we need to initialize redis
 const { hset, hgetall, hincrby1 } = require('../util/redisconf');
 const { dateFormat, logTime, buildPNSChannels } = require('../util/formats'); // utils for formats
-const { updatePNS } = require('../util/mongopns'); //for updating status
+const { updateOnePNS } = require('../util/mongopns'); //for updating status
 const { sendPNS } = require('./pnsSendGOO');
 
 
@@ -71,7 +71,7 @@ const sendNextPNS = async () => {
             const pns = new Pns(JSON.parse(pnsJSON));  // convert json text to json object            
             // if ((pns.expire) && (date > pns.expire)) { // is the PNS expired?   //EXPIRED              
             //     updateOnePNS(pns._id, { expired: true, status: 4 }).catch(error => { console.log(process.env.YELLOW_COLOR, logTime(new Date()) + error.message) }); //update PNS in MongoDB, is the last task, it's unnecessary await //0:notSent, 1:Sent, 2:Confirmed, 3:retry, 4:Expired, 5:Error
-            //     sismember(PNS_IDS, pns._id).catch(error => { console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "PNS ERROR : " + pns._id + " : " + error.message); }); //delete from redis ID control, in error case we continue
+            //     srem(PNS_IDS, pns._id).catch(error => { console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "PNS ERROR : " + pns._id + " : " + error.message); }); //delete from redis ID control, in error case we continue
             //     console.log(process.env.YELLOW_COLOR, logTime(date) + " The PNS " + pns._id + " has expired and has not been sent.");
             // } else {  //GOOGLE WILL SEND
             //pns.validate(); //It's unnecessary because we cautched from redis, and we checked before in the apipns, the new params are OK.               
@@ -87,7 +87,7 @@ const sendNextPNS = async () => {
                     hincrby1(defaultCollector, "processed");
                     console.log(process.env.GREEN_COLOR, logTime(date) + "PNS sended : " + pns._id);  //JSON.stringify for replace new lines (\n) and tab (\t) chars into string                       
                 }
-                sismember(PNS_IDS, pns._id).catch(error => { console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "PNS ERROR : " + pns._id + " : " + error.message); }); //delete from redis ID control, in error case we continue
+                srem(PNS_IDS, pns._id).catch(error => { console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "PNS ERROR : " + pns._id + " : " + error.message); }); //delete from redis ID control, in error case we continue
             });
         }
         //}

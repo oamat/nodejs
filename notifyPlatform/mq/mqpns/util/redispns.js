@@ -83,6 +83,20 @@ const sismember = async (name, value) => {
     //.catch((error) => { throw error; });  //throw Error exception to the main code, it's unnecessary but maybe we will need put some lógic... A reject callback will pass through here
 }
 
+// this method Remove the specified members from the set stored at key. 
+const srem = async (name, value) => {
+    return new Promise((resolve, reject) => { // we need promise for managing errors and results inside callbacks
+        rclient.srem(name, value, (error, result) => { //save the value in set                  
+            if (error) reject(error);  //if redis give me an error.  If we used reject the try/catch would be unnecessary 
+            else resolve(result); // everything is OK, return result                                    
+        });
+    });
+    //.then((result) => { return result; })  //return the result, it's unnecessary but maybe we will need put some lógic...
+    //.catch((error) => { throw error; });  //throw Error exception to the main code, it's unnecessary but maybe we will need put some lógic... A reject callback will pass through here
+}
+
+
+
 // this method gets variable value, in a generic way
 const get = async (name) => {
     return new Promise((resolve, reject) => { // we need promise for managing errors and results inside callbacks
@@ -131,4 +145,4 @@ const rpop = async function (name) {
     //.catch((error) => { throw error; });  //throw Error exception to the main code, it's unnecessary but maybe we will need put some lógic...  A reject callback will pass through here
 }
 
-module.exports = { hgetConf, hset, lpush, sadd, sismember, set, get, rpop, rpoplpush, llen } 
+module.exports = { hgetConf, hset, lpush, sadd, sismember, srem, set, get, rpop, rpoplpush, llen } 

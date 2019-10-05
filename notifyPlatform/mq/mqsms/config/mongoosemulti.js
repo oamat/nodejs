@@ -26,7 +26,8 @@ const options = { //options for connection to MongoDB
     poolSize: process.env.MONGODB_MULTI_POOL,
     dbName: "notifyplatform",
     autoReconnect: true,
-    reconnectTries: Number.MAX_VALUE
+    reconnectTries: Number.MAX_VALUE,
+    useUnifiedTopology: true
 };
 
 

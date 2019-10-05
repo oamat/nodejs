@@ -17,7 +17,10 @@ const { findAllPNS } = require('../util/mongopns'); // utils for formats
 //Variables
 const PNS_IDS = "PNS.IDS.PENDING";
 const retryName = "collectorpns:retriesPNS"
-const limit = 100;
+const OPTIONS = { skip: 0, limit: 100, sort: { priority: 1, retries: 1, updateAt: -1 } }; //skip (Starting Row), limit (Ending Row), Sort by priority ASC (->0,1,2,3,4,5) and receivedAt DESC (first the oldest)
+const RETRIES_NUMBER = 11 // IMPORTANT: Put times to try +1
+const HOURS = 10;
+const SECONDS = 10;
 var cronConf; //the redis cron configuration
 var cron; //the main cron that send message to the operator.
 var cronController;  //the Controller cron that send message to the operator.
@@ -63,21 +66,21 @@ const stopCron = async () => { //stop cron only when cron is switched on
 const retryNextsPNS = async () => {
     try {
         const retriesPNS = await nextRetriesPNS(); //get array of PNS not sent.
-        //if (retriesPNS.length > 0) console.log(process.env.GREEN_COLOR, logTime(new Date()) + "INFO: We have found " + retriesPNS.length + " PNS with possible delay. The lowest priority found:[" + retriesPNS[0].priority+"]");
+        //if (retriesPNS.length > 0) console.log(process.env.GREEN_COLOR, logTime(new Date()) + "INFO: We have found " + retriesPNS.length + " PNS with possible delay. The lowest priority found:[" + retriesPNS[0].priority+"]");        
         for (var i = 0; i < retriesPNS.length; i++) {
             if (await sismember(PNS_IDS, retriesPNS[i]._id) == 0) {
-                let id = retriesPNS[i]._id
+                let id = retriesPNS[i]._id;
+                let retry = retriesPNS[i].retries;
                 //START Redis Transaction with multi chain and result's callback
                 rclient.multi([
                     ["lpush", retriesPNS[i].channel, JSON.stringify(retriesPNS[i])],    //Trans 1
-                    ["sadd", PNS_IDS, retriesPNS[i]._id]                      //Trans 2             
+                    ["sadd", PNS_IDS, id]                                               //Trans 2             
                 ]).exec(function (error, replies) { // drains multi queue and runs atomically                    
-                    let date = logTime(new Date());
                     if (error) {
-                        console.log(process.env.YELLOW_COLOR, date + "WARNING: We couldn't save PNS in Redis (We will have to wait for retry): " + error.message);
+                        console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "WARNING: We couldn't save PNS in Redis (We will have to wait for retry): " + error.message);
                         hincrby1("collectorpns:retriesPNS", "errors");
                     } else {
-                        console.log(process.env.GREEN_COLOR, date + "We have retried " + retriesPNS[i]._id);
+                        console.log(process.env.GREEN_COLOR, logTime(new Date()) + "We have retried " + id + "  >  [" + retry + " times].");
                         hincrby1("collectorpns:retriesPNS", "processed");
                     }
                 });
@@ -95,20 +98,18 @@ const nextRetriesPNS = async () => {
     try {
         let end = new Date();
         let start = new Date();
-        start.setDate(start.getDate() - 1); // date from 24h before
-        end.setSeconds(end.getSeconds() - 15);  //to now -30seconds, because we have the risk that take a message immediately after we sended
+        start.setHours(start.getHours() - HOURS); // date from 24h before
+        end.setSeconds(end.getSeconds() - SECONDS);  //to now -30seconds, because we have the risk that take a message immediately after we sended       
         let condition = {  //query condition 
-            dispatched: false, //not dispatched
-            expired: null, //not expired
-            status: 0, // not sent
-            //operator: operator, // the operator
-            retries: { '$lt': 10 },// retries less than 10
-            receivedAt: { '$gte': start, '$lte': end } //receivedAt greater than 24h before and less than now-30s.            
+            dispatched: false, //not dispatched            
+            status: { $in: [0, 3] }, // not sent or retry            
+            retries: { '$lt': RETRIES_NUMBER },// retries less than 10
+            receivedAt: { '$gte': start }, //receivedAt greater than 24h.
+            updatedAt: { '$lte': end } //receivedAt less than now-30s.
+            //operator: operator, // the operator            
         };
 
-        let options = { skip: 0, limit, sort: { priority: 1, receivedAt: -1 } }; //skip (Starting Row), limit (Ending Row), Sort by priority ASC (->0,1,2,3,4,5) and receivedAt DESC (first the oldest)
-
-        return await findAllPNS(condition, options);//return the nexts pns's not sent by priority order.  
+        return await findAllPNS(condition, OPTIONS);//return the nexts pns's not sent by priority order.  
 
     } catch (error) {
         console.log(process.env.YELLOW_COLOR, logTime(new Date()) + "ERROR: we have a problem with mongoose.find : " + error.message);
@@ -139,10 +140,10 @@ const startController = async (intervalControl) => {
 
 const checksController = async () => {
     try {
+        hset(retryName, "last", dateFormat(new Date())).catch(error => { console.log(process.env.YELLOW_COLOR, logTime(new Date()) + error.message); });  //save last execution in Redis, in error case we continue
         cronConf = await hgetall(retryName); //get the cronConf
         if (cronConf && Object.keys(cronConf).length > 1) {
-            Promise.all([ //In error case we continue with other tasks
-                hset(retryName, "last", dateFormat(new Date())).catch(error => { console.log(process.env.YELLOW_COLOR, logTime(new Date()) + error.message); }),  //save last execution in Redis, in error case we continue
+            Promise.all([ //In error case we continue with other tasks                
                 checkstatus(cronConf.status).catch(error => { console.log(process.env.YELLOW_COLOR, logTime(new Date()) + error.message); }), //check status in Redis, in error case we continue
                 checkInterval(cronConf.interval).catch(error => { console.log(process.env.YELLOW_COLOR, logTime(new Date()) + error.message); }), //check interval in Redis, in error case we continue
                 checkIntervalControl(cronConf.intervalControl).catch(error => { console.log(process.env.YELLOW_COLOR, logTime(new Date()) + error.message); }) //check intervalControl in Redis, in error case we continue
