@@ -25,6 +25,6 @@ conn.on('ready', function () {
 }).connect({
     host: '192.168.1.90',
     port: 22,
-    username: 'oriol',
-    password: 'kireta'
+    username: '...',
+    password: '...'
 });
