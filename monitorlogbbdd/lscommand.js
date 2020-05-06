@@ -19,3 +19,5 @@ conn.on('ready', function() {
     username: '...',  
     password: '...'
   });
+
+  // connectar-se des de un altre host: connection-hopping https://github.com/mscdex/ssh2#connection-hopping
