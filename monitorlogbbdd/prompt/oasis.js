@@ -7,7 +7,7 @@
 "use strict";
 
 // Dependencies
-require('./config.js');
+require('../config/config.js');
 const prompts = require('prompts');
 const response = {};
 

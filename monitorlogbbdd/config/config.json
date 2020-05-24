@@ -1,0 +1,10 @@
+{
+  "development": {
+    "comment": "This is the config file for monitor ssh & bbdd. The enviroment loades is development : ",
+    "ssh_user": "user",
+    "ssh_password": "password",
+    "SERVERS_OASIS": "bksmsasp11.lacaixa.es,bksmsasp12.lacaixa.es,bksmsasp13.lacaixa.es,bksmsasp14.lacaixa.es,bksmsasp17.lacaixa.es,bksmsasp18.lacaixa.es,bksmsasp19.lacaixa.es,bksmsasp12.lacaixa.es",
+    "SERVERS_OCP": "bksmsasp11.lacaixa.es,bksmsasp12.lacaixa.es,bksmsasp13.lacaixa.es,bksmsasp14.lacaixa.es,bksmsasp17.lacaixa.es,bksmsasp18.lacaixa.es,bksmsasp19.lacaixa.es,bksmsasp12.lacaixa.es",
+    "Oracle_conn": ""
+  }
+}
