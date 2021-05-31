@@ -13,10 +13,9 @@ Install Docker : https://docs.docker.com/docker-for-windows/install/
      or  npm install redis
 
 ### EXECUTE
-# docker run -d --name redis -p 6379:6379 redis
-# docker ps -a  / docker stop redis
-
-# node appload.js
-# node app.js
+- docker run -d --name redis -p 6379:6379 redis
+- docker ps -a  / docker stop redis
+- node appload.js
+- node app.js
 
 
