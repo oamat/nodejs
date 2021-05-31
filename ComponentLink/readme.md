@@ -13,9 +13,10 @@
    -in Code: const client = redis.createClient({ host: '192.168.99.100', port: '6379' });
 
 
--Install Docker : https://docs.docker.com/docker-for-windows/install/   
-   
-   -or  npm install redis
+-Install Docker : https://docs.docker.com/engine/install/
+                     https://docs.docker.com/docker-for-windows/install/   
+ 
+
 
 ### EXECUTE
 - docker run -d --name redis -p 6379:6379 redis
