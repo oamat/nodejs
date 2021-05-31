@@ -20,7 +20,7 @@
 
 ### EXECUTE
 - docker run -d --name redis -p 6379:6379 redis
-- docker ps -a  / docker stop redis
+- docker ps -a  / docker stop redis / docker rm -fv redis
 - node appload.js
 - node app.js
 
