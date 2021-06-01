@@ -31,28 +31,7 @@ const toLoad = {
 const NORMAL = 'n_';
 const REVERSE = 'r_';
 
-
-/*  TEST read-excel-file/node
-//LOAD EXCEL (SAME FILE)  // https://javascript.plainenglish.io/how-to-read-an-excel-file-in-node-js-6e669e9a3ce1
-xlsxFile('./data.xlsx', { sheet: arraySheets[sheetIndex] }).then((rows) => {
-    console.log(rows); //TEST SHEET rows
-    console.table(rows); //TEST SHEET rows 
-
-    for (i in rows){
-        for (j in rows[i]){
-            console.log(rows[i][j]);                          
-        }
-    }  
-   
-   rows.forEach((col)=>{
-        col.forEach((data)=>{
-          console.log(data);          
-          console.log(typeof data);
-        })
-    }) 
-
-*/ //END TEST read-excel-file/node
-       
+    
            
 
 //LOAD EXCEL (SAME FILE)  // https://javascript.plainenglish.io/how-to-read-an-excel-file-in-node-js-6e669e9a3ce1
@@ -102,3 +81,25 @@ xlsxFile('./data.xlsx', { sheet: toLoad.CA_SI.Sheet }).then((rows) => {
  });
 
 
+
+
+ /*  TEST read-excel-file/node
+//LOAD EXCEL (SAME FILE)  // https://javascript.plainenglish.io/how-to-read-an-excel-file-in-node-js-6e669e9a3ce1
+xlsxFile('./data.xlsx', { sheet: arraySheets[sheetIndex] }).then((rows) => {
+    console.log(rows); //TEST SHEET rows
+    console.table(rows); //TEST SHEET rows 
+
+    for (i in rows){
+        for (j in rows[i]){
+            console.log(rows[i][j]);                          
+        }
+    }  
+   
+   rows.forEach((col)=>{
+        col.forEach((data)=>{
+          console.log(data);          
+          console.log(typeof data);
+        })
+    }) 
+
+*/ //END TEST read-excel-file/node
