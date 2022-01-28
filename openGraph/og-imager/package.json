@@ -1,0 +1,30 @@
+{
+  "name": "og-imager",
+  "version": "1.0.0",
+  "description": "Open Graph Imager",
+  "author": "OAF",
+  "main": "server.js",
+  "scripts": {
+    "dev": "nodemon server.js",
+    "start": "node server.js"
+  },  
+  "keywords": [
+    "nodejs",
+    "express",
+    "og-image",
+    "open graph",
+    "open graph protocol",
+    "handlebars",
+    "puppeteer"
+  ],
+  "license": "ISC",  
+  "dependencies": {
+    "express": "^4.17.1",
+    "handlebars": "^4.7.7",
+    "puppeteer": "^2.1.1",
+    "puppeteer-social-image": "^0.8.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  }
+}
