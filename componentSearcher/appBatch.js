@@ -21,7 +21,7 @@ var config = {
     fileInputCSV: './results/inputs/PalancasBankia/PalancasInputFileNew.csv', //if 'inputWithCSV: true' file input name, Only in case inputWithCSV = true; e.g. 'palancas.csv', 'TLE.TX.csv'
     arrayInputs: [{ component: 'BE.ARQRUN', description: 'Demos ARQ' }, { component: 'BE.CEFLEX', description: 'Buscador Felxible' }],  //if 'inputWithCSV: false' you have to define this array with JSON array [ { component: 'x', description: 'y' }, ... ] 
 
-    palancasMitigacion: true, //SPECIFIC CXB : is the file specific of CaixaBank Palancas Mitigación?
+    palancasMitigacion: true, //SPECIFIC CXB : is the file specific of  Palancas Mitigación?
     addTypeToComponent: '', //SPECIFIC CXB : If you need to define the component type because input file don't have the component type. e.g: 'TX.', 'ADS.', 'SN.'. it can be empty '' if doesn't need.
 
 
