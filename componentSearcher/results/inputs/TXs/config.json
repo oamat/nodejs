@@ -1,0 +1,21 @@
+{
+    "_README": "For info about FIELDS see README.md from ",
+
+    "inputWithCSV": true, 
+    "fileInputCSV": "./results/inputs/TXs/TLE-TX.InputFile.csv", 
+    "arrayInputs": [{ "component":"BE.ARQRUN", "description":"Demos ARQ" }],
+    "palancasMitigacion": false,
+    "addTypeToComponent": "TX.",
+    "levelSearch": 6, 
+    "order": false, 
+    "skipSI": false,
+    "componentTypeToSearch": 0, 
+    "searchMethod": 1, 
+    "withCostOfComponent": true,
+    "outputAllInOneCSV": true, 
+    "outputCSVName": "TLE-TX.OutputFile.csv", 
+    "outputIDEINSFile": true,  
+    "deactivationTypeComponent": "ADS", 
+    "outputCSVNameIDEINS": "TLE-TX.OutputFileIDEINS_ADS.csv",
+    "outputComponentWithOperation": false
+}

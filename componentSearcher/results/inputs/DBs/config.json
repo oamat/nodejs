@@ -1,0 +1,21 @@
+{
+    "_README": "For info about FIELDS see README.md from ",
+
+    "inputWithCSV": true, 
+    "fileInputCSV": "./results/inputs/DBs/DB.InputFile.csv", 
+    "arrayInputs": [{ "component":"BE.ARQRUN", "description":"Demos ARQ" }],
+    "palancasMitigacion": false,
+    "addTypeToComponent": "",
+    "levelSearch": 5, 
+    "order": false, 
+    "skipSI": false,
+    "componentTypeToSearch": 0, 
+    "searchMethod": 0, 
+    "withCostOfComponent": false,
+    "outputAllInOneCSV": true, 
+    "outputCSVName": "DB.OutputFile.csv", 
+    "outputIDEINSFile": true,  
+    "deactivationTypeComponent": "BE", 
+    "outputCSVNameIDEINS": "DB.OutputFileIDEINS_BE.csv",
+    "outputComponentWithOperation": false
+}

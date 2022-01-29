@@ -1,0 +1,30 @@
+{
+    "_README": "For info about FIELDS see README.md from ",
+    "_CONFIG_DESCRIPTION": "ALL Components are called by CA.OFI.AdmisionActivoInsSol defied in array (no file in that case)",
+
+    "inputWithCSV": false, 
+    "arrayInputs": [{ "component":"SI.MCA.MuroConMiGestorGestion.listaSuscripcion", "description":"SI" },
+                    { "component":"SI.MCA.MuroConMiGestorGestion.insertarContacto", "description":"SI" },
+                    { "component":"SI.MCA.TrxLOMovimiento.rellenarBox", "description":"SI" },
+                    { "component":"SI.MCA.GIRecibosRecibos.listadoCalendari", "description":"SI" },
+                    { "component":"SI.MCA.FinanboxMisFinanzas.listadoEtiqueta", "description":"SI" },
+                    { "component":"SI.MCA.AsesorVentasResumenEX.liConPlanif", "description":"SI" }
+                ],
+    "fileInputCSV": "",    
+
+    "palancasMitigacion": false,
+    "addTypeToComponent": "",
+    "levelSearch": 5, 
+    "order": true, 
+    "skipSI": false,
+    "componentTypeToSearch": 0, 
+    "searchMethod": 0, 
+    "withCostOfComponent": true,
+    "outputAllInOneCSV": true, 
+    "outputCSVName": "SIsOutputFile.csv", 
+    
+    "outputIDEINSFile": true,  
+    "deactivationTypeComponent": "SI1", 
+    "outputCSVNameIDEINS": "SIsOutputFileIDEINS_SI1.csv",
+    "outputComponentWithOperation": false 
+}

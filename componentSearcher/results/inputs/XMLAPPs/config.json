@@ -1,0 +1,21 @@
+{
+    "_README": "For info about FIELDS see README.md from ",
+
+    "inputWithCSV": true, 
+    "fileInputCSV": "./results/inputs/XMLAPPs/XMLAPPsInputFile.csv", 
+    "arrayInputs": [{ "component":"BE.ARQRUN", "description":"Demos ARQ" }],
+    "palancasMitigacion": false,
+    "addTypeToComponent": "",
+    "levelSearch": 20, 
+    "order": true, 
+    "skipSI": false,
+    "componentTypeToSearch": 0, 
+    "searchMethod": 0, 
+    "withCostOfComponent": true,
+    "outputAllInOneCSV": true, 
+    "outputCSVName": "XMLAPPsOutputFile.csv", 
+    "outputIDEINSFile": true,  
+    "deactivationTypeComponent": "BE", 
+    "outputCSVNameIDEINS": "XMLAPPsOutputFileIDEINS_BE.csv",
+    "outputComponentWithOperation": false
+}

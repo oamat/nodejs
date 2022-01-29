@@ -1,0 +1,1 @@
+sudo rm -rf ./results/outputs/*.csv

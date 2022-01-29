@@ -1,0 +1,22 @@
+{
+    "_README": "For info about FIELDS see README.md from ",
+    "_CONFIG_DESCRIPTION": "ALL Components are called by BEs defied in file.",
+
+    "inputWithCSV": true, 
+    "fileInputCSV": "./results/inputs/BEs/BEsInputFile.csv", 
+    "arrayInputs": [],
+    "palancasMitigacion": false,    
+    "addTypeToComponent": "",
+    "levelSearch": 20, 
+    "order": false, 
+    "skipSI": false,
+    "componentTypeToSearch": 0, 
+    "searchMethod": 0, 
+    "withCostOfComponent": true,
+    "outputAllInOneCSV": true, 
+    "outputCSVName": "BEsOutputFile.csv",     
+    "outputIDEINSFile": true,  
+    "deactivationTypeComponent": "SN1", 
+    "outputCSVNameIDEINS": "BEsOutputFileIDEINS_SN1.csv",
+    "outputComponentWithOperation": false
+}

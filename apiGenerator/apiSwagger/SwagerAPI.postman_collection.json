@@ -6,7 +6,7 @@
 	},
 	"item": [
 		{
-			"name": "hello GET",
+			"name": "/hello GET",
 			"request": {
 				"method": "GET",
 				"header": [],
@@ -31,6 +31,37 @@
 					]
 				},
 				"description": "hello GET"
+			},
+			"response": []
+		},
+		{
+			"name": "/gamesystems POST",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"name\": \"ZX Spectrum\",\r\n  \"description\": \"Un ordenador de 8 bits de Sinclair\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:10010/gamesystems",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "10010",
+					"path": [
+						"gamesystems"
+					]
+				}
 			},
 			"response": []
 		}

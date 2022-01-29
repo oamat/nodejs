@@ -1,0 +1,1 @@
+Remove-Item  -path .\results\outputs\*.csv -Force

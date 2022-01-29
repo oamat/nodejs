@@ -1,0 +1,21 @@
+{
+    "_README": "For info about FIELDS see README.md from ",
+
+    "inputWithCSV": true, 
+    "fileInputCSV": "./results/inputs/SNs/SNsInputFile.csv", 
+    "arrayInputs": [{ "component":"BE.ARQRUN", "description":"Demos ARQ" }],
+    "palancasMitigacion": false,
+    "addTypeToComponent": "",
+    "levelSearch": 10, 
+    "order": true, 
+    "skipSI": false,
+    "componentTypeToSearch": 0, 
+    "searchMethod": 0, 
+    "withCostOfComponent": true,
+    "outputAllInOneCSV": true, 
+    "outputCSVName": "SNsOutputFile.csv", 
+    "outputIDEINSFile": true,  
+    "deactivationTypeComponent": "ADS", 
+    "outputCSVNameIDEINS": "SNsOutputFileIDEINS_ADS.csv",
+    "outputComponentWithOperation": false
+}

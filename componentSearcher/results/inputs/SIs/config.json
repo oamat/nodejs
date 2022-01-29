@@ -1,0 +1,21 @@
+{
+    "_README": "For info about FIELDS see README.md from ",
+
+    "inputWithCSV": true, 
+    "fileInputCSV": "./results/inputs/SIs/TransferenciasInmediatasInputFile.csv", 
+    "arrayInputs": [],
+    "palancasMitigacion": false,
+    "addTypeToComponent": "",
+    "levelSearch": 20, 
+    "order": true, 
+    "skipSI": false,
+    "componentTypeToSearch": 0, 
+    "searchMethod": 0, 
+    "withCostOfComponent": true,
+    "outputAllInOneCSV": true, 
+    "outputCSVName": "TransferenciasInmediatasOutputFile.csv", 
+    "outputIDEINSFile": true,  
+    "deactivationTypeComponent": "SN1", 
+    "outputCSVNameIDEINS": "TransferenciasInmediatasOutputFileIDEINS_SN1.csv",
+    "outputComponentWithOperation": true
+}

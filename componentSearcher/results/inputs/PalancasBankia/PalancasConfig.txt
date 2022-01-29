@@ -1,0 +1,36 @@
+/* ******************************
+ * CONFIG INPUT PARAMS
+ ********************************/
+//EXTERNAL FILECONFIG? config.json
+const JSONConfigFile = false; // define if the JSON config file is external: config.json
+const JSONConfigFilePath = './init.json'; // define path if the JSON config file is external: config.json
+
+//EXCUTING CONFIG PARAMS. (TODO: extract config in a file)
+var config = {
+    //1.INPUT     
+    inputWithCSV: true, //we get file inputs from /results/input/[filename].csv? 
+    fileInputCSV: './results/inputs/PalancasBankia/PalancasInputFileNew.csv', //if 'inputWithCSV: true' file input name, Only in case inputWithCSV = true; e.g. 'palancas.csv', 'TLE.TX.csv'
+    arrayInputs: [{ component: 'BE.ARQRUN', description: 'Demos ARQ' }, { component: 'BE.CEFLEX', description: 'Buscador Felxible' }],  //if 'inputWithCSV: false' you have to define this array with JSON array [ { component: 'x', description: 'y' }, ... ] 
+
+    palancasMitigacion: true, //SPECIFIC CXB : is the file specific of CaixaBank Palancas Mitigación?
+    addTypeToComponent: '', //SPECIFIC CXB : If you need to define the component type because input file don't have the component type. e.g: 'TX.', 'ADS.', 'SN.'. it can be empty '' if doesn't need.
+
+
+    //2.SEARCH TYPE
+    levelSearch: 20, //level search
+    order: true, //true = normal, false = reverse
+    skipSI: false, //unnecessary
+    componentTypeToSearch: 0, //Filter type, see choices constant for more info -> See const choices -> e.g '0 is all components'
+    searchMethod: 0, //Component with operation? 0 with Method, 1 WithoutMethod, 2 Only Method reference
+    withCostOfComponent: true, //Do you want the cost of component? hits and hits*averageTime
+
+    //3.OUTPUT  
+    outputAllInOneCSV: true, //true : all in 1 file, false: Every component to search in a different CSV
+    outputCSVName: 'PalancasOutputFile.csv', //Only in case outputAllInOneCSV = true, if not we create a file per component with component name
+
+    //4.ABSIS ARQ IDEINS DEACTIVATION, only if you want deactivate ABSIS Operations
+    outputIDEINSFile: true,  //Specific of ABSIS: if you want generate a IDEINS file for deactivation components
+    deactivationTypeComponent: 'SI1',  //Specific of ABSIS: if you want generate a IDEINS file for deactivation components, CA,SI or SN requires CA1,SI1 or SN1
+    outputCSVNameIDEINS: 'PalancasOutputFileIDEINS_SI1.csv', //Specific of ABSIS: define the name of outputFile
+    outputComponentWithOperation: false //Specific of ABSIS: deactivate operation component IDEINS, Only for CAs, SIs and SNs if searchMethod is 0 (with method).
+};

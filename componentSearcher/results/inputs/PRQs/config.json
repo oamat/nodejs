@@ -1,0 +1,21 @@
+{
+    "_README": "For info about FIELDS see README.md from ",
+
+    "inputWithCSV": true, 
+    "fileInputCSV": "./results/inputs/PRQs/PRQsInputFile.csv", 
+    "arrayInputs": [{ "component":"BE.ARQRUN", "description":"Demos ARQ" }],
+    "palancasMitigacion": false,
+    "addTypeToComponent": "",
+    "levelSearch": 3, 
+    "order": false, 
+    "skipSI": false,
+    "componentTypeToSearch": 0, 
+    "searchMethod": 1, 
+    "withCostOfComponent": true,
+    "outputAllInOneCSV": true, 
+    "outputCSVName": "PRQsOutputFile.csv", 
+    "outputIDEINSFile": true,  
+    "deactivationTypeComponent": "SE", 
+    "outputCSVNameIDEINS": "PRQsOutputFileIDEINS_SE.csv",
+    "outputComponentWithOperation": false
+}

@@ -1,0 +1,22 @@
+{
+    "_README": "For info about FIELDS see README.md from ",
+    "_CONFIG_DESCRIPTION": "ALL CAs are called by CA.OFI.Home defied in array (no file in that case)",
+
+    "inputWithCSV": false, 
+    "arrayInputs": [{ "component":"CA.OFI.Home", "description":"Home TF" }],
+    "fileInputCSV": "nofile.csv",     
+    "palancasMitigacion": false,
+    "addTypeToComponent": "",
+    "levelSearch": 2, 
+    "order": true, 
+    "skipSI": false,
+    "componentTypeToSearch": 1, 
+    "searchMethod": 1, 
+    "withCostOfComponent": true,
+    "outputAllInOneCSV": true, 
+    "outputCSVName": "CAsCalledFrom.CA.OFI.Home.csv", 
+    "outputIDEINSFile": true,  
+    "deactivationTypeComponent": "CA1", 
+    "outputCSVNameIDEINS": "CAsOutputFileIDEINS_CA1.csv",
+    "outputComponentWithOperation": false 
+}

@@ -1,0 +1,10 @@
+{
+    "_README": "For info about FIELDS see README.md",
+    "_LASTUPDATE": "01/11/2021",
+
+    "RedisIP": "127.0.0.1",
+    "RedisPort": "6379",  
+    
+    "JSONConfigFile": true, 
+    "JSONConfigFilePath": "./results/configs/configAlberto.json"        
+}

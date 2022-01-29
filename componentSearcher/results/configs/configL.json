@@ -1,0 +1,24 @@
+{
+    "_README": "For info about FIELDS see README.md from ",
+    "_CONFIG_DESCRIPTION": "ALL Components are called by CA.OFI.AdmisionActivoInsSol defied in array (no file in that case)",
+
+    "inputWithCSV": false, 
+    "arrayInputs": [{ "component":"CA.OFI.AdmisionActivoInsSol", "description":"CA Lluis" }],
+    "fileInputCSV": "",    
+
+    "palancasMitigacion": false,
+    "addTypeToComponent": "",
+    "levelSearch": 5, 
+    "order": true, 
+    "skipSI": false,
+    "componentTypeToSearch": 0, 
+    "searchMethod": 1, 
+    "withCostOfComponent": true,
+    "outputAllInOneCSV": true, 
+    "outputCSVName": "CAsCalledFrom.CA.OFI.AdmisionActivoInsSol.csv", 
+    
+    "outputIDEINSFile": true,  
+    "deactivationTypeComponent": "SN1", 
+    "outputCSVNameIDEINS": "CAsOutputFileIDEINS_SN1.csv",
+    "outputComponentWithOperation": false 
+}

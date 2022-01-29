@@ -1,0 +1,22 @@
+{
+    "_README": "For info about FIELDS see README.md from ",
+    "_CONFIG_DESCRIPTION": "All SI components are called by the DBs defined in file",
+
+    "inputWithCSV": true, 
+    "fileInputCSV": "./results/inputs/DBs/DB.InputFile.csv", 
+    "arrayInputs": [],        
+    "palancasMitigacion": false,
+    "addTypeToComponent": "",
+    "levelSearch": 20, 
+    "order": false, 
+    "skipSI": false,
+    "componentTypeToSearch": 5, 
+    "searchMethod": 0, 
+    "withCostOfComponent": false,
+    "outputAllInOneCSV": true, 
+    "outputCSVName": "SIsCalledFromDBs.csv", 
+    "outputIDEINSFile": true,  
+    "deactivationTypeComponent": "SI1", 
+    "outputCSVNameIDEINS": "DBsOutputFileIDEINS_SI1.csv",
+    "outputComponentWithOperation": true 
+}
