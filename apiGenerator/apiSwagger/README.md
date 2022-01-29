@@ -1,7 +1,22 @@
-# Skeleton project for Swagger
+# Skeleton project for Swagger API REST
 
-Here's an image of a drag racer in action:
 
-![Drag Racing](img.jpg)
+```bash
+{
+    # swagger project edit
+    # swagger project start
+}
+```
 
-Move along.
+
+Here's an image of a Swagger edit in action:
+
+![Swagger](img.jpg)
+
+Swagger API REST
+
+
+
+
+
+

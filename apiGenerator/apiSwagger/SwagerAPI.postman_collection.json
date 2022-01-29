@@ -6,7 +6,7 @@
 	},
 	"item": [
 		{
-			"name": "/hello GET",
+			"name": "GET /hello",
 			"request": {
 				"method": "GET",
 				"header": [],
@@ -35,7 +35,7 @@
 			"response": []
 		},
 		{
-			"name": "/gamesystems POST",
+			"name": "POST /gamesystems",
 			"request": {
 				"method": "POST",
 				"header": [],
@@ -62,6 +62,229 @@
 						"gamesystems"
 					]
 				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET /gamesystems",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:10010/gamesystems",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "10010",
+					"path": [
+						"gamesystems"
+					]
+				},
+				"description": "GET /gamesystems"
+			},
+			"response": []
+		},
+		{
+			"name": "GET /gamesystems/{id}",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:10010/gamesystems/KesiTAc38",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "10010",
+					"path": [
+						"gamesystems",
+						"KesiTAc38"
+					]
+				},
+				"description": "GET /gamesystems/{id}"
+			},
+			"response": []
+		},
+		{
+			"name": "PUT /gamesystems/{id}",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"name\": \"GameSystem1_Modified\",\r\n  \"description\": \"desc GameSystem1_Modified\",\r\n  \"image\": \"img GameSystem1_Modified\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:10010/gamesystems/KesiTAc38",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "10010",
+					"path": [
+						"gamesystems",
+						"KesiTAc38"
+					]
+				},
+				"description": "PUT /gamesystems/{id}"
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE /gamesystems/{id}",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:10010/gamesystems/KesiTAc38",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "10010",
+					"path": [
+						"gamesystems",
+						"KesiTAc38"
+					]
+				},
+				"description": "DELETE /gamesystems/{id}"
+			},
+			"response": []
+		},
+		{
+			"name": "GET /videogames",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": ""
+				},
+				"description": "GET /videogames"
+			},
+			"response": []
+		},
+		{
+			"name": "POST /videogames",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"name\": \"Miscreated\",\r\n  \"developer\": \"EntradaGames\",\r\n  \"gamesystem\": \"ZX Spectrum\",\r\n  \"genre\": \"Survival\",\r\n  \"year\": 2018,\r\n  \"image\": \"img Miscreated\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:10010/videogames",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "10010",
+					"path": [
+						"videogames"
+					]
+				},
+				"description": "POST /videogames"
+			},
+			"response": []
+		},
+		{
+			"name": "GET /videogames/{id}",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:10010/videogames/DNyUWxvBK",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "10010",
+					"path": [
+						"videogames",
+						"DNyUWxvBK"
+					]
+				},
+				"description": "GET /videogames/{id}"
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE /videogames/{id}",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:10010/videogames/DNyUWxvBK",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "10010",
+					"path": [
+						"videogames",
+						"DNyUWxvBK"
+					]
+				},
+				"description": "GET /videogames/{id}"
+			},
+			"response": []
+		},
+		{
+			"name": "PUT /videogames/{id}",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"id\": \"DNyUWxvBK\",\r\n  \"name\": \"Miscreated_modified\",\r\n  \"developer\": \"EntradaGames_modified\",\r\n  \"gamesystem\": \"ZX Spectrum\",\r\n  \"genre\": \"Survival_modified\",\r\n  \"year\": 2018,\r\n  \"image\": \"img Miscreated_modified\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:10010/videogames/DNyUWxvBK",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "10010",
+					"path": [
+						"videogames",
+						"DNyUWxvBK"
+					]
+				},
+				"description": "GET /videogames/{id}"
 			},
 			"response": []
 		}
