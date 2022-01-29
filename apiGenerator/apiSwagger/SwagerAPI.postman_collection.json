@@ -1,0 +1,38 @@
+{
+	"info": {
+		"_postman_id": "f0d1bc0d-c7ff-485d-93be-aac6a73e6463",
+		"name": "SwagerAPI",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "hello GET",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:10010/hello?name=Scott",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "10010",
+					"path": [
+						"hello"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "Scott"
+						}
+					]
+				},
+				"description": "hello GET"
+			},
+			"response": []
+		}
+	]
+}
