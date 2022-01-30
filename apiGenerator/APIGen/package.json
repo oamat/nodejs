@@ -1,0 +1,14 @@
+{
+  "name": "apigen",
+  "version": "1.0.0",
+  "description": "Server API code generation",
+  "main": "app.js",
+  "scripts": {
+    "test": "test"
+  },
+  "author": "OAF",
+  "license": "ISC",
+  "dependencies": {
+    "yaml": "^1.10.2"
+  }
+}
