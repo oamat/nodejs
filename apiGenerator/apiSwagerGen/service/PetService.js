@@ -10,6 +10,7 @@
  **/
 exports.addPet = function(body) {
   return new Promise(function(resolve, reject) {
+    console.log("addPet now");
     resolve();
   });
 }
