@@ -1,0 +1,1205 @@
+# Query: type="6
+# Including: ./nodeErrorID
+# ContextLines: 1
+
+240 results - 240 files
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\3dtext\a.xml:
+  11  
+  12: 	<base_part class="static" type="6573" name="a" max_health="30000" repair_with="SheetMetal">
+  13  		<static filename="Objects/NationZ/3dtext/a.cgf" material="Objects/NationZ/3dtext/3dtext.mtl" />
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\3dtext\b.xml:
+  11  
+  12: 	<base_part class="static" type="6574" name="b" max_health="30000" repair_with="SheetMetal">
+  13  		<static filename="Objects/NationZ/3dtext/b.cgf" material="Objects/NationZ/3dtext/3dtext.mtl" />
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\3dtext\c.xml:
+  11  
+  12: 	<base_part class="static" type="6575" name="c" max_health="30000" repair_with="SheetMetal">
+  13  		<static filename="Objects/NationZ/3dtext/c.cgf" material="Objects/NationZ/3dtext/3dtext.mtl" />
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\3dtext\d.xml:
+  11  
+  12: 	<base_part class="static" type="6576" name="d" max_health="30000" repair_with="SheetMetal">
+  13  		<static filename="Objects/NationZ/3dtext/d.cgf" material="Objects/NationZ/3dtext/3dtext.mtl" />
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\3dtext\e.xml:
+  11  
+  12: 	<base_part class="static" type="6577" name="e" max_health="30000" repair_with="SheetMetal">
+  13  		<static filename="Objects/NationZ/3dtext/e.cgf" material="Objects/NationZ/3dtext/3dtext.mtl" />
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\3dtext\eight.xml:
+  11  
+  12: 	<base_part class="static" type="6571" name="eight" max_health="30000" repair_with="SheetMetal">
+  13  		<static filename="Objects/NationZ/3dtext/eight.cgf" material="Objects/NationZ/3dtext/3dtext.mtl" />
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\3dtext\f.xml:
+  11  
+  12: 	<base_part class="static" type="6578" name="f" max_health="30000" repair_with="SheetMetal">
+  13  		<static filename="Objects/NationZ/3dtext/f.cgf" material="Objects/NationZ/3dtext/3dtext.mtl" />
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\3dtext\five.xml:
+  11  
+  12: 	<base_part class="static" type="6568" name="five" max_health="30000" repair_with="SheetMetal">
+  13  		<static filename="Objects/NationZ/3dtext/five.cgf" material="Objects/NationZ/3dtext/3dtext.mtl" />
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\3dtext\four.xml:
+  11  
+  12: 	<base_part class="static" type="6567" name="four" max_health="30000" repair_with="SheetMetal">
+  13  		<static filename="Objects/NationZ/3dtext/four.cgf" material="Objects/NationZ/3dtext/3dtext.mtl" />
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\3dtext\g.xml:
+  11  
+  12: 	<base_part class="static" type="6579" name="g" max_health="30000" repair_with="SheetMetal">
+  13  		<static filename="Objects/NationZ/3dtext/g.cgf" material="Objects/NationZ/3dtext/3dtext.mtl" />
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\3dtext\h.xml:
+  11  
+  12: 	<base_part class="static" type="6580" name="h" max_health="30000" repair_with="SheetMetal">
+  13  		<static filename="Objects/NationZ/3dtext/h.cgf" material="Objects/NationZ/3dtext/3dtext.mtl" />
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\3dtext\i.xml:
+  11  
+  12: 	<base_part class="static" type="6581" name="i" max_health="30000" repair_with="SheetMetal">
+  13  		<static filename="Objects/NationZ/3dtext/i.cgf" material="Objects/NationZ/3dtext/3dtext.mtl" />
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\3dtext\j.xml:
+  11  
+  12: 	<base_part class="static" type="6582" name="j" max_health="30000" repair_with="SheetMetal">
+  13  		<static filename="Objects/NationZ/3dtext/j.cgf" material="Objects/NationZ/3dtext/3dtext.mtl" />
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\3dtext\k.xml:
+  11  
+  12: 	<base_part class="static" type="6583" name="k" max_health="30000" repair_with="SheetMetal">
+  13  		<static filename="Objects/NationZ/3dtext/k.cgf" material="Objects/NationZ/3dtext/3dtext.mtl" />
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\3dtext\l.xml:
+  11  
+  12: 	<base_part class="static" type="6584" name="l" max_health="30000" repair_with="SheetMetal">
+  13  		<static filename="Objects/NationZ/3dtext/l.cgf" material="Objects/NationZ/3dtext/3dtext.mtl" />
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\3dtext\m.xml:
+  11  
+  12: 	<base_part class="static" type="6585" name="m" max_health="30000" repair_with="SheetMetal">
+  13  		<static filename="Objects/NationZ/3dtext/m.cgf" material="Objects/NationZ/3dtext/3dtext.mtl" />
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\3dtext\n.xml:
+  11  
+  12: 	<base_part class="static" type="6586" name="n" max_health="30000" repair_with="SheetMetal">
+  13  		<static filename="Objects/NationZ/3dtext/n.cgf" material="Objects/NationZ/3dtext/3dtext.mtl" />
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\3dtext\nine.xml:
+  11  
+  12: 	<base_part class="static" type="6572" name="nine" max_health="30000" repair_with="SheetMetal">
+  13  		<static filename="Objects/NationZ/3dtext/nine.cgf" material="Objects/NationZ/3dtext/3dtext.mtl" />
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\3dtext\o.xml:
+  11  
+  12: 	<base_part class="static" type="6587" name="o" max_health="30000" repair_with="SheetMetal">
+  13  		<static filename="Objects/NationZ/3dtext/o.cgf" material="Objects/NationZ/3dtext/3dtext.mtl" />
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\3dtext\one.xml:
+  11  
+  12: 	<base_part class="static" type="6564" name="one" max_health="30000" repair_with="SheetMetal">
+  13  		<static filename="Objects/NationZ/3dtext/one.cgf" material="Objects/NationZ/3dtext/3dtext.mtl" />
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\3dtext\p.xml:
+  11  
+  12: 	<base_part class="static" type="6588" name="p" max_health="30000" repair_with="SheetMetal">
+  13  		<static filename="Objects/NationZ/3dtext/p.cgf" material="Objects/NationZ/3dtext/3dtext.mtl" />
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\3dtext\q.xml:
+  11  
+  12: 	<base_part class="static" type="6589" name="q" max_health="30000" repair_with="SheetMetal">
+  13  		<static filename="Objects/NationZ/3dtext/q.cgf" material="Objects/NationZ/3dtext/3dtext.mtl" />
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\3dtext\r.xml:
+  11  
+  12: 	<base_part class="static" type="6590" name="r" max_health="30000" repair_with="SheetMetal">
+  13  		<static filename="Objects/NationZ/3dtext/r.cgf" material="Objects/NationZ/3dtext/3dtext.mtl" />
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\3dtext\s.xml:
+  11  
+  12: 	<base_part class="static" type="6591" name="s" max_health="30000" repair_with="SheetMetal">
+  13  		<static filename="Objects/NationZ/3dtext/s.cgf" material="Objects/NationZ/3dtext/3dtext.mtl" />
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\3dtext\seven.xml:
+  11  
+  12: 	<base_part class="static" type="6570" name="seven" max_health="30000" repair_with="SheetMetal">
+  13  		<static filename="Objects/NationZ/3dtext/seven.cgf" material="Objects/NationZ/3dtext/3dtext.mtl" />
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\3dtext\six.xml:
+  11  
+  12: 	<base_part class="static" type="6569" name="six" max_health="30000" repair_with="SheetMetal">
+  13  		<static filename="Objects/NationZ/3dtext/six.cgf" material="Objects/NationZ/3dtext/3dtext.mtl" />
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\3dtext\t.xml:
+  11  
+  12: 	<base_part class="static" type="6592" name="t" max_health="30000" repair_with="SheetMetal">
+  13  		<static filename="Objects/NationZ/3dtext/t.cgf" material="Objects/NationZ/3dtext/3dtext.mtl" />
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\3dtext\three.xml:
+  11  
+  12: 	<base_part class="static" type="6566" name="three" max_health="30000" repair_with="SheetMetal">
+  13  		<static filename="Objects/NationZ/3dtext/three.cgf" material="Objects/NationZ/3dtext/3dtext.mtl" />
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\3dtext\two.xml:
+  11  
+  12: 	<base_part class="static" type="6565" name="two" max_health="30000" repair_with="SheetMetal">
+  13  		<static filename="Objects/NationZ/3dtext/two.cgf" material="Objects/NationZ/3dtext/3dtext.mtl" />
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\3dtext\u.xml:
+  11  
+  12: 	<base_part class="static" type="6593" name="u" max_health="30000" repair_with="SheetMetal">
+  13  		<static filename="Objects/NationZ/3dtext/u.cgf" material="Objects/NationZ/3dtext/3dtext.mtl" />
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\3dtext\v.xml:
+  11  
+  12: 	<base_part class="static" type="6594" name="v" max_health="30000" repair_with="SheetMetal">
+  13  		<static filename="Objects/NationZ/3dtext/v.cgf" material="Objects/NationZ/3dtext/3dtext.mtl" />
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\3dtext\w.xml:
+  11  
+  12: 	<base_part class="static" type="6595" name="w" max_health="30000" repair_with="SheetMetal">
+  13  		<static filename="Objects/NationZ/3dtext/w.cgf" material="Objects/NationZ/3dtext/3dtext.mtl" />
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\3dtext\x.xml:
+  11  
+  12: 	<base_part class="static" type="6596" name="x" max_health="30000" repair_with="SheetMetal">
+  13  		<static filename="Objects/NationZ/3dtext/x.cgf" material="Objects/NationZ/3dtext/3dtext.mtl" />
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\3dtext\y.xml:
+  11  
+  12: 	<base_part class="static" type="6597" name="y" max_health="30000" repair_with="SheetMetal">
+  13  		<static filename="Objects/NationZ/3dtext/y.cgf" material="Objects/NationZ/3dtext/3dtext.mtl" />
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\3dtext\z.xml:
+  11  
+  12: 	<base_part class="static" type="6598" name="z" max_health="30000" repair_with="SheetMetal">
+  13  		<static filename="Objects/NationZ/3dtext/z.cgf" material="Objects/NationZ/3dtext/3dtext.mtl" />
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\3dtext\zero.xml:
+  11  
+  12: 	<base_part class="static" type="6563" name="zero" max_health="30000" repair_with="SheetMetal">
+  13  		<static filename="Objects/NationZ/3dtext/zero.cgf" material="Objects/NationZ/3dtext/3dtext.mtl" />
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\chainlink\barbwire_fence_placeable_2m.xml:
+   9    </params>
+  10:   <base_part class="static" type="6663" name="barbwire_fence_placeable_2m" max_health="10000" repair_with="BarbedWireCoil" repair_sound="Play_wall_repair">
+  11      <static filename="Objects/basebuilding/chainlink/barbwire_fence_placeable_2m.cgf" />
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\chainlink\barbwire_fence_placeable_4m.xml:
+   9    </params>
+  10:   <base_part class="static" type="6662" name="barbwire_fence_placeable_4m" max_health="10000" repair_with="BarbedWireCoil" repair_sound="Play_wall_repair">
+  11      <static filename="Objects/basebuilding/chainlink/barbwire_fence_placeable_4m.cgf" />
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\chainlink\barbwire_fence_placeable_8m.xml:
+   9    </params>
+  10:   <base_part class="static" type="6661" name="barbwire_fence_placeable_8m" max_health="10000" repair_with="BarbedWireCoil" repair_sound="Play_wall_repair">
+  11      <static filename="Objects/basebuilding/chainlink/barbwire_fence_placeable_8m.cgf" />
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\chainlink\barbwire_fence_placeable_corner_a.xml:
+   9    </params>
+  10:   <base_part class="static" type="6659" name="barbwire_fence_placeable_corner_a" max_health="10000" repair_with="BarbedWireCoil" repair_sound="Play_wall_repair">
+  11      <static filename="Objects/basebuilding/chainlink/barbwire_fence_placeable_corner_a.cgf" />
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\chainlink\barbwire_fence_placeable_corner_b.xml:
+   9    </params>
+  10:   <base_part class="static" type="6658" name="barbwire_fence_placeable_corner_b" max_health="10000" repair_with="BarbedWireCoil" repair_sound="Play_wall_repair">
+  11      <static filename="Objects/basebuilding/chainlink/barbwire_fence_placeable_corner_b.cgf" />
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\chainlink\barbwire_fence_placeable_gate_rail.xml:
+   9    </params>
+  10:   <base_part class="static" type="6664" name="barbwire_fence_placeable_gate_rail" max_health="10000" repair_with="BarbedWireCoil" repair_sound="Play_wall_repair">
+  11      <static filename="Objects/basebuilding/chainlink/barbwire_fence_placeable_gate_rail.cgf" />
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\chainlink\barbwire_fence_placeable_gate.xml:
+   9    </params>
+  10:   <base_part class="door" type="6665" name="barbwire_fence_placeable_gate" max_health="10000" repair_with="BarbedWireCoil" repair_sound="Play_wall_repair">
+  11      <door filename="Objects/basebuilding/chainlink/barbwire_fence_placeable_gate.cgf" rotate_base="0" move_range="8" move_speed="2" move_axis="y" move_axis_dir="-" sound_open="Play_industrial_garage_door_open" sound_opened="" sound_close="Play_industrial_garage_door_close" sound_closed="" sound_lock="Play_door_lock" sound_unlock="Play_door_unlock"></door>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\chainlink\barbwire_fence_placeable_pole.xml:
+   9    </params>
+  10:   <base_part class="static" type="6654" name="barbwire_fence_placeable_pole" max_health="10000" repair_with="BarbedWireCoil" repair_sound="Play_wall_repair">
+  11      <static filename="Objects/basebuilding/chainlink/barbwire_fence_placeable_pole.cgf" />
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\chainlink\barbwire_fence_placeable_swinging_gate_left.xml:
+   9    </params>
+  10:   <base_part class="door" type="6655" name="barbwire_fence_placeable_swinging_gate_left" max_health="10000" repair_with="BarbedWireCoil" repair_sound="Play_wall_repair">
+  11      <door filename="Objects/basebuilding/chainlink/barbwire_fence_placeable_swinging_gate_left.cgf" rotate_base="-90" rotate_range="90" rotate_speed="30" rotate_axis="z" rotate_axis_front="y" sound_open="Play_door_metal_open" sound_opened="" sound_close="Play_door_metal_close" sound_closed="Play_door_metal_closed" sound_lock="Play_door_lock" sound_unlock="Play_door_unlock" />
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\chainlink\barbwire_fence_placeable_swinging_gate_posts.xml:
+   9    </params>
+  10:   <base_part class="static" type="6657" name="barbwire_fence_placeable_swinging_gate_posts" max_health="10000" repair_with="BarbedWireCoil" repair_sound="Play_wall_repair">
+  11      <static filename="Objects/basebuilding/chainlink/barbwire_fence_placeable_swinging_gate_posts.cgf" />
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\chainlink\barbwire_fence_placeable_swinging_gate_right.xml:
+   9    </params>
+  10:   <base_part class="door" type="6656" name="barbwire_fence_placeable_swinging_gate_right" max_health="10000" repair_with="BarbedWireCoil" repair_sound="Play_wall_repair">
+  11      <door filename="Objects/basebuilding/chainlink/barbwire_fence_placeable_swinging_gate_right.cgf" rotate_base="-90" rotate_range="90" rotate_speed="30" rotate_axis="z" rotate_axis_front="y" sound_open="Play_door_metal_open" sound_opened="" sound_close="Play_door_metal_close" sound_closed="Play_door_metal_closed" sound_lock="Play_door_lock" sound_unlock="Play_door_unlock" />
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\chainlink\fence_chainlink_placeable_door.xml:
+   9    </params>
+  10:   <base_part class="door" type="6653" name="fence_chainlink_placeable_door" max_health="10000" repair_with="BarbedWireCoil" repair_sound="Play_wall_repair">
+  11      <door filename="Objects/basebuilding/chainlink/fence_chainlink_door.cgf" rotate_base="-90" rotate_range="90" rotate_speed="90" rotate_axis="z" rotate_axis_front="y" sound_open="Play_door_metal_open" sound_opened="" sound_close="" sound_closed="Play_door_metal_closed" sound_lock="Play_door_lock" sound_unlock="Play_door_unlock" />
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\glass\window.xml:
+  10  
+  11: 	<base_part class="door" type="6439" name="window" max_health="5000" repair_with="SheetMetal" repair_sound="">
+  12  		<door filename="Objects/NationZ/basebuilding/glass/window.cgf" material="Objects/NationZ/basebuilding/glass/window.mtl" rotate_base="90" rotate_range="90" rotate_speed="90" rotate_axis="z" rotate_axis_front="" sound_open="Play_door_metal_open" sound_opened="" sound_close="Play_door_metal_close" sound_closed="Play_door_metal_closed" sound_lock="Play_door_lock" sound_unlock="Play_door_unlock"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\powered\powered_generator_diesel.xml:
+  11    </params>
+  12:   <base_part class="generator" type="6669" name="powered_generator_diesel" max_health="40000" repair_with="ElectricalParts" towable="1" limit="1">
+  13      <generator filename="Objects/props/large_generator/large_generator_tow.cgf" power_type="fuel" helper="light" power_output="25">
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\towables\toolbox_storage_crate_packed.xml:
+  12    </params>
+  13:   <base_part class="entity" type="6666" name="toolbox_storage_crate_packed" max_health="30000" repair_with="SheetMetal" towable="1">
+  14      <entity class="toolbox_storage_crate" />
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\traps\wood_punji_2m_2m.xml:
+  10  
+  11: 	<base_part class="static" type="6" name="wood_punji_2m_2m" max_health="2000" repair_sound="Play_wall_repair">
+  12  		<static filename="Objects/basebuilding/wood/punji_trap.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\wood\wood_column_torch_1_3m.xml:
+  10  
+  11: 	<base_part class="static" type="60" name="wood_column_torch_1_3m" max_health="1000" repair_sound="Play_wall_repair">
+  12  		<static filename="Objects/basebuilding/wood/wood_column_torch_1_3m.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\wood\wood_column_torch_2m.xml:
+  10  
+  11: 	<base_part class="static" type="63" name="wood_column_torch_2m" max_health="1500" repair_sound="Play_wall_repair">
+  12  		<static filename="Objects/basebuilding/wood/wood_column_torch_2m.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\wood\wood_ramp_1_3m_2m_3m.xml:
+  10  
+  11: 	<base_part class="static" type="61" name="wood_ramp_1_3m_2m_3m" repair_sound="Play_wall_repair">
+  12  		<static filename="Objects/basebuilding/wood/ramp_1_3m_2m_3m.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\wood\wood_ramp_2m_3m_1m.xml:
+  10  
+  11: 	<base_part class="static" type="62" name="wood_ramp_2m_3m_1m" repair_sound="Play_wall_repair">
+  12  		<static filename="Objects/basebuilding/wood/ramp_2m_3m_1m.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\wood\wood_ramp_2m_3m_3m.xml:
+  10  
+  11: 	<base_part class="static" type="64" name="wood_ramp_2m_3m_3m" repair_sound="Play_wall_repair">
+  12  		<static filename="Objects/basebuilding/wood/ramp_2m_3m_3m.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\wood\wood_walkway_curve_3m_4m_4m.xml:
+  10  
+  11: 	<base_part class="static" type="68" name="wood_walkway_curve_3m_4m_4m" repair_sound="Play_wall_repair">
+  12  		<static filename="Objects/basebuilding/wood/walkway_curved_3m_4m_4m.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\wood\wood_wall_curve_3m_4m.xml:
+  10  
+  11: 	<base_part class="static" max_health="10000" type="67" name="wood_wall_curve_3m_4m" repair_sound="Play_wall_repair">
+  12  		<static filename="Objects/basebuilding/wood/wall_curved_3m_4m.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\wood\wood_wall_door_curve_3m_4m.xml:
+  10  
+  11: 	<base_part class="static" max_health="10000" type="65" name="wood_wall_door_curve_3m_4m" repair_sound="Play_wall_repair">
+  12  		<static filename="Objects/basebuilding/wood/wall_doorway_curved_3m_4m.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\wood\wood_wall_window_curve_3m_4m.xml:
+  10  
+  11: 	<base_part class="static" type="66" name="wood_wall_window_curve_3m_4m" repair_sound="Play_wall_repair">
+  12  		<static filename="Objects/basebuilding/wood/wall_windows_curved_3m_4m.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\wood\wood_watchtower.xml:
+  10  
+  11: 	<base_part class="static" type="69" name="wood_watchtower" max_health="20000" repair_sound="Play_wall_repair">
+  12  		<static filename="Objects/basebuilding/wood/watchtower_wood.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\LekkaMods\baseparts\custom\tents\biotent2.xml:
+  12  
+  13:     <base_part class="static" type="6703" name="biotent2" max_health="5000">
+  14          <static filename="Objects/Lekka/baseparts/custom/biotent/biotent2.cgf" material="Objects/Lekka/baseparts/custom/biotent/biotent2.mtl"/>
+
+nodeErrorID\scripts\entities\items\xml\LekkaMods\bunker\bunker1.xml:
+   9  
+  10: 	<base_part class="static" type="6704" name="bunker1" max_health="15000">
+  11  		<static filename="Objects/Lekka/bunker/bunker.cgf" material="objects/Lekka/bunker/bunker.mtl"/>
+
+nodeErrorID\scripts\entities\items\xml\Pegasus77\door_glass_white.xml:
+  16  	
+  17: 	<base_part class="door" type="6180" name="door_glass_white" max_health="35000" repair_with="SheetMetal" repair_sound="">
+  18  		<door filename="Objects/Pegasus77/basebuilding/doors/door_window.cgf" rotate_base="90" rotate_range="90" rotate_speed="90" rotate_axis="z" rotate_axis_front="y" sound_open="Play_door_wood_open" sound_opened="" sound_close="Play_door_wood_close" sound_closed="Play_door_wood_closed" sound_lock="Play_door_lock" sound_unlock="Play_door_unlock"/>
+
+nodeErrorID\scripts\entities\items\xml\Pegasus77\door_wood_brown.xml:
+  16  
+  17: 	<base_part class="door" type="6178" name="door_wood_brown" max_health="35000" repair_with="SheetMetal" repair_sound="">
+  18  		<door filename="Objects/Pegasus77/basebuilding/doors/door_brown.cgf" rotate_base="90" rotate_range="90" rotate_speed="90" rotate_axis="z" rotate_axis_front="y" sound_open="Play_door_wood_open" sound_opened="" sound_close="Play_door_wood_close" sound_closed="Play_door_wood_closed" sound_lock="Play_door_lock" sound_unlock="Play_door_unlock"/>
+
+nodeErrorID\scripts\entities\items\xml\Pegasus77\door_wood_white_dirty.xml:
+  15  
+  16: 	<base_part class="door" type="6179" name="door_wood_white_dirty" max_health="35000" repair_with="SheetMetal" repair_sound="">
+  17  		<door filename="Objects/Pegasus77/basebuilding/doors/door_white_dirt.cgf" rotate_base="90" rotate_range="90" rotate_speed="90" rotate_axis="z" rotate_axis_front="y" sound_open="Play_door_wood_open" sound_opened="" sound_close="Play_door_wood_close" sound_closed="Play_door_wood_closed" sound_lock="Play_door_lock" sound_unlock="Play_door_unlock"/>
+
+nodeErrorID\scripts\entities\items\xml\Pegasus77\door_wood_white.xml:
+  16  
+  17: 	<base_part class="door" type="6177" name="door_wood_white" max_health="35000" repair_with="SheetMetal" repair_sound="">
+  18  		<door filename="Objects/Pegasus77/basebuilding/doors/door_white.cgf" rotate_base="90" rotate_range="90" rotate_speed="90" rotate_axis="z" rotate_axis_front="y" sound_open="Play_door_wood_open" sound_opened="" sound_close="Play_door_wood_close" sound_closed="Play_door_wood_closed" sound_lock="Play_door_lock" sound_unlock="Play_door_unlock"/>
+
+nodeErrorID\scripts\entities\items\xml\Pegasus77\purnelium_door_base.xml:
+  15  
+  16: 	<base_part class="door" type="6000" name="purnelium_door_base" max_health="35000" repair_with="SheetMetal" repair_sound="">
+  17  		<door filename="Objects/Pegasus77/basebuilding/door_purnelium.cgf" rotate_base="90" rotate_range="90" rotate_speed="90" rotate_axis="z" rotate_axis_front="y" sound_open="Play_door_metal_open" sound_opened="" sound_close="Play_door_metal_close" sound_closed="Play_door_metal_closed" sound_lock="Play_door_lock" sound_unlock="Play_door_unlock"/>
+
+nodeErrorID\scripts\entities\items\xml\Pegasus77\building\marble\marble_angled_roof_3x4x4.xml:
+  12  
+  13: 	<base_part class="static" type="6260" name="marble_angled_roof_3x4x4" max_health="30000" repair_with="MarbleBag">
+  14  		<static filename="Objects/Pegasus77/basebuilding/walls/marble/marble_angled_roof.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\Pegasus77\building\marble\marble_angled_roof_black_3x4x4.xml:
+  12  
+  13: 	<base_part class="static" type="6265" name="marble_angled_roof_black_3x4x4" max_health="30000" repair_with="MarbleBag">
+  14  		<static filename="Objects/Pegasus77/basebuilding/walls/marble/marble_angled_roof_black.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\Pegasus77\building\marble\marble_angled_roof_blue_3x4x4.xml:
+  12  
+  13: 	<base_part class="static" type="6279" name="marble_angled_roof_blue_3x4x4" max_health="30000" repair_with="MarbleBag">
+  14  		<static filename="Objects/Pegasus77/basebuilding/walls/marble/marble_angled_roof_blue.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\Pegasus77\building\marble\marble_angled_roof_green_3x4x4.xml:
+  12  
+  13: 	<base_part class="static" type="6272" name="marble_angled_roof_green_3x4x4" max_health="30000" repair_with="MarbleBag">
+  14  		<static filename="Objects/Pegasus77/basebuilding/walls/marble/marble_angled_roof_green.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\Pegasus77\building\marble\marble_column_3m_black.xml:
+  10  
+  11: 	<base_part class="static" type="6495" name="marble_column_3m_black" max_health="30000"  repair_with="MarbleBag">
+  12  		<static filename="Objects/Pegasus77/basebuilding/walls/marble/marble_column_3m_black.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\Pegasus77\building\marble\marble_column_3m_blue.xml:
+  10  
+  11: 	<base_part class="static" type="6501" name="marble_column_3m_blue" max_health="30000"  repair_with="MarbleBag">
+  12  		<static filename="Objects/Pegasus77/basebuilding/walls/marble/marble_column_3m_blue.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\Pegasus77\building\marble\marble_column_3m_green.xml:
+  10  
+  11: 	<base_part class="static" type="6507" name="marble_column_3m_green" max_health="30000"  repair_with="MarbleBag">
+  12  		<static filename="Objects/Pegasus77/basebuilding/walls/marble/marble_column_3m_green.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\Pegasus77\building\marble\marble_column_3m.xml:
+  10  
+  11: 	<base_part class="static" type="6490" name="marble_column_3m" max_health="30000"  repair_with="MarbleBag">
+  12  		<static filename="Objects/Pegasus77/basebuilding/walls/marble/marble_column_3m.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\Pegasus77\building\marble\marble_crenelation_black.xml:
+  10  
+  11: 	<base_part class="static" type="6377" name="marble_crenelation_black" max_health="30000"  repair_with="MarbleBag">
+  12  		<static filename="Objects/Pegasus77/basebuilding/walls/marble/marble_crenelation_black.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\Pegasus77\building\marble\marble_crenelation_blue.xml:
+  10  
+  11: 	<base_part class="static" type="6379" name="marble_crenelation_blue" max_health="30000"  repair_with="MarbleBag">
+  12  		<static filename="Objects/Pegasus77/basebuilding/walls/marble/marble_crenelation_blue.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\Pegasus77\building\marble\marble_crenelation_green.xml:
+  10  
+  11: 	<base_part class="static" type="6378" name="marble_crenelation_green" max_health="30000"  repair_with="MarbleBag">
+  12  		<static filename="Objects/Pegasus77/basebuilding/walls/marble/marble_crenelation_green.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\Pegasus77\building\marble\marble_crenelation.xml:
+  10  
+  11: 	<base_part class="static" type="6376" name="marble_crenelation" max_health="30000"  repair_with="MarbleBag">
+  12  		<static filename="Objects/Pegasus77/basebuilding/walls/marble/marble_crenelation.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\Pegasus77\building\marble\marble_foundation_4m_4m_4m.xml:
+  13  
+  14: 	<base_part class="static" type="6252" name="marble_foundation_4m_4m_4m" max_health="30000" repair_with="MarbleBag">
+  15  		<static filename="Objects/Pegasus77/basebuilding/walls/marble/marble_foundation_4m_4m_4m.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\Pegasus77\building\marble\marble_foundation_black_4m_4m_4m.xml:
+  13  
+  14: 	<base_part class="static" type="6266" name="marble_foundation_black_4m_4m_4m" max_health="30000" repair_with="MarbleBag"> 
+  15  		<static filename="Objects/Pegasus77/basebuilding/walls/marble/marble_foundation_black_4m_4m_4m.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\Pegasus77\building\marble\marble_foundation_blue_4m_4m_4m.xml:
+  13  
+  14: 	<base_part class="static" type="6281" name="marble_foundation_blue_4m_4m_4m" max_health="30000" repair_with="MarbleBag"> 
+  15  		<static filename="Objects/Pegasus77/basebuilding/walls/marble/marble_foundation_blue_4m_4m_4m.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\Pegasus77\building\marble\marble_foundation_green_4m_4m_4m.xml:
+  13  
+  14: 	<base_part class="static" type="6273" name="marble_foundation_green_4m_4m_4m" max_health="30000" repair_with="MarbleBag"> 
+  15  		<static filename="Objects/Pegasus77/basebuilding/walls/marble/marble_foundation_green_4m_4m_4m.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\Pegasus77\building\marble\marble_platform_3m_4m_4m_stairs.xml:
+  10  
+  11: 	<base_part class="static" type="6254" name="marble_platform_3m_4m_4m_stairs" max_health="30000" repair_with="MarbleBag">
+  12  		<static filename="Objects/Pegasus77/basebuilding/walls/marble/marble_platform_3m_4m_4m_stairs.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\Pegasus77\building\marble\marble_platform_3m_4m_4m.xml:
+  10  
+  11: 	<base_part class="static" type="6253" name="marble_platform_3m_4m_4m" max_health="30000" repair_with="MarbleBag">
+  12  		<static filename="Objects/Pegasus77/basebuilding/walls/marble/marble_platform_3m_4m_4m.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\Pegasus77\building\marble\marble_platform_3m_8m_8m.xml:
+  10  
+  11: 	<base_part class="static" type="6491" name="marble_platform_3m_8m_8m" max_health="30000"  repair_with="MarbleBag">
+  12  		<static filename="Objects/Pegasus77/basebuilding/walls/marble/marble_platform_3m_8m_8m.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\Pegasus77\building\marble\marble_platform_black_3m_4m_4m_stairs.xml:
+  10  
+  11: 	<base_part class="static" type="6268" name="marble_platform_black_3m_4m_4m_stairs" max_health="30000" repair_with="MarbleBag">
+  12  		<static filename="Objects/Pegasus77/basebuilding/walls/marble/marble_platform_black_3m_4m_4m_stairs.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\Pegasus77\building\marble\marble_platform_black_3m_4m_4m.xml:
+  10  
+  11: 	<base_part class="static" type="6267" name="marble_platform_black_3m_4m_4m" max_health="30000" repair_with="MarbleBag">
+  12  		<static filename="Objects/Pegasus77/basebuilding/walls/marble/marble_platform_black_3m_4m_4m.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\Pegasus77\building\marble\marble_platform_black_3m_8m_8m.xml:
+  10  
+  11: 	<base_part class="static" type="6496" name="marble_platform_black_3m_8m_8m" max_health="30000"  repair_with="MarbleBag">
+  12  		<static filename="Objects/Pegasus77/basebuilding/walls/marble/marble_platform_black_3m_8m_8m.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\Pegasus77\building\marble\marble_platform_blue_3m_4m_4m_stairs.xml:
+  10  
+  11: 	<base_part class="static" type="6282" name="marble_platform_blue_3m_4m_4m_stairs" max_health="30000" repair_with="MarbleBag">
+  12  		<static filename="Objects/Pegasus77/basebuilding/walls/marble/marble_platform_blue_3m_4m_4m_stairs.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\Pegasus77\building\marble\marble_platform_blue_3m_4m_4m.xml:
+  10  
+  11: 	<base_part class="static" type="6280" name="marble_platform_blue_3m_4m_4m" max_health="30000" repair_with="MarbleBag">
+  12  		<static filename="Objects/Pegasus77/basebuilding/walls/marble/marble_platform_blue_3m_4m_4m.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\Pegasus77\building\marble\marble_platform_blue_3m_8m_8m.xml:
+  10  
+  11: 	<base_part class="static" type="6502" name="marble_platform_blue_3m_8m_8m" max_health="30000"  repair_with="MarbleBag">
+  12  		<static filename="Objects/Pegasus77/basebuilding/walls/marble/marble_platform_blue_3m_8m_8m.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\Pegasus77\building\marble\marble_platform_green_3m_4m_4m_stairs.xml:
+  10  
+  11: 	<base_part class="static" type="6275" name="marble_platform_green_3m_4m_4m_stairs" max_health="30000" repair_with="MarbleBag">
+  12  		<static filename="Objects/Pegasus77/basebuilding/walls/marble/marble_platform_green_3m_4m_4m_stairs.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\Pegasus77\building\marble\marble_platform_green_3m_4m_4m.xml:
+  10  
+  11: 	<base_part class="static" type="6274" name="marble_platform_green_3m_4m_4m" max_health="30000" repair_with="MarbleBag">
+  12  		<static filename="Objects/Pegasus77/basebuilding/walls/marble/marble_platform_green_3m_4m_4m.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\Pegasus77\building\marble\marble_platform_green_3m_8m_8m.xml:
+  10  
+  11: 	<base_part class="static" type="6503" name="marble_platform_green_3m_8m_8m" max_health="30000"  repair_with="MarbleBag">
+  12  		<static filename="Objects/Pegasus77/basebuilding/walls/marble/marble_platform_green_3m_8m_8m.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\Pegasus77\building\marble\marble_wall_3m_2m_window.xml:
+  10  
+  11: 	<base_part class="static" type="6256" name="marble_wall_3m_2m_window" max_health="30000" repair_with="MarbleBag">
+  12  		<static filename="Objects/Pegasus77/basebuilding/walls/marble/marble_wall_3m_2m_window.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\Pegasus77\building\marble\marble_wall_3m_2m.xml:
+  10  
+  11: 	<base_part class="static" type="6255" name="marble_wall_3m_2m" max_health="30000" repair_with="MarbleBag">
+  12  		<static filename="Objects/Pegasus77/basebuilding/walls/marble/marble_wall_3m_2m.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\Pegasus77\building\marble\marble_wall_3m_4m_door.xml:
+  10  
+  11: 	<base_part class="static" type="6258" name="marble_wall_3m_4m_door" max_health="30000" repair_with="MarbleBag">
+  12  		<static filename="Objects/Pegasus77/basebuilding/walls/marble/marble_wall_3m_4m_door.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\Pegasus77\building\marble\marble_wall_3m_4m_window.xml:
+  10  
+  11: 	<base_part class="static" type="6259" name="marble_wall_3m_4m_window" max_health="30000" repair_with="MarbleBag">
+  12  		<static filename="Objects/Pegasus77/basebuilding/walls/marble/marble_wall_3m_4m_window.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\Pegasus77\building\marble\marble_wall_3m_4m.xml:
+  10  
+  11: 	<base_part class="static" type="6257" name="marble_wall_3m_4m" max_health="30000" repair_with="MarbleBag">
+  12  		<static filename="Objects/Pegasus77/basebuilding/walls/marble/marble_wall_3m_4m.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\Pegasus77\building\marble\marble_wall_black_3m_2m_window.xml:
+  10  
+  11: 	<base_part class="static" type="6262" name="marble_wall_black_3m_2m_window" max_health="30000" repair_with="MarbleBag">
+  12  		<static filename="Objects/Pegasus77/basebuilding/walls/marble/marble_wall_black_3m_2m_window.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\Pegasus77\building\marble\marble_wall_black_3m_2m.xml:
+  10  
+  11: 	<base_part class="static" type="6269" name="marble_wall_black_3m_2m" max_health="30000" repair_with="MarbleBag">
+  12  		<static filename="Objects/Pegasus77/basebuilding/walls/marble/marble_wall_black_3m_2m.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\Pegasus77\building\marble\marble_wall_black_3m_4m_door.xml:
+  10  
+  11: 	<base_part class="static" type="6264" name="marble_wall_black_3m_4m_door" max_health="30000" repair_with="MarbleBag">
+  12  		<static filename="Objects/Pegasus77/basebuilding/walls/marble/marble_wall_black_3m_4m_door.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\Pegasus77\building\marble\marble_wall_black_3m_4m_window.xml:
+  10  
+  11: 	<base_part class="static" type="6263" name="marble_wall_black_3m_4m_window" max_health="30000" repair_with="MarbleBag">
+  12  		<static filename="Objects/Pegasus77/basebuilding/walls/marble/marble_wall_black_3m_4m_window.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\Pegasus77\building\marble\marble_wall_black_3m_4m.xml:
+  10  
+  11: 	<base_part class="static" type="6261" name="marble_wall_black_3m_4m" max_health="30000" repair_with="MarbleBag">
+  12  		<static filename="Objects/Pegasus77/basebuilding/walls/marble/marble_wall_black_3m_4m.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\Pegasus77\building\marble\marble_wall_blue_3m_2m_window.xml:
+  10  
+  11: 	<base_part class="static" type="6284" name="marble_wall_blue_3m_2m_window" max_health="30000" repair_with="MarbleBag">
+  12  		<static filename="Objects/Pegasus77/basebuilding/walls/marble/marble_wall_blue_3m_2m_window.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\Pegasus77\building\marble\marble_wall_blue_3m_2m.xml:
+  10  
+  11: 	<base_part class="static" type="6283" name="marble_wall_blue_3m_2m" max_health="30000" repair_with="MarbleBag">
+  12  		<static filename="Objects/Pegasus77/basebuilding/walls/marble/marble_wall_blue_3m_2m.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\Pegasus77\building\marble\marble_wall_blue_3m_4m_door.xml:
+  10  
+  11: 	<base_part class="static" type="6286" name="marble_wall_blue_3m_4m_door" max_health="30000" repair_with="MarbleBag">
+  12  		<static filename="Objects/Pegasus77/basebuilding/walls/marble/marble_wall_blue_3m_4m_door.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\Pegasus77\building\marble\marble_wall_blue_3m_4m_window.xml:
+  10  
+  11: 	<base_part class="static" type="6287" name="marble_wall_blue_3m_4m_window" max_health="30000" repair_with="MarbleBag">
+  12  		<static filename="Objects/Pegasus77/basebuilding/walls/marble/marble_wall_blue_3m_4m_window.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\Pegasus77\building\marble\marble_wall_blue_3m_4m.xml:
+  10  
+  11: 	<base_part class="static" type="6285" name="marble_wall_blue_3m_4m" max_health="30000" repair_with="MarbleBag">
+  12  		<static filename="Objects/Pegasus77/basebuilding/walls/marble/marble_wall_blue_3m_4m.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\Pegasus77\building\marble\marble_wall_green_3m_2m_window.xml:
+  10  
+  11: 	<base_part class="static" type="6277" name="marble_wall_green_3m_2m_window" max_health="30000" repair_with="PlasteredBag">
+  12  		<static filename="Objects/Pegasus77/basebuilding/walls/marble/marble_wall_green_3m_2m_window.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\Pegasus77\building\marble\marble_wall_green_3m_2m.xml:
+  10  
+  11: 	<base_part class="static" type="6276" name="marble_wall_green_3m_2m" max_health="30000" repair_with="MarbleBag">
+  12  		<static filename="Objects/Pegasus77/basebuilding/walls/marble/marble_wall_green_3m_2m.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\Pegasus77\building\marble\marble_wall_green_3m_4m_door.xml:
+  10  
+  11: 	<base_part class="static" type="6270" name="marble_wall_green_3m_4m_door" max_health="30000" repair_with="MarbleBag">
+  12  		<static filename="Objects/Pegasus77/basebuilding/walls/marble/marble_wall_green_3m_4m_door.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\Pegasus77\building\marble\marble_wall_green_3m_4m_window.xml:
+  10  
+  11: 	<base_part class="static" type="6271" name="marble_wall_green_3m_4m_window" max_health="30000" repair_with="MarbleBag">
+  12  		<static filename="Objects/Pegasus77/basebuilding/walls/marble/marble_wall_green_3m_4m_window.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\Pegasus77\building\marble\marble_wall_green_3m_4m.xml:
+  10  
+  11: 	<base_part class="static" type="6278" name="marble_wall_green_3m_4m" max_health="30000" repair_with="MarbleBag">
+  12  		<static filename="Objects/Pegasus77/basebuilding/walls/marble/marble_wall_green_3m_4m.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\Pegasus77\building\plastered\plastered_angled_roof_3x4x4.xml:
+  12  
+  13: 	<base_part class="static" type="6195" name="plastered_angled_roof_3x4x4" max_health="22500" repair_with="PlasteredBag">
+  14  		<static filename="Objects/Pegasus77/basebuilding/walls/plastered/plastered_angled_roof.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\Pegasus77\building\plastered\plastered_angled_roof_black_3x4x4.xml:
+  12  
+  13: 	<base_part class="static" type="6202" name="plastered_angled_roof_black_3x4x4" max_health="22500" repair_with="PlasteredBag">
+  14  		<static filename="Objects/Pegasus77/basebuilding/walls/plastered/plastered_angled_roof_black.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\Pegasus77\building\plastered\plastered_angled_roof_blue_3x4x4.xml:
+  12  
+  13: 	<base_part class="static" type="6221" name="plastered_angled_roof_blue_3x4x4" max_health="22500" repair_with="PlasteredBag">
+  14  		<static filename="Objects/Pegasus77/basebuilding/walls/plastered/plastered_angled_roof_blue.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\Pegasus77\building\plastered\plastered_angled_roof_green_3x4x4.xml:
+  12  
+  13: 	<base_part class="static" type="6205" name="plastered_angled_roof_green_3x4x4" max_health="22500" repair_with="PlasteredBag">
+  14  		<static filename="Objects/Pegasus77/basebuilding/walls/plastered/plastered_angled_roof_green.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\Pegasus77\building\plastered\plastered_angled_roof_purple_3x4x4.xml:
+  12  
+  13: 	<base_part class="static" type="6236" name="plastered_angled_roof_purple_3x4x4" max_health="22500" repair_with="PlasteredBag">
+  14  		<static filename="Objects/Pegasus77/basebuilding/walls/plastered/plastered_angled_roof_purple.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\Pegasus77\building\plastered\plastered_angled_roof_red_3x4x4.xml:
+  12  
+  13: 	<base_part class="static" type="6213" name="plastered_angled_roof_red_3x4x4" max_health="22500" repair_with="PlasteredBag">
+  14  		<static filename="Objects/Pegasus77/basebuilding/walls/plastered/plastered_angled_roof_red.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\Pegasus77\building\plastered\plastered_column_3m_black.xml:
+  10  
+  11: 	<base_part class="static" type="6461" name="plastered_column_3m_black" max_health="25000" repair_with="PlasteredBag">
+  12  		<static filename="Objects/Pegasus77/basebuilding/walls/plastered/plastered_column_3m_black.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\Pegasus77\building\plastered\plastered_column_3m_blue.xml:
+  10  
+  11: 	<base_part class="static" type="6467" name="plastered_column_3m_blue" max_health="25000" repair_with="PlasteredBag">
+  12  		<static filename="Objects/Pegasus77/basebuilding/walls/plastered/plastered_column_3m_blue.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\Pegasus77\building\plastered\plastered_column_3m_green.xml:
+  10  
+  11: 	<base_part class="static" type="6471" name="plastered_column_3m_green" max_health="25000" repair_with="PlasteredBag">
+  12  		<static filename="Objects/Pegasus77/basebuilding/walls/plastered/plastered_column_3m_green.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\Pegasus77\building\plastered\plastered_column_3m_purple.xml:
+  10  
+  11: 	<base_part class="static" type="6477" name="plastered_column_3m_purple" max_health="25000" repair_with="PlasteredBag">
+  12  		<static filename="Objects/Pegasus77/basebuilding/walls/plastered/plastered_column_3m_purple.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\Pegasus77\building\plastered\plastered_column_3m_red.xml:
+  10  
+  11: 	<base_part class="static" type="6482" name="plastered_column_3m_red" max_health="25000" repair_with="PlasteredBag">
+  12  		<static filename="Objects/Pegasus77/basebuilding/walls/plastered/plastered_column_3m_red.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\Pegasus77\building\plastered\plastered_column_3m.xml:
+  10  
+  11: 	<base_part class="static" type="6457" name="plastered_column_3m" max_health="25000" repair_with="PlasteredBag">
+  12  		<static filename="Objects/Pegasus77/basebuilding/walls/plastered/plastered_column_3m.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\Pegasus77\building\plastered\plastered_crenelation_black.xml:
+  10  
+  11: 	<base_part class="static" type="6382" name="plastered_crenelation_black" max_health="25000" repair_with="PlasteredBag">
+  12  		<static filename="Objects/Pegasus77/basebuilding/walls/plastered/plastered_crenelation_black.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\Pegasus77\building\plastered\plastered_crenelation_blue.xml:
+  10  
+  11: 	<base_part class="static" type="6386" name="plastered_crenelation_blue" max_health="25000" repair_with="PlasteredBag">
+  12  		<static filename="Objects/Pegasus77/basebuilding/walls/plastered/plastered_crenelation_blue.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\Pegasus77\building\plastered\plastered_crenelation_green.xml:
+  10  
+  11: 	<base_part class="static" type="6383" name="plastered_crenelation_green" max_health="25000" repair_with="PlasteredBag">
+  12  		<static filename="Objects/Pegasus77/basebuilding/walls/plastered/plastered_crenelation_green.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\Pegasus77\building\plastered\plastered_crenelation_purple.xml:
+  10  
+  11: 	<base_part class="static" type="6384" name="plastered_crenelation_purple" max_health="25000" repair_with="PlasteredBag">
+  12  		<static filename="Objects/Pegasus77/basebuilding/walls/plastered/plastered_crenelation_purple.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\Pegasus77\building\plastered\plastered_crenelation_red.xml:
+  10  
+  11: 	<base_part class="static" type="6385" name="plastered_crenelation_red" max_health="25000" repair_with="PlasteredBag">
+  12  		<static filename="Objects/Pegasus77/basebuilding/walls/plastered/plastered_crenelation_red.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\Pegasus77\building\plastered\plastered_crenelation.xml:
+  10  
+  11: 	<base_part class="static" type="6381" name="plastered_crenelation" max_health="25000" repair_with="PlasteredBag">
+  12  		<static filename="Objects/Pegasus77/basebuilding/walls/plastered/plastered_crenelation.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\Pegasus77\building\plastered\plastered_platform_3m_4m_4m_stairs.xml:
+  10  
+  11: 	<base_part class="static" type="6194" name="plastered_platform_3m_4m_4m_stairs" max_health="25000" repair_with="PlasteredBag">
+  12  		<static filename="Objects/Pegasus77/basebuilding/walls/plastered/plastered_platform_3m_4m_4m_stairs.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\Pegasus77\building\plastered\plastered_platform_3m_4m_4m.xml:
+  10  
+  11: 	<base_part class="static" type="6193" name="plastered_platform_3m_4m_4m" max_health="25000" repair_with="PlasteredBag">
+  12  		<static filename="Objects/Pegasus77/basebuilding/walls/plastered/plastered_platform_3m_4m_4m.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\Pegasus77\building\plastered\plastered_platform_3m_8m_8m.xml:
+  10  
+  11: 	<base_part class="static" type="6453" name="plastered_platform_3m_8m_8m" max_health="25000" repair_with="PlasteredBag">
+  12  		<static filename="Objects/Pegasus77/basebuilding/walls/plastered/plastered_platform_3m_8m_8m.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\Pegasus77\building\plastered\plastered_platform_black_3m_4m_4m_stairs.xml:
+  10  
+  11: 	<base_part class="static" type="6204" name="plastered_platform_black_3m_4m_4m_stairs" max_health="25000" repair_with="PlasteredBag">
+  12  		<static filename="Objects/Pegasus77/basebuilding/walls/plastered/plastered_platform_black_3m_4m_4m_stairs.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\Pegasus77\building\plastered\plastered_platform_black_3m_4m_4m.xml:
+  10  
+  11: 	<base_part class="static" type="6203" name="plastered_platform_black_3m_4m_4m" max_health="25000" repair_with="PlasteredBag">
+  12  		<static filename="Objects/Pegasus77/basebuilding/walls/plastered/plastered_platform_black_3m_4m_4m.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\Pegasus77\building\plastered\plastered_platform_black_3m_8m_8m.xml:
+  10  
+  11: 	<base_part class="static" type="6462" name="plastered_platform_black_3m_8m_8m" max_health="25000" repair_with="PlasteredBag">
+  12  		<static filename="Objects/Pegasus77/basebuilding/walls/plastered/plastered_platform_black_3m_8m_8m.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\Pegasus77\building\plastered\plastered_platform_blue_3m_4m_4m_stairs.xml:
+  10  
+  11: 	<base_part class="static" type="6223" name="plastered_platform_blue_3m_4m_4m_stairs" max_health="25000" repair_with="PlasteredBag">
+  12  		<static filename="Objects/Pegasus77/basebuilding/walls/plastered/plastered_platform_blue_3m_4m_4m_stairs.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\Pegasus77\building\plastered\plastered_platform_blue_3m_4m_4m.xml:
+  10  
+  11: 	<base_part class="static" type="6222" name="plastered_platform_blue_3m_4m_4m" max_health="25000" repair_with="PlasteredBag">
+  12  		<static filename="Objects/Pegasus77/basebuilding/walls/plastered/plastered_platform_blue_3m_4m_4m.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\Pegasus77\building\plastered\plastered_platform_blue_3m_8m_8m.xml:
+  10  
+  11: 	<base_part class="static" type="6463" name="plastered_platform_blue_3m_8m_8m" max_health="25000" repair_with="PlasteredBag">
+  12  		<static filename="Objects/Pegasus77/basebuilding/walls/plastered/plastered_platform_blue_3m_8m_8m.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\Pegasus77\building\plastered\plastered_platform_green_3m_4m_4m_stairs.xml:
+  10  
+  11: 	<base_part class="static" type="6206" name="plastered_platform_green_3m_4m_4m_stairs" max_health="25000" repair_with="PlasteredBag">
+  12  		<static filename="Objects/Pegasus77/basebuilding/walls/plastered/plastered_platform_green_3m_4m_4m_stairs.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\Pegasus77\building\plastered\plastered_platform_green_3m_4m_4m.xml:
+  10  
+  11: 	<base_part class="static" type="6210" name="plastered_platform_green_3m_4m_4m" max_health="25000" repair_with="PlasteredBag">
+  12  		<static filename="Objects/Pegasus77/basebuilding/walls/plastered/plastered_platform_green_3m_4m_4m.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\Pegasus77\building\plastered\plastered_platform_green_3m_8m_8m.xml:
+  10  
+  11: 	<base_part class="static" type="6472" name="plastered_platform_green_3m_8m_8m" max_health="25000" repair_with="PlasteredBag">
+  12  		<static filename="Objects/Pegasus77/basebuilding/walls/plastered/plastered_platform_green_3m_8m_8m.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\Pegasus77\building\plastered\plastered_platform_purple_3m_4m_4m_stairs.xml:
+  10  
+  11: 	<base_part class="static" type="6231" name="plastered_platform_purple_3m_4m_4m_stairs" max_health="25000" repair_with="PlasteredBag">
+  12  		<static filename="Objects/Pegasus77/basebuilding/walls/plastered/plastered_platform_purple_3m_4m_4m_stairs.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\Pegasus77\building\plastered\plastered_platform_purple_3m_4m_4m.xml:
+  10  
+  11: 	<base_part class="static" type="6229" name="plastered_platform_purple_3m_4m_4m" max_health="25000" repair_with="PlasteredBag">
+  12  		<static filename="Objects/Pegasus77/basebuilding/walls/plastered/plastered_platform_purple_3m_4m_4m.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\Pegasus77\building\plastered\plastered_platform_purple_3m_8m_8m.xml:
+  10  
+  11: 	<base_part class="static" type="6473" name="plastered_platform_purple_3m_8m_8m" max_health="25000" repair_with="PlasteredBag">
+  12  		<static filename="Objects/Pegasus77/basebuilding/walls/plastered/plastered_platform_purple_3m_8m_8m.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\Pegasus77\building\plastered\plastered_platform_red_3m_4m_4m_stairs.xml:
+  10  
+  11: 	<base_part class="static" type="6215" name="plastered_platform_red_3m_4m_4m_stairs" max_health="25000" repair_with="PlasteredBag">
+  12  		<static filename="Objects/Pegasus77/basebuilding/walls/plastered/plastered_platform_red_3m_4m_4m_stairs.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\Pegasus77\building\plastered\plastered_platform_red_3m_4m_4m.xml:
+  10  
+  11: 	<base_part class="static" type="6214" name="plastered_platform_red_3m_4m_4m" max_health="25000" repair_with="PlasteredBag">
+  12  		<static filename="Objects/Pegasus77/basebuilding/walls/plastered/plastered_platform_red_3m_4m_4m.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\Pegasus77\building\plastered\plastered_platform_red_3m_8m_8m.xml:
+  10  
+  11: 	<base_part class="static" type="6478" name="plastered_platform_red_3m_8m_8m" max_health="25000" repair_with="PlasteredBag">
+  12  		<static filename="Objects/Pegasus77/basebuilding/walls/plastered/plastered_platform_red_3m_8m_8m.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\Pegasus77\building\plastered\plastered_wall_3m_2m_window.xml:
+  10  
+  11: 	<base_part class="static" type="6189" name="plastered_wall_3m_2m_window" max_health="25000" repair_with="PlasteredBag">
+  12  		<static filename="Objects/Pegasus77/basebuilding/walls/plastered/plastered_wall_3m_2m_window.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\Pegasus77\building\plastered\plastered_wall_3m_2m.xml:
+  10  
+  11: 	<base_part class="static" type="6188" name="plastered_wall_3m_2m" max_health="25000" repair_with="PlasteredBag">
+  12  		<static filename="Objects/Pegasus77/basebuilding/walls/plastered/plastered_wall_3m_2m.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\Pegasus77\building\plastered\plastered_wall_3m_4m_door.xml:
+  10  
+  11: 	<base_part class="static" type="6190" name="plastered_wall_3m_4m_door" max_health="25000" repair_with="PlasteredBag">
+  12  		<static filename="Objects/Pegasus77/basebuilding/walls/plastered/plastered_wall_3m_4m_door.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\Pegasus77\building\plastered\plastered_wall_3m_4m_window.xml:
+  10  
+  11: 	<base_part class="static" type="6187" name="plastered_wall_3m_4m_window" max_health="25000" repair_with="PlasteredBag">
+  12  		<static filename="Objects/Pegasus77/basebuilding/walls/plastered/plastered_wall_3m_4m_window.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\Pegasus77\building\plastered\plastered_wall_3m_4m.xml:
+  10  
+  11: 	<base_part class="static" type="6184" name="plastered_wall_3m_4m" max_health="25000" repair_with="PlasteredBag">
+  12  		<static filename="Objects/Pegasus77/basebuilding/walls/plastered/plastered_wall_3m_4m.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\Pegasus77\building\plastered\plastered_wall_black_3m_2m_window.xml:
+  10  
+  11: 	<base_part class="static" type="6198" name="plastered_wall_black_3m_2m_window" max_health="25000" repair_with="PlasteredBag">
+  12  		<static filename="Objects/Pegasus77/basebuilding/walls/plastered/plastered_wall_black_3m_2m_window.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\Pegasus77\building\plastered\plastered_wall_black_3m_2m.xml:
+  10  
+  11: 	<base_part class="static" type="6197" name="plastered_wall_black_3m_2m" max_health="25000" repair_with="PlasteredBag">
+  12  		<static filename="Objects/Pegasus77/basebuilding/walls/plastered/plastered_wall_black_3m_2m.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\Pegasus77\building\plastered\plastered_wall_black_3m_4m_door.xml:
+  10  
+  11: 	<base_part class="static" type="6200" name="plastered_wall_black_3m_4m_door" max_health="25000" repair_with="PlasteredBag">
+  12  		<static filename="Objects/Pegasus77/basebuilding/walls/plastered/plastered_wall_black_3m_4m_door.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\Pegasus77\building\plastered\plastered_wall_black_3m_4m_window.xml:
+  10  
+  11: 	<base_part class="static" type="6201" name="plastered_wall_black_3m_4m_window" max_health="25000" repair_with="PlasteredBag">
+  12  		<static filename="Objects/Pegasus77/basebuilding/walls/plastered/plastered_wall_black_3m_4m_window.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\Pegasus77\building\plastered\plastered_wall_black_3m_4m.xml:
+  10  
+  11: 	<base_part class="static" type="6199" name="plastered_wall_black_3m_4m" max_health="25000" repair_with="PlasteredBag">
+  12  		<static filename="Objects/Pegasus77/basebuilding/walls/plastered/plastered_wall_black_3m_4m.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\Pegasus77\building\plastered\plastered_wall_blue_3m_2m_window.xml:
+  10  
+  11: 	<base_part class="static" type="6225" name="plastered_wall_blue_3m_2m_window" max_health="25000" repair_with="PlasteredBag">
+  12  		<static filename="Objects/Pegasus77/basebuilding/walls/plastered/plastered_wall_blue_3m_2m_window.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\Pegasus77\building\plastered\plastered_wall_blue_3m_2m.xml:
+  10  
+  11: 	<base_part class="static" type="6224" name="plastered_wall_blue_3m_2m" max_health="25000" repair_with="PlasteredBag">
+  12  		<static filename="Objects/Pegasus77/basebuilding/walls/plastered/plastered_wall_blue_3m_2m.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\Pegasus77\building\plastered\plastered_wall_blue_3m_4m_door.xml:
+  10  
+  11: 	<base_part class="static" type="6227" name="plastered_wall_blue_3m_4m_door" max_health="25000" repair_with="PlasteredBag">
+  12  		<static filename="Objects/Pegasus77/basebuilding/walls/plastered/plastered_wall_blue_3m_4m_door.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\Pegasus77\building\plastered\plastered_wall_blue_3m_4m_window.xml:
+  10  
+  11: 	<base_part class="static" type="6228" name="plastered_wall_blue_3m_4m_window" max_health="25000" repair_with="PlasteredBag">
+  12  		<static filename="Objects/Pegasus77/basebuilding/walls/plastered/plastered_wall_blue_3m_4m_window.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\Pegasus77\building\plastered\plastered_wall_blue_3m_4m.xml:
+  10  
+  11: 	<base_part class="static" type="6226" name="plastered_wall_blue_3m_4m" max_health="25000" repair_with="PlasteredBag">
+  12  		<static filename="Objects/Pegasus77/basebuilding/walls/plastered/plastered_wall_blue_3m_4m.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\Pegasus77\building\plastered\plastered_wall_green_3m_2m_window.xml:
+  10  
+  11: 	<base_part class="static" type="6208" name="plastered_wall_green_3m_2m_window" max_health="25000" repair_with="PlasteredBag">
+  12  		<static filename="Objects/Pegasus77/basebuilding/walls/plastered/plastered_wall_green_3m_2m_window.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\Pegasus77\building\plastered\plastered_wall_green_3m_2m.xml:
+  10  
+  11: 	<base_part class="static" type="6207" name="plastered_wall_green_3m_2m" max_health="25000" repair_with="PlasteredBag">
+  12  		<static filename="Objects/Pegasus77/basebuilding/walls/plastered/plastered_wall_green_3m_2m.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\Pegasus77\building\plastered\plastered_wall_green_3m_4m_door.xml:
+  10  
+  11: 	<base_part class="static" type="6211" name="plastered_wall_green_3m_4m_door" max_health="25000" repair_with="PlasteredBag">
+  12  		<static filename="Objects/Pegasus77/basebuilding/walls/plastered/plastered_wall_green_3m_4m_door.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\Pegasus77\building\plastered\plastered_wall_green_3m_4m_window.xml:
+  10  
+  11: 	<base_part class="static" type="6212" name="plastered_wall_green_3m_4m_window" max_health="25000" repair_with="PlasteredBag">
+  12  		<static filename="Objects/Pegasus77/basebuilding/walls/plastered/plastered_wall_green_3m_4m_window.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\Pegasus77\building\plastered\plastered_wall_green_3m_4m.xml:
+  10  
+  11: 	<base_part class="static" type="6209" name="plastered_wall_green_3m_4m" max_health="25000" repair_with="PlasteredBag">
+  12  		<static filename="Objects/Pegasus77/basebuilding/walls/plastered/plastered_wall_green_3m_4m.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\Pegasus77\building\plastered\plastered_wall_purple_3m_2m_window.xml:
+  10  
+  11: 	<base_part class="static" type="6232" name="plastered_wall_purple_3m_2m_window" max_health="25000" repair_with="PlasteredBag">
+  12  		<static filename="Objects/Pegasus77/basebuilding/walls/plastered/plastered_wall_purple_3m_2m_window.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\Pegasus77\building\plastered\plastered_wall_purple_3m_2m.xml:
+  10  
+  11: 	<base_part class="static" type="6230" name="plastered_wall_purple_3m_2m" max_health="25000" repair_with="PlasteredBag">
+  12  		<static filename="Objects/Pegasus77/basebuilding/walls/plastered/plastered_wall_purple_3m_2m.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\Pegasus77\building\plastered\plastered_wall_purple_3m_4m_door.xml:
+  10  
+  11: 	<base_part class="static" type="6234" name="plastered_wall_purple_3m_4m_door" max_health="25000" repair_with="PlasteredBag">
+  12  		<static filename="Objects/Pegasus77/basebuilding/walls/plastered/plastered_wall_purple_3m_4m_door.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\Pegasus77\building\plastered\plastered_wall_purple_3m_4m_window.xml:
+  10  
+  11: 	<base_part class="static" type="6235" name="plastered_wall_purple_3m_4m_window" max_health="25000" repair_with="PlasteredBag">
+  12  		<static filename="Objects/Pegasus77/basebuilding/walls/plastered/plastered_wall_purple_3m_4m_window.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\Pegasus77\building\plastered\plastered_wall_purple_3m_4m.xml:
+  10  
+  11: 	<base_part class="static" type="6233" name="plastered_wall_purple_3m_4m" max_health="25000" repair_with="PlasteredBag">
+  12  		<static filename="Objects/Pegasus77/basebuilding/walls/plastered/plastered_wall_purple_3m_4m.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\Pegasus77\building\plastered\plastered_wall_red_3m_2m_window.xml:
+  10  
+  11: 	<base_part class="static" type="6217" name="plastered_wall_red_3m_2m_window" max_health="25000" repair_with="PlasteredBag">
+  12  		<static filename="Objects/Pegasus77/basebuilding/walls/plastered/plastered_wall_red_3m_2m_window.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\Pegasus77\building\plastered\plastered_wall_red_3m_2m.xml:
+  10  
+  11: 	<base_part class="static" type="6216" name="plastered_wall_red_3m_2m" max_health="25000" repair_with="PlasteredBag">
+  12  		<static filename="Objects/Pegasus77/basebuilding/walls/plastered/plastered_wall_red_3m_2m.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\Pegasus77\building\plastered\plastered_wall_red_3m_4m_door.xml:
+  10  
+  11: 	<base_part class="static" type="6219" name="plastered_wall_red_3m_4m_door" max_health="25000" repair_with="PlasteredBag">
+  12  		<static filename="Objects/Pegasus77/basebuilding/walls/plastered/plastered_wall_red_3m_4m_door.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\Pegasus77\building\plastered\plastered_wall_red_3m_4m_window.xml:
+  10  
+  11: 	<base_part class="static" type="6220" name="plastered_wall_red_3m_4m_window" max_health="25000" repair_with="PlasteredBag">
+  12  		<static filename="Objects/Pegasus77/basebuilding/walls/plastered/plastered_wall_red_3m_4m_window.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\Pegasus77\building\plastered\plastered_wall_red_3m_4m.xml:
+  10  
+  11: 	<base_part class="static" type="6218" name="plastered_wall_red_3m_4m" max_health="25000" repair_with="PlasteredBag">
+  12  		<static filename="Objects/Pegasus77/basebuilding/walls/plastered/plastered_wall_red_3m_4m.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\Pegasus77\building\titanium\door_titanium.xml:
+  10  
+  11: 	<base_part class="door" type="6367" name="door_titanium" max_health="55000" repair_with="TitaniumBag">
+  12  		<door filename="Objects/Pegasus77/basebuilding/walls/titanium/door_titanium.cgf" rotate_base="-90" rotate_range="90" rotate_speed="30" rotate_axis="z" rotate_axis_front="y" sound_open="Play_door_metal_open" sound_opened="" sound_close="Play_door_metal_close" sound_closed="Play_door_metal_closed" sound_lock="Play_microwave_food_done" sound_unlock="Play_microwave_food_done"/>
+
+nodeErrorID\scripts\entities\items\xml\Pegasus77\building\titanium\titanium_angled_roof_3x4x4.xml:
+  12  
+  13: 	<base_part class="static" type="6288" name="titanium_angled_roof_3x4x4" max_health="55000" repair_with="TitaniumBag">
+  14  		<static filename="Objects/Pegasus77/basebuilding/walls/titanium/titanium_angled_roof.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\Pegasus77\building\titanium\titanium_column_3m.xml:
+  10  
+  11: 	<base_part class="static" type="6487" name="titanium_column_3m" max_health="55000" repair_with="TitaniumBag">
+  12  		<static filename="Objects/Pegasus77/basebuilding/walls/titanium/titanium_column_3m.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\Pegasus77\building\titanium\titanium_crenelation.xml:
+  10  
+  11: 	<base_part class="static" type="6396" name="titanium_crenelation" max_health="55000" repair_with="TitaniumBag">
+  12  		<static filename="Objects/Pegasus77/basebuilding/walls/titanium/titanium_crenelation.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\Pegasus77\building\titanium\titanium_platform_3m_4m_4m_stairs.xml:
+  10  
+  11: 	<base_part class="static" type="6290" name="titanium_platform_3m_4m_4m_stairs" max_health="55000" repair_with="TitaniumBag">
+  12  		<static filename="Objects/Pegasus77/basebuilding/walls/titanium/titanium_platform_3m_4m_4m_stairs.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\Pegasus77\building\titanium\titanium_platform_3m_4m_4m.xml:
+  10  
+  11: 	<base_part class="static" type="6289" name="titanium_platform_3m_4m_4m" max_health="55000" repair_with="TitaniumBag">
+  12  		<static filename="Objects/Pegasus77/basebuilding/walls/titanium/titanium_platform_3m_4m_4m.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\Pegasus77\building\titanium\titanium_platform_3m_8m_8m.xml:
+  10  
+  11: 	<base_part class="static" type="6483" name="titanium_platform_3m_8m_8m" max_health="55000" repair_with="TitaniumBag">
+  12  		<static filename="Objects/Pegasus77/basebuilding/walls/titanium/titanium_platform_3m_8m_8m.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\Pegasus77\building\titanium\titanium_wall_3m_2m_window.xml:
+  10  
+  11: 	<base_part class="static" type="6292" name="titanium_wall_3m_2m_window" max_health="55000" repair_with="TitaniumBag">
+  12  		<static filename="Objects/Pegasus77/basebuilding/walls/titanium/titanium_wall_3m_2m_window.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\Pegasus77\building\titanium\titanium_wall_3m_2m.xml:
+  10  
+  11: 	<base_part class="static" type="6291" name="titanium_wall_3m_2m" max_health="55000" repair_with="TitaniumBag">
+  12  		<static filename="Objects/Pegasus77/basebuilding/walls/titanium/titanium_wall_3m_2m.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\Pegasus77\building\titanium\titanium_wall_3m_4m_door.xml:
+  10  
+  11: 	<base_part class="static" type="6294" name="titanium_wall_3m_4m_door" max_health="55000" repair_with="TitaniumBag">
+  12  		<static filename="Objects/Pegasus77/basebuilding/walls/titanium/titanium_wall_3m_4m_door.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\Pegasus77\building\titanium\titanium_wall_3m_4m_window.xml:
+  10  
+  11: 	<base_part class="static" type="6295" name="titanium_wall_3m_4m_window" max_health="55000" repair_with="TitaniumBag">
+  12  		<static filename="Objects/Pegasus77/basebuilding/walls/titanium/titanium_wall_3m_4m_window.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\Pegasus77\building\titanium\titanium_wall_3m_4m.xml:
+  10  
+  11: 	<base_part class="static" type="6293" name="titanium_wall_3m_4m" max_health="55000" repair_with="TitaniumBag">
+  12  		<static filename="Objects/Pegasus77/basebuilding/walls/titanium/titanium_wall_3m_4m.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\Pegasus77\houses\cabin_black.xml:
+   9  
+  10: 	<base_part class="static" type="6164" name="cabin_wood_black" max_health="30000" repair_with="Lumber">
+  11  		<static filename="Objects/Pegasus77/houses/cabin_wood_black.cgf" />
+
+nodeErrorID\scripts\entities\items\xml\Pegasus77\houses\cabin_wood_simple_black.xml:
+   9  
+  10: 	<base_part class="static" type="6165" name="cabin_wood_simple_black" max_health="20000" repair_with="Lumber">
+  11  		<static filename="Objects/Pegasus77/houses/cabin_wood_simple_black.cgf" />
+
+nodeErrorID\scripts\entities\items\xml\Pegasus77\houses\cabin_wood_simple_red.xml:
+   9  
+  10: 	<base_part class="static" type="6157" name="cabin_wood_simple_red" max_health="20000" repair_with="Lumber">
+  11  		<static filename="Objects/Pegasus77/houses/cabin_wood_simple_red.cgf" />
+
+nodeErrorID\scripts\entities\items\xml\Pegasus77\houses\cabin_wood_simple.xml:
+   9  
+  10: 	<base_part class="static" type="6155" name="cabin_wood_simple" max_health="20000" repair_with="Lumber">
+  11  		<static filename="Objects/Pegasus77/houses/cabin_wood_simple.cgf" />
+
+nodeErrorID\scripts\entities\items\xml\Pegasus77\houses\cabin_wood.xml:
+   9  
+  10: 	<base_part class="static" type="6158" name="cabin_wood" max_health="30000" repair_with="Lumber">
+  11  		<static filename="Objects/Pegasus77/houses/cabin_wood.cgf" />
+
+nodeErrorID\scripts\entities\items\xml\Pegasus77\houses\one_story_black.xml:
+   9  
+  10: 	<base_part class="static" type="6159" name="one_story_black" max_health="40000" repair_with="Lumber">
+  11  		<static filename="Objects/Pegasus77/houses/one_story_black.cgf" />
+
+nodeErrorID\scripts\entities\items\xml\Pegasus77\houses\one_story_green.xml:
+   9  
+  10: 	<base_part class="static" type="6160" name="one_story_green" max_health="40000" repair_with="Lumber">
+  11  		<static filename="Objects/Pegasus77/houses/one_story_green.cgf" />
+
+nodeErrorID\scripts\entities\items\xml\Pegasus77\houses\one_story_red.xml:
+   9  
+  10: 	<base_part class="static" type="6161" name="one_story_red" max_health="40000" repair_with="Lumber">
+  11  		<static filename="Objects/Pegasus77/houses/one_story_red.cgf" />
+
+nodeErrorID\scripts\entities\items\xml\Pegasus77\houses\one_story_white.xml:
+   9  
+  10: 	<base_part class="static" type="6156" name="one_story_white" max_health="40000" repair_with="Lumber">
+  11  		<static filename="Objects/Pegasus77/houses/one_story_white.cgf" />
+
+nodeErrorID\scripts\entities\items\xml\Pegasus77\houses\villa_black.xml:
+   9  
+  10: 	<base_part class="static" type="6162" name="villa_black" max_health="210000" repair_with="AmcoinLedger">
+  11  		<static filename="Objects/Pegasus77/houses/villa/villa_black.cgf" />
+
+nodeErrorID\scripts\entities\items\xml\Pegasus77\houses\villa_red.xml:
+   9  
+  10: 	<base_part class="static" type="6163" name="villa_red" max_health="210000" repair_with="AmcoinLedger">
+  11  		<static filename="Objects/Pegasus77/houses/villa/villa_red.cgf" />
+
+nodeErrorID\scripts\entities\items\xml\Pegasus77\houses\villa_white.xml:
+   9  
+  10: 	<base_part class="static" type="6173" name="villa_white" max_health="210000" repair_with="AmcoinLedger">
+  11  		<static filename="Objects/Pegasus77/houses/villa/villa_white.cgf" />
+
+nodeErrorID\scripts\entities\items\xml\Poaching\props\misc\bee_hive\manmade_beehive_3stack_nz.xml:
+  10  
+  11: 	<base_part class="static" type="6446" name="manmade_beehive_3stack_nz" max_health="3000" repair_with="Lumber" limit="2">
+  12  		<static filename="Objects/NationZ/basebuilding/bee_hive/manmade_beehive_3stack.cgf" />
+
+nodeErrorID\scripts\entities\items\xml\Poaching\props\misc\cages\castor_cage_packed_nz.xml:
+  11  
+  12: 	<base_part class="entity" type="6532" name="castor_cage_packed_nz" max_health="3000" repair_with="ScrapMetal" limit="2">
+  13  		<entity class="castor_cage_nz"/> 
+
+nodeErrorID\scripts\entities\items\xml\Poaching\props\misc\cages\lobster_cage_packed_nz.xml:
+  14  
+  15: 	<base_part class="entity" type="6430 " name="lobster_cage_packed_nz" max_health="3000" repair_with="ScrapMetal" limit="2">&gt;
+  16  		<entity class="lobster_cage_nz"/> 
+
+nodeErrorID\scripts\entities\items\xml\Poaching\props\misc\cages\rabbit_cage_packed_nz.xml:
+  12  
+  13: 	<base_part class="entity" type="6531" name="rabbit_cage_packed_nz" max_health="3000" repair_with="ScrapMetal" limit="2">
+  14  		<entity class="rabbit_cage_nz"/> 
+
+nodeErrorID\scripts\entities\items\xml\Poaching\props\misc\cages\rat_cage_packed_nz.xml:
+  13  
+  14: 	<base_part class="entity" type="6536" name="rat_cage_packed_nz" max_health="3000" repair_with="ScrapMetal" limit="2">
+  15  		<entity class="rat_cage_nz"/> 
+
+nodeErrorID\scripts\entities\items\xml\Poaching\props\misc\cages\snake_cage_packed_nz.xml:
+  11  
+  12: 	<base_part class="entity" type="6533" name="snake_cage_packed_nz" max_health="3000" repair_with="ScrapMetal" limit="2">
+  13  		<entity class="snake_cage_nz"/> 
+
+nodeErrorID\scripts\entities\items\xml\Poaching\props\misc\cages\squirrel_cage_packed_nz.xml:
+  11  
+  12: 	<base_part class="entity" type="6534" name="squirrel_cage_packed_nz" max_health="3000" repair_with="ScrapMetal" limit="2">
+  13  		<entity class="squirrel_cage_nz"/> 
+
+nodeErrorID\scripts\entities\items\xml\Poaching\props\misc\cages\turtle_cage_packed_nz.xml:
+  13  
+  14: 	<base_part class="entity" type="6535" name="turtle_cage_packed_nz" max_health="3000" repair_with="ScrapMetal" limit="2">
+  15  		<entity class="turtle_cage_nz"/> 
+
+nodeErrorID\scripts\entities\items\xml\Poaching\Structures\farm\ChickenCoop\chicken_coop_nz.xml:
+  10  
+  11: 	<base_part class="static" type="6419" name="chicken_coop_nz" max_health="30000" repair_with="Lumber" limit="2" >
+  12  		<static filename="Objects/NationZ/basebuilding/farm/ChickenCoop/chicken_coop.cgf" material="Objects/NationZ/basebuilding/farm/ChickenCoop/chicken_coop_mat.mtl" />
+
+nodeErrorID\scripts\entities\items\xml\Poaching\Structures\farm\FarmShed\farmshed_mat_nz.xml:
+  10  
+  11: 	<base_part class="static" type="6417" name="farmshed_mat_nz" max_health="30000" repair_with="Lumber" limit="5" >
+  12  		<static filename="Objects/NationZ/basebuilding/farm/FarmShed/shed.cgf" material="Objects/NationZ/basebuilding/farm/FarmShed/farmshed_mat.mtl" />
+
+nodeErrorID\scripts\entities\items\xml\Poaching\Structures\farm\PigPen\pigpen_mat_nz.xml:
+  10  
+  11: 	<base_part class="static" type="6418" name="pigpen_mat_nz" max_health="30000" repair_with="Lumber" limit="2" >
+  12  		<static filename="Objects/NationZ/basebuilding/farm/PigPen/shed.cgf" />
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\traps\wood_punji_2m_2m.xml:
+  10  
+  11: 	<base_part class="static" type="6" name="wood_punji_2m_2m" max_health="2000" repair_sound="Play_wall_repair">
+  12  		<static filename="objects/basebuilding/wood/punji_trap.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\wood\wood_column_torch_1_3m.xml:
+  10  
+  11: 	<base_part class="static" type="60" name="wood_column_torch_1_3m" max_health="1000" repair_sound="Play_wall_repair">
+  12  		<static filename="objects/basebuilding/wood/wood_column_torch_1_3m.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\wood\wood_column_torch_2m.xml:
+  10  
+  11: 	<base_part class="static" type="63" name="wood_column_torch_2m" max_health="1500" repair_sound="Play_wall_repair">
+  12  		<static filename="objects/basebuilding/wood/wood_column_torch_2m.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\wood\wood_ramp_1_3m_2m_3m.xml:
+  10  
+  11: 	<base_part class="static" type="61" name="wood_ramp_1_3m_2m_3m" repair_sound="Play_wall_repair">
+  12  		<static filename="objects/basebuilding/wood/ramp_1_3m_2m_3m.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\wood\wood_ramp_2m_3m_1m.xml:
+  10  
+  11: 	<base_part class="static" type="62" name="wood_ramp_2m_3m_1m" repair_sound="Play_wall_repair">
+  12  		<static filename="objects/basebuilding/wood/ramp_2m_3m_1m.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\wood\wood_ramp_2m_3m_3m.xml:
+  10  
+  11: 	<base_part class="static" type="64" name="wood_ramp_2m_3m_3m" repair_sound="Play_wall_repair">
+  12  		<static filename="objects/basebuilding/wood/ramp_2m_3m_3m.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\wood\wood_walkway_curve_3m_4m_4m.xml:
+  10  
+  11: 	<base_part class="static" type="68" name="wood_walkway_curve_3m_4m_4m" repair_sound="Play_wall_repair">
+  12  		<static filename="objects/basebuilding/wood/walkway_curved_3m_4m_4m.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\wood\wood_wall_curve_3m_4m.xml:
+  10  
+  11: 	<base_part class="static" type="67" name="wood_wall_curve_3m_4m" repair_sound="Play_wall_repair">
+  12  		<static filename="objects/basebuilding/wood/wall_curved_3m_4m.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\wood\wood_wall_door_curve_3m_4m.xml:
+  10  
+  11: 	<base_part class="static" type="65" name="wood_wall_door_curve_3m_4m" repair_sound="Play_wall_repair">
+  12  		<static filename="objects/basebuilding/wood/wall_doorway_curved_3m_4m.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\wood\wood_wall_window_curve_3m_4m.xml:
+  10  
+  11: 	<base_part class="static" type="66" name="wood_wall_window_curve_3m_4m" repair_sound="Play_wall_repair">
+  12  		<static filename="objects/basebuilding/wood/wall_windows_curved_3m_4m.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\wood\wood_watchtower.xml:
+  10  
+  11: 	<base_part class="static" type="69" name="wood_watchtower" max_health="20000" repair_sound="Play_wall_repair">
+  12  		<static filename="objects/basebuilding/wood/watchtower_wood.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\traps\wood_punji_2m_2m.xml:
+  10  
+  11: 	<base_part class="static" type="6" name="wood_punji_2m_2m" max_health="2000" repair_sound="Play_wall_repair">
+  12  		<static filename="objects/basebuilding/wood/punji_trap.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\wood\wood_column_torch_1_3m.xml:
+  10  
+  11: 	<base_part class="static" type="60" name="wood_column_torch_1_3m" max_health="1000" repair_sound="Play_wall_repair">
+  12  		<static filename="objects/basebuilding/wood/wood_column_torch_1_3m.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\wood\wood_column_torch_2m.xml:
+  10  
+  11: 	<base_part class="static" type="63" name="wood_column_torch_2m" max_health="1500" repair_sound="Play_wall_repair">
+  12  		<static filename="objects/basebuilding/wood/wood_column_torch_2m.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\wood\wood_ramp_1_3m_2m_3m.xml:
+  10  
+  11: 	<base_part class="static" type="61" name="wood_ramp_1_3m_2m_3m" repair_sound="Play_wall_repair">
+  12  		<static filename="objects/basebuilding/wood/ramp_1_3m_2m_3m.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\wood\wood_ramp_2m_3m_1m.xml:
+  10  
+  11: 	<base_part class="static" type="62" name="wood_ramp_2m_3m_1m" repair_sound="Play_wall_repair">
+  12  		<static filename="objects/basebuilding/wood/ramp_2m_3m_1m.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\wood\wood_ramp_2m_3m_3m.xml:
+  10  
+  11: 	<base_part class="static" type="64" name="wood_ramp_2m_3m_3m" repair_sound="Play_wall_repair">
+  12  		<static filename="objects/basebuilding/wood/ramp_2m_3m_3m.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\wood\wood_walkway_curve_3m_4m_4m.xml:
+  10  
+  11: 	<base_part class="static" type="68" name="wood_walkway_curve_3m_4m_4m" repair_sound="Play_wall_repair">
+  12  		<static filename="objects/basebuilding/wood/walkway_curved_3m_4m_4m.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\wood\wood_wall_curve_3m_4m.xml:
+  10  
+  11: 	<base_part class="static" type="67" name="wood_wall_curve_3m_4m" repair_sound="Play_wall_repair">
+  12  		<static filename="objects/basebuilding/wood/wall_curved_3m_4m.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\wood\wood_wall_door_curve_3m_4m.xml:
+  10  
+  11: 	<base_part class="static" type="65" name="wood_wall_door_curve_3m_4m" repair_sound="Play_wall_repair">
+  12  		<static filename="objects/basebuilding/wood/wall_doorway_curved_3m_4m.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\wood\wood_wall_window_curve_3m_4m.xml:
+  10  
+  11: 	<base_part class="static" type="66" name="wood_wall_window_curve_3m_4m" repair_sound="Play_wall_repair">
+  12  		<static filename="objects/basebuilding/wood/wall_windows_curved_3m_4m.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\wood\wood_watchtower.xml:
+  10  
+  11: 	<base_part class="static" type="69" name="wood_watchtower" max_health="20000" repair_sound="Play_wall_repair">
+  12  		<static filename="objects/basebuilding/wood/watchtower_wood.cgf"/>

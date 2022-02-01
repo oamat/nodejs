@@ -1,0 +1,1830 @@
+# Query: type="2
+# Including: ./nodeErrorID
+# ContextLines: 1
+
+365 results - 365 files
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\dws\doors\dws_3_Room_Singlestory_BackDoor.xml:
+  18  
+  19: 	<base_part class="door" type="221" name="dws_3_Room_Singlestory_BackDoor" max_health="750">
+  20  		<door filename="Objects/structures/Residential/3Room_SingleStory/dws_3_Room_Singlestory_BackDoor.cgf" rotate_base="-180" rotate_range="90" rotate_speed="180" rotate_axis="z" rotate_dir="" sound_open="Play_door_wood_open" sound_opened="Play_door_wood_opened" sound_close="Play_door_wood_close" sound_closed="Play_door_wood_closed"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\dws\doors\dws_3_Room_Singlestory_FrontDoor.xml:
+  18  
+  19: 	<base_part class="door" type="222" name="dws_3_Room_Singlestory_FrontDoor" max_health="750">
+  20  		<door filename="Objects/structures/Residential/3Room_SingleStory/dws_3_Room_Singlestory_FrontDoor.cgf" rotate_base="-180" rotate_range="80" rotate_speed="180" rotate_axis="z" rotate_dir="" 
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\dws\doors\dws_24store_door_left.xml:
+  18  
+  19: 	<base_part class="door" type="230" name="dws_24store_door_left" max_health="500">
+  20  		<door filename="Objects/structures/commercial/24_Hour_Store/dws_24store_door_left.cgf" rotate_base="-180" rotate_range="90" rotate_speed="180" rotate_axis="z" rotate_dir="" 
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\dws\doors\dws_24store_door.xml:
+  18  
+  19: 	<base_part class="door" type="229" name="dws_24store_door" max_health="500">
+  20  		<door filename="Objects/structures/commercial/24_Hour_Store/dws_24store_door.cgf" rotate_base="-180" rotate_range="90" rotate_speed="180" rotate_axis="z" rotate_dir="" 
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\dws\doors\dws_blind_door.xml:
+  18  
+  19: 	<base_part class="door" type="244" name="dws_blind_door" max_health="750">
+  20  		<door filename="Objects/structures/hunting_blind/dws_blind_door.cgf" rotate_base="-180" rotate_range="90" rotate_speed="180" rotate_axis="z" rotate_dir="" 
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\dws\doors\dws_blind_window_front.xml:
+  18  
+  19: 	<base_part class="door" type="254" name="dws_blind_window_front" max_health="750">
+  20  		<door filename="Objects/structures/hunting_blind/dws_window_front.cgf" rotate_base="-180" rotate_range="90" rotate_speed="180" rotate_axis="x" rotate_dir="+" 
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\dws\doors\dws_blind_window_side.xml:
+  18  
+  19: 	<base_part class="door" type="255" name="dws_blind_window_side" max_health="750">
+  20  		<door filename="Objects/structures/hunting_blind/dws_window_side.cgf" rotate_base="-180" rotate_range="90" rotate_speed="180" rotate_axis="y" rotate_dir="+" 
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\dws\doors\dws_Church_MainDoors_Left.xml:
+  18  
+  19: 	<base_part class="door" type="214" name="dws_Church_MainDoors_Left" max_health="500">
+  20  		<door filename="Objects/structures/Church/dws_Church_MainDoors_Left.cgf" rotate_base="-180" rotate_range="90" rotate_speed="180" rotate_axis="z" rotate_dir="" 
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\dws\doors\dws_Church_MainDoors_Right.xml:
+  18  
+  19: 	<base_part class="door" type="215" name="dws_Church_MainDoors_Right" max_health="500">
+  20  		<door filename="Objects/structures/Church/dws_Church_MainDoors_Right.cgf" rotate_base="-180" rotate_range="90" rotate_speed="180" rotate_axis="z" rotate_dir="" 
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\dws\doors\dws_corner_door.xml:
+  18  
+  19: 	<base_part class="door" type="231" name="dws_corner_door" max_health="2000">
+  20  		<door filename="Objects/structures/commercial/corner_building/dws_corner_door.cgf" rotate_base="-180" rotate_range="90" rotate_speed="180" rotate_axis="z" rotate_dir="" 
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\dws\doors\dws_entrance_door_right.xml:
+  18  
+  19: 	<base_part class="door" type="200" name="dws_entrance_door_right" max_health="1000">
+  20  		<door filename="Objects/props/diner_assets/entrance_door/dws_entrance_door_right.cgf" rotate_base="-180" rotate_range="90" rotate_speed="180" rotate_axis="z" rotate_dir="" 
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\dws\doors\dws_farm_gate.xml:
+  18  
+  19: 	<base_part class="door" type="247" name="dws_farm_gate" max_health="3000">
+  20  		<door filename="Objects/props/Farm_Gate/dws_farm_gate.cgf" rotate_base="0" rotate_range="90" rotate_speed="60" rotate_axis="z" rotate_dir="" 
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\dws\doors\dws_flatbed_trailer_container_doorleft.xml:
+  18  
+  19: 	<base_part class="door" type="232" name="dws_flatbed_trailer_container_doorleft" max_health="2000">
+  20  		<door filename="Objects/structures/dock/dws_flatbed_trailer_container_doorleft.cgf" rotate_base="-180" rotate_range="135" rotate_speed="60" rotate_axis="z" rotate_dir="-" 
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\dws\doors\dws_flatbed_trailer_container_doorright.xml:
+  18  
+  19: 	<base_part class="door" type="233" name="dws_flatbed_trailer_container_doorright" max_health="2000">
+  20  		<door filename="Objects/structures/dock/dws_flatbed_trailer_container_doorright.cgf" rotate_base="-180" rotate_range="135" rotate_speed="60" rotate_axis="z" rotate_dir="+" 
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\dws\doors\dws_fridge_Ldoor.xml:
+  18  
+  19: 	<base_part class="door" type="205" name="dws_fridge_Ldoor" max_health="500">
+  20  		<door filename="Objects/props/fridge_modern/dws_fridge_Ldoor.cgf" rotate_base="-180" rotate_range="90" rotate_speed="90" rotate_axis="z" rotate_dir="-" 
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\dws\doors\dws_Fridge_old_Doors_left.xml:
+  18  
+  19: 	<base_part class="door" type="204" name="dws_Fridge_old_Doors_left" max_health="500">
+  20  		<door filename="Objects/props/fridge/dws_Fridge_old_Doors_left.cgf" rotate_base="-180" rotate_range="90" rotate_speed="90" rotate_axis="z" rotate_dir="-" 
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\dws\doors\dws_Fridge_old_Doors.xml:
+  18  
+  19: 	<base_part class="door" type="203" name="dws_Fridge_old_Doors" max_health="500">
+  20  		<door filename="Objects/props/fridge/dws_Fridge_old_Doors.cgf" rotate_base="-180" rotate_range="90" rotate_speed="90" rotate_axis="z" rotate_dir="+" 
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\dws\doors\dws_fridge_Rdoor.xml:
+  17  
+  18: 	<base_part class="door" type="206" name="dws_fridge_Rdoor" max_health="500">
+  19  		<door filename="Objects/props/fridge_modern/dws_fridge_Rdoor.cgf" rotate_base="-180" rotate_range="90" rotate_speed="90" rotate_axis="z" rotate_dir="+" 
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\dws\doors\dws_garage_door.xml:
+  18  
+  19: 	<base_part class="door" type="234" name="dws_garage_door" max_health="5000">
+  20  		<door filename="Objects/structures/city_garage_workshop/dws_garage_door.cgf" rotate_base="0" move_range="4" move_speed="2" move_axis="z" move_axis_dir="+" 
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\dws\doors\dws_gasstationdoors.xml:
+  19  
+  20: 	<base_part class="door" type="207" name="dws_gasstationdoors" max_health="750">
+  21  		<door filename="Objects/props/gasStation/dws_gasstationdoors.cgf" rotate_base="-180" rotate_range="90" rotate_speed="180" rotate_axis="z" rotate_dir="" 
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\dws\doors\dws_hospital_door.xml:
+  18  
+  19: 	<base_part class="door" type="270" name="dws_hospital_door" max_health="500">
+  20  		<door filename="Objects/props/hospital/door/dws_hospital_door.cgf" rotate_base="-180" rotate_range="90" rotate_speed="180" rotate_axis="z" rotate_dir="" 
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\dws\doors\dws_hotel_door_left.xml:
+  19  
+  20: 	<base_part class="door" type="219" name="dws_hotel_door_left" max_health="750">
+  21  		<door filename="Objects/structures/Hotel/dws_hotel_door_left.cgf" rotate_base="-180" rotate_range="90" rotate_speed="180" rotate_axis="z" rotate_dir="" 
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\dws\doors\dws_hotel_door_Right.xml:
+  18  
+  19: 	<base_part class="door" type="218" name="dws_hotel_door_Right" max_health="750">
+  20  		<door filename="Objects/structures/Hotel/dws_hotel_door_Right.cgf" rotate_base="-180" rotate_range="90" rotate_speed="180" rotate_axis="z" rotate_dir="" 
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\dws\doors\dws_hotel_door2_left.xml:
+  18  
+  19: 	<base_part class="door" type="216" name="dws_hotel_door2_left" max_health="750">
+  20  		<door filename="Objects/structures/Hotel/dws_hotel_door2_left.cgf" rotate_base="-180" rotate_range="90" rotate_speed="180" rotate_axis="z" rotate_dir="" 
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\dws\doors\dws_hotel_door2_right.xml:
+  19  
+  20: 	<base_part class="door" type="217" name="dws_hotel_door2_right" max_health="750">
+  21  		<door filename="Objects/structures/Hotel/dws_hotel_door2_right.cgf" rotate_base="-180" rotate_range="90" rotate_speed="180" rotate_axis="z" rotate_dir="" 
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\dws\doors\dws_hotel_inside_door.xml:
+  19  
+  20: 	<base_part class="door" type="220" name="dws_hotel_inside_door" max_health="1000">
+  21  		<door filename="Objects/structures/Hotel/dws_hotel_inside_door.cgf" rotate_base="-180" rotate_range="90" rotate_speed="180" rotate_axis="z" rotate_dir="" 
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\dws\doors\dws_hotel_insidedoor_left.xml:
+  18  
+  19: 	<base_part class="door" type="238" name="dws_hotel_insidedoor_left" max_health="1000">
+  20  		<door filename="Objects/structures/Hotel/dws_hotel_insidedoor_left.cgf" rotate_base="-180" rotate_range="90" rotate_speed="180" rotate_axis="z" rotate_dir="" 
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\dws\doors\dws_int_door_left.xml:
+  18  
+  19: 	<base_part class="door" type="202" name="dws_int_door_left" max_health="1000">
+  20  		<door filename="Objects/props/diner_assets/interior_door/dws_int_door_left.cgf" rotate_base="-180" rotate_range="90" rotate_speed="180" rotate_axis="z" rotate_dir="" 
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\dws\doors\dws_int_door.xml:
+  18  
+  19: 	<base_part class="door" type="201" name="dws_int_door" max_health="1000">
+  20  		<door filename="Objects/props/diner_assets/interior_door/dws_int_door.cgf" rotate_base="-180" rotate_range="90" rotate_speed="180" rotate_axis="z" rotate_dir="" 
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\dws\doors\dws_jawboat_door_right.xml:
+  18  
+  19: 	<base_part class="door" type="209" name="dws_jawboat_door_right" max_health="750">
+  20  		<door filename="Objects/props/jaw_boat/dws_jawboat_door_right.cgf" rotate_base="-180" rotate_range="90" rotate_speed="180" rotate_axis="z" rotate_dir="" 
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\dws\doors\dws_jawboat_door.xml:
+  18  
+  19: 	<base_part class="door" type="208" name="dws_jawboat_door" max_health="750">
+  20  		<door filename="Objects/props/jaw_boat/dws_jawboat_door.cgf" rotate_base="-180" rotate_range="90" rotate_speed="180" rotate_axis="z" rotate_dir="" 
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\dws\doors\dws_lockerDoor.xml:
+  18  
+  19: 	<base_part class="door" type="212" name="dws_lockerDoor" max_health="250">
+  20  		<door filename="Objects/props/locker/dws_lockerDoor.cgf" rotate_base="-180" rotate_range="135" rotate_speed="180" rotate_axis="z" rotate_dir="+" 
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\dws\doors\dws_mobilehome_door_left.xml:
+  18  
+  19: 	<base_part class="door" type="225" name="dws_mobilehome_door_left" max_health="1000">
+  20  		<door filename="Objects/structures/Residential/mobileHome/doorway/dws_mobilehome_door_left.cgf" rotate_base="-180" rotate_range="90" rotate_speed="180" rotate_axis="z" rotate_dir="" 
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\dws\doors\dws_mobilehome_door.xml:
+  18  
+  19: 	<base_part class="door" type="224" name="dws_mobilehome_door" max_health="1000">
+  20  		<door filename="Objects/structures/Residential/mobileHome/doorway/dws_mobilehome_door.cgf" rotate_base="-180" rotate_range="90" rotate_speed="180" rotate_axis="z" rotate_dir="" 
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\dws\doors\dws_modern_family_door.xml:
+  18  
+  19: 	<base_part class="door" type="226" name="dws_modern_family_door" max_health="1000">
+  20  		<door filename="Objects/structures/Residential/modern_family_house_1/dws_modern_family_door.cgf" rotate_base="-180" rotate_range="90" rotate_speed="180" rotate_axis="z" rotate_dir="" 
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\dws\doors\dws_modern_family_inside_door_right.xml:
+  19  
+  20: 	<base_part class="door" type="228" name="dws_modern_family_inside_door_right" max_health="1000">
+  21  		<door filename="Objects/structures/Residential/modern_family_house_1/dws_modern_family_inside_door_right.cgf" rotate_base="-180" rotate_range="90" rotate_speed="180" rotate_axis="z" rotate_dir="" 
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\dws\doors\dws_modern_family_inside_door.xml:
+  19  
+  20: 	<base_part class="door" type="227" name="dws_modern_family_inside_door" max_health="1000">
+  21  		<door filename="Objects/structures/Residential/modern_family_house_1/dws_modern_family_inside_door.cgf" rotate_base="-180" rotate_range="90" rotate_speed="180" rotate_axis="z" rotate_dir="" 
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\dws\doors\dws_office_cabin_door_left.xml:
+  18  
+  19: 	<base_part class="door" type="211" name="dws_office_cabin_door_left" max_health="1500">
+  20  		<door filename="Objects/props/junkyard/dws_office_cabin_door_left.cgf" rotate_base="-180" rotate_range="90" rotate_speed="180" rotate_axis="z" rotate_dir="" 
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\dws\doors\dws_office_cabin_door.xml:
+  18  
+  19: 	<base_part class="door" type="210" name="dws_office_cabin_door" max_health="1500">
+  20  		<door filename="Objects/props/junkyard/dws_office_cabin_door.cgf" rotate_base="-180" rotate_range="90" rotate_speed="180" rotate_axis="z" rotate_dir="" 
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\dws\doors\dws_safe_door.xml:
+  17  	</explosion>
+  18: 	<base_part class="door" type="213" name="dws_safe_door" max_health="5000">
+  19  		<door filename="Objects/props/residential_assets/safe/dws_safe_door.cgf" rotate_base="-180" rotate_range="135" rotate_speed="90" rotate_axis="z" rotate_dir="+" 
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\dws\doors\dws_sheriff_office_window_door_01.xml:
+  18  
+  19: 	<base_part class="door" type="271" name="dws_sheriff_office_window_door_01" max_health="1000">
+  20  		<door filename="Objects/props/Doors/sheriff_office_doors/dws_sheriff_office_window_door_01.cgf" rotate_base="-180" rotate_range="90" rotate_speed="180" rotate_axis="z" rotate_dir="" 
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\dws\doors\dws_TLH_FrontDoor.xml:
+  18  
+  19: 	<base_part class="door" type="223" name="dws_TLH_FrontDoor" max_health="1000">
+  20  		<door filename="Objects/structures/Residential/The_Last_House/dws_TLH_FrontDoor.cgf" rotate_base="-180" rotate_range="90" rotate_speed="180" rotate_axis="z" rotate_dir="" 
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\dws\doors\dws_warehouse_door_small.xml:
+  18  
+  19: 	<base_part class="door" type="241" name="dws_warehouse_door_small" max_health="5000">
+  20  		<door filename="Objects/structures/Industrial/Warehouse1/dws_warehouse_door_small.cgf" rotate_base="0" move_range="4" move_speed="2" move_axis="z" move_axis_dir="+" 
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\dws\doors\dws_warehouse1_door_big.xml:
+  18  
+  19: 	<base_part class="door" type="242" name="dws_warehouse1_door_big" max_health="10000">
+  20  		<door filename="Objects/structures/Industrial/Warehouse1/dws_warehouse1_door_big.cgf" rotate_base="0" move_range="4" move_speed="2" move_axis="z" move_axis_dir="+" 
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\dws\explosive\dws_acid_barrel.xml:
+  6  
+  7: 	<base_part class="static" type="240" name="dws_acid_barrel" max_health="35">
+  8  		<static filename="Objects/basebuilding/explosive/barrel/dws_barrel_acid.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\dws\explosive\dws_fire_extinguisher.xml:
+  6  
+  7: 	<base_part class="static" type="239" name="dws_fire_extinguisher" max_health="20">
+  8  		<static filename="Objects/props/fireex/fireex.cgf"/> <!-- All existing fire extinguishers will be replaced with DWS version -->
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\dws\misc\dws_cabinStove.xml:
+  11  
+  12: 	<base_part class="grill" type="269" name="dws_cabinStove" max_health="5000">
+  13  		<grill filename="Objects/props/cabinAssets/cabinStove.cgf" helper_food="food" />
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\dws\misc\dws_firepit_outdoors_1.xml:
+  11  
+  12: 	<base_part class="grill" type="252" name="dws_firepit_outdoors_1" max_health="2000">
+  13  		<grill filename="Objects/props/firepit_outdoors/dws_firepit_outdoors_1.cgf" helper_food="food" helper_wood="wood" model_wood="Objects/props/firepit_outdoors/dws_firepit_outdoors_wood.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\dws\powered\powered_ceiling_light_c.xml:
+  6  
+  7: 	<base_part class="static" type="237" name="powered_ceiling_light_c" max_health="10">
+  8  		<static filename="Objects/props/furniture/appliances/lamps/dws_ceiling_light_c_off.cgf" />
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\dws\powered\powered_floodlight01.xml:
+  6  
+  7: 	<base_part class="static" type="253" name="powered_floodlight01" max_health="10">
+  8  		<static filename="Objects/props/industrial/misc/dws_floodlight01.cgf" />
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\dws\powered\powered_microwave.xml:
+  6  
+  7: 	<base_part class="oven" type="246" name="powered_microwave" max_health="2000">
+  8  		<oven filename="Objects/props/microwave/dws_microwave.cgf" helper_food="food"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\dws\powered\powered_oven.xml:
+  6  
+  7: 	<base_part class="oven" type="245" name="powered_oven" max_health="5000">
+  8  		<oven filename="Objects/props/elecStove/dws_elecstove.cgf" helper_food="food"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\dws\powered\powered_wall_lamp.xml:
+  6  
+  7: 	<base_part class="static" type="259" name="powered_wall_lamp" max_health="10">
+  8  		<static filename="Objects/props/wall_lamp/dws_wall_lamp.cgf" />
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\metal\arcade_cabinet.xml:
+  12  
+  13: 	<base_part class="static" type="2057" name="arcade_cabinet" max_health="15000" repair_with="SheetMetal" towable="1" repair_sound="Play_wall_repair">
+  14  		<static filename="Objects/basebuilding/other/arcade_cabinet/arcade_cabinet.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\metal\metal_aframe_3m_4m.xml:
+  12  
+  13: 	<base_part class="static" type="2056" name="metal_aframe_3m_4m" max_health="30000" repair_with="SheetMetal" towable="1" repair_sound="Play_wall_repair">
+  14  		<static filename="Objects/basebuilding/metal/metal_aframe_3m_4m.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\metal\metal_door_lockable_1m_2m.xml:
+  12  
+  13: 	<base_part class="door" type="2088" name="metal_door_lockable_1m_2m" max_health="35000" repair_with="SheetMetal" towable="1" repair_sound="Play_wall_repair">
+  14  		<door filename="Objects/basebuilding/metal/metal_door.cgf" rotate_base="-90" rotate_range="90" rotate_speed="30" rotate_axis="z" rotate_axis_front="y" sound_open="Play_door_metal_open" sound_opened="" sound_close="Play_door_metal_close" sound_closed="Play_door_metal_closed" sound_lock="Play_door_lock" sound_unlock="Play_door_unlock"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\metal\metal_gate_lockable_3m_5_4m.xml:
+  12  
+  13: 	<base_part class="door" type="2099" name="metal_gate_lockable_3m_5_4m" max_health="30000" repair_with="SheetMetal" towable="1" repair_sound="Play_wall_repair">
+  14  		<door filename="Objects/basebuilding/metal/metal_gate_3m_5_4m.cgf" rotate_base="-90" rotate_range="90" rotate_speed="30" rotate_axis="z" rotate_axis_front="y" sound_open="Play_door_metal_open" sound_opened="" sound_close="Play_door_metal_close" sound_closed="Play_door_metal_closed" sound_lock="Play_door_lock" sound_unlock="Play_door_unlock"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\metal\metal_gatehouse_4m_8m.xml:
+  12  
+  13: 	<base_part class="static" type="2098" name="metal_gatehouse_4m_8m" max_health="30000" repair_with="SheetMetal" towable="1" repair_sound="Play_wall_repair">
+  14  		<static filename="Objects/basebuilding/metal/metal_gateway_4m_8m.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\metal\metal_platform_3m_4m_4m.xml:
+  12  
+  13: 	<base_part class="static" type="2061" name="metal_platform_3m_4m_4m" max_health="37500" repair_with="SheetMetal" towable="1" repair_sound="Play_wall_repair">
+  14  		<static filename="Objects/basebuilding/metal/metal_platform_4m_4m_4m.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\metal\metal_safe.xml:
+  12  
+  13: 	<base_part class="static" type="2060" name="metal_safe" max_health="99000" repair_with="SheetMetal" towable="1" repair_sound="Play_wall_repair" limit="2">
+  14  		<static filename="Objects/props/residential_assets/safe/safe_base.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\metal\metal_steam_stand.xml:
+   9  
+  10: 	<base_part class="powered" type="2998" name="metal_steam_stand" max_health="15000" repair_with="SheetMetal" repair_sound="Play_wall_repair">
+  11  		<powered filename="Objects/basebuilding/other/kiosk/bpart_kiosk.cgf" power_consumption="1"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\metal\metal_wall_1_3m_2m.xml:
+  12  
+  13: 	<base_part class="static" type="2045" name="metal_wall_1_3m_2m" max_health="30000" repair_with="SheetMetal" towable="1" repair_sound="Play_wall_repair">
+  14  		<static filename="Objects/basebuilding/metal/metal_wall_1_3m_2m.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\metal\metal_wall_1_3m_4m.xml:
+  12  
+  13: 	<base_part class="static" type="2046" name="metal_wall_1_3m_4m" max_health="30000" repair_with="SheetMetal" towable="1" repair_sound="Play_wall_repair">
+  14  		<static filename="Objects/basebuilding/metal/metal_wall_1_3m_4m.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\metal\metal_wall_2m_2m.xml:
+  12  
+  13: 	<base_part class="static" type="2048" name="metal_wall_2m_2m" max_health="30000" repair_with="SheetMetal" towable="1" repair_sound="Play_wall_repair">
+  14  		<static filename="Objects/basebuilding/metal/metal_wall_2m_2m.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\metal\metal_wall_2m_4m.xml:
+  12  
+  13: 	<base_part class="static" type="2049" name="metal_wall_2m_4m" max_health="30000" repair_with="SheetMetal" towable="1" repair_sound="Play_wall_repair">
+  14  		<static filename="Objects/basebuilding/metal/metal_wall_2m_4m.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\metal\metal_wall_3m_2m.xml:
+  12  
+  13: 	<base_part class="static" type="2051" name="metal_wall_3m_2m" max_health="30000" repair_with="SheetMetal" towable="1" repair_sound="Play_wall_repair">
+  14  		<static filename="Objects/basebuilding/metal/metal_wall_3m_2m.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\metal\metal_wall_3m_4m.xml:
+  12  
+  13: 	<base_part class="static" type="2052" name="metal_wall_3m_4m" max_health="30000" repair_with="SheetMetal" towable="1" repair_sound="Play_wall_repair">
+  14  		<static filename="Objects/basebuilding/metal/metal_wall_3m_4m.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\metal\metal_wall_door_3m_4m.xml:
+  12  
+  13: 	<base_part class="static" type="2053" name="metal_wall_door_3m_4m" max_health="30000" repair_with="SheetMetal" towable="1" repair_sound="Play_wall_repair">
+  14  		<static filename="Objects/basebuilding/metal/metal_doorway_3m_4m.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\metal\metal_wall_window_3m_2m.xml:
+  12  
+  13: 	<base_part class="static" type="2054" name="metal_wall_window_3m_2m" max_health="30000" repair_with="SheetMetal" towable="1" repair_sound="Play_wall_repair">
+  14  		<static filename="Objects/basebuilding/metal/metal_wall_window_3m_2m.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\metal\metal_wall_window_3m_4m.xml:
+  12  
+  13: 	<base_part class="static" type="2055" name="metal_wall_window_3m_4m" max_health="30000" repair_with="SheetMetal" towable="1" repair_sound="Play_wall_repair">
+  14  		<static filename="Objects/basebuilding/metal/metal_wall_window_3m_4m.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\misc\christmas_gift_pile.xml:
+   9  
+  10: 	<base_part class="static" type="296" name="christmas_gift_pile" max_health="1000" repair_with="DuctTape">
+  11  		<static filename="Objects/basebuilding/other/christmas_gift_pile/christmas_gift_pile.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\misc\christmas_light_string.xml:
+  11  
+  12: 	<base_part class="static" type="289" name="christmas_light_string" max_health="1000" repair_with="DuctTape">
+  13  		<static filename="Objects/basebuilding/other/christmas_string_lights/christmas_string_lights.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\misc\christmas_rug_01.xml:
+  10  
+  11: 	<base_part class="static" type="293" name="christmas_rug_01" max_health="200" repair_with="Rags">
+  12  		<static filename="Objects/basebuilding/other/rugs/crafted_rugs/christmas_rug_01.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\misc\christmas_rug_02.xml:
+  10  
+  11: 	<base_part class="static" type="294" name="christmas_rug_02" max_health="200" repair_with="Rags">
+  12  		<static filename="Objects/basebuilding/other/rugs/crafted_rugs/christmas_rug_02.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\misc\christmas_rug_03.xml:
+  10  
+  11: 	<base_part class="static" type="295" name="christmas_rug_03" max_health="200" repair_with="Rags">
+  12  		<static filename="Objects/basebuilding/other/rugs/crafted_rugs/christmas_rug_03.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\misc\christmas_snowglobe.xml:
+   9  
+  10: 	<base_part class="static" type="297" name="christmas_snowglobe" max_health="1000" repair_with="DuctTape">
+  11  		<static filename="Objects/basebuilding/other/snowglobe/christmas_snowglobe.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\misc\christmas_stocking.xml:
+  11  
+  12: 	<base_part class="static" type="292" name="christmas_stocking" max_health="1000" repair_with="Rags">
+  13  		<static filename="Objects/basebuilding/other/christmas_stocking/christmas_stocking.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\misc\christmas_tree.xml:
+  12  
+  13: 	<base_part class="static" type="2999" name="christmas_tree" towable="1">
+  14  		<static filename="Objects/natural/vegetation/Trees/christmas_tree/christmas_tree.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\misc\gnome_giant_c.xml:
+  13  
+  14: 	<base_part class="static" type="2500" name="gnome_giant_c" max_health="15000" repair_with="DuctTape" towable="1">
+  15  		<static filename="Objects/props/misc/garden_gnome/gnome_standard_c_giant.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\misc\gnome_giant_scot.xml:
+  13  
+  14: 	<base_part class="static" type="2503" name="gnome_giant_scot" max_health="15000" repair_with="DuctTape" towable="1">
+  15  		<static filename="objects/endtimestories/gnomes/gnome_giant_scot.cgf" Material="objects/endtimestories/gnomes/gardengnome_scot.mtl"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\misc\halloween_candle.xml:
+  10  
+  11: 	<base_part class="static" type="282" name="halloween_candle" max_health="600" repair_with="AnimalFat" limit="10">
+  12  		<static filename="Objects/basebuilding/other/candle/halloween_candle.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\misc\halloween_creepy_bear.xml:
+   9  
+  10: 	<base_part class="static" type="288" name="halloween_creepy_bear" max_health="5000" repair_with="DuctTape">
+  11  		<static filename="Objects/props/teddy_bear/teddybear_sitting.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\misc\halloween_creepy_bunny.xml:
+   9  
+  10: 	<base_part class="static" type="287" name="halloween_creepy_bunny" max_health="5000" repair_with="DuctTape">
+  11  		<static filename="Objects/props/residential_assets/toys/toy_bunny.cgf" material="objects/props/residential_assets/toys/bunny_creepy.mtl"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\misc\halloween_light_string.xml:
+   9  
+  10: 	<base_part class="static" type="285" name="halloween_light_string" max_health="1000" repair_with="DuctTape">
+  11  		<static filename="Objects/basebuilding/other/halloween_light_string/halloween_light_string.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\misc\propane_heater.xml:
+   9  
+  10: 	<base_part class="static" type="260" name="propane_heater" max_health="1000" repair_with="ScrapMetal">
+  11  		<static filename="Objects/basebuilding/other/propane_heater/propane_heater.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\misc\snowman_small.xml:
+   9  
+  10: 	<base_part class="static" type="291" name="snowman_small" max_health="1000" repair_with="DuctTape">
+  11  		<static filename="Objects/basebuilding/other/snowman/snowman_small.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\misc\snowman.xml:
+   9  
+  10: 	<base_part class="static" type="290" name="snowman" max_health="1000" repair_with="DuctTape">
+  11  		<static filename="Objects/basebuilding/other/snowman/snowman.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\plated\garage_door_large.xml:
+  12  
+  13: 	<base_part class="door" type="299" name="garage_door_large" max_health="15000" repair_sound="Play_wall_repair" repair_with="SheetMetal">
+  14  		<door filename="Objects/basebuilding/plated/garage_door_large.cgf" rotate_base="0" move_range="4.3" move_speed="1.5" move_axis="z" move_axis_dir="+" sound_open="Play_industrial_garage_door_open" sound_opened="" sound_close="Play_industrial_garage_door_close" sound_closed="Play_door_wood_closed" sound_lock="Play_door_lock" sound_unlock="Play_door_unlock"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\rock\rock_foundation_2m_2m_4m.xml:
+  13  
+  14: 	<base_part class="static" type="280" name="rock_foundation_2m_2m_4m" max_health="22500" repair_with="Rocks" repair_sound="Play_wall_repair"> 
+  15  		<static filename="Objects/basebuilding/rock/rock_foundation_2m_2m_4m.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\rock\rock_foundation_4m_4m_4m.xml:
+  13  
+  14: 	<base_part class="static" type="278" name="rock_foundation_4m_4m_4m" max_health="22500" repair_with="Rocks" repair_sound="Play_wall_repair"> 
+  15  		<static filename="Objects/basebuilding/rock/rock_foundation_4m_4m_4m.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\sand\hesco_barrier.xml:
+  11  
+  12: 	<base_part class="static" type="236" name="hesco_barrier" max_health="3000" repair_with="ScrapMetal">
+  13  		<static filename="Objects/basebuilding/sand/hesco_barrier/hesco_bpart.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\water\water_barrel.xml:
+  11  
+  12: 	<base_part class="water_barrel" type="256" name="water_barrel" max_health="2000">
+  13  		<water_barrel filename="Objects/props/plastic_barrel/dws_plastic_barrel_full.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\water\water_collector.xml:
+  10  
+  11: 	<base_part class="water_barrel" type="257" name="water_collector" max_health="2000">
+  12  		<water_barrel filename="Objects/basebuilding/other/water_collector/water_collector.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\water\water_purifier.xml:
+  10  
+  11: 	<base_part class="water_purifier" type="258" name="water_purifier" max_health="2000">
+  12  		<water_purifier filename="Objects/basebuilding/other/water_purifier/crafted_water_purifier.cgf" helper_wood="wood" model_wood="objects/basebuilding/other/water_purifier/crafted_water_purifier_wood.cgf" helper_propane="propane_tank" helper_propane_rotation="0,0,0" model_propane="Objects/props/propanetank_small/propanetank_small.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\wood\wood_door_1m_2m.xml:
+  10  
+  11: 	<base_part class="door" type="2" name="wood_door_1m_2m" max_health="5000" repair_sound="Play_wall_repair">
+  12  		<door filename="Objects/basebuilding/wood/wood_door_1m_2m.cgf" rotate_base="-90" rotate_range="90" rotate_speed="90" rotate_axis="z" rotate_axis_front="y" sound_open="Play_door_wood_open" sound_opened="" sound_close="Play_door_wood_close" sound_closed="Play_door_wood_closed"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\wood\wood_foundation_4m_4m_4m.xml:
+  13  
+  14: 	<base_part class="static" type="275" name="wood_foundation_4m_4m_4m" repair_sound="Play_wall_repair">
+  15  		<static filename="Objects/basebuilding/wood/wood_foundation_4m_4m_4m.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\wood\wood_ramp_0m_1_3m_1m.xml:
+  10  
+  11: 	<base_part class="static" type="20" name="wood_ramp_0m_1_3m_1m" repair_sound="Play_wall_repair">
+  12  		<static filename="Objects/basebuilding/wood/ramp_0m_1_3m_1m.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\wood\wood_ramp_0m_1_3m_3m.xml:
+  10  
+  11: 	<base_part class="static" type="22" name="wood_ramp_0m_1_3m_3m" repair_sound="Play_wall_repair">
+  12  		<static filename="Objects/basebuilding/wood/ramp_0m_1_3m_3m.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\wood\wood_ramp_1_3m_3m_1m.xml:
+  10  
+  11: 	<base_part class="static" type="23" name="wood_ramp_1_3m_3m_1m" repair_sound="Play_wall_repair">
+  12  		<static filename="Objects/basebuilding/wood/ramp_1_3m_3m_1m.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\wood\wood_ramp_1_3m_3m_3m.xml:
+  10  
+  11: 	<base_part class="static" type="25" name="wood_ramp_1_3m_3m_3m" repair_sound="Play_wall_repair">
+  12  		<static filename="Objects/basebuilding/wood/ramp_1_3m_3m_3m.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\wood\wood_shutter_1_6m_0_9m.xml:
+  10  
+  11: 	<base_part class="door" type="267" name="wood_shutter_1_6m_0_9m" max_health="5000" repair_sound="Play_wall_repair">
+  12  		<door filename="Objects/basebuilding/wood/shutter_1_6m_0_9m.cgf" rotate_base="-90" rotate_range="90" rotate_speed="90" rotate_axis="z" rotate_axis_front="y" sound_open="Play_door_wood_open" sound_opened="" sound_close="Play_door_wood_close" sound_closed="Play_door_wood_closed"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\wood\wood_shutter_small_lockable.xml:
+  10  
+  11: 	<base_part class="door" type="274" name="wood_shutter_small_lockable" max_health="5000" repair_sound="Play_wall_repair">
+  12  		<door filename="Objects/basebuilding/wood/wood_shutter_small.cgf" rotate_base="-90" rotate_range="90" rotate_speed="90" rotate_axis="z" rotate_axis_front="y" sound_open="Play_door_wood_open" sound_opened="" sound_close="Play_door_wood_close" sound_closed="Play_door_wood_closed" sound_lock="Play_door_lock" sound_unlock="Play_door_unlock"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\wood\wood_stairs_0m_2m_3m.xml:
+  10  
+  11: 	<base_part class="static" type="21" name="wood_stairs_0m_2m_3m" repair_sound="Play_wall_repair">
+  12  		<static filename="Objects/basebuilding/wood/stairs_0m_2m_3m.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\wood\wood_stairs_1_3m_2m_1m.xml:
+  10  
+  11: 	<base_part class="static" type="24" name="wood_stairs_1_3m_2m_1m" repair_sound="Play_wall_repair">
+  12  		<static filename="Objects/basebuilding/wood/stairs_1_3m_2m_1m.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\wood\wood_stairs_1_3m_2m_3m.xml:
+  10  
+  11: 	<base_part class="static" type="27" name="wood_stairs_1_3m_2m_3m" repair_sound="Play_wall_repair">
+  12  		<static filename="Objects/basebuilding/wood/stairs_1_3m_2m_3m.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\wood\wood_stairs_1_3m_3m_1m.xml:
+  10  
+  11: 	<base_part class="static" type="28" name="wood_stairs_1_3m_3m_1m" repair_sound="Play_wall_repair">
+  12  		<static filename="Objects/basebuilding/wood/stairs_1_3m_3m_1m.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\wood\wood_walkway_1_3m_1m_1m.xml:
+  10  
+  11: 	<base_part class="static" type="26" name="wood_walkway_1_3m_1m_1m" repair_sound="Play_wall_repair">
+  12  		<static filename="Objects/basebuilding/wood/walkway_1_3m_1m_1m.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\wood\wood_walkway_1_3m_3m_1m.xml:
+  10  
+  11: 	<base_part class="static" type="29" name="wood_walkway_1_3m_3m_1m" repair_sound="Play_wall_repair">
+  12  		<static filename="Objects/basebuilding/wood/walkway_1_3m_3m_1m.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\wood\wood_wall_drawbridge_3m_4m.xml:
+  10  
+  11: 	<base_part class="static" type="235" name="wood_wall_drawbridge_3m_4m" repair_sound="Play_wall_repair">
+  12  		<static filename="Objects/basebuilding/wood/wood_wall_drawbridge_3m_4m.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\wood\wood_wall_garage_large.xml:
+  10  
+  11: 	<base_part class="static" type="298" name="wood_wall_garage_large" repair_sound="Play_wall_repair">
+  12  		<static filename="Objects/basebuilding/wood/wood_wall_garage_large.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\wood\wood_wall_shutter_3m_2m.xml:
+  10  
+  11: 	<base_part class="static" type="266" name="wood_wall_shutter_3m_2m" repair_sound="Play_wall_repair">
+  12  		<static filename="Objects/basebuilding/wood/wall_shutter_3m_2m.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\wood\wood_wall_shutter_3m_4m.xml:
+  10  
+  11: 	<base_part class="static" type="268" name="wood_wall_shutter_3m_4m" repair_sound="Play_wall_repair">
+  12  		<static filename="Objects/basebuilding/wood/wall_shutter_3m_4m.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\wood\wood_watchtower_big.xml:
+  10  
+  11: 	<base_part class="static" type="277" name="wood_watchtower_big" max_health="20000" repair_sound="Play_wall_repair">
+  12  		<static filename="Objects/basebuilding/wood/watchtower_wood_big.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\wood\wood_watchtower_tire_big.xml:
+  10  
+  11: 	<base_part class="static" type="279" name="wood_watchtower_tire_big" max_health="20000" repair_sound="Play_wall_repair">
+  12  		<static filename="Objects/basebuilding/wood/watchtower_wood_big_tire.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\wood\ramp_walls\wood_ramp_wall_0m_1_3m_3m.xml:
+  10  
+  11: 	<base_part class="static" type="261" name="wood_ramp_wall_0m_1_3m_3m">
+  12  		<static filename="Objects/basebuilding/wood/wood_ramp_wall_0m_1_3m_3m.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\wood\ramp_walls\wood_ramp_wall_0m_2m_3m.xml:
+  10  
+  11: 	<base_part class="static" type="262" name="wood_ramp_wall_0m_2m_3m">
+  12  		<static filename="Objects/basebuilding/wood/wood_ramp_wall_0m_2m_3m.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\wood\ramp_walls\wood_ramp_wall_1_3m_2m_3m.xml:
+  10  
+  11: 	<base_part class="static" type="264" name="wood_ramp_wall_1_3m_2m_3m">
+  12  		<static filename="Objects/basebuilding/wood/wood_ramp_wall_1_3m_2m_3m.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\wood\ramp_walls\wood_ramp_wall_1_3m_3m_3m.xml:
+  10  
+  11: 	<base_part class="static" type="265" name="wood_ramp_wall_1_3m_3m_3m">
+  12  		<static filename="Objects/basebuilding/wood/wood_ramp_wall_1_3m_3m_3m.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\wood\ramp_walls\wood_ramp_wall_2m_3m_1m.xml:
+  10  
+  11: 	<base_part class="static" type="263" name="wood_ramp_wall_2m_3m_1m">
+  12  		<static filename="Objects/basebuilding/wood/wood_ramp_wall_2m_3m_1m.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\dws\doors\dws_3_Room_Singlestory_BackDoor.xml:
+  7  
+  8: 	<base_part class="door" type="221" name="dws_3_Room_Singlestory_BackDoor" max_health="750">
+  9  		<door filename="Objects/structures/Residential/3Room_SingleStory/dws_3_Room_Singlestory_BackDoor.cgf" rotate_base="-180" rotate_range="90" rotate_speed="180" rotate_axis="z" rotate_dir="" 
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\dws\doors\dws_3_Room_Singlestory_FrontDoor.xml:
+  7  
+  8: 	<base_part class="door" type="222" name="dws_3_Room_Singlestory_FrontDoor" max_health="750">
+  9  		<door filename="Objects/structures/Residential/3Room_SingleStory/dws_3_Room_Singlestory_FrontDoor.cgf" rotate_base="-180" rotate_range="80" rotate_speed="180" rotate_axis="z" rotate_dir="" 
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\dws\doors\dws_24store_door_left.xml:
+  7  
+  8: 	<base_part class="door" type="230" name="dws_24store_door_left" max_health="500">
+  9  		<door filename="Objects/structures/commercial/24_Hour_Store/dws_24store_door_left.cgf" rotate_base="-180" rotate_range="90" rotate_speed="180" rotate_axis="z" rotate_dir="" 
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\dws\doors\dws_24store_door.xml:
+  7  
+  8: 	<base_part class="door" type="229" name="dws_24store_door" max_health="500">
+  9  		<door filename="Objects/structures/commercial/24_Hour_Store/dws_24store_door.cgf" rotate_base="-180" rotate_range="90" rotate_speed="180" rotate_axis="z" rotate_dir="" 
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\dws\doors\dws_blind_door.xml:
+  7  
+  8: 	<base_part class="door" type="244" name="dws_blind_door" max_health="750">
+  9  		<door filename="Objects/structures/hunting_blind/dws_blind_door.cgf" rotate_base="-180" rotate_range="90" rotate_speed="180" rotate_axis="z" rotate_dir="" 
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\dws\doors\dws_blind_window_front.xml:
+  7  
+  8: 	<base_part class="door" type="254" name="dws_blind_window_front" max_health="750">
+  9  		<door filename="objects/structures/hunting_blind/dws_window_front.cgf" rotate_base="-180" rotate_range="90" rotate_speed="180" rotate_axis="x" rotate_dir="+" 
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\dws\doors\dws_blind_window_side.xml:
+  7  
+  8: 	<base_part class="door" type="255" name="dws_blind_window_side" max_health="750">
+  9  		<door filename="objects/structures/hunting_blind/dws_window_side.cgf" rotate_base="-180" rotate_range="90" rotate_speed="180" rotate_axis="y" rotate_dir="+" 
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\dws\doors\dws_Church_MainDoors_Left.xml:
+  7  
+  8: 	<base_part class="door" type="214" name="dws_Church_MainDoors_Left" max_health="500">
+  9  		<door filename="Objects/structures/Church/dws_Church_MainDoors_Left.cgf" rotate_base="-180" rotate_range="90" rotate_speed="180" rotate_axis="z" rotate_dir="" 
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\dws\doors\dws_Church_MainDoors_Right.xml:
+  7  
+  8: 	<base_part class="door" type="215" name="dws_Church_MainDoors_Right" max_health="500">
+  9  		<door filename="Objects/structures/Church/dws_Church_MainDoors_Right.cgf" rotate_base="-180" rotate_range="90" rotate_speed="180" rotate_axis="z" rotate_dir="" 
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\dws\doors\dws_corner_door.xml:
+  7  
+  8: 	<base_part class="door" type="231" name="dws_corner_door" max_health="2000">
+  9  		<door filename="Objects/structures/commercial/corner_building/dws_corner_door.cgf" rotate_base="-180" rotate_range="90" rotate_speed="180" rotate_axis="z" rotate_dir="" 
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\dws\doors\dws_entrance_door_right.xml:
+  7  
+  8: 	<base_part class="door" type="200" name="dws_entrance_door_right" max_health="1000">
+  9  		<door filename="Objects/props/diner_assets/entrance_door/dws_entrance_door_right.cgf" rotate_base="-180" rotate_range="90" rotate_speed="180" rotate_axis="z" rotate_dir="" 
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\dws\doors\dws_farm_gate.xml:
+  7  
+  8: 	<base_part class="door" type="247" name="dws_farm_gate" max_health="3000">
+  9  		<door filename="Objects/props/Farm_Gate/dws_farm_gate.cgf" rotate_base="0" rotate_range="90" rotate_speed="60" rotate_axis="z" rotate_dir="" 
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\dws\doors\dws_flatbed_trailer_container_doorleft.xml:
+  7  
+  8: 	<base_part class="door" type="232" name="dws_flatbed_trailer_container_doorleft" max_health="2000">
+  9  		<door filename="Objects/structures/dock/dws_flatbed_trailer_container_doorleft.cgf" rotate_base="-180" rotate_range="135" rotate_speed="60" rotate_axis="z" rotate_dir="-" 
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\dws\doors\dws_flatbed_trailer_container_doorright.xml:
+  7  
+  8: 	<base_part class="door" type="233" name="dws_flatbed_trailer_container_doorright" max_health="2000">
+  9  		<door filename="Objects/structures/dock/dws_flatbed_trailer_container_doorright.cgf" rotate_base="-180" rotate_range="135" rotate_speed="60" rotate_axis="z" rotate_dir="+" 
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\dws\doors\dws_fridge_Ldoor.xml:
+  7  
+  8: 	<base_part class="door" type="205" name="dws_fridge_Ldoor" max_health="500">
+  9  		<door filename="Objects/props/fridge_modern/dws_fridge_Ldoor.cgf" rotate_base="-180" rotate_range="90" rotate_speed="90" rotate_axis="z" rotate_dir="-" 
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\dws\doors\dws_Fridge_old_Doors_left.xml:
+  7  
+  8: 	<base_part class="door" type="204" name="dws_Fridge_old_Doors_left" max_health="500">
+  9  		<door filename="Objects/props/fridge/dws_Fridge_old_Doors_left.cgf" rotate_base="-180" rotate_range="90" rotate_speed="90" rotate_axis="z" rotate_dir="-" 
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\dws\doors\dws_Fridge_old_Doors.xml:
+  7  
+  8: 	<base_part class="door" type="203" name="dws_Fridge_old_Doors" max_health="500">
+  9  		<door filename="Objects/props/fridge/dws_Fridge_old_Doors.cgf" rotate_base="-180" rotate_range="90" rotate_speed="90" rotate_axis="z" rotate_dir="+" 
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\dws\doors\dws_fridge_Rdoor.xml:
+  7  
+  8: 	<base_part class="door" type="206" name="dws_fridge_Rdoor" max_health="500">
+  9  		<door filename="Objects/props/fridge_modern/dws_fridge_Rdoor.cgf" rotate_base="-180" rotate_range="90" rotate_speed="90" rotate_axis="z" rotate_dir="+" 
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\dws\doors\dws_garage_door.xml:
+  7  
+  8: 	<base_part class="door" type="234" name="dws_garage_door" max_health="5000">
+  9  		<door filename="Objects/structures/city_garage_workshop/dws_garage_door.cgf" rotate_base="0" move_range="4" move_speed="2" move_axis="z" move_axis_dir="+" 
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\dws\doors\dws_gasstationdoors.xml:
+  7  
+  8: 	<base_part class="door" type="207" name="dws_gasstationdoors" max_health="750">
+  9  		<door filename="Objects/props/gasStation/dws_gasstationdoors.cgf" rotate_base="-180" rotate_range="90" rotate_speed="180" rotate_axis="z" rotate_dir="" 
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\dws\doors\dws_hospital_door.xml:
+  7  
+  8: 	<base_part class="door" type="270" name="dws_hospital_door" max_health="500">
+  9  		<door filename="Objects/props/hospital/door/dws_hospital_door.cgf" rotate_base="-180" rotate_range="90" rotate_speed="180" rotate_axis="z" rotate_dir="" 
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\dws\doors\dws_hotel_door_left.xml:
+  7  
+  8: 	<base_part class="door" type="219" name="dws_hotel_door_left" max_health="750">
+  9  		<door filename="Objects/structures/Hotel/dws_hotel_door_left.cgf" rotate_base="-180" rotate_range="90" rotate_speed="180" rotate_axis="z" rotate_dir="" 
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\dws\doors\dws_hotel_door_Right.xml:
+  7  
+  8: 	<base_part class="door" type="218" name="dws_hotel_door_Right" max_health="750">
+  9  		<door filename="Objects/structures/Hotel/dws_hotel_door_Right.cgf" rotate_base="-180" rotate_range="90" rotate_speed="180" rotate_axis="z" rotate_dir="" 
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\dws\doors\dws_hotel_door2_left.xml:
+  7  
+  8: 	<base_part class="door" type="216" name="dws_hotel_door2_left" max_health="750">
+  9  		<door filename="Objects/structures/Hotel/dws_hotel_door2_left.cgf" rotate_base="-180" rotate_range="90" rotate_speed="180" rotate_axis="z" rotate_dir="" 
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\dws\doors\dws_hotel_door2_right.xml:
+  7  
+  8: 	<base_part class="door" type="217" name="dws_hotel_door2_right" max_health="750">
+  9  		<door filename="Objects/structures/Hotel/dws_hotel_door2_right.cgf" rotate_base="-180" rotate_range="90" rotate_speed="180" rotate_axis="z" rotate_dir="" 
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\dws\doors\dws_hotel_inside_door.xml:
+  7  
+  8: 	<base_part class="door" type="220" name="dws_hotel_inside_door" max_health="1000">
+  9  		<door filename="Objects/structures/Hotel/dws_hotel_inside_door.cgf" rotate_base="-180" rotate_range="90" rotate_speed="180" rotate_axis="z" rotate_dir="" 
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\dws\doors\dws_hotel_insidedoor_left.xml:
+  7  
+  8: 	<base_part class="door" type="238" name="dws_hotel_insidedoor_left" max_health="1000">
+  9  		<door filename="Objects/structures/Hotel/dws_hotel_insidedoor_left.cgf" rotate_base="-180" rotate_range="90" rotate_speed="180" rotate_axis="z" rotate_dir="" 
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\dws\doors\dws_int_door_left.xml:
+  7  
+  8: 	<base_part class="door" type="202" name="dws_int_door_left" max_health="1000">
+  9  		<door filename="Objects/props/diner_assets/interior_door/dws_int_door_left.cgf" rotate_base="-180" rotate_range="90" rotate_speed="180" rotate_axis="z" rotate_dir="" 
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\dws\doors\dws_int_door.xml:
+  7  
+  8: 	<base_part class="door" type="201" name="dws_int_door" max_health="1000">
+  9  		<door filename="Objects/props/diner_assets/interior_door/dws_int_door.cgf" rotate_base="-180" rotate_range="90" rotate_speed="180" rotate_axis="z" rotate_dir="" 
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\dws\doors\dws_jawboat_door_right.xml:
+  7  
+  8: 	<base_part class="door" type="209" name="dws_jawboat_door_right" max_health="750">
+  9  		<door filename="Objects/props/jaw_boat/dws_jawboat_door_right.cgf" rotate_base="-180" rotate_range="90" rotate_speed="180" rotate_axis="z" rotate_dir="" 
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\dws\doors\dws_jawboat_door.xml:
+  7  
+  8: 	<base_part class="door" type="208" name="dws_jawboat_door" max_health="750">
+  9  		<door filename="Objects/props/jaw_boat/dws_jawboat_door.cgf" rotate_base="-180" rotate_range="90" rotate_speed="180" rotate_axis="z" rotate_dir="" 
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\dws\doors\dws_lockerDoor.xml:
+  7  
+  8: 	<base_part class="door" type="212" name="dws_lockerDoor" max_health="250">
+  9  		<door filename="Objects/props/locker/dws_lockerDoor.cgf" rotate_base="-180" rotate_range="135" rotate_speed="180" rotate_axis="z" rotate_dir="+" 
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\dws\doors\dws_mobilehome_door_left.xml:
+  7  
+  8: 	<base_part class="door" type="225" name="dws_mobilehome_door_left" max_health="1000">
+  9  		<door filename="Objects/structures/Residential/mobileHome/doorway/dws_mobilehome_door_left.cgf" rotate_base="-180" rotate_range="90" rotate_speed="180" rotate_axis="z" rotate_dir="" 
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\dws\doors\dws_mobilehome_door.xml:
+  7  
+  8: 	<base_part class="door" type="224" name="dws_mobilehome_door" max_health="1000">
+  9  		<door filename="Objects/structures/Residential/mobileHome/doorway/dws_mobilehome_door.cgf" rotate_base="-180" rotate_range="90" rotate_speed="180" rotate_axis="z" rotate_dir="" 
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\dws\doors\dws_modern_family_door.xml:
+  7  
+  8: 	<base_part class="door" type="226" name="dws_modern_family_door" max_health="1000">
+  9  		<door filename="Objects/structures/Residential/modern_family_house_1/dws_modern_family_door.cgf" rotate_base="-180" rotate_range="90" rotate_speed="180" rotate_axis="z" rotate_dir="" 
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\dws\doors\dws_modern_family_inside_door_right.xml:
+  7  
+  8: 	<base_part class="door" type="228" name="dws_modern_family_inside_door_right" max_health="1000">
+  9  		<door filename="Objects/structures/Residential/modern_family_house_1/dws_modern_family_inside_door_right.cgf" rotate_base="-180" rotate_range="90" rotate_speed="180" rotate_axis="z" rotate_dir="" 
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\dws\doors\dws_modern_family_inside_door.xml:
+  7  
+  8: 	<base_part class="door" type="227" name="dws_modern_family_inside_door" max_health="1000">
+  9  		<door filename="Objects/structures/Residential/modern_family_house_1/dws_modern_family_inside_door.cgf" rotate_base="-180" rotate_range="90" rotate_speed="180" rotate_axis="z" rotate_dir="" 
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\dws\doors\dws_office_cabin_door_left.xml:
+  7  
+  8: 	<base_part class="door" type="211" name="dws_office_cabin_door_left" max_health="1500">
+  9  		<door filename="Objects/props/junkyard/dws_office_cabin_door_left.cgf" rotate_base="-180" rotate_range="90" rotate_speed="180" rotate_axis="z" rotate_dir="" 
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\dws\doors\dws_office_cabin_door.xml:
+  7  
+  8: 	<base_part class="door" type="210" name="dws_office_cabin_door" max_health="1500">
+  9  		<door filename="Objects/props/junkyard/dws_office_cabin_door.cgf" rotate_base="-180" rotate_range="90" rotate_speed="180" rotate_axis="z" rotate_dir="" 
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\dws\doors\dws_safe_door.xml:
+  7  
+  8: 	<base_part class="door" type="213" name="dws_safe_door" max_health="5000">
+  9  		<door filename="Objects/props/residential_assets/safe/dws_safe_door.cgf" rotate_base="-180" rotate_range="135" rotate_speed="90" rotate_axis="z" rotate_dir="+" 
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\dws\doors\dws_sheriff_office_window_door_01.xml:
+  7  
+  8: 	<base_part class="door" type="271" name="dws_sheriff_office_window_door_01" max_health="500">
+  9  		<door filename="Objects/props/Doors/sheriff_office_doors/dws_sheriff_office_window_door_01.cgf" rotate_base="-180" rotate_range="90" rotate_speed="180" rotate_axis="z" rotate_dir="" 
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\dws\doors\dws_TLH_FrontDoor.xml:
+  7  
+  8: 	<base_part class="door" type="223" name="dws_TLH_FrontDoor" max_health="1000">
+  9  		<door filename="Objects/structures/Residential/The_Last_House/dws_TLH_FrontDoor.cgf" rotate_base="-180" rotate_range="90" rotate_speed="180" rotate_axis="z" rotate_dir="" 
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\dws\doors\dws_warehouse_door_small.xml:
+  7  
+  8: 	<base_part class="door" type="241" name="dws_warehouse_door_small" max_health="5000">
+  9  		<door filename="Objects/structures/Industrial/Warehouse1/dws_warehouse_door_small.cgf" rotate_base="0" move_range="4" move_speed="2" move_axis="z" move_axis_dir="+" 
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\dws\doors\dws_warehouse1_door_big.xml:
+  7  
+  8: 	<base_part class="door" type="242" name="dws_warehouse1_door_big" max_health="5000">
+  9  		<door filename="Objects/structures/Industrial/Warehouse1/dws_warehouse1_door_big.cgf" rotate_base="0" move_range="4" move_speed="2" move_axis="z" move_axis_dir="+" 
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\dws\explosive\dws_acid_barrel.xml:
+  6  
+  7: 	<base_part class="static" type="240" name="dws_acid_barrel" max_health="35">
+  8  		<static filename="objects/basebuilding/explosive/barrel/dws_barrel_acid.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\dws\explosive\dws_fire_extinguisher.xml:
+  6  
+  7: 	<base_part class="static" type="239" name="dws_fire_extinguisher" max_health="20">
+  8  		<static filename="objects/props/fireex/fireex.cgf"/> <!-- All existing fire extinguishers will be replaced with DWS version -->
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\dws\misc\dws_cabinStove.xml:
+  7  
+  8: 	<base_part class="grill" type="269" name="dws_cabinStove" max_health="5000">
+  9  		<grill filename="Objects/props/cabinAssets/cabinStove.cgf" helper_food="food" />
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\dws\misc\dws_candle_animal_fat_large.xml:
+  7  
+  8: 	<base_part class="static" type="243" name="dws_candle_animal_fat_large" max_health="600">
+  9  		<static filename="objects/basebuilding/other/candle/dws_candle_large.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\dws\misc\dws_dumpster_lid.xml:
+  7  
+  8: 	<base_part class="door" type="251" name="dws_dumpster_lid" max_health="2000">
+  9  		<door filename="Objects/props/dumpster/dws_dumpster_lid.cgf" rotate_base="-180" rotate_range="75" rotate_speed="60" rotate_axis="y" rotate_dir="+" sound_open="Play_door_metal_open" sound_opened="Play_door_metal_opened" sound_close="Play_door_metal_close" sound_closed="Play_door_metal_closed"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\dws\misc\dws_firepit_outdoors_1.xml:
+  7  
+  8: 	<base_part class="grill" type="252" name="dws_firepit_outdoors_1" max_health="2000">
+  9  		<grill filename="Objects/props/firepit_outdoors/dws_firepit_outdoors_1.cgf" helper_food="food" helper_wood="wood" model_wood="Objects/props/firepit_outdoors/dws_firepit_outdoors_wood.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\dws\misc\dws_grill_base.xml:
+  7  
+  8: 	<base_part class="grill" type="248" name="dws_grill_base" max_health="0">
+  9  		<grill filename="Objects/props/outside_grill/dws_grill_base.cgf" helper_food="food" helper_propane="propane_tank" helper_propane_rotation="0,0,0" model_propane="Objects/props/propanetank_small/propanetank_small.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\dws\misc\dws_grill_lid.xml:
+  7  
+  8: 	<base_part class="door" type="249" name="dws_grill_lid" max_health="2000">
+  9  		<door filename="Objects/props/outside_grill/dws_grill_lid.cgf" rotate_base="-180" rotate_range="90" rotate_speed="90" rotate_axis="y" rotate_dir="+" sound_open="Play_door_metal_open" sound_opened="Play_door_metal_opened" sound_close="Play_door_metal_close" sound_closed="Play_door_metal_closed"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\dws\misc\dws_grill2.xml:
+  10  
+  11: 	<base_part class="grill" type="250" name="dws_grill2" max_health="2000">
+  12  		<grill filename="Objects/props/outside_grill/dws_grill_2.cgf" helper_food="food" helper_wood="wood" model_wood="Objects/props/outside_grill/grill_2_wood.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\dws\powered\powered_ceiling_light_c.xml:
+  6  
+  7: 	<base_part class="static" type="237" name="powered_ceiling_light_c" max_health="10">
+  8  		<static filename="Objects/props/furniture/appliances/lamps/dws_ceiling_light_c_off.cgf" />
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\dws\powered\powered_floodlight01.xml:
+  6  
+  7: 	<base_part class="static" type="253" name="powered_floodlight01" max_health="10">
+  8  		<static filename="Objects/props/industrial/misc/dws_floodlight01.cgf" />
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\dws\powered\powered_microwave.xml:
+  6  
+  7: 	<base_part class="oven" type="246" name="powered_microwave" max_health="2000">
+  8  		<oven filename="Objects/props/microwave/dws_microwave.cgf" helper_food="food"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\dws\powered\powered_oven.xml:
+  6  
+  7: 	<base_part class="oven" type="245" name="powered_oven" max_health="5000">
+  8  		<oven filename="Objects/props/elecStove/dws_elecstove.cgf" helper_food="food"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\dws\powered\powered_wall_lamp.xml:
+  6  
+  7: 	<base_part class="static" type="259" name="powered_wall_lamp" max_health="10">
+  8  		<static filename="Objects/props/wall_lamp/dws_wall_lamp.cgf" />
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\metal\arcade_cabinet.xml:
+  12  
+  13: 	<base_part class="static" type="2057" name="arcade_cabinet" max_health="18750" repair_with="SheetMetal" towable="1" repair_sound="Play_wall_repair">
+  14  		<static filename="objects/basebuilding/other/arcade_cabinet/arcade_cabinet.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\metal\metal_aframe_3m_4m.xml:
+  12  
+  13: 	<base_part class="static" type="2056" name="metal_aframe_3m_4m" max_health="37500" repair_with="SheetMetal" towable="1" repair_sound="Play_wall_repair">
+  14  		<static filename="objects/basebuilding/metal/metal_aframe_3m_4m.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\metal\metal_door_lockable_1m_2m.xml:
+  12  
+  13: 	<base_part class="door" type="2088" name="metal_door_lockable_1m_2m" max_health="18750" repair_with="SheetMetal" towable="1" repair_sound="Play_wall_repair">
+  14  		<door filename="objects/basebuilding/metal/metal_door.cgf" rotate_base="-90" rotate_range="90" rotate_speed="30" rotate_axis="z" rotate_axis_front="y" sound_open="Play_door_metal_open" sound_opened="" sound_close="Play_door_metal_close" sound_closed="Play_door_metal_closed" sound_lock="Play_door_lock" sound_unlock="Play_door_unlock"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\metal\metal_gate_lockable_3m_5_4m.xml:
+  12  
+  13: 	<base_part class="door" type="2099" name="metal_gate_lockable_3m_5_4m" max_health="37500" repair_with="SheetMetal" towable="1" repair_sound="Play_wall_repair">
+  14  		<door filename="objects/basebuilding/metal/metal_gate_3m_5_4m.cgf" rotate_base="-90" rotate_range="90" rotate_speed="30" rotate_axis="z" rotate_axis_front="y" sound_open="Play_door_metal_open" sound_opened="" sound_close="Play_door_metal_close" sound_closed="Play_door_metal_closed" sound_lock="Play_door_lock" sound_unlock="Play_door_unlock"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\metal\metal_gatehouse_4m_8m.xml:
+  12  
+  13: 	<base_part class="static" type="2098" name="metal_gatehouse_4m_8m" max_health="37500" repair_with="SheetMetal" towable="1" repair_sound="Play_wall_repair">
+  14  		<static filename="objects/basebuilding/metal/metal_gateway_4m_8m.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\metal\metal_platform_3m_4m_4m.xml:
+  12  
+  13: 	<base_part class="static" type="2061" name="metal_platform_3m_4m_4m" max_health="37500" repair_with="SheetMetal" towable="1" repair_sound="Play_wall_repair">
+  14  		<static filename="objects/basebuilding/metal/metal_platform_4m_4m_4m.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\metal\metal_safe.xml:
+  12  
+  13: 	<base_part class="static" type="2060" name="metal_safe" max_health="37500" limit="2" repair_with="SheetMetal" towable="1" repair_sound="Play_wall_repair">
+  14  		<static filename="objects/props/residential_assets/safe/safe_base.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\metal\metal_steam_stand.xml:
+   9  
+  10: 	<base_part class="powered" type="2998" name="metal_steam_stand" max_health="15000" repair_with="SheetMetal" repair_sound="Play_wall_repair">
+  11  		<powered filename="objects/basebuilding/other/kiosk/bpart_kiosk.cgf" power_consumption="1"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\metal\metal_wall_1_3m_2m.xml:
+  12  
+  13: 	<base_part class="static" type="2045" name="metal_wall_1_3m_2m" max_health="37500" repair_with="SheetMetal" towable="1" repair_sound="Play_wall_repair">
+  14  		<static filename="objects/basebuilding/metal/metal_wall_1_3m_2m.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\metal\metal_wall_1_3m_4m.xml:
+  12  
+  13: 	<base_part class="static" type="2046" name="metal_wall_1_3m_4m" max_health="37500" repair_with="SheetMetal" towable="1" repair_sound="Play_wall_repair">
+  14  		<static filename="objects/basebuilding/metal/metal_wall_1_3m_4m.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\metal\metal_wall_2m_2m.xml:
+  12  
+  13: 	<base_part class="static" type="2048" name="metal_wall_2m_2m" max_health="37500" repair_with="SheetMetal" towable="1" repair_sound="Play_wall_repair">
+  14  		<static filename="objects/basebuilding/metal/metal_wall_2m_2m.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\metal\metal_wall_2m_4m.xml:
+  12  
+  13: 	<base_part class="static" type="2049" name="metal_wall_2m_4m" max_health="37500" repair_with="SheetMetal" towable="1" repair_sound="Play_wall_repair">
+  14  		<static filename="objects/basebuilding/metal/metal_wall_2m_4m.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\metal\metal_wall_3m_2m.xml:
+  12  
+  13: 	<base_part class="static" type="2051" name="metal_wall_3m_2m" max_health="37500" repair_with="SheetMetal" towable="1" repair_sound="Play_wall_repair">
+  14  		<static filename="objects/basebuilding/metal/metal_wall_3m_2m.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\metal\metal_wall_3m_4m.xml:
+  12  
+  13: 	<base_part class="static" type="2052" name="metal_wall_3m_4m" max_health="37500" repair_with="SheetMetal" towable="1" repair_sound="Play_wall_repair">
+  14  		<static filename="objects/basebuilding/metal/metal_wall_3m_4m.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\metal\metal_wall_door_3m_4m.xml:
+  12  
+  13: 	<base_part class="static" type="2053" name="metal_wall_door_3m_4m" max_health="37500" repair_with="SheetMetal" towable="1" repair_sound="Play_wall_repair">
+  14  		<static filename="objects/basebuilding/metal/metal_doorway_3m_4m.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\metal\metal_wall_window_3m_2m.xml:
+  12  
+  13: 	<base_part class="static" type="2054" name="metal_wall_window_3m_2m" max_health="37500" repair_with="SheetMetal" towable="1" repair_sound="Play_wall_repair">
+  14  		<static filename="objects/basebuilding/metal/metal_wall_window_3m_2m.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\metal\metal_wall_window_3m_4m.xml:
+  12  
+  13: 	<base_part class="static" type="2055" name="metal_wall_window_3m_4m" max_health="37500" repair_with="SheetMetal" towable="1" repair_sound="Play_wall_repair">
+  14  		<static filename="objects/basebuilding/metal/metal_wall_window_3m_4m.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\misc\christmas_gift_pile.xml:
+   9  
+  10: 	<base_part class="static" type="296" name="christmas_gift_pile" max_health="1000" repair_with="DuctTape">
+  11  		<static filename="objects/basebuilding/other/christmas_gift_pile/christmas_gift_pile.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\misc\christmas_light_string.xml:
+  11  
+  12: 	<base_part class="static" type="289" name="christmas_light_string" max_health="1000" repair_with="DuctTape">
+  13  		<static filename="objects/basebuilding/other/christmas_string_lights/christmas_string_lights.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\misc\christmas_rug_01.xml:
+  10  
+  11: 	<base_part class="static" type="293" name="christmas_rug_01" max_health="200" repair_with="Rags">
+  12  		<static filename="Objects/basebuilding/other/rugs/crafted_rugs/christmas_rug_01.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\misc\christmas_rug_02.xml:
+  10  
+  11: 	<base_part class="static" type="294" name="christmas_rug_02" max_health="200" repair_with="Rags">
+  12  		<static filename="Objects/basebuilding/other/rugs/crafted_rugs/christmas_rug_02.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\misc\christmas_rug_03.xml:
+  10  
+  11: 	<base_part class="static" type="295" name="christmas_rug_03" max_health="200" repair_with="Rags">
+  12  		<static filename="Objects/basebuilding/other/rugs/crafted_rugs/christmas_rug_03.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\misc\christmas_snowglobe.xml:
+   9  
+  10: 	<base_part class="static" type="297" name="christmas_snowglobe" max_health="1000" repair_with="DuctTape">
+  11  		<static filename="objects/basebuilding/other/snowglobe/christmas_snowglobe.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\misc\christmas_stocking.xml:
+  11  
+  12: 	<base_part class="static" type="292" name="christmas_stocking" max_health="1000" repair_with="Rags">
+  13  		<static filename="objects/basebuilding/other/christmas_stocking/christmas_stocking.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\misc\christmas_tree.xml:
+  12  
+  13: 	<base_part class="static" type="2999" name="christmas_tree" towable="1">
+  14  		<static filename="objects/natural/vegetation/Trees/christmas_tree/christmas_tree.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\misc\gnome_giant_c.xml:
+  12  
+  13: 	<base_part class="static" type="2500" name="gnome_giant_c" max_health="37500" repair_with="DuctTape" towable="1">
+  14  		<static filename="objects/props/misc/garden_gnome/gnome_standard_c_giant.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\misc\halloween_candle.xml:
+  10  
+  11: 	<base_part class="static" type="282" name="halloween_candle" max_health="600" limit="10" repair_with="AnimalFat">
+  12  		<static filename="objects/basebuilding/other/candle/halloween_candle.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\misc\halloween_creepy_bear.xml:
+   9  
+  10: 	<base_part class="static" type="288" name="halloween_creepy_bear" max_health="5000" repair_with="DuctTape">
+  11  		<static filename="objects/props/teddy_bear/teddybear_sitting.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\misc\halloween_creepy_bunny.xml:
+   9  
+  10: 	<base_part class="static" type="287" name="halloween_creepy_bunny" max_health="5000" repair_with="DuctTape">
+  11  		<static filename="objects/props/residential_assets/toys/toy_bunny.cgf" material="objects/props/residential_assets/toys/bunny_creepy.mtl"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\misc\halloween_light_string.xml:
+   9  
+  10: 	<base_part class="static" type="285" name="halloween_light_string" max_health="1000" repair_with="DuctTape">
+  11  		<static filename="objects/basebuilding/other/halloween_light_string/halloween_light_string.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\misc\propane_heater.xml:
+   9  
+  10: 	<base_part class="static" type="260" name="propane_heater" max_health="1000" repair_with="ScrapMetal">
+  11  		<static filename="Objects/basebuilding/other/propane_heater/propane_heater.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\misc\snowman_small.xml:
+   9  
+  10: 	<base_part class="static" type="291" name="snowman_small" max_health="1000" repair_with="DuctTape">
+  11  		<static filename="objects/basebuilding/other/snowman/snowman_small.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\misc\snowman.xml:
+   9  
+  10: 	<base_part class="static" type="290" name="snowman" max_health="1000" repair_with="DuctTape">
+  11  		<static filename="objects/basebuilding/other/snowman/snowman.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\plated\garage_door_large.xml:
+  12  
+  13: 	<base_part class="door" type="299" name="garage_door_large" max_health="22500" repair_sound="Play_wall_repair" repair_with="SheetMetal">
+  14  		<door filename="objects/basebuilding/plated/garage_door_large.cgf" rotate_base="0" move_range="4.3" move_speed="1.5" move_axis="z" move_axis_dir="+" sound_open="Play_industrial_garage_door_open" sound_opened="" sound_close="Play_industrial_garage_door_close" sound_closed="Play_door_wood_closed" sound_lock="Play_door_lock" sound_unlock="Play_door_unlock"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\rock\rock_foundation_2m_2m_4m.xml:
+  13  
+  14: 	<base_part class="static" type="280" name="rock_foundation_2m_2m_4m" max_health="22500" repair_with="Rocks" repair_sound="Play_wall_repair">&gt;
+  15  		<static filename="objects/basebuilding/rock/rock_foundation_2m_2m_4m.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\rock\rock_foundation_4m_4m_4m.xml:
+  13  
+  14: 	<base_part class="static" type="278" name="rock_foundation_4m_4m_4m" max_health="22500" repair_with="Rocks" repair_sound="Play_wall_repair">&gt;
+  15  		<static filename="objects/basebuilding/rock/rock_foundation_4m_4m_4m.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\sand\hesco_barrier.xml:
+  10  
+  11: 	<base_part class="static" type="236" name="hesco_barrier" max_health="3000" repair_with="ScrapMetal">
+  12  		<static filename="objects/basebuilding/sand/hesco_barrier/hesco_bpart.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\water\water_barrel.xml:
+  10  
+  11: 	<base_part class="water_barrel" type="256" name="water_barrel" max_health="2000">
+  12  		<water_barrel filename="Objects/props/plastic_barrel/dws_plastic_barrel_full.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\water\water_collector.xml:
+   9  
+  10: 	<base_part class="water_barrel" type="257" name="water_collector" max_health="2000">
+  11  		<water_barrel filename="objects/basebuilding/other/water_collector/water_collector.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\water\water_purifier.xml:
+   9  
+  10: 	<base_part class="water_purifier" type="258" name="water_purifier" max_health="2000">
+  11  		<water_purifier filename="objects/basebuilding/other/water_purifier/crafted_water_purifier.cgf" helper_wood="wood" model_wood="objects/basebuilding/other/water_purifier/crafted_water_purifier_wood.cgf" helper_propane="propane_tank" helper_propane_rotation="0,0,0" model_propane="Objects/props/propanetank_small/propanetank_small.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\wood\wood_door_1m_2m.xml:
+  10  
+  11: 	<base_part class="door" type="2" name="wood_door_1m_2m" max_health="5000" repair_sound="Play_wall_repair">
+  12  		<door filename="objects/basebuilding/wood/wood_door_1m_2m.cgf" rotate_base="-90" rotate_range="90" rotate_speed="90" rotate_axis="z" rotate_axis_front="y" sound_open="Play_door_wood_open" sound_opened="" sound_close="Play_door_wood_close" sound_closed="Play_door_wood_closed"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\wood\wood_foundation_4m_4m_4m.xml:
+  13  
+  14: 	<base_part class="static" type="275" name="wood_foundation_4m_4m_4m" repair_sound="Play_wall_repair">
+  15  		<static filename="objects/basebuilding/wood/wood_foundation_4m_4m_4m.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\wood\wood_ramp_0m_1_3m_1m.xml:
+  10  
+  11: 	<base_part class="static" type="20" name="wood_ramp_0m_1_3m_1m" repair_sound="Play_wall_repair">
+  12  		<static filename="objects/basebuilding/wood/ramp_0m_1_3m_1m.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\wood\wood_ramp_0m_1_3m_3m.xml:
+  10  
+  11: 	<base_part class="static" type="22" name="wood_ramp_0m_1_3m_3m" repair_sound="Play_wall_repair">
+  12  		<static filename="objects/basebuilding/wood/ramp_0m_1_3m_3m.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\wood\wood_ramp_1_3m_3m_1m.xml:
+  10  
+  11: 	<base_part class="static" type="23" name="wood_ramp_1_3m_3m_1m" repair_sound="Play_wall_repair">
+  12  		<static filename="objects/basebuilding/wood/ramp_1_3m_3m_1m.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\wood\wood_ramp_1_3m_3m_3m.xml:
+  10  
+  11: 	<base_part class="static" type="25" name="wood_ramp_1_3m_3m_3m" repair_sound="Play_wall_repair">
+  12  		<static filename="objects/basebuilding/wood/ramp_1_3m_3m_3m.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\wood\wood_shutter_1_6m_0_9m.xml:
+  10  
+  11: 	<base_part class="door" type="267" name="wood_shutter_1_6m_0_9m" max_health="5000" repair_sound="Play_wall_repair">
+  12  		<door filename="objects/basebuilding/wood/shutter_1_6m_0_9m.cgf" rotate_base="-90" rotate_range="90" rotate_speed="90" rotate_axis="z" rotate_axis_front="y" sound_open="Play_door_wood_open" sound_opened="" sound_close="Play_door_wood_close" sound_closed="Play_door_wood_closed"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\wood\wood_shutter_small_lockable.xml:
+  10  
+  11: 	<base_part class="door" type="274" name="wood_shutter_small_lockable" max_health="5000" repair_sound="Play_wall_repair">
+  12  		<door filename="objects/basebuilding/wood/wood_shutter_small.cgf" rotate_base="-90" rotate_range="90" rotate_speed="90" rotate_axis="z" rotate_axis_front="y" sound_open="Play_door_wood_open" sound_opened="" sound_close="Play_door_wood_close" sound_closed="Play_door_wood_closed" sound_lock="Play_door_lock" sound_unlock="Play_door_unlock"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\wood\wood_stairs_0m_2m_3m.xml:
+  10  
+  11: 	<base_part class="static" type="21" name="wood_stairs_0m_2m_3m" repair_sound="Play_wall_repair">
+  12  		<static filename="objects/basebuilding/wood/stairs_0m_2m_3m.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\wood\wood_stairs_1_3m_2m_1m.xml:
+  10  
+  11: 	<base_part class="static" type="24" name="wood_stairs_1_3m_2m_1m" repair_sound="Play_wall_repair">
+  12  		<static filename="objects/basebuilding/wood/stairs_1_3m_2m_1m.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\wood\wood_stairs_1_3m_2m_3m.xml:
+  10  
+  11: 	<base_part class="static" type="27" name="wood_stairs_1_3m_2m_3m" repair_sound="Play_wall_repair">
+  12  		<static filename="objects/basebuilding/wood/stairs_1_3m_2m_3m.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\wood\wood_stairs_1_3m_3m_1m.xml:
+  10  
+  11: 	<base_part class="static" type="28" name="wood_stairs_1_3m_3m_1m" repair_sound="Play_wall_repair">
+  12  		<static filename="objects/basebuilding/wood/stairs_1_3m_3m_1m.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\wood\wood_walkway_1_3m_1m_1m.xml:
+  10  
+  11: 	<base_part class="static" type="26" name="wood_walkway_1_3m_1m_1m" repair_sound="Play_wall_repair">
+  12  		<static filename="objects/basebuilding/wood/walkway_1_3m_1m_1m.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\wood\wood_walkway_1_3m_3m_1m.xml:
+  10  
+  11: 	<base_part class="static" type="29" name="wood_walkway_1_3m_3m_1m" repair_sound="Play_wall_repair">
+  12  		<static filename="objects/basebuilding/wood/walkway_1_3m_3m_1m.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\wood\wood_wall_drawbridge_3m_4m.xml:
+  10  
+  11: 	<base_part class="static" type="235" name="wood_wall_drawbridge_3m_4m" repair_sound="Play_wall_repair">
+  12  		<static filename="objects/basebuilding/wood/wood_wall_drawbridge_3m_4m.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\wood\wood_wall_garage_large.xml:
+  10  
+  11: 	<base_part class="static" type="298" name="wood_wall_garage_large" repair_sound="Play_wall_repair">
+  12  		<static filename="objects/basebuilding/wood/wood_wall_garage_large.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\wood\wood_wall_shutter_3m_2m.xml:
+  10  
+  11: 	<base_part class="static" type="266" name="wood_wall_shutter_3m_2m" repair_sound="Play_wall_repair">
+  12  		<static filename="Objects/basebuilding/wood/wall_shutter_3m_2m.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\wood\wood_wall_shutter_3m_4m.xml:
+  10  
+  11: 	<base_part class="static" type="268" name="wood_wall_shutter_3m_4m" repair_sound="Play_wall_repair">
+  12  		<static filename="objects/basebuilding/wood/wall_shutter_3m_4m.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\wood\wood_watchtower_big.xml:
+  10  
+  11: 	<base_part class="static" type="277" name="wood_watchtower_big" max_health="20000" repair_sound="Play_wall_repair">
+  12  		<static filename="objects/basebuilding/wood/watchtower_wood_big.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\wood\wood_watchtower_tire_big.xml:
+  10  
+  11: 	<base_part class="static" type="279" name="wood_watchtower_tire_big" max_health="20000" repair_sound="Play_wall_repair">
+  12  		<static filename="objects/basebuilding/wood/watchtower_wood_big_tire.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\wood\ramp_walls\wood_ramp_wall_0m_1_3m_3m.xml:
+  10  
+  11: 	<base_part class="static" type="261" name="wood_ramp_wall_0m_1_3m_3m">
+  12  		<static filename="objects/basebuilding/wood/wood_ramp_wall_0m_1_3m_3m.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\wood\ramp_walls\wood_ramp_wall_0m_2m_3m.xml:
+  10  
+  11: 	<base_part class="static" type="262" name="wood_ramp_wall_0m_2m_3m">
+  12  		<static filename="objects/basebuilding/wood/wood_ramp_wall_0m_2m_3m.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\wood\ramp_walls\wood_ramp_wall_1_3m_2m_3m.xml:
+  10  
+  11: 	<base_part class="static" type="264" name="wood_ramp_wall_1_3m_2m_3m">
+  12  		<static filename="objects/basebuilding/wood/wood_ramp_wall_1_3m_2m_3m.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\wood\ramp_walls\wood_ramp_wall_1_3m_3m_3m.xml:
+  10  
+  11: 	<base_part class="static" type="265" name="wood_ramp_wall_1_3m_3m_3m">
+  12  		<static filename="objects/basebuilding/wood/wood_ramp_wall_1_3m_3m_3m.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\wood\ramp_walls\wood_ramp_wall_2m_3m_1m.xml:
+  10  
+  11: 	<base_part class="static" type="263" name="wood_ramp_wall_2m_3m_1m">
+  12  		<static filename="objects/basebuilding/wood/wood_ramp_wall_2m_3m_1m.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\dws\doors\dws_3_Room_Singlestory_BackDoor.xml:
+  7  
+  8: 	<base_part class="door" type="221" name="dws_3_Room_Singlestory_BackDoor" max_health="750">
+  9  		<door filename="Objects/structures/Residential/3Room_SingleStory/dws_3_Room_Singlestory_BackDoor.cgf" rotate_base="-180" rotate_range="90" rotate_speed="180" rotate_axis="z" rotate_dir="" 
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\dws\doors\dws_3_Room_Singlestory_FrontDoor.xml:
+  7  
+  8: 	<base_part class="door" type="222" name="dws_3_Room_Singlestory_FrontDoor" max_health="750">
+  9  		<door filename="Objects/structures/Residential/3Room_SingleStory/dws_3_Room_Singlestory_FrontDoor.cgf" rotate_base="-180" rotate_range="80" rotate_speed="180" rotate_axis="z" rotate_dir="" 
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\dws\doors\dws_24store_door_left.xml:
+  7  
+  8: 	<base_part class="door" type="230" name="dws_24store_door_left" max_health="500">
+  9  		<door filename="Objects/structures/commercial/24_Hour_Store/dws_24store_door_left.cgf" rotate_base="-180" rotate_range="90" rotate_speed="180" rotate_axis="z" rotate_dir="" 
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\dws\doors\dws_24store_door.xml:
+  7  
+  8: 	<base_part class="door" type="229" name="dws_24store_door" max_health="500">
+  9  		<door filename="Objects/structures/commercial/24_Hour_Store/dws_24store_door.cgf" rotate_base="-180" rotate_range="90" rotate_speed="180" rotate_axis="z" rotate_dir="" 
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\dws\doors\dws_blind_door.xml:
+  7  
+  8: 	<base_part class="door" type="244" name="dws_blind_door" max_health="750">
+  9  		<door filename="Objects/structures/hunting_blind/dws_blind_door.cgf" rotate_base="-180" rotate_range="90" rotate_speed="180" rotate_axis="z" rotate_dir="" 
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\dws\doors\dws_blind_window_front.xml:
+  7  
+  8: 	<base_part class="door" type="254" name="dws_blind_window_front" max_health="750">
+  9  		<door filename="objects/structures/hunting_blind/dws_window_front.cgf" rotate_base="-180" rotate_range="90" rotate_speed="180" rotate_axis="x" rotate_dir="+" 
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\dws\doors\dws_blind_window_side.xml:
+  7  
+  8: 	<base_part class="door" type="255" name="dws_blind_window_side" max_health="750">
+  9  		<door filename="objects/structures/hunting_blind/dws_window_side.cgf" rotate_base="-180" rotate_range="90" rotate_speed="180" rotate_axis="y" rotate_dir="+" 
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\dws\doors\dws_Church_MainDoors_Left.xml:
+  7  
+  8: 	<base_part class="door" type="214" name="dws_Church_MainDoors_Left" max_health="500">
+  9  		<door filename="Objects/structures/Church/dws_Church_MainDoors_Left.cgf" rotate_base="-180" rotate_range="90" rotate_speed="180" rotate_axis="z" rotate_dir="" 
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\dws\doors\dws_Church_MainDoors_Right.xml:
+  7  
+  8: 	<base_part class="door" type="215" name="dws_Church_MainDoors_Right" max_health="500">
+  9  		<door filename="Objects/structures/Church/dws_Church_MainDoors_Right.cgf" rotate_base="-180" rotate_range="90" rotate_speed="180" rotate_axis="z" rotate_dir="" 
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\dws\doors\dws_corner_door.xml:
+  7  
+  8: 	<base_part class="door" type="231" name="dws_corner_door" max_health="2000">
+  9  		<door filename="Objects/structures/commercial/corner_building/dws_corner_door.cgf" rotate_base="-180" rotate_range="90" rotate_speed="180" rotate_axis="z" rotate_dir="" 
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\dws\doors\dws_entrance_door_right.xml:
+  7  
+  8: 	<base_part class="door" type="200" name="dws_entrance_door_right" max_health="1000">
+  9  		<door filename="Objects/props/diner_assets/entrance_door/dws_entrance_door_right.cgf" rotate_base="-180" rotate_range="90" rotate_speed="180" rotate_axis="z" rotate_dir="" 
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\dws\doors\dws_farm_gate.xml:
+  7  
+  8: 	<base_part class="door" type="247" name="dws_farm_gate" max_health="3000">
+  9  		<door filename="Objects/props/Farm_Gate/dws_farm_gate.cgf" rotate_base="0" rotate_range="90" rotate_speed="60" rotate_axis="z" rotate_dir="" 
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\dws\doors\dws_flatbed_trailer_container_doorleft.xml:
+  7  
+  8: 	<base_part class="door" type="232" name="dws_flatbed_trailer_container_doorleft" max_health="2000">
+  9  		<door filename="Objects/structures/dock/dws_flatbed_trailer_container_doorleft.cgf" rotate_base="-180" rotate_range="135" rotate_speed="60" rotate_axis="z" rotate_dir="-" 
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\dws\doors\dws_flatbed_trailer_container_doorright.xml:
+  7  
+  8: 	<base_part class="door" type="233" name="dws_flatbed_trailer_container_doorright" max_health="2000">
+  9  		<door filename="Objects/structures/dock/dws_flatbed_trailer_container_doorright.cgf" rotate_base="-180" rotate_range="135" rotate_speed="60" rotate_axis="z" rotate_dir="+" 
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\dws\doors\dws_fridge_Ldoor.xml:
+  7  
+  8: 	<base_part class="door" type="205" name="dws_fridge_Ldoor" max_health="500">
+  9  		<door filename="Objects/props/fridge_modern/dws_fridge_Ldoor.cgf" rotate_base="-180" rotate_range="90" rotate_speed="90" rotate_axis="z" rotate_dir="-" 
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\dws\doors\dws_Fridge_old_Doors_left.xml:
+  7  
+  8: 	<base_part class="door" type="204" name="dws_Fridge_old_Doors_left" max_health="500">
+  9  		<door filename="Objects/props/fridge/dws_Fridge_old_Doors_left.cgf" rotate_base="-180" rotate_range="90" rotate_speed="90" rotate_axis="z" rotate_dir="-" 
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\dws\doors\dws_Fridge_old_Doors.xml:
+  7  
+  8: 	<base_part class="door" type="203" name="dws_Fridge_old_Doors" max_health="500">
+  9  		<door filename="Objects/props/fridge/dws_Fridge_old_Doors.cgf" rotate_base="-180" rotate_range="90" rotate_speed="90" rotate_axis="z" rotate_dir="+" 
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\dws\doors\dws_fridge_Rdoor.xml:
+  7  
+  8: 	<base_part class="door" type="206" name="dws_fridge_Rdoor" max_health="500">
+  9  		<door filename="Objects/props/fridge_modern/dws_fridge_Rdoor.cgf" rotate_base="-180" rotate_range="90" rotate_speed="90" rotate_axis="z" rotate_dir="+" 
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\dws\doors\dws_garage_door.xml:
+  7  
+  8: 	<base_part class="door" type="234" name="dws_garage_door" max_health="5000">
+  9  		<door filename="Objects/structures/city_garage_workshop/dws_garage_door.cgf" rotate_base="0" move_range="4" move_speed="2" move_axis="z" move_axis_dir="+" 
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\dws\doors\dws_gasstationdoors.xml:
+  7  
+  8: 	<base_part class="door" type="207" name="dws_gasstationdoors" max_health="750">
+  9  		<door filename="Objects/props/gasStation/dws_gasstationdoors.cgf" rotate_base="-180" rotate_range="90" rotate_speed="180" rotate_axis="z" rotate_dir="" 
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\dws\doors\dws_hospital_door.xml:
+  7  
+  8: 	<base_part class="door" type="270" name="dws_hospital_door" max_health="500">
+  9  		<door filename="Objects/props/hospital/door/dws_hospital_door.cgf" rotate_base="-180" rotate_range="90" rotate_speed="180" rotate_axis="z" rotate_dir="" 
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\dws\doors\dws_hotel_door_left.xml:
+  7  
+  8: 	<base_part class="door" type="219" name="dws_hotel_door_left" max_health="750">
+  9  		<door filename="Objects/structures/Hotel/dws_hotel_door_left.cgf" rotate_base="-180" rotate_range="90" rotate_speed="180" rotate_axis="z" rotate_dir="" 
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\dws\doors\dws_hotel_door_Right.xml:
+  7  
+  8: 	<base_part class="door" type="218" name="dws_hotel_door_Right" max_health="750">
+  9  		<door filename="Objects/structures/Hotel/dws_hotel_door_Right.cgf" rotate_base="-180" rotate_range="90" rotate_speed="180" rotate_axis="z" rotate_dir="" 
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\dws\doors\dws_hotel_door2_left.xml:
+  7  
+  8: 	<base_part class="door" type="216" name="dws_hotel_door2_left" max_health="750">
+  9  		<door filename="Objects/structures/Hotel/dws_hotel_door2_left.cgf" rotate_base="-180" rotate_range="90" rotate_speed="180" rotate_axis="z" rotate_dir="" 
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\dws\doors\dws_hotel_door2_right.xml:
+  7  
+  8: 	<base_part class="door" type="217" name="dws_hotel_door2_right" max_health="750">
+  9  		<door filename="Objects/structures/Hotel/dws_hotel_door2_right.cgf" rotate_base="-180" rotate_range="90" rotate_speed="180" rotate_axis="z" rotate_dir="" 
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\dws\doors\dws_hotel_inside_door.xml:
+  7  
+  8: 	<base_part class="door" type="220" name="dws_hotel_inside_door" max_health="1000">
+  9  		<door filename="Objects/structures/Hotel/dws_hotel_inside_door.cgf" rotate_base="-180" rotate_range="90" rotate_speed="180" rotate_axis="z" rotate_dir="" 
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\dws\doors\dws_hotel_insidedoor_left.xml:
+  7  
+  8: 	<base_part class="door" type="238" name="dws_hotel_insidedoor_left" max_health="1000">
+  9  		<door filename="Objects/structures/Hotel/dws_hotel_insidedoor_left.cgf" rotate_base="-180" rotate_range="90" rotate_speed="180" rotate_axis="z" rotate_dir="" 
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\dws\doors\dws_int_door_left.xml:
+  7  
+  8: 	<base_part class="door" type="202" name="dws_int_door_left" max_health="1000">
+  9  		<door filename="Objects/props/diner_assets/interior_door/dws_int_door_left.cgf" rotate_base="-180" rotate_range="90" rotate_speed="180" rotate_axis="z" rotate_dir="" 
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\dws\doors\dws_int_door.xml:
+  7  
+  8: 	<base_part class="door" type="201" name="dws_int_door" max_health="1000">
+  9  		<door filename="Objects/props/diner_assets/interior_door/dws_int_door.cgf" rotate_base="-180" rotate_range="90" rotate_speed="180" rotate_axis="z" rotate_dir="" 
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\dws\doors\dws_jawboat_door_right.xml:
+  7  
+  8: 	<base_part class="door" type="209" name="dws_jawboat_door_right" max_health="750">
+  9  		<door filename="Objects/props/jaw_boat/dws_jawboat_door_right.cgf" rotate_base="-180" rotate_range="90" rotate_speed="180" rotate_axis="z" rotate_dir="" 
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\dws\doors\dws_jawboat_door.xml:
+  7  
+  8: 	<base_part class="door" type="208" name="dws_jawboat_door" max_health="750">
+  9  		<door filename="Objects/props/jaw_boat/dws_jawboat_door.cgf" rotate_base="-180" rotate_range="90" rotate_speed="180" rotate_axis="z" rotate_dir="" 
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\dws\doors\dws_lockerDoor.xml:
+  7  
+  8: 	<base_part class="door" type="212" name="dws_lockerDoor" max_health="250">
+  9  		<door filename="Objects/props/locker/dws_lockerDoor.cgf" rotate_base="-180" rotate_range="135" rotate_speed="180" rotate_axis="z" rotate_dir="+" 
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\dws\doors\dws_mobilehome_door_left.xml:
+  7  
+  8: 	<base_part class="door" type="225" name="dws_mobilehome_door_left" max_health="1000">
+  9  		<door filename="Objects/structures/Residential/mobileHome/doorway/dws_mobilehome_door_left.cgf" rotate_base="-180" rotate_range="90" rotate_speed="180" rotate_axis="z" rotate_dir="" 
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\dws\doors\dws_mobilehome_door.xml:
+  7  
+  8: 	<base_part class="door" type="224" name="dws_mobilehome_door" max_health="1000">
+  9  		<door filename="Objects/structures/Residential/mobileHome/doorway/dws_mobilehome_door.cgf" rotate_base="-180" rotate_range="90" rotate_speed="180" rotate_axis="z" rotate_dir="" 
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\dws\doors\dws_modern_family_door.xml:
+  7  
+  8: 	<base_part class="door" type="226" name="dws_modern_family_door" max_health="1000">
+  9  		<door filename="Objects/structures/Residential/modern_family_house_1/dws_modern_family_door.cgf" rotate_base="-180" rotate_range="90" rotate_speed="180" rotate_axis="z" rotate_dir="" 
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\dws\doors\dws_modern_family_inside_door_right.xml:
+  7  
+  8: 	<base_part class="door" type="228" name="dws_modern_family_inside_door_right" max_health="1000">
+  9  		<door filename="Objects/structures/Residential/modern_family_house_1/dws_modern_family_inside_door_right.cgf" rotate_base="-180" rotate_range="90" rotate_speed="180" rotate_axis="z" rotate_dir="" 
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\dws\doors\dws_modern_family_inside_door.xml:
+  7  
+  8: 	<base_part class="door" type="227" name="dws_modern_family_inside_door" max_health="1000">
+  9  		<door filename="Objects/structures/Residential/modern_family_house_1/dws_modern_family_inside_door.cgf" rotate_base="-180" rotate_range="90" rotate_speed="180" rotate_axis="z" rotate_dir="" 
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\dws\doors\dws_office_cabin_door_left.xml:
+  7  
+  8: 	<base_part class="door" type="211" name="dws_office_cabin_door_left" max_health="1500">
+  9  		<door filename="Objects/props/junkyard/dws_office_cabin_door_left.cgf" rotate_base="-180" rotate_range="90" rotate_speed="180" rotate_axis="z" rotate_dir="" 
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\dws\doors\dws_office_cabin_door.xml:
+  7  
+  8: 	<base_part class="door" type="210" name="dws_office_cabin_door" max_health="1500">
+  9  		<door filename="Objects/props/junkyard/dws_office_cabin_door.cgf" rotate_base="-180" rotate_range="90" rotate_speed="180" rotate_axis="z" rotate_dir="" 
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\dws\doors\dws_safe_door.xml:
+  7  
+  8: 	<base_part class="door" type="213" name="dws_safe_door" max_health="5000">
+  9  		<door filename="Objects/props/residential_assets/safe/dws_safe_door.cgf" rotate_base="-180" rotate_range="135" rotate_speed="90" rotate_axis="z" rotate_dir="+" 
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\dws\doors\dws_sheriff_office_window_door_01.xml:
+  7  
+  8: 	<base_part class="door" type="271" name="dws_sheriff_office_window_door_01" max_health="500">
+  9  		<door filename="Objects/props/Doors/sheriff_office_doors/dws_sheriff_office_window_door_01.cgf" rotate_base="-180" rotate_range="90" rotate_speed="180" rotate_axis="z" rotate_dir="" 
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\dws\doors\dws_TLH_FrontDoor.xml:
+  7  
+  8: 	<base_part class="door" type="223" name="dws_TLH_FrontDoor" max_health="1000">
+  9  		<door filename="Objects/structures/Residential/The_Last_House/dws_TLH_FrontDoor.cgf" rotate_base="-180" rotate_range="90" rotate_speed="180" rotate_axis="z" rotate_dir="" 
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\dws\doors\dws_warehouse_door_small.xml:
+  7  
+  8: 	<base_part class="door" type="241" name="dws_warehouse_door_small" max_health="5000">
+  9  		<door filename="Objects/structures/Industrial/Warehouse1/dws_warehouse_door_small.cgf" rotate_base="0" move_range="4" move_speed="2" move_axis="z" move_axis_dir="+" 
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\dws\doors\dws_warehouse1_door_big.xml:
+  7  
+  8: 	<base_part class="door" type="242" name="dws_warehouse1_door_big" max_health="5000">
+  9  		<door filename="Objects/structures/Industrial/Warehouse1/dws_warehouse1_door_big.cgf" rotate_base="0" move_range="4" move_speed="2" move_axis="z" move_axis_dir="+" 
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\dws\explosive\dws_acid_barrel.xml:
+  6  
+  7: 	<base_part class="static" type="240" name="dws_acid_barrel" max_health="35">
+  8  		<static filename="objects/basebuilding/explosive/barrel/dws_barrel_acid.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\dws\explosive\dws_fire_extinguisher.xml:
+  6  
+  7: 	<base_part class="static" type="239" name="dws_fire_extinguisher" max_health="20">
+  8  		<static filename="objects/props/fireex/fireex.cgf"/> <!-- All existing fire extinguishers will be replaced with DWS version -->
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\dws\misc\dws_cabinStove.xml:
+  7  
+  8: 	<base_part class="grill" type="269" name="dws_cabinStove" max_health="5000">
+  9  		<grill filename="Objects/props/cabinAssets/cabinStove.cgf" helper_food="food" />
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\dws\misc\dws_candle_animal_fat_large.xml:
+  7  
+  8: 	<base_part class="static" type="243" name="dws_candle_animal_fat_large" max_health="600">
+  9  		<static filename="objects/basebuilding/other/candle/dws_candle_large.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\dws\misc\dws_dumpster_lid.xml:
+  7  
+  8: 	<base_part class="door" type="251" name="dws_dumpster_lid" max_health="2000">
+  9  		<door filename="Objects/props/dumpster/dws_dumpster_lid.cgf" rotate_base="-180" rotate_range="75" rotate_speed="60" rotate_axis="y" rotate_dir="+" sound_open="Play_door_metal_open" sound_opened="Play_door_metal_opened" sound_close="Play_door_metal_close" sound_closed="Play_door_metal_closed"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\dws\misc\dws_firepit_outdoors_1.xml:
+  7  
+  8: 	<base_part class="grill" type="252" name="dws_firepit_outdoors_1" max_health="2000">
+  9  		<grill filename="Objects/props/firepit_outdoors/dws_firepit_outdoors_1.cgf" helper_food="food" helper_wood="wood" model_wood="Objects/props/firepit_outdoors/dws_firepit_outdoors_wood.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\dws\misc\dws_grill_base.xml:
+  7  
+  8: 	<base_part class="grill" type="248" name="dws_grill_base" max_health="0">
+  9  		<grill filename="Objects/props/outside_grill/dws_grill_base.cgf" helper_food="food" helper_propane="propane_tank" helper_propane_rotation="0,0,0" model_propane="Objects/props/propanetank_small/propanetank_small.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\dws\misc\dws_grill_lid.xml:
+  7  
+  8: 	<base_part class="door" type="249" name="dws_grill_lid" max_health="2000">
+  9  		<door filename="Objects/props/outside_grill/dws_grill_lid.cgf" rotate_base="-180" rotate_range="90" rotate_speed="90" rotate_axis="y" rotate_dir="+" sound_open="Play_door_metal_open" sound_opened="Play_door_metal_opened" sound_close="Play_door_metal_close" sound_closed="Play_door_metal_closed"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\dws\misc\dws_grill2.xml:
+  10  
+  11: 	<base_part class="grill" type="250" name="dws_grill2" max_health="2000">
+  12  		<grill filename="Objects/props/outside_grill/dws_grill_2.cgf" helper_food="food" helper_wood="wood" model_wood="Objects/props/outside_grill/grill_2_wood.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\dws\powered\powered_ceiling_light_c.xml:
+  6  
+  7: 	<base_part class="static" type="237" name="powered_ceiling_light_c" max_health="10">
+  8  		<static filename="Objects/props/furniture/appliances/lamps/dws_ceiling_light_c_off.cgf" />
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\dws\powered\powered_floodlight01.xml:
+  6  
+  7: 	<base_part class="static" type="253" name="powered_floodlight01" max_health="10">
+  8  		<static filename="Objects/props/industrial/misc/dws_floodlight01.cgf" />
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\dws\powered\powered_microwave.xml:
+  6  
+  7: 	<base_part class="oven" type="246" name="powered_microwave" max_health="2000">
+  8  		<oven filename="Objects/props/microwave/dws_microwave.cgf" helper_food="food"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\dws\powered\powered_oven.xml:
+  6  
+  7: 	<base_part class="oven" type="245" name="powered_oven" max_health="5000">
+  8  		<oven filename="Objects/props/elecStove/dws_elecstove.cgf" helper_food="food"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\dws\powered\powered_wall_lamp.xml:
+  6  
+  7: 	<base_part class="static" type="259" name="powered_wall_lamp" max_health="10">
+  8  		<static filename="Objects/props/wall_lamp/dws_wall_lamp.cgf" />
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\metal\arcade_cabinet.xml:
+  12  
+  13: 	<base_part class="static" type="2057" name="arcade_cabinet" max_health="18750" repair_with="SheetMetal" towable="1" repair_sound="Play_wall_repair">
+  14  		<static filename="objects/basebuilding/other/arcade_cabinet/arcade_cabinet.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\metal\metal_aframe_3m_4m.xml:
+  12  
+  13: 	<base_part class="static" type="2056" name="metal_aframe_3m_4m" max_health="37500" repair_with="SheetMetal" towable="1" repair_sound="Play_wall_repair">
+  14  		<static filename="objects/basebuilding/metal/metal_aframe_3m_4m.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\metal\metal_door_lockable_1m_2m.xml:
+  12  
+  13: 	<base_part class="door" type="2088" name="metal_door_lockable_1m_2m" max_health="18750" repair_with="SheetMetal" towable="1" repair_sound="Play_wall_repair">
+  14  		<door filename="objects/basebuilding/metal/metal_door.cgf" rotate_base="-90" rotate_range="90" rotate_speed="30" rotate_axis="z" rotate_axis_front="y" sound_open="Play_door_metal_open" sound_opened="" sound_close="Play_door_metal_close" sound_closed="Play_door_metal_closed" sound_lock="Play_door_lock" sound_unlock="Play_door_unlock"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\metal\metal_gate_lockable_3m_5_4m.xml:
+  12  
+  13: 	<base_part class="door" type="2099" name="metal_gate_lockable_3m_5_4m" max_health="37500" repair_with="SheetMetal" towable="1" repair_sound="Play_wall_repair">
+  14  		<door filename="objects/basebuilding/metal/metal_gate_3m_5_4m.cgf" rotate_base="-90" rotate_range="90" rotate_speed="30" rotate_axis="z" rotate_axis_front="y" sound_open="Play_door_metal_open" sound_opened="" sound_close="Play_door_metal_close" sound_closed="Play_door_metal_closed" sound_lock="Play_door_lock" sound_unlock="Play_door_unlock"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\metal\metal_gatehouse_4m_8m.xml:
+  12  
+  13: 	<base_part class="static" type="2098" name="metal_gatehouse_4m_8m" max_health="37500" repair_with="SheetMetal" towable="1" repair_sound="Play_wall_repair">
+  14  		<static filename="objects/basebuilding/metal/metal_gateway_4m_8m.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\metal\metal_platform_3m_4m_4m.xml:
+  12  
+  13: 	<base_part class="static" type="2061" name="metal_platform_3m_4m_4m" max_health="37500" repair_with="SheetMetal" towable="1" repair_sound="Play_wall_repair">
+  14  		<static filename="objects/basebuilding/metal/metal_platform_4m_4m_4m.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\metal\metal_safe.xml:
+  12  
+  13: 	<base_part class="static" type="2060" name="metal_safe" max_health="37500" limit="2" repair_with="SheetMetal" towable="1" repair_sound="Play_wall_repair">
+  14  		<static filename="objects/props/residential_assets/safe/safe_base.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\metal\metal_steam_stand.xml:
+   9  
+  10: 	<base_part class="powered" type="2998" name="metal_steam_stand" max_health="15000" repair_with="SheetMetal" repair_sound="Play_wall_repair">
+  11  		<powered filename="objects/basebuilding/other/kiosk/bpart_kiosk.cgf" power_consumption="1"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\metal\metal_wall_1_3m_2m.xml:
+  12  
+  13: 	<base_part class="static" type="2045" name="metal_wall_1_3m_2m" max_health="37500" repair_with="SheetMetal" towable="1" repair_sound="Play_wall_repair">
+  14  		<static filename="objects/basebuilding/metal/metal_wall_1_3m_2m.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\metal\metal_wall_1_3m_4m.xml:
+  12  
+  13: 	<base_part class="static" type="2046" name="metal_wall_1_3m_4m" max_health="37500" repair_with="SheetMetal" towable="1" repair_sound="Play_wall_repair">
+  14  		<static filename="objects/basebuilding/metal/metal_wall_1_3m_4m.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\metal\metal_wall_2m_2m.xml:
+  12  
+  13: 	<base_part class="static" type="2048" name="metal_wall_2m_2m" max_health="37500" repair_with="SheetMetal" towable="1" repair_sound="Play_wall_repair">
+  14  		<static filename="objects/basebuilding/metal/metal_wall_2m_2m.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\metal\metal_wall_2m_4m.xml:
+  12  
+  13: 	<base_part class="static" type="2049" name="metal_wall_2m_4m" max_health="37500" repair_with="SheetMetal" towable="1" repair_sound="Play_wall_repair">
+  14  		<static filename="objects/basebuilding/metal/metal_wall_2m_4m.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\metal\metal_wall_3m_2m.xml:
+  12  
+  13: 	<base_part class="static" type="2051" name="metal_wall_3m_2m" max_health="37500" repair_with="SheetMetal" towable="1" repair_sound="Play_wall_repair">
+  14  		<static filename="objects/basebuilding/metal/metal_wall_3m_2m.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\metal\metal_wall_3m_4m.xml:
+  12  
+  13: 	<base_part class="static" type="2052" name="metal_wall_3m_4m" max_health="37500" repair_with="SheetMetal" towable="1" repair_sound="Play_wall_repair">
+  14  		<static filename="objects/basebuilding/metal/metal_wall_3m_4m.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\metal\metal_wall_door_3m_4m.xml:
+  12  
+  13: 	<base_part class="static" type="2053" name="metal_wall_door_3m_4m" max_health="37500" repair_with="SheetMetal" towable="1" repair_sound="Play_wall_repair">
+  14  		<static filename="objects/basebuilding/metal/metal_doorway_3m_4m.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\metal\metal_wall_window_3m_2m.xml:
+  12  
+  13: 	<base_part class="static" type="2054" name="metal_wall_window_3m_2m" max_health="37500" repair_with="SheetMetal" towable="1" repair_sound="Play_wall_repair">
+  14  		<static filename="objects/basebuilding/metal/metal_wall_window_3m_2m.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\metal\metal_wall_window_3m_4m.xml:
+  12  
+  13: 	<base_part class="static" type="2055" name="metal_wall_window_3m_4m" max_health="37500" repair_with="SheetMetal" towable="1" repair_sound="Play_wall_repair">
+  14  		<static filename="objects/basebuilding/metal/metal_wall_window_3m_4m.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\misc\christmas_gift_pile.xml:
+   9  
+  10: 	<base_part class="static" type="296" name="christmas_gift_pile" max_health="1000" repair_with="DuctTape">
+  11  		<static filename="objects/basebuilding/other/christmas_gift_pile/christmas_gift_pile.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\misc\christmas_light_string.xml:
+  11  
+  12: 	<base_part class="static" type="289" name="christmas_light_string" max_health="1000" repair_with="DuctTape">
+  13  		<static filename="objects/basebuilding/other/christmas_string_lights/christmas_string_lights.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\misc\christmas_rug_01.xml:
+  10  
+  11: 	<base_part class="static" type="293" name="christmas_rug_01" max_health="200" repair_with="Rags">
+  12  		<static filename="Objects/basebuilding/other/rugs/crafted_rugs/christmas_rug_01.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\misc\christmas_rug_02.xml:
+  10  
+  11: 	<base_part class="static" type="294" name="christmas_rug_02" max_health="200" repair_with="Rags">
+  12  		<static filename="Objects/basebuilding/other/rugs/crafted_rugs/christmas_rug_02.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\misc\christmas_rug_03.xml:
+  10  
+  11: 	<base_part class="static" type="295" name="christmas_rug_03" max_health="200" repair_with="Rags">
+  12  		<static filename="Objects/basebuilding/other/rugs/crafted_rugs/christmas_rug_03.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\misc\christmas_snowglobe.xml:
+   9  
+  10: 	<base_part class="static" type="297" name="christmas_snowglobe" max_health="1000" repair_with="DuctTape">
+  11  		<static filename="objects/basebuilding/other/snowglobe/christmas_snowglobe.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\misc\christmas_stocking.xml:
+  11  
+  12: 	<base_part class="static" type="292" name="christmas_stocking" max_health="1000" repair_with="Rags">
+  13  		<static filename="objects/basebuilding/other/christmas_stocking/christmas_stocking.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\misc\christmas_tree.xml:
+  12  
+  13: 	<base_part class="static" type="2999" name="christmas_tree" towable="1">
+  14  		<static filename="objects/natural/vegetation/Trees/christmas_tree/christmas_tree.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\misc\gnome_giant_c.xml:
+  12  
+  13: 	<base_part class="static" type="2500" name="gnome_giant_c" max_health="37500" repair_with="DuctTape" towable="1">
+  14  		<static filename="objects/props/misc/garden_gnome/gnome_standard_c_giant.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\misc\halloween_candle.xml:
+  10  
+  11: 	<base_part class="static" type="282" name="halloween_candle" max_health="600" limit="10" repair_with="AnimalFat">
+  12  		<static filename="objects/basebuilding/other/candle/halloween_candle.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\misc\halloween_creepy_bear.xml:
+   9  
+  10: 	<base_part class="static" type="288" name="halloween_creepy_bear" max_health="5000" repair_with="DuctTape">
+  11  		<static filename="objects/props/teddy_bear/teddybear_sitting.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\misc\halloween_creepy_bunny.xml:
+   9  
+  10: 	<base_part class="static" type="287" name="halloween_creepy_bunny" max_health="5000" repair_with="DuctTape">
+  11  		<static filename="objects/props/residential_assets/toys/toy_bunny.cgf" material="objects/props/residential_assets/toys/bunny_creepy.mtl"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\misc\halloween_light_string.xml:
+   9  
+  10: 	<base_part class="static" type="285" name="halloween_light_string" max_health="1000" repair_with="DuctTape">
+  11  		<static filename="objects/basebuilding/other/halloween_light_string/halloween_light_string.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\misc\propane_heater.xml:
+   9  
+  10: 	<base_part class="static" type="260" name="propane_heater" max_health="1000" repair_with="ScrapMetal">
+  11  		<static filename="Objects/basebuilding/other/propane_heater/propane_heater.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\misc\snowman_small.xml:
+   9  
+  10: 	<base_part class="static" type="291" name="snowman_small" max_health="1000" repair_with="DuctTape">
+  11  		<static filename="objects/basebuilding/other/snowman/snowman_small.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\misc\snowman.xml:
+   9  
+  10: 	<base_part class="static" type="290" name="snowman" max_health="1000" repair_with="DuctTape">
+  11  		<static filename="objects/basebuilding/other/snowman/snowman.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\plated\garage_door_large.xml:
+  12  
+  13: 	<base_part class="door" type="299" name="garage_door_large" max_health="22500" repair_sound="Play_wall_repair" repair_with="SheetMetal">
+  14  		<door filename="objects/basebuilding/plated/garage_door_large.cgf" rotate_base="0" move_range="4.3" move_speed="1.5" move_axis="z" move_axis_dir="+" sound_open="Play_industrial_garage_door_open" sound_opened="" sound_close="Play_industrial_garage_door_close" sound_closed="Play_door_wood_closed" sound_lock="Play_door_lock" sound_unlock="Play_door_unlock"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\rock\rock_foundation_2m_2m_4m.xml:
+  13  
+  14: 	<base_part class="static" type="280" name="rock_foundation_2m_2m_4m" max_health="22500" repair_with="Rocks" repair_sound="Play_wall_repair">&gt;
+  15  		<static filename="objects/basebuilding/rock/rock_foundation_2m_2m_4m.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\rock\rock_foundation_4m_4m_4m.xml:
+  13  
+  14: 	<base_part class="static" type="278" name="rock_foundation_4m_4m_4m" max_health="22500" repair_with="Rocks" repair_sound="Play_wall_repair">&gt;
+  15  		<static filename="objects/basebuilding/rock/rock_foundation_4m_4m_4m.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\sand\hesco_barrier.xml:
+  10  
+  11: 	<base_part class="static" type="236" name="hesco_barrier" max_health="3000" repair_with="ScrapMetal">
+  12  		<static filename="objects/basebuilding/sand/hesco_barrier/hesco_bpart.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\water\water_barrel.xml:
+  10  
+  11: 	<base_part class="water_barrel" type="256" name="water_barrel" max_health="2000">
+  12  		<water_barrel filename="Objects/props/plastic_barrel/dws_plastic_barrel_full.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\water\water_collector.xml:
+   9  
+  10: 	<base_part class="water_barrel" type="257" name="water_collector" max_health="2000">
+  11  		<water_barrel filename="objects/basebuilding/other/water_collector/water_collector.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\water\water_purifier.xml:
+   9  
+  10: 	<base_part class="water_purifier" type="258" name="water_purifier" max_health="2000">
+  11  		<water_purifier filename="objects/basebuilding/other/water_purifier/crafted_water_purifier.cgf" helper_wood="wood" model_wood="objects/basebuilding/other/water_purifier/crafted_water_purifier_wood.cgf" helper_propane="propane_tank" helper_propane_rotation="0,0,0" model_propane="Objects/props/propanetank_small/propanetank_small.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\wood\wood_door_1m_2m.xml:
+  10  
+  11: 	<base_part class="door" type="2" name="wood_door_1m_2m" max_health="5000" repair_sound="Play_wall_repair">
+  12  		<door filename="objects/basebuilding/wood/wood_door_1m_2m.cgf" rotate_base="-90" rotate_range="90" rotate_speed="90" rotate_axis="z" rotate_axis_front="y" sound_open="Play_door_wood_open" sound_opened="" sound_close="Play_door_wood_close" sound_closed="Play_door_wood_closed"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\wood\wood_foundation_4m_4m_4m.xml:
+  13  
+  14: 	<base_part class="static" type="275" name="wood_foundation_4m_4m_4m" repair_sound="Play_wall_repair">
+  15  		<static filename="objects/basebuilding/wood/wood_foundation_4m_4m_4m.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\wood\wood_ramp_0m_1_3m_1m.xml:
+  10  
+  11: 	<base_part class="static" type="20" name="wood_ramp_0m_1_3m_1m" repair_sound="Play_wall_repair">
+  12  		<static filename="objects/basebuilding/wood/ramp_0m_1_3m_1m.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\wood\wood_ramp_0m_1_3m_3m.xml:
+  10  
+  11: 	<base_part class="static" type="22" name="wood_ramp_0m_1_3m_3m" repair_sound="Play_wall_repair">
+  12  		<static filename="objects/basebuilding/wood/ramp_0m_1_3m_3m.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\wood\wood_ramp_1_3m_3m_1m.xml:
+  10  
+  11: 	<base_part class="static" type="23" name="wood_ramp_1_3m_3m_1m" repair_sound="Play_wall_repair">
+  12  		<static filename="objects/basebuilding/wood/ramp_1_3m_3m_1m.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\wood\wood_ramp_1_3m_3m_3m.xml:
+  10  
+  11: 	<base_part class="static" type="25" name="wood_ramp_1_3m_3m_3m" repair_sound="Play_wall_repair">
+  12  		<static filename="objects/basebuilding/wood/ramp_1_3m_3m_3m.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\wood\wood_shutter_1_6m_0_9m.xml:
+  10  
+  11: 	<base_part class="door" type="267" name="wood_shutter_1_6m_0_9m" max_health="5000" repair_sound="Play_wall_repair">
+  12  		<door filename="objects/basebuilding/wood/shutter_1_6m_0_9m.cgf" rotate_base="-90" rotate_range="90" rotate_speed="90" rotate_axis="z" rotate_axis_front="y" sound_open="Play_door_wood_open" sound_opened="" sound_close="Play_door_wood_close" sound_closed="Play_door_wood_closed"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\wood\wood_shutter_small_lockable.xml:
+  10  
+  11: 	<base_part class="door" type="274" name="wood_shutter_small_lockable" max_health="5000" repair_sound="Play_wall_repair">
+  12  		<door filename="objects/basebuilding/wood/wood_shutter_small.cgf" rotate_base="-90" rotate_range="90" rotate_speed="90" rotate_axis="z" rotate_axis_front="y" sound_open="Play_door_wood_open" sound_opened="" sound_close="Play_door_wood_close" sound_closed="Play_door_wood_closed" sound_lock="Play_door_lock" sound_unlock="Play_door_unlock"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\wood\wood_stairs_0m_2m_3m.xml:
+  10  
+  11: 	<base_part class="static" type="21" name="wood_stairs_0m_2m_3m" repair_sound="Play_wall_repair">
+  12  		<static filename="objects/basebuilding/wood/stairs_0m_2m_3m.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\wood\wood_stairs_1_3m_2m_1m.xml:
+  10  
+  11: 	<base_part class="static" type="24" name="wood_stairs_1_3m_2m_1m" repair_sound="Play_wall_repair">
+  12  		<static filename="objects/basebuilding/wood/stairs_1_3m_2m_1m.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\wood\wood_stairs_1_3m_2m_3m.xml:
+  10  
+  11: 	<base_part class="static" type="27" name="wood_stairs_1_3m_2m_3m" repair_sound="Play_wall_repair">
+  12  		<static filename="objects/basebuilding/wood/stairs_1_3m_2m_3m.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\wood\wood_stairs_1_3m_3m_1m.xml:
+  10  
+  11: 	<base_part class="static" type="28" name="wood_stairs_1_3m_3m_1m" repair_sound="Play_wall_repair">
+  12  		<static filename="objects/basebuilding/wood/stairs_1_3m_3m_1m.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\wood\wood_walkway_1_3m_1m_1m.xml:
+  10  
+  11: 	<base_part class="static" type="26" name="wood_walkway_1_3m_1m_1m" repair_sound="Play_wall_repair">
+  12  		<static filename="objects/basebuilding/wood/walkway_1_3m_1m_1m.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\wood\wood_walkway_1_3m_3m_1m.xml:
+  10  
+  11: 	<base_part class="static" type="29" name="wood_walkway_1_3m_3m_1m" repair_sound="Play_wall_repair">
+  12  		<static filename="objects/basebuilding/wood/walkway_1_3m_3m_1m.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\wood\wood_wall_drawbridge_3m_4m.xml:
+  10  
+  11: 	<base_part class="static" type="235" name="wood_wall_drawbridge_3m_4m" repair_sound="Play_wall_repair">
+  12  		<static filename="objects/basebuilding/wood/wood_wall_drawbridge_3m_4m.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\wood\wood_wall_garage_large.xml:
+  10  
+  11: 	<base_part class="static" type="298" name="wood_wall_garage_large" repair_sound="Play_wall_repair">
+  12  		<static filename="objects/basebuilding/wood/wood_wall_garage_large.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\wood\wood_wall_shutter_3m_2m.xml:
+  10  
+  11: 	<base_part class="static" type="266" name="wood_wall_shutter_3m_2m" repair_sound="Play_wall_repair">
+  12  		<static filename="Objects/basebuilding/wood/wall_shutter_3m_2m.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\wood\wood_wall_shutter_3m_4m.xml:
+  10  
+  11: 	<base_part class="static" type="268" name="wood_wall_shutter_3m_4m" repair_sound="Play_wall_repair">
+  12  		<static filename="objects/basebuilding/wood/wall_shutter_3m_4m.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\wood\wood_watchtower_big.xml:
+  10  
+  11: 	<base_part class="static" type="277" name="wood_watchtower_big" max_health="20000" repair_sound="Play_wall_repair">
+  12  		<static filename="objects/basebuilding/wood/watchtower_wood_big.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\wood\wood_watchtower_tire_big.xml:
+  10  
+  11: 	<base_part class="static" type="279" name="wood_watchtower_tire_big" max_health="20000" repair_sound="Play_wall_repair">
+  12  		<static filename="objects/basebuilding/wood/watchtower_wood_big_tire.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\wood\ramp_walls\wood_ramp_wall_0m_1_3m_3m.xml:
+  10  
+  11: 	<base_part class="static" type="261" name="wood_ramp_wall_0m_1_3m_3m">
+  12  		<static filename="objects/basebuilding/wood/wood_ramp_wall_0m_1_3m_3m.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\wood\ramp_walls\wood_ramp_wall_0m_2m_3m.xml:
+  10  
+  11: 	<base_part class="static" type="262" name="wood_ramp_wall_0m_2m_3m">
+  12  		<static filename="objects/basebuilding/wood/wood_ramp_wall_0m_2m_3m.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\wood\ramp_walls\wood_ramp_wall_1_3m_2m_3m.xml:
+  10  
+  11: 	<base_part class="static" type="264" name="wood_ramp_wall_1_3m_2m_3m">
+  12  		<static filename="objects/basebuilding/wood/wood_ramp_wall_1_3m_2m_3m.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\wood\ramp_walls\wood_ramp_wall_1_3m_3m_3m.xml:
+  10  
+  11: 	<base_part class="static" type="265" name="wood_ramp_wall_1_3m_3m_3m">
+  12  		<static filename="objects/basebuilding/wood/wood_ramp_wall_1_3m_3m_3m.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\wood\ramp_walls\wood_ramp_wall_2m_3m_1m.xml:
+  10  
+  11: 	<base_part class="static" type="263" name="wood_ramp_wall_2m_3m_1m">
+  12  		<static filename="objects/basebuilding/wood/wood_ramp_wall_2m_3m_1m.cgf"/>

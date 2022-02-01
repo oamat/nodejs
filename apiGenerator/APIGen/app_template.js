@@ -2,7 +2,7 @@ const Handlebars = require("handlebars");
 var fs = require('fs');
 
 
-
+// example names: 
 //{{name_low}} = gamesystems
 //{{name_1upper}} = Gamesystem
 //{{name_1upper_plural}} = Gamesystems

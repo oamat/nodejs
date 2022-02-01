@@ -1,0 +1,815 @@
+# Query: type="4
+# Including: ./nodeErrorID
+# ContextLines: 1
+
+162 results - 162 files
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\misc\flagpole_algeria.xml:
+   9  
+  10:     <base_part class="static" type="4883" name="flagpole_algeria" max_health="1000" repair_with="Lumber">
+  11          <static filename="Objects/basebuilding/other/flag/flag_pole_algeria.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\misc\flagpole_amalgamated_glow.xml:
+   9  
+  10:     <base_part class="static" type="4853" name="flagpole_amalgamated_glow" max_health="1000" repair_with="ScrapMetal">
+  11          <static filename="Objects/basebuilding/other/flag/flag_pole_amalgamated_glow.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\misc\flagpole_amalgamated.xml:
+   9  
+  10:     <base_part class="static" type="4852" name="flagpole_amalgamated" max_health="1000" repair_with="ScrapMetal">
+  11          <static filename="Objects/basebuilding/other/flag/flag_pole_amalgamated.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\misc\flagpole_america.xml:
+   9  
+  10:     <base_part class="static" type="4854" name="flagpole_america" max_health="1000" repair_with="ScrapMetal">
+  11          <static filename="Objects/basebuilding/other/flag/flag_pole_america.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\misc\flagpole_australia.xml:
+   9  
+  10:     <base_part class="static" type="4855" name="flagpole_australia" max_health="1000" repair_with="ScrapMetal">
+  11          <static filename="Objects/basebuilding/other/flag/flag_pole_australia.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\misc\flagpole_austria.xml:
+   9  
+  10:     <base_part class="static" type="4885" name="flagpole_austria" max_health="1000" repair_with="Lumber">
+  11          <static filename="Objects/basebuilding/other/flag/flag_pole_austria.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\misc\flagpole_black.xml:
+   9  
+  10:     <base_part class="static" type="4856" name="flagpole_black" max_health="1000" repair_with="ScrapMetal">
+  11          <static filename="Objects/basebuilding/other/flag/flag_pole_black.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\misc\flagpole_blue.xml:
+   9  
+  10:     <base_part class="static" type="4857" name="flagpole_blue" max_health="1000" repair_with="ScrapMetal">
+  11          <static filename="Objects/basebuilding/other/flag/flag_pole_blue.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\misc\flagpole_brazil.xml:
+   9  
+  10:     <base_part class="static" type="4873" name="flagpole_brazil" max_health="1000" repair_with="Lumber">
+  11          <static filename="Objects/basebuilding/other/flag/flag_pole_brazil.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\misc\flagpole_canada.xml:
+   9  
+  10:     <base_part class="static" type="4858" name="flagpole_canada" max_health="1000" repair_with="ScrapMetal">
+  11          <static filename="Objects/basebuilding/other/flag/flag_pole_canada.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\misc\flagpole_capitalmunch.xml:
+   9  
+  10:     <base_part class="static" type="4859" name="flagpole_capitalmunch" max_health="1000" repair_with="ScrapMetal">
+  11          <static filename="Objects/basebuilding/other/flag/flag_pole_capitalmunch.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\misc\flagpole_china.xml:
+   9  
+  10:     <base_part class="static" type="4860" name="flagpole_china" max_health="1000" repair_with="ScrapMetal">
+  11          <static filename="Objects/basebuilding/other/flag/flag_pole_china.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\misc\flagpole_donut_glow.xml:
+   9  
+  10:     <base_part class="static" type="4861" name="flagpole_donut_glow" max_health="1000" repair_with="ScrapMetal">
+  11          <static filename="Objects/basebuilding/other/flag/flag_pole_donutglow.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\misc\flagpole_finland.xml:
+   9  
+  10:     <base_part class="static" type="4884" name="flagpole_finland" max_health="1000" repair_with="Lumber">
+  11          <static filename="Objects/basebuilding/other/flag/flag_pole_finland.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\misc\flagpole_france.xml:
+   9  
+  10:     <base_part class="static" type="4862" name="flagpole_france" max_health="1000" repair_with="ScrapMetal">
+  11          <static filename="Objects/basebuilding/other/flag/flag_pole_france.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\misc\flagpole_germany.xml:
+   9  
+  10:     <base_part class="static" type="4863" name="flagpole_germany" max_health="1000" repair_with="ScrapMetal">
+  11          <static filename="Objects/basebuilding/other/flag/flag_pole_germany.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\misc\flagpole_green.xml:
+   9  
+  10:     <base_part class="static" type="4864" name="flagpole_green" max_health="1000" repair_with="ScrapMetal">
+  11          <static filename="Objects/basebuilding/other/flag/flag_pole_green.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\misc\flagpole_holland.xml:
+   9  
+  10:     <base_part class="static" type="4878" name="flagpole_holland" max_health="1000" repair_with="Lumber">
+  11          <static filename="Objects/basebuilding/other/flag/flag_pole_holland.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\misc\flagpole_india.xml:
+   9  
+  10:     <base_part class="static" type="4886" name="flagpole_india" max_health="1000" repair_with="Lumber">
+  11          <static filename="Objects/basebuilding/other/flag/flag_pole_india.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\misc\flagpole_indonesia.xml:
+   9  
+  10:     <base_part class="static" type="4887" name="flagpole_indonesia" max_health="1000" repair_with="Lumber">
+  11          <static filename="Objects/basebuilding/other/flag/flag_pole_indonesia.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\misc\flagpole_ironsons.xml:
+   9  
+  10:     <base_part class="static" type="4865" name="flagpole_ironsons" max_health="1000" repair_with="ScrapMetal">
+  11          <static filename="Objects/basebuilding/other/flag/flag_pole_ironsons.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\misc\flagpole_israel.xml:
+   9  
+  10:     <base_part class="static" type="4881" name="flagpole_israel" max_health="1000" repair_with="Lumber">
+  11          <static filename="Objects/basebuilding/other/flag/flag_pole_israel.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\misc\flagpole_japan.xml:
+   9  
+  10:     <base_part class="static" type="4866" name="flagpole_japan" max_health="1000" repair_with="ScrapMetal">
+  11          <static filename="Objects/basebuilding/other/flag/flag_pole_japan.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\misc\flagpole_mexico.xml:
+   9  
+  10:     <base_part class="static" type="4877" name="flagpole_mexico" max_health="1000" repair_with="Lumber">
+  11          <static filename="Objects/basebuilding/other/flag/flag_pole_mexico.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\misc\flagpole_pink.xml:
+   9  
+  10:     <base_part class="static" type="4867" name="flagpole_pink" max_health="1000" repair_with="ScrapMetal">
+  11          <static filename="Objects/basebuilding/other/flag/flag_pole_pink.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\misc\flagpole_pirate.xml:
+   9  
+  10:     <base_part class="static" type="4868" name="flagpole_pirate" max_health="1000" repair_with="ScrapMetal">
+  11          <static filename="Objects/basebuilding/other/flag/flag_pole_pirate.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\misc\flagpole_poland.xml:
+   9  
+  10:     <base_part class="static" type="4876" name="flagpole_poland" max_health="1000" repair_with="Lumber">
+  11          <static filename="Objects/basebuilding/other/flag/flag_pole_poland.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\misc\flagpole_red.xml:
+   9  
+  10:     <base_part class="static" type="4869" name="flagpole_red" max_health="1000" repair_with="ScrapMetal">
+  11          <static filename="Objects/basebuilding/other/flag/flag_pole_red.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\misc\flagpole_russia.xml:
+   9  
+  10:     <base_part class="static" type="4870" name="flagpole_russia" max_health="1000" repair_with="ScrapMetal">
+  11          <static filename="Objects/basebuilding/other/flag/flag_pole_russia.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\misc\flagpole_slovenia.xml:
+   9  
+  10:     <base_part class="static" type="4905" name="flagpole_slovenia" max_health="1000" repair_with="Lumber">
+  11          <static filename="Objects/basebuilding/other/flag/flag_pole_slovenia.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\misc\flagpole_smiley_glow.xml:
+   9  
+  10:     <base_part class="static" type="4871" name="flagpole_smiley_glow" max_health="1000" repair_with="ScrapMetal">
+  11          <static filename="Objects/basebuilding/other/flag/flag_pole_smiley_glow.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\misc\flagpole_south_africa.xml:
+   9  
+  10:     <base_part class="static" type="4882" name="flagpole_south_africa" max_health="1000" repair_with="Lumber">
+  11          <static filename="Objects/basebuilding/other/flag/flag_pole_south_africa.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\misc\flagpole_spain.xml:
+   9  
+  10:     <base_part class="static" type="4879" name="flagpole_spain" max_health="1000" repair_with="Lumber">
+  11          <static filename="Objects/basebuilding/other/flag/flag_pole_spain.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\misc\flagpole_sweden.xml:
+   9  
+  10:     <base_part class="static" type="4874" name="flagpole_sweden" max_health="1000" repair_with="Lumber">
+  11          <static filename="Objects/basebuilding/other/flag/flag_pole_sweden.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\misc\flagpole_turkey.xml:
+   9  
+  10:     <base_part class="static" type="4880" name="flagpole_turkey" max_health="1000" repair_with="Lumber">
+  11          <static filename="Objects/basebuilding/other/flag/flag_pole_turkey.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\misc\flagpole_uk.xml:
+   9  
+  10:     <base_part class="static" type="4872" name="flagpole_uk" max_health="1000" repair_with="ScrapMetal">
+  11          <static filename="Objects/basebuilding/other/flag/flag_pole_uk.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\misc\flagpole_white.xml:
+   9  
+  10:     <base_part class="static" type="4851" name="flagpole_white" max_health="1000" repair_with="ScrapMetal">
+  11          <static filename="Objects/basebuilding/other/flag/flag_pole.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\misc\metal_shelf.xml:
+   9  
+  10:     <base_part class="static" type="4875" name="metal_shelf" max_health="3000" repair_with="ScrapMetal">
+  11          <static filename="Objects/basebuilding/other/metal_shelf/metal_shelf.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\misc\workbench.xml:
+   9  
+  10: 	<base_part class="static" type="4849" name="workbench" max_health="5000">
+  11  		<static filename="objects/basebuilding/other/workbench/workbench_base.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\stone\stone_furnace_packed.xml:
+   9    </params>
+  10:   <base_part class="entity" type="4" name="stone_furnace_packed" max_health="3000" repair_with="Rocks" limit="2">
+  11      <entity class="stone_furnace" />
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\wood\wood_column_3m.xml:
+  10  
+  11: 	<base_part class="static" type="40" name="wood_column_3m" max_health="2000" repair_sound="Play_wall_repair">
+  12  		<static filename="Objects/basebuilding/wood/wood_column_3m.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\wood\wood_column_4m.xml:
+  10  
+  11: 	<base_part class="static" type="42" name="wood_column_4m" max_health="2500" repair_sound="Play_wall_repair">
+  12  		<static filename="Objects/basebuilding/wood/wood_column_4m.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\wood\wood_walkway_3m_3m_1m.xml:
+  10  
+  11: 	<base_part class="static" type="41" name="wood_walkway_3m_3m_1m" repair_sound="Play_wall_repair">
+  12  		<static filename="Objects/basebuilding/wood/walkway_3m_3m_1m.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\wood\wood_walkway_3m_4m_4m.xml:
+  10  
+  11: 	<base_part class="static" type="43" name="wood_walkway_3m_4m_4m" repair_sound="Play_wall_repair">
+  12  		<static filename="Objects/basebuilding/wood/walkway_3m_4m_4m.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\wood\wood_wall_1_3m_1m.xml:
+  10  
+  11: 	<base_part class="static" type="44" name="wood_wall_1_3m_1m" max_health="10000" repair_sound="Play_wall_repair">
+  12  		<static filename="Objects/basebuilding/wood/wall_1_3m_1m.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\wood\wood_wall_1_3m_2m.xml:
+  10  
+  11: 	<base_part class="static" type="45" name="wood_wall_1_3m_2m" max_health="10000" repair_sound="Play_wall_repair">
+  12  		<static filename="Objects/basebuilding/wood/wall_1_3m_2m.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\wood\wood_wall_1_3m_4m.xml:
+  10  
+  11: 	<base_part class="static" type="46" name="wood_wall_1_3m_4m" max_health="10000" repair_sound="Play_wall_repair">
+  12  		<static filename="Objects/basebuilding/wood/wall_1_3m_4m.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\wood\wood_wall_2m_1m.xml:
+  10  
+  11: 	<base_part class="static" type="47" name="wood_wall_2m_1m" max_health="10000" repair_sound="Play_wall_repair">
+  12  		<static filename="Objects/basebuilding/wood/wall_2m_1m.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\wood\wood_wall_2m_2m.xml:
+  10  
+  11: 	<base_part class="static" max_health="10000" type="48" name="wood_wall_2m_2m" repair_sound="Play_wall_repair">
+  12  		<static filename="Objects/basebuilding/wood/wall_2m_2m.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\wood\wood_wall_2m_4m.xml:
+  10  
+  11: 	<base_part class="static" max_health="10000" type="49" name="wood_wall_2m_4m" repair_sound="Play_wall_repair">
+  12  		<static filename="Objects/basebuilding/wood/wall_2m_4m.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\misc\flagpole_algeria.xml:
+   9  
+  10:     <base_part class="static" type="4883" name="flagpole_algeria" max_health="1000" repair_with="Lumber">
+  11          <static filename="objects/basebuilding/other/flag/flag_pole_algeria.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\misc\flagpole_amalgamated_glow.xml:
+   9  
+  10:     <base_part class="static" type="4853" name="flagpole_amalgamated_glow" max_health="1000" repair_with="ScrapMetal">
+  11          <static filename="objects/basebuilding/other/flag/flag_pole_amalgamated_glow.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\misc\flagpole_amalgamated.xml:
+   9  
+  10:     <base_part class="static" type="4852" name="flagpole_amalgamated" max_health="1000" repair_with="ScrapMetal">
+  11          <static filename="objects/basebuilding/other/flag/flag_pole_amalgamated.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\misc\flagpole_america.xml:
+   9  
+  10:     <base_part class="static" type="4854" name="flagpole_america" max_health="1000" repair_with="ScrapMetal">
+  11          <static filename="objects/basebuilding/other/flag/flag_pole_america.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\misc\flagpole_australia.xml:
+   9  
+  10:     <base_part class="static" type="4855" name="flagpole_australia" max_health="1000" repair_with="ScrapMetal">
+  11          <static filename="objects/basebuilding/other/flag/flag_pole_australia.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\misc\flagpole_austria.xml:
+   9  
+  10:     <base_part class="static" type="4885" name="flagpole_austria" max_health="1000" repair_with="Lumber">
+  11          <static filename="objects/basebuilding/other/flag/flag_pole_austria.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\misc\flagpole_black.xml:
+   9  
+  10:     <base_part class="static" type="4856" name="flagpole_black" max_health="1000" repair_with="ScrapMetal">
+  11          <static filename="objects/basebuilding/other/flag/flag_pole_black.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\misc\flagpole_blue.xml:
+   9  
+  10:     <base_part class="static" type="4857" name="flagpole_blue" max_health="1000" repair_with="ScrapMetal">
+  11          <static filename="objects/basebuilding/other/flag/flag_pole_blue.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\misc\flagpole_brazil.xml:
+   9  
+  10:     <base_part class="static" type="4873" name="flagpole_brazil" max_health="1000" repair_with="Lumber">
+  11          <static filename="objects/basebuilding/other/flag/flag_pole_brazil.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\misc\flagpole_canada.xml:
+   9  
+  10:     <base_part class="static" type="4858" name="flagpole_canada" max_health="1000" repair_with="ScrapMetal">
+  11          <static filename="objects/basebuilding/other/flag/flag_pole_canada.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\misc\flagpole_capitalmunch.xml:
+   9  
+  10:     <base_part class="static" type="4859" name="flagpole_capitalmunch" max_health="1000" repair_with="ScrapMetal">
+  11          <static filename="objects/basebuilding/other/flag/flag_pole_capitalmunch.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\misc\flagpole_china.xml:
+   9  
+  10:     <base_part class="static" type="4860" name="flagpole_china" max_health="1000" repair_with="ScrapMetal">
+  11          <static filename="objects/basebuilding/other/flag/flag_pole_china.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\misc\flagpole_donut_glow.xml:
+   9  
+  10:     <base_part class="static" type="4861" name="flagpole_donut_glow" max_health="1000" repair_with="ScrapMetal">
+  11          <static filename="objects/basebuilding/other/flag/flag_pole_donutglow.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\misc\flagpole_finland.xml:
+   9  
+  10:     <base_part class="static" type="4884" name="flagpole_finland" max_health="1000" repair_with="Lumber">
+  11          <static filename="objects/basebuilding/other/flag/flag_pole_finland.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\misc\flagpole_france.xml:
+   9  
+  10:     <base_part class="static" type="4862" name="flagpole_france" max_health="1000" repair_with="ScrapMetal">
+  11          <static filename="objects/basebuilding/other/flag/flag_pole_france.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\misc\flagpole_germany.xml:
+   9  
+  10:     <base_part class="static" type="4863" name="flagpole_germany" max_health="1000" repair_with="ScrapMetal">
+  11          <static filename="objects/basebuilding/other/flag/flag_pole_germany.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\misc\flagpole_green.xml:
+   9  
+  10:     <base_part class="static" type="4864" name="flagpole_green" max_health="1000" repair_with="ScrapMetal">
+  11          <static filename="objects/basebuilding/other/flag/flag_pole_green.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\misc\flagpole_holland.xml:
+   9  
+  10:     <base_part class="static" type="4878" name="flagpole_holland" max_health="1000" repair_with="Lumber">
+  11          <static filename="objects/basebuilding/other/flag/flag_pole_holland.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\misc\flagpole_india.xml:
+   9  
+  10:     <base_part class="static" type="4886" name="flagpole_india" max_health="1000" repair_with="Lumber">
+  11          <static filename="objects/basebuilding/other/flag/flag_pole_india.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\misc\flagpole_indonesia.xml:
+   9  
+  10:     <base_part class="static" type="4887" name="flagpole_indonesia" max_health="1000" repair_with="Lumber">
+  11          <static filename="objects/basebuilding/other/flag/flag_pole_indonesia.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\misc\flagpole_ironsons.xml:
+   9  
+  10:     <base_part class="static" type="4865" name="flagpole_ironsons" max_health="1000" repair_with="ScrapMetal">
+  11          <static filename="objects/basebuilding/other/flag/flag_pole_ironsons.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\misc\flagpole_israel.xml:
+   9  
+  10:     <base_part class="static" type="4881" name="flagpole_israel" max_health="1000" repair_with="Lumber">
+  11          <static filename="objects/basebuilding/other/flag/flag_pole_israel.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\misc\flagpole_japan.xml:
+   9  
+  10:     <base_part class="static" type="4866" name="flagpole_japan" max_health="1000" repair_with="ScrapMetal">
+  11          <static filename="objects/basebuilding/other/flag/flag_pole_japan.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\misc\flagpole_mexico.xml:
+   9  
+  10:     <base_part class="static" type="4877" name="flagpole_mexico" max_health="1000" repair_with="Lumber">
+  11          <static filename="objects/basebuilding/other/flag/flag_pole_mexico.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\misc\flagpole_pink.xml:
+   9  
+  10:     <base_part class="static" type="4867" name="flagpole_pink" max_health="1000" repair_with="ScrapMetal">
+  11          <static filename="objects/basebuilding/other/flag/flag_pole_pink.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\misc\flagpole_pirate.xml:
+   9  
+  10:     <base_part class="static" type="4868" name="flagpole_pirate" max_health="1000" repair_with="ScrapMetal">
+  11          <static filename="objects/basebuilding/other/flag/flag_pole_pirate.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\misc\flagpole_poland.xml:
+   9  
+  10:     <base_part class="static" type="4876" name="flagpole_poland" max_health="1000" repair_with="Lumber">
+  11          <static filename="objects/basebuilding/other/flag/flag_pole_poland.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\misc\flagpole_red.xml:
+   9  
+  10:     <base_part class="static" type="4869" name="flagpole_red" max_health="1000" repair_with="ScrapMetal">
+  11          <static filename="objects/basebuilding/other/flag/flag_pole_red.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\misc\flagpole_russia.xml:
+   9  
+  10:     <base_part class="static" type="4870" name="flagpole_russia" max_health="1000" repair_with="ScrapMetal">
+  11          <static filename="objects/basebuilding/other/flag/flag_pole_russia.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\misc\flagpole_slovenia.xml:
+   9  
+  10:     <base_part class="static" type="4905" name="flagpole_slovenia" max_health="1000" repair_with="Lumber">
+  11          <static filename="objects/basebuilding/other/flag/flag_pole_slovenia.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\misc\flagpole_smiley_glow.xml:
+   9  
+  10:     <base_part class="static" type="4871" name="flagpole_smiley_glow" max_health="1000" repair_with="ScrapMetal">
+  11          <static filename="objects/basebuilding/other/flag/flag_pole_smiley_glow.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\misc\flagpole_south_africa.xml:
+   9  
+  10:     <base_part class="static" type="4882" name="flagpole_south_africa" max_health="1000" repair_with="Lumber">
+  11          <static filename="objects/basebuilding/other/flag/flag_pole_south_africa.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\misc\flagpole_spain.xml:
+   9  
+  10:     <base_part class="static" type="4879" name="flagpole_spain" max_health="1000" repair_with="Lumber">
+  11          <static filename="objects/basebuilding/other/flag/flag_pole_spain.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\misc\flagpole_sweden.xml:
+   9  
+  10:     <base_part class="static" type="4874" name="flagpole_sweden" max_health="1000" repair_with="Lumber">
+  11          <static filename="objects/basebuilding/other/flag/flag_pole_sweden.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\misc\flagpole_turkey.xml:
+   9  
+  10:     <base_part class="static" type="4880" name="flagpole_turkey" max_health="1000" repair_with="Lumber">
+  11          <static filename="objects/basebuilding/other/flag/flag_pole_turkey.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\misc\flagpole_uk.xml:
+   9  
+  10:     <base_part class="static" type="4872" name="flagpole_uk" max_health="1000" repair_with="ScrapMetal">
+  11          <static filename="objects/basebuilding/other/flag/flag_pole_uk.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\misc\flagpole_white.xml:
+   9  
+  10:     <base_part class="static" type="4851" name="flagpole_white" max_health="1000" repair_with="ScrapMetal">
+  11          <static filename="objects/basebuilding/other/flag/flag_pole.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\misc\metal_shelf.xml:
+   9  
+  10:     <base_part class="static" type="4875" name="metal_shelf" max_health="3000" repair_with="ScrapMetal">
+  11          <static filename="objects/basebuilding/other/metal_shelf/metal_shelf.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\misc\pumpkin_1.xml:
+   9  
+  10: 	<base_part class="static" type="401" name="pumpkin_1" max_health="1000" repair_with="DuctTape">
+  11  		<static filename="objects/basebuilding/other/jack_o_lantern/Pumpkin_1.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\misc\pumpkin_2.xml:
+   9  
+  10: 	<base_part class="static" type="402" name="pumpkin_2" max_health="1000" repair_with="DuctTape">
+  11  		<static filename="objects/basebuilding/other/jack_o_lantern/Pumpkin_2.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\misc\pumpkin_3.xml:
+   9  
+  10: 	<base_part class="static" type="403" name="pumpkin_3" max_health="1000" repair_with="DuctTape">
+  11  		<static filename="objects/basebuilding/other/jack_o_lantern/Pumpkin_3.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\misc\pumpkin_4.xml:
+   9  
+  10: 	<base_part class="static" type="404" name="pumpkin_4" max_health="1000" repair_with="DuctTape">
+  11  		<static filename="objects/basebuilding/other/jack_o_lantern/Pumpkin_4.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\misc\pumpkin_5.xml:
+   9  
+  10: 	<base_part class="static" type="405" name="pumpkin_5" max_health="1000" repair_with="DuctTape">
+  11  		<static filename="objects/basebuilding/other/jack_o_lantern/Pumpkin_5.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\misc\pumpkin_6.xml:
+   9  
+  10: 	<base_part class="static" type="406" name="pumpkin_6" max_health="1000" repair_with="DuctTape">
+  11  		<static filename="objects/basebuilding/other/jack_o_lantern/Pumpkin_6.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\misc\workbench.xml:
+   9  
+  10: 	<base_part class="static" type="4849" name="workbench" max_health="5000">
+  11  		<static filename="objects/basebuilding/other/workbench/workbench_base.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\stone\stone_furnace_packed.xml:
+   9  
+  10: 	<base_part class="entity" type="4" name="stone_furnace_packed" max_health="8000" limit="2" repair_with="Rocks" repair_sound="Play_wall_repair">
+  11  		<entity class="stone_furnace"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\wood\wood_column_3m.xml:
+  10  
+  11: 	<base_part class="static" type="40" name="wood_column_3m" max_health="2000" repair_sound="Play_wall_repair">
+  12  		<static filename="objects/basebuilding/wood/wood_column_3m.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\wood\wood_column_4m.xml:
+  10  
+  11: 	<base_part class="static" type="42" name="wood_column_4m" max_health="2500" repair_sound="Play_wall_repair">
+  12  		<static filename="objects/basebuilding/wood/wood_column_4m.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\wood\wood_walkway_3m_3m_1m.xml:
+  10  
+  11: 	<base_part class="static" type="41" name="wood_walkway_3m_3m_1m" repair_sound="Play_wall_repair">
+  12  		<static filename="objects/basebuilding/wood/walkway_3m_3m_1m.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\wood\wood_walkway_3m_4m_4m.xml:
+  10  
+  11: 	<base_part class="static" type="43" name="wood_walkway_3m_4m_4m" repair_sound="Play_wall_repair">
+  12  		<static filename="objects/basebuilding/wood/walkway_3m_4m_4m.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\wood\wood_wall_1_3m_1m.xml:
+  10  
+  11: 	<base_part class="static" type="44" name="wood_wall_1_3m_1m" repair_sound="Play_wall_repair">
+  12  		<static filename="objects/basebuilding/wood/wall_1_3m_1m.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\wood\wood_wall_1_3m_2m.xml:
+  10  
+  11: 	<base_part class="static" type="45" name="wood_wall_1_3m_2m" repair_sound="Play_wall_repair">
+  12  		<static filename="objects/basebuilding/wood/wall_1_3m_2m.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\wood\wood_wall_1_3m_4m.xml:
+  10  
+  11: 	<base_part class="static" type="46" name="wood_wall_1_3m_4m" repair_sound="Play_wall_repair">
+  12  		<static filename="objects/basebuilding/wood/wall_1_3m_4m.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\wood\wood_wall_2m_1m.xml:
+  10  
+  11: 	<base_part class="static" type="47" name="wood_wall_2m_1m" repair_sound="Play_wall_repair">
+  12  		<static filename="objects/basebuilding/wood/wall_2m_1m.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\wood\wood_wall_2m_2m.xml:
+  10  
+  11: 	<base_part class="static" type="48" name="wood_wall_2m_2m" repair_sound="Play_wall_repair">
+  12  		<static filename="objects/basebuilding/wood/wall_2m_2m.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\wood\wood_wall_2m_4m.xml:
+  10  
+  11: 	<base_part class="static" type="49" name="wood_wall_2m_4m" repair_sound="Play_wall_repair">
+  12  		<static filename="objects/basebuilding/wood/wall_2m_4m.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\misc\flagpole_algeria.xml:
+   9  
+  10:     <base_part class="static" type="4883" name="flagpole_algeria" max_health="1000" repair_with="Lumber">
+  11          <static filename="objects/basebuilding/other/flag/flag_pole_algeria.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\misc\flagpole_amalgamated_glow.xml:
+   9  
+  10:     <base_part class="static" type="4853" name="flagpole_amalgamated_glow" max_health="1000" repair_with="ScrapMetal">
+  11          <static filename="objects/basebuilding/other/flag/flag_pole_amalgamated_glow.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\misc\flagpole_amalgamated.xml:
+   9  
+  10:     <base_part class="static" type="4852" name="flagpole_amalgamated" max_health="1000" repair_with="ScrapMetal">
+  11          <static filename="objects/basebuilding/other/flag/flag_pole_amalgamated.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\misc\flagpole_america.xml:
+   9  
+  10:     <base_part class="static" type="4854" name="flagpole_america" max_health="1000" repair_with="ScrapMetal">
+  11          <static filename="objects/basebuilding/other/flag/flag_pole_america.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\misc\flagpole_australia.xml:
+   9  
+  10:     <base_part class="static" type="4855" name="flagpole_australia" max_health="1000" repair_with="ScrapMetal">
+  11          <static filename="objects/basebuilding/other/flag/flag_pole_australia.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\misc\flagpole_austria.xml:
+   9  
+  10:     <base_part class="static" type="4885" name="flagpole_austria" max_health="1000" repair_with="Lumber">
+  11          <static filename="objects/basebuilding/other/flag/flag_pole_austria.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\misc\flagpole_black.xml:
+   9  
+  10:     <base_part class="static" type="4856" name="flagpole_black" max_health="1000" repair_with="ScrapMetal">
+  11          <static filename="objects/basebuilding/other/flag/flag_pole_black.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\misc\flagpole_blue.xml:
+   9  
+  10:     <base_part class="static" type="4857" name="flagpole_blue" max_health="1000" repair_with="ScrapMetal">
+  11          <static filename="objects/basebuilding/other/flag/flag_pole_blue.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\misc\flagpole_brazil.xml:
+   9  
+  10:     <base_part class="static" type="4873" name="flagpole_brazil" max_health="1000" repair_with="Lumber">
+  11          <static filename="objects/basebuilding/other/flag/flag_pole_brazil.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\misc\flagpole_canada.xml:
+   9  
+  10:     <base_part class="static" type="4858" name="flagpole_canada" max_health="1000" repair_with="ScrapMetal">
+  11          <static filename="objects/basebuilding/other/flag/flag_pole_canada.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\misc\flagpole_capitalmunch.xml:
+   9  
+  10:     <base_part class="static" type="4859" name="flagpole_capitalmunch" max_health="1000" repair_with="ScrapMetal">
+  11          <static filename="objects/basebuilding/other/flag/flag_pole_capitalmunch.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\misc\flagpole_china.xml:
+   9  
+  10:     <base_part class="static" type="4860" name="flagpole_china" max_health="1000" repair_with="ScrapMetal">
+  11          <static filename="objects/basebuilding/other/flag/flag_pole_china.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\misc\flagpole_donut_glow.xml:
+   9  
+  10:     <base_part class="static" type="4861" name="flagpole_donut_glow" max_health="1000" repair_with="ScrapMetal">
+  11          <static filename="objects/basebuilding/other/flag/flag_pole_donutglow.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\misc\flagpole_finland.xml:
+   9  
+  10:     <base_part class="static" type="4884" name="flagpole_finland" max_health="1000" repair_with="Lumber">
+  11          <static filename="objects/basebuilding/other/flag/flag_pole_finland.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\misc\flagpole_france.xml:
+   9  
+  10:     <base_part class="static" type="4862" name="flagpole_france" max_health="1000" repair_with="ScrapMetal">
+  11          <static filename="objects/basebuilding/other/flag/flag_pole_france.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\misc\flagpole_germany.xml:
+   9  
+  10:     <base_part class="static" type="4863" name="flagpole_germany" max_health="1000" repair_with="ScrapMetal">
+  11          <static filename="objects/basebuilding/other/flag/flag_pole_germany.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\misc\flagpole_green.xml:
+   9  
+  10:     <base_part class="static" type="4864" name="flagpole_green" max_health="1000" repair_with="ScrapMetal">
+  11          <static filename="objects/basebuilding/other/flag/flag_pole_green.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\misc\flagpole_holland.xml:
+   9  
+  10:     <base_part class="static" type="4878" name="flagpole_holland" max_health="1000" repair_with="Lumber">
+  11          <static filename="objects/basebuilding/other/flag/flag_pole_holland.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\misc\flagpole_india.xml:
+   9  
+  10:     <base_part class="static" type="4886" name="flagpole_india" max_health="1000" repair_with="Lumber">
+  11          <static filename="objects/basebuilding/other/flag/flag_pole_india.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\misc\flagpole_indonesia.xml:
+   9  
+  10:     <base_part class="static" type="4887" name="flagpole_indonesia" max_health="1000" repair_with="Lumber">
+  11          <static filename="objects/basebuilding/other/flag/flag_pole_indonesia.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\misc\flagpole_ironsons.xml:
+   9  
+  10:     <base_part class="static" type="4865" name="flagpole_ironsons" max_health="1000" repair_with="ScrapMetal">
+  11          <static filename="objects/basebuilding/other/flag/flag_pole_ironsons.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\misc\flagpole_israel.xml:
+   9  
+  10:     <base_part class="static" type="4881" name="flagpole_israel" max_health="1000" repair_with="Lumber">
+  11          <static filename="objects/basebuilding/other/flag/flag_pole_israel.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\misc\flagpole_japan.xml:
+   9  
+  10:     <base_part class="static" type="4866" name="flagpole_japan" max_health="1000" repair_with="ScrapMetal">
+  11          <static filename="objects/basebuilding/other/flag/flag_pole_japan.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\misc\flagpole_mexico.xml:
+   9  
+  10:     <base_part class="static" type="4877" name="flagpole_mexico" max_health="1000" repair_with="Lumber">
+  11          <static filename="objects/basebuilding/other/flag/flag_pole_mexico.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\misc\flagpole_pink.xml:
+   9  
+  10:     <base_part class="static" type="4867" name="flagpole_pink" max_health="1000" repair_with="ScrapMetal">
+  11          <static filename="objects/basebuilding/other/flag/flag_pole_pink.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\misc\flagpole_pirate.xml:
+   9  
+  10:     <base_part class="static" type="4868" name="flagpole_pirate" max_health="1000" repair_with="ScrapMetal">
+  11          <static filename="objects/basebuilding/other/flag/flag_pole_pirate.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\misc\flagpole_poland.xml:
+   9  
+  10:     <base_part class="static" type="4876" name="flagpole_poland" max_health="1000" repair_with="Lumber">
+  11          <static filename="objects/basebuilding/other/flag/flag_pole_poland.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\misc\flagpole_red.xml:
+   9  
+  10:     <base_part class="static" type="4869" name="flagpole_red" max_health="1000" repair_with="ScrapMetal">
+  11          <static filename="objects/basebuilding/other/flag/flag_pole_red.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\misc\flagpole_russia.xml:
+   9  
+  10:     <base_part class="static" type="4870" name="flagpole_russia" max_health="1000" repair_with="ScrapMetal">
+  11          <static filename="objects/basebuilding/other/flag/flag_pole_russia.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\misc\flagpole_slovenia.xml:
+   9  
+  10:     <base_part class="static" type="4905" name="flagpole_slovenia" max_health="1000" repair_with="Lumber">
+  11          <static filename="objects/basebuilding/other/flag/flag_pole_slovenia.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\misc\flagpole_smiley_glow.xml:
+   9  
+  10:     <base_part class="static" type="4871" name="flagpole_smiley_glow" max_health="1000" repair_with="ScrapMetal">
+  11          <static filename="objects/basebuilding/other/flag/flag_pole_smiley_glow.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\misc\flagpole_south_africa.xml:
+   9  
+  10:     <base_part class="static" type="4882" name="flagpole_south_africa" max_health="1000" repair_with="Lumber">
+  11          <static filename="objects/basebuilding/other/flag/flag_pole_south_africa.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\misc\flagpole_spain.xml:
+   9  
+  10:     <base_part class="static" type="4879" name="flagpole_spain" max_health="1000" repair_with="Lumber">
+  11          <static filename="objects/basebuilding/other/flag/flag_pole_spain.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\misc\flagpole_sweden.xml:
+   9  
+  10:     <base_part class="static" type="4874" name="flagpole_sweden" max_health="1000" repair_with="Lumber">
+  11          <static filename="objects/basebuilding/other/flag/flag_pole_sweden.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\misc\flagpole_turkey.xml:
+   9  
+  10:     <base_part class="static" type="4880" name="flagpole_turkey" max_health="1000" repair_with="Lumber">
+  11          <static filename="objects/basebuilding/other/flag/flag_pole_turkey.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\misc\flagpole_uk.xml:
+   9  
+  10:     <base_part class="static" type="4872" name="flagpole_uk" max_health="1000" repair_with="ScrapMetal">
+  11          <static filename="objects/basebuilding/other/flag/flag_pole_uk.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\misc\flagpole_white.xml:
+   9  
+  10:     <base_part class="static" type="4851" name="flagpole_white" max_health="1000" repair_with="ScrapMetal">
+  11          <static filename="objects/basebuilding/other/flag/flag_pole.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\misc\metal_shelf.xml:
+   9  
+  10:     <base_part class="static" type="4875" name="metal_shelf" max_health="3000" repair_with="ScrapMetal">
+  11          <static filename="objects/basebuilding/other/metal_shelf/metal_shelf.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\misc\pumpkin_1.xml:
+   9  
+  10: 	<base_part class="static" type="401" name="pumpkin_1" max_health="1000" repair_with="DuctTape">
+  11  		<static filename="objects/basebuilding/other/jack_o_lantern/Pumpkin_1.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\misc\pumpkin_2.xml:
+   9  
+  10: 	<base_part class="static" type="402" name="pumpkin_2" max_health="1000" repair_with="DuctTape">
+  11  		<static filename="objects/basebuilding/other/jack_o_lantern/Pumpkin_2.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\misc\pumpkin_3.xml:
+   9  
+  10: 	<base_part class="static" type="403" name="pumpkin_3" max_health="1000" repair_with="DuctTape">
+  11  		<static filename="objects/basebuilding/other/jack_o_lantern/Pumpkin_3.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\misc\pumpkin_4.xml:
+   9  
+  10: 	<base_part class="static" type="404" name="pumpkin_4" max_health="1000" repair_with="DuctTape">
+  11  		<static filename="objects/basebuilding/other/jack_o_lantern/Pumpkin_4.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\misc\pumpkin_5.xml:
+   9  
+  10: 	<base_part class="static" type="405" name="pumpkin_5" max_health="1000" repair_with="DuctTape">
+  11  		<static filename="objects/basebuilding/other/jack_o_lantern/Pumpkin_5.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\misc\pumpkin_6.xml:
+   9  
+  10: 	<base_part class="static" type="406" name="pumpkin_6" max_health="1000" repair_with="DuctTape">
+  11  		<static filename="objects/basebuilding/other/jack_o_lantern/Pumpkin_6.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\misc\workbench.xml:
+   9  
+  10: 	<base_part class="static" type="4849" name="workbench" max_health="5000">
+  11  		<static filename="objects/basebuilding/other/workbench/workbench_base.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\stone\stone_furnace_packed.xml:
+   9  
+  10: 	<base_part class="entity" type="4" name="stone_furnace_packed" max_health="8000" limit="2" repair_with="Rocks" repair_sound="Play_wall_repair">
+  11  		<entity class="stone_furnace"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\wood\wood_column_3m.xml:
+  10  
+  11: 	<base_part class="static" type="40" name="wood_column_3m" max_health="2000" repair_sound="Play_wall_repair">
+  12  		<static filename="objects/basebuilding/wood/wood_column_3m.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\wood\wood_column_4m.xml:
+  10  
+  11: 	<base_part class="static" type="42" name="wood_column_4m" max_health="2500" repair_sound="Play_wall_repair">
+  12  		<static filename="objects/basebuilding/wood/wood_column_4m.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\wood\wood_walkway_3m_3m_1m.xml:
+  10  
+  11: 	<base_part class="static" type="41" name="wood_walkway_3m_3m_1m" repair_sound="Play_wall_repair">
+  12  		<static filename="objects/basebuilding/wood/walkway_3m_3m_1m.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\wood\wood_walkway_3m_4m_4m.xml:
+  10  
+  11: 	<base_part class="static" type="43" name="wood_walkway_3m_4m_4m" repair_sound="Play_wall_repair">
+  12  		<static filename="objects/basebuilding/wood/walkway_3m_4m_4m.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\wood\wood_wall_1_3m_1m.xml:
+  10  
+  11: 	<base_part class="static" type="44" name="wood_wall_1_3m_1m" repair_sound="Play_wall_repair">
+  12  		<static filename="objects/basebuilding/wood/wall_1_3m_1m.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\wood\wood_wall_1_3m_2m.xml:
+  10  
+  11: 	<base_part class="static" type="45" name="wood_wall_1_3m_2m" repair_sound="Play_wall_repair">
+  12  		<static filename="objects/basebuilding/wood/wall_1_3m_2m.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\wood\wood_wall_1_3m_4m.xml:
+  10  
+  11: 	<base_part class="static" type="46" name="wood_wall_1_3m_4m" repair_sound="Play_wall_repair">
+  12  		<static filename="objects/basebuilding/wood/wall_1_3m_4m.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\wood\wood_wall_2m_1m.xml:
+  10  
+  11: 	<base_part class="static" type="47" name="wood_wall_2m_1m" repair_sound="Play_wall_repair">
+  12  		<static filename="objects/basebuilding/wood/wall_2m_1m.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\wood\wood_wall_2m_2m.xml:
+  10  
+  11: 	<base_part class="static" type="48" name="wood_wall_2m_2m" repair_sound="Play_wall_repair">
+  12  		<static filename="objects/basebuilding/wood/wall_2m_2m.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\wood\wood_wall_2m_4m.xml:
+  10  
+  11: 	<base_part class="static" type="49" name="wood_wall_2m_4m" repair_sound="Play_wall_repair">
+  12  		<static filename="objects/basebuilding/wood/wall_2m_4m.cgf"/>

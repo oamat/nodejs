@@ -1,0 +1,1115 @@
+# Query: type="3
+# Including: ./nodeErrorID
+# ContextLines: 1
+
+222 results - 222 files
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\misc\camping_lantern.xml:
+  11  
+  12: 	<base_part class="static" type="3" name="camping_lantern" max_health="1000" repair_with="DuctTape">
+  13  		<static filename="Objects/basebuilding/other/camping_lantern/camping_lantern.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\misc\christmas_candle.xml:
+  10  
+  11: 	<base_part class="static" type="304" name="christmas_candle" max_health="600" repair_with="AnimalFat">
+  12  		<static filename="Objects/basebuilding/other/christmas_candle/christmas_candle.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\misc\christmas_wreath.xml:
+  11  
+  12: 	<base_part class="static" type="302" name="christmas_wreath" max_health="1000" repair_with="Rags">
+  13  		<static filename="Objects/basebuilding/other/christmas_wreath/christmas_wreath.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\misc\flower_vase.xml:
+   9  
+  10: 	<base_part class="static" type="307" name="flower_vase" max_health="5000" repair_with="DuctTape">
+  11  		<static filename="Objects/basebuilding/other/valentine_vase/valentine_vase.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\misc\heart_balloon.xml:
+   9  
+  10: 	<base_part class="static" type="308" name="heart_balloon" max_health="5000" repair_with="DuctTape">
+  11  		<static filename="Objects/basebuilding/other/valentine_baloon/valentine_balloon.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\misc\heart_candle.xml:
+   9  
+  10: 	<base_part class="static" type="301" name="heart_candle" max_health="600" limit="10" repair_with="AnimalFat">
+  11  		<static filename="Objects/basebuilding/other/heart_candle/heart_candle.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\misc\jerry.xml:
+  10  
+  11: 	<base_part class="static" type="3501" name="jerry" max_health="1000" repair_with="DuctTape">
+  12  		<static filename="Objects/basebuilding/other/fishbowl/fishbowl.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\misc\ninemens_board.xml:
+   9  
+  10: 	<base_part class="static" type="336" name="ninemens_board" max_health="200" repair_with="Lumber">
+  11  		<static filename="Objects/basebuilding/other/ninemen_morris/nmm_board.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\misc\o_peice.xml:
+  13  
+  14: 	<base_part class="static" type="333" name="o_piece" max_health="10" repair_with="Lumber">
+  15  		<static filename="Objects/basebuilding/other/tictactoe/ttt_circle.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\misc\painting_landscape_01.xml:
+  12  
+  13: 	<base_part class="static" type="312" name="painting_landscape_01" max_health="1000" repair_with="Rags">
+  14  		<static filename="Objects/basebuilding/other/painting/bpart_painting_landscape_01.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\misc\painting_landscape_02.xml:
+  12  
+  13: 	<base_part class="static" type="313" name="painting_landscape_02" max_health="1000" repair_with="Rags">
+  14  		<static filename="Objects/basebuilding/other/painting/bpart_painting_landscape_02.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\misc\painting_landscape_03.xml:
+  12  
+  13: 	<base_part class="static" type="314" name="painting_landscape_03" max_health="1000" repair_with="Rags">
+  14  		<static filename="Objects/basebuilding/other/painting/bpart_painting_landscape_03.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\misc\painting_landscape_04.xml:
+  12  
+  13: 	<base_part class="static" type="315" name="painting_landscape_04" max_health="1000" repair_with="Rags">
+  14  		<static filename="Objects/basebuilding/other/painting/bpart_painting_landscape_04.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\misc\painting_landscape_05.xml:
+  12  
+  13: 	<base_part class="static" type="316" name="painting_landscape_05" max_health="1000" repair_with="Rags">
+  14  		<static filename="Objects/basebuilding/other/painting/bpart_painting_landscape_05.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\misc\painting_landscape_06.xml:
+  12  
+  13: 	<base_part class="static" type="317" name="painting_landscape_06" max_health="1000" repair_with="Rags">
+  14  		<static filename="Objects/basebuilding/other/painting/bpart_painting_landscape_06.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\misc\painting_landscape_07.xml:
+  12  
+  13: 	<base_part class="static" type="318" name="painting_landscape_07" max_health="1000" repair_with="Rags">
+  14  		<static filename="Objects/basebuilding/other/painting/bpart_painting_landscape_07.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\misc\painting_landscape_08.xml:
+  12  
+  13: 	<base_part class="static" type="319" name="painting_landscape_08" max_health="1000" repair_with="Rags">
+  14  		<static filename="Objects/basebuilding/other/painting/bpart_painting_landscape_08.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\misc\painting_landscape_09.xml:
+  12  
+  13: 	<base_part class="static" type="320" name="painting_landscape_09" max_health="1000" repair_with="Rags">
+  14  		<static filename="Objects/basebuilding/other/painting/bpart_painting_landscape_09.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\misc\painting_landscape_10.xml:
+  12  
+  13: 	<base_part class="static" type="328" name="painting_landscape_10" max_health="1000" repair_with="Rags">
+  14  		<static filename="Objects/basebuilding/other/painting/bpart_painting_capitalmunch.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\misc\painting_map_canyonlands.xml:
+  12  
+  13: 	<base_part class="static" type="365" name="painting_map_canyonlands" max_health="1000" repair_with="Rags">
+  14  		<static filename="Objects/basebuilding/other/painting/painting_map_canyonlands.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\misc\painting_map.xml:
+  12  
+  13: 	<base_part class="static" type="349" name="painting_map" max_health="1000" repair_with="Rags">
+  14  		<static filename="Objects/basebuilding/other/painting/painting_map.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\misc\painting_square_01.xml:
+  12  
+  13: 	<base_part class="static" type="326" name="painting_square_01" max_health="1000" repair_with="Rags">
+  14  		<static filename="Objects/basebuilding/other/painting/painting_map.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\misc\painting_square_02.xml:
+  12  
+  13: 	<base_part class="static" type="327" name="painting_square_02" max_health="1000" repair_with="Rags">
+  14  		<static filename="Objects/basebuilding/other/painting/painting_square_1.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\misc\painting_vertical_landscape_01.xml:
+  12  
+  13: 	<base_part class="static" type="321" name="painting_vertical_landscape_01" max_health="1000" repair_with="Rags">
+  14  		<static filename="Objects/basebuilding/other/painting/bpart_painting_vertical_landscape_01.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\misc\painting_vertical_landscape_02.xml:
+  12  
+  13: 	<base_part class="static" type="322" name="painting_vertical_landscape_02" max_health="1000" repair_with="Rags">
+  14  		<static filename="Objects/basebuilding/other/painting/bpart_painting_vertical_landscape_02.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\misc\painting_vertical_landscape_03.xml:
+  12  
+  13: 	<base_part class="static" type="323" name="painting_vertical_landscape_03" max_health="1000" repair_with="Rags">
+  14  		<static filename="Objects/basebuilding/other/painting/bpart_painting_vertical_landscape_03.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\misc\painting_vertical_landscape_04.xml:
+  12  
+  13: 	<base_part class="static" type="324" name="painting_vertical_landscape_04" max_health="1000" repair_with="Rags">
+  14  		<static filename="Objects/basebuilding/other/painting/bpart_painting_vertical_landscape_04.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\misc\painting_vertical_landscape_05.xml:
+  12  
+  13: 	<base_part class="static" type="325" name="painting_vertical_landscape_05" max_health="1000" repair_with="Rags">
+  14  		<static filename="Objects/basebuilding/other/painting/bpart_painting_vertical_landscape_05.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\misc\painting_vertical_landscape_06.xml:
+  12  
+  13: 	<base_part class="static" type="370" name="painting_vertical_landscape_06" max_health="1000" repair_with="Rags">
+  14  		<static filename="Objects/basebuilding/other/painting/bpart_painting_vertical_landscape_06.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\misc\piece_blue.xml:
+   9  
+  10: 	<base_part class="static" type="341" name="piece_blue" max_health="200" repair_with="Lumber">
+  11  		<static filename="Objects/basebuilding/other/snl_board/piece_blue.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\misc\piece_green.xml:
+   9  
+  10: 	<base_part class="static" type="342" name="piece_green" max_health="200" repair_with="Lumber">
+  11  		<static filename="Objects/basebuilding/other/snl_board/piece_green.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\misc\piece_orange.xml:
+   9  
+  10: 	<base_part class="static" type="344" name="piece_orange" max_health="200" repair_with="Lumber">
+  11  		<static filename="Objects/basebuilding/other/snl_board/piece_orange.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\misc\piece_purple.xml:
+   9  
+  10: 	<base_part class="static" type="345" name="piece_purple" max_health="200" repair_with="Lumber">
+  11  		<static filename="Objects/basebuilding/other/snl_board/piece_purple.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\misc\piece_red.xml:
+   9  
+  10: 	<base_part class="static" type="340" name="piece_red" max_health="200" repair_with="Lumber">
+  11  		<static filename="Objects/basebuilding/other/snl_board/piece_red.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\misc\piece_yellow.xml:
+   9  
+  10: 	<base_part class="static" type="343" name="piece_yellow" max_health="200" repair_with="Lumber">
+  11  		<static filename="Objects/basebuilding/other/snl_board/piece_yellow.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\misc\poster_vertical_01.xml:
+  12  
+  13: 	<base_part class="static" type="329" name="poster_vertical_01" max_health="1000" repair_with="Rags">
+  14  		<static filename="Objects/basebuilding/other/painting/poster_vertical_01.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\misc\snl_board.xml:
+   9  
+  10: 	<base_part class="static" type="339" name="snl_board" max_health="200" repair_with="Lumber">
+  11  		<static filename="Objects/basebuilding/other/snl_board/snl_board.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\misc\tictactoe_board.xml:
+   9  
+  10: 	<base_part class="static" type="332" name="tictactoe_board" max_health="200" repair_with="Lumber">
+  11  		<static filename="Objects/basebuilding/other/tictactoe/ttt_board.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\misc\token_black.xml:
+  12  
+  13: 	<base_part class="static" type="338" name="token_black" max_health="10" repair_with="Lumber">
+  14  		<static filename="Objects/basebuilding/other/ninemen_morris/nmm_black.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\misc\token_white.xml:
+  12  
+  13: 	<base_part class="static" type="337" name="token_white" max_health="10" repair_with="Lumber">
+  14  		<static filename="Objects/basebuilding/other/ninemen_morris/nmm_white.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\misc\trophy_deer_female.xml:
+  11  
+  12: 	<base_part class="static" type="368" name="trophy_deer_female" max_health="1000" repair_with="Lumber">
+  13  		<static filename="Objects/basebuilding/other/trophy/trophy_deer_female.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\misc\trophy_deer_male.xml:
+  11  
+  12: 	<base_part class="static" type="367" name="trophy_deer_male" max_health="1000" repair_with="Lumber">
+  13  		<static filename="Objects/basebuilding/other/trophy/trophy_deer_male.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\misc\trophy_wolf.xml:
+  11  
+  12: 	<base_part class="static" type="369" name="trophy_wolf" max_health="1000" repair_with="Lumber">
+  13  		<static filename="Objects/basebuilding/other/trophy/trophy_wolf.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\misc\wall_lantern.xml:
+  12  
+  13: 	<base_part class="static" type="330" name="wall_lantern" max_health="1000" repair_with="DuctTape">
+  14  		<static filename="Objects/basebuilding/other/wall_lantern/wall_lantern.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\misc\wood_shelf_1m.xml:
+  12  
+  13: 	<base_part class="static" type="309" name="wood_shelf_1m" max_health="1000" repair_with="lumber">
+  14  		<static filename="Objects/basebuilding/other/wood_shelf/wood_shelf_1m.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\misc\wood_shelf_2m.xml:
+  12  
+  13: 	<base_part class="static" type="310" name="wood_shelf_2m" max_health="1000" repair_with="lumber">
+  14  		<static filename="Objects/basebuilding/other/wood_shelf/wood_shelf_2m.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\misc\wood_shelf_3m.xml:
+  12  
+  13: 	<base_part class="static" type="311" name="wood_shelf_3m" max_health="1000" repair_with="lumber">
+  14  		<static filename="Objects/basebuilding/other/wood_shelf/wood_shelf_3m.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\misc\wood_shelf_modern.xml:
+  12  
+  13: 	<base_part class="static" type="348" name="wood_shelf_modern" max_health="1000" repair_with="lumber">
+  14  		<static filename="Objects/basebuilding/other/wood_shelf_modern/wood_shelf_modern.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\misc\x_peice.xml:
+  12  
+  13: 	<base_part class="static" type="334" name="x_piece" max_health="10" repair_with="Lumber">
+  14  		<static filename="Objects/basebuilding/other/tictactoe/ttt_cross.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\stone\stone_fireplace_packed.xml:
+   9    </params>
+  10:   <base_part class="entity" type="3500" name="stone_fireplace_packed" max_health="3000" repair_with="Rocks" limit="2">
+  11      <entity class="stone_fireplace" />
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\wood\wood_bench.xml:
+  10  
+  11: 	<base_part class="static" type="347" name="wood_bench" max_health="1000" repair_sound="Play_wall_repair">
+  12  		<static filename="Objects/basebuilding/other/wood_bench/wood_bench_01.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\wood\wood_column_1_3m.xml:
+  10  
+  11: 	<base_part class="static" type="36" name="wood_column_1_3m" max_health="1000" repair_sound="Play_wall_repair">
+  12  		<static filename="Objects/basebuilding/wood/wood_column_1_3m.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\wood\wood_column_2m.xml:
+  10  
+  11: 	<base_part class="static" type="39" name="wood_column_2m" max_health="1500" repair_sound="Play_wall_repair">
+  12  		<static filename="Objects/basebuilding/wood/wood_column_2m.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\wood\wood_crate.xml:
+  10  
+  11: 	<base_part class="static" type="371" name="wood_crate" max_health="4000" repair_with="SheetMetal" repair_sound="Play_wall_repair" limit="40">
+  12  		<static filename="Objects/basebuilding/wood/locked_crate_large.cgf" />
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\wood\wood_door_lockable_02.xml:
+  10  
+  11: 	<base_part class="door" type="331" name="wood_door_lockable_02" max_health="5000" repair_sound="Play_wall_repair">
+  12  		<door filename="Objects/basebuilding/other/wood_door_lockable_02/wood_door_lockable_02.cgf" rotate_base="-90" rotate_range="90" rotate_speed="90" rotate_axis="z" rotate_axis_front="y" sound_open="Play_door_wood_open" sound_opened="" sound_close="Play_door_wood_close" sound_closed="Play_door_wood_closed" sound_lock="Play_door_lock" sound_unlock="Play_door_unlock"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\wood\wood_shutter_02.xml:
+  10  
+  11: 	<base_part class="door" type="354" name="wood_shutter_lockable_02" max_health="5000" repair_sound="Play_wall_repair">
+  12  		<door filename="Objects/basebuilding/wood_02/wood_shutter_02.cgf" rotate_base="-90" rotate_range="90" rotate_speed="90" rotate_axis="z" rotate_axis_front="y" sound_open="Play_door_wood_open" sound_opened="" sound_close="Play_door_wood_close" sound_closed="Play_door_wood_closed" sound_lock="Play_door_lock" sound_unlock="Play_door_unlock"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\wood\wood_shutter_lockable_02.xml:
+  10  
+  11: 	<base_part class="door" type="355" name="wood_shutter_lockable_02" max_health="5000" repair_sound="Play_wall_repair">
+  12  		<door filename="Objects/basebuilding/wood_02/wood_shutter_02.cgf" rotate_base="-90" rotate_range="90" rotate_speed="90" rotate_axis="z" rotate_axis_front="y" sound_open="Play_door_wood_open" sound_opened="" sound_close="Play_door_wood_close" sound_closed="Play_door_wood_closed" sound_lock="Play_door_lock" sound_unlock="Play_door_unlock"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\wood\wood_stairs_1_3m_3m_3m.xml:
+  10  
+  11: 	<base_part class="static" type="30" name="wood_stairs_1_3m_3m_3m" repair_sound="Play_wall_repair">
+  12  		<static filename="Objects/basebuilding/wood/stairs_1_3m_3m_3m.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\wood\wood_stairs_2m_3m_1m.xml:
+  10  
+  11: 	<base_part class="static" type="33" name="wood_stairs_2m_3m_1m" repair_sound="Play_wall_repair">
+  12  		<static filename="Objects/basebuilding/wood/stairs_2m_3m_1m.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\wood\wood_stairs_2m_3m_3m.xml:
+  10  
+  11: 	<base_part class="static" type="34" name="wood_stairs_2m_3m_3m" repair_sound="Play_wall_repair">
+  12  		<static filename="Objects/basebuilding/wood/stairs_2m_3m_3m.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\wood\wood_stairs_3m_4m_4m_02.xml:
+  10  
+  11: 	<base_part class="static" type="360" name="wood_stairs_3m_4m_4m_02" max_health="15000" repair_sound="Play_wall_repair">
+  12  		<static filename="Objects/basebuilding/wood_02/wood_stairway_02.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\wood\wood_stool.xml:
+  10  
+  11: 	<base_part class="static" type="346" name="wood_stool" max_health="1000" repair_sound="Play_wall_repair">
+  12  		<static filename="Objects/basebuilding/other/wood_stool/wood_stool_01.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\wood\wood_table_02.xml:
+  10  
+  11: 	<base_part class="static" type="335" name="wood_table_02" max_health="1000" repair_sound="Play_wall_repair">
+  12  		<static filename="Objects/basebuilding/other/wood_table_02/wood_table_02.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\wood\wood_walkway_1_3m_4m_4m.xml:
+  10  
+  11: 	<base_part class="static" type="31" name="wood_walkway_1_3m_4m_4m" repair_sound="Play_wall_repair">
+  12  		<static filename="Objects/basebuilding/wood/walkway_1_3m_4m_4m.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\wood\wood_walkway_2m_1m_1m.xml:
+  10  
+  11: 	<base_part class="static" type="32" name="wood_walkway_2m_1m_1m" repair_sound="Play_wall_repair">
+  12  		<static filename="Objects/basebuilding/wood/walkway_2m_1m_1m.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\wood\wood_walkway_2m_3m_1m.xml:
+  10  
+  11: 	<base_part class="static" type="35" name="wood_walkway_2m_3m_1m" repair_sound="Play_wall_repair">
+  12  		<static filename="Objects/basebuilding/wood/walkway_2m_3m_1m.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\wood\wood_walkway_2m_4m_4m.xml:
+  10  
+  11: 	<base_part class="static" type="37" name="wood_walkway_2m_4m_4m" repair_sound="Play_wall_repair">
+  12  		<static filename="Objects/basebuilding/wood/walkway_2m_4m_4m.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\wood\wood_walkway_3m_1m_1m.xml:
+  10  
+  11: 	<base_part class="static" type="38" name="wood_walkway_3m_1m_1m" repair_sound="Play_wall_repair">
+  12  		<static filename="Objects/basebuilding/wood/walkway_3m_1m_1m.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\wood\wood_walkway_3m_4m_4m_02.xml:
+  10  
+  11: 	<base_part class="static" type="353" name="wood_walkway_3m_4m_4m_02" repair_sound="Play_wall_repair">
+  12  		<static filename="Objects/basebuilding/wood_02/wood_walkway_3m_4m_4m_02.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\wood\wood_wall_3m_4m_02.xml:
+  10  
+  11: 	<base_part class="static" max_health="10000" type="350" name="wood_wall_3m_4m_02" repair_sound="Play_wall_repair">
+  12  		<static filename="Objects/basebuilding/wood_02/wood_wall_3m_4m_02.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\wood\wood_wall_door_3m_4m_02.xml:
+  10  
+  11: 	<base_part class="static" max_health="10000" type="351" name="wood_wall_door_3m_4m_02" repair_sound="Play_wall_repair">
+  12  		<static filename="Objects/basebuilding/wood_02/wall_door_3m_4m_02.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\wood\wood_wall_window_3m_4m_02.xml:
+  10  
+  11: 	<base_part class="static" type="352" name="wood_wall_window_3m_4m_02" repair_sound="Play_wall_repair">
+  12  		<static filename="Objects/basebuilding/wood_02/wall_window_3m_4m_02.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\misc\camping_lantern.xml:
+  11  
+  12: 	<base_part class="static" type="3" name="camping_lantern" max_health="1000" repair_with="DuctTape">
+  13  		<static filename="objects/basebuilding/other/camping_lantern/camping_lantern.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\misc\christmas_candle.xml:
+  10  
+  11: 	<base_part class="static" type="304" name="christmas_candle" max_health="600" repair_with="AnimalFat">
+  12  		<static filename="objects/basebuilding/other/christmas_candle/christmas_candle.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\misc\christmas_wreath.xml:
+  11  
+  12: 	<base_part class="static" type="302" name="christmas_wreath" max_health="1000" repair_with="Rags">
+  13  		<static filename="objects/basebuilding/other/christmas_wreath/christmas_wreath.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\misc\flower_vase.xml:
+   9  
+  10: 	<base_part class="static" type="307" name="flower_vase" max_health="5000" repair_with="DuctTape">
+  11  		<static filename="objects/basebuilding/other/valentine_vase/valentine_vase.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\misc\heart_balloon.xml:
+   9  
+  10: 	<base_part class="static" type="308" name="heart_balloon" max_health="5000" repair_with="DuctTape">
+  11  		<static filename="objects/basebuilding/other/valentine_baloon/valentine_balloon.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\misc\heart_candle.xml:
+   9  
+  10: 	<base_part class="static" type="301" name="heart_candle" max_health="600" limit="10" repair_with="AnimalFat">
+  11  		<static filename="objects/basebuilding/other/heart_candle/heart_candle.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\misc\jerry.xml:
+  10  
+  11: 	<base_part class="static" type="3501" name="jerry" max_health="1000" repair_with="DuctTape">
+  12  		<static filename="Objects/basebuilding/other/fishbowl/fishbowl.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\misc\ninemens_board.xml:
+   9  
+  10: 	<base_part class="static" type="336" name="ninemens_board" max_health="200" repair_with="Lumber">
+  11  		<static filename="objects/basebuilding/other/ninemen_morris/nmm_board.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\misc\o_peice.xml:
+  13  
+  14: 	<base_part class="static" type="333" name="o_piece" max_health="10" repair_with="Lumber">
+  15  		<static filename="objects/basebuilding/other/tictactoe/ttt_circle.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\misc\painting_landscape_01.xml:
+  12  
+  13: 	<base_part class="static" type="312" name="painting_landscape_01" max_health="1000" repair_with="Rags">
+  14  		<static filename="Objects/basebuilding/other/painting/bpart_painting_landscape_01.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\misc\painting_landscape_02.xml:
+  12  
+  13: 	<base_part class="static" type="313" name="painting_landscape_02" max_health="1000" repair_with="Rags">
+  14  		<static filename="Objects/basebuilding/other/painting/bpart_painting_landscape_02.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\misc\painting_landscape_03.xml:
+  12  
+  13: 	<base_part class="static" type="314" name="painting_landscape_03" max_health="1000" repair_with="Rags">
+  14  		<static filename="Objects/basebuilding/other/painting/bpart_painting_landscape_03.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\misc\painting_landscape_04.xml:
+  12  
+  13: 	<base_part class="static" type="315" name="painting_landscape_04" max_health="1000" repair_with="Rags">
+  14  		<static filename="Objects/basebuilding/other/painting/bpart_painting_landscape_04.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\misc\painting_landscape_05.xml:
+  12  
+  13: 	<base_part class="static" type="316" name="painting_landscape_05" max_health="1000" repair_with="Rags">
+  14  		<static filename="Objects/basebuilding/other/painting/bpart_painting_landscape_05.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\misc\painting_landscape_06.xml:
+  12  
+  13: 	<base_part class="static" type="317" name="painting_landscape_06" max_health="1000" repair_with="Rags">
+  14  		<static filename="Objects/basebuilding/other/painting/bpart_painting_landscape_06.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\misc\painting_landscape_07.xml:
+  12  
+  13: 	<base_part class="static" type="318" name="painting_landscape_07" max_health="1000" repair_with="Rags">
+  14  		<static filename="Objects/basebuilding/other/painting/bpart_painting_landscape_07.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\misc\painting_landscape_08.xml:
+  12  
+  13: 	<base_part class="static" type="319" name="painting_landscape_08" max_health="1000" repair_with="Rags">
+  14  		<static filename="Objects/basebuilding/other/painting/bpart_painting_landscape_08.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\misc\painting_landscape_09.xml:
+  12  
+  13: 	<base_part class="static" type="320" name="painting_landscape_09" max_health="1000" repair_with="Rags">
+  14  		<static filename="Objects/basebuilding/other/painting/bpart_painting_landscape_09.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\misc\painting_landscape_10.xml:
+  12  
+  13: 	<base_part class="static" type="328" name="painting_landscape_10" max_health="1000" repair_with="Rags">
+  14  		<static filename="Objects/basebuilding/other/painting/bpart_painting_capitalmunch.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\misc\painting_map_canyonlands.xml:
+  12  
+  13: 	<base_part class="static" type="365" name="painting_map_canyonlands" max_health="1000" repair_with="Rags">
+  14  		<static filename="Objects/basebuilding/other/painting/painting_map_canyonlands.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\misc\painting_map.xml:
+  12  
+  13: 	<base_part class="static" type="349" name="painting_map" max_health="1000" repair_with="Rags">
+  14  		<static filename="Objects/basebuilding/other/painting/painting_map.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\misc\painting_square_01.xml:
+  12  
+  13: 	<base_part class="static" type="326" name="painting_square_01" max_health="1000" repair_with="Rags">
+  14  		<static filename="Objects/basebuilding/other/painting/painting_map.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\misc\painting_square_02.xml:
+  12  
+  13: 	<base_part class="static" type="327" name="painting_square_02" max_health="1000" repair_with="Rags">
+  14  		<static filename="Objects/basebuilding/other/painting/painting_square_1.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\misc\painting_vertical_landscape_01.xml:
+  12  
+  13: 	<base_part class="static" type="321" name="painting_vertical_landscape_01" max_health="1000" repair_with="Rags">
+  14  		<static filename="Objects/basebuilding/other/painting/bpart_painting_vertical_landscape_01.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\misc\painting_vertical_landscape_02.xml:
+  12  
+  13: 	<base_part class="static" type="322" name="painting_vertical_landscape_02" max_health="1000" repair_with="Rags">
+  14  		<static filename="Objects/basebuilding/other/painting/bpart_painting_vertical_landscape_02.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\misc\painting_vertical_landscape_03.xml:
+  12  
+  13: 	<base_part class="static" type="323" name="painting_vertical_landscape_03" max_health="1000" repair_with="Rags">
+  14  		<static filename="Objects/basebuilding/other/painting/bpart_painting_vertical_landscape_03.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\misc\painting_vertical_landscape_04.xml:
+  12  
+  13: 	<base_part class="static" type="324" name="painting_vertical_landscape_04" max_health="1000" repair_with="Rags">
+  14  		<static filename="Objects/basebuilding/other/painting/bpart_painting_vertical_landscape_04.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\misc\painting_vertical_landscape_05.xml:
+  12  
+  13: 	<base_part class="static" type="325" name="painting_vertical_landscape_05" max_health="1000" repair_with="Rags">
+  14  		<static filename="Objects/basebuilding/other/painting/bpart_painting_vertical_landscape_05.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\misc\painting_vertical_landscape_06.xml:
+  12  
+  13: 	<base_part class="static" type="370" name="painting_vertical_landscape_06" max_health="1000" repair_with="Rags">
+  14  		<static filename="Objects/basebuilding/other/painting/bpart_painting_vertical_landscape_06.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\misc\piece_blue.xml:
+   9  
+  10: 	<base_part class="static" type="341" name="piece_blue" max_health="200" repair_with="Lumber">
+  11  		<static filename="objects/basebuilding/other/snl_board/piece_blue.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\misc\piece_green.xml:
+   9  
+  10: 	<base_part class="static" type="342" name="piece_green" max_health="200" repair_with="Lumber">
+  11  		<static filename="objects/basebuilding/other/snl_board/piece_green.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\misc\piece_orange.xml:
+   9  
+  10: 	<base_part class="static" type="344" name="piece_orange" max_health="200" repair_with="Lumber">
+  11  		<static filename="objects/basebuilding/other/snl_board/piece_orange.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\misc\piece_purple.xml:
+   9  
+  10: 	<base_part class="static" type="345" name="piece_purple" max_health="200" repair_with="Lumber">
+  11  		<static filename="objects/basebuilding/other/snl_board/piece_purple.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\misc\piece_red.xml:
+   9  
+  10: 	<base_part class="static" type="340" name="piece_red" max_health="200" repair_with="Lumber">
+  11  		<static filename="objects/basebuilding/other/snl_board/piece_red.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\misc\piece_yellow.xml:
+   9  
+  10: 	<base_part class="static" type="343" name="piece_yellow" max_health="200" repair_with="Lumber">
+  11  		<static filename="objects/basebuilding/other/snl_board/piece_yellow.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\misc\poster_vertical_01.xml:
+  12  
+  13: 	<base_part class="static" type="329" name="poster_vertical_01" max_health="1000" repair_with="Rags">
+  14  		<static filename="Objects/basebuilding/other/painting/poster_vertical_01.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\misc\snl_board.xml:
+   9  
+  10: 	<base_part class="static" type="339" name="snl_board" max_health="200" repair_with="Lumber">
+  11  		<static filename="objects/basebuilding/other/snl_board/snl_board.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\misc\tictactoe_board.xml:
+   9  
+  10: 	<base_part class="static" type="332" name="tictactoe_board" max_health="200" repair_with="Lumber">
+  11  		<static filename="objects/basebuilding/other/tictactoe/ttt_board.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\misc\token_black.xml:
+  12  
+  13: 	<base_part class="static" type="338" name="token_black" max_health="10" repair_with="Lumber">
+  14  		<static filename="objects/basebuilding/other/ninemen_morris/nmm_black.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\misc\token_white.xml:
+  12  
+  13: 	<base_part class="static" type="337" name="token_white" max_health="10" repair_with="Lumber">
+  14  		<static filename="objects/basebuilding/other/ninemen_morris/nmm_white.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\misc\trophy_deer_female.xml:
+  11  
+  12: 	<base_part class="static" type="368" name="trophy_deer_female" max_health="1000" repair_with="Lumber">
+  13  		<static filename="objects/basebuilding/other/trophy/trophy_deer_female.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\misc\trophy_deer_male.xml:
+  11  
+  12: 	<base_part class="static" type="367" name="trophy_deer_male" max_health="1000" repair_with="Lumber">
+  13  		<static filename="objects/basebuilding/other/trophy/trophy_deer_male.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\misc\trophy_wolf.xml:
+  11  
+  12: 	<base_part class="static" type="369" name="trophy_wolf" max_health="1000" repair_with="Lumber">
+  13  		<static filename="objects/basebuilding/other/trophy/trophy_wolf.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\misc\wall_lantern.xml:
+  12  
+  13: 	<base_part class="static" type="330" name="wall_lantern" max_health="1000" repair_with="DuctTape">
+  14  		<static filename="objects/basebuilding/other/wall_lantern/wall_lantern.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\misc\wood_shelf_1m.xml:
+  12  
+  13: 	<base_part class="static" type="309" name="wood_shelf_1m" max_health="1000" repair_with="lumber">
+  14  		<static filename="objects/basebuilding/other/wood_shelf/wood_shelf_1m.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\misc\wood_shelf_2m.xml:
+  12  
+  13: 	<base_part class="static" type="310" name="wood_shelf_2m" max_health="1000" repair_with="lumber">
+  14  		<static filename="objects/basebuilding/other/wood_shelf/wood_shelf_2m.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\misc\wood_shelf_3m.xml:
+  12  
+  13: 	<base_part class="static" type="311" name="wood_shelf_3m" max_health="1000" repair_with="lumber">
+  14  		<static filename="objects/basebuilding/other/wood_shelf/wood_shelf_3m.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\misc\wood_shelf_modern.xml:
+  12  
+  13: 	<base_part class="static" type="348" name="wood_shelf_modern" max_health="1000" repair_with="lumber">
+  14  		<static filename="objects/basebuilding/other/wood_shelf_modern/wood_shelf_modern.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\misc\x_peice.xml:
+  12  
+  13: 	<base_part class="static" type="334" name="x_piece" max_health="10" repair_with="Lumber">
+  14  		<static filename="objects/basebuilding/other/tictactoe/ttt_cross.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\stone\stone_fireplace_packed.xml:
+   9  
+  10: 	<base_part class="entity" type="3500" name="stone_fireplace_packed" max_health="8000" limit="1" repair_with="Rocks" repair_sound="Play_wall_repair">
+  11  		<entity class="stone_fireplace"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\wood\coffin_packed.xml:
+  10  
+  11: 	<base_part class="static" type="385" name="wood_coffin" max_health="2000" repair_sound="Play_wall_repair">
+  12  		<static filename="objects/basebuilding/other/coffin/coffin.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\wood\wood_bench.xml:
+   9  
+  10: 	<base_part class="static" type="347" name="wood_bench" max_health="1000" repair_sound="Play_wall_repair">
+  11  		<static filename="objects/basebuilding/other/wood_bench/wood_bench_01.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\wood\wood_coffin.xml:
+  10  
+  11: 	<base_part class="static" type="385" name="wood_coffin" max_health="2000" repair_sound="Play_wall_repair">
+  12  		<static filename="objects/basebuilding/other/coffin/coffin.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\wood\wood_column_1_3m.xml:
+  10  
+  11: 	<base_part class="static" type="36" name="wood_column_1_3m" max_health="1000" repair_sound="Play_wall_repair">
+  12  		<static filename="objects/basebuilding/wood/wood_column_1_3m.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\wood\wood_column_2m.xml:
+  10  
+  11: 	<base_part class="static" type="39" name="wood_column_2m" max_health="1500" repair_sound="Play_wall_repair">
+  12  		<static filename="objects/basebuilding/wood/wood_column_2m.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\wood\wood_crate_large_packed.xml:
+  10  
+  11: 	<base_part class="static" type="371" name="wood_crate" max_health="1000" repair_sound="Play_wall_repair">
+  12  		<static filename="objects/basebuilding/wood/locked_crate_large.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\wood\wood_crate_small_packed.xml:
+  10  
+  11: 	<base_part class="static" type="371" name="wood_crate" max_health="500" repair_sound="Play_wall_repair">
+  12  		<static filename="objects/basebuilding/wood/locked_crate_large.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\wood\wood_crate.xml:
+  10  
+  11: 	<base_part class="static" type="371" name="wood_crate" max_health="1000" repair_sound="Play_wall_repair">
+  12  		<static filename="objects/basebuilding/wood/locked_crate_large.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\wood\wood_door_lockable_02.xml:
+  10  
+  11: 	<base_part class="door" type="331" name="wood_door_lockable_02" max_health="5000" repair_sound="Play_wall_repair">
+  12  		<door filename="objects/basebuilding/other/wood_door_lockable_02/wood_door_lockable_02.cgf" rotate_base="-90" rotate_range="90" rotate_speed="90" rotate_axis="z" rotate_axis_front="y" sound_open="Play_door_wood_open" sound_opened="" sound_close="Play_door_wood_close" sound_closed="Play_door_wood_closed" sound_lock="Play_door_lock" sound_unlock="Play_door_unlock"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\wood\wood_shutter_lockable_02.xml:
+  10  
+  11: 	<base_part class="door" type="355" name="wood_shutter_lockable_02" max_health="5000" repair_sound="Play_wall_repair">
+  12  		<door filename="objects/basebuilding/wood_02/wood_shutter_02.cgf" rotate_base="-90" rotate_range="90" rotate_speed="90" rotate_axis="z" rotate_axis_front="y" sound_open="Play_door_wood_open" sound_opened="" sound_close="Play_door_wood_close" sound_closed="Play_door_wood_closed" sound_lock="Play_door_lock" sound_unlock="Play_door_unlock"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\wood\wood_stairs_1_3m_3m_3m.xml:
+  10  
+  11: 	<base_part class="static" type="30" name="wood_stairs_1_3m_3m_3m" repair_sound="Play_wall_repair">
+  12  		<static filename="objects/basebuilding/wood/stairs_1_3m_3m_3m.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\wood\wood_stairs_2m_3m_1m.xml:
+  10  
+  11: 	<base_part class="static" type="33" name="wood_stairs_2m_3m_1m" repair_sound="Play_wall_repair">
+  12  		<static filename="objects/basebuilding/wood/stairs_2m_3m_1m.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\wood\wood_stairs_2m_3m_3m.xml:
+  10  
+  11: 	<base_part class="static" type="34" name="wood_stairs_2m_3m_3m" repair_sound="Play_wall_repair">
+  12  		<static filename="objects/basebuilding/wood/stairs_2m_3m_3m.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\wood\wood_stairs_3m_4m_4m_02.xml:
+  10  
+  11: 	<base_part class="static" type="360" name="wood_stairs_3m_4m_4m_02" max_health="15000" repair_sound="Play_wall_repair">
+  12  		<static filename="objects/basebuilding/wood_02/wood_stairway_02.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\wood\wood_stool.xml:
+   9  
+  10: 	<base_part class="static" type="346" name="wood_stool" max_health="1000" repair_sound="Play_wall_repair">
+  11  		<static filename="objects/basebuilding/other/wood_stool/wood_stool_01.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\wood\wood_table_02.xml:
+  10  
+  11: 	<base_part class="static" type="335" name="wood_table_02" max_health="1000" repair_sound="Play_wall_repair">
+  12  		<static filename="objects/basebuilding/other/wood_table_02/wood_table_02.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\wood\wood_walkway_1_3m_4m_4m.xml:
+  10  
+  11: 	<base_part class="static" type="31" name="wood_walkway_1_3m_4m_4m" repair_sound="Play_wall_repair">
+  12  		<static filename="objects/basebuilding/wood/walkway_1_3m_4m_4m.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\wood\wood_walkway_2m_1m_1m.xml:
+  10  
+  11: 	<base_part class="static" type="32" name="wood_walkway_2m_1m_1m" repair_sound="Play_wall_repair">
+  12  		<static filename="objects/basebuilding/wood/walkway_2m_1m_1m.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\wood\wood_walkway_2m_3m_1m.xml:
+  10  
+  11: 	<base_part class="static" type="35" name="wood_walkway_2m_3m_1m" repair_sound="Play_wall_repair">
+  12  		<static filename="objects/basebuilding/wood/walkway_2m_3m_1m.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\wood\wood_walkway_2m_4m_4m.xml:
+  10  
+  11: 	<base_part class="static" type="37" name="wood_walkway_2m_4m_4m" repair_sound="Play_wall_repair">
+  12  		<static filename="objects/basebuilding/wood/walkway_2m_4m_4m.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\wood\wood_walkway_3m_1m_1m.xml:
+  10  
+  11: 	<base_part class="static" type="38" name="wood_walkway_3m_1m_1m" repair_sound="Play_wall_repair">
+  12  		<static filename="objects/basebuilding/wood/walkway_3m_1m_1m.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\wood\wood_walkway_3m_4m_4m_02.xml:
+  10  
+  11: 	<base_part class="static" type="353" name="wood_walkway_3m_4m_4m_02" repair_sound="Play_wall_repair">
+  12  		<static filename="objects/basebuilding/wood_02/wood_walkway_3m_4m_4m_02.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\wood\wood_wall_3m_4m_02.xml:
+  10  
+  11: 	<base_part class="static" type="350" name="wood_wall_3m_4m_02" repair_sound="Play_wall_repair">
+  12  		<static filename="objects/basebuilding/wood_02/wood_wall_3m_4m_02.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\wood\wood_wall_door_3m_4m_02.xml:
+  10  
+  11: 	<base_part class="static" type="351" name="wood_wall_door_3m_4m_02" repair_sound="Play_wall_repair">
+  12  		<static filename="objects/basebuilding/wood_02/wall_door_3m_4m_02.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\wood\wood_wall_window_3m_4m_02.xml:
+  10  
+  11: 	<base_part class="static" type="352" name="wood_wall_window_3m_4m_02" repair_sound="Play_wall_repair">
+  12  		<static filename="objects/basebuilding/wood_02/wall_window_3m_4m_02.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\misc\camping_lantern.xml:
+  11  
+  12: 	<base_part class="static" type="3" name="camping_lantern" max_health="1000" repair_with="DuctTape">
+  13  		<static filename="objects/basebuilding/other/camping_lantern/camping_lantern.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\misc\christmas_candle.xml:
+  10  
+  11: 	<base_part class="static" type="304" name="christmas_candle" max_health="600" repair_with="AnimalFat">
+  12  		<static filename="objects/basebuilding/other/christmas_candle/christmas_candle.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\misc\christmas_wreath.xml:
+  11  
+  12: 	<base_part class="static" type="302" name="christmas_wreath" max_health="1000" repair_with="Rags">
+  13  		<static filename="objects/basebuilding/other/christmas_wreath/christmas_wreath.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\misc\flower_vase.xml:
+   9  
+  10: 	<base_part class="static" type="307" name="flower_vase" max_health="5000" repair_with="DuctTape">
+  11  		<static filename="objects/basebuilding/other/valentine_vase/valentine_vase.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\misc\heart_balloon.xml:
+   9  
+  10: 	<base_part class="static" type="308" name="heart_balloon" max_health="5000" repair_with="DuctTape">
+  11  		<static filename="objects/basebuilding/other/valentine_baloon/valentine_balloon.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\misc\heart_candle.xml:
+   9  
+  10: 	<base_part class="static" type="301" name="heart_candle" max_health="600" limit="10" repair_with="AnimalFat">
+  11  		<static filename="objects/basebuilding/other/heart_candle/heart_candle.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\misc\jerry.xml:
+  10  
+  11: 	<base_part class="static" type="3501" name="jerry" max_health="1000" repair_with="DuctTape">
+  12  		<static filename="Objects/basebuilding/other/fishbowl/fishbowl.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\misc\ninemens_board.xml:
+   9  
+  10: 	<base_part class="static" type="336" name="ninemens_board" max_health="200" repair_with="Lumber">
+  11  		<static filename="objects/basebuilding/other/ninemen_morris/nmm_board.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\misc\o_peice.xml:
+  13  
+  14: 	<base_part class="static" type="333" name="o_piece" max_health="10" repair_with="Lumber">
+  15  		<static filename="objects/basebuilding/other/tictactoe/ttt_circle.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\misc\painting_landscape_01.xml:
+  12  
+  13: 	<base_part class="static" type="312" name="painting_landscape_01" max_health="1000" repair_with="Rags">
+  14  		<static filename="Objects/basebuilding/other/painting/bpart_painting_landscape_01.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\misc\painting_landscape_02.xml:
+  12  
+  13: 	<base_part class="static" type="313" name="painting_landscape_02" max_health="1000" repair_with="Rags">
+  14  		<static filename="Objects/basebuilding/other/painting/bpart_painting_landscape_02.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\misc\painting_landscape_03.xml:
+  12  
+  13: 	<base_part class="static" type="314" name="painting_landscape_03" max_health="1000" repair_with="Rags">
+  14  		<static filename="Objects/basebuilding/other/painting/bpart_painting_landscape_03.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\misc\painting_landscape_04.xml:
+  12  
+  13: 	<base_part class="static" type="315" name="painting_landscape_04" max_health="1000" repair_with="Rags">
+  14  		<static filename="Objects/basebuilding/other/painting/bpart_painting_landscape_04.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\misc\painting_landscape_05.xml:
+  12  
+  13: 	<base_part class="static" type="316" name="painting_landscape_05" max_health="1000" repair_with="Rags">
+  14  		<static filename="Objects/basebuilding/other/painting/bpart_painting_landscape_05.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\misc\painting_landscape_06.xml:
+  12  
+  13: 	<base_part class="static" type="317" name="painting_landscape_06" max_health="1000" repair_with="Rags">
+  14  		<static filename="Objects/basebuilding/other/painting/bpart_painting_landscape_06.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\misc\painting_landscape_07.xml:
+  12  
+  13: 	<base_part class="static" type="318" name="painting_landscape_07" max_health="1000" repair_with="Rags">
+  14  		<static filename="Objects/basebuilding/other/painting/bpart_painting_landscape_07.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\misc\painting_landscape_08.xml:
+  12  
+  13: 	<base_part class="static" type="319" name="painting_landscape_08" max_health="1000" repair_with="Rags">
+  14  		<static filename="Objects/basebuilding/other/painting/bpart_painting_landscape_08.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\misc\painting_landscape_09.xml:
+  12  
+  13: 	<base_part class="static" type="320" name="painting_landscape_09" max_health="1000" repair_with="Rags">
+  14  		<static filename="Objects/basebuilding/other/painting/bpart_painting_landscape_09.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\misc\painting_landscape_10.xml:
+  12  
+  13: 	<base_part class="static" type="328" name="painting_landscape_10" max_health="1000" repair_with="Rags">
+  14  		<static filename="Objects/basebuilding/other/painting/bpart_painting_capitalmunch.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\misc\painting_map_canyonlands.xml:
+  12  
+  13: 	<base_part class="static" type="365" name="painting_map_canyonlands" max_health="1000" repair_with="Rags">
+  14  		<static filename="Objects/basebuilding/other/painting/painting_map_canyonlands.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\misc\painting_map.xml:
+  12  
+  13: 	<base_part class="static" type="349" name="painting_map" max_health="1000" repair_with="Rags">
+  14  		<static filename="Objects/basebuilding/other/painting/painting_map.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\misc\painting_square_01.xml:
+  12  
+  13: 	<base_part class="static" type="326" name="painting_square_01" max_health="1000" repair_with="Rags">
+  14  		<static filename="Objects/basebuilding/other/painting/painting_map.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\misc\painting_square_02.xml:
+  12  
+  13: 	<base_part class="static" type="327" name="painting_square_02" max_health="1000" repair_with="Rags">
+  14  		<static filename="Objects/basebuilding/other/painting/painting_square_1.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\misc\painting_vertical_landscape_01.xml:
+  12  
+  13: 	<base_part class="static" type="321" name="painting_vertical_landscape_01" max_health="1000" repair_with="Rags">
+  14  		<static filename="Objects/basebuilding/other/painting/bpart_painting_vertical_landscape_01.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\misc\painting_vertical_landscape_02.xml:
+  12  
+  13: 	<base_part class="static" type="322" name="painting_vertical_landscape_02" max_health="1000" repair_with="Rags">
+  14  		<static filename="Objects/basebuilding/other/painting/bpart_painting_vertical_landscape_02.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\misc\painting_vertical_landscape_03.xml:
+  12  
+  13: 	<base_part class="static" type="323" name="painting_vertical_landscape_03" max_health="1000" repair_with="Rags">
+  14  		<static filename="Objects/basebuilding/other/painting/bpart_painting_vertical_landscape_03.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\misc\painting_vertical_landscape_04.xml:
+  12  
+  13: 	<base_part class="static" type="324" name="painting_vertical_landscape_04" max_health="1000" repair_with="Rags">
+  14  		<static filename="Objects/basebuilding/other/painting/bpart_painting_vertical_landscape_04.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\misc\painting_vertical_landscape_05.xml:
+  12  
+  13: 	<base_part class="static" type="325" name="painting_vertical_landscape_05" max_health="1000" repair_with="Rags">
+  14  		<static filename="Objects/basebuilding/other/painting/bpart_painting_vertical_landscape_05.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\misc\painting_vertical_landscape_06.xml:
+  12  
+  13: 	<base_part class="static" type="370" name="painting_vertical_landscape_06" max_health="1000" repair_with="Rags">
+  14  		<static filename="Objects/basebuilding/other/painting/bpart_painting_vertical_landscape_06.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\misc\piece_blue.xml:
+   9  
+  10: 	<base_part class="static" type="341" name="piece_blue" max_health="200" repair_with="Lumber">
+  11  		<static filename="objects/basebuilding/other/snl_board/piece_blue.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\misc\piece_green.xml:
+   9  
+  10: 	<base_part class="static" type="342" name="piece_green" max_health="200" repair_with="Lumber">
+  11  		<static filename="objects/basebuilding/other/snl_board/piece_green.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\misc\piece_orange.xml:
+   9  
+  10: 	<base_part class="static" type="344" name="piece_orange" max_health="200" repair_with="Lumber">
+  11  		<static filename="objects/basebuilding/other/snl_board/piece_orange.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\misc\piece_purple.xml:
+   9  
+  10: 	<base_part class="static" type="345" name="piece_purple" max_health="200" repair_with="Lumber">
+  11  		<static filename="objects/basebuilding/other/snl_board/piece_purple.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\misc\piece_red.xml:
+   9  
+  10: 	<base_part class="static" type="340" name="piece_red" max_health="200" repair_with="Lumber">
+  11  		<static filename="objects/basebuilding/other/snl_board/piece_red.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\misc\piece_yellow.xml:
+   9  
+  10: 	<base_part class="static" type="343" name="piece_yellow" max_health="200" repair_with="Lumber">
+  11  		<static filename="objects/basebuilding/other/snl_board/piece_yellow.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\misc\poster_vertical_01.xml:
+  12  
+  13: 	<base_part class="static" type="329" name="poster_vertical_01" max_health="1000" repair_with="Rags">
+  14  		<static filename="Objects/basebuilding/other/painting/poster_vertical_01.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\misc\snl_board.xml:
+   9  
+  10: 	<base_part class="static" type="339" name="snl_board" max_health="200" repair_with="Lumber">
+  11  		<static filename="objects/basebuilding/other/snl_board/snl_board.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\misc\tictactoe_board.xml:
+   9  
+  10: 	<base_part class="static" type="332" name="tictactoe_board" max_health="200" repair_with="Lumber">
+  11  		<static filename="objects/basebuilding/other/tictactoe/ttt_board.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\misc\token_black.xml:
+  12  
+  13: 	<base_part class="static" type="338" name="token_black" max_health="10" repair_with="Lumber">
+  14  		<static filename="objects/basebuilding/other/ninemen_morris/nmm_black.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\misc\token_white.xml:
+  12  
+  13: 	<base_part class="static" type="337" name="token_white" max_health="10" repair_with="Lumber">
+  14  		<static filename="objects/basebuilding/other/ninemen_morris/nmm_white.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\misc\trophy_deer_female.xml:
+  11  
+  12: 	<base_part class="static" type="368" name="trophy_deer_female" max_health="1000" repair_with="Lumber">
+  13  		<static filename="objects/basebuilding/other/trophy/trophy_deer_female.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\misc\trophy_deer_male.xml:
+  11  
+  12: 	<base_part class="static" type="367" name="trophy_deer_male" max_health="1000" repair_with="Lumber">
+  13  		<static filename="objects/basebuilding/other/trophy/trophy_deer_male.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\misc\trophy_wolf.xml:
+  11  
+  12: 	<base_part class="static" type="369" name="trophy_wolf" max_health="1000" repair_with="Lumber">
+  13  		<static filename="objects/basebuilding/other/trophy/trophy_wolf.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\misc\wall_lantern.xml:
+  12  
+  13: 	<base_part class="static" type="330" name="wall_lantern" max_health="1000" repair_with="DuctTape">
+  14  		<static filename="objects/basebuilding/other/wall_lantern/wall_lantern.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\misc\wood_shelf_1m.xml:
+  12  
+  13: 	<base_part class="static" type="309" name="wood_shelf_1m" max_health="1000" repair_with="lumber">
+  14  		<static filename="objects/basebuilding/other/wood_shelf/wood_shelf_1m.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\misc\wood_shelf_2m.xml:
+  12  
+  13: 	<base_part class="static" type="310" name="wood_shelf_2m" max_health="1000" repair_with="lumber">
+  14  		<static filename="objects/basebuilding/other/wood_shelf/wood_shelf_2m.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\misc\wood_shelf_3m.xml:
+  12  
+  13: 	<base_part class="static" type="311" name="wood_shelf_3m" max_health="1000" repair_with="lumber">
+  14  		<static filename="objects/basebuilding/other/wood_shelf/wood_shelf_3m.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\misc\wood_shelf_modern.xml:
+  12  
+  13: 	<base_part class="static" type="348" name="wood_shelf_modern" max_health="1000" repair_with="lumber">
+  14  		<static filename="objects/basebuilding/other/wood_shelf_modern/wood_shelf_modern.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\misc\x_peice.xml:
+  12  
+  13: 	<base_part class="static" type="334" name="x_piece" max_health="10" repair_with="Lumber">
+  14  		<static filename="objects/basebuilding/other/tictactoe/ttt_cross.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\stone\stone_fireplace_packed.xml:
+   9  
+  10: 	<base_part class="entity" type="3500" name="stone_fireplace_packed" max_health="8000" limit="1" repair_with="Rocks" repair_sound="Play_wall_repair">
+  11  		<entity class="stone_fireplace"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\wood\coffin_packed.xml:
+  10  
+  11: 	<base_part class="static" type="385" name="wood_coffin" max_health="2000" repair_sound="Play_wall_repair">
+  12  		<static filename="objects/basebuilding/other/coffin/coffin.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\wood\wood_bench.xml:
+   9  
+  10: 	<base_part class="static" type="347" name="wood_bench" max_health="1000" repair_sound="Play_wall_repair">
+  11  		<static filename="objects/basebuilding/other/wood_bench/wood_bench_01.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\wood\wood_coffin.xml:
+  10  
+  11: 	<base_part class="static" type="385" name="wood_coffin" max_health="2000" repair_sound="Play_wall_repair">
+  12  		<static filename="objects/basebuilding/other/coffin/coffin.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\wood\wood_column_1_3m.xml:
+  10  
+  11: 	<base_part class="static" type="36" name="wood_column_1_3m" max_health="1000" repair_sound="Play_wall_repair">
+  12  		<static filename="objects/basebuilding/wood/wood_column_1_3m.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\wood\wood_column_2m.xml:
+  10  
+  11: 	<base_part class="static" type="39" name="wood_column_2m" max_health="1500" repair_sound="Play_wall_repair">
+  12  		<static filename="objects/basebuilding/wood/wood_column_2m.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\wood\wood_crate_large_packed.xml:
+  10  
+  11: 	<base_part class="static" type="371" name="wood_crate" max_health="1000" repair_sound="Play_wall_repair">
+  12  		<static filename="objects/basebuilding/wood/locked_crate_large.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\wood\wood_crate_small_packed.xml:
+  10  
+  11: 	<base_part class="static" type="371" name="wood_crate" max_health="500" repair_sound="Play_wall_repair">
+  12  		<static filename="objects/basebuilding/wood/locked_crate_large.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\wood\wood_crate.xml:
+  10  
+  11: 	<base_part class="static" type="371" name="wood_crate" max_health="1000" repair_sound="Play_wall_repair">
+  12  		<static filename="objects/basebuilding/wood/locked_crate_large.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\wood\wood_door_lockable_02.xml:
+  10  
+  11: 	<base_part class="door" type="331" name="wood_door_lockable_02" max_health="5000" repair_sound="Play_wall_repair">
+  12  		<door filename="objects/basebuilding/other/wood_door_lockable_02/wood_door_lockable_02.cgf" rotate_base="-90" rotate_range="90" rotate_speed="90" rotate_axis="z" rotate_axis_front="y" sound_open="Play_door_wood_open" sound_opened="" sound_close="Play_door_wood_close" sound_closed="Play_door_wood_closed" sound_lock="Play_door_lock" sound_unlock="Play_door_unlock"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\wood\wood_shutter_lockable_02.xml:
+  10  
+  11: 	<base_part class="door" type="355" name="wood_shutter_lockable_02" max_health="5000" repair_sound="Play_wall_repair">
+  12  		<door filename="objects/basebuilding/wood_02/wood_shutter_02.cgf" rotate_base="-90" rotate_range="90" rotate_speed="90" rotate_axis="z" rotate_axis_front="y" sound_open="Play_door_wood_open" sound_opened="" sound_close="Play_door_wood_close" sound_closed="Play_door_wood_closed" sound_lock="Play_door_lock" sound_unlock="Play_door_unlock"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\wood\wood_stairs_1_3m_3m_3m.xml:
+  10  
+  11: 	<base_part class="static" type="30" name="wood_stairs_1_3m_3m_3m" repair_sound="Play_wall_repair">
+  12  		<static filename="objects/basebuilding/wood/stairs_1_3m_3m_3m.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\wood\wood_stairs_2m_3m_1m.xml:
+  10  
+  11: 	<base_part class="static" type="33" name="wood_stairs_2m_3m_1m" repair_sound="Play_wall_repair">
+  12  		<static filename="objects/basebuilding/wood/stairs_2m_3m_1m.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\wood\wood_stairs_2m_3m_3m.xml:
+  10  
+  11: 	<base_part class="static" type="34" name="wood_stairs_2m_3m_3m" repair_sound="Play_wall_repair">
+  12  		<static filename="objects/basebuilding/wood/stairs_2m_3m_3m.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\wood\wood_stairs_3m_4m_4m_02.xml:
+  10  
+  11: 	<base_part class="static" type="360" name="wood_stairs_3m_4m_4m_02" max_health="15000" repair_sound="Play_wall_repair">
+  12  		<static filename="objects/basebuilding/wood_02/wood_stairway_02.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\wood\wood_stool.xml:
+   9  
+  10: 	<base_part class="static" type="346" name="wood_stool" max_health="1000" repair_sound="Play_wall_repair">
+  11  		<static filename="objects/basebuilding/other/wood_stool/wood_stool_01.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\wood\wood_table_02.xml:
+  10  
+  11: 	<base_part class="static" type="335" name="wood_table_02" max_health="1000" repair_sound="Play_wall_repair">
+  12  		<static filename="objects/basebuilding/other/wood_table_02/wood_table_02.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\wood\wood_walkway_1_3m_4m_4m.xml:
+  10  
+  11: 	<base_part class="static" type="31" name="wood_walkway_1_3m_4m_4m" repair_sound="Play_wall_repair">
+  12  		<static filename="objects/basebuilding/wood/walkway_1_3m_4m_4m.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\wood\wood_walkway_2m_1m_1m.xml:
+  10  
+  11: 	<base_part class="static" type="32" name="wood_walkway_2m_1m_1m" repair_sound="Play_wall_repair">
+  12  		<static filename="objects/basebuilding/wood/walkway_2m_1m_1m.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\wood\wood_walkway_2m_3m_1m.xml:
+  10  
+  11: 	<base_part class="static" type="35" name="wood_walkway_2m_3m_1m" repair_sound="Play_wall_repair">
+  12  		<static filename="objects/basebuilding/wood/walkway_2m_3m_1m.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\wood\wood_walkway_2m_4m_4m.xml:
+  10  
+  11: 	<base_part class="static" type="37" name="wood_walkway_2m_4m_4m" repair_sound="Play_wall_repair">
+  12  		<static filename="objects/basebuilding/wood/walkway_2m_4m_4m.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\wood\wood_walkway_3m_1m_1m.xml:
+  10  
+  11: 	<base_part class="static" type="38" name="wood_walkway_3m_1m_1m" repair_sound="Play_wall_repair">
+  12  		<static filename="objects/basebuilding/wood/walkway_3m_1m_1m.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\wood\wood_walkway_3m_4m_4m_02.xml:
+  10  
+  11: 	<base_part class="static" type="353" name="wood_walkway_3m_4m_4m_02" repair_sound="Play_wall_repair">
+  12  		<static filename="objects/basebuilding/wood_02/wood_walkway_3m_4m_4m_02.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\wood\wood_wall_3m_4m_02.xml:
+  10  
+  11: 	<base_part class="static" type="350" name="wood_wall_3m_4m_02" repair_sound="Play_wall_repair">
+  12  		<static filename="objects/basebuilding/wood_02/wood_wall_3m_4m_02.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\wood\wood_wall_door_3m_4m_02.xml:
+  10  
+  11: 	<base_part class="static" type="351" name="wood_wall_door_3m_4m_02" repair_sound="Play_wall_repair">
+  12  		<static filename="objects/basebuilding/wood_02/wall_door_3m_4m_02.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\wood\wood_wall_window_3m_4m_02.xml:
+  10  
+  11: 	<base_part class="static" type="352" name="wood_wall_window_3m_4m_02" repair_sound="Play_wall_repair">
+  12  		<static filename="objects/basebuilding/wood_02/wall_window_3m_4m_02.cgf"/>

@@ -1,0 +1,930 @@
+# Query: type="8
+# Including: ./nodeErrorID
+# ContextLines: 1
+
+185 results - 185 files
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\furniture\porkchop_armchair.xml:
+  10  
+  11: 	<base_part class="static" type="8131" name="porkchop_armchair" max_health="15000" repair_with="RK_Leather">
+  12  		<static filename="Objects/basebuilding/furniture/porkchop_armchair.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\furniture\porkchop_chair.xml:
+  10  
+  11: 	<base_part class="static" type="8112" name="porkchop_chair" max_health="15000" repair_with="Lumber">
+  12  		<static filename="Objects/basebuilding/furniture/porkchop_chair.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\furniture\porkchop_chest_of_drawers_old_crate_packed.xml:
+  10  
+  11: 	<base_part class="entity" type="8113" name="porkchop_chest_of_drawers_old_crate_packed" max_health="15000" repair_with="Lumber" limit="6">
+  12  		<entity class="porkchop_chest_of_drawers_old_crate"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\furniture\porkchop_classic_chair_old.xml:
+  10  
+  11: 	<base_part class="static" type="8114" name="porkchop_classic_chair_old" max_health="15000" repair_with="Lumber">
+  12  		<static filename="Objects/basebuilding/furniture/porkchop_classic_chair_old.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\furniture\porkchop_classic_table_old.xml:
+  10  
+  11: 	<base_part class="static" type="8115" name="porkchop_classic_table_old" max_health="15000" repair_with="Lumber">
+  12  		<static filename="Objects/basebuilding/furniture/porkchop_classic_table_old.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\furniture\porkchop_coffeetable.xml:
+  10  
+  11: 	<base_part class="static" type="8109" name="porkchop_coffeetable" max_health="15000" repair_with="Lumber">
+  12  		<static filename="Objects/basebuilding/furniture/porkchop_coffeetable.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\furniture\porkchop_couch_bunker.xml:
+  10  
+  11: 	<base_part class="static" type="8110" name="porkchop_couch_bunker" max_health="15000" repair_with="RK_Leather">
+  12  		<static filename="Objects/basebuilding/furniture/porkchop_couch_bunker.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\furniture\porkchop_couch.xml:
+  10  
+  11: 	<base_part class="static" type="8111" name="porkchop_couch" max_health="15000" repair_with="RK_Leather">
+  12  		<static filename="Objects/basebuilding/furniture/porkchop_couch.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\furniture\porkchop_elegant_chair_2_old.xml:
+  10  
+  11: 	<base_part class="static" type="8116" name="porkchop_elegant_chair_2_old" max_health="15000" repair_with="RK_Leather">
+  12  		<static filename="Objects/basebuilding/furniture/porkchop_elegant_chair_2_old.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\furniture\porkchop_elegant_chair_2_ottoman_old.xml:
+  10  
+  11: 	<base_part class="static" type="8117" name="porkchop_elegant_chair_2_ottoman_old" max_health="15000" repair_with="RK_Leather">
+  12  		<static filename="Objects/basebuilding/furniture/porkchop_elegant_chair_2_ottoman_old.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\furniture\porkchop_elegant_chair_old.xml:
+  10  
+  11: 	<base_part class="static" type="8118" name="porkchop_elegant_chair_old" max_health="15000" repair_with="RK_Leather">
+  12  		<static filename="Objects/basebuilding/furniture/porkchop_elegant_chair_old.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\furniture\porkchop_elegant_chair_ottoman_old.xml:
+  10  
+  11: 	<base_part class="static" type="8119" name="porkchop_elegant_chair_ottoman_old" max_health="15000" repair_with="RK_Leather">
+  12  		<static filename="Objects/basebuilding/furniture/porkchop_elegant_chair_ottoman_old.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\furniture\porkchop_folding_table_large.xml:
+  10  
+  11: 	<base_part class="static" type="8108" name="porkchop_folding_table_large" max_health="15000" repair_with="DuctTape">
+  12  		<static filename="Objects/basebuilding/furniture/porkchop_folding_table_large.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\furniture\porkchop_guestchair.xml:
+  10  
+  11: 	<base_part class="static" type="8130" name="porkchop_guestchair" max_health="15000" repair_with="RK_Leather">
+  12  		<static filename="Objects/basebuilding/furniture/porkchop_guestchair.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\furniture\porkchop_leather_armchair_old.xml:
+  10  
+  11: 	<base_part class="static" type="8120" name="porkchop_leather_armchair_old" max_health="15000" repair_with="RK_Leather">
+  12  		<static filename="Objects/basebuilding/furniture/porkchop_leather_armchair_old.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\furniture\porkchop_leather_chair_old.xml:
+  10  
+  11: 	<base_part class="static" type="8121" name="porkchop_leather_chair_old" max_health="15000" repair_with="RK_Leather">
+  12  		<static filename="Objects/basebuilding/furniture/porkchop_leather_chair_old.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\furniture\porkchop_leather_sofa_2_old.xml:
+  10  
+  11: 	<base_part class="static" type="8122" name="porkchop_leather_sofa_2_old" max_health="15000" repair_with="RK_Leather">
+  12  		<static filename="Objects/basebuilding/furniture/porkchop_leather_sofa_2_old.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\furniture\porkchop_leather_sofa_old.xml:
+  10  
+  11: 	<base_part class="static" type="8123" name="porkchop_leather_sofa_old" max_health="15000" repair_with="RK_Leather">
+  12  		<static filename="Objects/basebuilding/furniture/porkchop_leather_sofa_old.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\furniture\porkchop_modern_armchair_old.xml:
+  10  
+  11: 	<base_part class="static" type="8124" name="porkchop_modern_armchair_old" max_health="15000" repair_with="RK_Cloth">
+  12  		<static filename="Objects/basebuilding/furniture/porkchop_modern_armchair_old.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\furniture\porkchop_modern_sofa_old.xml:
+  10  
+  11: 	<base_part class="static" type="8125" name="porkchop_modern_sofa_old" max_health="15000" repair_with="RK_Cloth">
+  12  		<static filename="Objects/basebuilding/furniture/porkchop_modern_sofa_old.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\furniture\porkchop_office_leather_chair_old.xml:
+  10  
+  11: 	<base_part class="static" type="8126" name="porkchop_office_leather_chair_old" max_health="15000" repair_with="RK_Leather">
+  12  		<static filename="Objects/basebuilding/furniture/porkchop_office_leather_chair_old.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\furniture\porkchop_round_table_old.xml:
+  10  
+  11: 	<base_part class="static" type="8127" name="porkchop_round_table_old" max_health="15000" repair_with="Lumber">
+  12  		<static filename="Objects/basebuilding/furniture/porkchop_round_table_old.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\furniture\porkchop_smallcouch.xml:
+  10  
+  11: 	<base_part class="static" type="8128" name="porkchop_smallcouch" max_health="15000" repair_with="RK_Leather">
+  12  		<static filename="Objects/basebuilding/furniture/porkchop_smallcouch.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\furniture\porkchop_table_2.xml:
+  10  
+  11: 	<base_part class="static" type="8132" name="porkchop_table_2" max_health="15000" repair_with="Lumber">
+  12  		<static filename="Objects/basebuilding/furniture/porkchop_table_2.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\furniture\porkchop_wood_table_a.xml:
+  10  
+  11: 	<base_part class="static" type="8129" name="porkchop_wood_table_a" max_health="15000" repair_with="Lumber">
+  12  		<static filename="Objects/basebuilding/furniture/porkchop_wood_table_a.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\landscaping\bushes\bux_hedge_ball_big.xml:
+  10  
+  11: 	<base_part class="static" type="8173" name="bux_hedge_ball_big" max_health="10000" repair_with="StickPile">
+  12  		<static filename="Objects/basebuilding/landscaping/bushes/bux_hedge_ball_big.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\landscaping\bushes\bux_hedge_ball_small.xml:
+  10  
+  11: 	<base_part class="static" type="8174" name="bux_hedge_ball_small" max_health="10000" repair_with="StickPile">
+  12  		<static filename="Objects/basebuilding/landscaping/bushes/bux_hedge_ball_small.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\landscaping\bushes\bux_hedge_box_high.xml:
+  10  
+  11: 	<base_part class="static" type="8175" name="bux_hedge_box_high" max_health="10000" repair_with="StickPile">
+  12  		<static filename="Objects/basebuilding/landscaping/bushes/bux_hedge_box_high.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\landscaping\bushes\bux_hedge_box_long_high_bend.xml:
+  10  
+  11: 	<base_part class="static" type="8177" name="bux_hedge_box_long_high_bend" max_health="10000" repair_with="StickPile">
+  12  		<static filename="Objects/basebuilding/landscaping/bushes/bux_hedge_box_long_high_bend.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\landscaping\bushes\bux_hedge_box_long_high.xml:
+  10  
+  11: 	<base_part class="static" type="8176" name="bux_hedge_box_long_high" max_health="10000" repair_with="StickPile">
+  12  		<static filename="Objects/basebuilding/landscaping/bushes/bux_hedge_box_long_high.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\landscaping\bushes\bux_hedge_box_long_low_bend.xml:
+  10  
+  11: 	<base_part class="static" type="8179" name="bux_hedge_box_long_low_bend" max_health="10000" repair_with="StickPile">
+  12  		<static filename="Objects/basebuilding/landscaping/bushes/bux_hedge_box_long_low_bend.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\landscaping\bushes\bux_hedge_box_long_low.xml:
+  10  
+  11: 	<base_part class="static" type="8178" name="bux_hedge_box_long_low" max_health="10000" repair_with="StickPile">
+  12  		<static filename="Objects/basebuilding/landscaping/bushes/bux_hedge_box_long_low.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\landscaping\bushes\bux_hedge_box_low.xml:
+  10  
+  11: 	<base_part class="static" type="8180" name="bux_hedge_box_low" max_health="10000" repair_with="StickPile">
+  12  		<static filename="Objects/basebuilding/landscaping/bushes/bux_hedge_box_low.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\landscaping\bushes\bux_hedge_cylinder_high.xml:
+  10  
+  11: 	<base_part class="static" type="8181" name="bux_hedge_cylinder_high" max_health="10000" repair_with="StickPile">
+  12  		<static filename="Objects/basebuilding/landscaping/bushes/bux_hedge_cylinder_high.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\landscaping\bushes\bux_hedge_cylinder_low.xml:
+  10  
+  11: 	<base_part class="static" type="8182" name="bux_hedge_cylinder_low" max_health="10000" repair_with="StickPile">
+  12  		<static filename="Objects/basebuilding/landscaping/bushes/bux_hedge_cylinder_low.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\landscaping\decor\porkchop_bird_bath.xml:
+  10  
+  11: 	<base_part class="water_barrel" type="8107" name="porkchop_bird_bath">
+  12  		<water_barrel filename="Objects/basebuilding/landscaping/decor/porkchop_bird_bath.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\landscaping\desert_plants\cholla\porkchop_Cholla01.xml:
+  10  
+  11: 	<base_part class="static" type="8080" name="porkchop_Cholla01" max_health="10000" repair_with="PricklyPear">
+  12  		<static filename="objects\basebuilding\landscaping\desert_plants\cholla\porkchop_Cholla01.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\landscaping\desert_plants\cholla\porkchop_Cholla02.xml:
+  10  
+  11: 	<base_part class="static" type="8079" name="porkchop_Cholla02" max_health="10000" repair_with="PricklyPear">
+  12  		<static filename="objects\basebuilding\landscaping\desert_plants\cholla\porkchop_Cholla02.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\landscaping\desert_plants\cholla\porkchop_Cholla03.xml:
+  10  
+  11: 	<base_part class="static" type="8078" name="porkchop_Cholla03" max_health="10000" repair_with="PricklyPear">
+  12  		<static filename="objects\basebuilding\landscaping\desert_plants\cholla\porkchop_Cholla03.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\landscaping\desert_plants\cholla\porkchop_Cholla04.xml:
+  10  
+  11: 	<base_part class="static" type="8077" name="porkchop_Cholla04" max_health="10000" repair_with="PricklyPear">
+  12  		<static filename="objects\basebuilding\landscaping\desert_plants\cholla\porkchop_Cholla04.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\landscaping\desert_plants\joshua_tree\porkchop_JoshuaTree01.xml:
+  10  
+  11: 	<base_part class="static" type="8076" name="porkchop_JoshuaTree01" max_health="10000" repair_with="PricklyPear">
+  12  		<static filename="objects\basebuilding\landscaping\desert_plants\joshua_tree\porkchop_JoshuaTree01.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\landscaping\desert_plants\joshua_tree\porkchop_JoshuaTree02.xml:
+  10  
+  11: 	<base_part class="static" type="8075" name="porkchop_JoshuaTree02" max_health="10000" repair_with="PricklyPear">
+  12  		<static filename="objects\basebuilding\landscaping\desert_plants\joshua_tree\porkchop_JoshuaTree02.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\landscaping\desert_plants\joshua_tree\porkchop_JoshuaTree03.xml:
+  10  
+  11: 	<base_part class="static" type="8074" name="porkchop_JoshuaTree03" max_health="10000" repair_with="PricklyPear">
+  12  		<static filename="objects\basebuilding\landscaping\desert_plants\joshua_tree\porkchop_JoshuaTree03.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\landscaping\desert_plants\joshua_tree\porkchop_JoshuaTree04.xml:
+  10  
+  11: 	<base_part class="static" type="8073" name="porkchop_JoshuaTree04" max_health="10000" repair_with="PricklyPear">
+  12  		<static filename="objects\basebuilding\landscaping\desert_plants\joshua_tree\porkchop_JoshuaTree04.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\landscaping\desert_plants\joshua_tree\porkchop_JoshuaTree05.xml:
+  10  
+  11: 	<base_part class="static" type="8072" name="porkchop_JoshuaTree05" max_health="10000" repair_with="PricklyPear">
+  12  		<static filename="objects\basebuilding\landscaping\desert_plants\joshua_tree\porkchop_JoshuaTree05.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\landscaping\desert_plants\juniper_tree\porkchop_JuniperTree01.xml:
+  10  
+  11: 	<base_part class="static" type="8071" name="porkchop_JuniperTree01" max_health="10000" repair_with="PricklyPear">
+  12  		<static filename="objects\basebuilding\landscaping\desert_plants\juniper_tree\porkchop_JuniperTree01.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\landscaping\desert_plants\juniper_tree\porkchop_JuniperTree02.xml:
+  10  
+  11: 	<base_part class="static" type="8070" name="porkchop_JuniperTree02" max_health="10000" repair_with="PricklyPear">
+  12  		<static filename="objects\basebuilding\landscaping\desert_plants\juniper_tree\porkchop_JuniperTree02.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\landscaping\desert_plants\juniper_tree\porkchop_JuniperTree03.xml:
+  10  
+  11: 	<base_part class="static" type="8069" name="porkchop_JuniperTree03" max_health="10000" repair_with="PricklyPear">
+  12  		<static filename="objects\basebuilding\landscaping\desert_plants\juniper_tree\porkchop_JuniperTree03.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\landscaping\desert_plants\juniper_tree\porkchop_JuniperTree04.xml:
+  10  
+  11: 	<base_part class="static" type="8068" name="porkchop_JuniperTree04" max_health="10000" repair_with="PricklyPear">
+  12  		<static filename="objects\basebuilding\landscaping\desert_plants\juniper_tree\porkchop_JuniperTree04.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\landscaping\desert_plants\juniper_tree\porkchop_JuniperTree05.xml:
+  10  
+  11: 	<base_part class="static" type="8067" name="porkchop_JuniperTree05" max_health="10000" repair_with="PricklyPear">
+  12  		<static filename="objects\basebuilding\landscaping\desert_plants\juniper_tree\porkchop_JuniperTree05.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\landscaping\desert_plants\opuntia\porkchop_opuntia.xml:
+  10  
+  11: 	<base_part class="static" type="8066" name="porkchop_opuntia" max_health="10000" repair_with="PricklyPear">
+  12  		<static filename="objects/basebuilding/landscaping/desert_plants/opuntia/porkchop_opuntia.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\landscaping\desert_plants\opuntia\porkchop_Opuntia02.xml:
+  10  
+  11: 	<base_part class="static" type="8065" name="porkchop_Opuntia02" max_health="10000" repair_with="PricklyPear">
+  12  		<static filename="objects/basebuilding/landscaping/desert_plants/opuntia/porkchop_Opuntia02.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\landscaping\desert_plants\opuntia\porkchop_Opuntia03.xml:
+  10  
+  11: 	<base_part class="static" type="8064" name="porkchop_Opuntia03" max_health="10000" repair_with="PricklyPear">
+  12  		<static filename="objects/basebuilding/landscaping/desert_plants/opuntia/porkchop_Opuntia03.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\landscaping\desert_plants\opuntia\porkchop_Opuntia04.xml:
+  10  
+  11: 	<base_part class="static" type="8063" name="porkchop_Opuntia04" max_health="10000" repair_with="PricklyPear">
+  12  		<static filename="objects/basebuilding/landscaping/desert_plants/opuntia/porkchop_Opuntia04.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\landscaping\desert_plants\opuntia\porkchop_OpuntiaFl01.xml:
+  10  
+  11: 	<base_part class="static" type="8062" name="porkchop_OpuntiaFl01" max_health="10000" repair_with="PricklyPear">
+  12  		<static filename="objects/basebuilding/landscaping/desert_plants/opuntia/porkchop_OpuntiaFl01.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\landscaping\desert_plants\opuntia\porkchop_OpuntiaFl02.xml:
+  10  
+  11: 	<base_part class="static" type="8061" name="porkchop_OpuntiaFl02" max_health="10000" repair_with="PricklyPear">
+  12  		<static filename="objects/basebuilding/landscaping/desert_plants/opuntia/porkchop_OpuntiaFl02.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\landscaping\desert_plants\opuntia\porkchop_OpuntiaFl03.xml:
+  10  
+  11: 	<base_part class="static" type="8060" name="porkchop_OpuntiaFl03" max_health="10000" repair_with="PricklyPear">
+  12  		<static filename="objects/basebuilding/landscaping/desert_plants/opuntia/porkchop_OpuntiaFl03.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\landscaping\desert_plants\opuntia\porkchop_OpuntiaFl04.xml:
+  10  
+  11: 	<base_part class="static" type="8059" name="porkchop_OpuntiaFl04" max_health="10000" repair_with="PricklyPear">
+  12  		<static filename="objects/basebuilding/landscaping/desert_plants/opuntia/porkchop_OpuntiaFl04.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\landscaping\desert_plants\saguaro\porkchop_Saguaro01.xml:
+  10  
+  11: 	<base_part class="static" type="8058" name="porkchop_Saguaro01" max_health="10000" repair_with="PricklyPear">
+  12  		<static filename="objects\basebuilding\landscaping\desert_plants\saguaro\porkchop_Saguaro01.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\landscaping\desert_plants\saguaro\porkchop_Saguaro02.xml:
+  10  
+  11: 	<base_part class="static" type="8057" name="porkchop_Saguaro02" max_health="10000" repair_with="PricklyPear">
+  12  		<static filename="objects\basebuilding\landscaping\desert_plants\saguaro\porkchop_Saguaro02.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\landscaping\desert_plants\saguaro\porkchop_Saguaro03.xml:
+  10  
+  11: 	<base_part class="static" type="8056" name="porkchop_Saguaro03" max_health="10000" repair_with="PricklyPear">
+  12  		<static filename="objects\basebuilding\landscaping\desert_plants\saguaro\porkchop_Saguaro03.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\landscaping\desert_plants\saguaro\porkchop_Saguaro04.xml:
+  10  
+  11: 	<base_part class="static" type="8055" name="porkchop_Saguaro04" max_health="10000" repair_with="PricklyPear">
+  12  		<static filename="objects\basebuilding\landscaping\desert_plants\saguaro\porkchop_Saguaro04.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\landscaping\desert_plants\saguaro\porkchop_Saguaro05.xml:
+  10  
+  11: 	<base_part class="static" type="8054" name="porkchop_Saguaro05" max_health="10000" repair_with="PricklyPear">
+  12  		<static filename="objects\basebuilding\landscaping\desert_plants\saguaro\porkchop_Saguaro05.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\landscaping\desert_plants\saguaro\porkchop_Saguaro06.xml:
+  10  
+  11: 	<base_part class="static" type="8053" name="porkchop_Saguaro06" max_health="10000" repair_with="PricklyPear">
+  12  		<static filename="objects\basebuilding\landscaping\desert_plants\saguaro\porkchop_Saguaro06.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\landscaping\desert_plants\saguaro\porkchop_SaguaroFl01.xml:
+  10  
+  11: 	<base_part class="static" type="8052" name="porkchop_SaguaroFl01" max_health="10000" repair_with="PricklyPear">
+  12  		<static filename="objects\basebuilding\landscaping\desert_plants\saguaro\porkchop_SaguaroFl01.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\landscaping\desert_plants\saguaro\porkchop_SaguaroFl02.xml:
+  10  
+  11: 	<base_part class="static" type="8051" name="porkchop_SaguaroFl02" max_health="10000" repair_with="PricklyPear">
+  12  		<static filename="objects\basebuilding\landscaping\desert_plants\saguaro\porkchop_SaguaroFl02.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\landscaping\desert_plants\saguaro\porkchop_SaguaroFl03.xml:
+  10  
+  11: 	<base_part class="static" type="8050" name="porkchop_SaguaroFl03" max_health="10000" repair_with="PricklyPear">
+  12  		<static filename="objects\basebuilding\landscaping\desert_plants\saguaro\porkchop_SaguaroFl03.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\landscaping\desert_plants\saguaro\porkchop_SaguaroFl04.xml:
+  10  
+  11: 	<base_part class="static" type="8049" name="porkchop_SaguaroFl04" max_health="10000" repair_with="PricklyPear">
+  12  		<static filename="objects\basebuilding\landscaping\desert_plants\saguaro\porkchop_SaguaroFl04.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\landscaping\desert_plants\saguaro\porkchop_SaguaroFl05.xml:
+  10  
+  11: 	<base_part class="static" type="8048" name="porkchop_SaguaroFl05" max_health="10000" repair_with="PricklyPear">
+  12  		<static filename="objects\basebuilding\landscaping\desert_plants\saguaro\porkchop_SaguaroFl05.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\landscaping\desert_plants\saguaro\porkchop_SaguaroFl06.xml:
+  10  
+  11: 	<base_part class="static" type="8047" name="porkchop_SaguaroFl06" max_health="10000" repair_with="PricklyPear">
+  12  		<static filename="objects\basebuilding\landscaping\desert_plants\saguaro\porkchop_SaguaroFl06.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\landscaping\interior_plants\interior_plant_a_large.xml:
+  10  
+  11: 	<base_part class="static" type="8106" name="interior_plant_a_large" max_health="10000" repair_with="StickPile">
+  12  		<static filename="Objects/basebuilding/landscaping/interior_plants/interior_plant_a_large.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\landscaping\interior_plants\interior_plant_a_medium.xml:
+  10  
+  11: 	<base_part class="static" type="8105" name="interior_plant_a_medium" max_health="10000" repair_with="StickPile">
+  12  		<static filename="Objects/basebuilding/landscaping/interior_plants/interior_plant_a_medium.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\landscaping\interior_plants\interior_plant_b_large.xml:
+  10  
+  11: 	<base_part class="static" type="8104" name="interior_plant_b_large" max_health="10000" repair_with="StickPile">
+  12  		<static filename="Objects/basebuilding/landscaping/interior_plants/interior_plant_b_large.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\landscaping\interior_plants\interior_plant_b_medium.xml:
+  10  
+  11: 	<base_part class="static" type="8103" name="interior_plant_b_medium" max_health="10000" repair_with="StickPile">
+  12  		<static filename="Objects/basebuilding/landscaping/interior_plants/interior_plant_b_medium.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\landscaping\interior_plants\interior_plant_c_large.xml:
+  10  
+  11: 	<base_part class="static" type="8102" name="interior_plant_c_large" max_health="10000" repair_with="StickPile">
+  12  		<static filename="Objects/basebuilding/landscaping/interior_plants/interior_plant_c_large.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\landscaping\interior_plants\interior_plant_c_small.xml:
+  10  
+  11: 	<base_part class="static" type="8101" name="interior_plant_c_small" max_health="10000" repair_with="StickPile">
+  12  		<static filename="Objects/basebuilding/landscaping/interior_plants/interior_plant_c_small.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\landscaping\interior_plants\interior_plant_d_large.xml:
+  10  
+  11: 	<base_part class="static" type="8100" name="interior_plant_d_large" max_health="10000" repair_with="StickPile">
+  12  		<static filename="Objects/basebuilding/landscaping/interior_plants/interior_plant_d_large.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\landscaping\interior_plants\interior_plant_e_large.xml:
+  10  
+  11: 	<base_part class="static" type="8099" name="interior_plant_e_large" max_health="10000" repair_with="StickPile">
+  12  		<static filename="Objects/basebuilding/landscaping/interior_plants/interior_plant_e_large.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\landscaping\metal\porkchop_celldoor_lockable.xml:
+  17  
+  18: 	<base_part class="door" type="8191" name="porkchop_celldoor_lockable" max_health="35000">
+  19  		<door filename="Objects/props/Doors/dws_celldoor.cgf" rotate_speed="90" rotate_range="90" rotate_base="-180" rotate_axis="z" rotate_axis_front="y" sound_open="Play_door_metal_open" sound_opened="Play_door_metal_opened" sound_close="Play_door_metal_close" sound_closed="Play_door_metal_closed" sound_lock="Play_door_lock" sound_unlock="Play_door_unlock"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\landscaping\trees\apple_tree_1.xml:
+  10  
+  11: 	<base_part class="static" type="8188" name="apple_tree_1" max_health="10000" repair_with="StickPile">
+  12  		<static filename="Objects/props/apple_tree/apple_tree_1.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\landscaping\trees\apple_tree_2.xml:
+  10  
+  11: 	<base_part class="static" type="8189" name="apple_tree_2" max_health="10000" repair_with="StickPile">
+  12  		<static filename="Objects/props/apple_tree/apple_tree_2.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\landscaping\trees\apple_tree_3.xml:
+  10  
+  11: 	<base_part class="static" type="8190" name="apple_tree_3" max_health="10000" repair_with="StickPile">
+  12  		<static filename="Objects/props/apple_tree/apple_tree_3.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\landscaping\trees\cypress_big_a.xml:
+  10  
+  11: 	<base_part class="static" type="8183" name="cypress_big_a" max_health="10000" repair_with="StickPile">
+  12  		<static filename="Objects/basebuilding/landscaping/trees/cypress_big_a.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\landscaping\trees\cypress_big_b.xml:
+  10  
+  11: 	<base_part class="static" type="8184" name="cypress_big_b" max_health="10000" repair_with="StickPile">
+  12  		<static filename="Objects/basebuilding/landscaping/trees/cypress_big_b.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\landscaping\trees\cypress_medium_a.xml:
+  10  
+  11: 	<base_part class="static" type="8185" name="cypress_medium_a" max_health="10000" repair_with="StickPile">
+  12  		<static filename="Objects/basebuilding/landscaping/trees/cypress_medium_a.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\landscaping\trees\cypress_medium_b.xml:
+  10  
+  11: 	<base_part class="static" type="8186" name="cypress_medium_b" max_health="10000" repair_with="StickPile">
+  12  		<static filename="Objects/basebuilding/landscaping/trees/cypress_medium_b.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\landscaping\trees\cypress_xl_a.xml:
+  10  
+  11: 	<base_part class="static" type="8187" name="cypress_xl_a" max_health="10000" repair_with="StickPile">
+  12  		<static filename="Objects/basebuilding/landscaping/trees/cypress_xl_a.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\metal\metal_gate_lockable_6m_5_4m.xml:
+  10  
+  11: 	<base_part class="door" type="8095" name="metal_gate_lockable_6m_5_4m" max_health="40000" repair_with="SheetMetal">
+  12  		<door filename="Objects/basebuilding/metal/metal_gate_6m_5_4m.cgf" rotate_base="-90" rotate_range="90" rotate_speed="30" rotate_axis="z" rotate_axis_front="y" sound_open="Play_door_metal_open" sound_opened="" sound_close="Play_door_metal_close" sound_closed="Play_door_metal_closed" sound_lock="Play_door_lock" sound_unlock="Play_door_unlock"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\metal\metal_gatehouse_8m_8m.xml:
+  10  
+  11: 	<base_part class="static" type="8096" name="metal_gatehouse_8m_8m" max_health="55000" repair_with="SheetMetal">
+  12  		<static filename="Objects/basebuilding/metal/metal_gateway_8m_8m.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\misc\camping_chair.xml:
+  10  
+  11: 	<base_part class="static" type="8" name="camping_chair" max_health="1000" repair_with="DuctTape">
+  12  		<static filename="Objects/basebuilding/other/camping_chair/camping_chair.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\misc\camping_lantern_aqua.xml:
+  11  
+  12: 	<base_part class="static" type="8137" name="camping_lantern_aqua" max_health="1000" repair_with="DuctTape">
+  13  		<static filename="Objects/basebuilding/other/camping_lantern/camping_lantern.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\misc\camping_lantern_blue.xml:
+  11  
+  12: 	<base_part class="static" type="8139" name="camping_lantern_blue" max_health="1000" repair_with="DuctTape">
+  13  		<static filename="Objects/basebuilding/other/camping_lantern/camping_lantern.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\misc\camping_lantern_green.xml:
+  11  
+  12: 	<base_part class="static" type="8138" name="camping_lantern_green" max_health="1000" repair_with="DuctTape">
+  13  		<static filename="Objects/basebuilding/other/camping_lantern/camping_lantern.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\misc\camping_lantern_orange.xml:
+  11  
+  12: 	<base_part class="static" type="8134" name="camping_lantern_orange" max_health="1000" repair_with="DuctTape">
+  13  		<static filename="Objects/basebuilding/other/camping_lantern/camping_lantern.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\misc\camping_lantern_pink.xml:
+  12  
+  13: 	<base_part class="static" type="8135" name="camping_lantern_pink" max_health="1000" repair_with="DuctTape">
+  14  		<static filename="Objects/basebuilding/other/camping_lantern/camping_lantern.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\misc\camping_lantern_purple.xml:
+  11  
+  12: 	<base_part class="static" type="8133" name="camping_lantern_purple" max_health="1000" repair_with="DuctTape">
+  13  		<static filename="Objects/basebuilding/other/camping_lantern/camping_lantern.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\misc\camping_lantern_red.xml:
+  11  
+  12: 	<base_part class="static" type="8140" name="camping_lantern_red" max_health="1000" repair_with="DuctTape">
+  13  		<static filename="Objects/basebuilding/other/camping_lantern/camping_lantern.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\misc\camping_lantern_yellow.xml:
+  11  
+  12: 	<base_part class="static" type="8136" name="camping_lantern_yellow" max_health="1000" repair_with="DuctTape">
+  13  		<static filename="Objects/basebuilding/other/camping_lantern/camping_lantern.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\misc\tire_1_3m.xml:
+  10  
+  11: 	<base_part class="static" type="80" name="tire_1_3m" max_health="4000" repair_with="DuctTape">
+  12  		<static filename="Objects/basebuilding/misc/tire_1_3m.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\misc\tire_2m.xml:
+  10  
+  11: 	<base_part class="static" type="81" name="tire_2m" max_health="5000" repair_with="DuctTape">
+  12  		<static filename="Objects/basebuilding/misc/tire_2m.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\misc\tire_3m.xml:
+  10  
+  11: 	<base_part class="static" type="82" name="tire_3m" max_health="6000" repair_with="DuctTape">
+  12  		<static filename="Objects/basebuilding/misc/tire_3m.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\misc\tire_4m.xml:
+  10  
+  11: 	<base_part class="static" type="83" name="tire_4m" max_health="8000" repair_with="DuctTape">
+  12  		<static filename="Objects/basebuilding/misc/tire_4m.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\misc\wall_lantern_aqua.xml:
+  11  
+  12: 	<base_part class="static" type="8043" name="wall_lantern_aqua" max_health="1000" repair_with="DuctTape">
+  13  		<static filename="Objects/basebuilding/other/wall_lantern/wall_lantern.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\misc\wall_lantern_blue.xml:
+  11  
+  12: 	<base_part class="static" type="8045" name="wall_lantern_blue" max_health="1000" repair_with="DuctTape">
+  13  		<static filename="Objects/basebuilding/other/wall_lantern/wall_lantern.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\misc\wall_lantern_green.xml:
+  11  
+  12: 	<base_part class="static" type="8044" name="wall_lantern_green" max_health="1000" repair_with="DuctTape">
+  13  		<static filename="Objects/basebuilding/other/wall_lantern/wall_lantern.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\misc\wall_lantern_orange.xml:
+  11  
+  12: 	<base_part class="static" type="8040" name="wall_lantern_orange" max_health="1000" repair_with="DuctTape">
+  13  		<static filename="Objects/basebuilding/other/wall_lantern/wall_lantern.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\misc\wall_lantern_pink.xml:
+  11  
+  12: 	<base_part class="static" type="8041" name="wall_lantern_pink" max_health="1000" repair_with="DuctTape">
+  13  		<static filename="Objects/basebuilding/other/wall_lantern/wall_lantern.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\misc\wall_lantern_purple.xml:
+  11  
+  12: 	<base_part class="static" type="8039" name="wall_lantern_purple" max_health="1000" repair_with="DuctTape">
+  13  		<static filename="Objects/basebuilding/other/wall_lantern/wall_lantern.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\misc\wall_lantern_red.xml:
+  11  
+  12: 	<base_part class="static" type="8046" name="wall_lantern_red" max_health="1000" repair_with="DuctTape">
+  13  		<static filename="Objects/basebuilding/other/wall_lantern/wall_lantern.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\misc\wall_lantern_yellow.xml:
+  11  
+  12: 	<base_part class="static" type="8042" name="wall_lantern_yellow" max_health="1000" repair_with="DuctTape">
+  13  		<static filename="Objects/basebuilding/other/wall_lantern/wall_lantern.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\rock\rock_doorway_3m_4m_beamless.xml:
+  10  
+  11: 	<base_part class="static" type="8087" name="rock_doorway_3m_4m_beamless" max_health="25000" repair_with="Rocks">
+  12  		<static filename="Objects/basebuilding/rock/rock_doorway_3m_4m_beamless.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\rock\rock_doorway_3m_4m.xml:
+  10  
+  11: 	<base_part class="static" type="8094" name="rock_doorway_3m_4m" max_health="25000" repair_with="Rocks">
+  12  		<static filename="Objects/basebuilding/rock/rock_doorway_3m_4m.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\rock\rock_wall_3m_2m_beamless.xml:
+  10  
+  11: 	<base_part class="static" type="8086" name="rock_wall_3m_2m_beamless" max_health="25000" repair_with="Rocks">
+  12  		<static filename="Objects/basebuilding/rock/rock_wall_3m_2m_beamless.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\rock\rock_wall_3m_2m.xml:
+  10  
+  11: 	<base_part class="static" type="8093" name="rock_wall_3m_2m" max_health="25000" repair_with="Rocks">
+  12  		<static filename="Objects/basebuilding/rock/rock_wall_3m_2m.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\rock\rock_wall_3m_4m_beamless.xml:
+  10  
+  11: 	<base_part class="static" type="8085" name="rock_wall_3m_4m_beamless" max_health="25000" repair_with="Rocks">
+  12  		<static filename="Objects/basebuilding/rock/rock_wall_3m_4m_beamless.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\rock\rock_wall_3m_4m.xml:
+  10  
+  11: 	<base_part class="static" type="8092" name="rock_wall_3m_4m" max_health="25000" repair_with="Rocks">
+  12  		<static filename="Objects/basebuilding/rock/rock_wall_3m_4m.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\rock\rock_wall_4m_2m_beamless.xml:
+  10  
+  11: 	<base_part class="static" type="8084" name="rock_wall_4m_2m_beamless" max_health="25000" repair_with="Rocks">
+  12  		<static filename="Objects/basebuilding/rock/rock_wall_4m_2m_beamless.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\rock\rock_wall_4m_2m.xml:
+  10  
+  11: 	<base_part class="static" type="8091" name="rock_wall_4m_2m" max_health="25000" repair_with="Rocks">
+  12  		<static filename="Objects/basebuilding/rock/rock_wall_4m_2m.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\rock\rock_wall_4m_4m_beamless.xml:
+  10  
+  11: 	<base_part class="static" type="8083" name="rock_wall_4m_4m_beamless" max_health="25000" repair_with="Rocks">
+  12  		<static filename="Objects/basebuilding/rock/rock_wall_4m_4m_beamless.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\rock\rock_wall_4m_4m.xml:
+  10  
+  11: 	<base_part class="static" type="8090" name="rock_wall_4m_4m" max_health="25000" repair_with="Rocks">
+  12  		<static filename="Objects/basebuilding/rock/rock_wall_4m_4m.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\rock\rock_wall_window_3m_2m_beamless.xml:
+  10  
+  11: 	<base_part class="static" type="8082" name="rock_wall_window_3m_2m_beamless" max_health="25000" repair_with="Rocks">
+  12  		<static filename="Objects/basebuilding/rock/rock_wall_window_3m_2m_beamless.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\rock\rock_wall_window_3m_2m.xml:
+  10  
+  11: 	<base_part class="static" type="8089" name="rock_wall_window_3m_2m" max_health="25000" repair_with="Rocks">
+  12  		<static filename="Objects/basebuilding/rock/rock_wall_window_3m_2m.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\rock\rock_wall_window_3m_4m_beamless.xml:
+  10  
+  11: 	<base_part class="static" type="8081" name="rock_wall_window_3m_4m_beamless" max_health="25000" repair_with="Rocks">
+  12  		<static filename="Objects/basebuilding/rock/rock_wall_window_3m_4m_beamless.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\rock\rock_wall_window_3m_4m.xml:
+  10  
+  11: 	<base_part class="static" type="8088" name="rock_wall_window_3m_4m" max_health="25000" repair_with="Rocks">
+  12  		<static filename="Objects/basebuilding/rock/rock_wall_window_3m_4m.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\traps\wood_palisade_3m.xml:
+  10   
+  11: 	<base_part class="static" type="87" name="wood_palisade_3m" max_health="5000" repair_sound="Play_wall_repair">
+  12  		<static filename="Objects/basebuilding/wood/palisade_spike_trap_3m.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\wood\large_shipping_crate_packed.xml:
+  10  
+  11: 	<base_part class="entity" type="8022" name="large_shipping_crate_packed" max_health="6000">
+  12  		<entity class="large_shipping_crate"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\wood\wood_bridge_3m_6m.xml:
+  10  
+  11: 	<base_part class="static" type="89" name="wood_bridge_3m_6m" repair_sound="Play_wall_repair">
+  12  		<static filename="Objects/basebuilding/wood/wood_bridge_3m_6m.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\wood\wood_door_lockable_1m_2m.xml:
+  10  
+  11: 	<base_part class="door" type="88" name="wood_door_lockable_1m_2m" max_health="5000" repair_sound="Play_wall_repair">
+  12  		<door filename="Objects/basebuilding/wood/door_lockable_1m_2m.cgf" rotate_base="-90" rotate_range="90" rotate_speed="90" rotate_axis="z" rotate_axis_front="y" sound_open="Play_door_wood_open" sound_opened="" sound_close="Play_door_wood_close" sound_closed="Play_door_wood_closed" sound_lock="Play_door_lock" sound_unlock="Play_door_unlock"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\wood\wood_gate_lockable_6m_4m.xml:
+  10  
+  11: 	<base_part class="door" type="8098" name="wood_gate_lockable_6m_4m" max_health="30000">
+  12  		<door filename="Objects/basebuilding/wood/wood_gate_6m_4m.cgf" rotate_base="-90" rotate_range="90" rotate_speed="30" rotate_axis="z" rotate_axis_front="y" sound_open="Play_door_wood_open" sound_opened="" sound_close="Play_door_wood_close" sound_closed="Play_door_wood_closed" sound_lock="Play_door_lock" sound_unlock="Play_door_unlock"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\wood\wood_gatehouse_double.xml:
+  10  
+  11: 	<base_part class="static" type="8097" name="wood_gatehouse_double" max_health="50000">
+  12  		<static filename="Objects/basebuilding/wood/wood_gateway_double.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\wood\wood_roof_12m_12m.xml:
+  10  
+  11: 	<base_part class="static" max_health="30000" type="8172" name="wood_roof_12m_12m">
+  12  		<static filename="Objects/basebuilding/wood/wood_roof_12m_12m.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\wood\wood_walkroof_3m_4m_4m.xml:
+  12  
+  13: 	<base_part class="static" type="84" name="wood_walkroof_3m_4m_4m" max_health="15000" repair_sound="Play_wall_repair">
+  14  		<static filename="Objects/basebuilding/wood/walkroof_wood_3m_4m_4m.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\wood\wood_walkway_0m_4m_8m.xml:
+  10  
+  11: 	<base_part class="static" max_health="30000" type="8153" name="wood_walkway_0m_4m_8m">
+  12  		<static filename="Objects/basebuilding/wood/walkway_0m_4m_8m.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\wood\wood_walkway_0m_4m_12m.xml:
+  10  
+  11: 	<base_part class="static" max_health="30000" type="8154" name="wood_walkway_0m_4m_12m">
+  12  		<static filename="Objects/basebuilding/wood/walkway_0m_4m_12m.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\wood\wood_walkway_0m_4m_16m.xml:
+  10  
+  11: 	<base_part class="static" max_health="30000" type="8155" name="wood_walkway_0m_4m_16m">
+  12  		<static filename="Objects/basebuilding/wood/walkway_0m_4m_16m.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\wood\wood_walkway_0m_8m_8m.xml:
+  10  
+  11: 	<base_part class="static" max_health="30000" type="8156" name="wood_walkway_0m_8m_8m">
+  12  		<static filename="Objects/basebuilding/wood/walkway_0m_8m_8m.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\wood\wood_walkway_0m_8m_12m.xml:
+  10  
+  11: 	<base_part class="static" max_health="30000" type="8157" name="wood_walkway_0m_8m_12m">
+  12  		<static filename="Objects/basebuilding/wood/walkway_0m_8m_12m.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\wood\wood_walkway_0m_8m_16m.xml:
+  10  
+  11: 	<base_part class="static" max_health="30000" type="8158" name="wood_walkway_0m_8m_16m">
+  12  		<static filename="Objects/basebuilding/wood/walkway_0m_8m_16m.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\wood\wood_walkway_0m_12m_12m.xml:
+  10  
+  11: 	<base_part class="static" max_health="30000" type="8159" name="wood_walkway_0m_12m_12m">
+  12  		<static filename="Objects/basebuilding/wood/walkway_0m_12m_12m.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\wood\wood_walkway_0m_16m_16m.xml:
+  10  
+  11: 	<base_part class="static" max_health="30000" type="8160" name="wood_walkway_0m_16m_16m">
+  12  		<static filename="Objects/basebuilding/wood/walkway_0m_16m_16m.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\wood\wood_walkway_1_3m_4m_8m.xml:
+  10  
+  11: 	<base_part class="static" max_health="30000" type="8161" name="wood_walkway_1_3m_4m_8m">
+  12  		<static filename="Objects/basebuilding/wood/walkway_1_3m_4m_8m.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\wood\wood_walkway_1_3m_4m_12m.xml:
+  10  
+  11: 	<base_part class="static" max_health="30000" type="8162" name="wood_walkway_1_3m_4m_12m">
+  12  		<static filename="Objects/basebuilding/wood/walkway_1_3m_4m_12m.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\wood\wood_walkway_1_3m_4m_16m.xml:
+  10  
+  11: 	<base_part class="static" max_health="30000" type="8163" name="wood_walkway_1_3m_4m_16m">
+  12  		<static filename="Objects/basebuilding/wood/walkway_1_3m_4m_16m.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\wood\wood_walkway_1_3m_8m_8m.xml:
+  10  
+  11: 	<base_part class="static" max_health="30000" type="8164" name="wood_walkway_1_3m_8m_8m">
+  12  		<static filename="Objects/basebuilding/wood/walkway_1_3m_8m_8m.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\wood\wood_walkway_1_3m_8m_12m.xml:
+  10  
+  11: 	<base_part class="static" max_health="30000" type="8165" name="wood_walkway_1_3m_8m_12m">
+  12  		<static filename="Objects/basebuilding/wood/walkway_1_3m_8m_12m.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\wood\wood_walkway_1_3m_8m_16m.xml:
+  10  
+  11: 	<base_part class="static" max_health="30000" type="8166" name="wood_walkway_1_3m_8m_16m">
+  12  		<static filename="Objects/basebuilding/wood/walkway_1_3m_8m_16m.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\wood\wood_walkway_1_3m_12m_12m.xml:
+  10  
+  11: 	<base_part class="static" max_health="30000" type="8167" name="wood_walkway_1_3m_12m_12m">
+  12  		<static filename="Objects/basebuilding/wood/walkway_1_3m_12m_12m.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\wood\wood_walkway_1_3m_16m_16m.xml:
+  10  
+  11: 	<base_part class="static" max_health="30000" type="8168" name="wood_walkway_1_3m_16m_16m">
+  12  		<static filename="Objects/basebuilding/wood/walkway_1_3m_16m_16m.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\wood\wood_walkway_3m_4m_8m.xml:
+  10  
+  11: 	<base_part class="static" max_health="30000" type="8141" name="wood_walkway_3m_4m_8m">
+  12  		<static filename="Objects/basebuilding/wood/walkway_3m_4m_8m.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\wood\wood_walkway_3m_4m_12m.xml:
+  10  
+  11: 	<base_part class="static" max_health="30000" type="8142" name="wood_walkway_3m_4m_12m">
+  12  		<static filename="Objects/basebuilding/wood/walkway_3m_4m_12m.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\wood\wood_walkway_3m_4m_16m.xml:
+  10  
+  11: 	<base_part class="static" max_health="30000" type="8143" name="wood_walkway_3m_4m_16m">
+  12  		<static filename="Objects/basebuilding/wood/walkway_3m_4m_16m.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\wood\wood_walkway_3m_8m_8m.xml:
+  10  
+  11: 	<base_part class="static" max_health="30000" type="8144" name="wood_walkway_3m_8m_8m">
+  12  		<static filename="Objects/basebuilding/wood/walkway_3m_8m_8m.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\wood\wood_walkway_3m_8m_12m.xml:
+  10  
+  11: 	<base_part class="static" max_health="30000" type="8145" name="wood_walkway_3m_8m_12m">
+  12  		<static filename="Objects/basebuilding/wood/walkway_3m_8m_12m.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\wood\wood_walkway_3m_8m_16m.xml:
+  10  
+  11: 	<base_part class="static" max_health="30000" type="8146" name="wood_walkway_3m_8m_16m">
+  12  		<static filename="Objects/basebuilding/wood/walkway_3m_8m_16m.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\wood\wood_walkway_3m_12m_12m.xml:
+  10  
+  11: 	<base_part class="static" max_health="30000" type="8147" name="wood_walkway_3m_12m_12m">
+  12  		<static filename="Objects/basebuilding/wood/walkway_3m_12m_12m.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\wood\wood_walkway_3m_16m_16m.xml:
+  10  
+  11: 	<base_part class="static" max_health="30000" type="8148" name="wood_walkway_3m_16m_16m">
+  12  		<static filename="Objects/basebuilding/wood/walkway_3m_16m_16m.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\wood\wood_walkway_door_curved_3m_4m.xml:
+  10  
+  11: 	<base_part class="static" type="8149" name="wood_walkway_door_curved_3m_4m" max_health="30000"> 
+  12  		<static filename="Objects/basebuilding/wood/walkway_door_curved_3m_4m.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\wood\wood_walkway_wall_curved_3m_4m.xml:
+  10  
+  11: 	<base_part class="static" type="8151" name="wood_walkway_wall_curved_3m_4m" max_health="30000">
+  12  		<static filename="Objects/basebuilding/wood/walkway_wall_curved_3m_4m.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\wood\wood_walkway_window_curved_3m_4m.xml:
+  10  
+  11: 	<base_part class="static" type="8150" name="wood_walkway_window_curved_3m_4m" max_health="30000">
+  12  		<static filename="Objects/basebuilding/wood/walkway_window_curved_3m_4m.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\wood\wood_wall_3m_4m_90.xml:
+  10  
+  11: 	<base_part class="static" max_health="10000" type="8152" name="wood_wall_3m_4m_90">
+  12  		<static filename="Objects/basebuilding/wood/wall_3m_4m_90.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\wood\wood_wall_3m_8m.xml:
+  10  
+  11: 	<base_part class="static" max_health="30000" type="8169" name="wood_wall_3m_8m">
+  12  		<static filename="Objects/basebuilding/wood/wall_3m_8m.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\wood\wood_wall_3m_12m.xml:
+  10  
+  11: 	<base_part class="static" max_health="30000" type="8170" name="wood_wall_3m_12m">
+  12  		<static filename="Objects/basebuilding/wood/wall_3m_12m.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\wood\wood_wall_3m_16m.xml:
+  10  
+  11: 	<base_part class="static" max_health="30000" type="8171" name="wood_wall_3m_16m">
+  12  		<static filename="Objects/basebuilding/wood/wall_3m_16m.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\misc\camping_chair.xml:
+  10  
+  11: 	<base_part class="static" type="8" name="camping_chair" max_health="1000" repair_with="DuctTape">
+  12  		<static filename="objects/basebuilding/other/camping_chair/camping_chair.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\misc\tire_1_3m.xml:
+  10  
+  11: 	<base_part class="static" type="80" name="tire_1_3m" max_health="4000" repair_with="DuctTape">
+  12  		<static filename="objects/basebuilding/misc/tire_1_3m.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\misc\tire_2m.xml:
+  10  
+  11: 	<base_part class="static" type="81" name="tire_2m" max_health="5000" repair_with="DuctTape">
+  12  		<static filename="objects/basebuilding/misc/tire_2m.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\misc\tire_3m.xml:
+  10  
+  11: 	<base_part class="static" type="82" name="tire_3m" max_health="6000" repair_with="DuctTape">
+  12  		<static filename="objects/basebuilding/misc/tire_3m.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\misc\tire_4m.xml:
+  10  
+  11: 	<base_part class="static" type="83" name="tire_4m" max_health="8000" repair_with="DuctTape">
+  12  		<static filename="objects/basebuilding/misc/tire_4m.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\traps\wood_palisade_3m.xml:
+  10   
+  11: 	<base_part class="static" type="87" name="wood_palisade_3m" max_health="5000" repair_sound="Play_wall_repair">
+  12  		<static filename="objects/basebuilding/wood/palisade_spike_trap_3m.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\wood\wood_bridge_3m_6m.xml:
+  10  
+  11: 	<base_part class="static" type="89" name="wood_bridge_3m_6m" repair_sound="Play_wall_repair">
+  12  		<static filename="objects/basebuilding/wood/wood_bridge_3m_6m.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\wood\wood_crate_large.xml:
+  10  
+  11: 	<base_part class="static" type="86" name="wood_crate_large" max_health="1000" limit="2" repair_sound="Play_wall_repair">
+  12  		<static filename="objects/basebuilding/wood/locked_crate_large.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\wood\wood_crate_small.xml:
+  10  
+  11: 	<base_part class="static" type="85" name="wood_crate_small" max_health="500" limit="4" repair_sound="Play_wall_repair">
+  12  		<static filename="objects/basebuilding/wood/locked_crate_small.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\wood\wood_door_lockable_1m_2m.xml:
+  10  
+  11: 	<base_part class="door" type="88" name="wood_door_lockable_1m_2m" max_health="5000" repair_sound="Play_wall_repair">
+  12  		<door filename="objects/basebuilding/wood/door_lockable_1m_2m.cgf" rotate_base="-90" rotate_range="90" rotate_speed="90" rotate_axis="z" rotate_axis_front="y" sound_open="Play_door_wood_open" sound_opened="" sound_close="Play_door_wood_close" sound_closed="Play_door_wood_closed" sound_lock="Play_door_lock" sound_unlock="Play_door_unlock"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\wood\wood_walkroof_3m_4m_4m.xml:
+  12  
+  13: 	<base_part class="static" type="84" name="wood_walkroof_3m_4m_4m" max_health="15000" repair_sound="Play_wall_repair">
+  14  		<static filename="objects/basebuilding/wood/walkroof_wood_3m_4m_4m.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\misc\camping_chair.xml:
+  10  
+  11: 	<base_part class="static" type="8" name="camping_chair" max_health="1000" repair_with="DuctTape">
+  12  		<static filename="objects/basebuilding/other/camping_chair/camping_chair.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\misc\tire_1_3m.xml:
+  10  
+  11: 	<base_part class="static" type="80" name="tire_1_3m" max_health="4000" repair_with="DuctTape">
+  12  		<static filename="objects/basebuilding/misc/tire_1_3m.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\misc\tire_2m.xml:
+  10  
+  11: 	<base_part class="static" type="81" name="tire_2m" max_health="5000" repair_with="DuctTape">
+  12  		<static filename="objects/basebuilding/misc/tire_2m.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\misc\tire_3m.xml:
+  10  
+  11: 	<base_part class="static" type="82" name="tire_3m" max_health="6000" repair_with="DuctTape">
+  12  		<static filename="objects/basebuilding/misc/tire_3m.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\misc\tire_4m.xml:
+  10  
+  11: 	<base_part class="static" type="83" name="tire_4m" max_health="8000" repair_with="DuctTape">
+  12  		<static filename="objects/basebuilding/misc/tire_4m.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\traps\wood_palisade_3m.xml:
+  10   
+  11: 	<base_part class="static" type="87" name="wood_palisade_3m" max_health="5000" repair_sound="Play_wall_repair">
+  12  		<static filename="objects/basebuilding/wood/palisade_spike_trap_3m.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\wood\wood_bridge_3m_6m.xml:
+  10  
+  11: 	<base_part class="static" type="89" name="wood_bridge_3m_6m" repair_sound="Play_wall_repair">
+  12  		<static filename="objects/basebuilding/wood/wood_bridge_3m_6m.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\wood\wood_crate_large.xml:
+  10  
+  11: 	<base_part class="static" type="86" name="wood_crate_large" max_health="1000" limit="2" repair_sound="Play_wall_repair">
+  12  		<static filename="objects/basebuilding/wood/locked_crate_large.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\wood\wood_crate_small.xml:
+  10  
+  11: 	<base_part class="static" type="85" name="wood_crate_small" max_health="500" limit="4" repair_sound="Play_wall_repair">
+  12  		<static filename="objects/basebuilding/wood/locked_crate_small.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\wood\wood_door_lockable_1m_2m.xml:
+  10  
+  11: 	<base_part class="door" type="88" name="wood_door_lockable_1m_2m" max_health="5000" repair_sound="Play_wall_repair">
+  12  		<door filename="objects/basebuilding/wood/door_lockable_1m_2m.cgf" rotate_base="-90" rotate_range="90" rotate_speed="90" rotate_axis="z" rotate_axis_front="y" sound_open="Play_door_wood_open" sound_opened="" sound_close="Play_door_wood_close" sound_closed="Play_door_wood_closed" sound_lock="Play_door_lock" sound_unlock="Play_door_unlock"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\wood\wood_walkroof_3m_4m_4m.xml:
+  12  
+  13: 	<base_part class="static" type="84" name="wood_walkroof_3m_4m_4m" max_health="15000" repair_sound="Play_wall_repair">
+  14  		<static filename="objects/basebuilding/wood/walkroof_wood_3m_4m_4m.cgf"/>

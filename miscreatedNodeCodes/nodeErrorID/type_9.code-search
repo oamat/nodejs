@@ -1,0 +1,170 @@
+# Query: type="9
+# Including: ./nodeErrorID
+# ContextLines: 1
+
+33 results - 33 files
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\misc\camping_pop_up_canopy.xml:
+  10  
+  11: 	<base_part class="static" type="9" name="camping_pop_up_canopy" max_health="1000" repair_with="DuctTape">
+  12  		<static filename="Objects/basebuilding/other/portable_gazebo/portable_gazebo.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\wood\wood_bed.xml:
+  10  
+  11: 	<base_part class="static" type="97" name="wood_bed" max_health="6000" repair_sound="Play_wall_repair">
+  12  		<static filename="Objects/basebuilding/wood/bed.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\wood\wood_bridge_3m_12m.xml:
+  10  
+  11: 	<base_part class="static" type="90" name="wood_bridge_3m_12m" max_health="15000" repair_sound="Play_wall_repair">
+  12  		<static filename="Objects/basebuilding/wood/wood_bridge_3m_12m.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\wood\wood_bridge_6m_6m.xml:
+  10  
+  11: 	<base_part class="static" type="91" name="wood_bridge_6m_6m" repair_sound="Play_wall_repair">
+  12  		<static filename="Objects/basebuilding/wood/wood_bridge_6m_6m.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\wood\wood_bridge_6m_12m.xml:
+  10  
+  11: 	<base_part class="static" type="92" name="wood_bridge_6m_12m" max_health="15000" repair_sound="Play_wall_repair">
+  12  		<static filename="Objects/basebuilding/wood/wood_bridge_6m_12m.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\wood\wood_bridge_9m_6m.xml:
+  10  
+  11: 	<base_part class="static" type="93" name="wood_bridge_9m_6m" max_health="15000" repair_sound="Play_wall_repair">
+  12  		<static filename="Objects/basebuilding/wood/wood_bridge_9m_6m.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\wood\wood_bridge_9m_12m.xml:
+  10  
+  11: 	<base_part class="static" type="94" name="wood_bridge_9m_12m" max_health="20000" repair_sound="Play_wall_repair">
+  12  		<static filename="Objects/basebuilding/wood/wood_bridge_9m_12m.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\wood\wood_gallows.xml:
+  10  
+  11: 	<base_part class="static" type="95" name="wood_gallows" max_health="20000" repair_sound="Play_wall_repair">
+  12  		<static filename="Objects/basebuilding/wood/wood_gallow.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\wood\wood_gate_lockable_3m_4m.xml:
+  10  
+  11: 	<base_part class="door" type="99" name="wood_gate_lockable_3m_4m" repair_sound="Play_wall_repair">
+  12  		<door filename="Objects/basebuilding/wood/wood_gate_3m_4m.cgf" rotate_base="-90" rotate_range="90" rotate_speed="30" rotate_axis="z" rotate_axis_front="y" sound_open="Play_door_wood_open" sound_opened="" sound_close="Play_door_wood_close" sound_closed="Play_door_wood_closed" sound_lock="Play_door_lock" sound_unlock="Play_door_unlock"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\wood\wood_gatehouse.xml:
+  10  
+  11: 	<base_part class="static" type="98" name="wood_gatehouse" max_health="20000" repair_sound="Play_wall_repair">
+  12  		<static filename="Objects/basebuilding/wood/wood_gateway.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\wood\roofs\wood_roof_1_3m_4m.xml:
+  12  
+  13: 	<base_part class="static" type="96" name="wood_roof_1_3m_4m">
+  14  		<static filename="Objects/basebuilding/wood/wood_roof_1_3m_4m.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\misc\camping_pop_up_canopy.xml:
+  10  
+  11: 	<base_part class="static" type="9" name="camping_pop_up_canopy" max_health="1000" repair_with="DuctTape">
+  12  		<static filename="objects/basebuilding/other/portable_gazebo/portable_gazebo.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\wood\wood_bed.xml:
+   9  
+  10: 	<base_part class="static" type="97" name="wood_bed" max_health="6000" repair_sound="Play_wall_repair">
+  11  		<static filename="objects/basebuilding/wood/bed.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\wood\wood_bridge_3m_12m.xml:
+  10  
+  11: 	<base_part class="static" type="90" name="wood_bridge_3m_12m" max_health="15000" repair_sound="Play_wall_repair">
+  12  		<static filename="objects/basebuilding/wood/wood_bridge_3m_12m.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\wood\wood_bridge_6m_6m.xml:
+  10  
+  11: 	<base_part class="static" type="91" name="wood_bridge_6m_6m" repair_sound="Play_wall_repair">
+  12  		<static filename="objects/basebuilding/wood/wood_bridge_6m_6m.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\wood\wood_bridge_6m_12m.xml:
+  10  
+  11: 	<base_part class="static" type="92" name="wood_bridge_6m_12m" max_health="15000" repair_sound="Play_wall_repair">
+  12  		<static filename="objects/basebuilding/wood/wood_bridge_6m_12m.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\wood\wood_bridge_9m_6m.xml:
+  10  
+  11: 	<base_part class="static" type="93" name="wood_bridge_9m_6m" max_health="15000" repair_sound="Play_wall_repair">
+  12  		<static filename="objects/basebuilding/wood/wood_bridge_9m_6m.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\wood\wood_bridge_9m_12m.xml:
+  10  
+  11: 	<base_part class="static" type="94" name="wood_bridge_9m_12m" max_health="20000" repair_sound="Play_wall_repair">
+  12  		<static filename="objects/basebuilding/wood/wood_bridge_9m_12m.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\wood\wood_gallows.xml:
+  10  
+  11: 	<base_part class="static" type="95" name="wood_gallows" max_health="20000" repair_sound="Play_wall_repair">
+  12  		<static filename="objects/basebuilding/wood/wood_gallow.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\wood\wood_gate_lockable_3m_4m.xml:
+  10  
+  11: 	<base_part class="door" type="99" name="wood_gate_lockable_3m_4m" repair_sound="Play_wall_repair">
+  12  		<door filename="objects/basebuilding/wood/wood_gate_3m_4m.cgf" rotate_base="-90" rotate_range="90" rotate_speed="30" rotate_axis="z" rotate_axis_front="y" sound_open="Play_door_wood_open" sound_opened="" sound_close="Play_door_wood_close" sound_closed="Play_door_wood_closed" sound_lock="Play_door_lock" sound_unlock="Play_door_unlock"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\wood\wood_gatehouse.xml:
+  10  
+  11: 	<base_part class="static" type="98" name="wood_gatehouse" max_health="20000" repair_sound="Play_wall_repair">
+  12  		<static filename="objects/basebuilding/wood/wood_gateway.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\wood\roofs\wood_roof_1_3m_4m.xml:
+  12  
+  13: 	<base_part class="static" type="96" name="wood_roof_1_3m_4m">
+  14  		<static filename="objects/basebuilding/wood/wood_roof_1_3m_4m.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\misc\camping_pop_up_canopy.xml:
+  10  
+  11: 	<base_part class="static" type="9" name="camping_pop_up_canopy" max_health="1000" repair_with="DuctTape">
+  12  		<static filename="objects/basebuilding/other/portable_gazebo/portable_gazebo.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\wood\wood_bed.xml:
+   9  
+  10: 	<base_part class="static" type="97" name="wood_bed" max_health="6000" repair_sound="Play_wall_repair">
+  11  		<static filename="objects/basebuilding/wood/bed.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\wood\wood_bridge_3m_12m.xml:
+  10  
+  11: 	<base_part class="static" type="90" name="wood_bridge_3m_12m" max_health="15000" repair_sound="Play_wall_repair">
+  12  		<static filename="objects/basebuilding/wood/wood_bridge_3m_12m.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\wood\wood_bridge_6m_6m.xml:
+  10  
+  11: 	<base_part class="static" type="91" name="wood_bridge_6m_6m" repair_sound="Play_wall_repair">
+  12  		<static filename="objects/basebuilding/wood/wood_bridge_6m_6m.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\wood\wood_bridge_6m_12m.xml:
+  10  
+  11: 	<base_part class="static" type="92" name="wood_bridge_6m_12m" max_health="15000" repair_sound="Play_wall_repair">
+  12  		<static filename="objects/basebuilding/wood/wood_bridge_6m_12m.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\wood\wood_bridge_9m_6m.xml:
+  10  
+  11: 	<base_part class="static" type="93" name="wood_bridge_9m_6m" max_health="15000" repair_sound="Play_wall_repair">
+  12  		<static filename="objects/basebuilding/wood/wood_bridge_9m_6m.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\wood\wood_bridge_9m_12m.xml:
+  10  
+  11: 	<base_part class="static" type="94" name="wood_bridge_9m_12m" max_health="20000" repair_sound="Play_wall_repair">
+  12  		<static filename="objects/basebuilding/wood/wood_bridge_9m_12m.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\wood\wood_gallows.xml:
+  10  
+  11: 	<base_part class="static" type="95" name="wood_gallows" max_health="20000" repair_sound="Play_wall_repair">
+  12  		<static filename="objects/basebuilding/wood/wood_gallow.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\wood\wood_gate_lockable_3m_4m.xml:
+  10  
+  11: 	<base_part class="door" type="99" name="wood_gate_lockable_3m_4m" repair_sound="Play_wall_repair">
+  12  		<door filename="objects/basebuilding/wood/wood_gate_3m_4m.cgf" rotate_base="-90" rotate_range="90" rotate_speed="30" rotate_axis="z" rotate_axis_front="y" sound_open="Play_door_wood_open" sound_opened="" sound_close="Play_door_wood_close" sound_closed="Play_door_wood_closed" sound_lock="Play_door_lock" sound_unlock="Play_door_unlock"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\wood\wood_gatehouse.xml:
+  10  
+  11: 	<base_part class="static" type="98" name="wood_gatehouse" max_health="20000" repair_sound="Play_wall_repair">
+  12  		<static filename="objects/basebuilding/wood/wood_gateway.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\wood\roofs\wood_roof_1_3m_4m.xml:
+  12  
+  13: 	<base_part class="static" type="96" name="wood_roof_1_3m_4m">
+  14  		<static filename="objects/basebuilding/wood/wood_roof_1_3m_4m.cgf"/>

@@ -1,0 +1,615 @@
+# Query: type="5
+# Including: ./nodeErrorID
+# ContextLines: 1
+
+122 results - 122 files
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\misc\camping_table.xml:
+  10  
+  11:     <base_part class="static" type="5" name="camping_table" max_health="1000" repair_with="DuctTape">
+  12          <static filename="Objects/basebuilding/other/portable_table/partabletable.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\misc\crafted_bed.xml:
+   9  
+  10: 	<base_part class="static" type="5070" name="crafted_bed" max_health="2000" limit="1">
+  11  		<static filename="Objects/basebuilding/other/crafted_bed/crafted_bed.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\misc\crafted_rug_01.xml:
+  10  
+  11: 	<base_part class="static" type="5071" name="crafted_rug_01" max_health="200" repair_with="Rags">
+  12  		<static filename="Objects/basebuilding/other/rugs/crafted_rugs/rug_01.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\misc\crafted_rug_02.xml:
+  10  
+  11: 	<base_part class="static" type="5072" name="crafted_rug_02" max_health="200" repair_with="Rags">
+  12  		<static filename="Objects/basebuilding/other/rugs/crafted_rugs/rug_02.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\misc\crafted_rug_03.xml:
+  10  
+  11: 	<base_part class="static" type="5073" name="crafted_rug_03" max_health="200" repair_with="Rags">
+  12  		<static filename="Objects/basebuilding/other/rugs/crafted_rugs/rug_03.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\misc\crafted_rug_04.xml:
+  10  
+  11: 	<base_part class="static" type="5074" name="crafted_rug_04" max_health="200" repair_with="Rags">
+  12  		<static filename="Objects/basebuilding/other/rugs/crafted_rugs/rug_04.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\misc\crafted_rug_05.xml:
+  10  
+  11: 	<base_part class="static" type="5075" name="crafted_rug_05" max_health="200" repair_with="Rags">
+  12  		<static filename="Objects/basebuilding/other/rugs/crafted_rugs/rug_05.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\misc\crafted_rug_06.xml:
+  10  
+  11: 	<base_part class="static" type="5076" name="crafted_rug_06" max_health="200" repair_with="Rags">
+  12  		<static filename="Objects/basebuilding/other/rugs/crafted_rugs/rug_06.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\misc\crafted_rug_07.xml:
+  10  
+  11: 	<base_part class="static" type="5077" name="crafted_rug_07" max_health="200" repair_with="Rags">
+  12  		<static filename="Objects/basebuilding/other/rugs/crafted_rugs/rug_07.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\misc\crafted_rug_08.xml:
+  10  
+  11: 	<base_part class="static" type="5078" name="crafted_rug_08" max_health="200" repair_with="Rags">
+  12  		<static filename="Objects/basebuilding/other/rugs/crafted_rugs/rug_08.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\misc\crafted_rug_09.xml:
+  10  
+  11: 	<base_part class="static" type="5079" name="crafted_rug_09" max_health="200" repair_with="Rags">
+  12  		<static filename="Objects/basebuilding/other/rugs/crafted_rugs/rug_09.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\misc\crafted_rug_10.xml:
+  10  
+  11: 	<base_part class="static" type="5080" name="crafted_rug_10" max_health="200" repair_with="Rags">
+  12  		<static filename="Objects/basebuilding/other/rugs/crafted_rugs/rug_10.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\misc\crafted_rug_11.xml:
+  10  
+  11: 	<base_part class="static" type="5081" name="crafted_rug_11" max_health="200" repair_with="Rags">
+  12  		<static filename="Objects/basebuilding/other/rugs/crafted_rugs/rug_11.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\sand\sandbag_crafted_1_3m_3m_window.xml:
+  10  
+  11: 	<base_part class="static" type="57" name="sandbag_crafted_1_3m_3m_window" max_health="7000" repair_with="Rags">
+  12  		<static filename="Objects/basebuilding/sand/sandbag_crafted_1_3m_3m_window.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\towables\aircompressor_tow_packed.xml:
+  12    </params>
+  13:   <base_part class="entity" type="5346" name="aircompressor_tow_packed" max_health="6000" towable="1">
+  14      <entity class="aircompressor_tow" />
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\towables\airdrop_storage_tow_packed.xml:
+  12    </params>
+  13:   <base_part class="entity" type="5301" name="airdrop_storage_tow_packed" max_health="30000" repair_with="DuctTape" towable="1">
+  14      <entity class="airdrop_storage_tow" />
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\towables\atm_storage_packed.xml:
+  12    </params>
+  13:   <base_part class="entity" type="5308" name="atm_storage_packed" max_health="10000" repair_with="SheetMetal" towable="1">
+  14      <entity class="atm_storage" />
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\towables\barrel_storage_packed.xml:
+  12    </params>
+  13:   <base_part class="entity" type="5306" name="barrel_storage_packed" max_health="3000" repair_with="SheetMetal" towable="1">
+  14      <entity class="barrel_storage" />
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\towables\bathroom_sink_tow_packed.xml:
+  12    </params>
+  13:   <base_part class="entity" type="5348" name="bathroom_sink_tow_packed" max_health="6000" towable="1">
+  14      <entity class="bathroom_sink_tow" />
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\towables\bathtub_tow_packed.xml:
+  12    </params>
+  13:   <base_part class="entity" type="5349" name="bathtub_tow_packed" max_health="6000" towable="1">
+  14      <entity class="bathtub_tow" />
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\towables\bodybag_tow_packed.xml:
+  12    </params>
+  13:   <base_part class="entity" type="5316" name="bodybag_tow_packed" max_health="6000" repair_with="SheetMetal" towable="1">
+  14      <entity class="bodybag_tow" />
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\towables\carlift_tow_packed.xml:
+  12    </params>
+  13:   <base_part class="entity" type="5347" name="carlift_tow_packed" max_health="6000" towable="1">
+  14      <entity class="carlift_tow" />
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\towables\decontam_shower_tow_packed.xml:
+  12    </params>
+  13:   <base_part class="entity" type="5315" name="decontam_shower_tow_packed" max_health="6000" repair_with="SheetMetal" towable="1">
+  14      <entity class="decontam_shower_tow" />
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\towables\display_counter_tow_packed.xml:
+  12    </params>
+  13:   <base_part class="entity" type="5322" name="display_counter_tow_packed" max_health="6000" repair_with="DuctTape" towable="1">
+  14      <entity class="display_counter_tow" />
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\towables\electric_stove_storage_packed.xml:
+  12    </params>
+  13:   <base_part class="entity" type="5305" name="electric_stove_storage_packed" max_health="10000" repair_with="SheetMetal" towable="1">
+  14      <entity class="electric_stove_storage" />
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\towables\filecab_01_tow_packed.xml:
+  12    </params>
+  13:   <base_part class="entity" type="5345" name="filecab_01_tow_packed" max_health="6000" towable="1">
+  14      <entity class="filecab_01_tow" />
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\towables\firehydrant_tow_packed.xml:
+  12    </params>
+  13:   <base_part class="entity" type="5309" name="firehydrant_tow_packed" max_health="6000" repair_with="SheetMetal" towable="1">
+  14      <entity class="firehydrant_tow" />
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\towables\folding_cot_tow_packed.xml:
+  12    </params>
+  13:   <base_part class="entity" type="5320" name="folding_cot_tow_packed" max_health="6000" repair_with="DuctTape" towable="1">
+  14      <entity class="folding_cot_tow" />
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\towables\fridge_modern_tow_packed.xml:
+  12    </params>
+  13:   <base_part class="entity" type="5336" name="fridge_modern_tow_packed" max_health="6000" repair_with="DuctTape" towable="1">
+  14      <entity class="fridge_modern_tow" />
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\towables\green_tent_tow_packed.xml:
+  12    </params>
+  13:   <base_part class="entity" type="5321" name="green_tent_tow_packed" max_health="6000" repair_with="DuctTape" towable="1">
+  14      <entity class="green_tent_tow" />
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\towables\hospital_bed_tow_packed.xml:
+  12    </params>
+  13:   <base_part class="entity" type="5307" name="hospital_bed_tow_packed" max_health="3000" repair_with="DuctTape" towable="1">
+  14      <entity class="hospital_bed_tow" />
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\towables\hospital_bodybag_tow_packed.xml:
+  12    </params>
+  13:   <base_part class="entity" type="5342" name="hospital_bodybag_tow_packed" max_health="6000" repair_with="DuctTape" towable="1">
+  14      <entity class="hospital_bodybag_tow" />
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\towables\hospital_drugcart_tow_packed.xml:
+  12    </params>
+  13:   <base_part class="entity" type="5319" name="hospital_drugcart_tow_packed" max_health="6000" repair_with="DuctTape" towable="1">
+  14      <entity class="hospital_drugcart_tow" />
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\towables\hospital_ecg_monitor_tow_packed.xml:
+  12    </params>
+  13:   <base_part class="entity" type="5341" name="hospital_ecg_monitor_tow_packed" max_health="6000" repair_with="DuctTape" towable="1">
+  14      <entity class="hospital_ecg_monitor_tow" />
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\towables\hospital_gascart_tow_packed.xml:
+  12    </params>
+  13:   <base_part class="entity" type="5333" name="hospital_gascart_tow_packed" max_health="6000" repair_with="DuctTape" towable="1">
+  14      <entity class="hospital_gascart_tow" />
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\towables\hospital_medicalcabinet_tow_packed.xml:
+  12    </params>
+  13:   <base_part class="entity" type="5327" name="hospital_medicalcabinet_tow_packed" max_health="6000" repair_with="DuctTape" towable="1">
+  14      <entity class="hospital_medicalcabinet_tow" />
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\towables\hospital_standingcurtain_tow_packed.xml:
+  12    </params>
+  13:   <base_part class="entity" type="5314" name="hospital_standingcurtain_tow_packed" max_health="6000" repair_with="DuctTape" towable="1">
+  14      <entity class="hospital_standingcurtain_tow" />
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\towables\hospital_supplycabinet_tow_packed.xml:
+  12    </params>
+  13:   <base_part class="entity" type="5340" name="hospital_supplycabinet_tow_packed" max_health="6000" repair_with="DuctTape" towable="1">
+  14      <entity class="hospital_supplycabinet_tow" />
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\towables\hospital_supplycart_tow_packed.xml:
+  12    </params>
+  13:   <base_part class="entity" type="5334" name="hospital_supplycart_tow_packed" max_health="6000" repair_with="DuctTape" towable="1">
+  14      <entity class="hospital_supplycart_tow" />
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\towables\hospital_vital_signs_monitor_tow_packed.xml:
+  12    </params>
+  13:   <base_part class="entity" type="5335" name="hospital_vital_signs_monitor_tow_packed" max_health="6000" repair_with="DuctTape" towable="1">
+  14      <entity class="hospital_vital_signs_monitor_tow" />
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\towables\icemachine_tow_packed.xml:
+  12    </params>
+  13:   <base_part class="entity" type="5343" name="icemachine_tow_packed" max_health="6000" towable="1">
+  14      <entity class="icemachine_tow" />
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\towables\iron_sons_storage_crate_packed.xml:
+  12    </params>
+  13:   <base_part class="entity" type="5304" name="iron_sons_storage_crate_packed" max_health="10000" repair_with="SheetMetal" towable="1">
+  14      <entity class="iron_sons_storage_crate" />
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\towables\mailbox_storage_packed.xml:
+  12    </params>
+  13:   <base_part class="entity" type="5302" name="mailbox_storage_packed" max_health="10000" repair_with="SheetMetal" towable="1">
+  14      <entity class="mailbox_storage" />
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\towables\mapsign_tow_packed.xml:
+  12    </params>
+  13:   <base_part class="entity" type="5326" name="mapsign_tow_packed" max_health="6000" repair_with="DuctTape" towable="1">
+  14      <entity class="mapsign_tow" />
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\towables\office_desk_tow_packed.xml:
+  12    </params>
+  13:   <base_part class="entity" type="5344" name="office_desk_tow_packed" max_health="6000" towable="1">
+  14      <entity class="office_desk_tow" />
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\towables\oil_rack_storage_packed.xml:
+  12    </params>
+  13:   <base_part class="entity" type="5310" name="oil_rack_storage_packed" max_health="5000" repair_with="SheetMetal" towable="1">
+  14      <entity class="oil_rack_storage" />
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\towables\oil_tank_tow_packed.xml:
+  12    </params>
+  13:   <base_part class="entity" type="5311" name="oil_tank_tow_packed" max_health="6000" repair_with="SheetMetal" towable="1">
+  14      <entity class="oil_tank_tow" />
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\towables\payphone_tow_packed.xml:
+  12    </params>
+  13:   <base_part class="entity" type="5312" name="payphone_tow_packed" max_health="6000" repair_with="SheetMetal" towable="1">
+  14      <entity class="payphone_tow" />
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\towables\shopping_cart_tow_packed.xml:
+  12    </params>
+  13:   <base_part class="entity" type="5337" name="shopping_cart_tow_packed" max_health="6000" repair_with="DuctTape" towable="1">
+  14      <entity class="shopping_cart_tow" />
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\towables\small_plane_a_tow_packed.xml:
+  12    </params>
+  13:   <base_part class="entity" type="5328" name="small_plane_a_tow_packed" max_health="6000" repair_with="DuctTape" towable="1">
+  14      <entity class="small_plane_a_tow" />
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\towables\small_plane_b_tow_packed.xml:
+  12    </params>
+  13:   <base_part class="entity" type="5329" name="small_plane_b_tow_packed" max_health="6000" repair_with="DuctTape" towable="1">
+  14      <entity class="small_plane_b_tow" />
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\towables\small_plane_c_tow_packed.xml:
+  12    </params>
+  13:   <base_part class="entity" type="5330" name="small_plane_c_tow_packed" max_health="6000" repair_with="DuctTape" towable="1">
+  14      <entity class="small_plane_c_tow" />
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\towables\small_plane_d_tow_packed.xml:
+  12    </params>
+  13:   <base_part class="entity" type="5331" name="small_plane_d_tow_packed" max_health="6000" repair_with="DuctTape" towable="1">
+  14      <entity class="small_plane_d_tow" />
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\towables\small_plane_e_tow_packed.xml:
+  12    </params>
+  13:   <base_part class="entity" type="5332" name="small_plane_e_tow_packed" max_health="6000" repair_with="DuctTape" towable="1">
+  14      <entity class="small_plane_e_tow" />
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\towables\stone_grave_tow_packed.xml:
+  12    </params>
+  13:   <base_part class="entity" type="5338" name="stone_grave_tow_packed" max_health="6000" repair_with="DuctTape" towable="1">
+  14      <entity class="stone_grave_tow" />
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\towables\toilet_tow_packed.xml:
+  12    </params>
+  13:   <base_part class="entity" type="5313" name="toilet_tow_packed" max_health="6000" repair_with="DuctTape" towable="1">
+  14      <entity class="toilet_tow" />
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\towables\trashcan_tow_packed.xml:
+  12    </params>
+  13:   <base_part class="entity" type="5317" name="trashcan_tow_packed" max_health="6000" towable="1">
+  14      <entity class="trashcan_tow" />
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\towables\ufo_tow_packed.xml:
+  12    </params>
+  13:   <base_part class="entity" type="5350" name="ufo_tow_packed" max_health="6000" towable="1">
+  14      <entity class="ufo_tow" />
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\towables\ufo_tow_packed2.xml:
+  12    </params>
+  13:   <base_part class="entity" type="5351" name="ufo_tow_packed2" max_health="6000" towable="1">
+  14      <entity class="ufo_tow2" />
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\towables\ufo_tow_packed3.xml:
+  12    </params>
+  13:   <base_part class="entity" type="5352" name="ufo_tow_packed3" max_health="6000" towable="1">
+  14      <entity class="ufo_tow3" />
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\towables\ufo_tow_packed4.xml:
+  12    </params>
+  13:   <base_part class="entity" type="5353" name="ufo_tow_packed4" max_health="6000" towable="1">
+  14      <entity class="ufo_tow4" />
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\towables\umbrella_open_tow_packed.xml:
+  12    </params>
+  13:   <base_part class="entity" type="5303" name="umbrella_open_tow_packed" max_health="3000" repair_with="DuctTape" towable="1">
+  14      <entity class="umbrella_open_tow" />
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\towables\vendingmachine_1_tow_packed.xml:
+  12    </params>
+  13:   <base_part class="entity" type="5324" name="vendingmachine_1_tow_packed" max_health="6000" repair_with="DuctTape" towable="1">
+  14      <entity class="vendingmachine_1_tow" />
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\towables\vendingmachine_2_tow_packed.xml:
+  12    </params>
+  13:   <base_part class="entity" type="5325" name="vendingmachine_2_tow_packed" max_health="6000" repair_with="DuctTape" towable="1">
+  14      <entity class="vendingmachine_2_tow" />
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\towables\water_dispenser_tow_packed.xml:
+  12    </params>
+  13:   <base_part class="entity" type="5339" name="water_dispenser_tow_packed" max_health="6000" repair_with="SheetMetal" towable="1">
+  14      <entity class="water_dispenser_tow" />
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\towables\wheelchair_tow_packed.xml:
+  12    </params>
+  13:   <base_part class="entity" type="5323" name="wheelchair_tow_packed" max_health="6000" repair_with="DuctTape" towable="1">
+  14      <entity class="wheelchair_tow" />
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\towables\whiteboard_tow_packed.xml:
+  12    </params>
+  13:   <base_part class="entity" type="5318" name="whiteboard_tow_packed" max_health="6000" towable="1">
+  14      <entity class="whiteboard_tow" />
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\wood\wood_ramp_0m_2m_1m.xml:
+  10  
+  11: 	<base_part class="static" type="56" name="wood_ramp_0m_2m_1m" repair_sound="Play_wall_repair">
+  12  		<static filename="Objects/basebuilding/wood/ramp_0m_2m_1m.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\wood\wood_ramp_0m_2m_3m.xml:
+  10  
+  11: 	<base_part class="static" type="58" name="wood_ramp_0m_2m_3m" repair_sound="Play_wall_repair">
+  12  		<static filename="Objects/basebuilding/wood/ramp_0m_2m_3m.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\wood\wood_ramp_1_3m_2m_1m.xml:
+  10  
+  11: 	<base_part class="static" type="59" name="wood_ramp_1_3m_2m_1m" repair_sound="Play_wall_repair">
+  12  		<static filename="Objects/basebuilding/wood/ramp_1_3m_2m_1m.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\wood\wood_wall_3m_1m.xml:
+  10  
+  11: 	<base_part class="static" max_health="10000" type="50" name="wood_wall_3m_1m" repair_sound="Play_wall_repair">
+  12  		<static filename="Objects/basebuilding/wood/wall_3m_1m.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\wood\wood_wall_3m_2m.xml:
+  10  
+  11: 	<base_part class="static" max_health="10000" type="51" name="wood_wall_3m_2m" repair_sound="Play_wall_repair">
+  12  		<static filename="Objects/basebuilding/wood/wall_3m_2m.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\wood\wood_wall_3m_4m.xml:
+  10  
+  11: 	<base_part class="static" max_health="10000" type="52" name="wood_wall_3m_4m" repair_sound="Play_wall_repair">
+  12  		<static filename="Objects/basebuilding/wood/wall_3m_4m.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\wood\wood_wall_door_3m_4m.xml:
+  10  
+  11: 	<base_part class="static" max_health="10000" type="53" name="wood_wall_door_3m_4m" repair_sound="Play_wall_repair">
+  12  		<static filename="Objects/basebuilding/wood/wall_door_3m_4m.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\wood\wood_wall_window_3m_2m.xml:
+  10  
+  11: 	<base_part class="static" type="54" name="wood_wall_window_3m_2m" repair_sound="Play_wall_repair">
+  12  		<static filename="Objects/basebuilding/wood/wall_window_3m_2m.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\wood\wood_wall_window_3m_4m.xml:
+  10  
+  11: 	<base_part class="static" type="55" name="wood_wall_window_3m_4m" repair_sound="Play_wall_repair">
+  12  		<static filename="Objects/basebuilding/wood/wall_window_3m_4m.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\misc\camping_table.xml:
+  10  
+  11:     <base_part class="static" type="5" name="camping_table" max_health="1000" repair_with="DuctTape">
+  12          <static filename="objects/basebuilding/other/portable_table/partabletable.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\misc\crafted_bed.xml:
+   9  
+  10: 	<base_part class="static" type="5070" name="crafted_bed" max_health="2000" limit="1">
+  11  		<static filename="Objects/basebuilding/other/crafted_bed/crafted_bed.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\misc\crafted_rug_01.xml:
+  10  
+  11: 	<base_part class="static" type="5071" name="crafted_rug_01" max_health="200" repair_with="Rags">
+  12  		<static filename="Objects/basebuilding/other/rugs/crafted_rugs/rug_01.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\misc\crafted_rug_02.xml:
+  10  
+  11: 	<base_part class="static" type="5072" name="crafted_rug_02" max_health="200" repair_with="Rags">
+  12  		<static filename="Objects/basebuilding/other/rugs/crafted_rugs/rug_02.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\misc\crafted_rug_03.xml:
+  10  
+  11: 	<base_part class="static" type="5073" name="crafted_rug_03" max_health="200" repair_with="Rags">
+  12  		<static filename="Objects/basebuilding/other/rugs/crafted_rugs/rug_03.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\misc\crafted_rug_04.xml:
+  10  
+  11: 	<base_part class="static" type="5074" name="crafted_rug_04" max_health="200" repair_with="Rags">
+  12  		<static filename="Objects/basebuilding/other/rugs/crafted_rugs/rug_04.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\misc\crafted_rug_05.xml:
+  10  
+  11: 	<base_part class="static" type="5075" name="crafted_rug_05" max_health="200" repair_with="Rags">
+  12  		<static filename="Objects/basebuilding/other/rugs/crafted_rugs/rug_05.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\misc\crafted_rug_06.xml:
+  10  
+  11: 	<base_part class="static" type="5076" name="crafted_rug_06" max_health="200" repair_with="Rags">
+  12  		<static filename="Objects/basebuilding/other/rugs/crafted_rugs/rug_06.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\misc\crafted_rug_07.xml:
+  10  
+  11: 	<base_part class="static" type="5077" name="crafted_rug_07" max_health="200" repair_with="Rags">
+  12  		<static filename="Objects/basebuilding/other/rugs/crafted_rugs/rug_07.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\misc\crafted_rug_08.xml:
+  10  
+  11: 	<base_part class="static" type="5078" name="crafted_rug_08" max_health="200" repair_with="Rags">
+  12  		<static filename="Objects/basebuilding/other/rugs/crafted_rugs/rug_08.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\misc\crafted_rug_09.xml:
+  10  
+  11: 	<base_part class="static" type="5079" name="crafted_rug_09" max_health="200" repair_with="Rags">
+  12  		<static filename="Objects/basebuilding/other/rugs/crafted_rugs/rug_09.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\misc\crafted_rug_10.xml:
+  10  
+  11: 	<base_part class="static" type="5080" name="crafted_rug_10" max_health="200" repair_with="Rags">
+  12  		<static filename="Objects/basebuilding/other/rugs/crafted_rugs/rug_10.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\misc\crafted_rug_11.xml:
+  10  
+  11: 	<base_part class="static" type="5081" name="crafted_rug_11" max_health="200" repair_with="Rags">
+  12  		<static filename="Objects/basebuilding/other/rugs/crafted_rugs/rug_11.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\sand\sandbag_crafted_1_3m_3m_window.xml:
+  10  
+  11: 	<base_part class="static" type="57" name="sandbag_crafted_1_3m_3m_window" max_health="7000" repair_with="Rags">
+  12  		<static filename="objects/basebuilding/sand/sandbag_crafted_1_3m_3m_window.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\wood\wood_ramp_0m_2m_1m.xml:
+  10  
+  11: 	<base_part class="static" type="56" name="wood_ramp_0m_2m_1m" repair_sound="Play_wall_repair">
+  12  		<static filename="objects/basebuilding/wood/ramp_0m_2m_1m.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\wood\wood_ramp_0m_2m_3m.xml:
+  10  
+  11: 	<base_part class="static" type="58" name="wood_ramp_0m_2m_3m" repair_sound="Play_wall_repair">
+  12  		<static filename="objects/basebuilding/wood/ramp_0m_2m_3m.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\wood\wood_ramp_1_3m_2m_1m.xml:
+  10  
+  11: 	<base_part class="static" type="59" name="wood_ramp_1_3m_2m_1m" repair_sound="Play_wall_repair">
+  12  		<static filename="objects/basebuilding/wood/ramp_1_3m_2m_1m.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\wood\wood_wall_3m_1m.xml:
+  10  
+  11: 	<base_part class="static" type="50" name="wood_wall_3m_1m" repair_sound="Play_wall_repair">
+  12  		<static filename="objects/basebuilding/wood/wall_3m_1m.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\wood\wood_wall_3m_2m.xml:
+  10  
+  11: 	<base_part class="static" type="51" name="wood_wall_3m_2m" repair_sound="Play_wall_repair">
+  12  		<static filename="objects/basebuilding/wood/wall_3m_2m.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\wood\wood_wall_3m_4m.xml:
+  10  
+  11: 	<base_part class="static" type="52" name="wood_wall_3m_4m" repair_sound="Play_wall_repair">
+  12  		<static filename="objects/basebuilding/wood/wall_3m_4m.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\wood\wood_wall_door_3m_4m.xml:
+  10  
+  11: 	<base_part class="static" type="53" name="wood_wall_door_3m_4m" repair_sound="Play_wall_repair">
+  12  		<static filename="objects/basebuilding/wood/wall_door_3m_4m.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\wood\wood_wall_window_3m_2m.xml:
+  10  
+  11: 	<base_part class="static" type="54" name="wood_wall_window_3m_2m" repair_sound="Play_wall_repair">
+  12  		<static filename="objects/basebuilding/wood/wall_window_3m_2m.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\wood\wood_wall_window_3m_4m.xml:
+  10  
+  11: 	<base_part class="static" type="55" name="wood_wall_window_3m_4m" repair_sound="Play_wall_repair">
+  12  		<static filename="objects/basebuilding/wood/wall_window_3m_4m.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\misc\camping_table.xml:
+  10  
+  11:     <base_part class="static" type="5" name="camping_table" max_health="1000" repair_with="DuctTape">
+  12          <static filename="objects/basebuilding/other/portable_table/partabletable.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\misc\crafted_bed.xml:
+   9  
+  10: 	<base_part class="static" type="5070" name="crafted_bed" max_health="2000" limit="1">
+  11  		<static filename="Objects/basebuilding/other/crafted_bed/crafted_bed.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\misc\crafted_rug_01.xml:
+  10  
+  11: 	<base_part class="static" type="5071" name="crafted_rug_01" max_health="200" repair_with="Rags">
+  12  		<static filename="Objects/basebuilding/other/rugs/crafted_rugs/rug_01.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\misc\crafted_rug_02.xml:
+  10  
+  11: 	<base_part class="static" type="5072" name="crafted_rug_02" max_health="200" repair_with="Rags">
+  12  		<static filename="Objects/basebuilding/other/rugs/crafted_rugs/rug_02.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\misc\crafted_rug_03.xml:
+  10  
+  11: 	<base_part class="static" type="5073" name="crafted_rug_03" max_health="200" repair_with="Rags">
+  12  		<static filename="Objects/basebuilding/other/rugs/crafted_rugs/rug_03.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\misc\crafted_rug_04.xml:
+  10  
+  11: 	<base_part class="static" type="5074" name="crafted_rug_04" max_health="200" repair_with="Rags">
+  12  		<static filename="Objects/basebuilding/other/rugs/crafted_rugs/rug_04.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\misc\crafted_rug_05.xml:
+  10  
+  11: 	<base_part class="static" type="5075" name="crafted_rug_05" max_health="200" repair_with="Rags">
+  12  		<static filename="Objects/basebuilding/other/rugs/crafted_rugs/rug_05.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\misc\crafted_rug_06.xml:
+  10  
+  11: 	<base_part class="static" type="5076" name="crafted_rug_06" max_health="200" repair_with="Rags">
+  12  		<static filename="Objects/basebuilding/other/rugs/crafted_rugs/rug_06.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\misc\crafted_rug_07.xml:
+  10  
+  11: 	<base_part class="static" type="5077" name="crafted_rug_07" max_health="200" repair_with="Rags">
+  12  		<static filename="Objects/basebuilding/other/rugs/crafted_rugs/rug_07.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\misc\crafted_rug_08.xml:
+  10  
+  11: 	<base_part class="static" type="5078" name="crafted_rug_08" max_health="200" repair_with="Rags">
+  12  		<static filename="Objects/basebuilding/other/rugs/crafted_rugs/rug_08.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\misc\crafted_rug_09.xml:
+  10  
+  11: 	<base_part class="static" type="5079" name="crafted_rug_09" max_health="200" repair_with="Rags">
+  12  		<static filename="Objects/basebuilding/other/rugs/crafted_rugs/rug_09.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\misc\crafted_rug_10.xml:
+  10  
+  11: 	<base_part class="static" type="5080" name="crafted_rug_10" max_health="200" repair_with="Rags">
+  12  		<static filename="Objects/basebuilding/other/rugs/crafted_rugs/rug_10.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\misc\crafted_rug_11.xml:
+  10  
+  11: 	<base_part class="static" type="5081" name="crafted_rug_11" max_health="200" repair_with="Rags">
+  12  		<static filename="Objects/basebuilding/other/rugs/crafted_rugs/rug_11.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\sand\sandbag_crafted_1_3m_3m_window.xml:
+  10  
+  11: 	<base_part class="static" type="57" name="sandbag_crafted_1_3m_3m_window" max_health="7000" repair_with="Rags">
+  12  		<static filename="objects/basebuilding/sand/sandbag_crafted_1_3m_3m_window.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\wood\wood_ramp_0m_2m_1m.xml:
+  10  
+  11: 	<base_part class="static" type="56" name="wood_ramp_0m_2m_1m" repair_sound="Play_wall_repair">
+  12  		<static filename="objects/basebuilding/wood/ramp_0m_2m_1m.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\wood\wood_ramp_0m_2m_3m.xml:
+  10  
+  11: 	<base_part class="static" type="58" name="wood_ramp_0m_2m_3m" repair_sound="Play_wall_repair">
+  12  		<static filename="objects/basebuilding/wood/ramp_0m_2m_3m.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\wood\wood_ramp_1_3m_2m_1m.xml:
+  10  
+  11: 	<base_part class="static" type="59" name="wood_ramp_1_3m_2m_1m" repair_sound="Play_wall_repair">
+  12  		<static filename="objects/basebuilding/wood/ramp_1_3m_2m_1m.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\wood\wood_wall_3m_1m.xml:
+  10  
+  11: 	<base_part class="static" type="50" name="wood_wall_3m_1m" repair_sound="Play_wall_repair">
+  12  		<static filename="objects/basebuilding/wood/wall_3m_1m.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\wood\wood_wall_3m_2m.xml:
+  10  
+  11: 	<base_part class="static" type="51" name="wood_wall_3m_2m" repair_sound="Play_wall_repair">
+  12  		<static filename="objects/basebuilding/wood/wall_3m_2m.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\wood\wood_wall_3m_4m.xml:
+  10  
+  11: 	<base_part class="static" type="52" name="wood_wall_3m_4m" repair_sound="Play_wall_repair">
+  12  		<static filename="objects/basebuilding/wood/wall_3m_4m.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\wood\wood_wall_door_3m_4m.xml:
+  10  
+  11: 	<base_part class="static" type="53" name="wood_wall_door_3m_4m" repair_sound="Play_wall_repair">
+  12  		<static filename="objects/basebuilding/wood/wall_door_3m_4m.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\wood\wood_wall_window_3m_2m.xml:
+  10  
+  11: 	<base_part class="static" type="54" name="wood_wall_window_3m_2m" repair_sound="Play_wall_repair">
+  12  		<static filename="objects/basebuilding/wood/wall_window_3m_2m.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\wood\wood_wall_window_3m_4m.xml:
+  10  
+  11: 	<base_part class="static" type="55" name="wood_wall_window_3m_4m" repair_sound="Play_wall_repair">
+  12  		<static filename="objects/basebuilding/wood/wall_window_3m_4m.cgf"/>

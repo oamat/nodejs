@@ -1,0 +1,24 @@
+{
+  "name": "nodebasealerts",
+  "version": "1.0.0",
+  "description": "Node Base Alerts",
+  "main": "app.js",
+  "scripts": {
+    "test": "test"
+  },
+  "keywords": [
+    "base",
+    "miscreated",
+    "alerts",
+    "mail"
+  ],
+  "author": "Oriol Amat",
+  "license": "ISC",
+  "dependencies": {
+    "discord.js": "^12.5.3",
+    "nodemailer": "^6.6.1",
+    "sqlite3": "^5.0.2",
+    "text-file-follower": "^0.1.0",
+    "underscore": "^1.13.1"
+  }
+}

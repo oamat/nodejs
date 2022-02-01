@@ -1,0 +1,1060 @@
+# Query: type="7
+# Including: ./nodeErrorID
+# ContextLines: 1
+
+211 results - 211 files
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\chainlink\4mx6m_chainlink_01.xml:
+   9    </params>
+  10:   <base_part class="static" type="7060" name="4mx6m_chainlink_01" max_health="25000">
+  11      <static filename="objects/structures/outpost/4mx6m_chainlink_01.cgf" />
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\chainlink\sliding_gate_door_2x8.xml:
+   9    </params>
+  10:   <base_part class="door" type="7056" name="sliding_gate_door_double" max_health="25000">
+  11      <door filename="objects/props/Zone_52/sliding_gate_door_double.cgf" rotate_base="0" move_range="8" move_speed="2" move_axis="x" move_axis_dir="-" sound_open="Play_industrial_garage_door_open" sound_opened="" sound_close="Play_industrial_garage_door_close" sound_closed="" sound_lock="Play_door_lock" sound_unlock="Play_door_unlock"></door>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\chainlink\sliding_gate_door_wall_2x4.xml:
+   9    </params>
+  10:   <base_part class="static" type="7059" name="sliding_gate_door_wall_2x4" max_health="25000">
+  11      <static filename="objects/props/Zone_52/sliding_gate_door_wall_2x4.cgf" />
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\chainlink\sliding_gate_door_wall_2x8.xml:
+   9    </params>
+  10:   <base_part class="static" type="7058" name="sliding_gate_door_double_wall_2x8" max_health="25000">
+  11      <static filename="objects/props/Zone_52/sliding_gate_door_double_wall_2x8.cgf" />
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\chainlink\sliding_gate_frame.xml:
+   9    </params>
+  10:   <base_part class="static" type="7057" name="sliding_gate_frame_double" max_health="25000">
+  11      <static filename="objects/props/Zone_52/sliding_gate_frame_double.cgf" />
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\cratesigns\Ammo_sign.xml:
+  11  
+  12: 	<base_part class="static" type="7063" name="ammo_Blade" max_health="1000" repair_with="SheetMetal">
+  13  		<static filename="objects/props/speedsign/speedsign4.cgf" material="objects/Blade/Black-Pussy/ammo_Blade.mtl"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\cratesigns\Carparts_sign.xml:
+  11  
+  12: 	<base_part class="static" type="7064" name="carparts_Blade" max_health="1000" repair_with="SheetMetal">
+  13  		<static filename="objects/props/speedsign/speedsign4.cgf" material="objects/Blade/Black-Pussy/carparts_Blade.mtl"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\cratesigns\Clothing_sign.xml:
+  11  
+  12: 	<base_part class="static" type="7065" name="clothing_Blade" max_health="1000" repair_with="SheetMetal">
+  13  		<static filename="objects/props/speedsign/speedsign4.cgf" material="objects/Blade/Black-Pussy/clothing_Blade.mtl"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\cratesigns\Components_sign.xml:
+  11  
+  12: 	<base_part class="static" type="7066" name="components_Blade" max_health="1000" repair_with="SheetMetal">
+  13  		<static filename="objects/props/speedsign/speedsign4.cgf" material="objects/Blade/Black-Pussy/components_Blade.mtl"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\cratesigns\Explosiv_sign.xml:
+  11  
+  12: 	<base_part class="static" type="7067" name="explosiv_Blade" max_health="1000" repair_with="SheetMetal">
+  13  		<static filename="objects/props/speedsign/speedsign4.cgf" material="objects/Blade/Black-Pussy/explosiv_Blade.mtl"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\cratesigns\Food_sign.xml:
+  11  
+  12: 	<base_part class="static" type="7068" name="food_Blade" max_health="1000" repair_with="SheetMetal">
+  13  		<static filename="objects/props/speedsign/speedsign4.cgf" material="objects/Blade/Black-Pussy/food_Blade.mtl"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\cratesigns\Medical_sign.xml:
+  11  
+  12: 	<base_part class="static" type="7069" name="medical_Blade" max_health="1000" repair_with="SheetMetal">
+  13  		<static filename="objects/props/speedsign/speedsign4.cgf" material="objects/Blade/Black-Pussy/medical_Blade.mtl"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\cratesigns\Metal_sign.xml:
+  11  
+  12: 	<base_part class="static" type="7070" name="metal_Blade" max_health="1000" repair_with="SheetMetal">
+  13  		<static filename="objects/props/speedsign/speedsign4.cgf" material="objects/Blade/Black-Pussy/metal_Blade.mtl"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\cratesigns\Stones_sign.xml:
+  11  
+  12: 	<base_part class="static" type="7071" name="stones_Blade" max_health="1000" repair_with="SheetMetal">
+  13  		<static filename="objects/props/speedsign/speedsign4.cgf" material="objects/Blade/Black-Pussy/stones_Blade.mtl"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\cratesigns\Tools_sign.xml:
+  11  
+  12: 	<base_part class="static" type="7072" name="tools_Blade" max_health="1000" repair_with="SheetMetal">
+  13  		<static filename="objects/props/speedsign/speedsign4.cgf" material="objects/Blade/Black-Pussy/tools_Blade.mtl"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\cratesigns\Weapons_sign.xml:
+  11  
+  12: 	<base_part class="static" type="7073" name="weapons_Blade" max_health="1000" repair_with="SheetMetal">
+  13  		<static filename="objects/props/speedsign/speedsign4.cgf" material="objects/Blade/Black-Pussy/weapons_Blade.mtl"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\cratesigns\Wood_sign.xml:
+  11  
+  12: 	<base_part class="static" type="7074" name="wood_Blade" max_health="1000" repair_with="SheetMetal">
+  13  		<static filename="objects/props/speedsign/speedsign4.cgf" material="objects/Blade/Black-Pussy/wood_Blade.mtl"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\endtimestories\basebuilding\concrete\concrete_block_stairs_3m_black.xml:
+  10  
+  11: 	<base_part class="static" type="7508" name="concrete_block_stairs_3m_black" max_health="30000" repair_with="ConcreteBag">
+  12  		<static filename="Objects/EndtimeStories/basebuilding/concrete/concrete_staircase_black.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\endtimestories\basebuilding\concrete\concrete_block_stairs_3m_gold.xml:
+  10  
+  11: 	<base_part class="static" type="7507" name="concrete_block_stairs_3m_gold" max_health="30000" repair_with="ConcreteBag">
+  12  		<static filename="Objects/EndtimeStories/basebuilding/concrete/concrete_staircase_gold.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\endtimestories\basebuilding\concrete\concrete_block_stairs_3m_white.xml:
+  10  
+  11: 	<base_part class="static" type="7511" name="concrete_block_stairs_3m_white" max_health="30000" repair_with="ConcreteBag">
+  12  		<static filename="Objects/endtimestories/basebuilding/concrete/concrete_staircase_white.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\endtimestories\basebuilding\concrete\concrete_block_stairs_3m.xml:
+  10  
+  11: 	<base_part class="static" type="7502" name="concrete_block_stairs_3m" max_health="30000" repair_with="ConcreteBag">
+  12  		<static filename="Objects/endtimestories/basebuilding/concrete/concrete_staircase.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\endtimestories\basebuilding\concrete\concrete_block_stairs2_3m_black.xml:
+  10  
+  11: 	<base_part class="static" type="7582" name="concrete_block_stairs2_3m_black" max_health="30000" repair_with="ConcreteBag">
+  12  		<static filename="Objects/EndtimeStories/basebuilding/concrete/concrete_block_stairs2_3x4_black.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\endtimestories\basebuilding\concrete\concrete_block_stairs2_3m_gold.xml:
+  10  
+  11: 	<base_part class="static" type="7584" name="concrete_block_stairs2_3m_gold" max_health="30000" repair_with="ConcreteBag">
+  12  		<static filename="Objects/EndtimeStories/basebuilding/concrete/concrete_block_stairs2_3x4_gold.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\endtimestories\basebuilding\concrete\concrete_block_stairs2_3m_white.xml:
+  10  
+  11: 	<base_part class="static" type="7570" name="concrete_block_stairs2_3m_white" max_health="30000" repair_with="ConcreteBag">
+  12  		<static filename="Objects/endtimestories/basebuilding/concrete/concrete_block_stairs2_3x4_white.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\endtimestories\basebuilding\concrete\concrete_block_stairs2_3m.xml:
+  10  
+  11: 	<base_part class="static" type="7576" name="concrete_block_stairs2_3m" max_health="30000" repair_with="ConcreteBag">
+  12  		<static filename="Objects/endtimestories/basebuilding/concrete/concrete_block_stairs2_3x4.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\endtimestories\basebuilding\concrete\concrete_column_3m_black.xml:
+  10  
+  11: 	<base_part class="static" type="7506" name="concrete_column_3m_black" max_health="30000" repair_with="ConcreteBag">
+  12  		<static filename="Objects/endtimestories/basebuilding/concrete/concrete_column_3m_black.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\endtimestories\basebuilding\concrete\concrete_column_3m_gold.xml:
+  10  
+  11: 	<base_part class="static" type="7505" name="concrete_column_3m_gold" max_health="30000" repair_with="ConcreteBag">
+  12  		<static filename="Objects/endtimestories/basebuilding/concrete/concrete_column_3m_gold.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\endtimestories\basebuilding\concrete\concrete_column_3m_white.xml:
+  10  
+  11: 	<base_part class="static" type="7510" name="concrete_column_3m_white" max_health="30000" repair_with="ConcreteBag">
+  12  		<static filename="Objects/endtimestories/basebuilding/concrete/concrete_column_3m_white.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\endtimestories\basebuilding\concrete\concrete_column_3m.xml:
+  10  
+  11: 	<base_part class="static" type="7500" name="concrete_column_3m" max_health="30000" repair_with="ConcreteBag">
+  12  		<static filename="Objects/endtimestories/basebuilding/concrete/concrete_column_3m.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\endtimestories\basebuilding\concrete\concrete_es_drawbridge_8m_black.xml:
+  11  
+  12: 	<base_part class="door" type="7490" name="concrete_es_drawbridge_8m_black" max_health="25000" repair_sound="" repair_with="ConcreteBag">
+  13  		<door filename="Objects/endtimestories/basebuilding/concrete/concrete_drawbridge_8m_black.cgf" rotate_dir="90" rotate_range="90" rotate_speed="35" rotate_axis="x" sound_open="Play_industrial_garage_door_open" sound_opened="Play_door_metal_opened" sound_close="Play_industrial_garage_door_close" sound_closed="Play_door_metal_closed" sound_lock="Play_door_lock" sound_unlock="Play_door_unlock"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\endtimestories\basebuilding\concrete\concrete_es_drawbridge_8m_gold.xml:
+  11  
+  12: 	<base_part class="door" type="7493" name="concrete_es_drawbridge_8m_gold" max_health="25000" repair_sound="" repair_with="ConcreteBag">
+  13  		<door filename="Objects/endtimestories/basebuilding/concrete/concrete_drawbridge_8m_gold.cgf" rotate_dir="90" rotate_range="90" rotate_speed="35" rotate_axis="x" sound_open="Play_industrial_garage_door_open" sound_opened="Play_door_metal_opened" sound_close="Play_industrial_garage_door_close" sound_closed="Play_door_metal_closed" sound_lock="Play_door_lock" sound_unlock="Play_door_unlock"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\endtimestories\basebuilding\concrete\concrete_es_drawbridge_8m_white.xml:
+  11  
+  12: 	<base_part class="door" type="7492" name="concrete_es_drawbridge_8m_white" max_health="25000" repair_sound="" repair_with="ConcreteBag">
+  13  		<door filename="Objects/endtimestories/basebuilding/concrete/concrete_drawbridge_8m_white.cgf" rotate_dir="90" rotate_range="90" rotate_speed="35" rotate_axis="x" sound_open="Play_industrial_garage_door_open" sound_opened="Play_door_metal_opened" sound_close="Play_industrial_garage_door_close" sound_closed="Play_door_metal_closed" sound_lock="Play_door_lock" sound_unlock="Play_door_unlock"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\endtimestories\basebuilding\concrete\concrete_es_drawbridge_8m.xml:
+  11  
+  12: 	<base_part class="door" type="7491" name="concrete_es_drawbridge_8m" max_health="25000" repair_sound="" repair_with="ConcreteBag">
+  13  		<door filename="Objects/endtimestories/basebuilding/concrete/concrete_drawbridge_8m.cgf" rotate_dir="90" rotate_range="90" rotate_speed="35" rotate_axis="x" sound_open="Play_industrial_garage_door_open" sound_opened="Play_door_metal_opened" sound_close="Play_industrial_garage_door_close" sound_closed="Play_door_metal_closed" sound_lock="Play_door_lock" sound_unlock="Play_door_unlock"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\endtimestories\basebuilding\concrete\concrete_es_drawbridge_gate_black.xml:
+  10  
+  11: 	<base_part class="static" type="7483" name="concrete_es_drawbridge_gate_black" repair_with="ConcreteBag">
+  12  		<static filename="Objects/endtimestories/basebuilding/concrete/concrete_gatehouse_large_black.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\endtimestories\basebuilding\concrete\concrete_es_drawbridge_gate_gold.xml:
+  10  
+  11: 	<base_part class="static" type="7484" name="concrete_es_drawbridge_gate_gold" repair_with="ConcreteBag">
+  12  		<static filename="Objects/endtimestories/basebuilding/concrete/concrete_gatehouse_large_gold.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\endtimestories\basebuilding\concrete\concrete_es_drawbridge_gate_white.xml:
+  10  
+  11: 	<base_part class="static" type="7485" name="concrete_es_drawbridge_gate_white" repair_with="ConcreteBag">
+  12  		<static filename="Objects/endtimestories/basebuilding/concrete/concrete_gatehouse_large_white.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\endtimestories\basebuilding\concrete\concrete_es_drawbridge_gate.xml:
+  10  
+  11: 	<base_part class="static" type="7497" name="concrete_es_drawbridge_gate" repair_with="ConcreteBag">
+  12  		<static filename="Objects/endtimestories/basebuilding/concrete/concrete_gatehouse_large.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\endtimestories\basebuilding\concrete\concrete_es_drawbridge_gate2_white.xml:
+  10  
+  11: 	<base_part class="static" type="7495" name="concrete_es_drawbridge_gate2_white" repair_with="ConcreteBag">
+  12  		<static filename="Objects/endtimestories/basebuilding/concrete/concrete_drawbridge_gate2_white.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\endtimestories\basebuilding\concrete\concrete_es_drawbridge.xml:
+  11  
+  12: 	<base_part class="door" type="7496" name="concrete_es_drawbridge" max_health="25000" repair_sound="" repair_with="ConcreteBag">
+  13  		<door filename="Objects/endtimestories/basebuilding/concrete/concrete_drawbridge_white.cgf" rotate_dir="90" rotate_range="90" rotate_speed="35" rotate_axis="x" sound_open="Play_industrial_garage_door_open" sound_opened="Play_door_metal_opened" sound_close="Play_industrial_garage_door_close" sound_closed="Play_door_metal_closed" sound_lock="Play_door_lock" sound_unlock="Play_door_unlock"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\endtimestories\basebuilding\concrete\concrete_foundation_3m_16m_16m_black.xml:
+  13  
+  14: 	<base_part class="static" type="7575" name="concrete_foundation_3m_16m_16m_black" max_health="30000" repair_with="ConcreteBag">
+  15  		<static filename="Objects/endtimestories/basebuilding/concrete/concrete_foundation_3m_16x16_black.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\endtimestories\basebuilding\concrete\concrete_foundation_3m_16m_16m_gold.xml:
+  13  
+  14: 	<base_part class="static" type="7573" name="concrete_foundation_3m_16m_16m_gold" max_health="30000" repair_with="ConcreteBag">
+  15  		<static filename="Objects/endtimestories/basebuilding/concrete/concrete_foundation_3m_16x16_gold.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\endtimestories\basebuilding\concrete\concrete_foundation_3m_16m_16m_white.xml:
+  13  
+  14: 	<base_part class="static" type="7574" name="concrete_foundation_3m_16m_16m_white" max_health="30000" repair_with="ConcreteBag">
+  15  		<static filename="Objects/endtimestories/basebuilding/concrete/concrete_foundation_3m_16x16_white.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\endtimestories\basebuilding\concrete\concrete_foundation_3m_16m_16m.xml:
+  13  
+  14: 	<base_part class="static" type="7572" name="concrete_foundation_3m_16m_16m" max_health="30000" repair_with="ConcreteBag">
+  15  		<static filename="Objects/endtimestories/basebuilding/concrete/concrete_foundation_3m_16x16.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\endtimestories\basebuilding\concrete\concrete_foundation_4m_4m_black.xml:
+  13  
+  14: 	<base_part class="static" type="7524" name="concrete_foundation_4m_4m_black" max_health="30000" repair_with="ConcreteBag"> 
+  15  		<static filename="Objects/endtimestories/basebuilding/concrete/concrete_foundation_4m_4m_black.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\endtimestories\basebuilding\concrete\concrete_foundation_4m_4m_gold.xml:
+  13  
+  14: 	<base_part class="static" type="7522" name="concrete_foundation_4m_4m_gold" max_health="30000" repair_with="ConcreteBag"> 
+  15  		<static filename="Objects/endtimestories/basebuilding/concrete/concrete_foundation_4m_4m_gold.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\endtimestories\basebuilding\concrete\concrete_foundation_4m_4m_white.xml:
+  13  
+  14: 	<base_part class="static" type="7523" name="concrete_foundation_4m_4m_white" max_health="30000" repair_with="ConcreteBag"> 
+  15  		<static filename="Objects/endtimestories/basebuilding/concrete/concrete_foundation_4m_4m_white.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\endtimestories\basebuilding\concrete\concrete_foundation_4m_4m.xml:
+  13  
+  14: 	<base_part class="static" type="7521" name="concrete_foundation_4m_4m" max_health="30000" repair_with="ConcreteBag"> 
+  15  		<static filename="Objects/endtimestories/basebuilding/concrete/concrete_foundation_4m_4m.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\endtimestories\basebuilding\concrete\concrete_foundation_16m_16m_black.xml:
+  13  
+  14: 	<base_part class="static" type="7538" name="concrete_foundation_16m_16m_black" max_health="30000" repair_with="ConcreteBag">
+  15  		<static filename="Objects/endtimestories/basebuilding/concrete/concrete_foundation_16x16black.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\endtimestories\basebuilding\concrete\concrete_foundation_16m_16m_gold.xml:
+  13  
+  14: 	<base_part class="static" type="7539" name="concrete_foundation_16m_16m_gold" max_health="30000" repair_with="ConcreteBag">
+  15  		<static filename="Objects/endtimestories/basebuilding/concrete/concrete_foundation_16x16gold.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\endtimestories\basebuilding\concrete\concrete_foundation_16m_16m_white.xml:
+  12  	</params>
+  13: 	<base_part class="static" type="7560" name="concrete_foundation_16m_16m_white" max_health="30000" repair_with="ConcreteBag">
+  14  		<static filename="Objects/endtimestories/basebuilding/concrete/concrete_foundation_16x16white.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\endtimestories\basebuilding\concrete\concrete_foundation_16m_16m.xml:
+  13  
+  14: 	<base_part class="static" type="7541" name="concrete_foundation_16m_16m" max_health="30000" repair_with="ConcreteBag">
+  15  		<static filename="Objects/endtimestories/basebuilding/concrete/concrete_foundation_16x16.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\endtimestories\basebuilding\concrete\concrete_gate_down_black.xml:
+  11  
+  12: 	<base_part class="door" type="7462" name="concrete_gate_down_black" max_health="25000" repair_sound="" repair_with="ConcreteBag">
+  13  		<door filename="Objects/endtimestories/basebuilding/concrete/wall_concrete_3x4black.cgf" rotate_base="0" move_range="2.9" move_speed="1" move_axis="z" move_axis_dir="-"  sound_open="Play_industrial_garage_door_open" sound_opened="Play_door_metal_opened" sound_close="Play_industrial_garage_door_close" sound_closed="Play_door_metal_closed" sound_lock="Play_door_lock" sound_unlock="Play_door_unlock"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\endtimestories\basebuilding\concrete\concrete_gate_down_gold.xml:
+  11  
+  12: 	<base_part class="door" type="7463" name="concrete_gate_down_gold" max_health="25000" repair_sound="" repair_with="ConcreteBag">
+  13  		<door filename="Objects/endtimestories/basebuilding/concrete/wall_concrete_3x4gold.cgf" rotate_base="0" move_range="2.9" move_speed="1" move_axis="z" move_axis_dir="-"  sound_open="Play_industrial_garage_door_open" sound_opened="Play_door_metal_opened" sound_close="Play_industrial_garage_door_close" sound_closed="Play_door_metal_closed" sound_lock="Play_door_lock" sound_unlock="Play_door_unlock"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\endtimestories\basebuilding\concrete\concrete_gate_down_white.xml:
+  11  
+  12: 	<base_part class="door" type="7464" name="concrete_gate_down_white" max_health="25000" repair_sound="" repair_with="ConcreteBag">
+  13  		<door filename="Objects/endtimestories/basebuilding/concrete/wall_concrete_3x4white.cgf" rotate_base="0" move_range="2.9" move_speed="1" move_axis="z" move_axis_dir="-"  sound_open="Play_industrial_garage_door_open" sound_opened="Play_door_metal_opened" sound_close="Play_industrial_garage_door_close" sound_closed="Play_door_metal_closed" sound_lock="Play_door_lock" sound_unlock="Play_door_unlock"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\endtimestories\basebuilding\concrete\concrete_gate_down.xml:
+  11  
+  12: 	<base_part class="door" type="7465" name="concrete_gate_down" max_health="25000" repair_sound="" repair_with="ConcreteBag">
+  13  		<door filename="Objects/endtimestories/basebuilding/concrete/wall_concrete_3x4.cgf" rotate_base="0" move_range="2.9" move_speed="1" move_axis="z" move_axis_dir="-"  sound_open="Play_industrial_garage_door_open" sound_opened="Play_door_metal_opened" sound_close="Play_industrial_garage_door_close" sound_closed="Play_door_metal_closed" sound_lock="Play_door_lock" sound_unlock="Play_door_unlock"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\endtimestories\basebuilding\concrete\concrete_gate_z_black.xml:
+  11  
+  12: 	<base_part class="door" type="7487" name="concrete_gate_z_black" max_health="25000" repair_sound="" repair_with="ConcreteBag">
+  13  		<door filename="Objects/endtimestories/basebuilding/concrete/concrete_gate_z_black.cgf" rotate_base="0" move_range="3.8" move_speed="1" move_axis="z" move_axis_dir="+"  sound_open="Play_industrial_garage_door_open" sound_opened="Play_door_metal_opened" sound_close="Play_industrial_garage_door_close" sound_closed="Play_door_metal_closed" sound_lock="Play_door_lock" sound_unlock="Play_door_unlock"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\endtimestories\basebuilding\concrete\concrete_gate_z_gold.xml:
+  11  
+  12: 	<base_part class="door" type="7486" name="concrete_gate_z_gold" max_health="25000" repair_sound="" repair_with="ConcreteBag">
+  13  		<door filename="Objects/endtimestories/basebuilding/concrete/concrete_gate_z_gold.cgf" rotate_base="0" move_range="3.8" move_speed="1" move_axis="z" move_axis_dir="+"  sound_open="Play_industrial_garage_door_open" sound_opened="Play_door_metal_opened" sound_close="Play_industrial_garage_door_close" sound_closed="Play_door_metal_closed" sound_lock="Play_door_lock" sound_unlock="Play_door_unlock"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\endtimestories\basebuilding\concrete\concrete_gate_z_white.xml:
+  11  
+  12: 	<base_part class="door" type="7488" name="concrete_gate_z_white" max_health="25000" repair_sound="" repair_with="ConcreteBag">
+  13  		<door filename="Objects/endtimestories/basebuilding/concrete/concrete_gate_z_white.cgf" rotate_base="0" move_range="3.8" move_speed="1" move_axis="z" move_axis_dir="+"  sound_open="Play_industrial_garage_door_open" sound_opened="Play_door_metal_opened" sound_close="Play_industrial_garage_door_close" sound_closed="Play_door_metal_closed" sound_lock="Play_door_lock" sound_unlock="Play_door_unlock"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\endtimestories\basebuilding\concrete\concrete_gate_z.xml:
+  11  
+  12: 	<base_part class="door" type="7489" name="concrete_gate_z" max_health="25000" repair_sound="" repair_with="ConcreteBag">
+  13  		<door filename="Objects/endtimestories/basebuilding/concrete/concrete_gate_z.cgf" rotate_base="0" move_range="3.8" move_speed="1" move_axis="z" move_axis_dir="+"  sound_open="Play_industrial_garage_door_open" sound_opened="Play_door_metal_opened" sound_close="Play_industrial_garage_door_close" sound_closed="Play_door_metal_closed" sound_lock="Play_door_lock" sound_unlock="Play_door_unlock"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\endtimestories\basebuilding\concrete\concrete_gatehouse_gate_black.xml:
+  11  
+  12: 	<base_part class="door" type="7452" name="concrete_gatehouse_gate_black" max_health="25000" repair_sound="" repair_with="ConcreteBag">
+  13  		<door filename="Objects/endtimestories/basebuilding/concrete/concrete_gatehouse_gate_black.cgf" rotate_base="0" move_range="4.3" move_speed="1" move_axis="z" move_axis_dir="-"  sound_open="Play_industrial_garage_door_open" sound_opened="Play_door_metal_opened" sound_close="Play_industrial_garage_door_close" sound_closed="Play_door_metal_closed" sound_lock="Play_door_lock" sound_unlock="Play_door_unlock"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\endtimestories\basebuilding\concrete\concrete_gatehouse_gate_gold.xml:
+  11  
+  12: 	<base_part class="door" type="7455" name="concrete_gatehouse_gate_gold" max_health="25000" repair_sound="" repair_with="ConcreteBag">
+  13  		<door filename="Objects/endtimestories/basebuilding/concrete/concrete_gatehouse_gate_gold.cgf" rotate_base="0" move_range="4.3" move_speed="1" move_axis="z" move_axis_dir="-"  sound_open="Play_industrial_garage_door_open" sound_opened="Play_door_metal_opened" sound_close="Play_industrial_garage_door_close" sound_closed="Play_door_metal_closed" sound_lock="Play_door_lock" sound_unlock="Play_door_unlock"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\endtimestories\basebuilding\concrete\concrete_gatehouse_gate_white.xml:
+  11  
+  12: 	<base_part class="door" type="7453" name="concrete_gatehouse_gate_white" max_health="25000" repair_sound="" repair_with="ConcreteBag">
+  13  		<door filename="Objects/endtimestories/basebuilding/concrete/concrete_gatehouse_gate_white.cgf" rotate_base="0" move_range="4.3" move_speed="1" move_axis="z" move_axis_dir="-"  sound_open="Play_industrial_garage_door_open" sound_opened="Play_door_metal_opened" sound_close="Play_industrial_garage_door_close" sound_closed="Play_door_metal_closed" sound_lock="Play_door_lock" sound_unlock="Play_door_unlock"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\endtimestories\basebuilding\concrete\concrete_gatehouse_gate.xml:
+  11  
+  12: 	<base_part class="door" type="7454" name="concrete_gatehouse_gate" max_health="25000" repair_sound="" repair_with="ConcreteBag">
+  13  		<door filename="Objects/endtimestories/basebuilding/concrete/concrete_gatehouse_gate.cgf" rotate_base="0" move_range="4.3" move_speed="1" move_axis="z" move_axis_dir="-"  sound_open="Play_industrial_garage_door_open" sound_opened="Play_door_metal_opened" sound_close="Play_industrial_garage_door_close" sound_closed="Play_door_metal_closed" sound_lock="Play_door_lock" sound_unlock="Play_door_unlock"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\endtimestories\basebuilding\concrete\concrete_halfwall1_2m_black.xml:
+  10  
+  11: 	<base_part class="static" type="7476" name="concrete_halfwall1_2m_black" max_health="30000" repair_with="ConcreteBag">
+  12  		<static filename="Objects/endtimestories/basebuilding/concrete/concrete_halfwall1_2m_black.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\endtimestories\basebuilding\concrete\concrete_halfwall1_2m_gold.xml:
+  10  
+  11: 	<base_part class="static" type="7477" name="concrete_halfwall1_2m_gold" max_health="30000" repair_with="ConcreteBag">
+  12  		<static filename="Objects/endtimestories/basebuilding/concrete/concrete_halfwall1_2m_gold.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\endtimestories\basebuilding\concrete\concrete_halfwall1_2m_white.xml:
+  10  
+  11: 	<base_part class="static" type="7478" name="concrete_halfwall1_2m_white" max_health="30000" repair_with="ConcreteBag">
+  12  		<static filename="Objects/endtimestories/basebuilding/concrete/concrete_halfwall1_2m_white.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\endtimestories\basebuilding\concrete\concrete_halfwall1_2m.xml:
+  10  
+  11: 	<base_part class="static" type="7479" name="concrete_halfwall1_2m" max_health="30000" repair_with="ConcreteBag">
+  12  		<static filename="Objects/endtimestories/basebuilding/concrete/concrete_halfwall1_2m.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\endtimestories\basebuilding\concrete\concrete_halfwall1_3m_black.xml:
+  10  
+  11: 	<base_part class="static" type="7618" name="concrete_halfwall1_3m_black" max_health="30000" repair_with="ConcreteBag">
+  12  		<static filename="Objects/endtimestories/basebuilding/concrete/concrete_halfwall1_3m_black.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\endtimestories\basebuilding\concrete\concrete_halfwall1_3m_gold.xml:
+  10  
+  11: 	<base_part class="static" type="7617" name="concrete_halfwall1_3m_gold" max_health="30000" repair_with="ConcreteBag">
+  12  		<static filename="Objects/endtimestories/basebuilding/concrete/concrete_halfwall1_3m_gold.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\endtimestories\basebuilding\concrete\concrete_halfwall1_3m_white.xml:
+  10  
+  11: 	<base_part class="static" type="7616" name="concrete_halfwall1_3m_white" max_health="30000" repair_with="ConcreteBag">
+  12  		<static filename="Objects/endtimestories/basebuilding/concrete/concrete_halfwall1_3m_white.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\endtimestories\basebuilding\concrete\concrete_halfwall1_3m.xml:
+  10  
+  11: 	<base_part class="static" type="7615" name="concrete_halfwall1_3m" max_health="30000" repair_with="ConcreteBag">
+  12  		<static filename="Objects/endtimestories/basebuilding/concrete/concrete_halfwall1_3m.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\endtimestories\basebuilding\concrete\concrete_halfwall1_3x3m_black.xml:
+  10  
+  11: 	<base_part class="static" type="7622" name="concrete_halfwall1_3x3m_black" max_health="30000" repair_with="ConcreteBag">
+  12  		<static filename="Objects/endtimestories/basebuilding/concrete/concrete_halfwall1_3x3m_black.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\endtimestories\basebuilding\concrete\concrete_halfwall1_3x3m_gold.xml:
+  10  
+  11: 	<base_part class="static" type="7620" name="concrete_halfwall1_3x3m_gold" max_health="30000" repair_with="ConcreteBag">
+  12  		<static filename="Objects/endtimestories/basebuilding/concrete/concrete_halfwall1_3x3m_gold.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\endtimestories\basebuilding\concrete\concrete_halfwall1_3x3m_white.xml:
+  10  
+  11: 	<base_part class="static" type="7621" name="concrete_halfwall1_3x3m_white" max_health="30000" repair_with="ConcreteBag">
+  12  		<static filename="Objects/endtimestories/basebuilding/concrete/concrete_halfwall1_3x3m_white.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\endtimestories\basebuilding\concrete\concrete_halfwall1_3x3m.xml:
+  10  
+  11: 	<base_part class="static" type="7619" name="concrete_halfwall1_3x3m" max_health="30000" repair_with="ConcreteBag">
+  12  		<static filename="Objects/endtimestories/basebuilding/concrete/concrete_halfwall1_3x3m.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\endtimestories\basebuilding\concrete\concrete_platform_3m_4m_black.xml:
+  10  
+  11: 	<base_part class="static" type="7518" name="concrete_platform_3m_4m_black" max_health="30000" repair_with="ConcreteBag">
+  12  		<static filename="Objects/endtimestories/basebuilding/concrete/platform_concrete_4x3_black.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\endtimestories\basebuilding\concrete\concrete_platform_3m_4m_gold.xml:
+  10  
+  11: 	<base_part class="static" type="7519" name="concrete_platform_3m_4m_gold" max_health="30000" repair_with="ConcreteBag">
+  12  		<static filename="Objects/endtimestories/basebuilding/concrete/platform_concrete_4x3_gold.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\endtimestories\basebuilding\concrete\concrete_platform_3m_4m_white.xml:
+  10  
+  11: 	<base_part class="static" type="7520" name="concrete_platform_3m_4m_white" max_health="30000" repair_with="ConcreteBag">
+  12  		<static filename="Objects/endtimestories/basebuilding/concrete/platform_concrete_4x3_white.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\endtimestories\basebuilding\concrete\concrete_platform_3m_4m.xml:
+  10  
+  11: 	<base_part class="static" type="7517" name="concrete_platform_3m_4m" max_health="30000" repair_with="ConcreteBag">
+  12  		<static filename="Objects/endtimestories/basebuilding/concrete/platform_concrete_4x3.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\endtimestories\basebuilding\concrete\concrete_platform_4m_4m_black.xml:
+  10  
+  11: 	<base_part class="static" type="7567" name="concrete_platform_4m_4m_black" max_health="30000" repair_with="ConcreteBag">
+  12  		<static filename="Objects/endtimestories/basebuilding/concrete/platform_concrete_4x4black.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\endtimestories\basebuilding\concrete\concrete_platform_4m_4m_gold.xml:
+  10  
+  11: 	<base_part class="static" type="7566" name="concrete_platform_4m_4m_gold" max_health="30000" repair_with="ConcreteBag">
+  12  		<static filename="Objects/endtimestories/basebuilding/concrete/platform_concrete_4x4gold.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\endtimestories\basebuilding\concrete\concrete_platform_4m_4m_white.xml:
+  10  
+  11: 	<base_part class="static" type="7565" name="concrete_platform_4m_4m_white" max_health="30000" repair_with="ConcreteBag">
+  12  		<static filename="Objects/endtimestories/basebuilding/concrete/platform_concrete_4x4white.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\endtimestories\basebuilding\concrete\concrete_platform_4m_4m.xml:
+  10  
+  11: 	<base_part class="static" type="7564" name="concrete_platform_4m_4m" max_health="30000" repair_with="ConcreteBag">
+  12  		<static filename="Objects/endtimestories/basebuilding/concrete/platform_concrete_4x4.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\endtimestories\basebuilding\concrete\concrete_platform_16m_16m_black.xml:
+  10  
+  11: 	<base_part class="static" type="7530" name="concrete_platform_16m_16m_black" max_health="30000" repair_with="ConcreteBag">
+  12  		<static filename="Objects/endtimestories/basebuilding/concrete/platform_concrete_16x16black.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\endtimestories\basebuilding\concrete\concrete_platform_16m_16m_gold.xml:
+  10  
+  11: 	<base_part class="static" type="7537" name="concrete_platform_16m_16m_gold" max_health="30000" repair_with="ConcreteBag">
+  12  		<static filename="Objects/endtimestories/basebuilding/concrete/platform_concrete_16x16gold.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\endtimestories\basebuilding\concrete\concrete_platform_16m_16m_white.xml:
+  10  
+  11: 	<base_part class="static" type="7531" name="concrete_platform_16m_16m_white" max_health="30000" repair_with="ConcreteBag">
+  12  		<static filename="Objects/endtimestories/basebuilding/concrete/platform_concrete_16x16white.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\endtimestories\basebuilding\concrete\concrete_platform_16m_16m.xml:
+  10  
+  11: 	<base_part class="static" type="7529" name="concrete_platform_16m_16m" max_health="30000" repair_with="ConcreteBag">
+  12  		<static filename="Objects/endtimestories/basebuilding/concrete/platform_concrete_16x16.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\endtimestories\basebuilding\concrete\concrete_platform_lift_2x2_9m_down.xml:
+  7  
+  8: 	<base_part class="door" type="7546" name="concrete_platform_lift_2x2_9m_down" max_health="5000" repair_with="ConcreteBag">
+  9  		<door filename="Objects/endtimestories/basebuilding/concrete/platform_concrete_2x2_black.cgf" rotate_base="1" move_range="7" move_speed="1.5" move_axis="z" move_axis_dir="-" 
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\endtimestories\basebuilding\concrete\concrete_platform_lift_2x2_9m_up.xml:
+  7  
+  8: 	<base_part class="door" type="7547" name="concrete_platform_lift_2x2_9m_up" max_health="5000" repair_with="ConcreteBag">
+  9  		<door filename="Objects/endtimestories/basebuilding/concrete/platform_concrete_2x2_black.cgf" rotate_base="0" move_range="6.5" move_speed="1.5" move_axis="z" move_axis_dir="+" 
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\endtimestories\basebuilding\concrete\concrete_platform_lift_3m_down.xml:
+  7  
+  8: 	<base_part class="door" type="7571" name="concrete_platform_lift_3m_down" max_health="5000" repair_with="ConcreteBag">
+  9  		<door filename="Objects/endtimestories/basebuilding/concrete/platform_concrete_4x4gold.cgf" rotate_base="0" move_range="3" move_speed="1.5" move_axis="z" move_axis_dir="-" 
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\endtimestories\basebuilding\concrete\concrete_platform_lift_3m_up.xml:
+  7  
+  8: 	<base_part class="door" type="7568" name="concrete_platform_lift_3m_up" max_health="5000" repair_with="ConcreteBag">
+  9  		<door filename="Objects/endtimestories/basebuilding/concrete/platform_concrete_4x4gold.cgf" rotate_base="0" move_range="3" move_speed="1.5" move_axis="z" move_axis_dir="+" 
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\endtimestories\basebuilding\concrete\concrete_platform_lift_6m_down.xml:
+  7  
+  8: 	<base_part class="door" type="7548" name="concrete_platform_lift_6m_down" max_health="5000" repair_with="ConcreteBag">
+  9  		<door filename="Objects/endtimestories/basebuilding/concrete/platform_concrete_4x4gold.cgf" rotate_base="0" move_range="6" move_speed="1.5" move_axis="z" move_axis_dir="-" 
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\endtimestories\basebuilding\concrete\concrete_platform_lift_6m_up.xml:
+  7  
+  8: 	<base_part class="door" type="7549" name="concrete_platform_lift_6m_up" max_health="5000" repair_with="ConcreteBag">
+  9  		<door filename="Objects/endtimestories/basebuilding/concrete/platform_concrete_4x4gold.cgf" rotate_base="0" move_range="6" move_speed="1.5" move_axis="z" move_axis_dir="+" 
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\endtimestories\basebuilding\concrete\concrete_ramp_3x4_black.xml:
+  10  
+  11: 	<base_part class="static" type="7551" name="concrete_ramp_3x4_black" max_health="30000" repair_with="ConcreteBag">
+  12  		<static filename="Objects/EndtimeStories/basebuilding/concrete/concrete_ramp_3x4_black.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\endtimestories\basebuilding\concrete\concrete_ramp_3x4_gold.xml:
+  10  
+  11: 	<base_part class="static" type="7552" name="concrete_ramp_3x4_gold" max_health="30000" repair_with="ConcreteBag">
+  12  		<static filename="Objects/endtimestories/basebuilding/concrete/concrete_ramp_3x4_gold.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\endtimestories\basebuilding\concrete\concrete_ramp_3x4_white.xml:
+  10  
+  11: 	<base_part class="static" type="7553" name="concrete_ramp_3x4_white" max_health="30000" repair_with="ConcreteBag">
+  12  		<static filename="Objects/endtimestories/basebuilding/concrete/concrete_ramp_3x4_white.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\endtimestories\basebuilding\concrete\concrete_ramp_3x4.xml:
+  10  
+  11: 	<base_part class="static" type="7550" name="concrete_ramp_3x4" max_health="30000" repair_with="ConcreteBag">
+  12  		<static filename="Objects/endtimestories/basebuilding/concrete/concrete_ramp_3x4.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\endtimestories\basebuilding\concrete\concrete_roof_black.xml:
+  11  
+  12: 	<base_part class="static" type="7458" name="concrete_roof_black" max_health="25000" repair_sound="" repair_with="ConcreteBag">
+  13  		<static filename="Objects/endtimestories/basebuilding/concrete/concrete_roof_black.cgf" />
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\endtimestories\basebuilding\concrete\concrete_roof_gold.xml:
+  11  
+  12: 	<base_part class="static" type="7457" name="concrete_roof_gold" max_health="25000" repair_sound="" repair_with="ConcreteBag">
+  13  		<static filename="Objects/endtimestories/basebuilding/concrete/concrete_roof_gold.cgf" />
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\endtimestories\basebuilding\concrete\concrete_roof_white.xml:
+  11  
+  12: 	<base_part class="static" type="7456" name="concrete_roof_white" max_health="25000" repair_sound="" repair_with="ConcreteBag">
+  13  		<static filename="Objects/endtimestories/basebuilding/concrete/concrete_roof_white.cgf" />
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\endtimestories\basebuilding\concrete\concrete_roof.xml:
+  11  
+  12: 	<base_part class="static" type="7459" name="concrete_roof" max_health="25000" repair_sound="" repair_with="ConcreteBag">
+  13  		<static filename="Objects/endtimestories/basebuilding/concrete/concrete_roof.cgf" />
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\endtimestories\basebuilding\concrete\concrete_room_c_shape_black.xml:
+  10  
+  11: 	<base_part class="static" type="7591" name="concrete_room_c_shape_black" max_health="30000" repair_with="ConcreteBag">
+  12  		<static filename="Objects/endtimestories/basebuilding/concrete/concrete_room_c_shape_black.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\endtimestories\basebuilding\concrete\concrete_room_c_shape_gold.xml:
+  10  
+  11: 	<base_part class="static" type="7596" name="concrete_room_c_shape_gold" max_health="30000" repair_with="ConcreteBag">
+  12  		<static filename="Objects/endtimestories/basebuilding/concrete/concrete_room_c_shape_gold.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\endtimestories\basebuilding\concrete\concrete_room_c_shape_white.xml:
+  10  
+  11: 	<base_part class="static" type="7590" name="concrete_room_c_shape_white" max_health="30000" repair_with="ConcreteBag">
+  12  		<static filename="Objects/endtimestories/basebuilding/concrete/concrete_room_c_shape_white.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\endtimestories\basebuilding\concrete\concrete_room_c_shape.xml:
+  10  
+  11: 	<base_part class="static" type="7586" name="concrete_room_c_shape" max_health="30000" repair_with="ConcreteBag">
+  12  		<static filename="Objects/endtimestories/basebuilding/concrete/concrete_room_c_shape.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\endtimestories\basebuilding\concrete\concrete_room_column_black.xml:
+  10  
+  11: 	<base_part class="static" type="7558" name="concrete_room_column_black" max_health="30000" repair_with="ConcreteBag">
+  12  		<static filename="Objects/endtimestories/basebuilding/concrete/concrete_room_column_black.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\endtimestories\basebuilding\concrete\concrete_room_column_gold.xml:
+  10  
+  11: 	<base_part class="static" type="7557" name="concrete_room_column_gold" max_health="30000" repair_with="ConcreteBag">
+  12  		<static filename="Objects/endtimestories/basebuilding/concrete/concrete_room_column_gold.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\endtimestories\basebuilding\concrete\concrete_room_column_white.xml:
+  10  
+  11: 	<base_part class="static" type="7556" name="concrete_room_column_white" max_health="30000" repair_with="ConcreteBag">
+  12  		<static filename="Objects/endtimestories/basebuilding/concrete/concrete_room_column_white.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\endtimestories\basebuilding\concrete\concrete_room_column.xml:
+  10  
+  11: 	<base_part class="static" type="7555" name="concrete_room_column" max_health="30000" repair_with="ConcreteBag">
+  12  		<static filename="Objects/endtimestories/basebuilding/concrete/concrete_room_column.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\endtimestories\basebuilding\concrete\concrete_room_corner_black.xml:
+  10  
+  11: 	<base_part class="static" type="7593" name="concrete_room_corner_black" max_health="30000" repair_with="ConcreteBag">
+  12  		<static filename="Objects/endtimestories/basebuilding/concrete/concrete_room_corner_black.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\endtimestories\basebuilding\concrete\concrete_room_corner_gold.xml:
+  10  
+  11: 	<base_part class="static" type="7595" name="concrete_room_corner_gold" max_health="30000" repair_with="ConcreteBag">
+  12  		<static filename="Objects/endtimestories/basebuilding/concrete/concrete_room_corner_gold.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\endtimestories\basebuilding\concrete\concrete_room_corner_white.xml:
+  10  
+  11: 	<base_part class="static" type="7588" name="concrete_room_corner_white" max_health="30000" repair_with="ConcreteBag">
+  12  		<static filename="Objects/endtimestories/basebuilding/concrete/concrete_room_corner_white.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\endtimestories\basebuilding\concrete\concrete_room_corner.xml:
+  10  
+  11: 	<base_part class="static" type="7585" name="concrete_room_corner" max_health="30000" repair_with="ConcreteBag">
+  12  		<static filename="Objects/endtimestories/basebuilding/concrete/concrete_room_corner.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\endtimestories\basebuilding\concrete\concrete_slideplatform_4x4.xml:
+  10  
+  11: 	<base_part class="door" type="7528" name="concrete_slideplatform_4x4" max_health="5000" repair_with="ConcreteBag">
+  12  		<door filename="Objects/endtimestories/basebuilding/concrete/platform_concrete_4x4white.cgf" rotate_base="0" move_range="3.5" move_speed="1" move_axis="x" move_axis_dir="+"
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\endtimestories\basebuilding\concrete\concrete_slidewall_x_3x4.xml:
+  10  
+  11: 	<base_part class="door" type="7526" name="concrete_slidewall_x_3x4" max_health="5000" repair_with="ConcreteBag">
+  12  		<door filename="Objects/endtimestories/basebuilding/concrete/wall_concrete_3x4white.cgf" rotate_base="0" move_range="3.5" move_speed="1" move_axis="x" move_axis_dir="+"
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\endtimestories\basebuilding\concrete\concrete_slidewall_y_3x4.xml:
+  10  
+  11: 	<base_part class="door" type="7527" name="concrete_slidewall_y_3x4" max_health="5000" repair_with="ConcreteBag">
+  12  		<door filename="Objects/endtimestories/basebuilding/concrete/wall_concrete_3x4white.cgf" rotate_base="0" move_range="3.5" move_speed="1" move_axis="y" move_axis_dir="+"
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\endtimestories\basebuilding\concrete\concrete_spinwall_3x4.xml:
+  10  
+  11: 	<base_part class="door" type="7525" name="concrete_spinwall_3x4" max_health="5000" repair_with="ConcreteBag">
+  12  		<door filename="Objects/endtimestories/basebuilding/concrete/wall_concrete_3x4white.cgf" rotate_base="-180" rotate_range="90" rotate_speed="60" rotate_axis="z" rotate_dir="+" 
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\endtimestories\basebuilding\concrete\concrete_stairs_1m_3m_black.xml:
+  10  
+  11: 	<base_part class="static" type="7544" name="concrete_stairs_1m_3m_black" max_health="30000" repair_with="ConcreteBag">
+  12  		<static filename="Objects/EndtimeStories/basebuilding/concrete/concrete_stairs_1m_3m_black.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\endtimestories\basebuilding\concrete\concrete_stairs_1m_3m_gold.xml:
+  10  
+  11: 	<base_part class="static" type="7543" name="concrete_stairs_1m_3m_gold" max_health="30000" repair_with="ConcreteBag">
+  12  		<static filename="Objects/EndtimeStories/basebuilding/concrete/concrete_stairs_1m_3m_gold.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\endtimestories\basebuilding\concrete\concrete_stairs_1m_3m_white.xml:
+  10  
+  11: 	<base_part class="static" type="7542" name="concrete_stairs_1m_3m_white" max_health="30000" repair_with="ConcreteBag">
+  12  		<static filename="Objects/endtimestories/basebuilding/concrete/concrete_stairs_1m_3m_white.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\endtimestories\basebuilding\concrete\concrete_stairs_1m_3m.xml:
+  10  
+  11: 	<base_part class="static" type="7540" name="concrete_stairs_1m_3m" max_health="30000" repair_with="ConcreteBag">
+  12  		<static filename="Objects/endtimestories/basebuilding/concrete/concrete_stairs_1m_3m.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\endtimestories\basebuilding\concrete\concrete_stairs_2m_1_3m_black.xml:
+  10  
+  11: 	<base_part class="static" type="7468" name="concrete_stairs_2m_1_3m_black" max_health="30000" repair_with="ConcreteBag">
+  12  		<static filename="Objects/EndtimeStories/basebuilding/concrete/concrete_stairs_2m_1_3m_black.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\endtimestories\basebuilding\concrete\concrete_stairs_2m_1_3m_gold.xml:
+  10  
+  11: 	<base_part class="static" type="7467" name="concrete_stairs_2m_1_3m_gold" max_health="30000" repair_with="ConcreteBag">
+  12  		<static filename="Objects/EndtimeStories/basebuilding/concrete/concrete_stairs_2m_1_3m_gold.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\endtimestories\basebuilding\concrete\concrete_stairs_2m_1_3m_white.xml:
+  10  
+  11: 	<base_part class="static" type="7466" name="concrete_stairs_2m_1_3m_white" max_health="30000" repair_with="ConcreteBag">
+  12  		<static filename="Objects/endtimestories/basebuilding/concrete/concrete_stairs_2m_1_3m_white.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\endtimestories\basebuilding\concrete\concrete_stairs_2m_1_3m.xml:
+  10  
+  11: 	<base_part class="static" type="7469" name="concrete_stairs_2m_1_3m" max_health="30000" repair_with="ConcreteBag">
+  12  		<static filename="Objects/endtimestories/basebuilding/concrete/concrete_stairs_2m_1_3m.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\endtimestories\basebuilding\concrete\concrete_wall_3m_2m_black.xml:
+  10  
+  11: 	<base_part class="static" type="7614" name="concrete_wall_3m_2m_black" max_health="30000" repair_with="ConcreteBag">
+  12  		<static filename="Objects/endtimestories/basebuilding/concrete/wall_concrete_3x2black.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\endtimestories\basebuilding\concrete\concrete_wall_3m_2m_gold.xml:
+  10  
+  11: 	<base_part class="static" type="7613" name="concrete_wall_3m_2m_gold" max_health="30000" repair_with="ConcreteBag">
+  12  		<static filename="Objects/endtimestories/basebuilding/concrete/wall_concrete_3x2gold.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\endtimestories\basebuilding\concrete\concrete_wall_3m_2m_white.xml:
+  10  
+  11: 	<base_part class="static" type="7612" name="concrete_wall_3m_2m_white" max_health="30000" repair_with="ConcreteBag">
+  12  		<static filename="Objects/endtimestories/basebuilding/concrete/wall_concrete_3x2white.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\endtimestories\basebuilding\concrete\concrete_wall_3m_2m.xml:
+  10  
+  11: 	<base_part class="static" type="7611" name="concrete_wall_3m_2m" max_health="30000" repair_with="ConcreteBag">
+  12  		<static filename="Objects/endtimestories/basebuilding/concrete/wall_concrete_3x2.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\endtimestories\basebuilding\concrete\concrete_wall_3m_4m_black.xml:
+  10  
+  11: 	<base_part class="static" type="7516" name="concrete_wall_3m_4m_black" max_health="30000" repair_with="ConcreteBag">
+  12  		<static filename="Objects/endtimestories/basebuilding/concrete/wall_concrete_3x4black.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\endtimestories\basebuilding\concrete\concrete_wall_3m_4m_gold.xml:
+  10  
+  11: 	<base_part class="static" type="7514" name="concrete_wall_3m_4m_gold" max_health="30000" repair_with="ConcreteBag">
+  12  		<static filename="Objects/endtimestories/basebuilding/concrete/wall_concrete_3x4gold.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\endtimestories\basebuilding\concrete\concrete_wall_3m_4m_grey.xml:
+  10  
+  11: 	<base_part class="static" type="7512" name="concrete_wall_3m_4m_grey" max_health="30000" repair_with="ConcreteBag">
+  12  		<static filename="Objects/endtimestories/basebuilding/concrete/wall_concrete_3x4grey.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\endtimestories\basebuilding\concrete\concrete_wall_3m_4m_white.xml:
+  10  
+  11: 	<base_part class="static" type="7515" name="concrete_wall_3m_4m_white" max_health="30000" repair_with="ConcreteBag">
+  12  		<static filename="Objects/endtimestories/basebuilding/concrete/wall_concrete_3x4white.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\endtimestories\basebuilding\concrete\concrete_wall_3m_4m.xml:
+  10  
+  11: 	<base_part class="static" type="7513" name="concrete_wall_3m_4m" max_health="30000" repair_with="ConcreteBag">
+  12  		<static filename="Objects/endtimestories/basebuilding/concrete/wall_concrete_3x4.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\endtimestories\basebuilding\concrete\concrete_wall_3m_16m_black.xml:
+  10  
+  11: 	<base_part class="static" type="7592" name="concrete_wall_3m_16m_black" max_health="30000" repair_with="ConcreteBag">
+  12  		<static filename="Objects/endtimestories/basebuilding/concrete/wall_concrete_3x16black.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\endtimestories\basebuilding\concrete\concrete_wall_3m_16m_gold.xml:
+  10  
+  11: 	<base_part class="static" type="7594" name="concrete_wall_3m_16m_gold" max_health="30000" repair_with="ConcreteBag">
+  12  		<static filename="Objects/endtimestories/basebuilding/concrete/wall_concrete_3x16gold.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\endtimestories\basebuilding\concrete\concrete_wall_3m_16m_white.xml:
+  10  
+  11: 	<base_part class="static" type="7589" name="concrete_wall_3m_16m_white" max_health="30000" repair_with="ConcreteBag">
+  12  		<static filename="Objects/endtimestories/basebuilding/concrete/wall_concrete_3x16white.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\endtimestories\basebuilding\concrete\concrete_wall_3m_16m.xml:
+  10  
+  11: 	<base_part class="static" type="7587" name="concrete_wall_3m_16m" max_health="30000" repair_with="ConcreteBag">
+  12  		<static filename="Objects/endtimestories/basebuilding/concrete/wall_concrete_3x16.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\endtimestories\basebuilding\concrete\concrete_wall_door_3m_4m_black.xml:
+  10  
+  11: 	<base_part class="static" type="7504" name="concrete_wall_door_3m_4m_black" max_health="30000" repair_with="ConcreteBag">
+  12  		<static filename="Objects/endtimestories/basebuilding/concrete/wall_door_concrete3x4black.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\endtimestories\basebuilding\concrete\concrete_wall_door_3m_4m_gold.xml:
+  10  
+  11: 	<base_part class="static" type="7503" name="concrete_wall_door_3m_4m_gold" max_health="30000" repair_with="ConcreteBag">
+  12  		<static filename="Objects/endtimestories/basebuilding/concrete/wall_door_concrete3x4gold.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\endtimestories\basebuilding\concrete\concrete_wall_door_3m_4m_white.xml:
+  10  
+  11: 	<base_part class="static" type="7509" name="concrete_wall_door_3m_4m_white" max_health="30000" repair_with="ConcreteBag">
+  12  		<static filename="Objects/endtimestories/basebuilding/concrete/wall_door_concrete3x4white.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\endtimestories\basebuilding\concrete\concrete_wall_door_3m_4m.xml:
+  10  
+  11: 	<base_part class="static" type="7501" name="concrete_wall_door_3m_4m" max_health="30000" repair_with="ConcreteBag">
+  12  		<static filename="Objects/endtimestories/basebuilding/concrete/wall_door_concrete3x4.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\endtimestories\basebuilding\concrete\concrete_wall_window_3m_4m_black.xml:
+  10  
+  11: 	<base_part class="static" type="7532" name="concrete_wall_window_3m_4m_black" max_health="30000" repair_with="ConcreteBag">
+  12  		<static filename="Objects/endtimestories/basebuilding/concrete/wall_window_concrete3x4black.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\endtimestories\basebuilding\concrete\concrete_wall_window_3m_4m_gold.xml:
+  10  
+  11: 	<base_part class="static" type="7534" name="concrete_wall_window_3m_4m_gold" max_health="30000" repair_with="ConcreteBag">
+  12  		<static filename="Objects/endtimestories/basebuilding/concrete/wall_window_concrete3x4gold.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\endtimestories\basebuilding\concrete\concrete_wall_window_3m_4m_white.xml:
+  10  
+  11: 	<base_part class="static" type="7533" name="concrete_wall_window_3m_4m_white" max_health="30000" repair_with="ConcreteBag">
+  12  		<static filename="Objects/endtimestories/basebuilding/concrete/wall_window_concrete3x4white.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\endtimestories\basebuilding\concrete\concrete_wall_window_3m_4m.xml:
+  10  
+  11: 	<base_part class="static" type="7535" name="concrete_wall_window_3m_4m" max_health="30000" repair_with="ConcreteBag">
+  12  		<static filename="Objects/endtimestories/basebuilding/concrete/wall_window_concrete3x4.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\endtimestories\misc\safe_large.xml:
+  10    </params>
+  11:   <base_part class="static" type="7578" name="safe_large" max_health="55000" repair_with="SheetMetal" towable="1" limit="4">
+  12      <static filename="Objects/endtimestories/basebuilding/safe/safenew1.cgf" />
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\endtimestories\misc\safedoor_large2.xml:
+  10    </params>
+  11:   <base_part class="door" type="7579" name="safedoor_large2" max_health="55000" repair_with="SheetMetal" towable="1" limit="2">
+  12      <door filename="Objects/endtimestories/basebuilding/safe/safedoornew1.cgf" rotate_base="-180" rotate_range="100" rotate_speed="90" rotate_axis="z" rotate_dir="+" sound_open="Play_door_metal_open" sound_opened="" sound_close="Play_door_metal_close" sound_closed="Play_door_metal_closed" sound_lock="Play_door_lock" sound_unlock="Play_door_unlock" />
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\glass\glass_door_2m_1m.xml:
+  10  
+  11: 	<base_part class="door" type="7135" name="glass_door_2m_1m" max_health="5000" repair_with="SheetMetal" repair_sound="">
+  12  		<door filename="Objects/NationZ/basebuilding/glass/glass_door_2m_1m.cgf" rotate_base="-180" rotate_range="90" rotate_speed="180" rotate_axis="z" rotate_dir="" 
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\glass\glass_door_3m_2m.xml:
+  10  
+  11: 	<base_part class="door" type="7120" name="glass_door_3m_2m" max_health="5000" repair_with="SheetMetal" repair_sound="">
+  12  		<door filename="Objects/NationZ/basebuilding/glass/glass_door_3m_2m.cgf" rotate_base="0" move_range="1.9" move_speed="2" move_axis="x" sound_open="Play_industrial_garage_door_open" sound_opened="" sound_close="Play_industrial_garage_door_close" sound_closed="" sound_lock="Play_door_lock" sound_unlock="Play_door_unlock"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\glass\glass_doorway_3m_2m.xml:
+  10  
+  11: 	<base_part class="static" type="7119" name="glass_doorway_3m_2m" max_health="5000" repair_with="SheetMetal" repair_sound="">
+  12  		<static filename="Objects/NationZ/basebuilding/glass/glass_doorway_3m_2m.cgf" />
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\glass\glass_doorway_3m_4m_side.xml:
+  10  
+  11: 	<base_part class="static" type="7122" name="glass_doorway_3m_4m_side" max_health="5000" repair_with="SheetMetal" repair_sound="">
+  12  		<static filename="Objects/NationZ/basebuilding/glass/glass_doorway_3m_4m_side.cgf" />
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\glass\glass_doorway_3m_4m_v2.xml:
+  10  
+  11: 	<base_part class="static" type="7117" name="glass_doorway_3m_4m_v2" max_health="5000" repair_with="SheetMetal" repair_sound="">
+  12  		<static filename="Objects/NationZ/basebuilding/glass/glass_doorway_3m_4m_v2.cgf" />
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\glass\glass_doorway_3m_4m.xml:
+  10  
+  11: 	<base_part class="static" type="7118" name="glass_doorway_3m_4m" max_health="5000" repair_with="SheetMetal" repair_sound="">
+  12  		<static filename="Objects/NationZ/basebuilding/glass/glass_doorway_3m_4m.cgf" />
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\glass\glass_doorway_3m_8m.xml:
+  10  
+  11: 	<base_part class="static" type="7116" name="glass_doorway_3m_8m" max_health="5000" repair_with="SheetMetal" repair_sound="">
+  12  		<static filename="Objects/NationZ/basebuilding/glass/glass_doorway_3m_8m.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\glass\glass_wall_1_3m_2m.xml:
+  10  
+  11: 	<base_part class="static" type="7115" name="glass_wall_1_3m_2m" max_health="5000" repair_with="SheetMetal" repair_sound="">
+  12  		<static filename="Objects/NationZ/basebuilding/glass/glass_wall_1_3m_2m.cgf" />
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\glass\glass_wall_1_3m_4m.xml:
+  10  
+  11: 	<base_part class="static" type="7114" name="glass_wall_1_3m_4m" max_health="5000" repair_with="SheetMetal" repair_sound="">
+  12  		<static filename="Objects/NationZ/basebuilding/glass/glass_wall_1_3m_4m.cgf" />
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\glass\glass_wall_1_3m_8m.xml:
+  10  
+  11: 	<base_part class="static" type="7113" name="glass_wall_1_3m_8m" max_health="5000" repair_with="SheetMetal" repair_sound="">
+  12  		<static filename="Objects/NationZ/basebuilding/glass/glass_wall_1_3m_8m.cgf" />
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\glass\glass_wall_1_3m_12m.xml:
+  10  
+  11: 	<base_part class="static" type="7112" name="glass_wall_1_3m_12m" max_health="5000" repair_with="SheetMetal" repair_sound="">
+  12  		<static filename="Objects/NationZ/basebuilding/glass/glass_wall_1_3m_12m.cgf" />
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\glass\glass_wall_1_3m_16m.xml:
+  10  
+  11: 	<base_part class="static" type="7111" name="glass_wall_1_3m_16m" max_health="5000" repair_with="SheetMetal" repair_sound="">
+  12  		<static filename="Objects/NationZ/basebuilding/glass/glass_wall_1_3m_16m.cgf" />
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\glass\glass_wall_2m_2m.xml:
+  10  
+  11: 	<base_part class="static" type="7110" name="glass_wall_2m_2m" max_health="5000" repair_with="SheetMetal" repair_sound="">
+  12  		<static filename="Objects/NationZ/basebuilding/glass/glass_wall_2m_2m.cgf" />
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\glass\glass_wall_2m_4m.xml:
+  10  
+  11: 	<base_part class="static" type="7109" name="glass_wall_2m_4m" max_health="5000" repair_with="SheetMetal" repair_sound="">
+  12  		<static filename="Objects/NationZ/basebuilding/glass/glass_wall_2m_4m.cgf" />
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\glass\glass_wall_2m_8m.xml:
+  10  
+  11: 	<base_part class="static" type="7108" name="glass_wall_2m_8m" max_health="5000" repair_with="SheetMetal" repair_sound="">
+  12  		<static filename="Objects/NationZ/basebuilding/glass/glass_wall_2m_8m.cgf" />
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\glass\glass_wall_2m_12m.xml:
+  10  
+  11: 	<base_part class="static" type="7107" name="glass_wall_2m_12m" max_health="5000" repair_with="SheetMetal" repair_sound="">
+  12  		<static filename="Objects/NationZ/basebuilding/glass/glass_wall_2m_12m.cgf" />
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\glass\glass_wall_2m_16m.xml:
+  10  
+  11: 	<base_part class="static" type="7106" name="glass_wall_2m_16m" max_health="5000" repair_with="SheetMetal" repair_sound="">
+  12  		<static filename="Objects/NationZ/basebuilding/glass/glass_wall_2m_16m.cgf" />
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\glass\glass_wall_3m_2m.xml:
+  10  
+  11: 	<base_part class="static" type="7105" name="glass_wall_3m_2m" max_health="5000" repair_with="SheetMetal" repair_sound="">
+  12  		<static filename="Objects/NationZ/basebuilding/glass/glass_wall_3m_2m.cgf" />
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\glass\glass_wall_3m_4m.xml:
+  10  
+  11: 	<base_part class="static" type="7104" name="glass_wall_3m_4m" max_health="5000" repair_with="SheetMetal" repair_sound="">
+  12  		<static filename="Objects/NationZ/basebuilding/glass/glass_wall_3m_4m.cgf" />
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\glass\glass_wall_3m_8m.xml:
+  10  
+  11: 	<base_part class="static" type="7103" name="glass_wall_3m_8m" max_health="5000" repair_with="SheetMetal" repair_sound="">
+  12  		<static filename="Objects/NationZ/basebuilding/glass/glass_wall_3m_8m.cgf" />
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\glass\glass_wall_3m_12m.xml:
+  10  
+  11: 	<base_part class="static" type="7102" name="glass_wall_3m_12m" max_health="5000" repair_with="SheetMetal" repair_sound="">
+  12  		<static filename="Objects/NationZ/basebuilding/glass/glass_wall_3m_12m.cgf" />
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\glass\glass_wall_3m_16m.xml:
+  10  
+  11: 	<base_part class="static" type="7121" name="glass_wall_3m_16m" max_health="5000" repair_with="SheetMetal" repair_sound="">
+  12  		<static filename="Objects/NationZ/basebuilding/glass/glass_wall_3m_16m.cgf" />
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\metal\arcade_cabinet_miscreated.xml:
+  12  
+  13: 	<base_part class="static" type="7629" name="arcade_cabinet_miscreated" max_health="10000" repair_with="SheetMetal" towable="1">
+  14  		<static filename="Objects/basebuilding/other/arcade_cabinet_miscreated/arcade_cabinet_miscreated.cgf" material="objects\basebuilding\other\arcade_cabinet_miscreated\arcade_cabinet_miscreated.mtl"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\metal\arcade_cabinet_mrspacman.xml:
+  12  
+  13: 	<base_part class="static" type="7630" name="arcade_cabinet_mrspacman" max_health="10000" repair_with="SheetMetal" towable="1">
+  14  		<static filename="Objects/basebuilding/other/arcade_cabinet_mrspacman/arcade_cabinet_mrspacman.cgf" material="objects/basebuilding/other/arcade_cabinet_mrspacman/arcade_cabinet_mrspacman.mtl"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\metal\arcade_cabinet_simpsons.xml:
+  12  
+  13: 	<base_part class="static" type="7631" name="arcade_cabinet_simpsons" max_health="10000" repair_with="SheetMetal" towable="1">
+  14  		<static filename="Objects/basebuilding/other/arcade_cabinet_simpsons/arcade_cabinet_simpsons.cgf" material="objects/basebuilding/other/arcade_cabinet_simpsons/arcade_cabinet_simpsons.mtl"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\metal\arcade_cabinet_twitch.xml:
+  12  
+  13: 	<base_part class="static" type="7632" name="arcade_cabinet_twitch" max_health="10000" repair_with="SheetMetal" towable="1">
+  14  		<static filename="Objects/basebuilding/other/arcade_cabinet_twitch/arcade_cabinet_twitch.cgf" material="objects/basebuilding/other/arcade_cabinet_twitch/arcade_cabinet_twitch.mtl"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\misc\tire_1m.xml:
+  10  
+  11: 	<base_part class="static" type="79" name="tire_1m" max_health="2000" repair_with="DuctTape">
+  12  		<static filename="Objects/basebuilding/misc/tire_1m.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\misc\tire_single.xml:
+  10  
+  11: 	<base_part class="static" type="78" name="tire_single" repair_with="DuctTape">
+  12  		<static filename="Objects/basebuilding/misc/tire_single.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\traps\wood_punji_poison_2m_2m.xml:
+  10  
+  11: 	<base_part class="static" type="7" name="wood_punji_poison_2m_2m" max_health="2000" repair_sound="Play_wall_repair">
+  12  		<static filename="Objects/basebuilding/wood/punji_trap_poisoned.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\wood\wood_chair.xml:
+  10  
+  11: 	<base_part class="static" type="70" name="wood_chair" max_health="750" repair_sound="Play_wall_repair">
+  12  		<static filename="Objects/basebuilding/wood/wood_chair.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\wood\wood_column_torch_3m.xml:
+  10  
+  11: 	<base_part class="static" type="72" name="wood_column_torch_3m" max_health="2000" repair_sound="Play_wall_repair">
+  12  		<static filename="Objects/basebuilding/wood/wood_column_torch_3m.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\wood\wood_column_torch_4m.xml:
+  10  
+  11: 	<base_part class="static" type="77" name="wood_column_torch_4m" max_health="2500" repair_sound="Play_wall_repair">
+  12  		<static filename="Objects/basebuilding/wood/wood_column_torch_4m.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\wood\wood_table.xml:
+  10  
+  11: 	<base_part class="static" type="71" name="wood_table" max_health="1000" repair_sound="Play_wall_repair">
+  12  		<static filename="Objects/basebuilding/wood/wood_table.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\wood\wood_walkway_curve_1_3m_4m_4m.xml:
+  10  
+  11: 	<base_part class="static" type="74" name="wood_walkway_curve_1_3m_4m_4m" repair_sound="Play_wall_repair">
+  12  		<static filename="Objects/basebuilding/wood/walkway_curved_1_3m_4m_4m.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\wood\wood_walkway_curve_2m_4m_4m.xml:
+  10  
+  11: 	<base_part class="static" type="73" name="wood_walkway_curve_2m_4m_4m" repair_sound="Play_wall_repair">
+  12  		<static filename="Objects/basebuilding/wood/walkway_curved_2m_4m_4m.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\wood\wood_wall_curve_1_3m_4m.xml:
+  10  
+  11: 	<base_part class="static" max_health="10000" type="76" name="wood_wall_curve_1_3m_4m" repair_sound="Play_wall_repair">
+  12  		<static filename="Objects/basebuilding/wood/wall_curved_1_3m_4m.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\basebuilding\wood\wood_wall_curve_2m_4m.xml:
+  10  
+  11: 	<base_part class="static" max_health="10000" type="75" name="wood_wall_curve_2m_4m" repair_sound="Play_wall_repair">
+  12  		<static filename="Objects/basebuilding/wood/wall_curved_2m_4m.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\Consumables\Cooking\Cookoven.xml:
+   9  
+  10: 	<base_part class="static" type="7701" name="Cookoven" max_health="2000" repair_with="SheetMetal">
+  11  		<static filename="Objects/props/elecStove/dws_elecstove.cgf" helper_food="food"/>
+
+nodeErrorID\scripts\entities\items\xml\Consumables\Cooking\JuiceMaker.xml:
+   9  
+  10: 	<base_part class="static" type="7706" name="JuiceMaker" max_health="500" repair_with="SheetMetal" limit="1">
+  11  		<static filename="Objects\props\diner_assets\coffee_machine_hotplate\KitchenProp_CoffeeMachineB.cgf"/>
+
+nodeErrorID\scripts\entities\items\xml\SCAAMCuartas\SCAAMAmalgamatedTerminal_packed.xml:
+   9  
+  10: 	<base_part class="entity" type="7634" name="SCAAMAmalgamatedTerminal_packed" max_health="6500" limit="1" repair_sound="Play_wall_repair">
+  11  		<entity class="SCAAMAmalgamatedTerminal"/>
+
+nodeErrorID\scripts\entities\items\xml\SCAAMCuartas\SCAAMCCTVCamera.xml:
+  10  
+  11: 	<base_part class="static" type="7635" name="SCAAMCCTVCamera" max_health="3000" repair_with="SheetMetal">
+  12  		<static filename="objects/SCAAMCuartas/CCTVCamera/camera1.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\misc\tire_1m.xml:
+  10  
+  11: 	<base_part class="static" type="79" name="tire_1m" max_health="2000" repair_with="DuctTape">
+  12  		<static filename="objects/basebuilding/misc/tire_1m.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\misc\tire_single.xml:
+  10  
+  11: 	<base_part class="static" type="78" name="tire_single" repair_with="DuctTape">
+  12  		<static filename="objects/basebuilding/misc/tire_single.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\traps\wood_punji_poison_2m_2m.xml:
+  10  
+  11: 	<base_part class="static" type="7" name="wood_punji_poison_2m_2m" max_health="2000" repair_sound="Play_wall_repair">
+  12  		<static filename="objects/basebuilding/wood/punji_trap_poisoned.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\wood\wood_chair.xml:
+  10  
+  11: 	<base_part class="static" type="70" name="wood_chair" max_health="750" repair_sound="Play_wall_repair">
+  12  		<static filename="objects/basebuilding/wood/wood_chair.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\wood\wood_column_torch_3m.xml:
+  10  
+  11: 	<base_part class="static" type="72" name="wood_column_torch_3m" max_health="2000" repair_sound="Play_wall_repair">
+  12  		<static filename="objects/basebuilding/wood/wood_column_torch_3m.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\wood\wood_column_torch_4m.xml:
+  10  
+  11: 	<base_part class="static" type="77" name="wood_column_torch_4m" max_health="2500" repair_sound="Play_wall_repair">
+  12  		<static filename="objects/basebuilding/wood/wood_column_torch_4m.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\wood\wood_table.xml:
+  10  
+  11: 	<base_part class="static" type="71" name="wood_table" max_health="1000" repair_sound="Play_wall_repair">
+  12  		<static filename="objects/basebuilding/wood/wood_table.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\wood\wood_walkway_curve_1_3m_4m_4m.xml:
+  10  
+  11: 	<base_part class="static" type="74" name="wood_walkway_curve_1_3m_4m_4m" repair_sound="Play_wall_repair">
+  12  		<static filename="objects/basebuilding/wood/walkway_curved_1_3m_4m_4m.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\wood\wood_walkway_curve_2m_4m_4m.xml:
+  10  
+  11: 	<base_part class="static" type="73" name="wood_walkway_curve_2m_4m_4m" repair_sound="Play_wall_repair">
+  12  		<static filename="objects/basebuilding/wood/walkway_curved_2m_4m_4m.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\wood\wood_wall_curve_1_3m_4m.xml:
+  10  
+  11: 	<base_part class="static" type="76" name="wood_wall_curve_1_3m_4m" repair_sound="Play_wall_repair">
+  12  		<static filename="objects/basebuilding/wood/wall_curved_1_3m_4m.cgf"/>
+
+nodeErrorID\scripts.pak\Scripts\Entities\Items\XML\basebuilding\wood\wood_wall_curve_2m_4m.xml:
+  10  
+  11: 	<base_part class="static" type="75" name="wood_wall_curve_2m_4m" repair_sound="Play_wall_repair">
+  12  		<static filename="objects/basebuilding/wood/wall_curved_2m_4m.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\misc\tire_1m.xml:
+  10  
+  11: 	<base_part class="static" type="79" name="tire_1m" max_health="2000" repair_with="DuctTape">
+  12  		<static filename="objects/basebuilding/misc/tire_1m.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\misc\tire_single.xml:
+  10  
+  11: 	<base_part class="static" type="78" name="tire_single" repair_with="DuctTape">
+  12  		<static filename="objects/basebuilding/misc/tire_single.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\traps\wood_punji_poison_2m_2m.xml:
+  10  
+  11: 	<base_part class="static" type="7" name="wood_punji_poison_2m_2m" max_health="2000" repair_sound="Play_wall_repair">
+  12  		<static filename="objects/basebuilding/wood/punji_trap_poisoned.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\wood\wood_chair.xml:
+  10  
+  11: 	<base_part class="static" type="70" name="wood_chair" max_health="750" repair_sound="Play_wall_repair">
+  12  		<static filename="objects/basebuilding/wood/wood_chair.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\wood\wood_column_torch_3m.xml:
+  10  
+  11: 	<base_part class="static" type="72" name="wood_column_torch_3m" max_health="2000" repair_sound="Play_wall_repair">
+  12  		<static filename="objects/basebuilding/wood/wood_column_torch_3m.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\wood\wood_column_torch_4m.xml:
+  10  
+  11: 	<base_part class="static" type="77" name="wood_column_torch_4m" max_health="2500" repair_sound="Play_wall_repair">
+  12  		<static filename="objects/basebuilding/wood/wood_column_torch_4m.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\wood\wood_table.xml:
+  10  
+  11: 	<base_part class="static" type="71" name="wood_table" max_health="1000" repair_sound="Play_wall_repair">
+  12  		<static filename="objects/basebuilding/wood/wood_table.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\wood\wood_walkway_curve_1_3m_4m_4m.xml:
+  10  
+  11: 	<base_part class="static" type="74" name="wood_walkway_curve_1_3m_4m_4m" repair_sound="Play_wall_repair">
+  12  		<static filename="objects/basebuilding/wood/walkway_curved_1_3m_4m_4m.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\wood\wood_walkway_curve_2m_4m_4m.xml:
+  10  
+  11: 	<base_part class="static" type="73" name="wood_walkway_curve_2m_4m_4m" repair_sound="Play_wall_repair">
+  12  		<static filename="objects/basebuilding/wood/walkway_curved_2m_4m_4m.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\wood\wood_wall_curve_1_3m_4m.xml:
+  10  
+  11: 	<base_part class="static" type="76" name="wood_wall_curve_1_3m_4m" repair_sound="Play_wall_repair">
+  12  		<static filename="objects/basebuilding/wood/wall_curved_1_3m_4m.cgf"/>
+
+nodeErrorID\ScriptsOriginal\Entities\Items\XML\basebuilding\wood\wood_wall_curve_2m_4m.xml:
+  10  
+  11: 	<base_part class="static" type="75" name="wood_wall_curve_2m_4m" repair_sound="Play_wall_repair">
+  12  		<static filename="objects/basebuilding/wood/wall_curved_2m_4m.cgf"/>
