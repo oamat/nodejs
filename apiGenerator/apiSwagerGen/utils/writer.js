@@ -10,7 +10,8 @@ exports.respondWithCode = function(code, payload) {
 var writeJson = exports.writeJson = function(response, arg1, arg2) {
   var code;
   var payload;
-
+  console.log(arg1 && arg1);
+  console.log(JSON.stringify(ResponsePayload));
   if(arg1 && arg1 instanceof ResponsePayload) {
     writeJson(response, arg1.payload, arg1.code);
     return;

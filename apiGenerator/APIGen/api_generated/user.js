@@ -138,4 +138,21 @@ module.exports = {
   GS_CT_ERR_USER_NOT_FOUND,
   GS_CT_DELETED_SUCCESSFULLY,
   MODULE_NAME
+}function getUsers(req, res) {
+
+  try {
+    // Receiving parameters
+    var params = {
+      name: req.swagger.params.name.value,
+      sort: req.swagger.params.sort.value
+    };
+
+    // Call to service
+    var result = userService.getUsers(params);
+
+    // Returning the result
+    res.json(result);
+  } catch (error) {
+    controllerHelper.handleErrorResponse(MODULE_NAME, getUsers.name, error, res);
+  }
 }
