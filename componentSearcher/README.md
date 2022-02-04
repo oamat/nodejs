@@ -34,7 +34,7 @@
    - Docker: you can copy dump.rdb for example in /home/user/dev/rendiment/data and run docker like that :
            
 ```bash
-            # docker run -p 127.0.0.1:6379:6379 -v /home/user/dev/rendiment/data:/data --name crsearcher-redis -d redis --save 60 1            
+            # docker run -p 127.0.0.1:6379:6379 -v /home/user/dev/data:/data --name crsearcher-redis -d redis --save 60 1            
 ```
 ## Manual
 - There are 2 programs :
@@ -77,7 +77,7 @@ There are 2 JSON file init.json with basic config always you can find in path '.
     "RedisPort": "6379",    // Redis port ( 6379 by default). 
 
     "JSONConfigFile": true,  // true if you want to load a config.json file of the next path param JSONConfigFilePath (only for batch version). 
-    "JSONConfigFilePath": "./results/inputs/SNs/config.json"   // path of config.json with all configs for appBatch.js.
+    "JSONConfigFilePath": "./results/configs/config.json"   // path of config.json with all configs for appBatch.js.
 }
 ```
 ## BATCH CONFIG.JSON PARAMS (config.json)

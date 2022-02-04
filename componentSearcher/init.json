@@ -6,5 +6,5 @@
     "RedisPort": "6379",  
     
     "JSONConfigFile": true, 
-    "JSONConfigFilePath": "./results/configs/configAlberto.json"        
+    "JSONConfigFilePath": "./results/configs/config.json"        
 }
