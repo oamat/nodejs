@@ -6,7 +6,7 @@ Several nodejs projects developed with different frameworks like loopback or clo
 *You can find other readme with instructions and descriptions in any folder (project).*
 
 -----------------------------------------------
-# How can I download a folder of this git repo
+# How can I download a subfolder of this git repo
 
 If you are willing to use git to do this, you can do a sparse checkout.  First of all you are going to start by creating an empty git repo locally, and then add the repository we want as a remote. This allows us to easily just checkout the folder we want :
 
