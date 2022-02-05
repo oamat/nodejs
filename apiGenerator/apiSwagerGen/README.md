@@ -32,7 +32,8 @@ or
 
 ```bash
     # swagger project edit
-    # swagger project start
+    # swagger project start  
+    # swagger project start -m  (mock objects)
 ```
 
 To view the Swagger UI interface:
