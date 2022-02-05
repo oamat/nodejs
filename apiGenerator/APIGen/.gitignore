@@ -40,7 +40,7 @@ node_modules/
 jspm_packages/
 package-lock.json
 swagger-codegen/
-api_generated/swagger/
+api_generated/
 
 
 
