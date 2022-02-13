@@ -26,6 +26,9 @@ api/helpers : util & helper methods
 api/configs : API configs (JSON)
 
 
+//`UPDATE projects SET name = ? WHERE id = ?`,  [name, id]
+//`DELETE FROM projects WHERE id = ?`, [id]
+
 ```bash
     - Nodejs Code Validation or Generated on https://editor.swagger.io/ 
 ```
@@ -36,5 +39,5 @@ api/configs : API configs (JSON)
     # git clone https://github.com/swagger-api/swagger-codegen
     # cd swagger-codegen
     # mvn clean package
-    # java -jar modules/swagger-codegen-cli/target/swagger-codegen-cli.jar generate -i E:/dev/nodejs/nodejs/apiGenerator/APIGen/yamls/swagger.yaml -l nodejs-server -o E:/dev/nodejs/nodejs/apiGenerator/APIGen/api_generated/swagger
+    # java -jar modules/swagger-codegen-cli/target/swagger-codegen-cli.jar generate -i E:/dev/nodejs/nodejs/apiGenerator/APIGen/config/swagger.yaml -l nodejs-server -o E:/dev/nodejs/nodejs/apiGenerator/APIGen/api_generated/swagger
 ```

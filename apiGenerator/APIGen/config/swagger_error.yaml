@@ -66,7 +66,7 @@ paths:
       - "GameSystem"
       summary: "game system list"
       description: "get the game system list"
-      operationId: "getGameSystems"
+      operationId: "getAllGameSystems"      
       produces:
       - "application/xml"
       - "application/json"
@@ -96,7 +96,7 @@ paths:
       operationId: "createGameSystem"
       parameters:
         - in: "body"
-          name: "GameSystem"
+          name: "gamesystem"
           description: "The Game System to create."
           schema:
             $ref: "#/definitions/GameSystem"
@@ -183,7 +183,7 @@ paths:
       tags:
       - "VideoGame"
       description: get the game list
-      operationId: getVideoGames
+      operationId: getAllVideoGames
       parameters:
         - name: name
           in: query
@@ -249,7 +249,7 @@ paths:
       tags:
       - "VideoGame"
       description: get a videogame
-      operationId: getVideoGameById
+      operationId: getOneVideoGameById
       parameters:
         - name: id
           type: string
@@ -428,8 +428,7 @@ definitions:
       videogames:
         type: array
         items:
-          $ref: "#/definitions/GetVideoGameResponse"  
-
+          $ref: "#/definitions/GetVideoGameResponse"
   GeneralResponse:
     type: object
     properties:

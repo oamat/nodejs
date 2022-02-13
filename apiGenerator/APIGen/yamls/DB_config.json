@@ -1,5 +1,0 @@
-{
-   "user":{"id":"int","name":"string", "psw":"string", "api_key":"string"},
-   "gamesystem":{"id":"int", "name":"string", "description":"string"},
-   "videogame":{"id":"int", "name":"string", "developer":"string", "gamesystem":"string", "genre":"string", "year":"int"}    
-}

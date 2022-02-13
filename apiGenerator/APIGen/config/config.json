@@ -1,0 +1,49 @@
+{
+   "language_type":"nodejs_express",
+   "persistence_type":"sqllite",
+   "db_properties":{ "path":"./db/sqllite_db.db"},
+   "yaml_swagger":"./config/swagger.yaml",
+   "definitions" : 
+   [
+      {
+         "x-swagger-router-controller":"Login",
+         "table_definition": 
+         {
+            "table":"Users",
+            "table_columns":{"id":"int","name":"string", "psw":"string", "api_key":"string"},            
+            "pk":"id",            
+            "custom_methods":[ 
+               { "method":"login", "sql":"SELECT * FROM USERS WHERE user=? AND password=?", "params": "user,password", "return":"login"},
+               { "method":"updatePassword", "sql":"UPDATE Users SET password=? WHERE ID=?", "params": "password,id", "return":"login"}
+            ]
+         }
+      },
+      {         
+         "x-swagger-router-controller":"GameSystem",
+         "input_object":"gamesystem",
+         "table_definition": 
+         {
+            "table":"GameSystems",
+            "params":"id,name,description,image",
+            "pk":"id",            
+            "table_columns":{"id":"int", "name":"string", "description":"string"},
+            "crud_methods":{"get":"getGameSystemByID", "getAll":"getGameSystems", "create": "createGameSystem", "update": "updateGameSystem", "delete": "deleteGameSystem"},
+            "custom_methods":[]
+         }
+      },
+      {         
+         "x-swagger-router-controller":"VideoGame",
+         "post_object":"definitions.VideoGame",
+         "put_object":"definitions.VideoGame",
+         "table_definition": 
+         {      
+            "table":"VideoGames",
+            "params":"id,name,developer,gamesystem,genre,year",
+            "pk":"id",
+            "table_columns":{"id":"int", "name":"string", "developer":"string", "gamesystem":"string", "genre":"string", "year":"int"},
+            "crud_methods":{"get":"getVideoGameByID", "getAll":"getVideoGames", "create": "createVideoGame", "update": "updateVideoGame", "delete": "deleteVideoGame"},
+            "custom_methods":[]                
+         }
+      }
+   ]    
+}
