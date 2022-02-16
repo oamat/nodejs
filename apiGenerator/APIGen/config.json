@@ -4,20 +4,7 @@
    "db_properties":{ "path":"./db/sqllite_db.db"},
    "yaml_swagger":"./config/swagger.yaml",
    "definitions" : 
-   [
-      {
-         "x-swagger-router-controller":"Login",
-         "table_definition": 
-         {
-            "table":"Users",
-            "table_columns":{"id":"int","name":"string", "psw":"string", "api_key":"string"},            
-            "pks":"id"                     
-         },
-         "custom_methods":[ 
-            { "method":"login", "sql":"SELECT * FROM USERS WHERE user=? AND password=?", "params": "user,password", "return":"login"},
-            { "method":"updatePassword", "sql":"UPDATE Users SET password=? WHERE ID=?", "params": "password,id", "return":"login"}
-         ]
-      },
+   [     
       {         
          "x-swagger-router-controller":"GameSystem",
          "table_definition": 
@@ -33,10 +20,24 @@
          "table_definition": 
          {      
             "table":"VideoGames",
-            "params":"id,name,developer,gamesystem,genre,year",
+            "table_columns":{"id":"int", "name":"string", "developer":"string", "gamesystem":"string", "genre":"string","year":"int" },       
             "pks":"id"
          },
-         "custom_methods":[]                
+         "custom_methods":[
+            { "method":"updateVideoGame", "sql":"UPDATE VideoGames SET name = ?, developer = ?, gamesystem = ? WHERE id = ?", "sql_params": "name,developer,gamesystem,id"}             
+         ]                
+      },
+      {
+         "x-swagger-router-controller":"Login",
+         "table_definition": 
+         {
+            "table":"Users",
+            "table_columns":{"id":"int","name":"string", "psw":"string", "api_key":"string"},            
+            "pks":"id"                     
+         },
+         "custom_methods":[ 
+            { "method":"login", "sql":"SELECT * FROM USERS WHERE user=? AND password=?", "sql_params": "user,password"}          
+         ]
       }
    ]    
 }

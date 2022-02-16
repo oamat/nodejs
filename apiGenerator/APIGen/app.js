@@ -1,5 +1,6 @@
 const Handlebars = require("handlebars");
 var fs = require('fs');
+var path = require('path');
 var YAML = require('yaml');
 
 // example names: 
@@ -10,13 +11,13 @@ var YAML = require('yaml');
 
 const config = JSON.parse(fs.readFileSync('./config.json', 'utf8'));
 const yaml = YAML.parse(fs.readFileSync(config.yaml_swagger, 'utf8'));
+
 //LOAD YAML ARRAYS
 var controllersList = new Set();
 var arrayOperationsByController = [];
 var arrayParamsByOperation = [];
 var arrayObjectsByOperation = [];
 var arrayParamsByObject = [];
-
 
 //LOAD JSON ARRAYS
 var json_ControllersList = new Set();
@@ -28,49 +29,69 @@ const crudMethod = new Set(["getOne", "getAll", "create", "update", "delete"]);
 
 
 const init = () => {
-
+  
   loadYaml();
   loadJSON();
+  copyFolderRecursiveSync('/api_generated/swagger','/api_generated/output/api');
 
-  const crud = fs.readFileSync('./templates/nodejs_express/sqllite/sqllite_crud_repo.js', 'utf8');
-  const service = fs.readFileSync('./templates/nodejs_express/sqllite/sqllite_crud_service.js', 'utf8');
-  const newmethod_repo = fs.readFileSync('./templates/nodejs_express/sqllite/sqllite_get_method.js', 'utf8');
-  const newmethod_service = fs.readFileSync('./templates/nodejs_express/sqllite/sqllite_add_service.js', 'utf8');
-
-  let repo_template = Handlebars.compile(crud);
-  let service_template = Handlebars.compile(service);
-  let newmethods_repo_template = Handlebars.compile(newmethod_repo);
-  let newmethods_service_template = Handlebars.compile(newmethod_service);
-
-  let outputRepo = '';
+  let outputRepository = '';
+  let outputService = '';
+  let parameters = {};
   // agafo method, miro si és new o crud, reviso params i genero codi. 
-  for (let controller of controllersList) { //iterate controllers API
-    //console.log(controller);
-    outputRepo = '';
+  for (let controller of controllersList) { //iterate controllers API  
+    outputRepository = getTemplate('sqllite_base_repository.js');
+    parameters.controller = controller;
+    outputService = getTemplate('sqllite_base_service.js', parameters);
     for (let method of arrayOperationsByController[controller]) { //iterate operations by controller
       //console.log("  -" + method);
-      if (json_arrayConfigByOperationAndController[controller + '.' + method]) {  //custom_methods 
-        console.log("@@Custom method");
+      let controllerAndOperation = controller + '.' + method;
+      if (json_arrayConfigByOperationAndController[controllerAndOperation]) {  //custom_methods 
+        //console.log(json_arrayConfigByOperationAndController[controllerAndOperation]);
+        //console.log(json_arrayConfigByOperationAndController[controllerAndOperation].method);
+
+        if (json_arrayConfigByOperationAndController[controllerAndOperation].method != null
+          && json_arrayConfigByOperationAndController[controllerAndOperation].sql != null
+          && json_arrayConfigByOperationAndController[controllerAndOperation].sql_params != null
+        ) {
+
+          let arrayMethodParams = getMethodParams(method);
+          parameters.method_name = json_arrayConfigByOperationAndController[controllerAndOperation].method
+          parameters.method_params = arrayMethodParams[0];
+          parameters.object_to_params = arrayMethodParams[1];
+          checkCustomParams(arrayMethodParams[2], json_arrayConfigByOperationAndController[controllerAndOperation].sql_params); // we did in LoadJSON
+
+          parameters.method_sql = json_arrayConfigByOperationAndController[controllerAndOperation].sql
+          parameters.sql_params = json_arrayConfigByOperationAndController[controllerAndOperation].sql_params
+          parameters.sql_get_or_run = getSqlType(json_arrayConfigByOperationAndController[controllerAndOperation].sql);
+          console.log(parameters);
+          outputRepository = outputRepository + getTemplate('sqllite_method_custom.js', parameters);
+          outputService = outputService + getTemplate('sqllite_method_service.js', parameters);
+
+        } else {
+          console.error('\x1b[31m', "method:" + method + " is not a valid custom method, please check in config.json:custom_methods or change first words name in yaml:operationId for standard: getOne, getAll, create, update or delete.");
+          process.exit();
+        }
+
       } else {           //CRUD method
         let type = method.substring(0, 6);
         //console.log(type);
         if (crudMethod.has(type)) {
-          let parameters = {};
           let arrayMethodParams = getMethodParams(method);
           parameters.method_name = method;
-          parameters.method_params = arrayMethodParams[0];          
-          parameters.object_to_params = arrayMethodParams[1];          
+          parameters.method_params = arrayMethodParams[0];
+          parameters.object_to_params = arrayMethodParams[1];
           let arraySqlQueryParams = getSqlQueryParams(type, arrayMethodParams[2], json_arrayTableByController[controller].pks.split(','));
           parameters.sql_table = json_arrayTableByController[controller].table;
           parameters.sql_query_params = arraySqlQueryParams[0];
           parameters.sql_query_values = arraySqlQueryParams[1];
           parameters.sql_params = arraySqlQueryParams[2];
-          outputRepo = outputRepo + getTemplate('sqllite_method_' + type + '.js', parameters)
+          outputRepository = outputRepository + getTemplate('sqllite_method_' + type + '.js', parameters);
+          outputService = outputService + getTemplate('sqllite_method_service.js', parameters);
           //              parameters.sql_params = getSqlParams(); 
 
 
         } else {
-          console.error('\x1b[31m', method + " it is not a CRUD method, it must to configure it in config.json:new_methods or change first words name in yaml:operationId for standard: getOne, getAll, create, update or delete.");
+          console.error('\x1b[31m', "mehod:" + method + " it is not a CRUD method, it must to configure it in config.json:custom_methods or change first words name in yaml:operationId for standard: getOne, getAll, create, update or delete.");
           process.exit();
         }
 
@@ -91,54 +112,38 @@ const init = () => {
 
       }
     }
-    writeRepo(controller, outputRepo);
-    //writeService(controller, outputService);
+    writeRepo(controller, outputRepository);
+    writeService(controller + 'Service', outputService);
+
+  }
+}
+
+const checkCustomParams = (simpleparams, sql_params) => {
+  let array_sql_params = sql_params.split(',');
+  for (param of array_sql_params) {
+    if (simpleparams.indexOf(param) < 0) {
+      console.error('\x1b[31m', "method:" + method + " is not a valid custom method, please check sql_parameters in config.json:custom_methods or change params in yaml operationId:" + method);
+      process.exit();
+    }
   }
 
+}
 
-
-  /* let outputRepo = repo_template(definition);
-  let outputService = service_template(definition);
-
-  writeRepo(definition.repo_file, outputRepo);
-  writeService(definition.service_file, outputService); */
-
-
-  /*   for (let i in definitions) { //iterate attributes
-  
-      let definition = definitions[i];
-  
-      let mod_params_revised = prepareParams(definition.table_definition.params, definition.table_definition.pks);
-  
-      let mod_params = mod_params_revised[0].toString();
-      let mod_params_query = mod_params_revised[1].toString();
-      let mod_query_number = mod_params_revised[2].toString();
-  
-      definition.mod_params = mod_params;
-      definition.mod_query_number = mod_query_number;
-      definition.mod_params_query = mod_params_query;
-  
-      definition.service_file = definition.api_name + 'Service.js';
-      definition.repo_file = definition.api_name + 'Repo.js';
-  
-  
-      let outputRepo = repo_template(definition);
-      let outputService = service_template(definition);
-  
-      let custom_methods = definition.table_definition.custom_methods;
-  
-      if (custom_methods.length > 0) {
-        for (let j in custom_methods) { //iterate attributes    
-          let outputRepo_new = newmethods_repo_template(custom_methods[j]);
-          let outputService_new = newmethods_service_template(custom_methods[j]);
-          outputRepo = outputRepo + outputRepo_new;
-          outputService = outputService + outputService_new;
-        }
-      }
-  
-      writeRepo(definition.repo_file, outputRepo);
-      writeService(definition.service_file, outputService);
-    }*/
+const getSqlType = (sql) => {
+  let firstChar = sql.substring(0, 1).toUpperCase(); //Select, Delete, Insert or Update.
+  switch (firstChar) {
+    case 'S':
+      return 'get';
+    case 'D':
+      return 'run';
+    case 'I':
+      return 'run';
+    case 'U':
+      return 'run';
+    default:
+      console.error('\x1b[31m', "SQL:" + sql + " it is not valid, it must to configure correct SQL in config.json:custom_methods.");
+      process.exit();
+  }
 }
 
 const getMethodParams = (method) => {
@@ -152,7 +157,7 @@ const getMethodParams = (method) => {
   let setParams = arrayParamsByOperation[method];
 
 
-  for (let param of setParams) {    
+  for (let param of setParams) {
     //console.log(param);
     if (param.substring(0, 1) == '#') {
       param = param.substring(1, param.length);
@@ -172,9 +177,9 @@ const getMethodParams = (method) => {
     //console.log("->" + param);
   }
   method_params = arrayToString(array_method_params, ', ');
- /*  console.log(object_to_params);
-  console.log(method_params);
-  console.log(simple_params); */
+  /*  console.log(object_to_params);
+   console.log(method_params);
+   console.log(simple_params); */
   return [method_params, object_to_params, simple_params];
 }
 
@@ -229,13 +234,13 @@ const getSqlQueryParams = (type, params, pks) => {
     case 'update':
 
       for (let index in params) {
-        
+
         if (pks.indexOf(params[index]) !== -1) {  //exist
           array_sql_query_values.push(params[index] + ' = ?');
-          array_pks.push(params[index]);          
+          array_pks.push(params[index]);
         } else {
           array_sql_query_params.push(params[index] + ' = ?');
-          array_sql_params.push(params[index]);                   
+          array_sql_params.push(params[index]);
         }
       }
       sql_query_params = arrayToString(array_sql_query_params, ', ');
@@ -244,12 +249,16 @@ const getSqlQueryParams = (type, params, pks) => {
       sql_params = arrayToString(array_sql_params, ', ');
       break;
     case 'delete':
-      for (let index in params) {      
-          array_sql_query_params.push(params[index] + ' = ?');                
+      for (let index in params) {
+        array_sql_query_params.push(params[index] + ' = ?');
       }
       sql_query_params = arrayToString(array_sql_query_params, ' AND ');
       sql_params = arrayToString(params, ', ');
       break;
+    default:
+      console.error('\x1b[31m', "type method:" + type + " it is not valid, it must to configure correct method in yaml:operationId.");
+      process.exit();
+
   }
 
   return [sql_query_params, sql_query_values, sql_params];
@@ -392,17 +401,13 @@ const loadJSON = () => {
     if (custom_methods.length > 0) {
       for (let index in custom_methods) {
         let operation = custom_methods[index].method;
-        json_arrayOperationsByController[controller].add(operation);
-        let controllerAndOperation = controller + '.' + operation;
-
-
-
-
-        if (json_arrayConfigByOperationAndController[controllerAndOperation] != null) {
-          json_arrayConfigByOperationAndController[controllerAndOperation].add(custom_methods[index]);
+        if (arrayOperationsByController[controller].has(operation)) {
+          json_arrayOperationsByController[controller].add(operation);
+          let controllerAndOperation = controller + '.' + operation;
+          json_arrayConfigByOperationAndController[controllerAndOperation] = custom_methods[index]; //we always have 1 json in controllerAndOperation key    
         } else {
-          json_arrayConfigByOperationAndController[controllerAndOperation] = new Set();
-          json_arrayConfigByOperationAndController[controllerAndOperation].add(custom_methods[index]);
+          console.error('\x1b[31m', "method:" + operation + " in controller " + controller + " is not a valid custom method because it doesn't exist in YAML, please remove method from config.json:custom_methods or add the method in yaml operationId in controller:" + controller);
+          process.exit();
         }
 
       }
@@ -422,5 +427,45 @@ const saveInSetIntoArray = (array, key, object) => {
   }
   return array;
 }
+
+
+
+function copyFileSync(source, target) {
+
+  var targetFile = target;
+
+  // If target is a directory, a new file with the same name will be created
+  if (fs.existsSync(target)) {
+    if (fs.lstatSync(target).isDirectory()) {
+      targetFile = path.join(target, path.basename(source));
+    }
+  }
+
+  fs.writeFileSync(targetFile, fs.readFileSync(source));
+}
+
+function copyFolderRecursiveSync(source, target) {
+  var files = [];
+
+  // Check if folder needs to be created or integrated
+  var targetFolder = path.join(target, path.basename(source));
+  if (!fs.existsSync(targetFolder)) {
+    fs.mkdirSync(targetFolder);
+  }
+
+  // Copy
+  if (fs.lstatSync(source).isDirectory()) {
+    files = fs.readdirSync(source);
+    files.forEach(function (file) {
+      var curSource = path.join(source, file);
+      if (fs.lstatSync(curSource).isDirectory()) {
+        copyFolderRecursiveSync(curSource, targetFolder);
+      } else {
+        copyFileSync(curSource, targetFolder);
+      }
+    });
+  }
+}
+
 
 init();
