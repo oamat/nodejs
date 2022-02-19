@@ -1,6 +1,9 @@
-const Handlebars = require("handlebars");
+const { exec } = require("child_process");
 var fs = require('fs');
 var path = require('path');
+
+const Handlebars = require("handlebars");
+
 var YAML = require('yaml');
 
 // example names: 
@@ -17,6 +20,7 @@ var controllersList = new Set();
 var arrayOperationsByController = [];
 var arrayParamsByOperation = [];
 var arrayObjectsByOperation = [];
+var arrayAllSimpleParamsByController = [];
 var arrayParamsByObject = [];
 
 //LOAD JSON ARRAYS
@@ -24,15 +28,15 @@ var json_ControllersList = new Set();
 var json_arrayOperationsByController = [];
 var json_arrayTableByController = [];
 var json_arrayConfigByOperationAndController = [];
+var json_arrayParamCorrelationByController = [];
 
 const crudMethod = new Set(["getOne", "getAll", "create", "update", "delete"]);
 
 
 const init = () => {
-  
   loadYaml();
   loadJSON();
-  copyFolderRecursiveSync('/api_generated/swagger','/api_generated/output/api');
+  //copyFolderRecursiveSync('./api_generated/swagger/', './output/api/');
 
   let outputRepository = '';
   let outputService = '';
@@ -41,6 +45,7 @@ const init = () => {
   for (let controller of controllersList) { //iterate controllers API  
     outputRepository = getTemplate('sqllite_base_repository.js');
     parameters.controller = controller;
+    parameters.repository_import = controller + '.js';
     outputService = getTemplate('sqllite_base_service.js', parameters);
     for (let method of arrayOperationsByController[controller]) { //iterate operations by controller
       //console.log("  -" + method);
@@ -63,13 +68,11 @@ const init = () => {
           parameters.method_sql = json_arrayConfigByOperationAndController[controllerAndOperation].sql
           parameters.sql_params = json_arrayConfigByOperationAndController[controllerAndOperation].sql_params
           parameters.sql_get_or_run = getSqlType(json_arrayConfigByOperationAndController[controllerAndOperation].sql);
-          console.log(parameters);
-          outputRepository = outputRepository + getTemplate('sqllite_method_custom.js', parameters);
+          outputRepository = outputRepository + getTemplate('sqllite_method_custom_' + parameters.sql_get_or_run + '.js', parameters);
           outputService = outputService + getTemplate('sqllite_method_service.js', parameters);
 
         } else {
-          console.error('\x1b[31m', "method:" + method + " is not a valid custom method, please check in config.json:custom_methods or change first words name in yaml:operationId for standard: getOne, getAll, create, update or delete.");
-          process.exit();
+          stopProgram("method:" + method + " is not a valid custom method, please check in config.json:custom_methods or change first words name in yaml:operationId for standard: getOne, getAll, create, update or delete.");
         }
 
       } else {           //CRUD method
@@ -80,7 +83,7 @@ const init = () => {
           parameters.method_name = method;
           parameters.method_params = arrayMethodParams[0];
           parameters.object_to_params = arrayMethodParams[1];
-          let arraySqlQueryParams = getSqlQueryParams(type, arrayMethodParams[2], json_arrayTableByController[controller].pks.split(','));
+          let arraySqlQueryParams = getSqlQueryParams(type, arrayMethodParams[2], json_arrayTableByController[controller].pks.split(','), controller);
           parameters.sql_table = json_arrayTableByController[controller].table;
           parameters.sql_query_params = arraySqlQueryParams[0];
           parameters.sql_query_values = arraySqlQueryParams[1];
@@ -91,39 +94,26 @@ const init = () => {
 
 
         } else {
-          console.error('\x1b[31m', "mehod:" + method + " it is not a CRUD method, it must to configure it in config.json:custom_methods or change first words name in yaml:operationId for standard: getOne, getAll, create, update or delete.");
-          process.exit();
+          stopProgram("mehod:" + method + " it is not a CRUD method, it must to configure it in config.json:custom_methods or change first words name in yaml:operationId for standard: getOne, getAll, create, update or delete.");
         }
 
       }
-      if (arrayParamsByOperation[method]) {
-        for (let param of arrayParamsByOperation[method]) {
-          //console.log("    -" + param);
-        }
-      } else {
-        if (arrayObjectsByOperation[method]) {
-          for (let object of arrayObjectsByOperation[method]) {
-            //console.log("    -" + object);
-            for (let param of arrayParamsByObject[object]) {
-              //console.log("      -" + param);
-            }
-          }
-        }
 
-      }
+
     }
     writeRepo(controller, outputRepository);
     writeService(controller + 'Service', outputService);
 
   }
+  writeConn();
+  copyYaml();
 }
 
 const checkCustomParams = (simpleparams, sql_params) => {
   let array_sql_params = sql_params.split(',');
   for (param of array_sql_params) {
     if (simpleparams.indexOf(param) < 0) {
-      console.error('\x1b[31m', "method:" + method + " is not a valid custom method, please check sql_parameters in config.json:custom_methods or change params in yaml operationId:" + method);
-      process.exit();
+      stopProgram("method:" + method + " is not a valid custom method, please check sql_parameters in config.json:custom_methods or change params in yaml operationId:" + method);
     }
   }
 
@@ -141,8 +131,7 @@ const getSqlType = (sql) => {
     case 'U':
       return 'run';
     default:
-      console.error('\x1b[31m', "SQL:" + sql + " it is not valid, it must to configure correct SQL in config.json:custom_methods.");
-      process.exit();
+      stopProgram("SQL:" + sql + " it is not valid, it must to configure correct SQL in config.json:custom_methods.");
   }
 }
 
@@ -196,7 +185,7 @@ const getTemplate = (template_name, params) => {
 }
 
 
-const getSqlQueryParams = (type, params, pks) => {
+const getSqlQueryParams = (type, params, pks, controller) => {
   let sql_query_params = '';
   let sql_params = '';
   let sql_query_values = '';//only for create or update
@@ -209,14 +198,14 @@ const getSqlQueryParams = (type, params, pks) => {
   switch (type) {
     case 'getOne':
       for (let index in params) {
-        array_sql_query_params.push(params[index] + ' = ?');
+        array_sql_query_params.push(changeSQLQueryCorrelation(controller, params[index]) + ' = ?');
       }
       sql_params = arrayToString(params, ', ');
       sql_query_params = arrayToString(array_sql_query_params, ' AND ');
       break;
     case 'getAll':
       for (let index in params) {
-        array_sql_query_params.push(params[index] + ' = ?');
+        array_sql_query_params.push(changeSQLQueryCorrelation(controller, params[index]) + ' = ?');
       }
       sql_query_params = arrayToString(array_sql_query_params, ' AND ');
       sql_params = arrayToString(params, ', ');
@@ -225,9 +214,10 @@ const getSqlQueryParams = (type, params, pks) => {
 
       for (let index in params) {
         array_sql_query_values.push('?');
+        array_sql_query_params.push(changeSQLQueryCorrelation(controller, params[index]));
       }
       sql_query_values = arrayToString(array_sql_query_values, ', ');
-      sql_query_params = arrayToString(params, ', ');
+      sql_query_params = arrayToString(array_sql_query_params, ', ');
       sql_params = arrayToString(params, ', ');
       break;
 
@@ -239,7 +229,7 @@ const getSqlQueryParams = (type, params, pks) => {
           array_sql_query_values.push(params[index] + ' = ?');
           array_pks.push(params[index]);
         } else {
-          array_sql_query_params.push(params[index] + ' = ?');
+          array_sql_query_params.push(changeSQLQueryCorrelation(controller, params[index]) + ' = ?');
           array_sql_params.push(params[index]);
         }
       }
@@ -250,18 +240,32 @@ const getSqlQueryParams = (type, params, pks) => {
       break;
     case 'delete':
       for (let index in params) {
-        array_sql_query_params.push(params[index] + ' = ?');
+        array_sql_query_params.push(changeSQLQueryCorrelation(controller, params[index]) + ' = ?');
       }
       sql_query_params = arrayToString(array_sql_query_params, ' AND ');
       sql_params = arrayToString(params, ', ');
       break;
     default:
-      console.error('\x1b[31m', "type method:" + type + " it is not valid, it must to configure correct method in yaml:operationId.");
-      process.exit();
-
+      stopProgram('\x1b[31m', "type method:" + type + " it is not valid, it must to configure correct method in yaml:operationId.");
   }
 
+  //console.log(sql_query_params);
   return [sql_query_params, sql_query_values, sql_params];
+}
+
+const changeSQLQueryCorrelation = (controller, param) => {
+  if (json_arrayParamCorrelationByController[controller])
+    if (json_arrayParamCorrelationByController[controller][param])
+      param = json_arrayParamCorrelationByController[controller][param];
+
+  //console.log(controller + " : " + param);
+  return param;
+
+}
+
+const stopProgram = (error) => {
+  console.error('\x1b[31m', error);
+  process.exit();
 }
 
 const prepareParams = (mod_params, pk) => {
@@ -285,23 +289,21 @@ const prepareParams = (mod_params, pk) => {
 }
 
 const checkFolders = () => {
-  if (!fs.existsSync('./output/')) {
-    fs.mkdirSync('./output/');
-  }
 
-  if (!fs.existsSync('./output/api/')) {
-    fs.mkdirSync('./output/api/');
-  }
-
-  if (!fs.existsSync('./output/api/repositories/')) {
-    fs.mkdirSync('./output/api/repositories/');
-  }
-
-  if (!fs.existsSync('./output/api/service/')) {
-    fs.mkdirSync('./output/api/service/');
-  }
+  checkFolder('./output/');
+  checkFolder('./output/api/');
+  checkFolder('./output/api/api/swagger/');
+  checkFolder('./output/api/repositories/');
+  checkFolder('./output/api/service/');
 
 }
+
+const checkFolder = (folder) => {
+  if (!fs.existsSync(folder)) {
+    fs.mkdirSync(folder);
+  }
+}
+
 const writeRepo = (file_name, output) => {
   checkFolders();
   let file_path = './output/api/repositories/' + file_name + '.js';
@@ -320,6 +322,40 @@ const writeService = (file_name, output) => {
     console.log('generated template > ' + file_path);
   });
 }
+
+const writeConn = () => {
+  let parameters = {};
+  parameters.database_path = config.db_properties.path;
+  let output = getTemplate('sqllite_conn.js', parameters);
+
+  let file_path = './output/api/repositories/sqllite_conn.js';
+  fs.writeFile(file_path, output, function (err) {
+    if (err) return console.log(err);
+    console.log('generated template > ' + file_path);
+  });
+
+}
+
+
+const copyYaml = () => {
+  let file_path_destination = './output/api/api/swagger.yaml'
+  let file_path_destination_too = './output/api/api/swagger/swagger.yaml'
+  let file_path_source = config.yaml_swagger;
+
+
+  fs.copyFile(file_path_source, file_path_destination, (err) => {
+    if (err) throw err;
+    console.log('copy depedency > ' + file_path_destination);
+  });
+
+  fs.copyFile(file_path_source, file_path_destination_too, (err) => {
+    if (err) throw err;
+    console.log('copy depedency > ' + file_path_destination_too);
+  });
+
+}
+
+
 
 const loadYaml = () => {
 
@@ -347,7 +383,7 @@ const loadYaml = () => {
               //console.log('    - ' + params[param].type);
               //console.log('    - ' + params[param].name);        
               saveInSetIntoArray(arrayParamsByOperation, operation, params[param].name);
-
+              saveInSetIntoArray(arrayAllSimpleParamsByController, controller, params[param].name);
 
             } else {
               let object_name = params[param].name; //complex object with reference
@@ -369,6 +405,7 @@ const loadYaml = () => {
                 //console.log('  -' + object_property);
                 //console.log('    #' + object_properties[object_property].name);
                 saveInSetIntoArray(arrayParamsByObject, object_name, object_property);
+                saveInSetIntoArray(arrayAllSimpleParamsByController, controller, object_property);
 
               }
             }
@@ -394,23 +431,42 @@ const loadJSON = () => {
     let definition_properties = definitions[definition];
     let controller = definition_properties['x-swagger-router-controller'];
     //console.log(controller);
-    json_ControllersList.add(controller);
-    json_arrayTableByController[controller] = definitions[definition].table_definition;
-    json_arrayOperationsByController[controller] = new Set();
-    let custom_methods = definitions[definition].custom_methods;
-    if (custom_methods.length > 0) {
-      for (let index in custom_methods) {
-        let operation = custom_methods[index].method;
-        if (arrayOperationsByController[controller].has(operation)) {
-          json_arrayOperationsByController[controller].add(operation);
-          let controllerAndOperation = controller + '.' + operation;
-          json_arrayConfigByOperationAndController[controllerAndOperation] = custom_methods[index]; //we always have 1 json in controllerAndOperation key    
-        } else {
-          console.error('\x1b[31m', "method:" + operation + " in controller " + controller + " is not a valid custom method because it doesn't exist in YAML, please remove method from config.json:custom_methods or add the method in yaml operationId in controller:" + controller);
-          process.exit();
+    if (controllersList.has(controller)) {
+      json_ControllersList.add(controller);
+      json_arrayTableByController[controller] = definitions[definition].table_definition;
+      let correlations = json_arrayTableByController[controller].table_columns_correlation;
+      if (Object.keys(correlations).length != 0) { //we have column correlations and we have to check
+        //console.log("correlations : " + controller);
+        //console.log(json_arrayTableByController[controller].table_columns_correlation);
+        for (let column in correlations) {
+          //console.log(`${column}: ${correlations[column]}`);
+          if (arrayAllSimpleParamsByController[controller].has(column)) {
+            if (json_arrayParamCorrelationByController[controller] == null) json_arrayParamCorrelationByController[controller] = {};
+            json_arrayParamCorrelationByController[controller][column] = correlations[column];
+            //console.log(json_arrayParamCorrelationByController[controller])
+          } else {
+            stopProgram("Controller:" + controller + " doesn't have this column " + column + " in table associated, please check swagger or config.json");
+          }
         }
-
       }
+
+      json_arrayOperationsByController[controller] = new Set();
+      let custom_methods = definitions[definition].custom_methods;
+      if (custom_methods.length > 0) {
+        for (let index in custom_methods) {
+          let operation = custom_methods[index].method;
+          if (arrayOperationsByController[controller].has(operation)) {
+            json_arrayOperationsByController[controller].add(operation);
+            let controllerAndOperation = controller + '.' + operation;
+            json_arrayConfigByOperationAndController[controllerAndOperation] = custom_methods[index]; //we always have 1 json in controllerAndOperation key    
+          } else {
+            stopProgram("method:" + operation + " in controller " + controller + " is not a valid custom method because it doesn't exist in YAML, please remove method from config.json:custom_methods or add the method in yaml operationId in controller:" + controller);
+          }
+
+        }
+      }
+    } else {
+      stopProgram("Controller:" + controller + " doesn't exist in swagger yaml, please check swagger or config.json");
     }
   }
   /*      console.log(json_arrayOperationsByController);
@@ -430,42 +486,43 @@ const saveInSetIntoArray = (array, key, object) => {
 
 
 
-function copyFileSync(source, target) {
 
-  var targetFile = target;
-
-  // If target is a directory, a new file with the same name will be created
-  if (fs.existsSync(target)) {
-    if (fs.lstatSync(target).isDirectory()) {
-      targetFile = path.join(target, path.basename(source));
-    }
-  }
-
-  fs.writeFileSync(targetFile, fs.readFileSync(source));
-}
-
-function copyFolderRecursiveSync(source, target) {
+function copyFolderRecursiveSync(sourceFolder, finalFolder) {
   var files = [];
 
-  // Check if folder needs to be created or integrated
-  var targetFolder = path.join(target, path.basename(source));
-  if (!fs.existsSync(targetFolder)) {
-    fs.mkdirSync(targetFolder);
-  }
+  fs.rmSync(finalFolder, { recursive: true, force: true });
+  checkFolder(finalFolder);
 
   // Copy
-  if (fs.lstatSync(source).isDirectory()) {
-    files = fs.readdirSync(source);
+  if (fs.lstatSync(sourceFolder).isDirectory()) {
+    files = fs.readdirSync(sourceFolder);
     files.forEach(function (file) {
-      var curSource = path.join(source, file);
-      if (fs.lstatSync(curSource).isDirectory()) {
-        copyFolderRecursiveSync(curSource, targetFolder);
+      let fileSourcePath = path.join(sourceFolder, file);
+      let fileFinalPath = path.join(finalFolder, file);
+      if (fs.lstatSync(fileSourcePath).isDirectory()) {
+        checkFolder(fileFinalPath); //create folder in destiny
+        copyFolderRecursiveSync(fileSourcePath, fileFinalPath);
       } else {
-        copyFileSync(curSource, targetFolder);
+        let output = fs.readFileSync(fileSourcePath);
+        fs.writeFileSync(fileFinalPath, output, function (err) {
+          if (err) return console.log(err);
+        });
       }
     });
+  } else {
+    stopProgram("file:" + sourceFolder + " must to be a folder.");
   }
 }
 
+const generatedSwagger = () => {
+  exec('./generateSwagger.ps1', { 'shell': 'powershell.exe' }, (error, stdout, data) => {
+    if (error) {
+      stopProgram(error);
+    } else {
+      console.log(data);
+    }
+    init();
+  });
+}
 
-init();
+generatedSwagger();

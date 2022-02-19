@@ -39,5 +39,5 @@ api/configs : API configs (JSON)
     # git clone https://github.com/swagger-api/swagger-codegen
     # cd swagger-codegen
     # mvn clean package
-    # java -jar modules/swagger-codegen-cli/target/swagger-codegen-cli.jar generate -i E:/dev/nodejs/nodejs/apiGenerator/APIGen/config/swagger.yaml -l nodejs-server -o E:/dev/nodejs/nodejs/apiGenerator/APIGen/api_generated/swagger
+    # java -jar ./swagger-codegen/modules/swagger-codegen-cli/target/swagger-codegen-cli.jar generate -i E:/dev/nodejs/nodejs/apiGenerator/APIGen/config/swagger.yaml -l nodejs-server -o E:/dev/nodejs/nodejs/apiGenerator/APIGen/api_generated/swagger
 ```

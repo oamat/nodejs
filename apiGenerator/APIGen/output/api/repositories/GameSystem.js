@@ -15,12 +15,13 @@ const { db } = require('./sqllite_conn.js');
 
 exports.getAllGameSystems = async (name, sort) => {
     return new Promise((resolve, reject) => { // we need promise for managing errors and results inside callbacks
+        console.log("\x1b[32m", 'executing getAllGameSystems.');
         
         let sql = `SELECT * FROM GameSystems WHERE name = ? AND sort = ?`;
         let params = [name, sort];
-        db.get(sql, params, function (err) {
+        db.all(sql, params, function (err, results) {
             if (err) reject(err); 
-            resolve(result);           
+            resolve(results);           
             //resolve({ id: this.lastID });
         });
     });
@@ -29,28 +30,29 @@ exports.getAllGameSystems = async (name, sort) => {
 
 exports.createGameSystem = async (gamesystem) => {
     return new Promise((resolve, reject) => { // we need promise for managing errors and results inside callbacks
+        console.log("\x1b[32m", 'executing createGameSystem');
         
         let name = gamesystem.name;
         let description = gamesystem.description;
         let image = gamesystem.image;
         let sql = `INSERT INTO GameSystems (name, description, image) VALUES (?, ?, ?)`;
         let params = [name, description, image];
-        db.run(sql, params, function (err, result) {            
-            if (err) reject(err);            
-            resolve(result);
-            //resolve({ id: this.lastID });
+        db.run(sql, params, function (err) {            
+            if (err) reject(err);                     
+            resolve({ id: this.lastID , created: this.changes});
         });
     });
     //.then(() => {});
 }
 exports.getOneGameSystemById = async (id) => {
     return new Promise((resolve, reject) => { // we need promise for managing errors and results inside callbacks
+        console.log("\x1b[32m", 'executing getOneGameSystemById.');
         
         let sql = `SELECT * FROM GameSystems WHERE id = ?`;
         let params = [id];
-        db.get(sql, params, function (err) {
+        db.get(sql, params, function (err, row) {
             if (err) reject(err); 
-            resolve(result);           
+            resolve(row);           
             //resolve({ id: this.lastID });
         });
     });
@@ -59,29 +61,29 @@ exports.getOneGameSystemById = async (id) => {
 
 exports.updateGameSystem = async (id, gamesystem) => {
     return new Promise((resolve, reject) => { // we need promise for managing errors and results inside callbacks        
+        console.log("\x1b[32m", 'executing updateGameSystem.');
         
         let name = gamesystem.name;
         let description = gamesystem.description;
         let image = gamesystem.image;
         let sql = `UPDATE GameSystems SET name = ?, description = ?, image = ? WHERE id = ?`;
         let params = [name, description, image, id];
-        db.run(sql, params, function (err, result) {            
+        db.run(sql, params, function (err) {            
             if (err) reject(err);            
-            resolve(result);
-            //resolve({ id: this.lastID });
+            resolve({ changed: this.changes });       
         });
     });
     //.then(() => {});
 }
 exports.deleteGameSystem = async (id) => {
     return new Promise((resolve, reject) => { // we need promise for managing errors and results inside callbacks        
+        console.log("\x1b[32m", 'executing deleteGameSystem.');
         
         let sql = `DELETE FROM GameSystems WHERE id = ?`;
         let params = [id];
-        db.run(sql, params, function (err, result) {            
+        db.run(sql, params, function (err) {            
             if (err) reject(err);            
-            resolve(result);
-            //resolve({ id: this.lastID });
+            resolve({ deleted: this.changes} );
         });
     });
     //.then(() => {});

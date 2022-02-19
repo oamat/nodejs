@@ -1,0 +1,1 @@
+java -jar ./swagger-codegen/modules/swagger-codegen-cli/target/swagger-codegen-cli.jar generate -i E:/dev/nodejs/nodejs/apiGenerator/APIGen/config/swagger.yaml -l nodejs-server -o E:/dev/nodejs/nodejs/apiGenerator/APIGen/api_generated/swagger

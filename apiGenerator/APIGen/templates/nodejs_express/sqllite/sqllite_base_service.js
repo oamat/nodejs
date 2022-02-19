@@ -11,5 +11,5 @@
 
  //Dependencies
  const utils = require('../utils/writer.js');
- const repository = require('../repositories/{{{repository_code}}}');
+ const repository = require('../repositories/{{{repository_import}}}');
  

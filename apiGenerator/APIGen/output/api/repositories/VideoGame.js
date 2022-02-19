@@ -15,12 +15,13 @@ const { db } = require('./sqllite_conn.js');
 
 exports.getAllVideoGames = async (name, developer, gamesystem, genre, year, sort, fields) => {
     return new Promise((resolve, reject) => { // we need promise for managing errors and results inside callbacks
+        console.log("\x1b[32m", 'executing getAllVideoGames.');
         
         let sql = `SELECT * FROM VideoGames WHERE name = ? AND developer = ? AND gamesystem = ? AND genre = ? AND year = ? AND sort = ? AND fields = ?`;
         let params = [name, developer, gamesystem, genre, year, sort, fields];
-        db.get(sql, params, function (err) {
+        db.all(sql, params, function (err, results) {
             if (err) reject(err); 
-            resolve(result);           
+            resolve(results);           
             //resolve({ id: this.lastID });
         });
     });
@@ -29,6 +30,7 @@ exports.getAllVideoGames = async (name, developer, gamesystem, genre, year, sort
 
 exports.createVideoGame = async (videogame) => {
     return new Promise((resolve, reject) => { // we need promise for managing errors and results inside callbacks
+        console.log("\x1b[32m", 'executing createVideoGame');
         
         let name = videogame.name;
         let developer = videogame.developer;
@@ -38,22 +40,22 @@ exports.createVideoGame = async (videogame) => {
         let image = videogame.image;
         let sql = `INSERT INTO VideoGames (name, developer, gamesystem, genre, year, image) VALUES (?, ?, ?, ?, ?, ?)`;
         let params = [name, developer, gamesystem, genre, year, image];
-        db.run(sql, params, function (err, result) {            
-            if (err) reject(err);            
-            resolve(result);
-            //resolve({ id: this.lastID });
+        db.run(sql, params, function (err) {            
+            if (err) reject(err);                     
+            resolve({ id: this.lastID , created: this.changes});
         });
     });
     //.then(() => {});
 }
 exports.getOneVideoGameById = async (id) => {
     return new Promise((resolve, reject) => { // we need promise for managing errors and results inside callbacks
+        console.log("\x1b[32m", 'executing getOneVideoGameById.');
         
         let sql = `SELECT * FROM VideoGames WHERE id = ?`;
         let params = [id];
-        db.get(sql, params, function (err) {
+        db.get(sql, params, function (err, row) {
             if (err) reject(err); 
-            resolve(result);           
+            resolve(row);           
             //resolve({ id: this.lastID });
         });
     });
@@ -62,6 +64,7 @@ exports.getOneVideoGameById = async (id) => {
 
 exports.updateVideoGame = async (id, videogame) => {
     return new Promise((resolve, reject) => { // we need promise for managing errors and results inside callbacks
+        console.log("\x1b[32m", 'executing updateVideoGame.');
         
         let name = videogame.name;
         let developer = videogame.developer;
@@ -71,22 +74,22 @@ exports.updateVideoGame = async (id, videogame) => {
         let image = videogame.image;
         let sql = `UPDATE VideoGames SET name = ?, developer = ?, gamesystem = ? WHERE id = ?`;
         let params = [name,developer,gamesystem,id];
-        db.run(sql, params, function (err) {
+        db.run(sql, params, function (err, result) {
             if (err) reject(err);            
-            resolve(result);
+            resolve(this);
         });
     });
     //.then(() => {});
 }
 exports.deleteVideoGame = async (id) => {
     return new Promise((resolve, reject) => { // we need promise for managing errors and results inside callbacks        
+        console.log("\x1b[32m", 'executing deleteVideoGame.');
         
         let sql = `DELETE FROM VideoGames WHERE id = ?`;
         let params = [id];
-        db.run(sql, params, function (err, result) {            
+        db.run(sql, params, function (err) {            
             if (err) reject(err);            
-            resolve(result);
-            //resolve({ id: this.lastID });
+            resolve({ deleted: this.changes} );
         });
     });
     //.then(() => {});

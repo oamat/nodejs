@@ -11,64 +11,69 @@
 
  //Dependencies
  const utils = require('../utils/writer.js');
- const repository = require('../repositories/');
+ const repository = require('../repositories/GameSystem.js');
  
 exports.getAllGameSystems = async (name, sort) => {
-    return new Promise((resolve, reject) => {
-        let data = await repository.getAllGameSystems(name, sort);     
+    return new Promise( async (resolve, reject) => {
+      console.log("\x1b[32m", 'executing getAllGameSystems Service.');
+      let data = await repository.getAllGameSystems(name, sort);     
         if (data) {
           let response = utils.respondWithCode(200,data);    
           resolve(response);
         } else {
-          let response = utils.respondWithCode(404,{"empty": false});
+          let response = utils.respondWithCode(404,{"empty": true});
           resolve(response);
         }
       });
 }
 exports.createGameSystem = async (gamesystem) => {
-    return new Promise((resolve, reject) => {
-        let data = await repository.createGameSystem(gamesystem);     
+    return new Promise( async (resolve, reject) => {
+      console.log("\x1b[32m", 'executing createGameSystem Service.');
+      let data = await repository.createGameSystem(gamesystem);     
         if (data) {
           let response = utils.respondWithCode(200,data);    
           resolve(response);
         } else {
-          let response = utils.respondWithCode(404,{"empty": false});
+          let response = utils.respondWithCode(404,{"empty": true});
           resolve(response);
         }
       });
 }
 exports.getOneGameSystemById = async (id) => {
-    return new Promise((resolve, reject) => {
-        let data = await repository.getOneGameSystemById(id);     
+    return new Promise( async (resolve, reject) => {
+      console.log("\x1b[32m", 'executing getOneGameSystemById Service.');
+      let data = await repository.getOneGameSystemById(id);     
         if (data) {
           let response = utils.respondWithCode(200,data);    
           resolve(response);
         } else {
-          let response = utils.respondWithCode(404,{"empty": false});
+          let response = utils.respondWithCode(404,{"empty": true});
           resolve(response);
         }
       });
 }
 exports.updateGameSystem = async (id, gamesystem) => {
-    return new Promise((resolve, reject) => {
-        let data = await repository.updateGameSystem(id, gamesystem);     
+    return new Promise( async (resolve, reject) => {
+      console.log("\x1b[32m", 'executing updateGameSystem Service.');
+      let data = await repository.updateGameSystem(id, gamesystem);     
         if (data) {
           let response = utils.respondWithCode(200,data);    
           resolve(response);
         } else {
-          let response = utils.respondWithCode(404,{"empty": false});
+          let response = utils.respondWithCode(404,{"empty": true});
           resolve(response);
         }
       });
 }
 exports.deleteGameSystem = async (id) => {
-    return new Promise((resolve, reject) => {
-        let data = await repository.deleteGameSystem(id);     
+    return new Promise( async (resolve, reject) => {
+      console.log("\x1b[32m", 'executing deleteGameSystem Service.');
+      let data = await repository.deleteGameSystem(id);     
         if (data) {
           let response = utils.respondWithCode(200,data);    
           resolve(response);
         } else {
-          let response = utils.respondWithCode(404,{"empty": false});
+          let response = utils.respondWithCode(404,{"empty": true});
           resolve(response);
         }
       });

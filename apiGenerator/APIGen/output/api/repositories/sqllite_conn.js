@@ -10,7 +10,7 @@ var db;
 
 const initDB = async () => {
     // open the database
-    db = new sqlite3.Database('{{{database_path}}}', sqlite3.OPEN_READWRITE, (err) => {
+    db = new sqlite3.Database('E:/dev/nodejs/nodejs/apiGenerator/APIGen/db/sqllite_db.db', sqlite3.OPEN_READWRITE, (err) => {
         if (err) {
             console.error("\x1b[31m", err.message);
         } else {

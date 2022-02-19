@@ -1,16 +1,18 @@
 {
    "language_type":"nodejs_express",
    "persistence_type":"sqllite",
-   "db_properties":{ "path":"./db/sqllite_db.db"},
-   "yaml_swagger":"./config/swagger.yaml",
+   "db_properties":{ "path":"E:/dev/nodejs/nodejs/apiGenerator/APIGen/db/sqllite_db.db"},
+   "yaml_swagger":"./config/swagger.yaml",  
+   "generateDDL": true,
    "definitions" : 
    [     
       {         
-         "x-swagger-router-controller":"GameSystem",
+         "x-swagger-router-controller":"GameSystem",         
          "table_definition": 
          {
             "table":"GameSystems",            
             "table_columns":{"id":"int", "name":"string", "description":"string"},                        
+            "table_columns_correlation":{},                        
             "pks":"id"                        
          },
          "custom_methods":[]
@@ -20,8 +22,9 @@
          "table_definition": 
          {      
             "table":"VideoGames",
-            "table_columns":{"id":"int", "name":"string", "developer":"string", "gamesystem":"string", "genre":"string","year":"int" },       
-            "pks":"id"
+            "table_columns":{"id":"int", "name":"string", "developer":"string", "gamesystem":"string", "genre":"string","year":"int" }, 
+            "table_columns_correlation":{},       
+            "pks":"id"            
          },
          "custom_methods":[
             { "method":"updateVideoGame", "sql":"UPDATE VideoGames SET name = ?, developer = ?, gamesystem = ? WHERE id = ?", "sql_params": "name,developer,gamesystem,id"}             
@@ -32,7 +35,8 @@
          "table_definition": 
          {
             "table":"Users",
-            "table_columns":{"id":"int","name":"string", "psw":"string", "api_key":"string"},            
+            "table_columns":{"id":"int","name":"string", "psw":"string", "api_key":"string"},
+            "table_columns_correlation":{},             
             "pks":"id"                     
          },
          "custom_methods":[ 

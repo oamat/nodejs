@@ -1,0 +1,21 @@
+{
+  "name": "test-game-app",
+  "version": "1.0.2",
+  "description": "This is a sample server Game App for APIGen project of OAF.",
+  "main": "index.js",
+  "scripts": {
+    "prestart": "npm install",
+    "start": "node index.js"
+  },
+  "keywords": [
+    "swagger"
+  ],
+  "license": "Unlicense",
+  "private": true,
+  "dependencies": {
+    "connect": "^3.2.0",
+    "js-yaml": "^3.3.0",
+    "sqlite3": "^5.0.2",
+    "swagger-tools": "0.10.1"
+  }
+}

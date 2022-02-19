@@ -11,16 +11,17 @@
 
  //Dependencies
  const utils = require('../utils/writer.js');
- const repository = require('../repositories/');
+ const repository = require('../repositories/Login.js');
  
 exports.login = async (user, password) => {
-    return new Promise((resolve, reject) => {
-        let data = await repository.login(user, password);     
+    return new Promise( async (resolve, reject) => {
+      console.log("\x1b[32m", 'executing login Service.');
+      let data = await repository.login(user, password);     
         if (data) {
           let response = utils.respondWithCode(200,data);    
           resolve(response);
         } else {
-          let response = utils.respondWithCode(404,{"empty": false});
+          let response = utils.respondWithCode(404,{"empty": true});
           resolve(response);
         }
       });
