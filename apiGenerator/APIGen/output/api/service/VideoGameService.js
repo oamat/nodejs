@@ -13,10 +13,10 @@
  const utils = require('../utils/writer.js');
  const repository = require('../repositories/VideoGame.js');
  
-exports.getAllVideoGames = async (name, developer, gamesystem, genre, year, sort, fields) => {
+exports.getAllVideoGames = async (name, developer, gamesystem, genre, year, sort) => {
     return new Promise( async (resolve, reject) => {
       console.log("\x1b[32m", 'executing getAllVideoGames Service.');
-      let data = await repository.getAllVideoGames(name, developer, gamesystem, genre, year, sort, fields);     
+      let data = await repository.getAllVideoGames(name, developer, gamesystem, genre, year, sort);     
         if (data) {
           let response = utils.respondWithCode(200,data);    
           resolve(response);

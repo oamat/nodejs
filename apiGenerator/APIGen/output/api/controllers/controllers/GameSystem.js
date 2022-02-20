@@ -1,38 +1,34 @@
 'use strict';
 
 var utils = require('../utils/writer.js');
-var VideoGame = require('../service/VideoGameService');
+var GameSystem = require('../service/GameSystemService');
 
-module.exports.createVideoGame = function createVideoGame (req, res, next) {
-  var videogame = req.swagger.params['videogame'].value;
-  VideoGame.createVideoGame(videogame)
-    .then(function (response) {
-      utils.writeJson(res, response);
-    })
-    .catch(function (response) {
-      utils.writeJson(res, response);
-    });
-};
-
-module.exports.deleteVideoGame = function deleteVideoGame (req, res, next) {
-  var id = req.swagger.params['id'].value;
-  VideoGame.deleteVideoGame(id)
-    .then(function (response) {
-      utils.writeJson(res, response);
-    })
-    .catch(function (response) {
-      utils.writeJson(res, response);
-    });
-};
-
-module.exports.getAllVideoGames = function getAllVideoGames (req, res, next) {
-  var name = req.swagger.params['name'].value;
-  var developer = req.swagger.params['developer'].value;
+module.exports.createGameSystem = function createGameSystem (req, res, next) {
   var gamesystem = req.swagger.params['gamesystem'].value;
-  var genre = req.swagger.params['genre'].value;
-  var year = req.swagger.params['year'].value;
+  GameSystem.createGameSystem(gamesystem)
+    .then(function (response) {
+      utils.writeJson(res, response);
+    })
+    .catch(function (response) {
+      utils.writeJson(res, response);
+    });
+};
+
+module.exports.deleteGameSystem = function deleteGameSystem (req, res, next) {
+  var id = req.swagger.params['id'].value;
+  GameSystem.deleteGameSystem(id)
+    .then(function (response) {
+      utils.writeJson(res, response);
+    })
+    .catch(function (response) {
+      utils.writeJson(res, response);
+    });
+};
+
+module.exports.getAllGameSystems = function getAllGameSystems (req, res, next) {
+  var name = req.swagger.params['name'].value;
   var sort = req.swagger.params['sort'].value;
-  VideoGame.getAllVideoGames(name,developer,gamesystem,genre,year,sort)
+  GameSystem.getAllGameSystems(name,sort)
     .then(function (response) {
       utils.writeJson(res, response);
     })
@@ -41,9 +37,9 @@ module.exports.getAllVideoGames = function getAllVideoGames (req, res, next) {
     });
 };
 
-module.exports.getOneVideoGameById = function getOneVideoGameById (req, res, next) {
+module.exports.getOneGameSystemById = function getOneGameSystemById (req, res, next) {
   var id = req.swagger.params['id'].value;
-  VideoGame.getOneVideoGameById(id)
+  GameSystem.getOneGameSystemById(id)
     .then(function (response) {
       utils.writeJson(res, response);
     })
@@ -52,10 +48,10 @@ module.exports.getOneVideoGameById = function getOneVideoGameById (req, res, nex
     });
 };
 
-module.exports.updateVideoGame = function updateVideoGame (req, res, next) {
+module.exports.updateGameSystem = function updateGameSystem (req, res, next) {
   var id = req.swagger.params['id'].value;
-  var videogame = req.swagger.params['videogame'].value;
-  VideoGame.updateVideoGame(id,videogame)
+  var gamesystem = req.swagger.params['gamesystem'].value;
+  GameSystem.updateGameSystem(id,gamesystem)
     .then(function (response) {
       utils.writeJson(res, response);
     })

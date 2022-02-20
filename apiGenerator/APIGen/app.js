@@ -12,8 +12,9 @@ var YAML = require('yaml');
 //{{name_1upper_plural}} = Gamesystems
 //{{name_upper}} = GAMESYSTEM
 
-const config = JSON.parse(fs.readFileSync('./config.json', 'utf8'));
-const yaml = YAML.parse(fs.readFileSync(config.yaml_swagger, 'utf8'));
+const config_init = JSON.parse(fs.readFileSync('./config.json', 'utf8'));
+const config = JSON.parse(fs.readFileSync(config_init.json_config, 'utf8'));
+const yaml = YAML.parse(fs.readFileSync(config_init.yaml_swagger, 'utf8'));
 
 //LOAD YAML ARRAYS
 var controllersList = new Set();
@@ -106,6 +107,7 @@ const init = () => {
 
   }
   writeConn();
+  copyJsonConfig(); 
   copyYaml();
 }
 
@@ -292,6 +294,8 @@ const checkFolders = () => {
 
   checkFolder('./output/');
   checkFolder('./output/api/');
+  checkFolder('./output/api/api/');
+  checkFolder('./output/api/config/');
   checkFolder('./output/api/api/swagger/');
   checkFolder('./output/api/repositories/');
   checkFolder('./output/api/service/');
@@ -340,7 +344,7 @@ const writeConn = () => {
 const copyYaml = () => {
   let file_path_destination = './output/api/api/swagger.yaml'
   let file_path_destination_too = './output/api/api/swagger/swagger.yaml'
-  let file_path_source = config.yaml_swagger;
+  let file_path_source = config_init.yaml_swagger;
 
 
   fs.copyFile(file_path_source, file_path_destination, (err) => {
@@ -355,6 +359,17 @@ const copyYaml = () => {
 
 }
 
+
+const copyJsonConfig = () => {
+  let file_path_destination = './output/api/config/config.json'
+  let file_path_source = config_init.json_config;
+
+
+  fs.copyFile(file_path_source, file_path_destination, (err) => {
+    if (err) throw err;
+    console.log('copy depedency > ' + file_path_destination);
+  }); 
+}
 
 
 const loadYaml = () => {
@@ -515,13 +530,24 @@ function copyFolderRecursiveSync(sourceFolder, finalFolder) {
 }
 
 const generatedSwagger = () => {
+
   exec('./generateSwagger.ps1', { 'shell': 'powershell.exe' }, (error, stdout, data) => {
     if (error) {
-      stopProgram(error);
+      stopProgram(error + stdout);
     } else {
-      console.log(data);
+      console.log(data + stdout);
+      exec('./copyFolder.ps1', { 'shell': 'powershell.exe' }, (error, stdout, data) => {        
+        if (error) {
+          stopProgram(error + stdout);
+        } else {   
+          console.log(data + stdout);          
+         //copyFolderRecursiveSync('./api_generated/','./output/api/');        
+         init();              
+        }      
+      });
+    
     }
-    init();
+  
   });
 }
 

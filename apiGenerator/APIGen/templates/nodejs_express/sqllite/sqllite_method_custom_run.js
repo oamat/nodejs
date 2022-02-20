@@ -5,7 +5,7 @@ exports.{{{method_name}}} = async ({{{method_params}}}) => {
         {{{object_to_params}}}
         let sql = `{{{method_sql}}}`;
         let params = [{{{sql_params}}}];
-        db.run(sql, params, function (err, result) {
+        db.run(sql, params, function (err) {
             if (err) reject(err);            
             resolve(this);
         });

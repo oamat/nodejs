@@ -1,1 +1,2 @@
-\output\api\npm start
+cd .\output\api\
+npm start
