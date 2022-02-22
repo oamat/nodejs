@@ -17,7 +17,7 @@ exports.login = async (user, password) => {
     return new Promise((resolve, reject) => { // we need promise for managing errors and results inside callbacks
         console.log("\x1b[32m", 'executing login.');
         
-        let sql = `SELECT * FROM USERS WHERE user=? AND password=?`;
+        let sql = `SELECT apikey FROM USERS WHERE user=? AND password=?`;
         let params = [user,password];
         db.all(sql, params, function (err, result) {
             if (err) reject(err);            

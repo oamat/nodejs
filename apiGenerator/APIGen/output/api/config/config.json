@@ -25,19 +25,21 @@
             "table_columns_correlation":{},       
             "pks":"id"            
          },
-         "custom_methods":[]                
+         "custom_methods":[
+            { "method":"getVideogamesByDev", "sql":"SELECT * FROM VideoGames WHERE developer = ?", "sql_params": "developer" }
+         ]                
       },
       {
          "x-swagger-router-controller":"Login",
          "table_definition": 
          {
             "table":"Users",
-            "table_columns":{"id":"INTEGER","name":"TEXT", "password":"TEXT", "api_key":"TEXT"},
+            "table_columns":{"id":"INTEGER","name":"TEXT", "password":"TEXT", "apikey":"TEXT"},
             "table_columns_correlation":{},             
             "pks":"id"                     
          },
          "custom_methods":[ 
-            { "method":"login", "sql":"SELECT * FROM USERS WHERE user=? AND password=?", "sql_params": "user,password"}          
+            { "method":"login", "sql":"SELECT apikey FROM USERS WHERE user=? AND password=?", "sql_params": "user,password", "sql_second":"SELECT * FROM USERS WHERE user=? AND password=?", "sql_params_second": "user,password"}          
          ]
       }
    ]    

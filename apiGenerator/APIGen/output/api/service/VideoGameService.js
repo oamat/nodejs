@@ -78,3 +78,16 @@ exports.deleteVideoGame = async (id) => {
         }
       });
 }
+exports.getVideogamesByDev = async (developer) => {
+    return new Promise( async (resolve, reject) => {
+      console.log("\x1b[32m", 'executing getVideogamesByDev Service.');
+      let data = await repository.getVideogamesByDev(developer);     
+        if (data) {
+          let response = utils.respondWithCode(200,data);    
+          resolve(response);
+        } else {
+          let response = utils.respondWithCode(404,{"empty": true});
+          resolve(response);
+        }
+      });
+}

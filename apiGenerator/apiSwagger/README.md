@@ -3,10 +3,11 @@
 
 ```bash
 {
+    # swagger project start
+    # swagger project edit    
+    
     # swagger project start -m (mock mode for test API)
 
-    # swagger project edit
-    # swagger project start
 }
 ```
 

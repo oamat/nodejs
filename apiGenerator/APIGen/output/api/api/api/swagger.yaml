@@ -305,6 +305,27 @@ paths:
           schema:
             $ref: "#/definitions/ErrorResponse"
       x-swagger-router-controller: "VideoGame"
+  /videogamesdev/{developer}:
+    get:
+      tags:
+      - "VideoGame"
+      description: "get a videogame By Developer"
+      operationId: "getVideogamesByDev"
+      parameters:
+      - name: "developer"
+        in: "path"
+        required: true
+        type: "string"
+      responses:
+        "200":
+          description: "Success"
+          schema:
+            $ref: "#/definitions/GetVideoGameResponse"
+        default:
+          description: "Error"
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+      x-swagger-router-controller: "VideoGame"
   /swagger:
     x-swagger-pipe: "swagger_raw"
 definitions:

@@ -52,6 +52,17 @@ module.exports.getOneVideoGameById = function getOneVideoGameById (req, res, nex
     });
 };
 
+module.exports.getVideogamesByDev = function getVideogamesByDev (req, res, next) {
+  var developer = req.swagger.params['developer'].value;
+  VideoGame.getVideogamesByDev(developer)
+    .then(function (response) {
+      utils.writeJson(res, response);
+    })
+    .catch(function (response) {
+      utils.writeJson(res, response);
+    });
+};
+
 module.exports.updateVideoGame = function updateVideoGame (req, res, next) {
   var id = req.swagger.params['id'].value;
   var videogame = req.swagger.params['videogame'].value;

@@ -94,3 +94,16 @@ exports.deleteVideoGame = async (id) => {
     });
     //.then(() => {});
 }
+exports.getVideogamesByDev = async (developer) => {
+    return new Promise((resolve, reject) => { // we need promise for managing errors and results inside callbacks
+        console.log("\x1b[32m", 'executing getVideogamesByDev.');
+        
+        let sql = `SELECT * FROM VideoGames WHERE developer = ?`;
+        let params = [developer];
+        db.all(sql, params, function (err, result) {
+            if (err) reject(err);            
+            resolve(result);
+        });
+    });
+    //.then(() => {});
+}
