@@ -62,7 +62,7 @@ open http://localhost:8080/docs   (IMPOTANT: Change Scheme HTTP for local testin
 ### Code source folders
 
 Codes will be generate to .\output\api\ folder with scafolding :
-
+```bash
 api/mocks : for testing API. TO DO
 api/routers  : Not exist because Swagger do automatically! : validate params (400 Bad Request) and  chooses which controller (and which method on that controller:operationId) handles the request. Finally return response with 'res.send'.
 api/controllers : save params in object, Call to services and return the result to router. 
@@ -71,7 +71,7 @@ api/repositories : save the objects to persistence: memory, db, fs,...
 api/models : Not exist because Swagger do automatically! The persistence object definition (is it necessary??)
 api/helpers : util & helper methods
 api/configs : API configs (JSON) if it's necessary
-
+```
 
 
 ### Generating Auto Swagger (It's not necessary)
