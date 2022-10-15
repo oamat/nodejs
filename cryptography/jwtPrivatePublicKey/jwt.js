@@ -7,23 +7,22 @@ var publicKEY = fs.readFileSync('./public.key', 'utf8');
  ====================   JWT Signing =====================
 */
 
-var payload = {
-    data1: "Data 1",
-    data2: "Data 2",
-    data3: "Data 3",
-    data4: "Data 4",
-};
-var i = 'CaixaBank';
-var s = 'caixa@caixabank.com';
-var a = 'http://www.caixabank.es';
 
-var signOptions = {
-    issuer: i,
-    subject: s,
-    audience: a,
-    expiresIn: "12h",
+const signOptions = {
+    issuer: 'CaixaBank',
+    subject: 'caixabank@caixabank.com',
+    audience: 'http://www.caixabank.es',
+    expiresIn : 3, //Here the value of expiresIn is measured in seconds
     algorithm: "RS256"   // RSASSA [ "RS256", "RS384", "RS512" ]
 };
+
+const payload = { 
+    name:'pepe', 
+    userid:1, 
+    uuid: '58a32333-ce34-47eb-b43f-1c31bdc08034', 
+    company: 'cxb', 
+    role: 'user' };
+
 var token = jwt.sign(payload, privateKEY, signOptions);
 console.log("Token :" + token);
 
@@ -44,26 +43,14 @@ console.log("\nJWT verification result: " + JSON.stringify(legit)); */
 /*
  ====================   JWT Verify with Public key=====================
 */
-var verifyOptions = {
-    issuer: i,
-    subject: s,
-    audience: a,
-    expiresIn: "12h",
-    algorithm: ["RS256"]
-};
-var legit = jwt.verify(token, publicKEY, verifyOptions);
+
+var legit = jwt.verify(token, publicKEY, signOptions);
 console.log("\nJWT verification result: " + JSON.stringify(legit));
 
 
 /*
  ====================   JWT DECODE with Public key=====================
 */
-var verifyOptions = {
-    issuer: i,
-    subject: s,
-    audience: a,
-    expiresIn: "12h",
-    algorithm: ["RS256"]
-};
+
 var result = jwt.decode(token);
 console.log("\nJWT decode result: " + JSON.stringify(result));
