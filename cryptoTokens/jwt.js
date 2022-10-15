@@ -28,7 +28,7 @@ var token = jwt.sign(payload, privateKEY, signOptions);
 console.log("Token :" + token);
 
 /*
- ====================   JWT Verify with Private key=====================
+ ====================   JWT Verify with Private key NOT WORK!!=====================
 */
 /* var verifyOptions = {
     issuer: i,
@@ -53,3 +53,17 @@ var verifyOptions = {
 };
 var legit = jwt.verify(token, publicKEY, verifyOptions);
 console.log("\nJWT verification result: " + JSON.stringify(legit));
+
+
+/*
+ ====================   JWT DECODE with Public key=====================
+*/
+var verifyOptions = {
+    issuer: i,
+    subject: s,
+    audience: a,
+    expiresIn: "12h",
+    algorithm: ["RS256"]
+};
+var result = jwt.decode(token);
+console.log("\nJWT decode result: " + JSON.stringify(result));
