@@ -1,5 +1,9 @@
 # JWT with Public & Private Key
 
+Generate & Sign JWT with Private Key
+Verify JWT with public Key
+Decode JWT, this part you don't need any key
+
 ### Generate Keys:
 We will create a dummy payload, but for Secret we need to create aprivate-public key pair. There are many ways of creating keys, the quickest one would be to use an online RSA key generator. There are many options available online, I prefer either one of those
 1. csfieldguide
