@@ -7,7 +7,6 @@ var publicKEY = fs.readFileSync('./public.key', 'utf8');
  ====================   JWT Signing =====================
 */
 
-console.log(privateKEY);
 var payload = {
     data1: "Data 1",
     data2: "Data 2",
@@ -27,8 +26,23 @@ var signOptions = {
 };
 var token = jwt.sign(payload, privateKEY, signOptions);
 console.log("Token :" + token);
+
 /*
- ====================   JWT Verify =====================
+ ====================   JWT Verify with Private key=====================
+*/
+/* var verifyOptions = {
+    issuer: i,
+    subject: s,
+    audience: a,
+    expiresIn: "12h",
+    algorithm: ["RS256"]
+};
+var legit = jwt.verify(token, privateKEY, verifyOptions);
+console.log("\nJWT verification result: " + JSON.stringify(legit)); */
+
+
+/*
+ ====================   JWT Verify with Public key=====================
 */
 var verifyOptions = {
     issuer: i,
