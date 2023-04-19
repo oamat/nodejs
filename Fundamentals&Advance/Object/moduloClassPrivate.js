@@ -1,6 +1,9 @@
+const constante = "I am a constant";
+
 class Something {
     #property;
-  
+
+
     constructor(){
       this.#property = "I am a Private Property";
     }
@@ -16,6 +19,11 @@ class Something {
     getPrivateMethod() {
         return this.#privateMethod();
     }
+
+    getConstant() {
+        return constante;
+    }
+
   }
   
   const instance = new Something();
@@ -23,4 +31,6 @@ class Something {
   console.log(instance.privateMethod); //=> undefined
   console.log(instance.getPrivateProperty()); //=> I am a Private Property
   console.log(instance.getPrivateMethod()); //=> I am a Private Method
+  console.log(instance.getConstant()); //=> I am a constant
+  /****ERROR****/
   //console.log(instance.#property); //=> Syntax error
