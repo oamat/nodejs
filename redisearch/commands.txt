@@ -1,0 +1,34 @@
+
+
+https://redis.io/docs/stack/search/quick_start/
+
+Start: 
+$ docker run -d --name redis-stack-server -p 127.0.0.1:6379:6379 redis/redis-stack-server:latest
+                -	docker stop redis-stack-server
+                -	docker start redis-stack-server
+
+$ rdcli  (automaticament es connecta, però no es pot fer FT.SEARCH)     
+
+$ docker exec -it redis-stack-server /bin/sh ([id or name]) o per Docker Desktop!
+
+        # redis-cli  (El millor és usar redis-cli dins del docker entrant dins la imatge o be redis-search a node)
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@@@@@  PROVES
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+# FT.CREATE CXBIdx ON HASH PREFIX 1 doc: SCHEMA escenario TEXT sistema TEXT aplicacion TEXT tipo TEXT componente TEXT area TEXT familia TEXT descripcion TEXT
+OK  
+
+        # HSET doc:1 escenario "Pro" sistema "CLOUD" aplicacion "APP1" tipo "IKS" componente "COMP1" area "area1" familia "fam1" descripcion "desc1"
+        # HSET doc:2 escenario "Pro" sistema "CLOUD" aplicacion "APP2" tipo "IKS" componente "COMP2" area "area1" familia "fam2" descripcion "desc2"
+        # HSET doc:3 escenario "Pro" sistema "CLOUD" aplicacion "APP3" tipo "IKS" componente "COMP3" area "area3" familia "fam3" descripcion "desc3"
+        # HSET doc:4 escenario "Pro" sistema "CLOUD" aplicacion "APP4" tipo "IKS" componente "COMP4" area "area4" familia "fam4" descripcion "desc4"
+
+
+
+# FT.SEARCH CXBIdx "Pro" LIMIT 0 10
+# FT.SEARCH CXBIdx "desc*" LIMIT 0 10
+
+
+# FT.DROPINDEX myIdx
+
