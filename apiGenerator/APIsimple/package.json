@@ -1,0 +1,14 @@
+{
+  "name": "apisimple",
+  "version": "1.0.0",
+  "description": "Node Express server for Simple API",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "OA",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
